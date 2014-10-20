@@ -1,0 +1,6 @@
+setup.py
+setup.cfg
+build
+dist
+TEST-nosetests.xml
+ws_client_binding.egg-info/
