@@ -13,15 +13,18 @@
 """
 
 import unittest
-from rosette.LanguageCode import LanguageCode, languageCodeByISO639
-from rosette.ISO15924 import ISO15924, iso15924ByCode4 
+import logging
+from rosette.api import API
+import os
 
-class LanguageCodeTestCase(unittest.TestCase):
-    def test_anyoneHome(self):
-        self.assertNotEqual(LanguageCode.ENGLISH, LanguageCode.FINNISH)
-    def test_lookup(self):
-        self.assertEqual(LanguageCode.FINNISH, languageCodeByISO639('fin'))
+logging.basicConfig(level=logging.DEBUG)
 
-class ISO15924TestCase(unittest.TestCase):
-    def test_lookupCode4(self):
-        self.assertEquals(ISO15924.Hani, iso15924ByCode4['Hani'])
+class PingTestCase(unittest.TestCase):
+    def test_ping(self):
+        port = os.environ['mock-service-port']
+        # here is where the mock services live.
+        url = 'http://localhost:' + port + '/raas'
+        logging.info("URL " + url)
+        api = API(service_url = url)
+        result = api.ping()
+        self.assertIsNotNone(result['message'])

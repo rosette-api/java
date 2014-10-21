@@ -5,9 +5,17 @@
         <artifactId>ws-client-bindings-python</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
-    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ws-client-bindings-setup</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.basistech.ws</groupId>
+            <artifactId>ws-bus-mock-web-service</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <exclusions>
+            </exclusions>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -88,6 +96,51 @@
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <executions>
+                    <execution>
+                        <id>reserve-network-port</id>
+                        <goals>
+                            <goal>reserve-network-port</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <portNames>
+                                <portName>mock-service-port</portName>
+                            </portNames>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.mock-server</groupId>
+                <artifactId>mockserver-maven-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <serverPort>${mock-service-port}</serverPort>
+                    <logLevel>DEBUG</logLevel>
+                    <initializationClass>com.basistech.webservices.mock.RaasMockServices</initializationClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>process-test-classes</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
                     <executable>bash</executable>
@@ -129,6 +182,10 @@
                             </arguments>
                         </configuration>
                     </execution>
+<!-- This causes more problems than it solves so far,
+        since it leaves droppings in the virtualenv we have nothing
+        'downstream' to consume them.
+
                     <execution>
                         <id>setup install</id>
                         <phase>install</phase>
@@ -142,11 +199,11 @@
                                 <argument>${python}</argument>
                                 <argument>setup.py</argument>
                                 <argument>install</argument>
-                                <!-- no  - - user, since we are in a virtualenv --> 
                             </arguments>
                         </configuration>
                     </execution>
-<!-- this isn't very compatible with mvn deploy until we have a repo or something.
+-->
+                    <!-- this isn't very compatible with mvn deploy until we have a repo or something.
                     <execution>
                         <id>setup deploy</id>
                         <phase>deploy</phase>
@@ -181,6 +238,9 @@
                                 <argument>setup.py</argument>
                                 <argument>nosetests</argument>
                             </arguments>
+                            <environmentVariables>
+                              <mock-service-port>${mock-service-port}</mock-service-port>
+                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>
