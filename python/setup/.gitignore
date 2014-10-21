@@ -4,3 +4,5 @@ build
 dist
 TEST-nosetests.xml
 ws_client_binding.egg-info/
+mockserver.log
+mockserver_request.log
