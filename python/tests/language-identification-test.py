@@ -14,7 +14,7 @@
 
 import unittest
 import logging
-from rosette.api import API
+from rosette.api import API, ResultFormat, LanguageDetectionParameters
 import os
 
 logging.basicConfig(level=logging.DEBUG)
@@ -22,9 +22,18 @@ logging.basicConfig(level=logging.DEBUG)
 class RliTestCase(unittest.TestCase):
     def test_info(self):
         port = os.environ['mock-service-port']
-        # here is where the mock services live.
         url = 'http://localhost:' + port + '/raas'
         logging.info("URL " + url)
         lid = API(service_url = url).language_detection()
         result = lid.info()
         self.assertIsNotNone(result['requestId'])
+
+    def test_simple_detection(self):
+        port = os.environ['mock-service-port']
+        url = 'http://localhost:' + port + '/raas'
+        logging.info("URL " + url)
+        params = LanguageDetectionParameters()
+        params.content = "dummy text"
+        # the mock services can't respond to the individual params.
+        lid = API(service_url = url).language_detection()
+        result = lid.detect(params, ResultFormat.SIMPLE)
