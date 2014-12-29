@@ -11,7 +11,7 @@
         <dependency>
             <groupId>com.basistech.ws</groupId>
             <artifactId>ws-bus-mock-web-service</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>0.1.1</version>
             <exclusions>
             </exclusions>
         </dependency>

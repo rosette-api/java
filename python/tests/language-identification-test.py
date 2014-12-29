@@ -28,12 +28,14 @@ class RliTestCase(unittest.TestCase):
         result = lid.info()
         self.assertIsNotNone(result['requestId'])
 
-    def test_simple_detection(self):
+    def test_adm_detection(self):
         port = os.environ['mock-service-port']
         url = 'http://localhost:' + port + '/raas'
         logging.info("URL " + url)
         params = LanguageDetectionParameters()
         params.content = "dummy text"
+        params.contentType = "text/plain"
+        params.unit = "doc"
         # the mock services can't respond to the individual params.
         lid = API(service_url = url).language_detection()
-        result = lid.detect(params, ResultFormat.SIMPLE)
+        result = lid.detect(params, ResultFormat.ROSETTE)

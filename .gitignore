@@ -1,8 +1,11 @@
 target/
+.idea/*
+!.idea/runConfigurations/
+*.iml
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.next
 release.properties
 *~
 *.pyc
-
+mockserver*log

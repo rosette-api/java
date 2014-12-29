@@ -34,8 +34,10 @@ class ResultFormat(Enum):
 # TODO: set up as a fixed collection of properties.
 class LanguageDetectionParameters:
     def __init__(self):
-        self.type = "text"
-        self.content = ""
+        self.content = None
+        self.contentUri = None
+        self.contentType = None
+        self.unit = None
         # The rest is the options
         self.minValidChars = 0
         self.profileDepth = 0
@@ -48,19 +50,21 @@ class LanguageDetectionParameters:
         self.languageHint = None
     def serializable(self):
         v = {}
-        v['type'] = self.type
         v['content'] = self.content
+        v['contentUri'] = self.contentUri
+        v['contentType'] = self.contentType
+        v['unit'] = self.unit
         o = {}
         v['options'] = o
-        v['minValidChars'] = self.minValidChars
-        v['profileDepth'] = self.profileDepth
-        v['ambiguityThreshold'] = self.ambiguityThreshold
-        v['invalidityThreshold'] = self.invalidityThreshold
-        v['languageHintWeight'] = self.languageHintWeight
-        v['encodingHint'] = self.encodingHint
-        v['encodingHintWeight'] = self.encodingHintWeight
-        v['languageWeightHint'] = self.languageWeightHint
-        v['languageHint'] = self.languageHint
+        o['minValidChars'] = self.minValidChars
+        o['profileDepth'] = self.profileDepth
+        o['ambiguityThreshold'] = self.ambiguityThreshold
+        o['invalidityThreshold'] = self.invalidityThreshold
+        o['languageHintWeight'] = self.languageHintWeight
+        o['encodingHint'] = self.encodingHint
+        o['encodingHintWeight'] = self.encodingHintWeight
+        o['languageWeightHint'] = self.languageWeightHint
+        o['languageHint'] = self.languageHint
         return v
 
 class LanguageDetection:
@@ -71,8 +75,8 @@ class LanguageDetection:
 
     def info(self):
         # retrieve info
-        info_url = self.service_url + '/languages/info'
-        self.logger.info('languages/info: ' + info_url)
+        info_url = self.service_url + '/language/info'
+        self.logger.info('language/info: ' + info_url)
         headers = {}
         headers['Accept'] = 'application/json';
         r = requests.get(info_url, headers=headers)
@@ -82,13 +86,13 @@ class LanguageDetection:
             raise RosetteException(r.status_code, "Failed to communicate with language detection service.")
 
     def detect(self, parameters, result_format):
-        detect_url = self.service_url + '/languages/detect'
+        detect_url = self.service_url + '/language'
         if result_format == ResultFormat.ROSETTE:
             detect_url = detect_url + "?output=rosette"
-        self.logger.info('languages/detect: ' + detect_url)
+        self.logger.info('language: ' + detect_url)
         headers = {}
         headers['Accept'] = 'application/json'
-        headers['Content-Type'] = "application/json; charset=UTF-8"
+        headers['Content-Type'] = "application/json"
         params_to_serialize = parameters.serializable()
         r = requests.post(detect_url, headers=headers, json=params_to_serialize)
         if r.status_code == 200:
