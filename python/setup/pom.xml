@@ -7,15 +7,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ws-client-bindings-setup</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.basistech.ws</groupId>
-            <artifactId>ws-bus-mock-web-service</artifactId>
-            <version>0.1.1</version>
-            <exclusions>
-            </exclusions>
-        </dependency>
-    </dependencies>
+    <properties>
+        <mock-service-port>12345</mock-service-port>
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -138,6 +132,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.basistech.ws</groupId>
+                        <artifactId>ws-bus-mock-web-service</artifactId>
+                        <version>0.1.1</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -239,7 +240,7 @@
                                 <argument>nosetests</argument>
                             </arguments>
                             <environmentVariables>
-                              <mock-service-port>${mock-service-port}</mock-service-port>
+                              <MOCK_SERVICE_PORT>${mock-service-port}</MOCK_SERVICE_PORT>
                             </environmentVariables>
                         </configuration>
                     </execution>

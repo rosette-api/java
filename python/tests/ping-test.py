@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 class PingTestCase(unittest.TestCase):
     def test_ping(self):
-        port = os.environ['mock-service-port']
+        port = os.environ['MOCK_SERVICE_PORT']
         # here is where the mock services live.
         url = 'http://localhost:' + port + '/raas'
         logging.info("URL " + url)

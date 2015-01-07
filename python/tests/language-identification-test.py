@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 class RliTestCase(unittest.TestCase):
     def test_info(self):
-        port = os.environ['mock-service-port']
+        port = os.environ['MOCK_SERVICE_PORT']
         url = 'http://localhost:' + port + '/raas'
         logging.info("URL " + url)
         lid = API(service_url = url).language_detection()
@@ -29,7 +29,7 @@ class RliTestCase(unittest.TestCase):
         self.assertIsNotNone(result['requestId'])
 
     def test_adm_detection(self):
-        port = os.environ['mock-service-port']
+        port = os.environ['MOCK_SERVICE_PORT']
         url = 'http://localhost:' + port + '/raas'
         logging.info("URL " + url)
         params = LanguageDetectionParameters()
