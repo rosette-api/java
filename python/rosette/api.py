@@ -105,7 +105,7 @@ class LanguageDetection:
         self.logger.info('language: ' + detect_url)
         print >>sys.stderr, "DETECT-URL:", detect_url
         headers = {}
-        headers['Accept'] = 'qpplication/json'
+        headers['Accept'] = 'application/json'
         headers['Content-Type'] = 'application/json'
         params_to_serialize = parameters.serializable() # {"content" : parameters.content, "unit":"doc"} # parameters.serializable()
         r = requests.post(detect_url, headers=headers, json=params_to_serialize)
