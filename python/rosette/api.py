@@ -113,7 +113,7 @@ class Operator:
         if r.status_code == 200:
             return r.json()
         else:
-            raise RosetteException(r.status_code, "\"operate\" \"" + self.suburl + "\" failed to communicate with language  service.", r.json()['message'])
+            raise RosetteException(r.status_code, "\"operate\" \"" + self.suburl + "\" failed to communicate with language service.", r.json()['message'])
 
 
 class API:
@@ -153,3 +153,9 @@ class API:
 
     def morphology(self, subsub):
         return Operator(self.service_url, self.logger, "morphology/" + subsub)
+
+    def entities(self, subsub):
+        if subsub is None:
+            return Operator(self.service_url, self.logger, "entities")
+        else:
+            return Operator(self.service_url, self.logger, "entities/" + subsub)

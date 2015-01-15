@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 """
  ** This data and information is proprietary to, and a valuable trade secret
  ** of, Basis Technology Corp.  It is given in confidence by Basis Technology
@@ -32,6 +35,12 @@ class SentencesTestCase(unittest.TestCase):
         params.contentType = "text/plain"
         params.unit = "doc"
         self.HamParams = params
+        params = RaasParameters()
+     #   params.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
+        params.content =  u"In the short story 'Nashtanir', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
+        params.contentType = "text/plain"
+        params.unit = "doc"
+        self.TagParams = params
 
     def getBaseURL(self):
         url = self.lurl
@@ -59,5 +68,12 @@ class SentencesTestCase(unittest.TestCase):
         result = op.operate(self.HamParams, None)
         lresult = [x['lemma'] for x in result['lemmas']]
         self.assertEqual(lresult, [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.'])
+
+    def test_entities(self):
+        op = API(service_url = self.getBaseURL()).entities(None);
+        result = op.operate(self.TagParams, None)
+        # Not the right answer, but what it currently gets.
+        self.assertEquals(len(result['entities']), 3)
+
 
         
