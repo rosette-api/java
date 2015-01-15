@@ -17,32 +17,36 @@ import logging
 from rosette.api import API, ResultFormat, LanguageDetectionParameters
 import os
 import sys
+import json
+
 
 logging.basicConfig(level=logging.DEBUG)
 
-class RliTestCase(unittest.TestCase):
+class SentencesTestCase(unittest.TestCase):
+    """
     def test_info(self):
         port = os.environ['MOCK_SERVICE_PORT']
         url = 'http://localhost:' + port + '/raas'
         url = "http://jugmaster.basistech.net/rest/v1"
+        print >>sys.stderr, "URL1", url
         logging.info("URL " + url)
-        lid = API(service_url = url).language_detection()
-        result = lid.info()
+        op = API(service_url = url).sentences_split()
+        result = op.info()
         self.assertIsNotNone(result['requestId'])
+        """
 
-    def test_adm_detection(self):
+    def test_sentence_splitting(self):
         port = os.environ['MOCK_SERVICE_PORT']
         url = 'http://localhost:' + port + '/raas'
         url = "http://jugmaster.basistech.net/rest/v1"
         logging.info("URL " + url)
-        print >>sys.stderr, "URL RLI TestCase", url
+        print >>sys.stderr, "URL Test Sentence Splitting", url
         params = LanguageDetectionParameters()
         params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
-        params.contentType = "application/json" #"text/plain"
+        params.contentType = "text/plain"
         params.unit = "doc"
-        print >>sys.stderr, params.__dict__
         # the mock services can't respond to the individual params.
-        print >>sys.stderr,"LDP test_adm_detection:", params.__dict__
-        lid = API(service_url = url).language_detection()
-        result = lid.detect(params, ResultFormat.ROSETTE)
-#        result = lid.detect(params, None)
+        op = API(service_url = url).sentences_split()
+        result = op.operate(params, None)
+        self.assertIsNotNone(result['sentences'])
+        self.assertEqual(len(result['sentences']), 3)

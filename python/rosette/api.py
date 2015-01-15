@@ -16,12 +16,17 @@ import requests
 import logging
 import json
 from enum import Enum
+import sys
+import pprint
 
 # this will get more complex in a hurry.
 class RosetteException(Exception):
-    def __init__(self, status, message):
+    def __init__(self, status, message, response_message):
         self.status = status
         self.message = message
+        self.response_message = response_message
+    def __str__(self):
+        return self.message + ": " + repr(self.response_message)
 
 # TODO: Set up OAuth2 session and use it with requests.
 # We'll need something to talk to for that, and we won't it for integration tests.
@@ -39,6 +44,7 @@ class LanguageDetectionParameters:
         self.contentType = None
         self.unit = None
         # The rest is the options
+        """
         self.minValidChars = 0
         self.profileDepth = 0
         self.ambiguityThreshold = 0
@@ -48,6 +54,92 @@ class LanguageDetectionParameters:
         self.encodingHintWeight = 0
         self.languageWeightHint = {}
         self.languageHint = None
+        """
+    def serializable(self):
+        v = {}
+        v['content'] = self.content
+        v['contentUri'] = self.contentUri
+        v['contentType'] = self.contentType
+        v['unit'] = self.unit
+        print >>sys.stderr, "LDP.serializable: content=", self.content
+        """
+
+        o = {}
+        v['options'] = o
+        o['minValidChars'] = self.minValidChars
+        o['profileDepth'] = self.profileDepth
+        o['ambiguityThreshold'] = self.ambiguityThreshold
+        o['invalidityThreshold'] = self.invalidityThreshold
+        o['languageHintWeight'] = self.languageHintWeight
+        o['encodingHint'] = self.encodingHint
+        o['encodingHintWeight'] = self.encodingHintWeight
+        o['languageWeightHint'] = self.languageWeightHint
+        o['languageHint'] = self.languageHint
+        """
+        return v
+
+class LanguageDetection:
+    # take a session when we do OAuth2
+    def __init__(self, service_url, logger):
+        self.service_url = service_url
+        self.logger = logger
+        self.pp = pprint.PrettyPrinter(indent=4)
+
+    def info(self):
+        # retrieve info
+        info_url = self.service_url + '/language/info'
+        self.logger.info('language/info: ' + info_url)
+        headers = {}
+        headers['Accept'] = 'application/json';
+        r = requests.get(info_url, headers=headers)
+        if r.status_code == 200:
+            return r.json()
+        else:
+            raise RosetteException(r.status_code, "\"info\" failed to communicate with language detection service.", r.text)
+
+    def detect(self, parameters, result_format):
+#        print >>sys.stderr, "PARAMETERS", parameters.__dict__
+        detect_url = self.service_url + '/language'
+        if result_format == ResultFormat.ROSETTE:
+            detect_url = detect_url + "?output=rosette"
+        self.logger.info('language: ' + detect_url)
+        print >>sys.stderr, "DETECT-URL:", detect_url
+        headers = {}
+        headers['Accept'] = 'qpplication/json'
+        headers['Content-Type'] = 'application/json'
+        params_to_serialize = parameters.serializable() # {"content" : parameters.content, "unit":"doc"} # parameters.serializable()
+        r = requests.post(detect_url, headers=headers, json=params_to_serialize)
+        if r.status_code == 200:
+            return r.json()
+        else:
+
+            print >>sys.stderr, "Detect fail: R:"
+            self.pp.pprint(r.__dict__)
+            print >>sys.stderr, "RESPONSE TEXT:", r.text
+            print >>sys.stderr, "R.request:", r.request.__dict__
+
+        
+            raise RosetteException(r.status_code, "\"detect\" failed to communicate with language detection service.", r.text)
+
+# TODO: set up as a fixed collection of properties.
+class SentenceSplitParameters:
+    def __init__(self):
+        self.content = None
+        self.contentUri = None
+        self.contentType = None
+        self.unit = None
+        # The rest is the options
+
+        self.minValidChars = 0
+        self.profileDepth = 0
+        self.ambiguityThreshold = 0
+        self.invalidityThreshold = 0
+        self.languageHintWeight = 0
+        self.encodingHint = None
+        self.encodingHintWeight = 0
+        self.languageWeightHint = {}
+        self.languageHint = None
+        
     def serializable(self):
         v = {}
         v['content'] = self.content
@@ -67,7 +159,7 @@ class LanguageDetectionParameters:
         o['languageHint'] = self.languageHint
         return v
 
-class LanguageDetection:
+class SentenceSplit:
     # take a session when we do OAuth2
     def __init__(self, service_url, logger):
         self.service_url = service_url
@@ -75,7 +167,7 @@ class LanguageDetection:
 
     def info(self):
         # retrieve info
-        info_url = self.service_url + '/language/info'
+        info_url = self.service_url + '/sentences/info'
         self.logger.info('language/info: ' + info_url)
         headers = {}
         headers['Accept'] = 'application/json';
@@ -83,22 +175,25 @@ class LanguageDetection:
         if r.status_code == 200:
             return r.json()
         else:
+            print >>sys.stderr, "RESPONSE TEXT:", r.text
             raise RosetteException(r.status_code, "Failed to communicate with language detection service.")
 
-    def detect(self, parameters, result_format):
-        detect_url = self.service_url + '/language'
+    def operate(self, parameters, result_format):
+        url = self.service_url + '/sentences'
         if result_format == ResultFormat.ROSETTE:
-            detect_url = detect_url + "?output=rosette"
-        self.logger.info('language: ' + detect_url)
+            url = url + "?output=rosette"
+        self.logger.info('language: ' + url)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['Content-Type'] = "application/json"
         params_to_serialize = parameters.serializable()
-        r = requests.post(detect_url, headers=headers, json=params_to_serialize)
+        r = requests.post(url, headers=headers, json=params_to_serialize)
         if r.status_code == 200:
             return r.json()
         else:
+            print >>sys.stderr, "RESPONSE TEXT:", r.text
             raise RosetteException(r.status_code, "Failed to communicate with language detection service.")
+
 
 class API:
     """
@@ -127,3 +222,6 @@ class API:
 
     def language_detection(self):
         return LanguageDetection(self.service_url, self.logger)
+
+    def sentences_split(self):
+        return SentenceSplit(self.service_url, self.logger)
