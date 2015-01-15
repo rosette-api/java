@@ -93,44 +93,6 @@ class LanguageDetection:
             print >>sys.stderr, "R.request:", r.request.__dict__
             raise RosetteException(r.status_code, "\"detect\" failed to communicate with language detection service.", r.json()['message'])
 
-# TODO: set up as a fixed collection of properties.
-class SentenceSplitParameters:
-    def __init__(self):
-        self.content = None
-        self.contentUri = None
-        self.contentType = None
-        self.unit = None
-        # The rest is the options
-
-        self.minValidChars = 0
-        self.profileDepth = 0
-        self.ambiguityThreshold = 0
-        self.invalidityThreshold = 0
-        self.languageHintWeight = 0
-        self.encodingHint = None
-        self.encodingHintWeight = 0
-        self.languageWeightHint = {}
-        self.languageHint = None
-        
-    def serializable(self):
-        v = {}
-        v['content'] = self.content
-        v['contentUri'] = self.contentUri
-        v['contentType'] = self.contentType
-        v['unit'] = self.unit
-        o = {}
-        v['options'] = o
-        o['minValidChars'] = self.minValidChars
-        o['profileDepth'] = self.profileDepth
-        o['ambiguityThreshold'] = self.ambiguityThreshold
-        o['invalidityThreshold'] = self.invalidityThreshold
-        o['languageHintWeight'] = self.languageHintWeight
-        o['encodingHint'] = self.encodingHint
-        o['encodingHintWeight'] = self.encodingHintWeight
-        o['languageWeightHint'] = self.languageWeightHint
-        o['languageHint'] = self.languageHint
-        return v
-
 class Operator:
     # take a session when we do OAuth2
     def __init__(self, service_url, logger, suburl):
@@ -151,8 +113,7 @@ class Operator:
         if r.status_code == 200:
             return r.json()
         else:
-            print >>sys.stderr, "RESPONSE TEXT:", r.text
-            raise RosetteException(r.status_code, "\"operate\" \"" + suburl + "\" failed to communicate with language  service.", r.json()['message'])
+            raise RosetteException(r.status_code, "\"operate\" \"" + self.suburl + "\" failed to communicate with language  service.", r.json()['message'])
 
 
 class API:
@@ -182,9 +143,13 @@ class API:
 
     def language_detection(self):
         return LanguageDetection(self.service_url, self.logger)
+#        return Operator(self.service_url, self.logger, "language")
 
     def sentences_split(self):
         return Operator(self.service_url, self.logger, "sentences")
 
     def tokenize(self):
         return Operator(self.service_url, self.logger, "tokens")
+
+    def morphology(self, subsub):
+        return Operator(self.service_url, self.logger, "morphology/" + subsub)

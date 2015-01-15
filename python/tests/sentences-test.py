@@ -53,5 +53,19 @@ class SentencesTestCase(unittest.TestCase):
         result = op.operate(params, None)
         self.assertEqual(len(result['tokens']), 18)
 
+    def test_morphology(self):
+        port = os.environ['MOCK_SERVICE_PORT']
+        url = 'http://localhost:' + port + '/raas'
+        url = "http://jugmaster.basistech.net/rest/v1"
+        logging.info("URL " + url)
+        params = RaasParameters()
+        params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
+        params.contentType = "text/plain"
+        params.unit = "doc"
+
+        op = API(service_url = url).morphology("part-of-speech,lemmas")
+        result = op.operate(params, None)
+        print >>sys.stderr, result
+
 
         
