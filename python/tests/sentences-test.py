@@ -14,7 +14,7 @@
 
 import unittest
 import logging
-from rosette.api import API, ResultFormat, LanguageDetectionParameters
+from rosette.api import API, ResultFormat, RaasParameters
 import os
 import sys
 import json
@@ -23,26 +23,13 @@ import json
 logging.basicConfig(level=logging.DEBUG)
 
 class SentencesTestCase(unittest.TestCase):
-    """
-    def test_info(self):
-        port = os.environ['MOCK_SERVICE_PORT']
-        url = 'http://localhost:' + port + '/raas'
-        url = "http://jugmaster.basistech.net/rest/v1"
-        print >>sys.stderr, "URL1", url
-        logging.info("URL " + url)
-        op = API(service_url = url).sentences_split()
-        result = op.info()
-        self.assertIsNotNone(result['requestId'])
-        """
-
+ 
     def test_sentence_splitting(self):
-        logging.getLogger().info("FOOBAR")
         port = os.environ['MOCK_SERVICE_PORT']
         url = 'http://localhost:' + port + '/raas'
         url = "http://jugmaster.basistech.net/rest/v1"
         logging.info("URL " + url)
-#        print >>sys.stderr, "URL Test Sentence Splitting", url
-        params = LanguageDetectionParameters()
+        params = RaasParameters()
         params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
         params.contentType = "text/plain"
         params.unit = "doc"
@@ -51,3 +38,20 @@ class SentencesTestCase(unittest.TestCase):
         result = op.operate(params, None)
         self.assertIsNotNone(result['sentences'])
         self.assertEqual(len(result['sentences']), 3)
+
+    def test_tokenizing(self):
+        port = os.environ['MOCK_SERVICE_PORT']
+        url = 'http://localhost:' + port + '/raas'
+        url = "http://jugmaster.basistech.net/rest/v1"
+        logging.info("URL " + url)
+        params = RaasParameters()
+        params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
+        params.contentType = "text/plain"
+        params.unit = "doc"
+
+        op = API(service_url = url).tokenize()
+        result = op.operate(params, None)
+        self.assertEqual(len(result['tokens']), 18)
+
+
+        

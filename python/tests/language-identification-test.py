@@ -14,7 +14,7 @@
 
 import unittest
 import logging
-from rosette.api import API, ResultFormat, LanguageDetectionParameters
+from rosette.api import API, ResultFormat, RaasParameters
 import os
 import sys
 
@@ -35,7 +35,7 @@ class RliTestCase(unittest.TestCase):
         url = 'http://localhost:' + port + '/raas'
         url = "http://jugmaster.basistech.net/rest/v1"
         logging.info("URL " + url)
-        params = LanguageDetectionParameters()
+        params = RaasParameters()
         params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
         params.contentType = "text/plain"
         params.unit = "doc"
