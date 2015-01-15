@@ -28,21 +28,23 @@ class RliTestCase(unittest.TestCase):
         logging.info("URL " + url)
         lid = API(service_url = url).language_detection()
         result = lid.info()
-        self.assertIsNotNone(result['requestId'])
+
 
     def test_adm_detection(self):
         port = os.environ['MOCK_SERVICE_PORT']
         url = 'http://localhost:' + port + '/raas'
         url = "http://jugmaster.basistech.net/rest/v1"
         logging.info("URL " + url)
-        print >>sys.stderr, "URL RLI TestCase", url
         params = LanguageDetectionParameters()
         params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
-        params.contentType = "application/json" #"text/plain"
+        params.contentType = "text/plain"
         params.unit = "doc"
-        print >>sys.stderr, params.__dict__
         # the mock services can't respond to the individual params.
-        print >>sys.stderr,"LDP test_adm_detection:", params.__dict__
         lid = API(service_url = url).language_detection()
         result = lid.detect(params, ResultFormat.ROSETTE)
-#        result = lid.detect(params, None)
+
+        self.assertIsNotNone(result['requestId'])
+        ary = result['result']['attributes']['languageDetection']['detectionResults']
+        self.assertNotEqual(len(ary), 0)
+        sary = sorted(ary, key=lambda x: -x['confidence'])
+        self.assertEqual(sary[0]['language'], "eng")

@@ -36,11 +36,12 @@ class SentencesTestCase(unittest.TestCase):
         """
 
     def test_sentence_splitting(self):
+        logging.getLogger().info("FOOBAR")
         port = os.environ['MOCK_SERVICE_PORT']
         url = 'http://localhost:' + port + '/raas'
         url = "http://jugmaster.basistech.net/rest/v1"
         logging.info("URL " + url)
-        print >>sys.stderr, "URL Test Sentence Splitting", url
+#        print >>sys.stderr, "URL Test Sentence Splitting", url
         params = LanguageDetectionParameters()
         params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
         params.contentType = "text/plain"

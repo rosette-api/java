@@ -61,7 +61,7 @@ class LanguageDetectionParameters:
         v['contentUri'] = self.contentUri
         v['contentType'] = self.contentType
         v['unit'] = self.unit
-        print >>sys.stderr, "LDP.serializable: content=", self.content
+#        print >>sys.stderr, "LDP.serializable: content=", self.content
         """
 
         o = {}
@@ -103,11 +103,11 @@ class LanguageDetection:
         if result_format == ResultFormat.ROSETTE:
             detect_url = detect_url + "?output=rosette"
         self.logger.info('language: ' + detect_url)
-        print >>sys.stderr, "DETECT-URL:", detect_url
+#       print >>sys.stderr, "DETECT-URL:", detect_url
         headers = {}
         headers['Accept'] = 'application/json'
         headers['Content-Type'] = 'application/json'
-        params_to_serialize = parameters.serializable() # {"content" : parameters.content, "unit":"doc"} # parameters.serializable()
+        params_to_serialize =  {"content" : parameters.content} # parameters.serializable()
         r = requests.post(detect_url, headers=headers, json=params_to_serialize)
         if r.status_code == 200:
             return r.json()
@@ -117,8 +117,6 @@ class LanguageDetection:
             self.pp.pprint(r.__dict__)
             print >>sys.stderr, "RESPONSE TEXT:", r.text
             print >>sys.stderr, "R.request:", r.request.__dict__
-
-        
             raise RosetteException(r.status_code, "\"detect\" failed to communicate with language detection service.", r.text)
 
 # TODO: set up as a fixed collection of properties.
@@ -192,7 +190,7 @@ class SentenceSplit:
             return r.json()
         else:
             print >>sys.stderr, "RESPONSE TEXT:", r.text
-            raise RosetteException(r.status_code, "Failed to communicate with language detection service.")
+            raise RosetteException(r.status_code, "Failed to communicate with language detection service.", r.text, r.text)
 
 
 class API:
