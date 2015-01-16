@@ -46,13 +46,21 @@ class APITestCase(unittest.TestCase):
         logging.info("URL " + url)
         return url
 
+    def getAPI(self):
+        return API(service_url = self.getBaseURL())
+
+    def test_ping(self):
+        op = self.getAPI().pinger()
+        result = op.ping()
+        self.assertEqual(result['message'],'RaaS at your service')
+
     def test_language_info(self):
-        op = API(service_url = self.getBaseURL()).language_detection()
+        op = self.getAPI().language_detection()
         result = op.getInfo(None)
         # not much to do right now.
 
     def test_adm_detection(self):
-        op = API(service_url = self.getBaseURL()).language_detection()
+        op = self.getAPI().language_detection()
         result = op.operate(self.HamParams, ResultFormat.ROSETTE)
 
         self.assertIsNotNone(result['requestId'])
@@ -63,18 +71,18 @@ class APITestCase(unittest.TestCase):
 
 
     def test_sentence_splitting(self):
-        op = API(service_url = self.getBaseURL()).sentences_split()
+        op = self.getAPI().sentences_split()
         result = op.operate(self.HamParams, None)
         self.assertIsNotNone(result['sentences'])
         self.assertEqual(len(result['sentences']), 3)
 
     def test_tokenizing(self):
-        op = API(service_url = self.getBaseURL()).tokenize()
+        op = self.getAPI().tokenize()
         result = op.operate(self.HamParams, None)
         self.assertEqual(len(result['tokens']), 18)
 
     def test_morphology(self):
-        op = API(service_url = self.getBaseURL()).morphology("parts-of-speech")
+        op = self.getAPI().morphology("parts-of-speech")
         result = op.operate(self.HamParams, None)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, [u'NOUN', u'CM', u'NOUN', u'VBPRES', u'SENT', u'ADJ', u'NOUN', u'COORD', u'NOUN', u'SENT', u'PRONPERS', u'VBPRES', u'PROP', u'SENT', u'PRONPERS', u'VI', u'PROP', u'SENT'])
@@ -84,7 +92,7 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(lresult, [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.'])
 
     def test_entities(self):
-        op = API(service_url = self.getBaseURL()).entities(None);
+        op = self.getAPI().entities(None);
         result = op.operate(self.TagParams, None)
         # Not the right answer, but what it currently gets.
         self.assertEquals(len(result['entities']), 3)
