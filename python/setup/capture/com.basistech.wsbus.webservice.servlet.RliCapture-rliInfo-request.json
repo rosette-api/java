@@ -1,0 +1,47 @@
+[ {
+  "httpRequest" : {
+    "method" : "GET",
+    "url" : "http://localhost:64563/raas/language/info",
+    "path" : "/raas/language/info",
+    "headers" : [ {
+      "name" : "Content-Type",
+      "values" : [ "application/json" ]
+    }, {
+      "name" : "Accept",
+      "values" : [ "application/json" ]
+    }, {
+      "name" : "User-Agent",
+      "values" : [ "Apache CXF 3.0.2" ]
+    }, {
+      "name" : "Cache-Control",
+      "values" : [ "no-cache" ]
+    }, {
+      "name" : "Pragma",
+      "values" : [ "no-cache" ]
+    }, {
+      "name" : "Host",
+      "values" : [ "localhost:64563" ]
+    } ]
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "body" : "{\"requestId\":\"requestid-12345\",\"supportedLanguages\":{\"ben\":[\"Beng\"],\"ukr\":[\"Cyrl\"],\"hin\":[\"Deva\"],\"ita\":[\"Latn\"],\"sqi\":[\"Latn\"],\"dan\":[\"Latn\"],\"urd\":[\"Arab\",\"Latn\"],\"guj\":[\"Gujr\"],\"fin\":[\"Latn\"],\"fas\":[\"Arab\",\"Latn\"],\"msa\":[\"Latn\"],\"srp\":[\"Cyrl\",\"Latn\"],\"zhs\":[\"Hans\"],\"ell\":[\"Grek\"],\"eng\":[\"Latn\"],\"spa\":[\"Latn\"],\"tel\":[\"Telu\"],\"uzb\":[\"Cyrl\",\"Latn\"],\"slk\":[\"Latn\"],\"hrv\":[\"Latn\"],\"kur\":[\"Arab\",\"Latn\"],\"pol\":[\"Latn\"],\"zht\":[\"Hant\"],\"slv\":[\"Latn\"],\"heb\":[\"Hebr\"],\"tur\":[\"Latn\"],\"jpn\":[\"Jpan\",\"Kana\"],\"vie\":[\"Latn\"],\"nld\":[\"Latn\"],\"nor\":[\"Latn\"],\"cat\":[\"Latn\"],\"pus\":[\"Arab\",\"Latn\"],\"hun\":[\"Latn\"],\"mkd\":[\"Cyrl\"],\"est\":[\"Latn\"],\"lav\":[\"Latn\"],\"swe\":[\"Latn\"],\"bul\":[\"Cyrl\"],\"tha\":[\"Thai\"],\"kan\":[\"Knda\"],\"deu\":[\"Latn\"],\"lit\":[\"Latn\"],\"ron\":[\"Latn\"],\"tam\":[\"Taml\"],\"uen\":[\"Latn\"],\"ara\":[\"Arab\",\"Latn\"],\"ind\":[\"Latn\"],\"isl\":[\"Latn\"],\"fra\":[\"Latn\"],\"rus\":[\"Cyrl\"],\"mal\":[\"Mlym\"],\"kor\":[\"Kore\"],\"tgl\":[\"Latn\"],\"ces\":[\"Latn\"],\"som\":[\"Latn\"],\"por\":[\"Latn\"]},\"supportedScripts\":{\"Deva\":[\"hin\"],\"Gujr\":[\"guj\"],\"Arab\":[\"kur\",\"pus\",\"fas\",\"urd\",\"ara\"],\"Hans\":[\"zhs\"],\"Thai\":[\"tha\"],\"Hant\":[\"zht\"],\"Hebr\":[\"heb\"],\"Grek\":[\"ell\"],\"Jpan\":[\"jpn\"],\"Knda\":[\"kan\"],\"Taml\":[\"tam\"],\"Beng\":[\"ben\"],\"Cyrl\":[\"bul\",\"ukr\",\"mkd\",\"srp\",\"rus\",\"uzb\"],\"Kana\":[\"jpn\"],\"Telu\":[\"tel\"],\"Mlym\":[\"mal\"],\"Latn\":[\"vie\",\"nld\",\"nor\",\"cat\",\"pus\",\"hun\",\"est\",\"lav\",\"swe\",\"sqi\",\"ita\",\"dan\",\"urd\",\"fin\",\"deu\",\"lit\",\"fas\",\"ron\",\"msa\",\"srp\",\"uen\",\"ara\",\"ind\",\"eng\",\"spa\",\"isl\",\"fra\",\"uzb\",\"slk\",\"hrv\",\"kur\",\"pol\",\"tgl\",\"slv\",\"ces\",\"som\",\"tur\",\"por\"],\"Kore\":[\"kor\"]}}",
+    "headers" : [ {
+      "name" : "Vary",
+      "values" : [ "Accept-Encoding" ]
+    }, {
+      "name" : "Date",
+      "values" : [ "Mon, 29 Dec 2014 21:29:59 GMT" ]
+    }, {
+      "name" : "Connection",
+      "values" : [ "keep-alive" ]
+    }, {
+      "name" : "Content-Type",
+      "values" : [ "application/json" ]
+    } ]
+  },
+  "times" : {
+    "remainingTimes" : 1,
+    "unlimited" : false
+  }
+} ]
