@@ -100,6 +100,18 @@ class Operator:
         self.logger = logger
         self.suburl = suburl
 
+    def getInfo(self, result_format):
+        url = self.service_url + '/' + self.suburl + "/info"
+        if result_format == ResultFormat.ROSETTE:
+            url = url + "?output=rosette"
+        self.logger.info('getInfo: ' + url)
+        headers = {'Accept':'application/json'}
+        r = requests.get(url, headers=headers)
+        if r.status_code == 200:
+            return r.json()
+        else:
+            raise RosetteException(r.status_code, "\"getInfo\" \"" + self.suburl + "\" failed to communicate with language service.", r.json()['message'])
+
     def operate(self, parameters, result_format):
         url = self.service_url + '/' + self.suburl
         if result_format == ResultFormat.ROSETTE:
@@ -142,8 +154,7 @@ class API:
             raise RosetteException(r.status_code, "Failed to communicate with ping service.")
 
     def language_detection(self):
-        return LanguageDetection(self.service_url, self.logger)
-#        return Operator(self.service_url, self.logger, "language")
+        return Operator(self.service_url, self.logger, "language")
 
     def sentences_split(self):
         return Operator(self.service_url, self.logger, "sentences")

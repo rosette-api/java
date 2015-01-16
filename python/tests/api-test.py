@@ -7,7 +7,7 @@
  ** and may only be used as permitted under the license agreement under which
  ** it has been distributed, and in no other way.
  **
- ** Copyright (c) 2014 Basis Technology Corporation All rights reserved.
+ ** Copyright (c) 2015 Basis Technology Corporation All rights reserved.
  **
  ** The technical data and information provided herein are provided with
  ** `limited rights', and the computer software provided herein is provided
@@ -22,12 +22,11 @@ import os
 import sys
 import json
 
-
 logging.basicConfig(level=logging.DEBUG)
 
-class SentencesTestCase(unittest.TestCase):
+class APITestCase(unittest.TestCase):
     def __init__(self, tcname):
-        super(SentencesTestCase,self).__init__(tcname)
+        super(APITestCase,self).__init__(tcname)
         port = os.environ['MOCK_SERVICE_PORT']
         self.lurl = 'http://localhost:' + port + '/raas'
         params = RaasParameters()
@@ -36,8 +35,7 @@ class SentencesTestCase(unittest.TestCase):
         params.unit = "doc"
         self.HamParams = params
         params = RaasParameters()
-     #   params.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
-        params.content =  u"In the short story 'Nashtanir', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
+        params.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
         params.contentType = "text/plain"
         params.unit = "doc"
         self.TagParams = params
@@ -47,7 +45,23 @@ class SentencesTestCase(unittest.TestCase):
         url = "http://jugmaster.basistech.net/rest/v1"
         logging.info("URL " + url)
         return url
-        
+
+    def test_language_info(self):
+        op = API(service_url = self.getBaseURL()).language_detection()
+        result = op.getInfo(None)
+        # not much to do right now.
+
+    def test_adm_detection(self):
+        op = API(service_url = self.getBaseURL()).language_detection()
+        result = op.operate(self.HamParams, ResultFormat.ROSETTE)
+
+        self.assertIsNotNone(result['requestId'])
+        ary = result['result']['attributes']['languageDetection']['detectionResults']
+        self.assertNotEqual(len(ary), 0)
+        sary = sorted(ary, key=lambda x: -x['confidence'])
+        self.assertEqual(sary[0]['language'], "eng")
+
+
     def test_sentence_splitting(self):
         op = API(service_url = self.getBaseURL()).sentences_split()
         result = op.operate(self.HamParams, None)
