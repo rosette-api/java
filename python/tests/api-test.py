@@ -17,7 +17,7 @@
 
 import unittest
 import logging
-from rosette.api import API, ResultFormat, RaasParameters
+from rosette.api import API, ResultFormat, InputUnit, RaasParameters
 import os
 import sys
 import json
@@ -37,7 +37,7 @@ class APITestCase(unittest.TestCase):
         params = RaasParameters()
         params.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
         params.contentType = "text/plain"
-        params.unit = "doc"
+        params.unit = InputUnit.DOC
         self.TagParams = params
 
     def getBaseURL(self):
@@ -96,6 +96,3 @@ class APITestCase(unittest.TestCase):
         result = op.operate(self.TagParams, None)
         # Not the right answer, but what it currently gets.
         self.assertEquals(len(result['entities']), 3)
-
-
-        

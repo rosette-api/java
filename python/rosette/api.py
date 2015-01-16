@@ -33,11 +33,11 @@ class RosetteException(Exception):
 # TODO: when do we turn on compression? Always?
 
 class ResultFormat(Enum):
-    SIMPLE = "",
+    SIMPLE = ""
     ROSETTE = "rosette"
 
 class InputUnit(Enum):
-    DOC = "doc",
+    DOC = "doc"
     SENTENCE= "sentence"
 
 # TODO: set up as a fixed collection of properties.
@@ -54,7 +54,10 @@ class RaasParameters:
         v['content'] = self.content
         v['contentUri'] = self.contentUri
         v['contentType'] = self.contentType
-        v['unit'] = self.unit
+        if self.unit:
+            v['unit'] = self.unit.value
+        else:
+            v['unit'] = None
         return v
 
 class Operator:
