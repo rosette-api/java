@@ -92,7 +92,19 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(lresult, [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.'])
 
     def test_entities(self):
-        op = self.getAPI().entities(None);
+        op = self.getAPI().entities(None); # "linked" flag
         result = op.operate(self.TagParams, None)
         # Not the right answer, but what it currently gets.
         self.assertEquals(len(result['entities']), 3)
+
+    def test_categories(self):
+        op = self.getAPI().categories();
+        result = op.operate(self.HamParams, None)
+        self.assertEquals(len(result['categories']), 1)
+
+    def test_sentiment(self):
+        op = self.getAPI().sentiment();
+        result = op.operate(self.HamParams, None)
+        ary = result['sentiment']
+        sary = sorted(ary, key=lambda x: -x['confidence'])
+        self.assertEqual(sary[0]['label'], "pos")

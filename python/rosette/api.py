@@ -137,3 +137,9 @@ class API:
             return Operator(self.service_url, self.logger, "entities")
         else:
             return Operator(self.service_url, self.logger, "entities/" + subsub)
+
+    def categories(self):
+        return Operator(self.service_url, self.logger, "categories")
+
+    def sentiment(self):
+        return Operator(self.service_url, self.logger, "sentiment")
