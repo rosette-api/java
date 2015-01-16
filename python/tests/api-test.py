@@ -32,7 +32,7 @@ class APITestCase(unittest.TestCase):
         params = RaasParameters()
         params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
         params.contentType = "text/plain"
-        params.unit = "doc"
+        params.unit = InputUnit.DOC
         self.HamParams = params
         params = RaasParameters()
         params.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."

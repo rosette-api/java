@@ -36,6 +36,10 @@ class ResultFormat(Enum):
     SIMPLE = "",
     ROSETTE = "rosette"
 
+class InputUnit(Enum):
+    DOC = "doc",
+    SENTENCE= "sentence"
+
 # TODO: set up as a fixed collection of properties.
 
 class RaasParameters:
