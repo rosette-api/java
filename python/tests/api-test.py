@@ -17,7 +17,7 @@
 
 import unittest
 import logging
-from rosette.api import API, ResultFormat, InputUnit, RaasParameters
+from rosette.api import API, ResultFormat, InputUnit, RaasParameters, RntParameters
 import os
 import sys
 import json
@@ -108,3 +108,15 @@ class APITestCase(unittest.TestCase):
         ary = result['sentiment']
         sary = sorted(ary, key=lambda x: -x['confidence'])
         self.assertEqual(sary[0]['label'], "pos")
+
+    def test_translate_name(self):
+        op = self.getAPI().translate_name();
+        params = RntParameters()
+        params.name = "كريم عبد الجبار"
+        params.entityType = "PERSON";
+        params.targetLanguage = "eng";
+        result = op.operate(params, None)
+        result = result["result"]
+        self.assertEqual(result["translation"], "Karim 'Abd-al-Jabbar")
+        self.assertEqual(result["sourceLanguageOfUse"], "ara")
+        self.assertEqual(result["targetScheme"], "IC")        

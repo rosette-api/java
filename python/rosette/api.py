@@ -60,6 +60,18 @@ class RaasParameters:
             v['unit'] = None
         return v
 
+class RntParameters:
+    def __init__(self):
+        self.name = None
+        self.targetLanguage = None
+        self.entityType = None
+
+    def serializable(self):
+        v = {}
+        for n in ("name", "targetLanguage", "entityType"):
+            v[n] = self.__dict__[n]
+        return v
+
 class Operator:
     # take a session when we do OAuth2
     def __init__(self, service_url, logger, suburl):
@@ -68,12 +80,19 @@ class Operator:
         self.suburl = suburl
 
     def __finish_result(self, r, ename):
-        if r.status_code == 200:
-            return r.json()
+        code = r.status_code
+        theJSON = r.json()
+        if code == 200:
+            return theJSON
         else:
-            raise RosetteException(r.status_code,
-                                    '"' + ename + '" "' + self.suburl + "\" failed to communicate with Raas",
-                                    r.json()['message'])
+            if 'message' in theJSON:
+                msg = theJSON['message']
+            else:
+                msg = theJSON['code'] #yuck*1.5
+            raise RosetteException(code,
+                                   '"' + ename + '" "' + self.suburl + "\" failed to communicate with Raas",
+                                   msg)
+
 
     def getInfo(self, result_format):
         url = self.service_url + '/' + self.suburl + "/info"
@@ -143,3 +162,6 @@ class API:
 
     def sentiment(self):
         return Operator(self.service_url, self.logger, "sentiment")
+
+    def translate_name(self):
+        return Operator(self.service_url, self.logger, "translated-name")
