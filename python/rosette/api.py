@@ -36,10 +36,21 @@ class ResultFormat(Enum):
     SIMPLE = ""
     ROSETTE = "rosette"
 
+class DataFormat(Enum):
+    SIMPLE = "text/plain"
+    JSON = "application/json"
+
 class InputUnit(Enum):
     DOC = "doc"
     SENTENCE= "sentence"
 
+class MorphologyOutput(Enum):
+    LEMMAS = "lemmas"
+    PARTS_OF_SPEECH = "parts-of-speech"
+    COMPOUND_COMPONENTS = "compound-components"
+    HAN_READINGS = "han-readings"
+    COMPLETE = "complete"
+    
 # TODO: set up as a fixed collection of properties.
 
 class RaasParameters:
@@ -53,11 +64,15 @@ class RaasParameters:
         v = {}
         v['content'] = self.content
         v['contentUri'] = self.contentUri
-        v['contentType'] = self.contentType
-        if self.unit:
+        if isinstance(self.unit, InputUnit):
             v['unit'] = self.unit.value
         else:
-            v['unit'] = None
+             raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self.unit))
+
+        if isinstance(self.contentType, DataFormat):
+            v['contentType'] = self.contentType.value
+        else:
+            raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum", repr(self.contentType))
         return v
 
 class RntParameters:
@@ -149,13 +164,15 @@ class API:
         return Operator(self.service_url, self.logger, "tokens")
 
     def morphology(self, subsub):
-        return Operator(self.service_url, self.logger, "morphology/" + subsub)
+        if not isinstance(subsub, MorphologyOutput):
+            raise RosetteException("bad argument", "Argument not a MorphologyOutput enum object", repr(subsub))
+        return Operator(self.service_url, self.logger, "morphology/" + subsub.value)
 
-    def entities(self, subsub):
-        if subsub is None:
-            return Operator(self.service_url, self.logger, "entities")
+    def entities(self, linked):
+        if  linked:
+            return Operator(self.service_url, self.logger, "entities/linked")
         else:
-            return Operator(self.service_url, self.logger, "entities/" + subsub)
+            return Operator(self.service_url, self.logger, "entities")
 
     def categories(self):
         return Operator(self.service_url, self.logger, "categories")

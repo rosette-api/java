@@ -17,7 +17,7 @@
 
 import unittest
 import logging
-from rosette.api import API, ResultFormat, InputUnit, RaasParameters, RntParameters
+from rosette.api import API, ResultFormat, InputUnit, RaasParameters, RntParameters, DataFormat, MorphologyOutput
 import os
 import sys
 import json
@@ -31,12 +31,12 @@ class APITestCase(unittest.TestCase):
         self.lurl = 'http://localhost:' + port + '/raas'
         params = RaasParameters()
         params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
-        params.contentType = "text/plain"
+        params.contentType = DataFormat.SIMPLE
         params.unit = InputUnit.DOC
         self.HamParams = params
         params = RaasParameters()
         params.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
-        params.contentType = "text/plain"
+        params.contentType = DataFormat.SIMPLE
         params.unit = InputUnit.DOC
         self.TagParams = params
 
@@ -82,11 +82,11 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(len(result['tokens']), 18)
 
     def test_morphology(self):
-        op = self.getAPI().morphology("parts-of-speech")
+        op = self.getAPI().morphology(MorphologyOutput.PARTS_OF_SPEECH)
         result = op.operate(self.HamParams, None)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, [u'NOUN', u'CM', u'NOUN', u'VBPRES', u'SENT', u'ADJ', u'NOUN', u'COORD', u'NOUN', u'SENT', u'PRONPERS', u'VBPRES', u'PROP', u'SENT', u'PRONPERS', u'VI', u'PROP', u'SENT'])
-        op = API(service_url = self.getBaseURL()).morphology("lemmas")
+        op = API(service_url = self.getBaseURL()).morphology(MorphologyOutput.LEMMAS)
         result = op.operate(self.HamParams, None)
         lresult = [x['lemma'] for x in result['lemmas']]
         self.assertEqual(lresult, [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.'])
