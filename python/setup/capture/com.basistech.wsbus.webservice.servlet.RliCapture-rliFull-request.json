@@ -1,0 +1,52 @@
+[ {
+  "httpRequest" : {
+    "method" : "POST",
+    "url" : "http://localhost:64557/raas/language?output=rosette",
+    "path" : "/raas/language",
+    "queryStringParameters" : [ {
+      "name" : "output",
+      "values" : [ "rosette" ]
+    } ],
+    "body" : "{\"content\":\"some text\",\"contentUri\":null,\"contentType\":\"text/plain\",\"unit\":\"doc\",\"options\":{\"minValidChars\":4,\"profileDepth\":1200,\"ambiguityThreshold\":0.02,\"invalidityThreshold\":99.0,\"languageHint\":\"xxx\",\"languageHintWeight\":1.0,\"encodingHint\":\"Unknown\",\"encodingHintWeight\":3.0,\"languageWeightAdjustments\":[{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"crs\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"nob\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"spa\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ita\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"lit\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"zul\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"sag\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"vie\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"som\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"por\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"sqi\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ara\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"xho\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"pes\"},{\"language\":\"xxx\",\"script\":null,\"weight\":40,\"languageCode\":\"pus\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"run\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"tur\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"sot\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"slv\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"sna\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"cat\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"nno\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ukr\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"uzb\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"pus\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"hrv\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"tsn\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"amh\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"slk\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"zho\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"nso\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"tel\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"kor\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"tir\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"jpn\"},{\"language\":\"xxx\",\"script\":null,\"weight\":60,\"languageCode\":\"urd\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"hun\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"pol\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ssw\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"afr\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"srp\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"kur\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"kan\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ben\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"bul\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"nor\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"zhs\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"hin\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"guj\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"rus\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"eng\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"mal\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"prs\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"fra\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"mkd\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"zht\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"nld\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"heb\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"isl\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ven\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"nya\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"urd\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"est\"},{\"language\":\"xxx\",\"script\":null,\"weight\":0,\"languageCode\":\"srp\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"tha\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"deu\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"plt\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"tgl\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"msa\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"uen\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"tso\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"kin\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ind\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"nbl\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"mlg\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ell\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ces\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"dan\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"swa\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"xxx\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"tam\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"ron\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"fas\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"swe\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"fin\"},{\"language\":\"xxx\",\"script\":null,\"weight\":100,\"languageCode\":\"lav\"}],\"languageCodeHint\":\"xxx\"},\"language\":null}",
+    "headers" : [ {
+      "name" : "Content-Type",
+      "values" : [ "application/json" ]
+    }, {
+      "name" : "Accept",
+      "values" : [ "application/json" ]
+    }, {
+      "name" : "User-Agent",
+      "values" : [ "Apache CXF 3.0.2" ]
+    }, {
+      "name" : "Cache-Control",
+      "values" : [ "no-cache" ]
+    }, {
+      "name" : "Pragma",
+      "values" : [ "no-cache" ]
+    }, {
+      "name" : "Host",
+      "values" : [ "localhost:64557" ]
+    } ]
+  },
+  "httpResponse" : {
+    "statusCode" : 200,
+    "body" : "{\"requestId\":\"requestid-12345\",\"result\":{\"data\":\"﻿ΛΟΝΔΙΝΟ  (9  Ιουλίου  2005):  Αναθεωρώντας τις αρχικές εκτιμήσεις, η βρετανική αστυνομία κατέληξε στο συμπέρασμα ότι οι τρεις βομβιστικές επιθέσεις στο μετρό του Λονδίνου έγιναν σχεδόν ταυτοχρόνως, με ακρίβεια 50 δευτερολέπτων, κάτι που αποτελεί ισχυρή ένδειξη ότι η πυροδότησή τους έγινε με ωρολογιακό μηχανισμό. Η τέταρτη έκρηξη, αυτή στο διώροφο λεωφορείο, έγινε ακριβώς μία ώρα αργότερα, δηλαδή στις 9.47 το πρωί.\\n\\nΗ αστυνομία ανακοίνωσε χθες ότι τρία άτομα συνελήφθησαν στο αεροδρόμιο Χίθροου του Λονδίνου, σύμφωνα με τις προβλέψεις του νόμου κατά της τρομοκρατίας.\\n\\n\",\"attributes\":{\"languageDetection\":{\"type\":\"languageDetection\",\"startOffset\":0,\"endOffset\":573,\"detectionResults\":[{\"language\":\"ell\",\"encoding\":\"UTF-16BE\",\"script\":\"Grek\",\"confidence\":0.36212275490845325},{\"language\":\"ara\",\"encoding\":\"UTF-16BE\",\"script\":\"Arab\",\"confidence\":0.0},{\"language\":\"ara\",\"encoding\":\"UTF-16BE\",\"script\":\"Latn\",\"confidence\":0.0},{\"language\":\"bul\",\"encoding\":\"UTF-16BE\",\"script\":\"Cyrl\",\"confidence\":0.0},{\"language\":\"ben\",\"encoding\":\"UTF-16BE\",\"script\":\"Beng\",\"confidence\":0.0}]}},\"documentMetadata\":{}}}",
+    "headers" : [ {
+      "name" : "Vary",
+      "values" : [ "Accept-Encoding" ]
+    }, {
+      "name" : "Date",
+      "values" : [ "Mon, 29 Dec 2014 21:29:59 GMT" ]
+    }, {
+      "name" : "Connection",
+      "values" : [ "keep-alive" ]
+    }, {
+      "name" : "Content-Type",
+      "values" : [ "application/json" ]
+    } ]
+  },
+  "times" : {
+    "remainingTimes" : 1,
+    "unlimited" : false
+  }
+} ]

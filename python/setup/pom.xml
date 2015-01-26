@@ -9,6 +9,8 @@
     <artifactId>ws-client-bindings-setup</artifactId>
     <properties>
         <mock-service-port>12345</mock-service-port>
+	<!-- make raas-service-url blank to use above port of mock service -->
+	<raas-service-url>http://jugmaster.basistech.net/rest/v1</raas-service-url>
     </properties>
     <build>
         <plugins>
@@ -241,6 +243,7 @@
                             </arguments>
                             <environmentVariables>
                               <MOCK_SERVICE_PORT>${mock-service-port}</MOCK_SERVICE_PORT>
+			      <RAAS_SERVICE_URL>${raas-service-url}</RAAS_SERVICE_URL>
                             </environmentVariables>
                         </configuration>
                     </execution>
