@@ -142,8 +142,7 @@ class API:
     RaaS Python Client Binding API.
     This binding uses 'requests' (http://docs.python-requests.org/).
     """
-    # initial default value for the URL here is wrong.
-    def __init__(self, key = None, service_url='http://rosette.basistech.net/raas'):
+    def __init__(self, key = None, service_url='https://api.rosette.com/rest/v1'):
         """ Supply the key used for the API."""
         self.key = key
         self.service_url = service_url
