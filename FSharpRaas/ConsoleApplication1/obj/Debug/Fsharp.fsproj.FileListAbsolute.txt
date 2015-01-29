@@ -12,3 +12,17 @@ c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplic
 c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\obj\Debug\Fsharp.fsprojResolveAssemblyReference.cache
 c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\obj\Debug\Fsharp.exe
 c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\obj\Debug\Fsharp.pdb
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\Fsharp.exe.config
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\ConsoleApplication1.XML
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\Fsharp.exe
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\Fsharp.pdb
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Core.dll
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Data.dll
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Data.pdb
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Data.xml
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Core.xml
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\obj\Debug\Fsharp.fsprojResolveAssemblyReference.cache
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\obj\Debug\Fsharp.exe
+C:\Users\wspitzer\ws-client-bindings\FSharpRaas\ConsoleApplication1\obj\Debug\Fsharp.pdb
