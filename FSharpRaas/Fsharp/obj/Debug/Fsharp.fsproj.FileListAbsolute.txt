@@ -1,0 +1,14 @@
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\Fsharp.exe.config
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\ConsoleApplication1.XML
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\Fsharp.exe
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\Fsharp.pdb
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Core.dll
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Data.dll
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\Newtonsoft.Json.dll
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Data.pdb
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Data.xml
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\FSharp.Core.xml
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\bin\Debug\Newtonsoft.Json.xml
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\obj\Debug\Fsharp.fsprojResolveAssemblyReference.cache
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\obj\Debug\Fsharp.exe
+c:\users\wspitzer\documents\visual studio 2013\Projects\FSharpRaas\ConsoleApplication1\obj\Debug\Fsharp.pdb
