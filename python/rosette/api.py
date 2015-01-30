@@ -89,8 +89,11 @@ class RntParameters:
 
     def serializable(self):
         v = {}
-        for n in ("name", "targetLanguage", "entityType"):
-            v[n] = self.__dict__[n]
+        for n in ("name", "targetLanguage"):  #required
+                v[n] = self.__dict__[n]            
+        for n in ("entityType", "sourceLanguageOfOrigin", "sourceLanguageOfUse", "sourceScript", "targetLanguage", "targetScript", "targetScheme"):
+            if n in self.__dict__:           #optional
+                v[n] = self.__dict__[n]
         return v
 
 class Operator:
