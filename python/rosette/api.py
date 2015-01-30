@@ -62,17 +62,23 @@ class RaasParameters:
 
     def serializable(self):
         v = {}
-        v['content'] = self.content
-        v['contentUri'] = self.contentUri
+        if self.content is not None and self.contentUri is not None:
+             raise RosetteException("bad argument", "Cannot supply both Content and Content Uri", "bad arguments")
+        if self.content is None and self.contentUri is None:
+             raise RosetteException("bad argument", "Must supply on of Content or Content Uri", "bad arguments")
+        if self.content is not None:
+            v['content'] = self.content
+            if isinstance(self.contentType, DataFormat):
+                v['contentType'] = self.contentType.value
+            else:
+                raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum", repr(self.contentType))
+        else:
+            v['contentUri'] = self.contentUri
         if isinstance(self.unit, InputUnit):
             v['unit'] = self.unit.value
         else:
              raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self.unit))
 
-        if isinstance(self.contentType, DataFormat):
-            v['contentType'] = self.contentType.value
-        else:
-            raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum", repr(self.contentType))
         return v
 
 class RntParameters:
@@ -133,6 +139,7 @@ class Operator:
         headers = {}
         headers['Accept'] = 'application/json'
         headers['Content-Type'] = "application/json"
+        headers['Accept-Encoding'] = "gzip"
         params_to_serialize = parameters.serializable()
         r = requests.post(url, headers=headers, json=params_to_serialize)
         return self.__finish_result(r, "operate")

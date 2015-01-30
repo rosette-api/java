@@ -45,11 +45,18 @@ class APITestCase(unittest.TestCase):
         params.contentType = DataFormat.SIMPLE
         params.unit = InputUnit.DOC
         self.HamParams = params
+
         params = RaasParameters()
         params.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
         params.contentType = DataFormat.SIMPLE
         params.unit = InputUnit.DOC
         self.TagParams = params
+
+        params = RaasParameters()
+        params.contentUri = "http://www.basistech.com/"
+        params.contentType = DataFormat.SIMPLE
+        params.unit = InputUnit.DOC
+        self.UriParams = params
 
     def test_ping(self):
         op = self.api.pinger()
@@ -99,6 +106,14 @@ class APITestCase(unittest.TestCase):
         # Not the right answer, but what it currently gets.
         self.assertEquals(len(result['entities']), 3)
 
+    def test_categoriesUri(self):
+        op = self.api.categories();
+        result = op.operate(self.UriParams, None)
+        cats = result['categories']
+        catkeys = [x['label'] for x in cats]
+        self.assertTrue("TECHNOLOGY_AND_COMPUTING" in catkeys)
+
+        
     def test_categories(self):
         op = self.api.categories();
         result = op.operate(self.HamParams, None)
