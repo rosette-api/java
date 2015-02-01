@@ -129,9 +129,9 @@ class APITestCase(unittest.TestCase):
         op = self.api.translate_name();
 
         params = RntParameters()
-        params.name = "كريم عبد الجبار"
-        params.entityType = "PERSON";
-        params.targetLanguage = "eng";
+        params["name"] = "كريم عبد الجبار"
+        params["entityType"] = "PERSON";
+        params["targetLanguage"] = "eng";
         result = op.operate(params, None)
         result = result["result"]
         self.assertEqual(result["translation"], "Karim 'Abd-al-Jabbar")
@@ -139,14 +139,14 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(result["targetScheme"], "IC")        
 
         params = RntParameters()
-        params.name = "George Bush"
-        params.entityType = "PERSON"
-        params.sourceScript = "Latn"
-        params.sourceLanguageOfOrigin = "eng"
-        params.sourceLanguageOfUse = "eng"
-        params.targetLanguage = "ara"
-        params.targetScript = "Arab"
-        params.targetScheme = "NATIVE"
+        params["name"] = "George Bush"
+        params["entityType"] = "PERSON"
+        params["sourceScript"] = "Latn"
+        params["sourceLanguageOfOrigin"] = "eng"
+        params["sourceLanguageOfUse"] = "eng"
+        params["targetLanguage"] = "ara"
+        params["targetScript"] = "Arab"
+        params["targetScheme"] = "NATIVE"
 
         result = op.operate(params, None)
         result = result["result"]

@@ -98,20 +98,18 @@ class RaasParameters(RaasParamSetBase):
 
         return self.forSerialize()
 
-class RntParameters:
+class RntParameters(RaasParamSetBase):
     def __init__(self):
-        self.name = None
-        self.targetLanguage = None
-        self.entityType = None
+        valids = ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin", "sourceLanguageOfUse", "sourceScript", "targetLanguage", "targetScript", "targetScheme")
+        RaasParamSetBase.__init__(self, valids)
+        for r in valids:
+            self[r] = None
 
     def serializable(self):
-        v = {}
         for n in ("name", "targetLanguage"):  #required
-                v[n] = self.__dict__[n]            
-        for n in ("entityType", "sourceLanguageOfOrigin", "sourceLanguageOfUse", "sourceScript", "targetLanguage", "targetScript", "targetScheme"):
-            if n in self.__dict__:           #optional
-                v[n] = self.__dict__[n]
-        return v
+            if self[n] is None:
+                raise RosetteException("missing parameter", "Required RNT parameter not supplied", repr(n))
+        return self.forSerialize()
 
 class Operator:
     # take a session when we do OAuth2
