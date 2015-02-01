@@ -53,16 +53,17 @@ class MorphologyOutput(Enum):
     
 class RaasParamSetBase:
     def __init__(self,repertoire):
-        self.__repertoire = repertoire
         self.__params = {}
+        for k in repertoire:
+            self.__params[k] = None
 
     def __setitem__(self, key, val):
-        if key not in self.__repertoire:
+        if key not in self.__params:
             raise RosetteException("badKey", "Unknown Rosette parameter key", repr(key))
         self.__params[key] = val
 
     def __getitem__(self, key):
-        if key not in self.__repertoire:
+        if key not in self.__params:
             raise RosetteException("badKey", "Unknown Rosette parameter key", repr(key))
         return self.__params[key]
 
@@ -80,10 +81,6 @@ class RaasParamSetBase:
 class RaasParameters(RaasParamSetBase):
     def __init__(self):
         RaasParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
-        self["content"] = None
-        self["contentUri"] = None
-        self["contentType"] = None
-        self["unit"] = None
 
     def serializable(self):
         if self["content"] is not None and self["contentUri"] is not None:
@@ -100,10 +97,7 @@ class RaasParameters(RaasParamSetBase):
 
 class RntParameters(RaasParamSetBase):
     def __init__(self):
-        valids = ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin", "sourceLanguageOfUse", "sourceScript", "targetLanguage", "targetScript", "targetScheme")
-        RaasParamSetBase.__init__(self, valids)
-        for r in valids:
-            self[r] = None
+        RaasParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin", "sourceLanguageOfUse", "sourceScript", "targetLanguage", "targetScript", "targetScheme"))
 
     def serializable(self):
         for n in ("name", "targetLanguage"):  #required
