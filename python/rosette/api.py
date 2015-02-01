@@ -51,35 +51,52 @@ class MorphologyOutput(Enum):
     HAN_READINGS = "han-readings"
     COMPLETE = "complete"
     
-# TODO: set up as a fixed collection of properties.
+class RaasParamSetBase:
+    def __init__(self,repertoire):
+        self.__repertoire = repertoire
+        self.__params = {}
 
-class RaasParameters:
+    def __setitem__(self, key, val):
+        if key not in self.__repertoire:
+            raise RosetteException("badKey", "Unknown Rosette parameter key", repr(key))
+        self.__params[key] = val
+
+    def __getitem__(self, key):
+        if key not in self.__repertoire:
+            raise RosetteException("badKey", "Unknown Rosette parameter key", repr(key))
+        return self.__params[key]
+
+    def forSerialize(self):
+        v = {}
+        for (key,val) in self.__params.items():
+            if val is None:
+                pass
+            elif isinstance(val, Enum):
+                v[key] = val.value;
+            else:
+                v[key] = val
+        return v
+
+class RaasParameters(RaasParamSetBase):
     def __init__(self):
-        self.content = None
-        self.contentUri = None
-        self.contentType = None
-        self.unit = None
+        RaasParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
+        self["content"] = None
+        self["contentUri"] = None
+        self["contentType"] = None
+        self["unit"] = None
 
     def serializable(self):
-        v = {}
-        if self.content is not None and self.contentUri is not None:
-             raise RosetteException("bad argument", "Cannot supply both Content and Content Uri", "bad arguments")
-        if self.content is None and self.contentUri is None:
-             raise RosetteException("bad argument", "Must supply on of Content or Content Uri", "bad arguments")
-        if self.content is not None:
-            v['content'] = self.content
-            if isinstance(self.contentType, DataFormat):
-                v['contentType'] = self.contentType.value
-            else:
-                raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum", repr(self.contentType))
-        else:
-            v['contentUri'] = self.contentUri
-        if isinstance(self.unit, InputUnit):
-            v['unit'] = self.unit.value
-        else:
-             raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self.unit))
+        if self["content"] is not None and self["contentUri"] is not None:
+             raise RosetteException("bad argument", "Cannot supply both Content and ContentUri", "bad arguments")
+        if self["content"] is None and self["contentUri"] is None:
+             raise RosetteException("bad argument", "Must supply one of Content or ContentUri", "bad arguments")
+        if self["content"] is not None:
+            if not isinstance(self["contentType"], DataFormat):
+                raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum", repr(self["contentType"]))
+        if not isinstance(self["unit"], InputUnit):
+             raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self["unit"]))
 
-        return v
+        return self.forSerialize()
 
 class RntParameters:
     def __init__(self):

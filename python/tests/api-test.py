@@ -41,21 +41,20 @@ class APITestCase(unittest.TestCase):
         logging.info("URL " + self.url)
         self.api = API(service_url = self.url)
         params = RaasParameters()
-        params.content = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
-        params.contentType = DataFormat.SIMPLE
-        params.unit = InputUnit.DOC
+        params["content"] = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
+        params["contentType"] = DataFormat.SIMPLE
+        params["unit"] = InputUnit.DOC
         self.HamParams = params
 
         params = RaasParameters()
-        params.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
-        params.contentType = DataFormat.SIMPLE
-        params.unit = InputUnit.DOC
+        params["content"] =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
+        params["contentType"] = DataFormat.SIMPLE
+        params["unit"] = InputUnit.DOC
         self.TagParams = params
 
         params = RaasParameters()
-        params.contentUri = "http://www.basistech.com/"
-        params.contentType = DataFormat.SIMPLE
-        params.unit = InputUnit.DOC
+        params["contentUri"] = "http://www.basistech.com/"
+        params["unit"] = InputUnit.DOC
         self.UriParams = params
 
     def test_ping(self):
