@@ -111,6 +111,7 @@ class Operator:
         self.service_url = service_url
         self.logger = logger
         self.suburl = suburl
+        self.useMultipart = False
 
     def __finish_result(self, r, ename):
         code = r.status_code
@@ -148,12 +149,20 @@ class Operator:
         if result_format == ResultFormat.ROSETTE:
             url = url + "?output=rosette"
         self.logger.info('operate: ' + url)
+        params_to_serialize = parameters.serializable()
         headers = {}
         headers['Accept'] = 'application/json'
-        headers['Content-Type'] = "application/json"
         headers['Accept-Encoding'] = "gzip"
-        params_to_serialize = parameters.serializable()
-        r = requests.post(url, headers=headers, json=params_to_serialize)
+        if self.useMultipart and 'content' in params_to_serialize:
+            cparams = {"unit":params_to_serialize["unit"]}
+            dtype = "application/octet-stream"
+            data = params_to_serialize["content"]
+            files = {'content':('content',data, dtype), 'options':('options', json.dumps(cparams), "application/json")}
+            r = requests.post(url, headers=headers, files=files)
+        else:
+            headers['Content-Type'] = "application/json"
+            r = requests.post(url, headers=headers, json=params_to_serialize)
+
         return self.__finish_result(r, "operate")
 
 class API:
