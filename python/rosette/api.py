@@ -30,7 +30,6 @@ class RosetteException(Exception):
 
 # TODO: Set up OAuth2 session and use it with requests.
 # We'll need something to talk to for that, and we won't it for integration tests.
-# TODO: when do we turn on compression? Always?
 
 class ResultFormat(Enum):
     SIMPLE = ""
@@ -107,11 +106,11 @@ class RntParameters(RaasParamSetBase):
 
 class Operator:
     # take a session when we do OAuth2
-    def __init__(self, service_url, logger, suburl):
-        self.service_url = service_url
-        self.logger = logger
+    def __init__(self, api, suburl):
+        self.service_url = api.service_url
+        self.logger = api.logger
+        self.useMultipart = api.useMultipart
         self.suburl = suburl
-        self.useMultipart = False
 
     def __finish_result(self, r, ename):
         code = r.status_code
@@ -127,6 +126,9 @@ class Operator:
                                    '"' + ename + '" "' + self.suburl + "\" failed to communicate with Raas",
                                    msg)
 
+
+    def setUseMultipart(self, value):
+        self.useMultipart = value
 
     def getInfo(self, result_format):
         url = self.service_url + '/' + self.suburl + "/info"
@@ -145,19 +147,17 @@ class Operator:
         return self.__finish_result(r, "ping")
 
     def operate(self, parameters, result_format):
+        if self.useMultipart and (parameters['contentType'] != DataFormat.SIMPLE):
+            raise RosetteException("incompatible", "Multipart requires contentType SIMPLE", repr(parameters['contentType']))
         url = self.service_url + '/' + self.suburl
         if result_format == ResultFormat.ROSETTE:
             url = url + "?output=rosette"
         self.logger.info('operate: ' + url)
         params_to_serialize = parameters.serializable()
-        headers = {}
-        headers['Accept'] = 'application/json'
-        headers['Accept-Encoding'] = "gzip"
+        headers = {'Accept':"application/json", 'Accept-Encoding':"gzip"}
         if self.useMultipart and 'content' in params_to_serialize:
-            cparams = {"unit":params_to_serialize["unit"]}
-            dtype = "application/octet-stream"
-            data = params_to_serialize["content"]
-            files = {'content':('content',data, dtype), 'options':('options', json.dumps(cparams), "application/json")}
+            files = {'content':('content', params_to_serialize['content'], "application/octet-stream"),
+                     'options':('options', json.dumps({"unit":params_to_serialize["unit"]}), "application/json")}
             r = requests.post(url, headers=headers, files=files)
         else:
             headers['Content-Type'] = "application/json"
@@ -178,35 +178,39 @@ class API:
         self.logger = logging.getLogger('rosette.api')
         self.logger.info('Initialized on ' + self.service_url)
         self.debug = False
+        self.useMultipart = False
+
+    def setUseMultipart(self, value):
+        self.useMultipart = value
 
     def pinger(self):
-        return Operator(self.service_url, self.logger, None)
+        return Operator(self, None)
 
     def language_detection(self):
-        return Operator(self.service_url, self.logger, "language")
+        return Operator(self, "language")
 
     def sentences_split(self):
-        return Operator(self.service_url, self.logger, "sentences")
+        return Operator(self, "sentences")
 
     def tokenize(self):
-        return Operator(self.service_url, self.logger, "tokens")
+        return Operator(self, "tokens")
 
     def morphology(self, subsub):
         if not isinstance(subsub, MorphologyOutput):
             raise RosetteException("bad argument", "Argument not a MorphologyOutput enum object", repr(subsub))
-        return Operator(self.service_url, self.logger, "morphology/" + subsub.value)
+        return Operator(self, "morphology/" + subsub.value)
 
     def entities(self, linked):
         if  linked:
-            return Operator(self.service_url, self.logger, "entities/linked")
+            return Operator(self, "entities/linked")
         else:
-            return Operator(self.service_url, self.logger, "entities")
+            return Operator(self, "entities")
 
     def categories(self):
-        return Operator(self.service_url, self.logger, "categories")
+        return Operator(self, "categories")
 
     def sentiment(self):
-        return Operator(self.service_url, self.logger, "sentiment")
+        return Operator(self, "sentiment")
 
     def translate_name(self):
-        return Operator(self.service_url, self.logger, "translated-name")
+        return Operator(self, "translated-name")

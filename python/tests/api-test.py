@@ -94,12 +94,14 @@ class APITestCase(unittest.TestCase):
         result = op.operate(self.HamParams, None)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, [u'NOUN', u'CM', u'NOUN', u'VBPRES', u'SENT', u'ADJ', u'NOUN', u'COORD', u'NOUN', u'SENT', u'PRONPERS', u'VBPRES', u'PROP', u'SENT', u'PRONPERS', u'VI', u'PROP', u'SENT'])
+
         op = self.api.morphology(MorphologyOutput.LEMMAS)
+        op.setUseMultipart(True)
         for multipart in (False, True):
-            op.useMultipart = multipart
             result = op.operate(self.HamParams, None)
             lresult = [x['lemma'] for x in result['lemmas']]
             self.assertEqual(lresult, [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.'])
+
 
     def test_entities(self):
         op = self.api.entities(None); # "linked" flag
@@ -113,7 +115,6 @@ class APITestCase(unittest.TestCase):
         cats = result['categories']
         catkeys = [x['label'] for x in cats]
         self.assertTrue("TECHNOLOGY_AND_COMPUTING" in catkeys)
-
         
     def test_categories(self):
         op = self.api.categories();

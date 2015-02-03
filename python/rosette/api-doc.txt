@@ -1,0 +1,84 @@
+2/3/2015
+
+rosette.api interim documentation.
+
+From rosette.api, import API, ResultFormat, InputUnit, RaasParameters, RntParameters, DataFormat, MorphologyOutput,RntParameters
+
+You must create an API (symbol above) with the "service_url" parameter providing the base URL for RaaS services, e.g.,
+
+  api = rosette.api.API(service_url='http://rosette.myfirm.com/raas')
+
+From this, you may request the creation of 'operators' which you may either ask to "operate" an
+interface or "ping".  The result of either, if rosette.api.RosetteException is not signalled, is a
+python dictionary with components that vary as per the interfaces, and are largely described by
+extant Rosette documentation (as the JSON components of return results).
+
+To ping,
+    op = rosette.api.pinger()
+    op.ping() # if there is no trouble, it has pung, or else an error was signalled.
+
+To operate any other function, e.g., a "parameters" dictionary must be set up.  This is the class
+rosette.api.RaasParameters.  You must set "content" (a Unicode string to be processed or JSON TBD),
+"content-type" one of the two elements of rosette.api.DataFormat, SIMPLE (text) or JSON, as per what
+you have, and "unit", one of the Enum rosette.api.InputUnit, DOC or SENTENCE.
+
+Example:
+        TagParams = RaasParameters()
+        TagParams.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
+        TagParams["contentType"] = DataFormat.SIMPLE
+        TagParams["unit"] = InputUnit.DOC
+ 
+To operate the functions other than ping(), call "operate" upon the operator, with the two arguments
+of the parameters dictionary described above, and one of the elements of rosette.api.ResultFormat,
+either SIMPLE or ROSETTE (the latter returns the ADM data model, so to speak).
+
+    def tokenize(api)
+        op = api.tokenize()
+        result = op.operate(self.TagParams, ResultFormat.SIMPLE)
+        print "should be 30 tokens", len(result['tokens'])
+
+The known operators which can be requested are (other than ping, whose call is described above), are
+
+    API.language_detection()
+         On the operator returned by API.language_detection(), you may also call
+         languages = op.getInfo(result_format)
+     to obtain an array (or JSON-embedded array) of available languages.
+    API.sentences_split()
+    API. tokenize()
+    API.morphology(tag)
+      tag must be one of the members of the Enum MorphologyOutput,
+         i.e., LEMMAS, PARTS_OF_SPEECH, COMPOUND_COMPONENTS, HAN_READINGS, or COMPLETE
+    API.entities(linked)
+      "linked" may be True or False; if and only if True, entity linkage is returned.
+    API.categories()
+    API.sentiment()
+    API.translate_name()
+
+
+translate_name is unlike all the other entries.  The operate function requires as its parameter object
+a dictionary with three entries, "name", being the name to be translated, "entityType", being one of
+PERSON etc (documented elsewhere), and "targetLanguage" an ISO639 string for the target language.
+These are elements of the rosette.api.RntParameters Enum. The return return result (as of this
+writing) has to be retrieved from the "result" entry of the actual return result.  Hence,
+
+ def test_translate_name():
+        op = api.translate_name();
+        params = RntParameters()
+        params["name"] = "كريم عبد الجبار"
+        params["entityType"] = "PERSON";
+        params["targetLanguage"] = "eng";
+        result = op.operate(params, None)
+        result = result["result"]
+        print result["translation"]
+
+Note that RntParameters and RaasParameters are not simple Python dictionaries; their "setitem" operators
+(params["key"]) validate their arguments.
+
+Multipart
+
+Proper RaaS implementations will accept "multipart" requests instead of simple data (or JSON) requests.  To
+tell the Python api to use "multipart" requests, call "setUseMultipart(True)" on an operator object
+you intend to use, or the API object whence you will obtain operator object (and they will all
+inherit it when created).  Data format must be DataFormat.SIMPLE.  No other action is required.
+
+
