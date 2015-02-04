@@ -19,8 +19,10 @@ To ping,
 
 To operate any other function, e.g., a "parameters" dictionary must be set up.  This is the class
 rosette.api.RaasParameters.  You must set "content" (a Unicode string to be processed or JSON TBD),
-"content-type" one of the two elements of rosette.api.DataFormat, SIMPLE (text) or JSON, as per what
-you have, and "unit", one of the Enum rosette.api.InputUnit, DOC or SENTENCE.
+"content-type" one of the three elements of rosette.api.DataFormat, SIMPLE (text), JSON, or BASE64,
+as per what you have; if you supply BASE64, you must base-64 encode what you supply-- the API
+does not do it for you. You must set "unit" to one of the Enum rosette.api.InputUnit, DOC or
+SENTENCE.
 
 Example:
         TagParams = RaasParameters()

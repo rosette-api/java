@@ -17,7 +17,6 @@ import logging
 import json
 from enum import Enum
 import sys
-import pprint
 
 # this will get more complex in a hurry.
 class RosetteException(Exception):
@@ -38,6 +37,7 @@ class ResultFormat(Enum):
 class DataFormat(Enum):
     SIMPLE = "text/plain"
     JSON = "application/json"
+    BASE64 = "text/html"
 
 class InputUnit(Enum):
     DOC = "doc"

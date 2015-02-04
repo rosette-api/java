@@ -20,10 +20,13 @@ from rosette.api import API, ResultFormat, InputUnit, RaasParameters, RntParamet
 import os
 import sys
 import json
+import base64
 
 logging.basicConfig(level=logging.DEBUG)
 
-
+HAM_SENTENCE = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
+MORPHO_EXPECTED_POSES = [u'NOUN', u'CM', u'NOUN', u'VBPRES', u'SENT', u'ADJ', u'NOUN', u'COORD', u'NOUN', u'SENT', u'PRONPERS', u'VBPRES', u'PROP', u'SENT', u'PRONPERS', u'VI', u'PROP', u'SENT']
+MORPHO_EXPECTED_LEMMAS = [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.']
 
 class APITestCase(unittest.TestCase):
     def __init__(self, tcname):
@@ -41,10 +44,16 @@ class APITestCase(unittest.TestCase):
         logging.info("URL " + self.url)
         self.api = API(service_url = self.url)
         params = RaasParameters()
-        params["content"] = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
+        params["content"] = HAM_SENTENCE
         params["contentType"] = DataFormat.SIMPLE
         params["unit"] = InputUnit.DOC
         self.HamParams = params
+
+        B64Params = RaasParameters()
+        B64Params["content"] = base64.b64encode(HAM_SENTENCE)
+        B64Params["contentType"] = DataFormat.BASE64
+        B64Params["unit"] = InputUnit.DOC
+        self.B64Params = B64Params
 
         params = RaasParameters()
         params["content"] =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
@@ -77,7 +86,6 @@ class APITestCase(unittest.TestCase):
         sary = sorted(ary, key=lambda x: -x['confidence'])
         self.assertEqual(sary[0]['language'], "eng")
 
-
     def test_sentence_splitting(self):
         op = self.api.sentences_split()
         result = op.operate(self.HamParams, None)
@@ -93,15 +101,21 @@ class APITestCase(unittest.TestCase):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
         result = op.operate(self.HamParams, None)
         presult = [x['pos'] for x in result['posTags']]
-        self.assertEqual(presult, [u'NOUN', u'CM', u'NOUN', u'VBPRES', u'SENT', u'ADJ', u'NOUN', u'COORD', u'NOUN', u'SENT', u'PRONPERS', u'VBPRES', u'PROP', u'SENT', u'PRONPERS', u'VI', u'PROP', u'SENT'])
+        self.assertEqual(presult, MORPHO_EXPECTED_POSES)
 
+    def test_morphology_base64(self):
+        op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
+        result = op.operate(self.B64Params, None)
+        presult = [x['pos'] for x in result['posTags']]
+        self.assertEqual(presult, MORPHO_EXPECTED_POSES)
+
+    def test_morphology_multipart(self):
         op = self.api.morphology(MorphologyOutput.LEMMAS)
-        op.setUseMultipart(True)
         for multipart in (False, True):
+            op.setUseMultipart(multipart)
             result = op.operate(self.HamParams, None)
             lresult = [x['lemma'] for x in result['lemmas']]
-            self.assertEqual(lresult, [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.'])
-
+            self.assertEqual(lresult, MORPHO_EXPECTED_LEMMAS)
 
     def test_entities(self):
         op = self.api.entities(None); # "linked" flag
