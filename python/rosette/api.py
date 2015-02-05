@@ -82,11 +82,12 @@ class RaasParameters(RaasParamSetBase):
         RaasParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
 
     def serializable(self):
-        if self["content"] is not None and self["contentUri"] is not None:
-             raise RosetteException("bad argument", "Cannot supply both Content and ContentUri", "bad arguments")
-        if self["content"] is None and self["contentUri"] is None:
-             raise RosetteException("bad argument", "Must supply one of Content or ContentUri", "bad arguments")
-        if self["content"] is not None:
+        if self["content"] is None:
+            if self["contentUri"] is None:
+                raise RosetteException("bad argument", "Must supply one of Content or ContentUri", "bad arguments")
+        else:  #self["content"] not None
+            if self["contentUri"] is not None:
+                raise RosetteException("bad argument", "Cannot supply both Content and ContentUri", "bad arguments")
             if not isinstance(self["contentType"], DataFormat):
                 raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum", repr(self["contentType"]))
         if not isinstance(self["unit"], InputUnit):
