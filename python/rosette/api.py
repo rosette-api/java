@@ -128,7 +128,7 @@ class Operator:
                                    msg)
 
 
-    def setUseMultipart(self, value):
+    def _setUseMultipart(self, value):
         self.useMultipart = value
 
     def getInfo(self, result_format):
@@ -181,7 +181,7 @@ class API:
         self.debug = False
         self.useMultipart = False
 
-    def setUseMultipart(self, value):
+    def _setUseMultipart(self, value):
         self.useMultipart = value
 
     def pinger(self):

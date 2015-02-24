@@ -75,10 +75,4 @@ return result (as of this writing) has to be retrieved from the "result" entry o
 
 Note that RntParameters and RosetteParameters are not simple Python dictionaries; their "setitem" operators (params["key"]) validate their arguments.
 
-Multipart
-
-Proper Rosette implementations will accept "multipart" requests
-instead of simple data (or JSON) requests.  To tell the Python api to
-use "multipart" requests, call "setUseMultipart(True)" on an operator object you intend to use, or the API object whence you will obtain operator object (and they will all inherit it when created).  Data format must be DataFormat.SIMPLE.  No other action is required.
-
 

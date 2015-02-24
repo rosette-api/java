@@ -109,13 +109,11 @@ class APITestCase(unittest.TestCase):
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
 
-    def test_morphology_multipart(self):
+    def test_morphology_lemmas(self):
         op = self.api.morphology(MorphologyOutput.LEMMAS)
-        for multipart in (False, True):
-            op.setUseMultipart(multipart)
-            result = op.operate(self.HamParams, None)
-            lresult = [x['lemma'] for x in result['lemmas']]
-            self.assertEqual(lresult, MORPHO_EXPECTED_LEMMAS)
+        result = op.operate(self.HamParams, None)
+        lresult = [x['lemma'] for x in result['lemmas']]
+        self.assertEqual(lresult, MORPHO_EXPECTED_LEMMAS)
 
     def test_entities(self):
         op = self.api.entities(None); # "linked" flag
