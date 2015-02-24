@@ -50,7 +50,7 @@ class MorphologyOutput(Enum):
     HAN_READINGS = "han-readings"
     COMPLETE = "complete"
     
-class RaasParamSetBase:
+class RosetteParamSetBase:
     def __init__(self,repertoire):
         self.__params = {}
         for k in repertoire:
@@ -77,9 +77,9 @@ class RaasParamSetBase:
                 v[key] = val
         return v
 
-class RaasParameters(RaasParamSetBase):
+class RosetteParameters(RosetteParamSetBase):
     def __init__(self):
-        RaasParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
+        RosetteParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
 
     def serializable(self):
         if self["content"] is None:
@@ -95,12 +95,12 @@ class RaasParameters(RaasParamSetBase):
 
         return self.forSerialize()
 
-class RntParameters(RaasParamSetBase):
+class RntParameters(RosetteParamSetBase):
     def __init__(self):
-        RaasParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin", "sourceLanguageOfUse", "sourceScript", "targetLanguage", "targetScript", "targetScheme"))
+        RosetteParamSetBase.__init__(self, ("name", "targetLanguageCode", "entityType", "sourceLanguageOfOriginCode", "sourceLanguageOfUseCode", "sourceScriptCode", "targetLanguageCode", "targetScriptCode", "targetSchemeCode"))
 
     def serializable(self):
-        for n in ("name", "targetLanguage"):  #required
+        for n in ("name", "targetLanguageCode"):  #required
             if self[n] is None:
                 raise RosetteException("missing parameter", "Required RNT parameter not supplied", repr(n))
         return self.forSerialize()
@@ -124,7 +124,7 @@ class Operator:
             else:
                 msg = theJSON['code'] #yuck*1.5
             raise RosetteException(code,
-                                   '"' + ename + '" "' + self.suburl + "\" failed to communicate with Raas",
+                                   '"' + ename + '" "' + self.suburl + "\" failed to communicate with Rosette",
                                    msg)
 
 
@@ -168,7 +168,7 @@ class Operator:
 
 class API:
     """
-    RaaS Python Client Binding API.
+    Rosette Python Client Binding API.
     This binding uses 'requests' (http://docs.python-requests.org/).
     """
     # initial default value for the URL here is wrong.

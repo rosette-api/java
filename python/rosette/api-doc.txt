@@ -1,10 +1,10 @@
-2/3/2015
+2/24/2015
 
 rosette.api interim documentation.
 
-From rosette.api, import API, ResultFormat, InputUnit, RaasParameters, RntParameters, DataFormat, MorphologyOutput,RntParameters
+From rosette.api, import API, ResultFormat, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput,RntParameters
 
-You must create an API (symbol above) with the "service_url" parameter providing the base URL for RaaS services, e.g.,
+You must create an API (symbol above) with the "service_url" parameter providing the base URL for Rosette services, e.g.,
 
   api = rosette.api.API(service_url='http://rosette.myfirm.com/raas')
 
@@ -18,14 +18,14 @@ To ping,
     op.ping() # if there is no trouble, it has pung, or else an error was signalled.
 
 To operate any other function, e.g., a "parameters" dictionary must be set up.  This is the class
-rosette.api.RaasParameters.  You must set "content" (a Unicode string to be processed or JSON TBD),
+rosette.api.RosetteParameters.  You must set "content" (a Unicode string to be processed or JSON TBD),
 "content-type" one of the three elements of rosette.api.DataFormat, SIMPLE (text), JSON, or BASE64,
 as per what you have; if you supply BASE64, you must base-64 encode what you supply-- the API
 does not do it for you. You must set "unit" to one of the Enum rosette.api.InputUnit, DOC or
 SENTENCE.
 
 Example:
-        TagParams = RaasParameters()
+        TagParams = RosetteParameters()
         TagParams.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
         TagParams["contentType"] = DataFormat.SIMPLE
         TagParams["unit"] = InputUnit.DOC
@@ -57,30 +57,28 @@ The known operators which can be requested are (other than ping, whose call is d
     API.translate_name()
 
 
-translate_name is unlike all the other entries.  The operate function requires as its parameter object
-a dictionary with three entries, "name", being the name to be translated, "entityType", being one of
-PERSON etc (documented elsewhere), and "targetLanguage" an ISO639 string for the target language.
-These are elements of the rosette.api.RntParameters Enum. The return return result (as of this
-writing) has to be retrieved from the "result" entry of the actual return result.  Hence,
+translate_name is unlike all the other entries.  The operate function
+requires as its parameter object a dictionary with three entries,
+"name", being the name to be translated, "entityType", being one of PERSON etc (documented elsewhere), and "targetLanguageCode" an ISO639 string for the target language.
+These are elements of the rosette.api.RntParameters Enum. The return
+return result (as of this writing) has to be retrieved from the "result" entry of the actual return result.  Hence,
 
  def test_translate_name():
         op = api.translate_name();
         params = RntParameters()
         params["name"] = "كريم عبد الجبار"
         params["entityType"] = "PERSON";
-        params["targetLanguage"] = "eng";
+        params["targetLanguageCode"] = "eng";
         result = op.operate(params, None)
         result = result["result"]
         print result["translation"]
 
-Note that RntParameters and RaasParameters are not simple Python dictionaries; their "setitem" operators
-(params["key"]) validate their arguments.
+Note that RntParameters and RosetteParameters are not simple Python dictionaries; their "setitem" operators (params["key"]) validate their arguments.
 
 Multipart
 
-Proper RaaS implementations will accept "multipart" requests instead of simple data (or JSON) requests.  To
-tell the Python api to use "multipart" requests, call "setUseMultipart(True)" on an operator object
-you intend to use, or the API object whence you will obtain operator object (and they will all
-inherit it when created).  Data format must be DataFormat.SIMPLE.  No other action is required.
+Proper Rosette implementations will accept "multipart" requests
+instead of simple data (or JSON) requests.  To tell the Python api to
+use "multipart" requests, call "setUseMultipart(True)" on an operator object you intend to use, or the API object whence you will obtain operator object (and they will all inherit it when created).  Data format must be DataFormat.SIMPLE.  No other action is required.
 
 

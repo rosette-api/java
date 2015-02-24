@@ -16,7 +16,7 @@
 
 import unittest
 import logging
-from rosette.api import API, ResultFormat, InputUnit, RaasParameters, RntParameters, DataFormat, MorphologyOutput
+from rosette.api import API, ResultFormat, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput
 import os
 import sys
 import json
@@ -43,25 +43,25 @@ class APITestCase(unittest.TestCase):
             self.url = burl
         logging.info("URL " + self.url)
         self.api = API(service_url = self.url)
-        params = RaasParameters()
+        params = RosetteParameters()
         params["content"] = HAM_SENTENCE
         params["contentType"] = DataFormat.SIMPLE
         params["unit"] = InputUnit.DOC
         self.HamParams = params
 
-        B64Params = RaasParameters()
+        B64Params = RosetteParameters()
         B64Params["content"] = base64.b64encode(HAM_SENTENCE)
         B64Params["contentType"] = DataFormat.BASE64
         B64Params["unit"] = InputUnit.DOC
         self.B64Params = B64Params
 
-        params = RaasParameters()
+        params = RosetteParameters()
         params["content"] =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
         params["contentType"] = DataFormat.SIMPLE
         params["unit"] = InputUnit.DOC
         self.TagParams = params
 
-        params = RaasParameters()
+        params = RosetteParameters()
         params["contentUri"] = "http://www.basistech.com/"
         params["unit"] = InputUnit.DOC
         self.UriParams = params
@@ -69,7 +69,7 @@ class APITestCase(unittest.TestCase):
     def test_ping(self):
         op = self.api.pinger()
         result = op.ping()
-        self.assertEqual(result['message'],'RaaS at your service')
+        self.assertEqual(result['message'],'Rosette API at your service')
 
     def test_language_info(self):
         op = self.api.language_detection()
@@ -148,22 +148,22 @@ class APITestCase(unittest.TestCase):
         params = RntParameters()
         params["name"] = "كريم عبد الجبار"
         params["entityType"] = "PERSON";
-        params["targetLanguage"] = "eng";
+        params["targetLanguageCode"] = "eng";
         result = op.operate(params, None)
         result = result["result"]
         self.assertEqual(result["translation"], "Karim 'Abd-al-Jabbar")
-        self.assertEqual(result["sourceLanguageOfUse"], "ara")
-        self.assertEqual(result["targetScheme"], "IC")        
+        self.assertEqual(result["sourceLanguageOfUseCode"], "ara")
+        self.assertEqual(result["targetSchemeCode"], "IC")        
 
         params = RntParameters()
         params["name"] = "George Bush"
         params["entityType"] = "PERSON"
-        params["sourceScript"] = "Latn"
-        params["sourceLanguageOfOrigin"] = "eng"
-        params["sourceLanguageOfUse"] = "eng"
-        params["targetLanguage"] = "ara"
-        params["targetScript"] = "Arab"
-        params["targetScheme"] = "NATIVE"
+        params["sourceScriptCode"] = "Latn"
+        params["sourceLanguageOfOriginCode"] = "eng"
+        params["sourceLanguageOfUseCode"] = "eng"
+        params["targetLanguageCode"] = "ara"
+        params["targetScriptCode"] = "Arab"
+        params["targetSchemeCode"] = "NATIVE"
 
         result = op.operate(params, None)
         result = result["result"]
