@@ -16,7 +16,7 @@
 
 import unittest
 import logging
-from rosette.api import API, ResultFormat, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput
+from rosette.api import API, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput
 import os
 import sys
 import json
@@ -73,69 +73,69 @@ class APITestCase(unittest.TestCase):
 
     def test_language_info(self):
         op = self.api.language_detection()
-        result = op.getInfo(None)
+        result = op.getInfo()
         # not much to do right now.
 
-    def test_adm_detection(self):
+    def test_detection(self):
         op = self.api.language_detection()
-        result = op.operate(self.HamParams, ResultFormat.ROSETTE)
+        result = op.operate(self.HamParams)
 
         self.assertIsNotNone(result['requestId'])
-        ary = result['result']['attributes']['languageDetection']['detectionResults']
+        ary = result['languageDetections']
         self.assertNotEqual(len(ary), 0)
         sary = sorted(ary, key=lambda x: -x['confidence'])
         self.assertEqual(sary[0]['language'], "eng")
 
     def test_sentence_splitting(self):
         op = self.api.sentences_split()
-        result = op.operate(self.HamParams, None)
+        result = op.operate(self.HamParams)
         self.assertIsNotNone(result['sentences'])
         self.assertEqual(len(result['sentences']), 3)
 
     def test_tokenizing(self):
         op = self.api.tokenize()
-        result = op.operate(self.HamParams, None)
+        result = op.operate(self.HamParams)
         self.assertEqual(len(result['tokens']), 18)
 
     def test_morphology(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
-        result = op.operate(self.HamParams, None)
+        result = op.operate(self.HamParams)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
 
     def test_morphology_base64(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
-        result = op.operate(self.B64Params, None)
+        result = op.operate(self.B64Params)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
 
     def test_morphology_lemmas(self):
         op = self.api.morphology(MorphologyOutput.LEMMAS)
-        result = op.operate(self.HamParams, None)
+        result = op.operate(self.HamParams)
         lresult = [x['lemma'] for x in result['lemmas']]
         self.assertEqual(lresult, MORPHO_EXPECTED_LEMMAS)
 
     def test_entities(self):
         op = self.api.entities(None); # "linked" flag
-        result = op.operate(self.TagParams, None)
+        result = op.operate(self.TagParams)
         # Not the right answer, but what it currently gets.
         self.assertEquals(len(result['entities']), 3)
 
     def test_categoriesUri(self):
         op = self.api.categories();
-        result = op.operate(self.UriParams, None)
+        result = op.operate(self.UriParams)
         cats = result['categories']
         catkeys = [x['label'] for x in cats]
         self.assertTrue("TECHNOLOGY_AND_COMPUTING" in catkeys)
         
     def test_categories(self):
         op = self.api.categories();
-        result = op.operate(self.HamParams, None)
+        result = op.operate(self.HamParams)
         self.assertEquals(len(result['categories']), 1)
 
     def test_sentiment(self):
         op = self.api.sentiment();
-        result = op.operate(self.HamParams, None)
+        result = op.operate(self.HamParams)
         ary = result['sentiment']
         sary = sorted(ary, key=lambda x: -x['confidence'])
         self.assertEqual(sary[0]['label'], "pos")
@@ -147,7 +147,7 @@ class APITestCase(unittest.TestCase):
         params["name"] = "كريم عبد الجبار"
         params["entityType"] = "PERSON";
         params["targetLanguageCode"] = "eng";
-        result = op.operate(params, None)
+        result = op.operate(params)
         result = result["result"]
         self.assertEqual(result["translation"], "Karim 'Abd-al-Jabbar")
         self.assertEqual(result["sourceLanguageOfUseCode"], "ara")
@@ -163,6 +163,6 @@ class APITestCase(unittest.TestCase):
         params["targetScriptCode"] = "Arab"
         params["targetSchemeCode"] = "NATIVE"
 
-        result = op.operate(params, None)
+        result = op.operate(params)
         result = result["result"]
         self.assertEqual(result['translation'], u"جُورْج بُوش")

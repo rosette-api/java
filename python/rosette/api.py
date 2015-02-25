@@ -30,10 +30,6 @@ class RosetteException(Exception):
 # TODO: Set up OAuth2 session and use it with requests.
 # We'll need something to talk to for that, and we won't it for integration tests.
 
-class ResultFormat(Enum):
-    SIMPLE = ""
-    ROSETTE = "rosette"
-
 class DataFormat(Enum):
     SIMPLE = "text/plain"
     JSON = "application/json"
@@ -131,10 +127,8 @@ class Operator:
     def _setUseMultipart(self, value):
         self.useMultipart = value
 
-    def getInfo(self, result_format):
+    def getInfo(self):
         url = self.service_url + '/' + self.suburl + "/info"
-        if result_format == ResultFormat.ROSETTE:
-            url = url + "?output=rosette"
         self.logger.info('getInfo: ' + url)
         headers = {'Accept':'application/json'}
         r = requests.get(url, headers=headers)
@@ -147,12 +141,10 @@ class Operator:
         r = requests.get(url, headers=headers)
         return self.__finish_result(r, "ping")
 
-    def operate(self, parameters, result_format):
+    def operate(self, parameters):
         if self.useMultipart and (parameters['contentType'] != DataFormat.SIMPLE):
             raise RosetteException("incompatible", "Multipart requires contentType SIMPLE", repr(parameters['contentType']))
         url = self.service_url + '/' + self.suburl
-        if result_format == ResultFormat.ROSETTE:
-            url = url + "?output=rosette"
         self.logger.info('operate: ' + url)
         params_to_serialize = parameters.serializable()
         headers = {'Accept':"application/json", 'Accept-Encoding':"gzip"}

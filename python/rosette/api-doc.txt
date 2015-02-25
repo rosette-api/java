@@ -2,7 +2,7 @@
 
 rosette.api interim documentation.
 
-From rosette.api, import API, ResultFormat, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput,RntParameters
+From rosette.api, import API, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput,RntParameters
 
 You must create an API (symbol above) with the "service_url" parameter providing the base URL for Rosette services, e.g.,
 
@@ -30,20 +30,19 @@ Example:
         TagParams["contentType"] = DataFormat.SIMPLE
         TagParams["unit"] = InputUnit.DOC
  
-To operate the functions other than ping(), call "operate" upon the operator, with the two arguments
-of the parameters dictionary described above, and one of the elements of rosette.api.ResultFormat,
-either SIMPLE or ROSETTE (the latter returns the ADM data model, so to speak).
+To operate the functions other than ping(), call "operate" upon the
+operator, with the sinsingle argument of the parameters dictionary described above.
 
     def tokenize(api)
         op = api.tokenize()
-        result = op.operate(self.TagParams, ResultFormat.SIMPLE)
+        result = op.operate(self.TagParams)
         print "should be 30 tokens", len(result['tokens'])
 
 The known operators which can be requested are (other than ping, whose call is described above), are
 
     API.language_detection()
          On the operator returned by API.language_detection(), you may also call
-         languages = op.getInfo(result_format)
+         languages = op.getInfo()
      to obtain an array (or JSON-embedded array) of available languages.
     API.sentences_split()
     API. tokenize()
@@ -69,7 +68,7 @@ return result (as of this writing) has to be retrieved from the "result" entry o
         params["name"] = "كريم عبد الجبار"
         params["entityType"] = "PERSON";
         params["targetLanguageCode"] = "eng";
-        result = op.operate(params, None)
+        result = op.operate(params)
         result = result["result"]
         print result["translation"]
 
