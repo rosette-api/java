@@ -16,7 +16,10 @@ import requests
 import logging
 import json
 from enum import Enum
+from urlparse import urlparse
 import sys
+
+VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
 
 # this will get more complex in a hurry.
 class RosetteException(Exception):
@@ -77,7 +80,17 @@ class RosetteParameters(RosetteParamSetBase):
     def __init__(self):
         RosetteParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
 
+    def _validateUri(self, uri):
+        parsed = urlparse(uri)
+        if parsed.scheme not in VALID_SCHEMES:
+            raise RosetteException ("bad URI", "URI scheme not one of " + repr(VALID_SCHEMES), uri)
+        if '.' not in parsed.netloc:
+            raise RosetteException ("bad URI", "URI net location has no dot.", uri)
+
     def serializable(self):
+        if self["contentUri"] is not None:
+            self._validateUri(self["contentUri"])
+
         if self["content"] is None:
             if self["contentUri"] is None:
                 raise RosetteException("bad argument", "Must supply one of Content or ContentUri", "bad arguments")
