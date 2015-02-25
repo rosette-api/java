@@ -67,17 +67,17 @@ class APITestCase(unittest.TestCase):
         self.UriParams = params
 
     def test_ping(self):
-        op = self.api.pinger()
+        op = self.api.ping()
         result = op.ping()
         self.assertEqual(result['message'],'Rosette API at your service')
 
-    def test_language_info(self):
-        op = self.api.language_detection()
-        result = op.getInfo()
+    def test_language(self):
+        op = self.api.language()
+        result = op.info()
         # not much to do right now.
 
     def test_detection(self):
-        op = self.api.language_detection()
+        op = self.api.language()
         result = op.operate(self.HamParams)
 
         self.assertIsNotNone(result['requestId'])
@@ -86,16 +86,17 @@ class APITestCase(unittest.TestCase):
         sary = sorted(ary, key=lambda x: -x['confidence'])
         self.assertEqual(sary[0]['language'], "eng")
 
-    def test_sentence_splitting(self):
-        op = self.api.sentences_split()
+    def test_sentences(self):
+        op = self.api.sentences()
         result = op.operate(self.HamParams)
         self.assertIsNotNone(result['sentences'])
         self.assertEqual(len(result['sentences']), 3)
 
-    def test_tokenizing(self):
-        op = self.api.tokenize()
+    def test_tokens(self):
+        op = self.api.tokens()
         result = op.operate(self.HamParams)
         self.assertEqual(len(result['tokens']), 18)
+
 
     def test_morphology(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
@@ -140,8 +141,8 @@ class APITestCase(unittest.TestCase):
         sary = sorted(ary, key=lambda x: -x['confidence'])
         self.assertEqual(sary[0]['label'], "pos")
 
-    def test_translate_name(self):
-        op = self.api.translate_name();
+    def test_translated_name(self):
+        op = self.api.translated_name();
 
         params = RntParameters()
         params["name"] = "كريم عبد الجبار"

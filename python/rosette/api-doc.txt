@@ -1,4 +1,4 @@
-2/24/2015
+2/25/2015
 
 rosette.api interim documentation.
 
@@ -8,20 +8,21 @@ You must create an API (symbol above) with the "service_url" parameter providing
 
   api = rosette.api.API(service_url='http://rosette.myfirm.com/raas')
 
-From this, you may request the creation of 'operators' which you may either ask to "operate" an
-interface or "ping".  The result of either, if rosette.api.RosetteException is not signalled, is a
-python dictionary with components that vary as per the interfaces, and are largely described by
+From this, you may request the creation of 'operators' which you may
+either ask to "operate" an interface or "ping".  The result of either,
+if rosette.api.RosetteException is not signalled, is a python dictionary with components that vary as per the interfaces, and are largely described by
 extant Rosette documentation (as the JSON components of return results).
+They are listed below.
 
 To ping,
-    op = rosette.api.pinger()
-    op.ping() # if there is no trouble, it has pung, or else an error was signalled.
+    op = rosette.api.ping()
+    op.ping() # if there is no trouble, it has pinged successfully, or else an error was signalled.
 
-To operate any other function, e.g., a "parameters" dictionary must be set up.  This is the class
-rosette.api.RosetteParameters.  You must set "content" (a Unicode string to be processed or JSON TBD),
-"content-type" one of the three elements of rosette.api.DataFormat, SIMPLE (text), JSON, or BASE64,
-as per what you have; if you supply BASE64, you must base-64 encode what you supply-- the API
-does not do it for you. You must set "unit" to one of the Enum rosette.api.InputUnit, DOC or
+To operate any other function, e.g., a "parameters" dictionary must be set up.  This is
+the class rosette.api.RosetteParameters.  You must set "content" (a Unicode string to be
+processed or JSON TBD), "content-type" one of the three elements of
+rosette.api.DataFormat, SIMPLE (text), JSON, or BASE64, as per what you have; if you
+supply BASE64, you must base-64 encode what you supply-- the API does not do it for you. You must set "unit" to one of the Enum rosette.api.InputUnit, DOC or
 SENTENCE.
 
 Example:
@@ -34,18 +35,18 @@ To operate the functions other than ping(), call "operate" upon the
 operator, with the sinsingle argument of the parameters dictionary described above.
 
     def tokenize(api)
-        op = api.tokenize()
+        op = api.tokens()
         result = op.operate(self.TagParams)
         print "should be 30 tokens", len(result['tokens'])
 
 The known operators which can be requested are (other than ping, whose call is described above), are
 
-    API.language_detection()
-         On the operator returned by API.language_detection(), you may also call
-         languages = op.getInfo()
+    API.language()
+         On the operator returned by API.language(), you may also call
+         languages = op.info()
      to obtain an array (or JSON-embedded array) of available languages.
-    API.sentences_split()
-    API. tokenize()
+    API.sentences()
+    API. tokens()
     API.morphology(tag)
       tag must be one of the members of the Enum MorphologyOutput,
          i.e., LEMMAS, PARTS_OF_SPEECH, COMPOUND_COMPONENTS, HAN_READINGS, or COMPLETE
@@ -53,17 +54,17 @@ The known operators which can be requested are (other than ping, whose call is d
       "linked" may be True or False; if and only if True, entity linkage is returned.
     API.categories()
     API.sentiment()
-    API.translate_name()
+    API.translated_name()
 
 
-translate_name is unlike all the other entries.  The operate function
+translated_name is unlike all the other entries.  The operate function
 requires as its parameter object a dictionary with three entries,
 "name", being the name to be translated, "entityType", being one of PERSON etc (documented elsewhere), and "targetLanguageCode" an ISO639 string for the target language.
 These are elements of the rosette.api.RntParameters Enum. The return
 return result (as of this writing) has to be retrieved from the "result" entry of the actual return result.  Hence,
 
- def test_translate_name():
-        op = api.translate_name();
+ def test_translated_name():
+        op = api.translated_name();
         params = RntParameters()
         params["name"] = "كريم عبد الجبار"
         params["entityType"] = "PERSON";

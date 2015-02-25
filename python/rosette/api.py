@@ -127,12 +127,12 @@ class Operator:
     def _setUseMultipart(self, value):
         self.useMultipart = value
 
-    def getInfo(self):
+    def info(self):
         url = self.service_url + '/' + self.suburl + "/info"
-        self.logger.info('getInfo: ' + url)
+        self.logger.info('info: ' + url)
         headers = {'Accept':'application/json'}
         r = requests.get(url, headers=headers)
-        return self.__finish_result(r, "getInfo")
+        return self.__finish_result(r, "info")
 
     def ping(self):
         url = self.service_url + '/ping'
@@ -176,16 +176,16 @@ class API:
     def _setUseMultipart(self, value):
         self.useMultipart = value
 
-    def pinger(self):
+    def ping(self):
         return Operator(self, None)
 
-    def language_detection(self):
+    def language(self):
         return Operator(self, "language")
 
-    def sentences_split(self):
+    def sentences(self):
         return Operator(self, "sentences")
 
-    def tokenize(self):
+    def tokens(self):
         return Operator(self, "tokens")
 
     def morphology(self, subsub):
@@ -205,5 +205,5 @@ class API:
     def sentiment(self):
         return Operator(self, "sentiment")
 
-    def translate_name(self):
+    def translated_name(self):
         return Operator(self, "translated-name")
