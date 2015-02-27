@@ -15,9 +15,12 @@
 import requests
 import logging
 import json
+import base64
 from enum import Enum
 from urlparse import urlparse
 import sys
+
+
 
 VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
 
@@ -36,7 +39,8 @@ class RosetteException(Exception):
 class DataFormat(Enum):
     SIMPLE = "text/plain"
     JSON = "application/json"
-    BASE64 = "text/html"
+    HTML = "text/html"
+    XHTML = "application/xhtml+xml"
 
 class InputUnit(Enum):
     DOC = "doc"
@@ -101,8 +105,10 @@ class RosetteParameters(RosetteParamSetBase):
                 raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum", repr(self["contentType"]))
         if not isinstance(self["unit"], InputUnit):
              raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self["unit"]))
-
-        return self.forSerialize()
+        slz = self.forSerialize()
+        if self["contentType"] in (DataFormat.HTML, DataFormat.XHTML):
+            slz["content"] = base64.b64encode(slz["content"])
+        return slz
 
 class RntParameters(RosetteParamSetBase):
     def __init__(self):

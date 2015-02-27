@@ -1,4 +1,4 @@
-2/25/2015
+2/27/2015
 
 rosette.api interim documentation.
 
@@ -20,10 +20,9 @@ To ping,
 
 To operate any other function, e.g., a "parameters" dictionary must be set up.  This is
 the class rosette.api.RosetteParameters.  You must set "content" (a Unicode string to be
-processed or JSON TBD), "content-type" one of the three elements of
-rosette.api.DataFormat, SIMPLE (text), JSON, or BASE64, as per what you have; if you
-supply BASE64, you must base-64 encode what you supply-- the API does not do it for you. You must set "unit" to one of the Enum rosette.api.InputUnit, DOC or
-SENTENCE.
+processed or JSON TBD), "content-type" one of the four elements of
+rosette.api.DataFormat (see below). You must set "unit" to one of the Enum
+rosette.api.InputUnit, DOC or SENTENCE.
 
 Either "content" and "contentType" must be supplied, or "contentURI". If "content URI"
 is supplied, it must be the string URL of a web address with protocol http, https, ftp,
@@ -61,6 +60,18 @@ The known operators which can be requested are (other than ping, whose call is d
     API.sentiment()
     API.translated_name()
 
+DataFormat values
+
+The "contentType" of RosetteParameters must be set to one of these four values:
+  DataFormat.SIMPLE -- "content" is any unicode string at all, which will be interpreted 
+                       as text.
+  DataFormat.JSON -- "content" is a JSON input string as specified in the Rosette Web
+    API  documentation.
+  DataFormat.HTML -- "content" is a unicode string to be interpreted as loose HTML; if
+      there is no markup, that is still "valid" html body text.
+  DataFormat.XHMTL -- "content" is a valid string representing an XHTML document.
+
+Internally, the latter two transmit in Base64, but you have no need to know that.
 
 translated_name is unlike all the other entries.  The operate function
 requires as its parameter object a dictionary with three entries,

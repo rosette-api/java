@@ -22,11 +22,34 @@ import sys
 import json
 import base64
 
+XHTML = """
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Precipitation Paradigms on the Iberian Peninsula</title>
+</head>
+
+<body>
+   The reign in Spain falls mainly upon the planes.
+</body>
+
+</html>
+"""
+
+
 logging.basicConfig(level=logging.DEBUG)
 
 HAM_SENTENCE = "Yes, Ma'm! Green eggs and ham?  I am Sam;  I filter Spam."
+
+# Lists, not tuples, because we compare to a list that we cons.
 MORPHO_EXPECTED_POSES = [u'NOUN', u'CM', u'NOUN', u'VBPRES', u'SENT', u'ADJ', u'NOUN', u'COORD', u'NOUN', u'SENT', u'PRONPERS', u'VBPRES', u'PROP', u'SENT', u'PRONPERS', u'VI', u'PROP', u'SENT']
 MORPHO_EXPECTED_LEMMAS = [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.']
+MORPHOX_EXPECTED_POSES = [u'DET', u'NOUN', u'PREP', u'PROP', u'NOUN', # last wrong
+                          u'ADV', u'PREP', u'DET', u'NOUN', u'SENT']
+
 
 class APITestCase(unittest.TestCase):
     def __init__(self, tcname):
@@ -49,11 +72,18 @@ class APITestCase(unittest.TestCase):
         params["unit"] = InputUnit.DOC
         self.HamParams = params
 
-        B64Params = RosetteParameters()
-        B64Params["content"] = base64.b64encode(HAM_SENTENCE)
-        B64Params["contentType"] = DataFormat.BASE64
-        B64Params["unit"] = InputUnit.DOC
-        self.B64Params = B64Params
+        DtHTMLParams = RosetteParameters()
+        DtHTMLParams["content"] = HAM_SENTENCE
+        DtHTMLParams["contentType"] = DataFormat.HTML #grosse Luege
+        DtHTMLParams["unit"] = InputUnit.DOC
+        self.DtHTMLParams = DtHTMLParams
+
+
+        DtXHTMLParams = RosetteParameters()
+        DtXHTMLParams["content"] = XHTML
+        DtXHTMLParams["contentType"] = DataFormat.XHTML
+        DtXHTMLParams["unit"] = InputUnit.DOC
+        self.DtXHTMLParams = DtXHTMLParams
 
         params = RosetteParameters()
         params["content"] =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
@@ -104,11 +134,17 @@ class APITestCase(unittest.TestCase):
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
 
-    def test_morphology_base64(self):
+    def test_morphology_PseudoHTML(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
-        result = op.operate(self.B64Params)
+        result = op.operate(self.DtHTMLParams)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
+
+    def test_morphology_XHTML(self):
+        op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
+        result = op.operate(self.DtXHTMLParams)
+        presult = [x['pos'] for x in result['posTags']]
+        self.assertEqual(presult, MORPHOX_EXPECTED_POSES)
 
     def test_morphology_lemmas(self):
         op = self.api.morphology(MorphologyOutput.LEMMAS)
