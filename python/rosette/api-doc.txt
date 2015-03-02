@@ -67,9 +67,11 @@ The "contentType" of RosetteParameters must be set to one of these four values:
                        as text.
   DataFormat.JSON -- "content" is a JSON input string as specified in the Rosette Web
     API  documentation.
-  DataFormat.HTML -- "content" is a unicode string to be interpreted as loose HTML; if
-      there is no markup, that is still "valid" html body text.
-  DataFormat.XHMTL -- "content" is a valid string representing an XHTML document.
+  DataFormat.HTML -- "content" is a byte string (not unicode) to be interpreted as loose HTML; if
+      there is no markup, that is still "valid" html body text. The encoding will be
+  inferred by the server.
+  DataFormat.XHMTL -- "content" is a valid byte string (not unicode) representing an
+  XHTML document. The encoding will be inferred by the server.
 
 Internally, the latter two transmit in Base64, but you have no need to know that.
 
@@ -77,7 +79,7 @@ Convenience operations
 
    There are two methods on RosetteParameters supplied for convenience:
       LoadDocumentString(s, dtype)
-         s is a unicode string
+         s is a unicode or non-unicode string as required by the DataFormat
 	 dtype is an element of DataFormat
      This will load up a string declared as a "document" (not a sentence) input unit.
      

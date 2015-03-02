@@ -145,7 +145,6 @@ class APITestCase(unittest.TestCase):
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
 
-
     def test_morphology_PseudoHTML(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
         result = op.operate(self.DtHTMLParams)
