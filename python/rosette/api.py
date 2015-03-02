@@ -110,6 +110,19 @@ class RosetteParameters(RosetteParamSetBase):
             slz["content"] = base64.b64encode(slz["content"])
         return slz
 
+    def LoadDocumentFile(self, path, dtype):
+        if not dtype in (DataFormat.HTML, DataFormat.XHTML):\
+            raise RosetteException(dtype, "Must supply one of HTML or XHTML", "bad arguments")
+        self.LoadDocumentString(open(path).read(), dtype)
+
+    def LoadDocumentString(self, s, dtype):
+        if not isinstance(dtype, DataFormat):
+            raise RosetteException(dtype, "Must supply DataFormat object.", "bad arguments")
+        self["content"] = s
+        self["contentType"] = dtype
+        self["unit"] = InputUnit.DOC
+        
+
 class RntParameters(RosetteParamSetBase):
     def __init__(self):
         RosetteParamSetBase.__init__(self, ("name", "targetLanguageCode", "entityType", "sourceLanguageOfOriginCode", "sourceLanguageOfUseCode", "sourceScriptCode", "targetLanguageCode", "targetScriptCode", "targetSchemeCode"))

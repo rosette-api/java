@@ -49,7 +49,7 @@ MORPHO_EXPECTED_POSES = [u'NOUN', u'CM', u'NOUN', u'VBPRES', u'SENT', u'ADJ', u'
 MORPHO_EXPECTED_LEMMAS = [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.']
 MORPHOX_EXPECTED_POSES = [u'DET', u'NOUN', u'PREP', u'PROP', u'NOUN', # last wrong
                           u'ADV', u'PREP', u'DET', u'NOUN', u'SENT']
-
+CHINESE_HEAD_TAGS = [u'NC', u'NC', u'NC', u'A', u'A', u'NC', u'NC', u'NC', u'NC', u'NC', u'V', u'NC', u'NC', u'NC', u'NC', u'NP', u'V', u'NP', u'NC', u'A', u'W', u'GUESS', u'V', u'GUESS', u'NC', u'NC', u'NC', u'NC', u'NC', u'NP', u'V', u'V', u'GUESS', u'GUESS', u'NC', u'GUESS', u'NC', u'GUESS', u'NP', u'GUESS', u'NC', u'NC', u'GUESS', u'NC', u'GUESS', u'NC', u'GUESS']
 
 class APITestCase(unittest.TestCase):
     def __init__(self, tcname):
@@ -96,6 +96,9 @@ class APITestCase(unittest.TestCase):
         params["unit"] = InputUnit.DOC
         self.UriParams = params
 
+        (dir,fname) = os.path.split(os.path.realpath(__file__))
+        self.dir = dir
+
     def test_ping(self):
         op = self.api.ping()
         result = op.ping()
@@ -127,12 +130,21 @@ class APITestCase(unittest.TestCase):
         result = op.operate(self.HamParams)
         self.assertEqual(len(result['tokens']), 18)
 
+    def test_morphology_File(self):
+        parms = RosetteParameters()
+        textpath = os.path.join(self.dir, "chinese-example.html")
+        parms.LoadDocumentFile(textpath, DataFormat.HTML)
+        op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
+        result = op.operate(parms)
+        tags = map(lambda x: x["pos"], result["posTags"])
+        self.assertEqual(tags[0:len(CHINESE_HEAD_TAGS)], CHINESE_HEAD_TAGS)
 
     def test_morphology(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
         result = op.operate(self.HamParams)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
+
 
     def test_morphology_PseudoHTML(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)

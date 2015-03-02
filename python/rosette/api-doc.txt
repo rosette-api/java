@@ -1,4 +1,4 @@
-2/27/2015
+3/2/2015
 
 rosette.api interim documentation.
 
@@ -72,6 +72,22 @@ The "contentType" of RosetteParameters must be set to one of these four values:
   DataFormat.XHMTL -- "content" is a valid string representing an XHTML document.
 
 Internally, the latter two transmit in Base64, but you have no need to know that.
+
+Convenience operations
+
+   There are two methods on RosetteParameters supplied for convenience:
+      LoadDocumentString(s, dtype)
+         s is a unicode string
+	 dtype is an element of DataFormat
+     This will load up a string declared as a "document" (not a sentence) input unit.
+     
+     LoadDocumentFile(path,dtype)
+	path is the pathname of a local file, which will be read as bytes, i.e..,
+	   not converted to Unicode.
+	dtype is an element of DataFormat, must be DataType.XML or DataType.XHTML.
+    This will load up the unconverted content of the file as a "document" input unit	
+
+
 
 translated_name is unlike all the other entries.  The operate function
 requires as its parameter object a dictionary with three entries,
