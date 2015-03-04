@@ -41,6 +41,7 @@ class DataFormat(Enum):
     JSON = "application/json"
     HTML = "text/html"
     XHTML = "application/xhtml+xml"
+    BINARY = "application/octet-stream"
 
 class InputUnit(Enum):
     DOC = "doc"
@@ -106,13 +107,13 @@ class RosetteParameters(RosetteParamSetBase):
         if not isinstance(self["unit"], InputUnit):
              raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self["unit"]))
         slz = self.forSerialize()
-        if self["contentType"] in (DataFormat.HTML, DataFormat.XHTML):
+        if self["contentType"] in (DataFormat.HTML, DataFormat.XHTML, DataFormat.BINARY):
             slz["content"] = base64.b64encode(slz["content"])
         return slz
 
     def LoadDocumentFile(self, path, dtype):
-        if not dtype in (DataFormat.HTML, DataFormat.XHTML):\
-            raise RosetteException(dtype, "Must supply one of HTML or XHTML", "bad arguments")
+        if not dtype in (DataFormat.HTML, DataFormat.XHTML, DataFormat.BINARY):\
+            raise RosetteException(dtype, "Must supply one of HTML, XHTML, or BINARY", "bad arguments")
         self.LoadDocumentString(open(path).read(), dtype)
 
     def LoadDocumentString(self, s, dtype):
@@ -134,9 +135,10 @@ class RntParameters(RosetteParamSetBase):
         return self.forSerialize()
 
 class Operator:
-    # take a session when we do OAuth2
+
     def __init__(self, api, suburl):
         self.service_url = api.service_url
+        self.user_key = api.user_key
         self.logger = api.logger
         self.useMultipart = api.useMultipart
         self.suburl = suburl
@@ -163,6 +165,8 @@ class Operator:
         url = self.service_url + '/' + self.suburl + "/info"
         self.logger.info('info: ' + url)
         headers = {'Accept':'application/json'}
+        if self.user_key is not None:
+            headers["user_key"] = self.user_key
         r = requests.get(url, headers=headers)
         return self.__finish_result(r, "info")
 
@@ -170,6 +174,8 @@ class Operator:
         url = self.service_url + '/ping'
         self.logger.info('Ping: ' + url)
         headers = {'Accept':'application/json'}
+        if self.user_key is not None:
+            headers["user_key"] = self.user_key
         r = requests.get(url, headers=headers)
         return self.__finish_result(r, "ping")
 
@@ -180,6 +186,8 @@ class Operator:
         self.logger.info('operate: ' + url)
         params_to_serialize = parameters.serializable()
         headers = {'Accept':"application/json", 'Accept-Encoding':"gzip"}
+        if self.user_key is not None:
+            headers["user_key"] = self.user_key
         if self.useMultipart and 'content' in params_to_serialize:
             files = {'content':('content', params_to_serialize['content'], "application/octet-stream"),
                      'options':('options', json.dumps({"unit":params_to_serialize["unit"]}), "application/json")}
@@ -195,10 +203,9 @@ class API:
     Rosette Python Client Binding API.
     This binding uses 'requests' (http://docs.python-requests.org/).
     """
-    # initial default value for the URL here is wrong.
-    def __init__(self, key = None, service_url='http://rosette.basistech.net/raas'):
-        """ Supply the key used for the API."""
-        self.key = key
+    def __init__(self, user_key = None, service_url='http://api.rosette.com/rest/v1'):
+        """ Create an API object."""
+        self.user_key = user_key
         self.service_url = service_url
         self.logger = logging.getLogger('rosette.api')
         self.logger.info('Initialized on ' + self.service_url)

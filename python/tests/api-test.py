@@ -54,18 +54,19 @@ CHINESE_HEAD_TAGS = [u'NC', u'NC', u'NC', u'A', u'A', u'NC', u'NC', u'NC', u'NC'
 class APITestCase(unittest.TestCase):
     def __init__(self, tcname):
         super(APITestCase,self).__init__(tcname)
-        burl = os.environ['RAAS_SERVICE_URL']
+        burl = os.getenv('RAAS_SERVICE_URL')
         if burl is not None:
             burl = burl.strip()
             if burl == "":
                 burl = None
         if burl is None:
-            port = os.environ['MOCK_SERVICE_PORT']
+            port = os.getenv('MOCK_SERVICE_PORT')
             self.url = 'http://localhost:' + port + '/raas'
         else:
             self.url = burl
+        key = os.getenv('RAAS_USER_KEY') # c/b None
         logging.info("URL " + self.url)
-        self.api = API(service_url = self.url)
+        self.api = API(service_url = self.url, user_key = key)
         params = RosetteParameters()
         params["content"] = HAM_SENTENCE
         params["contentType"] = DataFormat.SIMPLE

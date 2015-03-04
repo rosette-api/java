@@ -1,12 +1,15 @@
-3/2/2015
+3/4/2015
 
 rosette.api interim documentation.
 
 From rosette.api, import API, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput,RntParameters
 
-You must create an API (symbol above) with the "service_url" parameter providing the base URL for Rosette services, e.g.,
+You must create an API (symbol above) with the "service_url" parameter providing the
+base URL for Rosette services and the optional user key, e.g.,
 
-  api = rosette.api.API(service_url='http://rosette.myfirm.com/raas')
+  api = rosette.api.API(service_url='http://api.rosette.com/rest/v1', key=None)
+
+If the rosette.com server is used, the user key (authentication) string may not be omitted.
 
 From this, you may request the creation of 'operators' which you may
 either ask to "operate" an interface or "ping".  The result of either,

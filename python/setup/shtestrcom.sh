@@ -1,0 +1,1 @@
+RAAS_SERVICE_URL="http://api.rosette.com/rest/v1" RAAS_USER_KEY="acb20b912fffd671f036778e0c64785d" bash ../src/scripts/run_in_venv.sh ../virtualenv/target/vroot ../virtualenv/target/vroot/bin/python setup.py nosetests
