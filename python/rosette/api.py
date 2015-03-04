@@ -70,7 +70,7 @@ class RosetteParamSetBase:
             raise RosetteException("badKey", "Unknown Rosette parameter key", repr(key))
         return self.__params[key]
 
-    def forSerialize(self):
+    def _forSerialize(self):
         v = {}
         for (key,val) in self.__params.items():
             if val is None:
@@ -84,6 +84,7 @@ class RosetteParamSetBase:
 class RosetteParameters(RosetteParamSetBase):
     def __init__(self):
         RosetteParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
+        self["unit"] = InputUnit.DOC  #defaults
 
     def _validateUri(self, uri):
         parsed = urlparse(uri)
@@ -92,7 +93,7 @@ class RosetteParameters(RosetteParamSetBase):
         if '.' not in parsed.netloc:
             raise RosetteException ("bad URI", "URI net location has no dot.", uri)
 
-    def serializable(self):
+    def _serializable(self):
         if self["contentUri"] is not None:
             self._validateUri(self["contentUri"])
 
@@ -102,12 +103,16 @@ class RosetteParameters(RosetteParamSetBase):
         else:  #self["content"] not None
             if self["contentUri"] is not None:
                 raise RosetteException("bad argument", "Cannot supply both Content and ContentUri", "bad arguments")
-            if not isinstance(self["contentType"], DataFormat):
+        if self["contentType"] is None:
+            pass
+        elif not isinstance(self["contentType"], DataFormat):
                 raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum", repr(self["contentType"]))
         if not isinstance(self["unit"], InputUnit):
              raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self["unit"]))
-        slz = self.forSerialize()
-        if self["contentType"] in (DataFormat.HTML, DataFormat.XHTML, DataFormat.BINARY):
+        slz = self._forSerialize()
+        if self["contentType"] is None and self["contentUri"] is None:
+            slz["contentType"] = DataFormat.SIMPLE.value
+        elif self["contentType"] in (DataFormat.HTML, DataFormat.XHTML, DataFormat.BINARY):
             slz["content"] = base64.b64encode(slz["content"])
         return slz
 
@@ -128,11 +133,11 @@ class RntParameters(RosetteParamSetBase):
     def __init__(self):
         RosetteParamSetBase.__init__(self, ("name", "targetLanguageCode", "entityType", "sourceLanguageOfOriginCode", "sourceLanguageOfUseCode", "sourceScriptCode", "targetLanguageCode", "targetScriptCode", "targetSchemeCode"))
 
-    def serializable(self):
+    def _serializable(self):
         for n in ("name", "targetLanguageCode"):  #required
             if self[n] is None:
                 raise RosetteException("missing parameter", "Required RNT parameter not supplied", repr(n))
-        return self.forSerialize()
+        return self._forSerialize()
 
 class Operator:
 
@@ -184,7 +189,7 @@ class Operator:
             raise RosetteException("incompatible", "Multipart requires contentType SIMPLE", repr(parameters['contentType']))
         url = self.service_url + '/' + self.suburl
         self.logger.info('operate: ' + url)
-        params_to_serialize = parameters.serializable()
+        params_to_serialize = parameters._serializable()
         headers = {'Accept':"application/json", 'Accept-Encoding':"gzip"}
         if self.user_key is not None:
             headers["user_key"] = self.user_key

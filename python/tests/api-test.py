@@ -69,32 +69,25 @@ class APITestCase(unittest.TestCase):
         self.api = API(service_url = self.url, user_key = key)
         params = RosetteParameters()
         params["content"] = HAM_SENTENCE
-        params["contentType"] = DataFormat.SIMPLE
-        params["unit"] = InputUnit.DOC
         self.HamParams = params
 
         DtHTMLParams = RosetteParameters()
         DtHTMLParams["content"] = HAM_SENTENCE
         DtHTMLParams["contentType"] = DataFormat.HTML #grosse Luege
-        DtHTMLParams["unit"] = InputUnit.DOC
         self.DtHTMLParams = DtHTMLParams
 
 
         DtXHTMLParams = RosetteParameters()
         DtXHTMLParams["content"] = XHTML
         DtXHTMLParams["contentType"] = DataFormat.XHTML
-        DtXHTMLParams["unit"] = InputUnit.DOC
         self.DtXHTMLParams = DtXHTMLParams
 
         params = RosetteParameters()
         params["content"] =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
-        params["contentType"] = DataFormat.SIMPLE
-        params["unit"] = InputUnit.DOC
         self.TagParams = params
 
         params = RosetteParameters()
         params["contentUri"] = "http://www.basistech.com/"
-        params["unit"] = InputUnit.DOC
         self.UriParams = params
 
         (dir,fname) = os.path.split(os.path.realpath(__file__))
