@@ -49,8 +49,11 @@ class DataFormat(Enum):
     """The data is a compliant XHTML page. The data must be a narrow (single-byte) string, not a python Unicode string, perhaps read from a file. (Of course, it can be UTF-8 encoded."""
 
 class InputUnit(Enum):
+    """Elements are used in the L{RosetteParameters} class to specify whether textual data is to be treated as one sentence or possibly many."""
     DOC = "doc"
+    """The data is a whole document; it may or may not contain multiple sentences."""
     SENTENCE= "sentence"
+    """The data is a single sentence."""
 
 class MorphologyOutput(Enum):
     LEMMAS = "lemmas"
@@ -122,11 +125,32 @@ class RosetteParameters(_RosetteParamSetBase):
         return slz
 
     def LoadDocumentFile(self, path, dtype):
+        """Loads a file into the object.
+        The file will be read as bytes; the appropriate conversion will
+        be determined by the server.  The document unit size remains
+        by default L{InputUnit.DOC}.
+        @parameter path: Pathname of a file acceptable to the C{open} function.
+        @parameter dtype: One of L{DataFormat.HTML} or L{DataFormat.XHTML}.  No other types are acceptable at this time, although HTML is broad enough to include text strings without markup.
+        @type dtype: L{DataFormat}
+        """
         if not dtype in (DataFormat.HTML, DataFormat.XHTML):\
             raise RosetteException(dtype, "Must supply one of HTML or XHTML", "bad arguments")
         self.LoadDocumentString(open(path).read(), dtype)
 
     def LoadDocumentString(self, s, dtype):
+        """Loads a string into the object.
+        The string will be taken as bytes or as Unicode dependent upon
+        its native python type and the data type asked for; if the
+        type is HTML or XHTML, bytes, not python Unicode, are expected,
+        the encoding to be determined by the server.
+        The document unit size remains (by default) L{InputUnit.DOC}.
+        @parameter string: A string, possibly a unicode-string, to be loaded
+        for subsequent analysis, as per the C{dtype}.
+        @parameter dtype: The data type of the string, as per the C{enum} L{DataFormat}.
+        @type dtype: L{DataFormat}
+        """
+
+
         if not isinstance(dtype, DataFormat):
             raise RosetteException(dtype, "Must supply DataFormat object.", "bad arguments")
         self["content"] = s
@@ -150,7 +174,16 @@ class Operator:
     are created.  Each L{Operator} object communicates with a specific endpoint
     of the Rosette server, specified at its creation.  Use the specific
     instance methods of the L{API} object to create L{Operator} objects bound to
-    corresponding endpoints."""
+    corresponding endpoints.
+
+    Use L{Operator.ping} to ping, and L{Operator.info} to retrieve server info.
+    For all other types of requests, use L{Operator.operate}, which accepts
+    an argument specifying the data to be processed and certain metadata.
+
+    The results of all operations are returned as python dictionaries, whose
+    keys and values correspond exactly to those of the corresponding
+    JSON return value described in the Rosette web service documentation.
+    """
 
     def __init__(self, api, suburl):
         """This method should not be invoked by the user.  Creation is reserved
@@ -208,6 +241,24 @@ class Operator:
         return self.__finish_result(r, "ping")
 
     def operate(self, parameters):
+        """Invokes the endpoint to which this L{Operator} is bound.
+        Passes data and metadata specified by C{parameters} to the server
+        endpoint to which this L{Operator} object is bound.  For all
+        endpoints except C{translated_name}, it must be a L{RosetteParameters}
+        object; for C{translated_name}, it must be an L{RntParameters} object.
+
+        In all cases, the result is returned as a python dictionary
+        conforming to the JSON object described in the endpoint's entry
+        in the Rosette web service documentation.
+
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the endpoint.  See the
+        details for those object types.
+        @type parameters: For C{translated_name}, L{RntParameters}, otherwise L{RosetteParameters}
+        @return: A python dictionary expressing the result of the invocation.
+
+        """
+
         if self.useMultipart and (parameters['contentType'] != DataFormat.SIMPLE):
             raise RosetteException("incompatible", "Multipart requires contentType SIMPLE", repr(parameters['contentType']))
         url = self.service_url + '/' + self.suburl
@@ -232,7 +283,7 @@ class API:
     Call instance methods upon this object to obtain L{Operator} objects
     which can communicate with particular Rosette server endpoints.
 
-    This binding requires the 'requests' package (U{http://docs.python-requests.org/}).
+    This binding requires the 'requests' package (U{http://docs.python-requests.org/}), as well as the python C{enum} packag, to be locally installed.
     """
     def __init__(self, user_key = None, service_url='http://api.rosette.com/rest/v1'):
         """ Create an L{API} object.
@@ -317,7 +368,7 @@ class API:
     def translated_name(self):
         """Create an L{Operator} to perform name analysis and translation
         upon the names to which it is applied.
-        Note that that L{Operator} requires an L{RntParameters} argument,
+        Note that that L{Operator}'s L{Operator.operate} method requires an L{RntParameters} argument,
         not the L{RosetteParameters} required by L{Operator}s created by
         other instance methods.
         @return: An L{Operator} which can perform name analysis and translation.
