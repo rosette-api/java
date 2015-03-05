@@ -1,4 +1,6 @@
 """
+Code and constant classes for Rosette.
+
 This data and information is proprietary to, and a valuable trade secret
 of, Basis Technology Corp.  It is given in confidence by Basis Technology
 and may only be used as permitted under the license agreement under which

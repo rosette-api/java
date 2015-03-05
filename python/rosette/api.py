@@ -1,15 +1,17 @@
 """
- This data and information is proprietary to, and a valuable trade secret
- of, Basis Technology Corp.  It is given in confidence by Basis Technology
- and may only be used as permitted under the license agreement under which
- it has been distributed, and in no other way.
+Code and constant classes for operating Rosette Web Service from python.
 
- Copyright (c) 2015 Basis Technology Corporation All rights reserved.
+This data and information is proprietary to, and a valuable trade secret
+of, Basis Technology Corp.  It is given in confidence by Basis Technology
+and may only be used as permitted under the license agreement under which
+it has been distributed, and in no other way.
 
- The technical data and information provided herein are provided with
- `limited rights', and the computer software provided herein is provided
- with `restricted rights' as those terms are defined in DAR and ASPR
- 7-104.9(a).
+Copyright (c) 2015 Basis Technology Corporation All rights reserved.
+
+The technical data and information provided herein are provided with
+`limited rights', and the computer software provided herein is provided
+with `restricted rights' as those terms are defined in DAR and ASPR
+7-104.9(a).
 """
 
 import requests
@@ -24,17 +26,18 @@ import sys
 
 VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
 
-# this will get more complex in a hurry.
 class RosetteException(Exception):
+    """Exception thrown by all Rosette API operations for errors local and remote.
+
+    TBD. Right now, the only valid operation is stringifying.
+    """
+
     def __init__(self, status, message, response_message):
         self.status = status
         self.message = message
         self.response_message = response_message
     def __str__(self):
         return self.message + ":\n " + self.response_message
-
-# TODO: Set up OAuth2 session and use it with requests.
-# We'll need something to talk to for that, and we won't it for integration tests.
 
 class DataFormat(Enum):
     """Data Format, as much as it is known.  Semantics are subtle, please read.
@@ -90,7 +93,25 @@ class _RosetteParamSetBase:
         return v
 
 class RosetteParameters(_RosetteParamSetBase):
+    """Parameter object for all operations requiring input other than
+    translated_name.
+    Four fields, C{content}, C{contentType}, C{unit}, and C{inputUri}, are set via
+    the subscripting operator, e.g., C{params["content"]}, or the
+    convenience instance methods L{RosetteParameters.LoadDocumentFile}
+    and L{RosetteParameters.LoadDocumentString}. The unit size and
+    data format are defaulted to L{InputUnit.DOC} and L{DataFormat.SIMPLE}.
+
+    Using subscripting instead of instance variables facilitates diagnosis.
+
+    If the field C{contentUri} is set to the URL of a web page (only
+    protocols C{http, https, ftp, ftps} are accepted), the server will
+    fetch the content from that web page.  In this case, neither C{content}
+    nor C{contentType} may be set.
+    """
+    
     def __init__(self):
+        """Create a L{RosetteParameters} object.  Default data format
+    is L{DataFormat.SIMPLE}, unit is L{InputUnit.DOC}."""
         _RosetteParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
         self["unit"] = InputUnit.DOC  #defaults
 
@@ -159,6 +180,11 @@ class RosetteParameters(_RosetteParamSetBase):
         
 
 class RntParameters(_RosetteParamSetBase):
+    """Parameter object for C{translated_name} endpoint.
+
+    TBD (names are in flux).
+    """
+
     def __init__(self):
         _RosetteParamSetBase.__init__(self, ("name", "targetLanguageCode", "entityType", "sourceLanguageOfOriginCode", "sourceLanguageOfUseCode", "sourceScriptCode", "targetLanguageCode", "targetScriptCode", "targetSchemeCode"))
 
