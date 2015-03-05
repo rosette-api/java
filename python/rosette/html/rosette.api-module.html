@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>rosette.api</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="rosette-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="rosette-module.html">Package&nbsp;rosette</a> ::
+        Module&nbsp;api
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="rosette.api-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module api</h1><p class="nomargin-top"><span class="codelink"><a href="rosette.api-pysrc.html">source&nbsp;code</a></span></p>
+<p>Code and constant classes for operating Rosette Web Service from 
+  python.</p>
+  <p>This data and information is proprietary to, and a valuable trade 
+  secret of, Basis Technology Corp.  It is given in confidence by Basis 
+  Technology and may only be used as permitted under the license agreement 
+  under which it has been distributed, and in no other way.</p>
+  <p>Copyright (c) 2015 Basis Technology Corporation All rights 
+  reserved.</p>
+  <p>The technical data and information provided herein are provided with 
+  `limited rights', and the computer software provided herein is provided 
+  with `restricted rights' as those terms are defined in DAR and ASPR 
+  7-104.9(a).</p>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Classes</span></td>
+</tr>
+<tr>
+    <td class="summary" colspan="2">
+        <a href="rosette.api.RosetteException-class.html" class="summary-name">RosetteException</a>
+    </td>
+  </tr>
+<tr>
+    <td class="summary" colspan="2">
+        <a href="rosette.api.DataFormat-class.html" class="summary-name">DataFormat</a><br />
+      Data Format, as much as it is known.
+    </td>
+  </tr>
+<tr>
+    <td class="summary" colspan="2">
+        <a href="rosette.api.InputUnit-class.html" class="summary-name">InputUnit</a><br />
+      Elements are used in the <a 
+        href="rosette.api.RosetteParameters-class.html" 
+        class="link">RosetteParameters</a> class to specify whether textual
+        data is to be treated as one sentence or possibly many.
+    </td>
+  </tr>
+<tr>
+    <td class="summary" colspan="2">
+        <a href="rosette.api.MorphologyOutput-class.html" class="summary-name">MorphologyOutput</a>
+    </td>
+  </tr>
+<tr>
+    <td class="summary" colspan="2">
+        <a href="rosette.api.RosetteParameters-class.html" class="summary-name">RosetteParameters</a><br />
+      Parameter object for all operations requiring input other than 
+        translated_name.
+    </td>
+  </tr>
+<tr>
+    <td class="summary" colspan="2">
+        <a href="rosette.api.RntParameters-class.html" class="summary-name">RntParameters</a><br />
+      Parameter object for <code>translated_name</code> endpoint.
+    </td>
+  </tr>
+<tr>
+    <td class="summary" colspan="2">
+        <a href="rosette.api.Operator-class.html" class="summary-name">Operator</a><br />
+      <a href="rosette.api.Operator-class.html" class="link">Operator</a>
+        objects are invoked via their instance methods to obtain results 
+        from the Rosette server described by the <a 
+        href="rosette.api.API-class.html" class="link">API</a> object from 
+        which they are created.
+    </td>
+  </tr>
+<tr>
+    <td class="summary" colspan="2">
+        <a href="rosette.api.API-class.html" class="summary-name">API</a><br />
+      Rosette Python Client Binding API; representation of a Rosette 
+        server.
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Variables</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="VALID_SCHEMES"></a><span class="summary-name">VALID_SCHEMES</span> = <code title="'http', 'https', 'ftp', 'ftps'">'http', 'https', 'ftp', 'ftps'</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="rosette-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Thu Mar  5 14:27:11 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
