@@ -120,7 +120,7 @@ class RosetteParameters(_RosetteParamSetBase):
         if parsed.scheme not in VALID_SCHEMES:
             raise RosetteException ("bad URI", "URI scheme not one of " + repr(VALID_SCHEMES), uri)
         if '.' not in parsed.netloc:
-            raise RosetteException ("bad URI", "URI net location has no dot.", uri)
+            raise RosetteException ("bad URI", "URI does not contain a fully qualified hostname or IP address.", uri)
 
     def _serializable(self):
         if self["contentUri"] is not None:
