@@ -49,7 +49,7 @@ class DataFormat(Enum):
     HTML = "text/html"
     """The data is a 'loose' HTML page; that is, it may not be HTML-compliant, or may even not really be HTML. The data must be a narrow (single-byte) string, not a python Unicode string, perhaps read from a file. (Of course, it can be UTF-8 encoded)."""
     XHTML = "application/xhtml+xml"
-    """The data is a compliant XHTML page. The data must be a narrow (single-byte) string, not a python Unicode string, perhaps read from a file. (Of course, it can be UTF-8 encoded."""
+    """The data is a compliant XHTML page. The data must be a narrow (single-byte) string, not a python Unicode string, perhaps read from a file. (Of course, it can be UTF-8 encoded)."""
 
 class InputUnit(Enum):
     """Elements are used in the L{RosetteParameters} class to specify whether textual data is to be treated as one sentence or possibly many."""
