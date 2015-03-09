@@ -1,4 +1,4 @@
-3/4/2015
+3/9/2015
 
 rosette.api interim documentation.
 
@@ -7,7 +7,7 @@ From rosette.api, import API, InputUnit, RosetteParameters, RntParameters, DataF
 You must create an API (symbol above) with the "service_url" parameter providing the
 base URL for Rosette services and the optional user key, e.g.,
 
-  api = rosette.api.API(service_url='http://api.rosette.com/rest/v1', key=None)
+  api = rosette.api.API(service_url='http://api.rosette.com/rest/v1', user_key=None)
 
 If the rosette.com server is used, the user key (authentication) string may not be omitted.
 
