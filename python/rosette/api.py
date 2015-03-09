@@ -352,11 +352,11 @@ class API:
          texts to which it is applied."""
         return Operator(self, "tokens")
 
-    def morphology(self, facet):
+    def morphology(self, facet=MorphologyOutput.COMPLETE):
         """Create an L{Operator} to morphologically analyze a text.
         Produce an operator which returns a specific facet
         of the morphological analyses of texts to which it is applied.
-        L{MorphologyOutput.COMPLETE} requests all available facets.
+        L{MorphologyOutput.COMPLETE} (the default) requests all available facets.
         @param facet: The facet desired, to be returned by the created L{Operator}.
         @type facet: An element of the C{enum} L{MorphologyOutput}.
         """

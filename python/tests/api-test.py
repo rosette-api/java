@@ -134,7 +134,7 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(tags[0:len(CHINESE_HEAD_TAGS)], CHINESE_HEAD_TAGS)
 
     def test_morphology(self):
-        op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
+        op = self.api.morphology() #test default
         result = op.operate(self.HamParams)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
@@ -195,10 +195,11 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(result["sourceLanguageOfUseCode"], "ara")
         self.assertEqual(result["targetSchemeCode"], "IC")        
 
+
         params = RntParameters()
         params["name"] = "George Bush"
         params["entityType"] = "PERSON"
-        params["sourceScriptCode"] = "Latn"
+        params["sourceScriptCdoe"] = "Latn"
         params["sourceLanguageOfOriginCode"] = "eng"
         params["sourceLanguageOfUseCode"] = "eng"
         params["targetLanguageCode"] = "ara"
