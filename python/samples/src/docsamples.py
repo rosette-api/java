@@ -65,11 +65,11 @@ result = op.operate(params)
 print result
 
 #_morpho_complete
-from rosette.api import API, RosetteParameters, MorphologyOutput
+from rosette.api import API, RosetteParameters
 api = API(service_url='http://jugmaster.basistech.net/rest/v1', user_key='1234567890')
 params = RosetteParameters()
 params["content"] = u'The quick brown fox jumped over the lazy dog. Yes he did.'
-op = api.morphology(MorphologyOutput.COMPLETE)
+op = api.morphology()
 result = op.operate(params)
 ##_
 print result
