@@ -188,23 +188,23 @@ class APITestCase(unittest.TestCase):
         params = RntParameters()
         params["name"] = "كريم عبد الجبار"
         params["entityType"] = "PERSON";
-        params["targetLanguageCode"] = "eng";
+        params["targetLanguage"] = "eng";
         result = op.operate(params)
         result = result["result"]
         self.assertEqual(result["translation"], "Karim 'Abd-al-Jabbar")
-        self.assertEqual(result["sourceLanguageOfUseCode"], "ara")
-        self.assertEqual(result["targetSchemeCode"], "IC")        
+        self.assertEqual(result["sourceLanguageOfUse"], "ara")
+        self.assertEqual(result["targetScheme"], "IC")        
 
 
         params = RntParameters()
         params["name"] = "George Bush"
         params["entityType"] = "PERSON"
-        params["sourceScriptCdoe"] = "Latn"
-        params["sourceLanguageOfOriginCode"] = "eng"
-        params["sourceLanguageOfUseCode"] = "eng"
-        params["targetLanguageCode"] = "ara"
-        params["targetScriptCode"] = "Arab"
-        params["targetSchemeCode"] = "NATIVE"
+        params["sourceScript"] = "Latn"
+        params["sourceLanguageOfOrigin"] = "eng"
+        params["sourceLanguageOfUse"] = "eng"
+        params["targetLanguage"] = "ara"
+        params["targetScript"] = "Arab"
+        params["targetScheme"] = "NATIVE"
 
         result = op.operate(params)
         result = result["result"]

@@ -186,10 +186,10 @@ class RntParameters(_RosetteParamSetBase):
     """
 
     def __init__(self):
-        _RosetteParamSetBase.__init__(self, ("name", "targetLanguageCode", "entityType", "sourceLanguageOfOriginCode", "sourceLanguageOfUseCode", "sourceScriptCode", "targetLanguageCode", "targetScriptCode", "targetSchemeCode"))
+        _RosetteParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin", "sourceLanguageOfUse", "sourceScript", "targetLanguage", "targetScript", "targetScheme"))
 
     def _serializable(self):
-        for n in ("name", "targetLanguageCode"):  #required
+        for n in ("name", "targetLanguage"):  #required
             if self[n] is None:
                 raise RosetteException("missing parameter", "Required RNT parameter not supplied", repr(n))
         return self._forSerialize()
