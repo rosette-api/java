@@ -1,0 +1,113 @@
+3/9/2015
+
+rosette.api interim documentation.
+
+From rosette.api, import API, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput,RntParameters
+
+You must create an API (symbol above) with the "service_url" parameter providing the
+base URL for Rosette services and the optional user key, e.g.,
+
+  api = rosette.api.API(service_url='http://api.rosette.com/rest/v1', user_key=None)
+
+If the rosette.com server is used, the user key (authentication) string may not be omitted.
+
+From this, you may request the creation of 'operators' which you may
+either ask to "operate" an interface or "ping".  The result of either,
+if rosette.api.RosetteException is not signalled, is a python dictionary with components that vary as per the interfaces, and are largely described by
+extant Rosette documentation (as the JSON components of return results).
+They are listed below.
+
+To ping,
+    op = rosette.api.ping()
+    op.ping() # if there is no trouble, it has pinged successfully, or else an error was signalled.
+
+To operate any other function, e.g., a "parameters" dictionary must be set up.  This is
+the class rosette.api.RosetteParameters.  You must set "content" (a Unicode string to be
+processed or JSON TBD). "contentType" must be one of the four elements of
+rosette.api.DataFormat (see below); SIMPLE is the default.  "unit" must be one of the Enum
+rosette.api.InputUnit, DOC or SENTENCE; DOC is default.
+
+Either "content" or "contentURI". If "content URI"
+is supplied, it must be the string URL of a web address with protocol http, https, ftp,
+or ftps.  The content on that page, with the type declared in its header, will be used
+in the latter case. 
+
+Example:
+        TagParams = RosetteParameters()
+        TagParams.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
+ 
+To operate the functions other than ping(), call "operate" upon the
+operator, with the sinsingle argument of the parameters dictionary described above.
+
+    def tokenize(api)
+        op = api.tokens()
+        result = op.operate(self.TagParams)
+        print "should be 30 tokens", len(result['tokens'])
+
+The known operators which can be requested are (other than ping, whose call is described above), are
+
+    API.language()
+         On the operator returned by API.language(), you may also call
+         languages = op.info()
+     to obtain an array (or JSON-embedded array) of available languages.
+    API.sentences()
+    API. tokens()
+    API.morphology(tag)
+      tag must be one of the members of the Enum MorphologyOutput,
+         i.e., LEMMAS, PARTS_OF_SPEECH, COMPOUND_COMPONENTS, HAN_READINGS, or COMPLETE
+    API.entities(linked)
+      "linked" may be True or False; if and only if True, entity linkage is returned.
+    API.categories()
+    API.sentiment()
+    API.translated_name()
+
+DataFormat values
+
+The "contentType" of RosetteParameters must be set to one of these four values:
+  DataFormat.SIMPLE -- "content" is any unicode string at all, which will be interpreted 
+                       as text.
+  DataFormat.JSON -- "content" is a JSON input string as specified in the Rosette Web
+    API  documentation.
+  DataFormat.HTML -- "content" is a byte string (not unicode) to be interpreted as loose HTML; if
+      there is no markup, that is still "valid" html body text. The encoding will be
+  inferred by the server.
+  DataFormat.XHMTL -- "content" is a valid byte string (not unicode) representing an
+  XHTML document. The encoding will be inferred by the server.
+
+Internally, the latter two transmit in Base64, but you have no need to know that.
+
+Convenience operations
+
+   There are two methods on RosetteParameters supplied for convenience:
+      LoadDocumentString(s, dtype)
+         s is a unicode or non-unicode string as required by the DataFormat
+	 dtype is an element of DataFormat
+     This will load up a string declared as a "document" (not a sentence) input unit.
+     
+     LoadDocumentFile(path,dtype)
+	path is the pathname of a local file, which will be read as bytes, i.e..,
+	   not converted to Unicode.
+	dtype is an element of DataFormat, must be DataType.HTML or DataType.XHTML.
+    This will load up the unconverted content of the file as a "document" input unit	
+
+
+
+translated_name is unlike all the other entries.  The operate function
+requires as its parameter object a dictionary with three entries,
+"name", being the name to be translated, "entityType", being one of PERSON etc (documented elsewhere), and "targetLanguageCode" an ISO639 string for the target language.
+These are elements of the rosette.api.RntParameters Enum. The return
+return result (as of this writing) has to be retrieved from the "result" entry of the actual return result.  Hence,
+
+ def test_translated_name():
+        op = api.translated_name();
+        params = RntParameters()
+        params["name"] = "كريم عبد الجبار"
+        params["entityType"] = "PERSON";
+        params["targetLanguageCode"] = "eng";
+        result = op.operate(params)
+        result = result["result"]
+        print result["translation"]
+
+Note that RntParameters and RosetteParameters are not simple Python dictionaries; their "setitem" operators (params["key"]) validate their arguments.
+
+

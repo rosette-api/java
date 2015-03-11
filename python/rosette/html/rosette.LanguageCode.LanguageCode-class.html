@@ -1,0 +1,1105 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>rosette.LanguageCode.LanguageCode</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="rosette-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="rosette-module.html">Package&nbsp;rosette</a> ::
+        <a href="rosette.LanguageCode-module.html">Module&nbsp;LanguageCode</a> ::
+        Class&nbsp;LanguageCode
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="rosette.LanguageCode.LanguageCode-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class LanguageCode</h1><p class="nomargin-top"><span class="codelink"><a href="rosette.LanguageCode-pysrc.html#LanguageCode">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+enum.Enum --+
+            |
+           <strong class="uidshort">LanguageCode</strong>
+</pre>
+
+<hr />
+<p>Enum containing constants for languages.</p>
+  <p>iso639_1: ISO-639-1 code for this language. iso639_3: ISO-639-3 (Feb 
+  10, 2009) code for this language. readable: Human-readable name for this 
+  language. script: ISO15924 code for the most common script used to write 
+  this language. auxNames: A tuple of additional human-readable names for 
+  this language</p>
+  <p>The class attributes are named after LanguageCodeItem symbols. These 
+  are convenient for filling in the PlainTextInputOptions. A LanguageCode 
+  is either standard, meaning that it is based on an ISO 639-3 language 
+  code, or nonstandard, meaning that it is a Basis extension. The 
+  nonstandard LanguageCodes are: UNKNOWN, SIMPLIFIED_CHINESE, 
+  TRADITIONAL_CHINESE, ENGLISH_UPPERCASE.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__init__"></a><span class="summary-sig-name">__init__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">symbol</span>,
+        <span class="summary-sig-arg">iso639_1</span>,
+        <span class="summary-sig-arg">iso639_3</span>,
+        <span class="summary-sig-arg">readable</span>,
+        <span class="summary-sig-arg">script</span>,
+        <span class="summary-sig-arg">auxNames</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="rosette.LanguageCode-pysrc.html#LanguageCode.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Class Variables</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="UNKNOWN"></a><span class="summary-name">UNKNOWN</span> = <code title="&quot;UNKNOWN&quot;, &quot;xxx&quot;, &quot;xx&quot;, &quot;Unknown&quot;, &quot;Zyyy&quot;, []">&quot;UNKNOWN&quot;, &quot;xxx&quot;, &quot;xx&quot;, &quot;Unknown&quot;, &quot;Zyyy&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="AFRIKAANS"></a><span class="summary-name">AFRIKAANS</span> = <code title="&quot;AFRIKAANS&quot;, &quot;afr&quot;, &quot;af&quot;, &quot;Afrikaans&quot;, &quot;Latn&quot;, []">&quot;AFRIKAANS&quot;, &quot;afr&quot;, &quot;af&quot;, &quot;Afrikaans&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ALBANIAN"></a><span class="summary-name">ALBANIAN</span> = <code title="&quot;ALBANIAN&quot;, &quot;sqi&quot;, &quot;sq&quot;, &quot;Albanian&quot;, &quot;Latn&quot;, []">&quot;ALBANIAN&quot;, &quot;sqi&quot;, &quot;sq&quot;, &quot;Albanian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="AMHARIC"></a><span class="summary-name">AMHARIC</span> = <code title="&quot;AMHARIC&quot;, &quot;amh&quot;, &quot;am&quot;, &quot;Amharic&quot;, &quot;Ethi&quot;, []">&quot;AMHARIC&quot;, &quot;amh&quot;, &quot;am&quot;, &quot;Amharic&quot;, &quot;Ethi&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ARABIC"></a><span class="summary-name">ARABIC</span> = <code title="&quot;ARABIC&quot;, &quot;ara&quot;, &quot;ar&quot;, &quot;Arabic&quot;, &quot;Arab&quot;, []">&quot;ARABIC&quot;, &quot;ara&quot;, &quot;ar&quot;, &quot;Arabic&quot;, &quot;Arab&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="BENGALI"></a><span class="summary-name">BENGALI</span> = <code title="&quot;BENGALI&quot;, &quot;ben&quot;, &quot;bn&quot;, &quot;Bengali&quot;, &quot;Beng&quot;, []">&quot;BENGALI&quot;, &quot;ben&quot;, &quot;bn&quot;, &quot;Bengali&quot;, &quot;Beng&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="BULGARIAN"></a><span class="summary-name">BULGARIAN</span> = <code title="&quot;BULGARIAN&quot;, &quot;bul&quot;, &quot;bg&quot;, &quot;Bulgarian&quot;, &quot;Cyrl&quot;, []">&quot;BULGARIAN&quot;, &quot;bul&quot;, &quot;bg&quot;, &quot;Bulgarian&quot;, &quot;Cyrl&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#CATALAN" class="summary-name">CATALAN</a> = <code title="&quot;CATALAN&quot;, &quot;cat&quot;, &quot;ca&quot;, &quot;Catalan&quot;, &quot;Latn&quot;, [&quot;Valencian&quot;]">&quot;CATALAN&quot;, &quot;cat&quot;, &quot;ca&quot;, &quot;Catalan&quot;, &quot;Latn&quot;, [&quot;Valenci<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="CHINESE"></a><span class="summary-name">CHINESE</span> = <code title="&quot;CHINESE&quot;, &quot;zho&quot;, &quot;zh&quot;, &quot;Chinese&quot;, &quot;Hani&quot;, []">&quot;CHINESE&quot;, &quot;zho&quot;, &quot;zh&quot;, &quot;Chinese&quot;, &quot;Hani&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="CROATIAN"></a><span class="summary-name">CROATIAN</span> = <code title="&quot;CROATIAN&quot;, &quot;hrv&quot;, &quot;hr&quot;, &quot;Croatian&quot;, &quot;Latn&quot;, []">&quot;CROATIAN&quot;, &quot;hrv&quot;, &quot;hr&quot;, &quot;Croatian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="CZECH"></a><span class="summary-name">CZECH</span> = <code title="&quot;CZECH&quot;, &quot;ces&quot;, &quot;cs&quot;, &quot;Czech&quot;, &quot;Latn&quot;, []">&quot;CZECH&quot;, &quot;ces&quot;, &quot;cs&quot;, &quot;Czech&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DANISH"></a><span class="summary-name">DANISH</span> = <code title="&quot;DANISH&quot;, &quot;dan&quot;, &quot;da&quot;, &quot;Danish&quot;, &quot;Latn&quot;, []">&quot;DANISH&quot;, &quot;dan&quot;, &quot;da&quot;, &quot;Danish&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DARI"></a><span class="summary-name">DARI</span> = <code title="&quot;DARI&quot;, &quot;prs&quot;, &quot;zz&quot;, &quot;Dari&quot;, &quot;Arab&quot;, [&quot;Eastern Farsi&quot;]">&quot;DARI&quot;, &quot;prs&quot;, &quot;zz&quot;, &quot;Dari&quot;, &quot;Arab&quot;, [&quot;Eastern Farsi&quot;]</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DUTCH"></a><span class="summary-name">DUTCH</span> = <code title="&quot;DUTCH&quot;, &quot;nld&quot;, &quot;nl&quot;, &quot;Dutch&quot;, &quot;Latn&quot;, [&quot;Flemish&quot;]">&quot;DUTCH&quot;, &quot;nld&quot;, &quot;nl&quot;, &quot;Dutch&quot;, &quot;Latn&quot;, [&quot;Flemish&quot;]</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ENGLISH"></a><span class="summary-name">ENGLISH</span> = <code title="&quot;ENGLISH&quot;, &quot;eng&quot;, &quot;en&quot;, &quot;English&quot;, &quot;Latn&quot;, []">&quot;ENGLISH&quot;, &quot;eng&quot;, &quot;en&quot;, &quot;English&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#ENGLISH_UPPERCASE" class="summary-name">ENGLISH_UPPERCASE</a> = <code title="&quot;ENGLISH_UPPERCASE&quot;, &quot;uen&quot;, &quot;en_uc&quot;, &quot;English Uppercase&quot;, &quot;Latn&quot;, []">&quot;ENGLISH_UPPERCASE&quot;, &quot;uen&quot;, &quot;en_uc&quot;, &quot;Engl<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ESTONIAN"></a><span class="summary-name">ESTONIAN</span> = <code title="&quot;ESTONIAN&quot;, &quot;est&quot;, &quot;et&quot;, &quot;Estonian&quot;, &quot;Latn&quot;, []">&quot;ESTONIAN&quot;, &quot;est&quot;, &quot;et&quot;, &quot;Estonian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="FINNISH"></a><span class="summary-name">FINNISH</span> = <code title="&quot;FINNISH&quot;, &quot;fin&quot;, &quot;fi&quot;, &quot;Finnish&quot;, &quot;Latn&quot;, []">&quot;FINNISH&quot;, &quot;fin&quot;, &quot;fi&quot;, &quot;Finnish&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="FRENCH"></a><span class="summary-name">FRENCH</span> = <code title="&quot;FRENCH&quot;, &quot;fra&quot;, &quot;fr&quot;, &quot;French&quot;, &quot;Latn&quot;, []">&quot;FRENCH&quot;, &quot;fra&quot;, &quot;fr&quot;, &quot;French&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="GERMAN"></a><span class="summary-name">GERMAN</span> = <code title="&quot;GERMAN&quot;, &quot;deu&quot;, &quot;de&quot;, &quot;German&quot;, &quot;Latn&quot;, []">&quot;GERMAN&quot;, &quot;deu&quot;, &quot;de&quot;, &quot;German&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#GREEK" class="summary-name">GREEK</a> = <code title="&quot;GREEK&quot;, &quot;ell&quot;, &quot;el&quot;, &quot;Greek&quot;, &quot;Grek&quot;, [&quot;Modern Greek (1453-)&quot;]">&quot;GREEK&quot;, &quot;ell&quot;, &quot;el&quot;, &quot;Greek&quot;, &quot;Grek&quot;, [&quot;Modern Greek <code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="GUJARATI"></a><span class="summary-name">GUJARATI</span> = <code title="&quot;GUJARATI&quot;, &quot;guj&quot;, &quot;gu&quot;, &quot;Gujarati&quot;, &quot;Gujr&quot;, []">&quot;GUJARATI&quot;, &quot;guj&quot;, &quot;gu&quot;, &quot;Gujarati&quot;, &quot;Gujr&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="HEBREW"></a><span class="summary-name">HEBREW</span> = <code title="&quot;HEBREW&quot;, &quot;heb&quot;, &quot;he&quot;, &quot;Hebrew&quot;, &quot;Hebr&quot;, []">&quot;HEBREW&quot;, &quot;heb&quot;, &quot;he&quot;, &quot;Hebrew&quot;, &quot;Hebr&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="HINDI"></a><span class="summary-name">HINDI</span> = <code title="&quot;HINDI&quot;, &quot;hin&quot;, &quot;hi&quot;, &quot;Hindi&quot;, &quot;Deva&quot;, []">&quot;HINDI&quot;, &quot;hin&quot;, &quot;hi&quot;, &quot;Hindi&quot;, &quot;Deva&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="HUNGARIAN"></a><span class="summary-name">HUNGARIAN</span> = <code title="&quot;HUNGARIAN&quot;, &quot;hun&quot;, &quot;hu&quot;, &quot;Hungarian&quot;, &quot;Latn&quot;, []">&quot;HUNGARIAN&quot;, &quot;hun&quot;, &quot;hu&quot;, &quot;Hungarian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ICELANDIC"></a><span class="summary-name">ICELANDIC</span> = <code title="&quot;ICELANDIC&quot;, &quot;isl&quot;, &quot;is&quot;, &quot;Icelandic&quot;, &quot;Latn&quot;, []">&quot;ICELANDIC&quot;, &quot;isl&quot;, &quot;is&quot;, &quot;Icelandic&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="INDONESIAN"></a><span class="summary-name">INDONESIAN</span> = <code title="&quot;INDONESIAN&quot;, &quot;ind&quot;, &quot;id&quot;, &quot;Indonesian&quot;, &quot;Latn&quot;, []">&quot;INDONESIAN&quot;, &quot;ind&quot;, &quot;id&quot;, &quot;Indonesian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ITALIAN"></a><span class="summary-name">ITALIAN</span> = <code title="&quot;ITALIAN&quot;, &quot;ita&quot;, &quot;it&quot;, &quot;Italian&quot;, &quot;Latn&quot;, []">&quot;ITALIAN&quot;, &quot;ita&quot;, &quot;it&quot;, &quot;Italian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="JAPANESE"></a><span class="summary-name">JAPANESE</span> = <code title="&quot;JAPANESE&quot;, &quot;jpn&quot;, &quot;ja&quot;, &quot;Japanese&quot;, &quot;Hani&quot;, []">&quot;JAPANESE&quot;, &quot;jpn&quot;, &quot;ja&quot;, &quot;Japanese&quot;, &quot;Hani&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="KANNADA"></a><span class="summary-name">KANNADA</span> = <code title="&quot;KANNADA&quot;, &quot;kan&quot;, &quot;kn&quot;, &quot;Kannada&quot;, &quot;Knda&quot;, []">&quot;KANNADA&quot;, &quot;kan&quot;, &quot;kn&quot;, &quot;Kannada&quot;, &quot;Knda&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#KINYARWANDA" class="summary-name">KINYARWANDA</a> = <code title="&quot;KINYARWANDA&quot;, &quot;kin&quot;, &quot;rw&quot;, &quot;Kinyarwanda&quot;, &quot;Latn&quot;, []">&quot;KINYARWANDA&quot;, &quot;kin&quot;, &quot;rw&quot;, &quot;Kinyarwanda&quot;, &quot;Latn<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="KOREAN"></a><span class="summary-name">KOREAN</span> = <code title="&quot;KOREAN&quot;, &quot;kor&quot;, &quot;ko&quot;, &quot;Korean&quot;, &quot;Hang&quot;, []">&quot;KOREAN&quot;, &quot;kor&quot;, &quot;ko&quot;, &quot;Korean&quot;, &quot;Hang&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="KURDISH"></a><span class="summary-name">KURDISH</span> = <code title="&quot;KURDISH&quot;, &quot;kur&quot;, &quot;ku&quot;, &quot;Kurdish&quot;, &quot;Arab&quot;, []">&quot;KURDISH&quot;, &quot;kur&quot;, &quot;ku&quot;, &quot;Kurdish&quot;, &quot;Arab&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="LATVIAN"></a><span class="summary-name">LATVIAN</span> = <code title="&quot;LATVIAN&quot;, &quot;lav&quot;, &quot;lv&quot;, &quot;Latvian&quot;, &quot;Latn&quot;, []">&quot;LATVIAN&quot;, &quot;lav&quot;, &quot;lv&quot;, &quot;Latvian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="LITHUANIAN"></a><span class="summary-name">LITHUANIAN</span> = <code title="&quot;LITHUANIAN&quot;, &quot;lit&quot;, &quot;lt&quot;, &quot;Lithuanian&quot;, &quot;Latn&quot;, []">&quot;LITHUANIAN&quot;, &quot;lit&quot;, &quot;lt&quot;, &quot;Lithuanian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="MACEDONIAN"></a><span class="summary-name">MACEDONIAN</span> = <code title="&quot;MACEDONIAN&quot;, &quot;mkd&quot;, &quot;mk&quot;, &quot;Macedonian&quot;, &quot;Cyrl&quot;, []">&quot;MACEDONIAN&quot;, &quot;mkd&quot;, &quot;mk&quot;, &quot;Macedonian&quot;, &quot;Cyrl&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="MALAGASY"></a><span class="summary-name">MALAGASY</span> = <code title="&quot;MALAGASY&quot;, &quot;mlg&quot;, &quot;mg&quot;, &quot;Malagasy&quot;, &quot;Latn&quot;, []">&quot;MALAGASY&quot;, &quot;mlg&quot;, &quot;mg&quot;, &quot;Malagasy&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#MALAY" class="summary-name">MALAY</a> = <code title="&quot;MALAY&quot;, &quot;msa&quot;, &quot;ms&quot;, &quot;Malay&quot;, &quot;Latn&quot;, [&quot;Malay (macrolanguage)&quot;]">&quot;MALAY&quot;, &quot;msa&quot;, &quot;ms&quot;, &quot;Malay&quot;, &quot;Latn&quot;, [&quot;Malay (macrol<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="MALAYALAM"></a><span class="summary-name">MALAYALAM</span> = <code title="&quot;MALAYALAM&quot;, &quot;mal&quot;, &quot;ml&quot;, &quot;Malayalam&quot;, &quot;Mlym&quot;, []">&quot;MALAYALAM&quot;, &quot;mal&quot;, &quot;ml&quot;, &quot;Malayalam&quot;, &quot;Mlym&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="NORWEGIAN"></a><span class="summary-name">NORWEGIAN</span> = <code title="&quot;NORWEGIAN&quot;, &quot;nor&quot;, &quot;no&quot;, &quot;Norwegian&quot;, &quot;Latn&quot;, []">&quot;NORWEGIAN&quot;, &quot;nor&quot;, &quot;no&quot;, &quot;Norwegian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#NORWEGIAN_BOKMAL" class="summary-name">NORWEGIAN_BOKMAL</a> = <code title="&quot;NORWEGIAN_BOKMAL&quot;, &quot;nob&quot;, &quot;nb&quot;, &quot;Norwegian Bokmal&quot;, &quot;Latn&quot;, [&quot;Norwegi\
+an Bokm\xc3\xa5l&quot;]">&quot;NORWEGIAN_BOKMAL&quot;, &quot;nob&quot;, &quot;nb&quot;, &quot;Norwegian<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#NORWEGIAN_NYNORSK" class="summary-name">NORWEGIAN_NYNORSK</a> = <code title="&quot;NORWEGIAN_NYNORSK&quot;, &quot;nno&quot;, &quot;nn&quot;, &quot;Norwegian Nynorsk&quot;, &quot;Latn&quot;, []">&quot;NORWEGIAN_NYNORSK&quot;, &quot;nno&quot;, &quot;nn&quot;, &quot;Norwegi<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#NYANJA" class="summary-name">NYANJA</a> = <code title="&quot;NYANJA&quot;, &quot;nya&quot;, &quot;ny&quot;, &quot;Nyanja&quot;, &quot;Latn&quot;, [&quot;Chewa&quot;, &quot;Chichewa&quot;]">&quot;NYANJA&quot;, &quot;nya&quot;, &quot;ny&quot;, &quot;Nyanja&quot;, &quot;Latn&quot;, [&quot;Chewa&quot;, &quot;C<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#PEDI" class="summary-name">PEDI</a> = <code title="&quot;PEDI&quot;, &quot;nso&quot;, &quot;zz&quot;, &quot;Pedi&quot;, &quot;Latn&quot;, [&quot;Northern Sotho&quot;, &quot;Sepedi&quot;]">&quot;PEDI&quot;, &quot;nso&quot;, &quot;zz&quot;, &quot;Pedi&quot;, &quot;Latn&quot;, [&quot;Northern Sotho&quot;,<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="PERSIAN"></a><span class="summary-name">PERSIAN</span> = <code title="&quot;PERSIAN&quot;, &quot;fas&quot;, &quot;fa&quot;, &quot;Persian&quot;, &quot;Arab&quot;, []">&quot;PERSIAN&quot;, &quot;fas&quot;, &quot;fa&quot;, &quot;Persian&quot;, &quot;Arab&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#PLATEAU_MALAGASY" class="summary-name">PLATEAU_MALAGASY</a> = <code title="&quot;PLATEAU_MALAGASY&quot;, &quot;plt&quot;, &quot;zz&quot;, &quot;Plateau Malagasy&quot;, &quot;Latn&quot;, []">&quot;PLATEAU_MALAGASY&quot;, &quot;plt&quot;, &quot;zz&quot;, &quot;Plateau M<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="POLISH"></a><span class="summary-name">POLISH</span> = <code title="&quot;POLISH&quot;, &quot;pol&quot;, &quot;pl&quot;, &quot;Polish&quot;, &quot;Latn&quot;, []">&quot;POLISH&quot;, &quot;pol&quot;, &quot;pl&quot;, &quot;Polish&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="PORTUGUESE"></a><span class="summary-name">PORTUGUESE</span> = <code title="&quot;PORTUGUESE&quot;, &quot;por&quot;, &quot;pt&quot;, &quot;Portuguese&quot;, &quot;Latn&quot;, []">&quot;PORTUGUESE&quot;, &quot;por&quot;, &quot;pt&quot;, &quot;Portuguese&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="PUSHTO"></a><span class="summary-name">PUSHTO</span> = <code title="&quot;PUSHTO&quot;, &quot;pus&quot;, &quot;ps&quot;, &quot;Pushto&quot;, &quot;Arab&quot;, []">&quot;PUSHTO&quot;, &quot;pus&quot;, &quot;ps&quot;, &quot;Pushto&quot;, &quot;Arab&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#ROMANIAN" class="summary-name">ROMANIAN</a> = <code title="&quot;ROMANIAN&quot;, &quot;ron&quot;, &quot;ro&quot;, &quot;Romanian&quot;, &quot;Latn&quot;, [&quot;Moldavian&quot;, &quot;Moldovan&quot;]">&quot;ROMANIAN&quot;, &quot;ron&quot;, &quot;ro&quot;, &quot;Romanian&quot;, &quot;Latn&quot;, [&quot;Mold<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="RUNDI"></a><span class="summary-name">RUNDI</span> = <code title="&quot;RUNDI&quot;, &quot;run&quot;, &quot;rn&quot;, &quot;Rundi&quot;, &quot;Latn&quot;, []">&quot;RUNDI&quot;, &quot;run&quot;, &quot;rn&quot;, &quot;Rundi&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="RUSSIAN"></a><span class="summary-name">RUSSIAN</span> = <code title="&quot;RUSSIAN&quot;, &quot;rus&quot;, &quot;ru&quot;, &quot;Russian&quot;, &quot;Cyrl&quot;, []">&quot;RUSSIAN&quot;, &quot;rus&quot;, &quot;ru&quot;, &quot;Russian&quot;, &quot;Cyrl&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="SANGO"></a><span class="summary-name">SANGO</span> = <code title="&quot;SANGO&quot;, &quot;sag&quot;, &quot;sg&quot;, &quot;Sango&quot;, &quot;Latn&quot;, []">&quot;SANGO&quot;, &quot;sag&quot;, &quot;sg&quot;, &quot;Sango&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="SERBIAN"></a><span class="summary-name">SERBIAN</span> = <code title="&quot;SERBIAN&quot;, &quot;srp&quot;, &quot;sr&quot;, &quot;Serbian&quot;, &quot;Zyyy&quot;, []">&quot;SERBIAN&quot;, &quot;srp&quot;, &quot;sr&quot;, &quot;Serbian&quot;, &quot;Zyyy&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#SESELWA_CREOLE_FRENCH" class="summary-name">SESELWA_CREOLE_FRENCH</a> = <code title="&quot;SESELWA_CREOLE_FRENCH&quot;, &quot;crs&quot;, &quot;zz&quot;, &quot;Seselwa Creole French&quot;, &quot;Latn&quot;,\
+ []">&quot;SESELWA_CREOLE_FRENCH&quot;, &quot;crs&quot;, &quot;zz&quot;, <code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="SHONA"></a><span class="summary-name">SHONA</span> = <code title="&quot;SHONA&quot;, &quot;sna&quot;, &quot;sn&quot;, &quot;Shona&quot;, &quot;Latn&quot;, []">&quot;SHONA&quot;, &quot;sna&quot;, &quot;sn&quot;, &quot;Shona&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#SIMPLIFIED_CHINESE" class="summary-name">SIMPLIFIED_CHINESE</a> = <code title="&quot;SIMPLIFIED_CHINESE&quot;, &quot;zhs&quot;, &quot;zh_sc&quot;, &quot;Chinese, Simplified&quot;, &quot;Hans&quot;, [\
+]">&quot;SIMPLIFIED_CHINESE&quot;, &quot;zhs&quot;, &quot;zh_sc&quot;, &quot;Ch<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="SLOVAK"></a><span class="summary-name">SLOVAK</span> = <code title="&quot;SLOVAK&quot;, &quot;slk&quot;, &quot;sk&quot;, &quot;Slovak&quot;, &quot;Latn&quot;, []">&quot;SLOVAK&quot;, &quot;slk&quot;, &quot;sk&quot;, &quot;Slovak&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="SLOVENIAN"></a><span class="summary-name">SLOVENIAN</span> = <code title="&quot;SLOVENIAN&quot;, &quot;slv&quot;, &quot;sl&quot;, &quot;Slovenian&quot;, &quot;Latn&quot;, []">&quot;SLOVENIAN&quot;, &quot;slv&quot;, &quot;sl&quot;, &quot;Slovenian&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="SOMALI"></a><span class="summary-name">SOMALI</span> = <code title="&quot;SOMALI&quot;, &quot;som&quot;, &quot;so&quot;, &quot;Somali&quot;, &quot;Latn&quot;, []">&quot;SOMALI&quot;, &quot;som&quot;, &quot;so&quot;, &quot;Somali&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#SOUTHERN_SOTHO" class="summary-name">SOUTHERN_SOTHO</a> = <code title="&quot;SOUTHERN_SOTHO&quot;, &quot;sot&quot;, &quot;st&quot;, &quot;Southern Sotho&quot;, &quot;Latn&quot;, []">&quot;SOUTHERN_SOTHO&quot;, &quot;sot&quot;, &quot;st&quot;, &quot;Southern Soth<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#SOUTH_NDEBELE" class="summary-name">SOUTH_NDEBELE</a> = <code title="&quot;SOUTH_NDEBELE&quot;, &quot;nbl&quot;, &quot;nr&quot;, &quot;South Ndebele&quot;, &quot;Latn&quot;, []">&quot;SOUTH_NDEBELE&quot;, &quot;nbl&quot;, &quot;nr&quot;, &quot;South Ndebele&quot;,<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#SPANISH" class="summary-name">SPANISH</a> = <code title="&quot;SPANISH&quot;, &quot;spa&quot;, &quot;es&quot;, &quot;Spanish&quot;, &quot;Latn&quot;, [&quot;Castilian&quot;]">&quot;SPANISH&quot;, &quot;spa&quot;, &quot;es&quot;, &quot;Spanish&quot;, &quot;Latn&quot;, [&quot;Castili<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#SWAHILI" class="summary-name">SWAHILI</a> = <code title="&quot;SWAHILI&quot;, &quot;swa&quot;, &quot;sw&quot;, &quot;Swahili&quot;, &quot;Latn&quot;, [&quot;Swahili (macrolanguage)&quot;]">&quot;SWAHILI&quot;, &quot;swa&quot;, &quot;sw&quot;, &quot;Swahili&quot;, &quot;Latn&quot;, [&quot;Swahili<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="SWATI"></a><span class="summary-name">SWATI</span> = <code title="&quot;SWATI&quot;, &quot;ssw&quot;, &quot;ss&quot;, &quot;Swati&quot;, &quot;Latn&quot;, []">&quot;SWATI&quot;, &quot;ssw&quot;, &quot;ss&quot;, &quot;Swati&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="SWEDISH"></a><span class="summary-name">SWEDISH</span> = <code title="&quot;SWEDISH&quot;, &quot;swe&quot;, &quot;sv&quot;, &quot;Swedish&quot;, &quot;Latn&quot;, []">&quot;SWEDISH&quot;, &quot;swe&quot;, &quot;sv&quot;, &quot;Swedish&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="TAGALOG"></a><span class="summary-name">TAGALOG</span> = <code title="&quot;TAGALOG&quot;, &quot;tgl&quot;, &quot;tl&quot;, &quot;Tagalog&quot;, &quot;Latn&quot;, []">&quot;TAGALOG&quot;, &quot;tgl&quot;, &quot;tl&quot;, &quot;Tagalog&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="TAMIL"></a><span class="summary-name">TAMIL</span> = <code title="&quot;TAMIL&quot;, &quot;tam&quot;, &quot;ta&quot;, &quot;Tamil&quot;, &quot;Taml&quot;, []">&quot;TAMIL&quot;, &quot;tam&quot;, &quot;ta&quot;, &quot;Tamil&quot;, &quot;Taml&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="TELUGU"></a><span class="summary-name">TELUGU</span> = <code title="&quot;TELUGU&quot;, &quot;tel&quot;, &quot;te&quot;, &quot;Telugu&quot;, &quot;Telu&quot;, []">&quot;TELUGU&quot;, &quot;tel&quot;, &quot;te&quot;, &quot;Telugu&quot;, &quot;Telu&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="THAI"></a><span class="summary-name">THAI</span> = <code title="&quot;THAI&quot;, &quot;tha&quot;, &quot;th&quot;, &quot;Thai&quot;, &quot;Thai&quot;, []">&quot;THAI&quot;, &quot;tha&quot;, &quot;th&quot;, &quot;Thai&quot;, &quot;Thai&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="TIGRINYA"></a><span class="summary-name">TIGRINYA</span> = <code title="&quot;TIGRINYA&quot;, &quot;tir&quot;, &quot;ti&quot;, &quot;Tigrinya&quot;, &quot;Ethi&quot;, []">&quot;TIGRINYA&quot;, &quot;tir&quot;, &quot;ti&quot;, &quot;Tigrinya&quot;, &quot;Ethi&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#TRADITIONAL_CHINESE" class="summary-name">TRADITIONAL_CHINESE</a> = <code title="&quot;TRADITIONAL_CHINESE&quot;, &quot;zht&quot;, &quot;zh_tc&quot;, &quot;Chinese, Traditional&quot;, &quot;Hant&quot;,\
+ []">&quot;TRADITIONAL_CHINESE&quot;, &quot;zht&quot;, &quot;zh_tc&quot;, &quot;<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="TSONGA"></a><span class="summary-name">TSONGA</span> = <code title="&quot;TSONGA&quot;, &quot;tso&quot;, &quot;ts&quot;, &quot;Tsonga&quot;, &quot;Latn&quot;, []">&quot;TSONGA&quot;, &quot;tso&quot;, &quot;ts&quot;, &quot;Tsonga&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="TSWANA"></a><span class="summary-name">TSWANA</span> = <code title="&quot;TSWANA&quot;, &quot;tsn&quot;, &quot;tn&quot;, &quot;Tswana&quot;, &quot;Latn&quot;, []">&quot;TSWANA&quot;, &quot;tsn&quot;, &quot;tn&quot;, &quot;Tswana&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="TURKISH"></a><span class="summary-name">TURKISH</span> = <code title="&quot;TURKISH&quot;, &quot;tur&quot;, &quot;tr&quot;, &quot;Turkish&quot;, &quot;Latn&quot;, []">&quot;TURKISH&quot;, &quot;tur&quot;, &quot;tr&quot;, &quot;Turkish&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="UKRAINIAN"></a><span class="summary-name">UKRAINIAN</span> = <code title="&quot;UKRAINIAN&quot;, &quot;ukr&quot;, &quot;uk&quot;, &quot;Ukrainian&quot;, &quot;Cyrl&quot;, []">&quot;UKRAINIAN&quot;, &quot;ukr&quot;, &quot;uk&quot;, &quot;Ukrainian&quot;, &quot;Cyrl&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="URDU"></a><span class="summary-name">URDU</span> = <code title="&quot;URDU&quot;, &quot;urd&quot;, &quot;ur&quot;, &quot;Urdu&quot;, &quot;Arab&quot;, []">&quot;URDU&quot;, &quot;urd&quot;, &quot;ur&quot;, &quot;Urdu&quot;, &quot;Arab&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="UZBEK"></a><span class="summary-name">UZBEK</span> = <code title="&quot;UZBEK&quot;, &quot;uzb&quot;, &quot;uz&quot;, &quot;Uzbek&quot;, &quot;Zyyy&quot;, []">&quot;UZBEK&quot;, &quot;uzb&quot;, &quot;uz&quot;, &quot;Uzbek&quot;, &quot;Zyyy&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="VENDA"></a><span class="summary-name">VENDA</span> = <code title="&quot;VENDA&quot;, &quot;ven&quot;, &quot;ve&quot;, &quot;Venda&quot;, &quot;Latn&quot;, []">&quot;VENDA&quot;, &quot;ven&quot;, &quot;ve&quot;, &quot;Venda&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="VIETNAMESE"></a><span class="summary-name">VIETNAMESE</span> = <code title="&quot;VIETNAMESE&quot;, &quot;vie&quot;, &quot;vi&quot;, &quot;Vietnamese&quot;, &quot;Latn&quot;, []">&quot;VIETNAMESE&quot;, &quot;vie&quot;, &quot;vi&quot;, &quot;Vietnamese&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="rosette.LanguageCode.LanguageCode-class.html#WESTERN_FARSI" class="summary-name">WESTERN_FARSI</a> = <code title="&quot;WESTERN_FARSI&quot;, &quot;pes&quot;, &quot;zz&quot;, &quot;Western Farsi&quot;, &quot;Arab&quot;, []">&quot;WESTERN_FARSI&quot;, &quot;pes&quot;, &quot;zz&quot;, &quot;Western Farsi&quot;,<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="XHOSA"></a><span class="summary-name">XHOSA</span> = <code title="&quot;XHOSA&quot;, &quot;xho&quot;, &quot;xh&quot;, &quot;Xhosa&quot;, &quot;Latn&quot;, []">&quot;XHOSA&quot;, &quot;xho&quot;, &quot;xh&quot;, &quot;Xhosa&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ZULU"></a><span class="summary-name">ZULU</span> = <code title="&quot;ZULU&quot;, &quot;zul&quot;, &quot;zu&quot;, &quot;Zulu&quot;, &quot;Latn&quot;, []">&quot;ZULU&quot;, &quot;zul&quot;, &quot;zu&quot;, &quot;Zulu&quot;, &quot;Latn&quot;, []</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Class Variable Details</span></td>
+</tr>
+</table>
+<a name="CATALAN"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">CATALAN</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;CATALAN&quot;, &quot;cat&quot;, &quot;ca&quot;, &quot;Catalan&quot;, &quot;Latn&quot;, [&quot;Valencian&quot;]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ENGLISH_UPPERCASE"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">ENGLISH_UPPERCASE</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;ENGLISH_UPPERCASE&quot;, &quot;uen&quot;, &quot;en_uc&quot;, &quot;English Uppercase&quot;, &quot;Latn&quot;, []
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="GREEK"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">GREEK</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;GREEK&quot;, &quot;ell&quot;, &quot;el&quot;, &quot;Greek&quot;, &quot;Grek&quot;, [&quot;Modern Greek (1453-)&quot;]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="KINYARWANDA"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">KINYARWANDA</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;KINYARWANDA&quot;, &quot;kin&quot;, &quot;rw&quot;, &quot;Kinyarwanda&quot;, &quot;Latn&quot;, []
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="MALAY"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">MALAY</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;MALAY&quot;, &quot;msa&quot;, &quot;ms&quot;, &quot;Malay&quot;, &quot;Latn&quot;, [&quot;Malay (macrolanguage)&quot;]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="NORWEGIAN_BOKMAL"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">NORWEGIAN_BOKMAL</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;NORWEGIAN_BOKMAL&quot;, &quot;nob&quot;, &quot;nb&quot;, &quot;Norwegian Bokmal&quot;, &quot;Latn&quot;, [&quot;Norwegi<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+an Bokm\xc3\xa5l&quot;]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="NORWEGIAN_NYNORSK"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">NORWEGIAN_NYNORSK</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;NORWEGIAN_NYNORSK&quot;, &quot;nno&quot;, &quot;nn&quot;, &quot;Norwegian Nynorsk&quot;, &quot;Latn&quot;, []
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="NYANJA"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">NYANJA</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;NYANJA&quot;, &quot;nya&quot;, &quot;ny&quot;, &quot;Nyanja&quot;, &quot;Latn&quot;, [&quot;Chewa&quot;, &quot;Chichewa&quot;]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="PEDI"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">PEDI</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;PEDI&quot;, &quot;nso&quot;, &quot;zz&quot;, &quot;Pedi&quot;, &quot;Latn&quot;, [&quot;Northern Sotho&quot;, &quot;Sepedi&quot;]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="PLATEAU_MALAGASY"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">PLATEAU_MALAGASY</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;PLATEAU_MALAGASY&quot;, &quot;plt&quot;, &quot;zz&quot;, &quot;Plateau Malagasy&quot;, &quot;Latn&quot;, []
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ROMANIAN"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">ROMANIAN</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;ROMANIAN&quot;, &quot;ron&quot;, &quot;ro&quot;, &quot;Romanian&quot;, &quot;Latn&quot;, [&quot;Moldavian&quot;, &quot;Moldovan&quot;]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="SESELWA_CREOLE_FRENCH"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">SESELWA_CREOLE_FRENCH</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;SESELWA_CREOLE_FRENCH&quot;, &quot;crs&quot;, &quot;zz&quot;, &quot;Seselwa Creole French&quot;, &quot;Latn&quot;,<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ []
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="SIMPLIFIED_CHINESE"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">SIMPLIFIED_CHINESE</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;SIMPLIFIED_CHINESE&quot;, &quot;zhs&quot;, &quot;zh_sc&quot;, &quot;Chinese, Simplified&quot;, &quot;Hans&quot;, [<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="SOUTHERN_SOTHO"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">SOUTHERN_SOTHO</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;SOUTHERN_SOTHO&quot;, &quot;sot&quot;, &quot;st&quot;, &quot;Southern Sotho&quot;, &quot;Latn&quot;, []
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="SOUTH_NDEBELE"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">SOUTH_NDEBELE</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;SOUTH_NDEBELE&quot;, &quot;nbl&quot;, &quot;nr&quot;, &quot;South Ndebele&quot;, &quot;Latn&quot;, []
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="SPANISH"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">SPANISH</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;SPANISH&quot;, &quot;spa&quot;, &quot;es&quot;, &quot;Spanish&quot;, &quot;Latn&quot;, [&quot;Castilian&quot;]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="SWAHILI"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">SWAHILI</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;SWAHILI&quot;, &quot;swa&quot;, &quot;sw&quot;, &quot;Swahili&quot;, &quot;Latn&quot;, [&quot;Swahili (macrolanguage)&quot;]
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="TRADITIONAL_CHINESE"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">TRADITIONAL_CHINESE</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;TRADITIONAL_CHINESE&quot;, &quot;zht&quot;, &quot;zh_tc&quot;, &quot;Chinese, Traditional&quot;, &quot;Hant&quot;,<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ []
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="WESTERN_FARSI"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">WESTERN_FARSI</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&quot;WESTERN_FARSI&quot;, &quot;pes&quot;, &quot;zz&quot;, &quot;Western Farsi&quot;, &quot;Arab&quot;, []
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="rosette-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Fri Mar  6 09:07:06 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
