@@ -22,7 +22,17 @@ from enum import Enum
 from urlparse import urlparse
 import sys
 
-
+_enumd = sys.modules["enum"].__dict__
+if "__version__" in _enumd:
+    _enumv = _enumd["__version__"]
+elif "version" in _enumd:
+    _enumv = _enumd["version"]
+else:
+    _enumv = (0,0,0)
+if isinstance(_enumv, str):
+    _enumv = tuple(map(int,(_enumv.split("."))))
+if (_enumv < (1, 0, 4)):
+    raise Exception("Version of Enum package not enum34 or better.")
 
 VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
 
