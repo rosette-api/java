@@ -14,6 +14,7 @@
  ** 7-104.9(a).
 """
 
+import codecs
 import unittest
 import logging
 from rosette.api import API, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput
@@ -49,7 +50,7 @@ MORPHO_EXPECTED_POSES = [u'NOUN', u'CM', u'NOUN', u'VBPRES', u'SENT', u'ADJ', u'
 MORPHO_EXPECTED_LEMMAS = [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be', u'Sam', u';', u'I', u'filter', u'Spam', u'.']
 MORPHOX_EXPECTED_POSES = [u'DET', u'NOUN', u'PREP', u'PROP', u'NOUN', # last wrong
                           u'ADV', u'PREP', u'DET', u'NOUN', u'SENT']
-CHINESE_HEAD_TAGS = [u'NC', u'NC', u'NC', u'A', u'A', u'NC', u'NC', u'NC', u'NC', u'NC', u'V', u'NC', u'NC', u'NC', u'NC', u'NP', u'V', u'NP', u'NC', u'A', u'W', u'GUESS', u'V', u'GUESS', u'NC', u'NC', u'NC', u'NC', u'NC', u'NP', u'V', u'V', u'GUESS', u'GUESS', u'NC', u'GUESS', u'NC', u'GUESS', u'NP', u'GUESS', u'NC', u'NC', u'GUESS', u'NC', u'GUESS', u'NC', u'GUESS']
+CHINESE_HEAD_TAGS = [u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'NC', u'V', u'V', u'E', u'NN', u'NC', u'A', u'NC', u'GUESS', u'GUESS', u'NN', u'NC', u'GUESS', u'D', u'GUESS', u'GUESS', u'NC', u'GUESS', u'A', u'NC', u'V', u'NC', u'W', u'W', u'NM', u'NC', u'GUESS', u'V', u'NC', u'W', u'A', u'GUESS', u'W', u'NC', u'GUESS', u'NC', u'GUESS', u'D', u'V', u'A', u'NC', u'NC', u'U', u'A', u'GUESS', u'NC', u'OC', u'NC', u'A', u'NC', u'D', u'W', u'W', u'V', u'GUESS', u'NN', u'NM', u'V', u'NC', u'NP', u'NC', u'A', u'OC']
 
 class APITestCase(unittest.TestCase):
     def __init__(self, tcname):
