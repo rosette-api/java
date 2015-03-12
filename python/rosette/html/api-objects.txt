@@ -8,6 +8,8 @@ rosette.LanguageCode.languageCodeByISO639_3	rosette.LanguageCode-module.html#lan
 rosette.LanguageCode.languageCodeByISO639	rosette.LanguageCode-module.html#languageCodeByISO639
 rosette.LanguageCode.languageCodeByISO639_1	rosette.LanguageCode-module.html#languageCodeByISO639_1
 rosette.api	rosette.api-module.html
+rosette.api._enumd	rosette.api-module.html#_enumd
+rosette.api._enumv	rosette.api-module.html#_enumv
 rosette.api.VALID_SCHEMES	rosette.api-module.html#VALID_SCHEMES
 rosette.ISO15924.ISO15924	rosette.ISO15924.ISO15924-class.html
 rosette.ISO15924.ISO15924.Guru	rosette.ISO15924.ISO15924-class.html#Guru
@@ -232,6 +234,7 @@ rosette.api.API.morphology	rosette.api.API-class.html#morphology
 rosette.api.API.__init__	rosette.api.API-class.html#__init__
 rosette.api.DataFormat	rosette.api.DataFormat-class.html
 rosette.api.DataFormat.SIMPLE	rosette.api.DataFormat-class.html#SIMPLE
+rosette.api.DataFormat.BINARY	rosette.api.DataFormat-class.html#BINARY
 rosette.api.DataFormat.JSON	rosette.api.DataFormat-class.html#JSON
 rosette.api.DataFormat.HTML	rosette.api.DataFormat-class.html#HTML
 rosette.api.DataFormat.XHTML	rosette.api.DataFormat-class.html#XHTML

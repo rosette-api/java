@@ -1,4 +1,4 @@
-3/9/2015
+3/12/2015
 
 rosette.api interim documentation.
 
@@ -63,7 +63,7 @@ The known operators which can be requested are (other than ping, whose call is d
 
 DataFormat values
 
-The "contentType" of RosetteParameters must be set to one of these four values:
+The "contentType" of RosetteParameters must be set to one of these five values:
   DataFormat.SIMPLE -- "content" is any unicode string at all, which will be interpreted 
                        as text.
   DataFormat.JSON -- "content" is a JSON input string as specified in the Rosette Web
@@ -73,6 +73,8 @@ The "contentType" of RosetteParameters must be set to one of these four values:
   inferred by the server.
   DataFormat.XHMTL -- "content" is a valid byte string (not unicode) representing an
   XHTML document. The encoding will be inferred by the server.
+  DataFormat.BINARY -- "content" is any byte string representing any
+  document in any encoding or file format known to the server.
 
 Internally, the latter two transmit in Base64, but you have no need to know that.
 
@@ -87,9 +89,9 @@ Convenience operations
      LoadDocumentFile(path,dtype)
 	path is the pathname of a local file, which will be read as bytes, i.e..,
 	   not converted to Unicode.
-	dtype is an element of DataFormat, must be DataType.HTML or DataType.XHTML.
+	dtype is an element of DataFormat, must be DataFormat.HTML,
+	DataFormat.XHTML, or DataFormat.BINARY
     This will load up the unconverted content of the file as a "document" input unit	
-
 
 
 translated_name is unlike all the other entries.  The operate function

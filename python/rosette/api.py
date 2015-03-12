@@ -50,8 +50,7 @@ class RosetteException(Exception):
         return self.message + ":\n " + self.response_message
 
 class DataFormat(Enum):
-    """Data Format, as much as it is known.  Semantics are subtle, please read.
-    """
+    """Data Format, as much as it is known."""
     SIMPLE = "text/plain"
     """The data is unstructured text, supplied as a possibly-unicode string."""
     JSON = "application/json"
@@ -60,6 +59,8 @@ class DataFormat(Enum):
     """The data is a 'loose' HTML page; that is, it may not be HTML-compliant, or may even not really be HTML. The data must be a narrow (single-byte) string, not a python Unicode string, perhaps read from a file. (Of course, it can be UTF-8 encoded)."""
     XHTML = "application/xhtml+xml"
     """The data is a compliant XHTML page. The data must be a narrow (single-byte) string, not a python Unicode string, perhaps read from a file. (Of course, it can be UTF-8 encoded)."""
+    BINARY = "application/octet-stream"
+    """The data is of unknown format, it may be a binary data type (the contents of a binary file), or may not.  It will be sent as is and identified and analyzed by the server."""
 
 class InputUnit(Enum):
     """Elements are used in the L{RosetteParameters} class to specify whether textual data is to be treated as one sentence or possibly many."""
@@ -151,7 +152,7 @@ class RosetteParameters(_RosetteParamSetBase):
         slz = self._forSerialize()
         if self["contentType"] is None and self["contentUri"] is None:
             slz["contentType"] = DataFormat.SIMPLE.value
-        elif self["contentType"] in (DataFormat.HTML, DataFormat.XHTML):
+        elif self["contentType"] in (DataFormat.HTML, DataFormat.XHTML, DataFormat.BINARY):
             slz["content"] = base64.b64encode(slz["content"])
         return slz
 
@@ -161,11 +162,11 @@ class RosetteParameters(_RosetteParamSetBase):
         be determined by the server.  The document unit size remains
         by default L{InputUnit.DOC}.
         @parameter path: Pathname of a file acceptable to the C{open} function.
-        @parameter dtype: One of L{DataFormat.HTML} or L{DataFormat.XHTML}.  No other types are acceptable at this time, although HTML is broad enough to include text strings without markup.
+        @parameter dtype: One of L{DataFormat.HTML}, L{DataFormat.XHTML}, or L{DataFormat.BINARY}.  No other types are acceptable at this time, although HTML is broad enough to include text strings without markup. If the data type is unknown, or describes a binary file, use L{DataFormat.BINARY}.
         @type dtype: L{DataFormat}
         """
-        if not dtype in (DataFormat.HTML, DataFormat.XHTML):\
-            raise RosetteException(dtype, "Must supply one of HTML or XHTML", "bad arguments")
+        if not dtype in (DataFormat.HTML, DataFormat.XHTML, DataFormat.BINARY):\
+            raise RosetteException(dtype, "Must supply one of HTML, XHTML, or BINARY", "bad arguments")
         self.LoadDocumentString(open(path).read(), dtype)
 
     def LoadDocumentString(self, s, dtype):
@@ -175,7 +176,7 @@ class RosetteParameters(_RosetteParamSetBase):
         type is HTML or XHTML, bytes, not python Unicode, are expected,
         the encoding to be determined by the server.
         The document unit size remains (by default) L{InputUnit.DOC}.
-        @parameter string: A string, possibly a unicode-string, to be loaded
+        @parameter s: A string, possibly a unicode-string, to be loaded
         for subsequent analysis, as per the C{dtype}.
         @parameter dtype: The data type of the string, as per the C{enum} L{DataFormat}.
         @type dtype: L{DataFormat}
