@@ -117,7 +117,7 @@ op = api.sentences()
 result = op.operate(params)
 ##_
 printJson('/sentences',result)
-params = None
+
 
 #_translated_name
 from rosette.api import API, RntParameters
