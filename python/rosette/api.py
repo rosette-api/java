@@ -59,7 +59,7 @@ class DataFormat(Enum):
     """The data is a 'loose' HTML page; that is, it may not be HTML-compliant, or may even not really be HTML. The data must be a narrow (single-byte) string, not a python Unicode string, perhaps read from a file. (Of course, it can be UTF-8 encoded)."""
     XHTML = "application/xhtml+xml"
     """The data is a compliant XHTML page. The data must be a narrow (single-byte) string, not a python Unicode string, perhaps read from a file. (Of course, it can be UTF-8 encoded)."""
-    BINARY = "application/octet-stream"
+    UNSPECIFIED = "application/octet-stream"
     """The data is of unknown format, it may be a binary data type (the contents of a binary file), or may not.  It will be sent as is and identified and analyzed by the server."""
 
 class InputUnit(Enum):
@@ -152,21 +152,21 @@ class RosetteParameters(_RosetteParamSetBase):
         slz = self._forSerialize()
         if self["contentType"] is None and self["contentUri"] is None:
             slz["contentType"] = DataFormat.SIMPLE.value
-        elif self["contentType"] in (DataFormat.HTML, DataFormat.XHTML, DataFormat.BINARY):
+        elif self["contentType"] in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
             slz["content"] = base64.b64encode(slz["content"])
         return slz
 
-    def LoadDocumentFile(self, path, dtype):
+    def LoadDocumentFile(self, path, dtype=DataFormat.UNSPECIFIED):
         """Loads a file into the object.
         The file will be read as bytes; the appropriate conversion will
         be determined by the server.  The document unit size remains
         by default L{InputUnit.DOC}.
         @parameter path: Pathname of a file acceptable to the C{open} function.
-        @parameter dtype: One of L{DataFormat.HTML}, L{DataFormat.XHTML}, or L{DataFormat.BINARY}.  No other types are acceptable at this time, although HTML is broad enough to include text strings without markup. If the data type is unknown, or describes a binary file, use L{DataFormat.BINARY}.
+        @parameter dtype: One of L{DataFormat.HTML}, L{DataFormat.XHTML}, or L{DataFormat.UNSPECIFIED}.  No other types are acceptable at this time, although HTML is broad enough to include text strings without markup. If the data type is unknown, or describes a binary file, use the default (L{DataFormat.UNSPECIFIED}).
         @type dtype: L{DataFormat}
         """
-        if not dtype in (DataFormat.HTML, DataFormat.XHTML, DataFormat.BINARY):\
-            raise RosetteException(dtype, "Must supply one of HTML, XHTML, or BINARY", "bad arguments")
+        if not dtype in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):\
+            raise RosetteException(dtype, "Must supply one of HTML, XHTML, or UNSPECIFIED", "bad arguments")
         self.LoadDocumentString(open(path).read(), dtype)
 
     def LoadDocumentString(self, s, dtype):

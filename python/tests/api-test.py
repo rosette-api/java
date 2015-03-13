@@ -71,10 +71,10 @@ class APITestCase(unittest.TestCase):
         params = RosetteParameters()
         params["content"] = HAM_SENTENCE
         self.HamParams = params
-        params = RosetteParameters()
-        params["content"] = HAM_SENTENCE
-        params["contentType"] = DataFormat.BINARY
-        self.HamParamsB = params
+        uparams = RosetteParameters()
+        uparams["content"] = HAM_SENTENCE
+        uparams["contentType"] = DataFormat.UNSPECIFIED
+        self.HamParamsU = uparams
 
         DtHTMLParams = RosetteParameters()
         DtHTMLParams["content"] = HAM_SENTENCE
@@ -144,12 +144,11 @@ class APITestCase(unittest.TestCase):
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
 
-    def test_morphologyBinary(self):
+    def test_morphologyUnspecified(self):
         op = self.api.morphology() #test default
-        result = op.operate(self.HamParamsB)
+        result = op.operate(self.HamParamsU)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
-
 
     def test_morphology_PseudoHTML(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)

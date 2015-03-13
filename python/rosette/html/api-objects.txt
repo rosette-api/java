@@ -234,10 +234,10 @@ rosette.api.API.morphology	rosette.api.API-class.html#morphology
 rosette.api.API.__init__	rosette.api.API-class.html#__init__
 rosette.api.DataFormat	rosette.api.DataFormat-class.html
 rosette.api.DataFormat.SIMPLE	rosette.api.DataFormat-class.html#SIMPLE
-rosette.api.DataFormat.BINARY	rosette.api.DataFormat-class.html#BINARY
 rosette.api.DataFormat.JSON	rosette.api.DataFormat-class.html#JSON
 rosette.api.DataFormat.HTML	rosette.api.DataFormat-class.html#HTML
 rosette.api.DataFormat.XHTML	rosette.api.DataFormat-class.html#XHTML
+rosette.api.DataFormat.UNSPECIFIED	rosette.api.DataFormat-class.html#UNSPECIFIED
 rosette.api.InputUnit	rosette.api.InputUnit-class.html
 rosette.api.InputUnit.DOC	rosette.api.InputUnit-class.html#DOC
 rosette.api.InputUnit.SENTENCE	rosette.api.InputUnit-class.html#SENTENCE
