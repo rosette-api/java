@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import json
+def printJson(endpoint, result):
+    print endpoint
+    print json.dumps(result,indent=4, separators=(',', ': '))
 
 #_ping
 from rosette.api import API, RosetteParameters
@@ -7,7 +11,7 @@ api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="123456
 op = api.ping()
 result = op.ping()
 ##_
-print result
+printJson('/ping',result)
 
 #_entities
 from rosette.api import API, RosetteParameters
@@ -18,7 +22,8 @@ params["content"] = u"The first men to reach the moon -- Mr. Armstrong and his c
 op = api.entities(None) # entity linking is turned off
 result = op.operate(params)
 ##_
-print result
+printJson('/entities',result)
+
 
 #_entities_linked
 from rosette.api import API, RosetteParameters
@@ -29,7 +34,8 @@ params["content"] = u"The first men to reach the moon -- Mr. Armstrong and his c
 op = api.entities(True) # entity linking is turned on
 result = op.operate(params)
 ##_
-print result
+printJson('entities/linked',result)
+
 
 #_categories
 from rosette.api import API, RosetteParameters
@@ -40,7 +46,8 @@ params["content"] = u"We need to spend several weeks fixing up our family tennis
 op = api.categories()
 result = op.operate(params)
 ##_
-print result
+printJson('/categores', result)
+
 
 #_sentiment
 from rosette.api import API, RosetteParameters
@@ -51,7 +58,8 @@ params["content"] = u"We are looking forward to the upcoming release."
 op = api.sentiment()
 result = op.operate(params)
 ##_
-print result
+printJson('/sentiment',result)
+
 
 #_language
 from rosette.api import API, RosetteParameters
@@ -62,7 +70,8 @@ params["content"] = u"The quick brown fox jumped over the lazy dog. Yes he did."
 op = api.language()
 result = op.operate(params)
 ##_
-print result
+printJson('/language',result)
+
 
 #_morpho_complete
 from rosette.api import API, RosetteParameters
@@ -72,7 +81,8 @@ params["content"] = u"The quick brown fox jumped over the lazy dog. Yes he did."
 op = api.morphology()
 result = op.operate(params)
 ##_
-print result
+printJson('/morphology/complete',result)
+
 
 #_morpho_han_readings
 from rosette.api import API, RosetteParameters, MorphologyOutput
@@ -82,7 +92,8 @@ params["content"] = u"新华网联合国１月２２日电（记者 白洁　王
 op = api.morphology(MorphologyOutput.HAN_READINGS)
 result = op.operate(params)
 ##_
-print result
+printJson('/morphology/han_readings',result)
+
 
 #_tokens
 from rosette.api import API, RosetteParameters
@@ -93,7 +104,8 @@ params["content"] = u"The brown fox's mother jumped over 3 lazy dogs. Yes she di
 op = api.tokens()
 result = op.operate(params)
 ##_
-print result
+printJson('/tokens',result)
+
 
 #_sentences
 from rosette.api import API, RosetteParameters
@@ -104,7 +116,8 @@ params["content"] = u"The brown fox's mother jumped over 3 lazy dogs. Yes she di
 op = api.sentences()
 result = op.operate(params)
 ##_
-print result
+printJson('/sentences',result)
+params = None
 
 #_translated_name
 from rosette.api import API, RntParameters
@@ -112,9 +125,10 @@ from rosette.api import API, RntParameters
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
 params = RntParameters()
 params["name"] = u"كريم عبد الجبار"
-params["entityType"] = "PERSON";
-params["targetLanguage"] = "eng";
-op = api.translated_name();
+params["entityType"] = "PERSON"
+params["targetLanguage"] = "eng"
+op = api.translated_name()
 result = op.operate(params)
 ##_
-print result
+printJson('/translated_name',result)
+
