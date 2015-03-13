@@ -215,8 +215,7 @@ class RntParameters(_RosetteParamSetBase):
 
     def __init__(self):
         _RosetteParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin",
-                                             "sourceLanguageOfUse", "sourceScript", "targetLanguage", "targetScript",
-                                             "targetScheme"))
+                                             "sourceLanguageOfUse", "sourceScript", "targetScript", "targetScheme"))
 
     def _serializable(self):
         for n in ("name", "targetLanguage"):  # required

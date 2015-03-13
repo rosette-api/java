@@ -16,7 +16,7 @@
 
 import unittest
 import logging
-from rosette.api import API, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput
+from rosette.api import API, RosetteParameters, RntParameters, DataFormat, MorphologyOutput
 import os
 
 XHTML = """
@@ -46,7 +46,7 @@ MORPHO_EXPECTED_POSES = [u'NOUN', u'CM', u'NOUN', u'VBPRES', u'SENT', u'ADJ', u'
                          u'PRONPERS', u'VBPRES', u'PROP', u'SENT', u'PRONPERS', u'VI', u'PROP', u'SENT']
 MORPHO_EXPECTED_LEMMAS = [u'yes', u',', u'ma', u'be', u'!', u'green', u'egg', u'and', u'ham', u'?', u'I', u'be',
                           u'Sam', u';', u'I', u'filter', u'Spam', u'.']
-MORPHOX_EXPECTED_POSES = [u'DET', u'NOUN', u'PREP', u'PROP', u'NOUN', # last wrong
+MORPHOX_EXPECTED_POSES = [u'DET', u'NOUN', u'PREP', u'PROP', u'NOUN',  # last wrong
                           u'ADV', u'PREP', u'DET', u'NOUN', u'SENT']
 CHINESE_HEAD_TAGS = [u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS',
                      u'GUESS', u'GUESS', u'NC', u'V', u'V', u'E', u'NN', u'NC', u'A', u'NC', u'GUESS', u'GUESS',
@@ -71,7 +71,7 @@ class APITestCase(unittest.TestCase):
             self.url = burl
         key = os.getenv('RAAS_USER_KEY')  # c/b None
         logging.info("URL " + self.url)
-        self.api = API(service_url = self.url, user_key = key)
+        self.api = API(service_url=self.url, user_key=key)
         params = RosetteParameters()
         params["content"] = HAM_SENTENCE
         self.HamParams = params
@@ -80,16 +80,15 @@ class APITestCase(unittest.TestCase):
         uparams["contentType"] = DataFormat.UNSPECIFIED
         self.HamParamsU = uparams
 
-        DtHTMLParams = RosetteParameters()
-        DtHTMLParams["content"] = HAM_SENTENCE
-        DtHTMLParams["contentType"] = DataFormat.HTML  # grosse Luege
-        self.DtHTMLParams = DtHTMLParams
+        dt_html_params = RosetteParameters()
+        dt_html_params["content"] = HAM_SENTENCE
+        dt_html_params["contentType"] = DataFormat.HTML  # grosse Luege
+        self.dt_html_params = dt_html_params
 
-
-        DtXHTMLParams = RosetteParameters()
-        DtXHTMLParams["content"] = XHTML
-        DtXHTMLParams["contentType"] = DataFormat.XHTML
-        self.DtXHTMLParams = DtXHTMLParams
+        dt_xhtml_params = RosetteParameters()
+        dt_xhtml_params["content"] = XHTML
+        dt_xhtml_params["contentType"] = DataFormat.XHTML
+        self.dt_xhtml_params = dt_xhtml_params
 
         params = RosetteParameters()
         params["content"] = u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote,\
@@ -100,7 +99,7 @@ class APITestCase(unittest.TestCase):
         params["contentUri"] = "http://www.basistech.com/"
         self.UriParams = params
 
-        (directory, fname) = os.path.split(os.path.realpath(__file__))
+        (directory, file_name) = os.path.split(os.path.realpath(__file__))
         self.dir = directory
 
     def test_ping(self):
@@ -137,8 +136,8 @@ class APITestCase(unittest.TestCase):
 
     def test_morphology_File(self):
         parms = RosetteParameters()
-        textpath = os.path.join(self.dir, "chinese-example.html")
-        parms.LoadDocumentFile(textpath, DataFormat.HTML)
+        text_path = os.path.join(self.dir, "chinese-example.html")
+        parms.LoadDocumentFile(text_path, DataFormat.HTML)
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
         result = op.operate(parms)
         tags = map(lambda x: x["pos"], result["posTags"])
@@ -158,21 +157,21 @@ class APITestCase(unittest.TestCase):
 
     def test_morphology_PseudoHTML(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
-        result = op.operate(self.DtHTMLParams)
+        result = op.operate(self.dt_html_params)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHO_EXPECTED_POSES)
 
     def test_morphology_XHTML(self):
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
-        result = op.operate(self.DtXHTMLParams)
+        result = op.operate(self.dt_xhtml_params)
         presult = [x['pos'] for x in result['posTags']]
         self.assertEqual(presult, MORPHOX_EXPECTED_POSES)
 
     def test_morphology_lemmas(self):
         op = self.api.morphology(MorphologyOutput.LEMMAS)
         result = op.operate(self.HamParams)
-        lresult = [x['lemma'] for x in result['lemmas']]
-        self.assertEqual(lresult, MORPHO_EXPECTED_LEMMAS)
+        lemma_result = [x['lemma'] for x in result['lemmas']]
+        self.assertEqual(lemma_result, MORPHO_EXPECTED_LEMMAS)
 
     def test_entities(self):
         op = self.api.entities(None)  # "linked" flag
