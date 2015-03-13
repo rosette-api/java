@@ -137,7 +137,7 @@ class APITestCase(unittest.TestCase):
     def test_morphology_File(self):
         parms = RosetteParameters()
         text_path = os.path.join(self.dir, "chinese-example.html")
-        parms.LoadDocumentFile(text_path, DataFormat.HTML)
+        parms.load_document_file(text_path, DataFormat.HTML)
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
         result = op.operate(parms)
         tags = map(lambda x: x["pos"], result["posTags"])

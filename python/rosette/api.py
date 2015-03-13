@@ -128,8 +128,8 @@ class RosetteParameters(_RosetteParamSetBase):
     translated_name.
     Four fields, C{content}, C{contentType}, C{unit}, and C{inputUri}, are set via
     the subscript operator, e.g., C{params["content"]}, or the
-    convenience instance methods L{RosetteParameters.LoadDocumentFile}
-    and L{RosetteParameters.LoadDocumentString}. The unit size and
+    convenience instance methods L{RosetteParameters.load_document_file}
+    and L{RosetteParameters.load_document_string}. The unit size and
     data format are defaulted to L{InputUnit.DOC} and L{DataFormat.SIMPLE}.
 
     Using subscripts instead of instance variables facilitates diagnosis.
@@ -171,7 +171,7 @@ class RosetteParameters(_RosetteParamSetBase):
             slz["content"] = base64.b64encode(slz["content"])
         return slz
 
-    def LoadDocumentFile(self, path, data_type=DataFormat.UNSPECIFIED):
+    def load_document_file(self, path, data_type=DataFormat.UNSPECIFIED):
         """Loads a file into the object.
         The file will be read as bytes; the appropriate conversion will
         be determined by the server.  The document unit size remains
@@ -185,9 +185,9 @@ class RosetteParameters(_RosetteParamSetBase):
         """
         if data_type not in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
             raise RosetteException(data_type, "Must supply one of HTML, XHTML, or UNSPECIFIED", "bad arguments")
-        self.LoadDocumentString(open(path).read(), data_type)
+        self.load_document_string(open(path).read(), data_type)
 
-    def LoadDocumentString(self, s, data_type):
+    def load_document_string(self, s, data_type):
         """Loads a string into the object.
         The string will be taken as bytes or as Unicode dependent upon
         its native python type and the data type asked for; if the
