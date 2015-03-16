@@ -65,19 +65,19 @@ _RosetteParamSetBase --+
 <p>Parameter object for all operations requiring input other than 
   translated_name. Four fields, <code>content</code>, 
   <code>contentType</code>, <code>unit</code>, and <code>inputUri</code>, 
-  are set via the subscripting operator, e.g., 
+  are set via the subscript operator, e.g., 
   <code>params[&quot;content&quot;]</code>, or the convenience instance 
   methods <a 
-  href="rosette.api.RosetteParameters-class.html#LoadDocumentFile" 
-  class="link">RosetteParameters.LoadDocumentFile</a> and <a 
-  href="rosette.api.RosetteParameters-class.html#LoadDocumentString" 
-  class="link">RosetteParameters.LoadDocumentString</a>. The unit size and 
-  data format are defaulted to <a 
+  href="rosette.api.RosetteParameters-class.html#load_document_file" 
+  class="link">RosetteParameters.load_document_file</a> and <a 
+  href="rosette.api.RosetteParameters-class.html#load_document_string" 
+  class="link">RosetteParameters.load_document_string</a>. The unit size 
+  and data format are defaulted to <a 
   href="rosette.api.InputUnit-class.html#DOC" 
   class="link">InputUnit.DOC</a> and <a 
   href="rosette.api.DataFormat-class.html#SIMPLE" 
   class="link">DataFormat.SIMPLE</a>.</p>
-  <p>Using subscripting instead of instance variables facilitates 
+  <p>Using subscripts instead of instance variables facilitates 
   diagnosis.</p>
   <p>If the field <code>contentUri</code> is set to the URL of a web page 
   (only protocols <code>http, https, ftp, ftps</code> are accepted), the 
@@ -116,12 +116,12 @@ _RosetteParamSetBase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="rosette.api.RosetteParameters-class.html#LoadDocumentFile" class="summary-sig-name">LoadDocumentFile</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="rosette.api.RosetteParameters-class.html#load_document_file" class="summary-sig-name">load_document_file</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">path</span>,
-        <span class="summary-sig-arg">dtype</span>)</span><br />
+        <span class="summary-sig-arg">data_type</span>=<span class="summary-sig-default">DataFormat.UNSPECIFIED</span>)</span><br />
       Loads a file into the object.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="rosette.api-pysrc.html#RosetteParameters.LoadDocumentFile">source&nbsp;code</a></span>
+            <span class="codelink"><a href="rosette.api-pysrc.html#RosetteParameters.load_document_file">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -135,12 +135,12 @@ _RosetteParamSetBase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="rosette.api.RosetteParameters-class.html#LoadDocumentString" class="summary-sig-name">LoadDocumentString</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="rosette.api.RosetteParameters-class.html#load_document_string" class="summary-sig-name">load_document_string</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">s</span>,
-        <span class="summary-sig-arg">dtype</span>)</span><br />
+        <span class="summary-sig-arg">data_type</span>)</span><br />
       Loads a string into the object.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="rosette.api-pysrc.html#RosetteParameters.LoadDocumentString">source&nbsp;code</a></span>
+            <span class="codelink"><a href="rosette.api-pysrc.html#RosetteParameters.load_document_string">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -194,19 +194,19 @@ _RosetteParamSetBase --+
   </dl>
 </td></tr></table>
 </div>
-<a name="LoadDocumentFile"></a>
+<a name="load_document_file"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">LoadDocumentFile</span>(<span class="sig-arg">self</span>,
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">load_document_file</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">path</span>,
-        <span class="sig-arg">dtype</span>)</span>
+        <span class="sig-arg">data_type</span>=<span class="sig-default">DataFormat.UNSPECIFIED</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="rosette.api-pysrc.html#RosetteParameters.LoadDocumentFile">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="rosette.api-pysrc.html#RosetteParameters.load_document_file">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -219,30 +219,35 @@ _RosetteParamSetBase --+
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>path</code></strong> - Pathname of a file acceptable to the <code>open</code> function.</li>
-        <li><strong class="pname"><code>dtype</code></strong> (<a href="rosette.api.DataFormat-class.html" 
+        <li><strong class="pname"><code>data_type</code></strong> (<a href="rosette.api.DataFormat-class.html" 
           class="link">DataFormat</a>) - One of <a href="rosette.api.DataFormat-class.html#HTML" 
-          class="link">DataFormat.HTML</a> or <a 
+          class="link">DataFormat.HTML</a>, <a 
           href="rosette.api.DataFormat-class.html#XHTML" 
-          class="link">DataFormat.XHTML</a>.  No other types are acceptable
-          at this time, although HTML is broad enough to include text 
-          strings without markup.</li>
+          class="link">DataFormat.XHTML</a>, or <a 
+          href="rosette.api.DataFormat-class.html#UNSPECIFIED" 
+          class="link">DataFormat.UNSPECIFIED</a>. No other types are 
+          acceptable at this time, although HTML is broad enough to include
+          text strings without markup. If the data type is unknown, or 
+          describes a binary file, use the default (<a 
+          href="rosette.api.DataFormat-class.html#UNSPECIFIED" 
+          class="link">DataFormat.UNSPECIFIED</a>).</li>
     </ul></dd>
   </dl>
 </td></tr></table>
 </div>
-<a name="LoadDocumentString"></a>
+<a name="load_document_string"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">LoadDocumentString</span>(<span class="sig-arg">self</span>,
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">load_document_string</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">s</span>,
-        <span class="sig-arg">dtype</span>)</span>
+        <span class="sig-arg">data_type</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="rosette.api-pysrc.html#RosetteParameters.LoadDocumentString">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="rosette.api-pysrc.html#RosetteParameters.load_document_string">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -255,9 +260,9 @@ _RosetteParamSetBase --+
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>string</code></strong> - A string, possibly a unicode-string, to be loaded for subsequent 
-          analysis, as per the <code>dtype</code>.</li>
-        <li><strong class="pname"><code>dtype</code></strong> (<a href="rosette.api.DataFormat-class.html" 
+        <li><strong class="pname"><code>s</code></strong> - A string, possibly a unicode-string, to be loaded for subsequent 
+          analysis, as per the <code>data_type</code>.</li>
+        <li><strong class="pname"><code>data_type</code></strong> (<a href="rosette.api.DataFormat-class.html" 
           class="link">DataFormat</a>) - The data type of the string, as per the <code>enum</code> <a 
           href="rosette.api.DataFormat-class.html" 
           class="link">DataFormat</a>.</li>
@@ -293,7 +298,7 @@ _RosetteParamSetBase --+
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Fri Mar  6 09:07:06 2015
+    on Mon Mar 16 10:43:58 2015
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

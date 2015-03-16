@@ -2,15 +2,20 @@
 
 import os, sys, codecs
 
+encoding = "# -*- coding: utf-8 -*-\n"
+nonascii = ['morpho_han_readings', 'translated_name']
+
 def parse(pyfile,docdir):
     start = '#_'
     end = '##_'
     snip = False
     for line in pyfile:
         if line.lstrip().startswith(start):
-            f = line.lstrip().lstrip(start).rstrip() + '.py'
-            snippet = os.path.join(docdir, f)
+            f = line.lstrip().lstrip(start).rstrip()
+            snippet = os.path.join(docdir, f + '.py')
             out = codecs.open(snippet, 'w', 'utf8')
+            if f in nonascii:
+                out.write(encoding)
             snip = True
         elif snip:
             if line.lstrip().startswith(end):
@@ -28,6 +33,8 @@ def main():
     else:
         print >>sys.stderr, 'Usage: %s samplesdir docdir' % sys.argv[0]
         sys.exit(1)    
+    if not(os.path.isdir(docdir)):
+        os.makedirs(docdir, mode=0777)
     files = os.listdir(samplesdir)
     for f in files:
         if f.endswith('.py'):

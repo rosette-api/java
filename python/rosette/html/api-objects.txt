@@ -9,6 +9,9 @@ rosette.LanguageCode.languageCodeByISO639	rosette.LanguageCode-module.html#langu
 rosette.LanguageCode.languageCodeByISO639_1	rosette.LanguageCode-module.html#languageCodeByISO639_1
 rosette.api	rosette.api-module.html
 rosette.api.VALID_SCHEMES	rosette.api-module.html#VALID_SCHEMES
+rosette.api._version	rosette.api-module.html#_version
+rosette.api._dictionary	rosette.api-module.html#_dictionary
+rosette.api._validate_uri	rosette.api-module.html#_validate_uri
 rosette.ISO15924.ISO15924	rosette.ISO15924.ISO15924-class.html
 rosette.ISO15924.ISO15924.Guru	rosette.ISO15924.ISO15924-class.html#Guru
 rosette.ISO15924.ISO15924.Hebr	rosette.ISO15924.ISO15924-class.html#Hebr
@@ -225,8 +228,8 @@ rosette.api.API.ping	rosette.api.API-class.html#ping
 rosette.api.API.translated_name	rosette.api.API-class.html#translated_name
 rosette.api.API.tokens	rosette.api.API-class.html#tokens
 rosette.api.API.entities	rosette.api.API-class.html#entities
-rosette.api.API._setUseMultipart	rosette.api.API-class.html#_setUseMultipart
 rosette.api.API.categories	rosette.api.API-class.html#categories
+rosette.api.API._set_use_multipart	rosette.api.API-class.html#_set_use_multipart
 rosette.api.API.sentences	rosette.api.API-class.html#sentences
 rosette.api.API.morphology	rosette.api.API-class.html#morphology
 rosette.api.API.__init__	rosette.api.API-class.html#__init__
@@ -235,6 +238,7 @@ rosette.api.DataFormat.SIMPLE	rosette.api.DataFormat-class.html#SIMPLE
 rosette.api.DataFormat.JSON	rosette.api.DataFormat-class.html#JSON
 rosette.api.DataFormat.HTML	rosette.api.DataFormat-class.html#HTML
 rosette.api.DataFormat.XHTML	rosette.api.DataFormat-class.html#XHTML
+rosette.api.DataFormat.UNSPECIFIED	rosette.api.DataFormat-class.html#UNSPECIFIED
 rosette.api.InputUnit	rosette.api.InputUnit-class.html
 rosette.api.InputUnit.DOC	rosette.api.InputUnit-class.html#DOC
 rosette.api.InputUnit.SENTENCE	rosette.api.InputUnit-class.html#SENTENCE
@@ -247,8 +251,8 @@ rosette.api.MorphologyOutput.COMPLETE	rosette.api.MorphologyOutput-class.html#CO
 rosette.api.Operator	rosette.api.Operator-class.html
 rosette.api.Operator.info	rosette.api.Operator-class.html#info
 rosette.api.Operator.ping	rosette.api.Operator-class.html#ping
-rosette.api.Operator._setUseMultipart	rosette.api.Operator-class.html#_setUseMultipart
 rosette.api.Operator.__init__	rosette.api.Operator-class.html#__init__
+rosette.api.Operator._set_use_multipart	rosette.api.Operator-class.html#_set_use_multipart
 rosette.api.Operator.operate	rosette.api.Operator-class.html#operate
 rosette.api.Operator.__finish_result	rosette.api.Operator-class.html#__finish_result
 rosette.api.RntParameters	rosette.api.RntParameters-class.html
@@ -259,7 +263,6 @@ rosette.api.RosetteException.__str__	rosette.api.RosetteException-class.html#__s
 rosette.api.RosetteException.__init__	rosette.api.RosetteException-class.html#__init__
 rosette.api.RosetteParameters	rosette.api.RosetteParameters-class.html
 rosette.api.RosetteParameters._serializable	rosette.api.RosetteParameters-class.html#_serializable
-rosette.api.RosetteParameters.LoadDocumentFile	rosette.api.RosetteParameters-class.html#LoadDocumentFile
-rosette.api.RosetteParameters.LoadDocumentString	rosette.api.RosetteParameters-class.html#LoadDocumentString
-rosette.api.RosetteParameters._validateUri	rosette.api.RosetteParameters-class.html#_validateUri
+rosette.api.RosetteParameters.load_document_file	rosette.api.RosetteParameters-class.html#load_document_file
+rosette.api.RosetteParameters.load_document_string	rosette.api.RosetteParameters-class.html#load_document_string
 rosette.api.RosetteParameters.__init__	rosette.api.RosetteParameters-class.html#__init__
