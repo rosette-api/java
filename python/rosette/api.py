@@ -214,7 +214,7 @@ class RntParameters(_RosetteParamSetBase):
 
     C{name} The name to be translated.
 
-    C{targetLangauge} The language into which the name is to be translated.
+    C{targetLanguage} The language into which the name is to be translated.
 
     C{entityType} The entity type (TBD) of the name.
 

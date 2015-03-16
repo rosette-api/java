@@ -87,7 +87,7 @@ Convenience operations
 	 dtype is an element of DataFormat
      This will load up a string declared as a "document" (not a sentence) input unit.
      
-     load_document_file(path,dtype=DataFormat.UNSPECIFIED)
+     load_document_file(path, dtype=DataFormat.UNSPECIFIED)
 	path is the pathname of a local file, which will be read as bytes, i.e..,
 	   not converted to Unicode.
 	dtype is an element of DataFormat, must be DataFormat.HTML,
