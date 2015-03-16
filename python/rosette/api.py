@@ -178,9 +178,8 @@ class RosetteParameters(_RosetteParamSetBase):
         by default L{InputUnit.DOC}.
         @parameter path: Pathname of a file acceptable to the C{open} function.
         @parameter data_type: One of L{DataFormat.HTML}, L{DataFormat.XHTML}, or L{DataFormat.UNSPECIFIED}.
-        No other types
-         are acceptable at this time, although HTML is broad enough to include text strings without markup.
-         If the data type is unknown, or describes a binary file, use the default (L{DataFormat.UNSPECIFIED}).
+        No other types are acceptable at this time, although HTML is broad enough to include text strings without markup.
+        If the data type is unknown, or describes a binary file, use the default (L{DataFormat.UNSPECIFIED}).
         @type data_type: L{DataFormat}
         """
         if data_type not in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
@@ -209,8 +208,25 @@ class RosetteParameters(_RosetteParamSetBase):
 
 class RntParameters(_RosetteParamSetBase):
     """Parameter object for C{translated_name} endpoint.
+    The following values may be set by the indexing (i.e.,C{ parms["name"]}) operator.  The values are all strings (when not C{None}).
+    All are optional except C{name} and C{targetLanguage}.  Scripts are in
+    ISO15924 codes, and languages in ISO639 (two- or three-letter) codes.  See the RNT documentation for more description of these terms, as well as the content of the return result.
 
-    See RNT documentation.
+    C{name} The name to be translated.
+
+    C{targetLangauge} The language into which the name is to be translated.
+
+    C{entityType} The entity type (TBD) of the name.
+
+    C{sourceLanguageOfOrigin} The language of origin of the name.
+
+    C{sourceLanguageOfUse} The language of use of the name.
+
+    C{sourceScript} The script in which the name is supplied.
+
+    C{targetScript} The script into which the name should be translated.
+
+    C{targetScheme} The transliteration scheme by which the translated name should be rendered.
     """
 
     def __init__(self):
