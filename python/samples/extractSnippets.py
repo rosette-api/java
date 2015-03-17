@@ -3,7 +3,7 @@
 import os, sys, codecs
 
 encoding = "# -*- coding: utf-8 -*-\n"
-nonascii = ['morpho_han_readings', 'translated_name']
+nonascii = ['morpho_han_readings', 'translated_name', 'overview']
 
 def parse(pyfile,docdir):
     start = '#_'
@@ -25,6 +25,8 @@ def parse(pyfile,docdir):
             else:
                 # put in the correct url for end users and the documentation.
                 line = line.replace('http://jugmaster.basistech.net', 'https://api.rosette.com', 1)
+                # a reasonable absolute path for a text file
+                line = line.replace('samples/fox.txt', '/Users/myuser/data/fox.txt', 1)
                 out.write(line)
 
 def main():

@@ -19,7 +19,7 @@ from rosette.api import API, RosetteParameters
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
 params = RosetteParameters()
 params["content"] = u"The first men to reach the moon -- Mr. Armstrong and his co-pilot, Col. Edwin E. Aldrin, Jr. of the Air Force -- brought their ship to rest on a level, rock-strewn plain near the southwestern shore of the arid Sea of Tranquility."
-op = api.entities(None) # entity linking is turned off
+op = api.entities(False) # entity linking is turned off
 result = op.operate(params)
 ##_
 printJson('/entities',result)
@@ -88,11 +88,15 @@ printJson('/morphology/complete',result)
 from rosette.api import API, RosetteParameters, MorphologyOutput
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
 params = RosetteParameters()
-params["content"] = u"新华网联合国１月２２日电（记者 白洁　王湘江）第６４届联合国大会２２日一致通过决议，呼吁１９２个成员国尽快响应联合国发起的海地救援紧急募捐呼吁，强调各国应对联合国主导的救灾工作予以支持。"
-op = api.morphology(MorphologyOutput.HAN_READINGS)
+params["content"] = u"Was ist so böse an der Europäischen Zentralbank?"
+op = api.morphology(MorphologyOutput.LEMMAS)
 result = op.operate(params)
 ##_
-printJson('/morphology/han_readings',result)
+import codecs
+out = codecs.open('deu.txt', 'w', 'utf-8')
+out.write(str(result))
+out.close()
+print result
 
 
 #_tokens
@@ -131,4 +135,26 @@ op = api.translated_name()
 result = op.operate(params)
 ##_
 printJson('/translated_name',result)
+
+#_multipart_form
+from rosette.api import API, RosetteParameters, DataFormat
+
+api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
+params = RosetteParameters()
+params.load_document_file("samples/fox.txt")
+op = api.sentences()
+result = op.operate(params)
+##_
+printJson("/sentences (multipart_form)",result)
+
+#_overview
+from rosette.api import API, RosetteParameters, MorphologyOutput
+
+api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
+params = RosetteParameters()
+params["content"] = u"Was ist so böse an der Europäischen Zentralbank?"
+op = api.morphology(MorphologyOutput.LEMMAS)
+result = op.operate(params)
+##_
+print 'overview\n', result, '\n'
 

@@ -1,3 +1,7 @@
 # run collection of doc samples, then extract the individual snippets
-bash ../src/scripts/run_in_venv.sh ../virtualenv/target/vroot ../virtualenv/target/vroot/bin/python src/docsamples.py
+cp src/docsamples.py ..
+cd ..
+python docsamples.py 
+rm docsamples.py
+cd samples
 python extractSnippets.py ./src ./target
