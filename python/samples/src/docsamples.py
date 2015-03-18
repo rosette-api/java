@@ -49,7 +49,7 @@ params = RosetteParameters()
 params["content"] = u"We need to spend several weeks fixing up our family tennis court."
 op = api.categories()
 result = op.operate(params)
-print("/categores: ", result)
+print("/categories: ", result)
 ##_
 
 
