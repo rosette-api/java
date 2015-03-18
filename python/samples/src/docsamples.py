@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-import json
+
+import sys, json
+# enable import from rosette.api
+sys.path += '../../'
+
 def printJson(endpoint, result):
     print endpoint
     print json.dumps(result,indent=4, separators=(',', ': '))
@@ -141,7 +145,7 @@ from rosette.api import API, RosetteParameters, DataFormat
 
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
 params = RosetteParameters()
-params.load_document_file("samples/fox.txt")
+params.load_document_file("data/fox.txt")
 op = api.sentences()
 result = op.operate(params)
 ##_
