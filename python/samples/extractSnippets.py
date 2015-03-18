@@ -14,6 +14,8 @@ def parse(pyfile,docdir):
             f = line.lstrip().lstrip(start).rstrip()
             snippet = os.path.join(docdir, f + '.py')
             out = codecs.open(snippet, 'w', 'utf8')
+            if f == 'overview':
+                out.write('#1\n')
             if f in nonascii:
                 out.write(encoding)
             snip = True

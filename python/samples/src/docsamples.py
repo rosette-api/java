@@ -7,6 +7,9 @@ sys.path += '../../'
 #_ping
 from rosette.api import API, RosetteParameters
 
+# Create an API with the "service_url" parameter providing 
+# the base URL for the Rosette services.
+
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
 op = api.ping()
 result = op.ping()
@@ -86,7 +89,6 @@ print("/morphology/complete: ", result)
 
 
 #_morpho_han_readings
-#_morpho_han_readings
 from rosette.api import API, RosetteParameters, MorphologyOutput
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
 params = RosetteParameters()
@@ -131,7 +133,7 @@ params["entityType"] = "PERSON"
 params["targetLanguage"] = "eng"
 op = api.translated_name()
 result = op.operate(params)
-print("/translated_name\n", result, "\n")
+print("/translated_name\n", result)
 ##_
 
 
@@ -148,12 +150,22 @@ print("/sentences (multipart_form): ", result)
 
 
 #_overview
+#2
 from rosette.api import API, RosetteParameters, MorphologyOutput
 
+#3
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
+
+#4
 params = RosetteParameters()
+
+#5
 params["content"] = u"Was ist so böse an der Europäischen Zentralbank?"
+
+#6
 op = api.morphology(MorphologyOutput.LEMMAS)
+
+#7
 result = op.operate(params)
 print("overview: ", result)
 ##_
