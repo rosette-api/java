@@ -20,6 +20,8 @@ from rosette.api import API, RosetteParameters, RntParameters, DataFormat, Morph
 import os
 import sys
 
+sys.stderr.write("PYTHON version " + sys.version + "\n")
+
 XHTML = """
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
