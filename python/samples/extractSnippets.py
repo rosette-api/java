@@ -25,8 +25,6 @@ def parse(pyfile,docdir):
             else:
                 # put in the correct url for end users and the documentation.
                 line = line.replace('http://jugmaster.basistech.net', 'https://api.rosette.com', 1)
-                # a reasonable absolute path for a text file
-                line = line.replace('data/fox.txt', '/Users/myuser/data/fox.txt', 1)
                 out.write(line)
 
 def main():

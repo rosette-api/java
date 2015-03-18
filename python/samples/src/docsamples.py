@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import sys, json
-# enable import from rosette.api
+import sys
+# enable imports from rosette.api
 sys.path += '../../'
-
-def printJson(endpoint, result):
-    print endpoint
-    print json.dumps(result,indent=4, separators=(',', ': '))
 
 #_ping
 from rosette.api import API, RosetteParameters
@@ -14,8 +10,9 @@ from rosette.api import API, RosetteParameters
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
 op = api.ping()
 result = op.ping()
+print("/ping: ", result)
 ##_
-printJson('/ping',result)
+
 
 #_entities
 from rosette.api import API, RosetteParameters
@@ -25,8 +22,8 @@ params = RosetteParameters()
 params["content"] = u"The first men to reach the moon -- Mr. Armstrong and his co-pilot, Col. Edwin E. Aldrin, Jr. of the Air Force -- brought their ship to rest on a level, rock-strewn plain near the southwestern shore of the arid Sea of Tranquility."
 op = api.entities(False) # entity linking is turned off
 result = op.operate(params)
+print("/entities: ", result)
 ##_
-printJson('/entities',result)
 
 
 #_entities_linked
@@ -37,8 +34,8 @@ params = RosetteParameters()
 params["content"] = u"The first men to reach the moon -- Mr. Armstrong and his co-pilot, Col. Edwin E. Aldrin, Jr. of the Air Force -- brought their ship to rest on a level, rock-strewn plain near the southwestern shore of the arid Sea of Tranquility."
 op = api.entities(True) # entity linking is turned on
 result = op.operate(params)
+print("/entities/linked: ", result)
 ##_
-printJson('entities/linked',result)
 
 
 #_categories
@@ -49,8 +46,8 @@ params = RosetteParameters()
 params["content"] = u"We need to spend several weeks fixing up our family tennis court."
 op = api.categories()
 result = op.operate(params)
+print("/categores: ", result)
 ##_
-printJson('/categores', result)
 
 
 #_sentiment
@@ -61,8 +58,8 @@ params = RosetteParameters()
 params["content"] = u"We are looking forward to the upcoming release."
 op = api.sentiment()
 result = op.operate(params)
+print("/sentiment: ", result)
 ##_
-printJson('/sentiment',result)
 
 
 #_language
@@ -73,8 +70,8 @@ params = RosetteParameters()
 params["content"] = u"The quick brown fox jumped over the lazy dog. Yes he did."
 op = api.language()
 result = op.operate(params)
+print("/language: ", result)
 ##_
-printJson('/language',result)
 
 
 #_morpho_complete
@@ -84,23 +81,20 @@ params = RosetteParameters()
 params["content"] = u"The quick brown fox jumped over the lazy dog. Yes he did."
 op = api.morphology()
 result = op.operate(params)
+print("/morphology/complete: ", result)
 ##_
-printJson('/morphology/complete',result)
 
 
+#_morpho_han_readings
 #_morpho_han_readings
 from rosette.api import API, RosetteParameters, MorphologyOutput
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
 params = RosetteParameters()
-params["content"] = u"Was ist so böse an der Europäischen Zentralbank?"
-op = api.morphology(MorphologyOutput.LEMMAS)
+params["content"] = u"新华网联合国１月２２日电（记者 白洁　王湘江）第６４届联合国大会２２日一致通过决议，呼吁１９２个成员国尽快响应联合国发起的海地救援紧急募捐呼吁，强调各国应对联合国主导的救灾工作予以支持。"
+op = api.morphology(MorphologyOutput.HAN_READINGS)
 result = op.operate(params)
+print("/morphology/han_readings: ", result)
 ##_
-import codecs
-out = codecs.open('deu.txt', 'w', 'utf-8')
-out.write(str(result))
-out.close()
-print result
 
 
 #_tokens
@@ -111,8 +105,8 @@ params = RosetteParameters()
 params["content"] = u"The brown fox's mother jumped over 3 lazy dogs. Yes she did."
 op = api.tokens()
 result = op.operate(params)
+print("/tokens: ", result)
 ##_
-printJson('/tokens',result)
 
 
 #_sentences
@@ -123,8 +117,8 @@ params = RosetteParameters()
 params["content"] = u"The brown fox's mother jumped over 3 lazy dogs. Yes she did."
 op = api.sentences()
 result = op.operate(params)
+print("/sentences: ", result)
 ##_
-printJson('/sentences',result)
 
 
 #_translated_name
@@ -137,8 +131,9 @@ params["entityType"] = "PERSON"
 params["targetLanguage"] = "eng"
 op = api.translated_name()
 result = op.operate(params)
+print("/translated_name\n", result, "\n")
 ##_
-printJson('/translated_name',result)
+
 
 #_multipart_form
 from rosette.api import API, RosetteParameters, DataFormat
@@ -148,8 +143,9 @@ params = RosetteParameters()
 params.load_document_file("data/fox.txt")
 op = api.sentences()
 result = op.operate(params)
+print("/sentences (multipart_form): ", result)
 ##_
-printJson("/sentences (multipart_form)",result)
+
 
 #_overview
 from rosette.api import API, RosetteParameters, MorphologyOutput
@@ -159,6 +155,6 @@ params = RosetteParameters()
 params["content"] = u"Was ist so böse an der Europäischen Zentralbank?"
 op = api.morphology(MorphologyOutput.LEMMAS)
 result = op.operate(params)
+print("overview: ", result)
 ##_
-print 'overview\n', result, '\n'
 
