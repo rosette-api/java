@@ -164,7 +164,28 @@
                                 <argument>build</argument>
                             </arguments>
                         </configuration>
+                     </execution>
+		     <execution>
+                        <id>epydoc</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>
+                                <argument>${run}</argument>
+                                <argument>${virtualenv}</argument>
+                                <argument>${epydoc}</argument>
+                                <argument>-v</argument>
+                                <argument>--no-private</argument>
+                                <argument>--no-frames</argument>				
+                                <argument>-o</argument>
+				<argument>${doctarget}</argument>
+				<argument>${documentables}</argument>
+                            </arguments>
+                        </configuration>
                     </execution>
+
 <!-- This causes more problems than it solves so far,
         since it leaves droppings in the virtualenv we have nothing
         'downstream' to consume them.
