@@ -150,22 +150,23 @@ print("/sentences (multipart_form): ", result)
 
 
 #_overview
-#2
+
+# 2. Imports from rosette.api.
 from rosette.api import API, RosetteParameters, MorphologyOutput
 
-#3
+# 3. Create API object.
 api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
 
-#4
+# 4. Create parameters object
 params = RosetteParameters()
 
-#5
+# 5. Set parameters.
 params["content"] = u"Was ist so böse an der Europäischen Zentralbank?"
 
-#6
+# 6. Create API operator.
 op = api.morphology(MorphologyOutput.LEMMAS)
 
-#7
+# 7. Execute operation.
 result = op.operate(params)
 print("overview: ", result)
 ##_
