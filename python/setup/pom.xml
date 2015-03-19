@@ -153,7 +153,23 @@
                     </environmentvariables>
                 </configuration>
                 <executions>
-                    <execution>
+                   <execution>
+                        <id>setup-clean py3</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>
+                                <argument>${run}</argument>
+                                <argument>${virtualenv3}</argument>
+                                <argument>${python3}</argument>
+                                <argument>setup.py</argument>
+                                <argument>clean</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                   <execution>
                         <id>setup-clean</id>
                         <phase>clean</phase>
                         <goals>
@@ -180,6 +196,22 @@
                                 <argument>${run}</argument>
                                 <argument>${virtualenv}</argument>
                                 <argument>${python}</argument>
+                                <argument>setup.py</argument>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+		     <execution>
+                        <id>setup build py3</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>
+                                <argument>${run}</argument>
+                                <argument>${virtualenv3}</argument>
+                                <argument>${python3}</argument>
                                 <argument>setup.py</argument>
                                 <argument>build</argument>
                             </arguments>
@@ -247,6 +279,29 @@
                             </environmentVariables>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>setuptools test py3</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${maven.test.skip}</skip>
+                            <arguments>
+                                <argument>${run}</argument>
+                                <argument>${virtualenv3}</argument>
+                                <argument>${python3}</argument>
+                                <argument>setup.py</argument>
+                                <argument>nosetests</argument>
+                            </arguments>
+                            <environmentVariables>
+                              <MOCK_SERVICE_PORT>${mock-service-port}</MOCK_SERVICE_PORT>
+			      <RAAS_SERVICE_URL>${raas-service-url}</RAAS_SERVICE_URL>
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
+
+
                 </executions>
             </plugin>
         </plugins>

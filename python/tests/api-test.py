@@ -18,6 +18,9 @@ import unittest
 import logging
 from rosette.api import API, RosetteParameters, RntParameters, DataFormat, MorphologyOutput
 import os
+import sys
+
+sys.stderr.write("PYTHON version " + sys.version + "\n")
 
 XHTML = """
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -59,6 +62,7 @@ CHINESE_HEAD_TAGS = [u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS', u'GUESS',
 class APITestCase(unittest.TestCase):
     def __init__(self, tcname):
         super(APITestCase, self).__init__(tcname)
+
         burl = os.getenv('RAAS_SERVICE_URL')
         if burl is not None:
             burl = burl.strip()
@@ -140,7 +144,7 @@ class APITestCase(unittest.TestCase):
         parms.load_document_file(text_path, DataFormat.HTML)
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
         result = op.operate(parms)
-        tags = map(lambda x: x["pos"], result["posTags"])
+        tags =list(map(lambda x: x["pos"], result["posTags"]))  # list for py3
         self.assertEqual(tags[0:len(CHINESE_HEAD_TAGS)], CHINESE_HEAD_TAGS)
 
     def test_morphology(self):

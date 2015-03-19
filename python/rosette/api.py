@@ -14,13 +14,22 @@ with `restricted rights' as those terms are defined in DAR and ASPR
 7-104.9(a).
 """
 
+import sys
+_IsPy3 = sys.version.startswith("3")
+
 import requests
 import logging
 import json
 import base64
+
+
+
 from enum import Enum
-from urlparse import urlparse
-import sys
+try:
+    from urlparse import urlparse
+except ImportError:
+    from urllib.parse import urlparse
+
 
 _dictionary = sys.modules["enum"].__dict__
 if "__version__" in _dictionary:
@@ -31,7 +40,9 @@ else:
     _version = (0, 0, 0)
 if isinstance(_version, str):
     _version = tuple(map(int, _version.split(".")))
-if _version < (1, 0, 4):
+if _IsPy3:
+    pass
+elif _version < (1, 0, 4):
     raise Exception("Version of Enum package not enum34 or better.")
 
 VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
@@ -122,6 +133,14 @@ def _validate_uri(uri):
     if '.' not in parsed.netloc:
         raise RosetteException("bad URI", "URI does not contain a fully qualified hostname or IP address.", uri)
 
+def _byteify (s):  # py 3 only
+    l = len(s)
+    b = bytearray(l)
+    for i in range(l):
+        oc = ord(s[i])
+        assert (oc < 256)
+        b[i] = oc
+    return b
 
 class RosetteParameters(_RosetteParamSetBase):
     """Parameter object for all operations requiring input other than
@@ -168,7 +187,14 @@ class RosetteParameters(_RosetteParamSetBase):
         if self["contentType"] is None and self["contentUri"] is None:
             slz["contentType"] = DataFormat.SIMPLE.value
         elif self["contentType"] in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
-            slz["content"] = base64.b64encode(slz["content"])
+            content = slz["content"]
+            if _IsPy3 and isinstance(content, str):
+                content = _byteify(content)
+
+            encoded = base64.b64encode(content)
+            if _IsPy3:
+                encoded = encoded.decode("utf-8")  #if py3, need chars.
+            slz["content"] = encoded
         return slz
 
     def load_document_file(self, path, data_type=DataFormat.UNSPECIFIED):
@@ -184,7 +210,7 @@ class RosetteParameters(_RosetteParamSetBase):
         """
         if data_type not in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
             raise RosetteException(data_type, "Must supply one of HTML, XHTML, or UNSPECIFIED", "bad arguments")
-        self.load_document_string(open(path).read(), data_type)
+        self.load_document_string(open(path, "rb").read(), data_type)
 
     def load_document_string(self, s, data_type):
         """Loads a string into the object.
@@ -214,7 +240,7 @@ class RntParameters(_RosetteParamSetBase):
 
     C{name} The name to be translated.
 
-    C{targetLanguage} The language into which the name is to be translated.
+    C{targetLangauge} The language into which the name is to be translated.
 
     C{entityType} The entity type (TBD) of the name.
 

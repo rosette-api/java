@@ -30,6 +30,21 @@
                             </arguments>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>virtualenv3-setup</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>bash</executable>
+                            <workingDirectory>${basedir}</workingDirectory>
+                            <arguments>
+                                <argument>scripts/venv3.sh</argument>
+                                <argument>${virtualenv3}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
