@@ -2,8 +2,8 @@
 
 import os, sys, codecs
 
-encoding = "# -*- coding: utf-8 -*-\n"
-nonascii = ['morpho_han_readings', 'translated_name']
+encoding = '# -*- coding: utf-8 -*-\n'
+nonascii = ['morpho_han_readings', 'translated_name', 'overview']
 
 def parse(pyfile,docdir):
     start = '#_'
@@ -14,6 +14,8 @@ def parse(pyfile,docdir):
             f = line.lstrip().lstrip(start).rstrip()
             snippet = os.path.join(docdir, f + '.py')
             out = codecs.open(snippet, 'w', 'utf8')
+            if f == 'overview':
+                out.write('# 1. Set utf-8 encoding.\n')
             if f in nonascii:
                 out.write(encoding)
             snip = True
