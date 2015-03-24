@@ -92,58 +92,6 @@
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.9.1</version>
-                <executions>
-                    <execution>
-                        <id>reserve-network-port</id>
-                        <goals>
-                            <goal>reserve-network-port</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <portNames>
-                                <portName>mock-service-port</portName>
-                            </portNames>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.mock-server</groupId>
-                <artifactId>mockserver-maven-plugin</artifactId>
-                <version>3.6.2</version>
-                <configuration>
-                    <serverPort>${mock-service-port}</serverPort>
-                    <logLevel>DEBUG</logLevel>
-                    <initializationClass>com.basistech.webservices.mock.RaasMockServices</initializationClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>process-test-classes</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>verify</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.basistech.ws</groupId>
-                        <artifactId>ws-bus-mock-web-service</artifactId>
-                        <version>0.1.1</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
                     <executable>bash</executable>
@@ -216,7 +164,28 @@
                                 <argument>build</argument>
                             </arguments>
                         </configuration>
+                     </execution>
+		     <execution>
+                        <id>epydoc</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>
+                                <argument>${run}</argument>
+                                <argument>${virtualenv}</argument>
+                                <argument>${epydoc}</argument>
+                                <argument>-v</argument>
+                                <argument>--no-private</argument>
+                                <argument>--no-frames</argument>				
+                                <argument>-o</argument>
+				<argument>${doctarget}</argument>
+				<argument>${documentables}</argument>
+                            </arguments>
+                        </configuration>
                     </execution>
+
 <!-- This causes more problems than it solves so far,
         since it leaves droppings in the virtualenv we have nothing
         'downstream' to consume them.
