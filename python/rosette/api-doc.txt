@@ -105,7 +105,6 @@ return result (as of this writing) has to be retrieved from the "result" entry o
         op = api.translated_name();
         params = RntParameters()
         params["name"] = "كريم عبد الجبار"
-        params["entityType"] = "PERSON";
         params["targetLanguageCode"] = "eng";
         result = op.operate(params)
         result = result["result"]

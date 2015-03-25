@@ -9,6 +9,5 @@ rm -rf $vroot
 virtualenv -p python3 $vroot
 . $vroot/bin/activate
 pip install nose
-pip install requests
 pip install enum34
 easy_install nose-pathmunge

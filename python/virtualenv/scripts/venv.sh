@@ -10,6 +10,5 @@ virtualenv $vroot
 . $vroot/bin/activate
 pip install nose
 pip install epydoc
-pip install requests
 pip install enum34
 easy_install nose-pathmunge

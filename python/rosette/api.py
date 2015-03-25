@@ -18,7 +18,6 @@ _ACCEPTABLE_SERVER_VERSION = "0.5"
 import sys
 _IsPy3 = sys.version.startswith("3")
 
-import requests
 import logging
 import json
 import base64
@@ -387,7 +386,7 @@ class Operator:
         headers = {'Accept': 'application/json'}
         if self.user_key is not None:
             headers["user_key"] = self.user_key
-        r = requests.get(url, headers=headers)
+        r = _get_http(url, headers=headers)
         return self.__finish_result(r, "ping")
 
     def operate(self, parameters):
@@ -438,8 +437,7 @@ class API:
     Call instance methods upon this object to obtain L{Operator} objects
     which can communicate with particular Rosette server endpoints.
 
-    This binding requires the 'requests' package (U{http://docs.python-requests.org/}),
-    as well as the python C{enum34} package, to be locally installed.
+    This binding requires the C{enum34} package to be locally installed.
     """
     def __init__(self, user_key=None, service_url='http://api.rosette.com/rest/v1'):
         """ Create an L{API} object.
