@@ -57,6 +57,12 @@ class _ReturnObject:
     def json(self):
         return self._json
 
+def _my_loads(obj):
+    if _IsPy3:
+        return json.loads(obj.decode("utf-8"))  #if py3, need chars.
+    else:
+        return json.loads(obj)
+
 def _get_http(url, headers):
     conn = httplib.HTTPConnection(urlparse(url).netloc)
     #  Might signal socket.err
@@ -64,7 +70,7 @@ def _get_http(url, headers):
     response = conn.getresponse()
     rdata = response.read()
     conn.close()
-    return _ReturnObject(json.loads(rdata), response.status)
+    return _ReturnObject(_my_loads(rdata), response.status)
 
 def _put_http(url, data, headers):
     conn = httplib.HTTPConnection(urlparse(url).netloc)
@@ -77,11 +83,11 @@ def _put_http(url, data, headers):
     response = conn.getresponse()
     rdata = response.read()
     try:
-        json.loads(rdata)
+        _my_loads(rdata)
     except ValueError:
         print >>sys.stderr, "rdata no obj: ", response.__dict__, "RDATA:", rdata
     conn.close()
-    return _ReturnObject(json.loads(rdata), response.status)
+    return _ReturnObject(_my_loads(rdata), response.status)
 
 
 VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
