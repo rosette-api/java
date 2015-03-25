@@ -24,12 +24,15 @@ import json
 import base64
 
 
-
 from enum import Enum
 try:
     from urlparse import urlparse
 except ImportError:
     from urllib.parse import urlparse
+try:
+    import httplib
+except ImportError:
+    import http.client as httplib
 
 
 _dictionary = sys.modules["enum"].__dict__
@@ -45,6 +48,41 @@ if _IsPy3:
     pass
 elif _version < (1, 0, 4):
     raise Exception("Version of Enum package not enum34 or better.")
+
+
+class _ReturnObject:
+    def __init__(self, js, code):
+        self._json = js
+        self.status_code = code
+    def json(self):
+        return self._json
+
+def _get_http(url, headers):
+    conn = httplib.HTTPConnection(urlparse(url).netloc)
+    #  Might signal socket.err
+    conn.request("GET", url, None, headers)
+    response = conn.getresponse()
+    rdata = response.read()
+    conn.close()
+    return _ReturnObject(json.loads(rdata), response.status)
+
+def _put_http(url, data, headers):
+    conn = httplib.HTTPConnection(urlparse(url).netloc)
+    #  Might signal socket.err
+    if data is None:
+        json_data = ""
+    else:
+        json_data = json.dumps(data)
+    conn.request("POST", url, json_data, headers)
+    response = conn.getresponse()
+    rdata = response.read()
+    try:
+        json.loads(rdata)
+    except ValueError:
+        print >>sys.stderr, "rdata no obj: ", response.__dict__, "RDATA:", rdata
+    conn.close()
+    return _ReturnObject(json.loads(rdata), response.status)
+
 
 VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
 
@@ -305,8 +343,12 @@ class Operator:
                 msg = the_json['message']
             else:
                 msg = the_json['code']  # punt if can't get real message
-            raise RosetteException(code,
-                                   '"' + ename + '" "' + self.suburl + "\" failed to communicate with Rosette",
+            if self.suburl is None:
+                complaint_url = "Top level info"
+            else:
+                complaint_url = ename + " " + self.suburl
+
+            raise RosetteException(code, complaint_url + " : failed to communicate with Rosette",
                                    msg)
 
     def _set_use_multipart(self, value):
@@ -325,7 +367,7 @@ class Operator:
         headers = {'Accept': 'application/json'}
         if self.user_key is not None:
             headers["user_key"] = self.user_key
-        r = requests.get(url, headers=headers)
+        r = _get_http(url, headers=headers)
         return self.__finish_result(r, "info")
 
     def ping(self):
@@ -368,7 +410,8 @@ class Operator:
         url = self.service_url + '/' + self.suburl
         self.logger.info('operate: ' + url)
         params_to_serialize = parameters._serializable()
-        headers = {'Accept': "application/json", 'Accept-Encoding': "gzip"}
+#        headers = {'Accept': "application/json", 'Accept-Encoding': "gzip"}
+        headers = {'Accept': "application/json"}
         if self.user_key is not None:
             headers["user_key"] = self.user_key
         if self.useMultipart and 'content' in params_to_serialize:
@@ -377,7 +420,8 @@ class Operator:
             r = requests.post(url, headers=headers, files=files)
         else:
             headers['Content-Type'] = "application/json"
-            r = requests.post(url, headers=headers, json=params_to_serialize)
+            r = _put_http(url, params_to_serialize, headers)
+#            r = requests.post(url, headers=headers, json=params_to_serialize)
 
         return self.__finish_result(r, "operate")
 
