@@ -13,6 +13,7 @@ The technical data and information provided herein are provided with
 with `restricted rights' as those terms are defined in DAR and ASPR
 7-104.9(a).
 """
+_ACCEPTABLE_SERVER_VERSION = "0.5"
 
 import sys
 _IsPy3 = sys.version.startswith("3")
@@ -291,6 +292,7 @@ class Operator:
         self.user_key = api.user_key
         self.logger = api.logger
         self.useMultipart = api.useMultipart
+        self.checker = lambda : api.check_version()
         self.suburl = suburl
 
     def __finish_result(self, r, ename):
@@ -314,7 +316,11 @@ class Operator:
         """Issues an "info" request to the L{Operator}'s specific endpoint.
         @return: A dictionary telling server version and other
         identifying data."""
-        url = self.service_url + '/' + self.suburl + "/info"
+        if self.suburl != None:
+            self.checker()
+            url = self.service_url + '/' + self.suburl + "/info"
+        else:
+            url = self.service_url + "/info"
         self.logger.info('info: ' + url)
         headers = {'Accept': 'application/json'}
         if self.user_key is not None:
@@ -353,6 +359,8 @@ class Operator:
         @type parameters: For C{translated_name}, L{RntParameters}, otherwise L{RosetteParameters}
         @return: A python dictionary expressing the result of the invocation.
         """
+
+        self.checker()
 
         if self.useMultipart and (parameters['contentType'] != DataFormat.SIMPLE):
             raise RosetteException("incompatible", "Multipart requires contentType SIMPLE",
@@ -397,6 +405,18 @@ class API:
         self.logger.info('Initialized on ' + self.service_url)
         self.debug = False
         self.useMultipart = False
+        self.version_checked = False
+        
+    def check_version(self):
+        if self.version_checked:
+            return True
+        op = Operator(self, None)
+        result = op.info()
+        version = ".".join(result["version"].split(".")[0:2])
+        if version != _ACCEPTABLE_SERVER_VERSION:
+            raise RosetteException("badServerVersion", "The server version is not " + _ACCEPTABLE_SERVER_VERSION, version)
+        self.version_checked = True
+        return True
 
     def _set_use_multipart(self, value):
         self.useMultipart = value
