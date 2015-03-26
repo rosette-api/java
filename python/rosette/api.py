@@ -14,6 +14,7 @@ with `restricted rights' as those terms are defined in DAR and ASPR
 7-104.9(a).
 """
 _ACCEPTABLE_SERVER_VERSION = "0.5"
+_GZIP_KEY = [0x1F, 0x8b,0x08]
 
 import sys
 _IsPy3 = sys.version.startswith("3")
@@ -49,6 +50,13 @@ if _IsPy3:
 elif _version < (1, 0, 4):
     raise Exception("Version of Enum package not enum34 or better.")
 
+if _IsPy3:
+    _GZIP_SIGNATURE = bytearray(len(_GZIP_KEY))
+    for i in range(len(_GZIP_KEY)):
+        _GZIP_SIGNATURE[i] = _GZIP_KEY[i]
+else:
+    _GZIP_SIGNATURE = "".join([chr(x) for x in _GZIP_KEY])
+
 
 class _ReturnObject:
     def __init__(self, js, code):
@@ -83,12 +91,8 @@ def _put_http(url, data, headers):
     response = conn.getresponse()
     rdata = response.read()
     conn.close()
-    if _IsPy3:
-        gzp = len(rdata) > 3 and rdata[0:3] == _byteify("\x1f\x8b\x08")
-    else:
-        gzp = len(rdata) > 3 and map(ord, rdata[0:3]) == [0x1f, 0x8b, 0x08]
 
-    if gzp:
+    if len(rdata) > 3 and rdata[0:3] == _GZIP_SIGNATURE:
         buf = BytesIO(rdata)
         rdata = gzip.GzipFile(fileobj=buf).read()
 
