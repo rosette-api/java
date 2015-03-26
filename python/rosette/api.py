@@ -83,12 +83,16 @@ def _put_http(url, data, headers):
     response = conn.getresponse()
     rdata = response.read()
     conn.close()
-    if len(rdata) > 3 and map(ord, rdata[0:3]) == [31, 139, 8]:
+    if _IsPy3:
+        gzp = len(rdata) > 3 and rdata[0:3] == _byteify("\x1f\x8b\x08")
+    else:
+        gzp = len(rdata) > 3 and map(ord, rdata[0:3]) == [0x1f, 0x8b, 0x08]
+
+    if gzp:
         buf = BytesIO(rdata)
         rdata = gzip.GzipFile(fileobj=buf).read()
 
     return _ReturnObject(_my_loads(rdata), response.status)
-
 
 VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
 
@@ -427,8 +431,6 @@ class Operator:
         else:
             headers['Content-Type'] = "application/json"
             r = _put_http(url, params_to_serialize, headers)
-#            r = requests.post(url, headers=headers, json=params_to_serialize)
-
         return self.__finish_result(r, "operate")
 
 
