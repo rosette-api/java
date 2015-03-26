@@ -21,7 +21,8 @@ _IsPy3 = sys.version.startswith("3")
 import logging
 import json
 import base64
-
+import gzip
+from io import BytesIO
 
 from enum import Enum
 try:
@@ -81,11 +82,11 @@ def _put_http(url, data, headers):
     conn.request("POST", url, json_data, headers)
     response = conn.getresponse()
     rdata = response.read()
-    try:
-        _my_loads(rdata)
-    except ValueError:
-        print >>sys.stderr, "rdata no obj: ", response.__dict__, "RDATA:", rdata
     conn.close()
+    if len(rdata) > 3 and map(ord, rdata[0:3]) == [31, 139, 8]:
+        buf = BytesIO(rdata)
+        rdata = gzip.GzipFile(fileobj=buf).read()
+
     return _ReturnObject(_my_loads(rdata), response.status)
 
 
@@ -415,8 +416,8 @@ class Operator:
         url = self.service_url + '/' + self.suburl
         self.logger.info('operate: ' + url)
         params_to_serialize = parameters._serializable()
-#        headers = {'Accept': "application/json", 'Accept-Encoding': "gzip"}
         headers = {'Accept': "application/json"}
+        headers['Accept-Encoding'] = "gzip"
         if self.user_key is not None:
             headers["user_key"] = self.user_key
         if self.useMultipart and 'content' in params_to_serialize:
