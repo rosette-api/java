@@ -35,9 +35,7 @@ except ImportError:
     import http.client as httplib
 
 if _IsPy3:
-    _GZIP_SIGNATURE = bytearray(len(_GZIP_KEY))
-    for i in range(len(_GZIP_KEY)):
-        _GZIP_SIGNATURE[i] = _GZIP_KEY[i]
+    _GZIP_SIGNATURE = bytearray(_GZIP_KEY)
 else:
     _GZIP_SIGNATURE = "".join([chr(x) for x in _GZIP_KEY])
 
@@ -68,7 +66,7 @@ def _get_http(url, headers):
     return _ReturnObject(_my_loads(rdata), response.status)
 
 
-def _put_http(url, data, headers):
+def _post_http(url, data, headers):
     conn = httplib.HTTPConnection(urlparse(url).netloc)
     #  Might signal socket.err
     if data is None:
@@ -434,7 +432,7 @@ class Operator:
         if self.user_key is not None:
             headers["user_key"] = self.user_key
         headers['Content-Type'] = "application/json"
-        r = _put_http(url, params_to_serialize, headers)
+        r = _post_http(url, params_to_serialize, headers)
         return self.__finish_result(r, "operate")
 
 
