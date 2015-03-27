@@ -53,7 +53,7 @@ The known operators which can be requested are (other than ping, whose call is d
     API.sentences()
     API. tokens()
     API.morphology(tag)
-      tag must be one of the members of the Enum MorphologyOutput,
+      tag must be one of the members of MorphologyOutput,
          i.e., LEMMAS, PARTS_OF_SPEECH, COMPOUND_COMPONENTS, HAN_READINGS, or COMPLETE
     API.entities(linked)
       "linked" may be True or False; if and only if True, entity linkage is returned.
@@ -98,7 +98,7 @@ Convenience operations
 translated_name is unlike all the other entries.  The operate function
 requires as its parameter object a dictionary with two required entries,
 "name", the name to be translated, and "targetLanguageCode”, an ISO639 string for the target language.
-These are elements of the rosette.api.RntParameters Enum. The return
+These are elements of  rosette.api.RntParameters. The return
 return result (as of this writing) has to be retrieved from the "result" entry of the actual return result.  Hence,
 
  def test_translated_name():
