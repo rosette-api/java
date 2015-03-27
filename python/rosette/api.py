@@ -265,12 +265,10 @@ class RosetteParameters(_RosetteParamSetBase):
         The document unit size remains (by default) L{InputUnit.DOC}.
         @parameter s: A string, possibly a unicode-string, to be loaded
         for subsequent analysis, as per the C{data_type}.
-        @parameter data_type: The data type of the string, as per the C{enum} L{DataFormat}.
+        @parameter data_type: The data type of the string, as per L{DataFormat}.
         @type data_type: L{DataFormat}
         """
-        if False:
-            if not isinstance(data_type, DataFormat):
-                raise RosetteException(data_type, "Must supply DataFormat object.", data_type)
+        DataFormat._validate(data_type, "string data format")
         self["content"] = s
         self["contentType"] = data_type
         self["unit"] = InputUnit.DOC
@@ -496,11 +494,9 @@ class API:
         of the morphological analyses of texts to which it is applied.
         L{MorphologyOutput.COMPLETE} (the default) requests all available facets.
         @param facet: The facet desired, to be returned by the created L{Operator}.
-        @type facet: An element of the C{enum} L{MorphologyOutput}.
+        @type facet: An element of L{MorphologyOutput}.
         """
-        if False:
-            if not isinstance(facet, MorphologyOutput):
-                raise RosetteException("bad argument", "Argument not a MorphologyOutput enum object", repr(facet))
+        MorphologyOutput._validate(facet, "morphology output type")
         return Operator(self, "morphology/" + facet)
 
     def entities(self, linked):
