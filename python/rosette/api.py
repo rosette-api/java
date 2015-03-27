@@ -14,7 +14,7 @@ with `restricted rights' as those terms are defined in DAR and ASPR
 7-104.9(a).
 """
 _ACCEPTABLE_SERVER_VERSION = "0.5"
-_GZIP_KEY = [0x1F, 0x8b,0x08]
+_GZIP_KEY = [0x1F, 0x8b, 0x08]
 
 import sys
 _IsPy3 = sys.version_info[0] == 3
@@ -46,14 +46,17 @@ class _ReturnObject:
     def __init__(self, js, code):
         self._json = js
         self.status_code = code
+
     def json(self):
         return self._json
 
+
 def _my_loads(obj):
     if _IsPy3:
-        return json.loads(obj.decode("utf-8"))  #if py3, need chars.
+        return json.loads(obj.decode("utf-8"))  # if py3, need chars.
     else:
         return json.loads(obj)
+
 
 def _get_http(url, headers):
     conn = httplib.HTTPConnection(urlparse(url).netloc)
@@ -63,6 +66,7 @@ def _get_http(url, headers):
     rdata = response.read()
     conn.close()
     return _ReturnObject(_my_loads(rdata), response.status)
+
 
 def _put_http(url, data, headers):
     conn = httplib.HTTPConnection(urlparse(url).netloc)
@@ -100,18 +104,23 @@ class RosetteException(Exception):
         return self.message + ":\n " + self.response_message
 
 
-class _pseudo_enum:
+class _PseudoEnum:
+    def __init__(self):
+        pass
+
     @classmethod
-    def _validate(self, value, name):
+    def validate(cls, value, name):
         values = []
-        for (k, v) in vars(self).items():
+        for (k, v) in vars(cls).items():
             if not k.startswith("__"):
                 values += [v]
 
         if value not in values:
             raise RosetteException("badKey", "The value supplied for " + name +
                                    " is not one of " + ", ".join(values) + ".", repr(value))
-class DataFormat(_pseudo_enum):
+
+
+class DataFormat(_PseudoEnum):
     """Data Format, as much as it is known."""
     SIMPLE = "text/plain"
     """The data is unstructured text, supplied as a possibly-unicode string."""
@@ -129,7 +138,7 @@ class DataFormat(_pseudo_enum):
     or may not.  It will be sent as is and identified and analyzed by the server."""
 
 
-class InputUnit(_pseudo_enum):
+class InputUnit(_PseudoEnum):
     """Elements are used in the L{RosetteParameters} class to specify whether textual data
     is to be treated as one sentence or possibly many."""
     DOC = "doc"
@@ -138,7 +147,7 @@ class InputUnit(_pseudo_enum):
     """The data is a single sentence."""
 
 
-class MorphologyOutput(_pseudo_enum):
+class MorphologyOutput(_PseudoEnum):
     LEMMAS = "lemmas"
     PARTS_OF_SPEECH = "parts-of-speech"
     COMPOUND_COMPONENTS = "compound-components"
@@ -179,14 +188,16 @@ def _validate_uri(uri):
     if '.' not in parsed.netloc:
         raise RosetteException("bad URI", "URI does not contain a fully qualified hostname or IP address.", uri)
 
-def _byteify (s):  # py 3 only
+
+def _byteify(s):  # py 3 only
     l = len(s)
     b = bytearray(l)
-    for i in range(l):
-        oc = ord(s[i])
+    for ix in range(l):
+        oc = ord(s[ix])
         assert (oc < 256)
-        b[i] = oc
+        b[ix] = oc
     return b
+
 
 class RosetteParameters(_RosetteParamSetBase):
     """Parameter object for all operations requiring input other than
@@ -211,7 +222,8 @@ class RosetteParameters(_RosetteParamSetBase):
         _RosetteParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
         self["unit"] = InputUnit.DOC  # default
 
-    def _serializable(self):
+    def serializable(self):
+        """Internal. Do not use."""
         if self["contentUri"] is not None:
             _validate_uri(self["contentUri"])
 
@@ -225,8 +237,8 @@ class RosetteParameters(_RosetteParamSetBase):
         if self["contentType"] is None:
             pass
         else:
-            DataFormat._validate(self["contentType"], "content type")
-        InputUnit._validate(self["unit"], "unit")
+            DataFormat.validate(self["contentType"], "content type")
+        InputUnit.validate(self["unit"], "unit")
         slz = self._for_serialize()
         if self["contentType"] is None and self["contentUri"] is None:
             slz["contentType"] = DataFormat.SIMPLE
@@ -237,7 +249,7 @@ class RosetteParameters(_RosetteParamSetBase):
 
             encoded = base64.b64encode(content)
             if _IsPy3:
-                encoded = encoded.decode("utf-8")  #if py3, need chars.
+                encoded = encoded.decode("utf-8")  # if py3, need chars.
             slz["content"] = encoded
         return slz
 
@@ -248,7 +260,8 @@ class RosetteParameters(_RosetteParamSetBase):
         by default L{InputUnit.DOC}.
         @parameter path: Pathname of a file acceptable to the C{open} function.
         @parameter data_type: One of L{DataFormat.HTML}, L{DataFormat.XHTML}, or L{DataFormat.UNSPECIFIED}.
-        No other types are acceptable at this time, although HTML is broad enough to include text strings without markup.
+        No other types are acceptable at this time, although HTML is broad enough to include text strings
+        without markup.
         If the data type is unknown, or describes a binary file, use the default (L{DataFormat.UNSPECIFIED}).
         @type data_type: L{DataFormat}
         """
@@ -268,7 +281,7 @@ class RosetteParameters(_RosetteParamSetBase):
         @parameter data_type: The data type of the string, as per L{DataFormat}.
         @type data_type: L{DataFormat}
         """
-        DataFormat._validate(data_type, "string data format")
+        DataFormat.validate(data_type, "string data format")
         self["content"] = s
         self["contentType"] = data_type
         self["unit"] = InputUnit.DOC
@@ -276,9 +289,11 @@ class RosetteParameters(_RosetteParamSetBase):
 
 class RntParameters(_RosetteParamSetBase):
     """Parameter object for C{translated_name} endpoint.
-    The following values may be set by the indexing (i.e.,C{ parms["name"]}) operator.  The values are all strings (when not C{None}).
+    The following values may be set by the indexing (i.e.,C{ parms["name"]}) operator.  The values are all
+    strings (when not C{None}).
     All are optional except C{name} and C{targetLanguage}.  Scripts are in
-    ISO15924 codes, and languages in ISO639 (two- or three-letter) codes.  See the RNT documentation for more description of these terms, as well as the content of the return result.
+    ISO15924 codes, and languages in ISO639 (two- or three-letter) codes.  See the RNT documentation for more
+    description of these terms, as well as the content of the return result.
 
     C{name} The name to be translated.
 
@@ -301,7 +316,9 @@ class RntParameters(_RosetteParamSetBase):
         _RosetteParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin",
                                              "sourceLanguageOfUse", "sourceScript", "targetScript", "targetScheme"))
 
-    def _serializable(self):
+    def serializable(self):
+
+        """Internal. Do not use."""
         for n in ("name", "targetLanguage"):  # required
             if self[n] is None:
                 raise RosetteException("missing parameter", "Required RNT parameter not supplied", repr(n))
@@ -333,7 +350,7 @@ class Operator:
         self.user_key = api.user_key
         self.logger = api.logger
         self.useMultipart = api.useMultipart
-        self.checker = lambda : api.check_version()
+        self.checker = lambda: api.check_version()
         self.suburl = suburl
 
     def __finish_result(self, r, ename):
@@ -361,7 +378,7 @@ class Operator:
         """Issues an "info" request to the L{Operator}'s specific endpoint.
         @return: A dictionary telling server version and other
         identifying data."""
-        if self.suburl != None:
+        if self.suburl is not None:
             self.checker()
             url = self.service_url + '/' + self.suburl + "/info"
         else:
@@ -412,18 +429,12 @@ class Operator:
                                    repr(parameters['contentType']))
         url = self.service_url + '/' + self.suburl
         self.logger.info('operate: ' + url)
-        params_to_serialize = parameters._serializable()
-        headers = {'Accept': "application/json"}
-        headers['Accept-Encoding'] = "gzip"
+        params_to_serialize = parameters.serializable()
+        headers = {'Accept': "application/json", 'Accept-Encoding': "gzip"}
         if self.user_key is not None:
             headers["user_key"] = self.user_key
-        if self.useMultipart and 'content' in params_to_serialize:
-            files = {'content': ('content', params_to_serialize['content'], "application/octet-stream"),
-                     'options': ('options', json.dumps({"unit": params_to_serialize["unit"]}), "application/json")}
-            r = requests.post(url, headers=headers, files=files)
-        else:
-            headers['Content-Type'] = "application/json"
-            r = _put_http(url, params_to_serialize, headers)
+        headers['Content-Type'] = "application/json"
+        r = _put_http(url, params_to_serialize, headers)
         return self.__finish_result(r, "operate")
 
 
@@ -456,7 +467,8 @@ class API:
         result = op.info()
         version = ".".join(result["version"].split(".")[0:2])
         if version != _ACCEPTABLE_SERVER_VERSION:
-            raise RosetteException("badServerVersion", "The server version is not " + _ACCEPTABLE_SERVER_VERSION, version)
+            raise RosetteException("badServerVersion", "The server version is not " + _ACCEPTABLE_SERVER_VERSION,
+                                   version)
         self.version_checked = True
         return True
 
@@ -496,7 +508,7 @@ class API:
         @param facet: The facet desired, to be returned by the created L{Operator}.
         @type facet: An element of L{MorphologyOutput}.
         """
-        MorphologyOutput._validate(facet, "morphology output type")
+        MorphologyOutput.validate(facet, "morphology output type")
         return Operator(self, "morphology/" + facet)
 
     def entities(self, linked):
