@@ -11,7 +11,7 @@
  ** with `restricted rights' as those terms are defined in DAR and ASPR
  ** 7-104.9(a).
 """
-
+import sys
 import unittest
 from rosette.LanguageCode import LanguageCode, languageCodeByISO639
 from rosette.ISO15924 import ISO15924, iso15924ByCode4 

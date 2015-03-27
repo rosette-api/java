@@ -17,7 +17,7 @@ _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_KEY = [0x1F, 0x8b,0x08]
 
 import sys
-_IsPy3 = sys.version.startswith("3")
+_IsPy3 = sys.version_info[0] == 3
 
 import logging
 import json
@@ -25,7 +25,6 @@ import base64
 import gzip
 from io import BytesIO
 
-from enum import Enum
 try:
     from urlparse import urlparse
 except ImportError:
@@ -34,21 +33,6 @@ try:
     import httplib
 except ImportError:
     import http.client as httplib
-
-
-_dictionary = sys.modules["enum"].__dict__
-if "__version__" in _dictionary:
-    _version = _dictionary["__version__"]
-elif "version" in _dictionary:
-    _version = _dictionary["version"]
-else:
-    _version = (0, 0, 0)
-if isinstance(_version, str):
-    _version = tuple(map(int, _version.split(".")))
-if _IsPy3:
-    pass
-elif _version < (1, 0, 4):
-    raise Exception("Version of Enum package not enum34 or better.")
 
 if _IsPy3:
     _GZIP_SIGNATURE = bytearray(len(_GZIP_KEY))
@@ -116,7 +100,7 @@ class RosetteException(Exception):
         return self.message + ":\n " + self.response_message
 
 
-class DataFormat(Enum):
+class DataFormat:
     """Data Format, as much as it is known."""
     SIMPLE = "text/plain"
     """The data is unstructured text, supplied as a possibly-unicode string."""
@@ -134,7 +118,7 @@ class DataFormat(Enum):
     or may not.  It will be sent as is and identified and analyzed by the server."""
 
 
-class InputUnit(Enum):
+class InputUnit():
     """Elements are used in the L{RosetteParameters} class to specify whether textual data
     is to be treated as one sentence or possibly many."""
     DOC = "doc"
@@ -143,7 +127,7 @@ class InputUnit(Enum):
     """The data is a single sentence."""
 
 
-class MorphologyOutput(Enum):
+class MorphologyOutput():
     LEMMAS = "lemmas"
     PARTS_OF_SPEECH = "parts-of-speech"
     COMPOUND_COMPONENTS = "compound-components"
@@ -172,8 +156,6 @@ class _RosetteParamSetBase:
         for (key, val) in self.__params.items():
             if val is None:
                 pass
-            elif isinstance(val, Enum):
-                v[key] = val.value
             else:
                 v[key] = val
         return v
@@ -228,17 +210,19 @@ class RosetteParameters(_RosetteParamSetBase):
         else:  # self["content"] not None
             if self["contentUri"] is not None:
                 raise RosetteException("bad argument", "Cannot supply both Content and ContentUri", "bad arguments")
-        if self["contentType"] is None:
-            pass
-        elif not isinstance(self["contentType"], DataFormat):
-                raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum",
-                                       repr(self["contentType"]))
-        if not isinstance(self["unit"], InputUnit):
 
-            raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self["unit"]))
+        if False:
+            if self["contentType"] is None:
+                pass
+            elif not isinstance(self["contentType"], DataFormat):
+                    raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum",
+                                           repr(self["contentType"]))
+            if not isinstance(self["unit"], InputUnit):
+
+                raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self["unit"]))
         slz = self._for_serialize()
         if self["contentType"] is None and self["contentUri"] is None:
-            slz["contentType"] = DataFormat.SIMPLE.value
+            slz["contentType"] = DataFormat.SIMPLE
         elif self["contentType"] in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
             content = slz["content"]
             if _IsPy3 and isinstance(content, str):
@@ -262,7 +246,7 @@ class RosetteParameters(_RosetteParamSetBase):
         @type data_type: L{DataFormat}
         """
         if data_type not in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
-            raise RosetteException(data_type, "Must supply one of HTML, XHTML, or UNSPECIFIED", "bad arguments")
+            raise RosetteException(data_type, "Must supply one of HTML, XHTML, or UNSPECIFIED", data_type)
         self.load_document_string(open(path, "rb").read(), data_type)
 
     def load_document_string(self, s, data_type):
@@ -277,9 +261,9 @@ class RosetteParameters(_RosetteParamSetBase):
         @parameter data_type: The data type of the string, as per the C{enum} L{DataFormat}.
         @type data_type: L{DataFormat}
         """
-
-        if not isinstance(data_type, DataFormat):
-            raise RosetteException(data_type, "Must supply DataFormat object.", "bad arguments")
+        if False:
+            if not isinstance(data_type, DataFormat):
+                raise RosetteException(data_type, "Must supply DataFormat object.", data_type)
         self["content"] = s
         self["contentType"] = data_type
         self["unit"] = InputUnit.DOC
@@ -443,8 +427,6 @@ class API:
     Rosette Python Client Binding API; representation of a Rosette server.
     Call instance methods upon this object to obtain L{Operator} objects
     which can communicate with particular Rosette server endpoints.
-
-    This binding requires the C{enum34} package to be locally installed.
     """
     def __init__(self, user_key=None, service_url='http://api.rosette.com/rest/v1'):
         """ Create an L{API} object.
@@ -509,9 +491,10 @@ class API:
         @param facet: The facet desired, to be returned by the created L{Operator}.
         @type facet: An element of the C{enum} L{MorphologyOutput}.
         """
-        if not isinstance(facet, MorphologyOutput):
-            raise RosetteException("bad argument", "Argument not a MorphologyOutput enum object", repr(facet))
-        return Operator(self, "morphology/" + facet.value)
+        if False:
+            if not isinstance(facet, MorphologyOutput):
+                raise RosetteException("bad argument", "Argument not a MorphologyOutput enum object", repr(facet))
+        return Operator(self, "morphology/" + facet)
 
     def entities(self, linked):
         """Create an L{Operator} to identify named entities found in the texts
