@@ -100,7 +100,18 @@ class RosetteException(Exception):
         return self.message + ":\n " + self.response_message
 
 
-class DataFormat:
+class _pseudo_enum:
+    @classmethod
+    def _validate(self, value, name):
+        values = []
+        for (k, v) in vars(self).items():
+            if not k.startswith("__"):
+                values += [v]
+
+        if value not in values:
+            raise RosetteException("badKey", "The value supplied for " + name +
+                                   " is not one of " + ", ".join(values) + ".", repr(value))
+class DataFormat(_pseudo_enum):
     """Data Format, as much as it is known."""
     SIMPLE = "text/plain"
     """The data is unstructured text, supplied as a possibly-unicode string."""
@@ -118,7 +129,7 @@ class DataFormat:
     or may not.  It will be sent as is and identified and analyzed by the server."""
 
 
-class InputUnit():
+class InputUnit(_pseudo_enum):
     """Elements are used in the L{RosetteParameters} class to specify whether textual data
     is to be treated as one sentence or possibly many."""
     DOC = "doc"
@@ -127,7 +138,7 @@ class InputUnit():
     """The data is a single sentence."""
 
 
-class MorphologyOutput():
+class MorphologyOutput(_pseudo_enum):
     LEMMAS = "lemmas"
     PARTS_OF_SPEECH = "parts-of-speech"
     COMPOUND_COMPONENTS = "compound-components"
@@ -211,15 +222,11 @@ class RosetteParameters(_RosetteParamSetBase):
             if self["contentUri"] is not None:
                 raise RosetteException("bad argument", "Cannot supply both Content and ContentUri", "bad arguments")
 
-        if False:
-            if self["contentType"] is None:
-                pass
-            elif not isinstance(self["contentType"], DataFormat):
-                    raise RosetteException("bad argument", "Parameter 'contentType' not of DataFormat Enum",
-                                           repr(self["contentType"]))
-            if not isinstance(self["unit"], InputUnit):
-
-                raise RosetteException("bad argument", "Parameter 'unit' not of InputUnit Enum", repr(self["unit"]))
+        if self["contentType"] is None:
+            pass
+        else:
+            DataFormat._validate(self["contentType"], "content type")
+        InputUnit._validate(self["unit"], "unit")
         slz = self._for_serialize()
         if self["contentType"] is None and self["contentUri"] is None:
             slz["contentType"] = DataFormat.SIMPLE
