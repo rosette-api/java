@@ -144,7 +144,7 @@ class APITestCase(unittest.TestCase):
         parms.load_document_file(text_path, DataFormat.HTML)
         op = self.api.morphology(MorphologyOutput.PARTS_OF_SPEECH)
         result = op.operate(parms)
-        tags =list(map(lambda x: x["pos"], result["posTags"]))  # list for py3
+        tags = list(map(lambda x: x["pos"], result["posTags"]))  # list for py3
         self.assertEqual(tags[0:len(CHINESE_HEAD_TAGS)], CHINESE_HEAD_TAGS)
 
     def test_morphology(self):

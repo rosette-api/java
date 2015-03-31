@@ -13,8 +13,6 @@
 # with `restricted rights' as those terms are defined in DAR and ASPR
 # 7-104.9(a).
 
-from enum import Enum, unique
-
 # Enumeration for a set of ISO 639-based language codes used in Basis products.
 
 # LanguageCodes are based on the Feb 10, 2009 version of ISO 639-3. A LanguageCode is either
@@ -33,8 +31,7 @@ languageCodeByISO639_3 = {}
 languageCodeByISO639_1 = {}
 """A dictionary that retrieves ISO-639 objects by their ISO-639-1 codes."""
 
-@unique
-class LanguageCode(Enum):
+class LanguageCode():
     """Enum containing constants for languages.
 
     iso639_1: ISO-639-1 code for this language.
@@ -92,3 +89,8 @@ def languageCodeByISO639(code):
     if code in languageCodeByISO639_1:
         return languageCodeByISO639_1[code]
     raise Exception("Undefined ISO639 code " + code)
+
+for (k, v) in list(vars(LanguageCode).items()):
+    if not k.startswith("__"):
+        (a,b,c,d,e,f) = v
+        setattr(LanguageCode, k, LanguageCode(a,b,c,d,e,f))
