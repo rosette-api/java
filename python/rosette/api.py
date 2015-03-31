@@ -15,6 +15,8 @@ with `restricted rights' as those terms are defined in DAR and ASPR
 """
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_KEY = [0x1F, 0x8b, 0x08]
+N_RETRIES = 3
+RETRY_DELAY = 5
 
 import sys
 _IsPy3 = sys.version_info[0] == 3
@@ -23,6 +25,7 @@ import logging
 import json
 import base64
 import gzip
+import time
 from io import BytesIO
 
 try:
@@ -56,33 +59,37 @@ def _my_loads(obj):
         return json.loads(obj)
 
 
-def _get_http(url, headers):
+def _retrying_request(op, url, data, headers):
     conn = httplib.HTTPConnection(urlparse(url).netloc)
-    #  Might signal socket.err
-    conn.request("GET", url, None, headers)
-    response = conn.getresponse()
-    rdata = response.read()
-    conn.close()
-    return _ReturnObject(_my_loads(rdata), response.status)
+    for i in range(N_RETRIES):
+        conn.request(op, url, data, headers)
+        response = conn.getresponse()
+        status = response.status
+        if status < 500:
+            rdata = response.read()
+            conn.close()
+            return rdata, status
+        conn.close()
+        time.sleep(RETRY_DELAY)
+    raise RosetteException("fatalNetworkError", "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts", url)
 
+def _get_http(url, headers):
+    (rdata, status) = _retrying_request("GET", url, None, headers)
+    return _ReturnObject(_my_loads(rdata), status)
 
 def _post_http(url, data, headers):
-    conn = httplib.HTTPConnection(urlparse(url).netloc)
-    #  Might signal socket.err
     if data is None:
         json_data = ""
     else:
         json_data = json.dumps(data)
-    conn.request("POST", url, json_data, headers)
-    response = conn.getresponse()
-    rdata = response.read()
-    conn.close()
+
+    (rdata,status) = _retrying_request("POST", url, json_data, headers)
 
     if len(rdata) > 3 and rdata[0:3] == _GZIP_SIGNATURE:
         buf = BytesIO(rdata)
         rdata = gzip.GzipFile(fileobj=buf).read()
 
-    return _ReturnObject(_my_loads(rdata), response.status)
+    return _ReturnObject(_my_loads(rdata), status)
 
 VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
 
