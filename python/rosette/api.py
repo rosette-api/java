@@ -25,7 +25,6 @@ import logging
 import json
 import base64
 import gzip
-import time
 from io import BytesIO
 
 try:
@@ -58,20 +57,34 @@ def _my_loads(obj):
     else:
         return json.loads(obj)
 
-
 def _retrying_request(op, url, data, headers):
     conn = httplib.HTTPConnection(urlparse(url).netloc)
+    rdata = None
     for i in range(N_RETRIES):
         conn.request(op, url, data, headers)
         response = conn.getresponse()
         status = response.status
+        rdata = response.read()
         if status < 500:
-            rdata = response.read()
             conn.close()
             return rdata, status
         conn.close()
-        time.sleep(RETRY_DELAY)
-    raise RosetteException("fatalNetworkError", "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts", url)
+        # Do not wait to retry -- the model is that a bunch of dynamically-routed
+        # resources has failed -- Retry means some other set of servelets and their
+        # underlings will be called up, and maybe they'll do better.
+        # This will not help with a persistent or impassible delay situation,
+        # but the former case is thought to be more likely.
+    message = None
+    if rdata is not None:
+        try:
+            the_json = _my_loads(rdata)
+            message = the_json["message"]
+        except:
+            pass
+    if message is not None:
+        raise RosetteException("error", message, url)
+
+    raise RosetteException("error", "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts", url)
 
 def _get_http(url, headers):
     (rdata, status) = _retrying_request("GET", url, None, headers)
