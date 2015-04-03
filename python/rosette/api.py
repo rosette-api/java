@@ -16,7 +16,6 @@ with `restricted rights' as those terms are defined in DAR and ASPR
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_KEY = [0x1F, 0x8b, 0x08]
 N_RETRIES = 3
-RETRY_DELAY = 5
 
 import sys
 _IsPy3 = sys.version_info[0] == 3
