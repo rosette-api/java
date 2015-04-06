@@ -17,6 +17,7 @@ _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
 N_RETRIES = 3
 
+
 import sys
 _IsPy3 = sys.version_info[0] == 3
 
@@ -123,7 +124,10 @@ class RosetteException(Exception):
         self.response_message = response_message
 
     def __str__(self):
-        return self.status + ": " + self.message + ":\n  " + self.response_message
+        sst = self.status
+        if not (isinstance(sst, str)):
+            sst = repr(sst)
+        return sst + ": " + self.message + ":\n  " + self.response_message
 
 
 class _PseudoEnum:
@@ -390,7 +394,13 @@ class Operator:
             else:
                 complaint_url = ename + " " + self.suburl
 
-            raise RosetteException(code, complaint_url + " : failed to communicate with Rosette",
+            if "code" in the_json:
+                serverCode = the_json["code"]
+            else:
+                serverCode = "error"
+
+            raise RosetteException(serverCode,
+                                   complaint_url + " : failed to communicate with Rosette",
                                    msg)
 
     def _set_use_multipart(self, value):
