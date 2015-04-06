@@ -109,8 +109,6 @@ def _post_http(url, data, headers):
 
     return _ReturnObject(_my_loads(rdata), status)
 
-VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
-
 
 class RosetteException(Exception):
     """Exception thrown by all Rosette API operations for errors local and remote.
@@ -141,8 +139,10 @@ class _PseudoEnum:
             if not k.startswith("__"):
                 values += [v]
 
+        # this is still needed to make sure that the parameter NAMES are known.
+        # If python didn't allow setting unknown values, this would be a language error.
         if value not in values:
-            raise RosetteException("badKey", "The value supplied for " + name +
+            raise RosetteException("unknownVariable", "The value supplied for " + name +
                                    " is not one of " + ", ".join(values) + ".", repr(value))
 
 
@@ -163,7 +163,6 @@ class DataFormat(_PseudoEnum):
     """The data is of unknown format, it may be a binary data type (the contents of a binary file),
     or may not.  It will be sent as is and identified and analyzed by the server."""
 
-
 class InputUnit(_PseudoEnum):
     """Elements are used in the L{RosetteParameters} class to specify whether textual data
     is to be treated as one sentence or possibly many."""
@@ -171,7 +170,6 @@ class InputUnit(_PseudoEnum):
     """The data is a whole document; it may or may not contain multiple sentences."""
     SENTENCE = "sentence"
     """The data is a single sentence."""
-
 
 class MorphologyOutput(_PseudoEnum):
     LEMMAS = "lemmas"
@@ -205,14 +203,6 @@ class _RosetteParamSetBase:
             else:
                 v[key] = val
         return v
-
-
-def _validate_uri(uri):
-    parsed = urlparse(uri)
-    if parsed.scheme not in VALID_SCHEMES:
-        raise RosetteException("badURI", "URI scheme not one of " + repr(VALID_SCHEMES), uri)
-    if '.' not in parsed.netloc:
-        raise RosetteException("badURI", "URI does not contain a fully qualified hostname or IP address.", uri)
 
 
 def _byteify(s):  # py 3 only
@@ -250,8 +240,6 @@ class RosetteParameters(_RosetteParamSetBase):
 
     def serializable(self):
         """Internal. Do not use."""
-        if self["contentUri"] is not None:
-            _validate_uri(self["contentUri"])
 
         if self["content"] is None:
             if self["contentUri"] is None:
@@ -260,11 +248,7 @@ class RosetteParameters(_RosetteParamSetBase):
             if self["contentUri"] is not None:
                 raise RosetteException("badArgument", "Cannot supply both Content and ContentUri", "bad arguments")
 
-        if self["contentType"] is None:
-            pass
-        else:
-            DataFormat.validate(self["contentType"], "content type")
-        InputUnit.validate(self["unit"], "unit")
+
         slz = self._for_serialize()
         if self["contentType"] is None and self["contentUri"] is None:
             slz["contentType"] = DataFormat.SIMPLE
@@ -307,7 +291,6 @@ class RosetteParameters(_RosetteParamSetBase):
         @parameter data_type: The data type of the string, as per L{DataFormat}.
         @type data_type: L{DataFormat}
         """
-        DataFormat.validate(data_type, "string data format")
         self["content"] = s
         self["contentType"] = data_type
         self["unit"] = InputUnit.DOC
@@ -540,7 +523,6 @@ class API:
         @param facet: The facet desired, to be returned by the created L{Operator}.
         @type facet: An element of L{MorphologyOutput}.
         """
-        MorphologyOutput.validate(facet, "morphology output type")
         return Operator(self, "morphology/" + facet)
 
     def entities(self, linked):
