@@ -14,7 +14,7 @@ with `restricted rights' as those terms are defined in DAR and ASPR
 7-104.9(a).
 """
 _ACCEPTABLE_SERVER_VERSION = "0.5"
-_GZIP_KEY = [0x1F, 0x8b, 0x08]
+_GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
 N_RETRIES = 3
 
 import sys
@@ -36,9 +36,9 @@ except ImportError:
     import http.client as httplib
 
 if _IsPy3:
-    _GZIP_SIGNATURE = bytearray(_GZIP_KEY)
+    _GZIP_SIGNATURE = _GZIP_BYTEARRAY
 else:
-    _GZIP_SIGNATURE = "".join([chr(x) for x in _GZIP_KEY])
+    _GZIP_SIGNATURE = str(_GZIP_BYTEARRAY)
 
 
 class _ReturnObject:
@@ -74,16 +74,21 @@ def _retrying_request(op, url, data, headers):
         # This will not help with a persistent or impassible delay situation,
         # but the former case is thought to be more likely.
     message = None
+    code = "error"
     if rdata is not None:
         try:
             the_json = _my_loads(rdata)
-            message = the_json["message"]
+            if "message" in the_json:
+                message = the_json["message"]
+            if "code" in the_json:
+                code = the_json["code"]
         except:
             pass
-    if message is not None:
-        raise RosetteException("error", message, url)
 
-    raise RosetteException("error", "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts", url)
+    if message is None:
+        message = "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts"
+
+    raise RosetteException(code, message, url)
 
 def _get_http(url, headers):
     (rdata, status) = _retrying_request("GET", url, None, headers)
@@ -118,7 +123,7 @@ class RosetteException(Exception):
         self.response_message = response_message
 
     def __str__(self):
-        return self.message + ":\n " + self.response_message
+        return self.status + ": " + self.message + ":\n  " + self.response_message
 
 
 class _PseudoEnum:
@@ -201,9 +206,9 @@ class _RosetteParamSetBase:
 def _validate_uri(uri):
     parsed = urlparse(uri)
     if parsed.scheme not in VALID_SCHEMES:
-        raise RosetteException("bad URI", "URI scheme not one of " + repr(VALID_SCHEMES), uri)
+        raise RosetteException("badURI", "URI scheme not one of " + repr(VALID_SCHEMES), uri)
     if '.' not in parsed.netloc:
-        raise RosetteException("bad URI", "URI does not contain a fully qualified hostname or IP address.", uri)
+        raise RosetteException("badURI", "URI does not contain a fully qualified hostname or IP address.", uri)
 
 
 def _byteify(s):  # py 3 only
@@ -246,10 +251,10 @@ class RosetteParameters(_RosetteParamSetBase):
 
         if self["content"] is None:
             if self["contentUri"] is None:
-                raise RosetteException("bad argument", "Must supply one of Content or ContentUri", "bad arguments")
+                raise RosetteException("badArgument", "Must supply one of Content or ContentUri", "bad arguments")
         else:  # self["content"] not None
             if self["contentUri"] is not None:
-                raise RosetteException("bad argument", "Cannot supply both Content and ContentUri", "bad arguments")
+                raise RosetteException("badArgument", "Cannot supply both Content and ContentUri", "bad arguments")
 
         if self["contentType"] is None:
             pass
@@ -283,7 +288,7 @@ class RosetteParameters(_RosetteParamSetBase):
         @type data_type: L{DataFormat}
         """
         if data_type not in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
-            raise RosetteException(data_type, "Must supply one of HTML, XHTML, or UNSPECIFIED", data_type)
+            raise RosetteException("badArgument", "Must supply one of HTML, XHTML, or UNSPECIFIED", data_type)
         self.load_document_string(open(path, "rb").read(), data_type)
 
     def load_document_string(self, s, data_type):
@@ -338,7 +343,7 @@ class RntParameters(_RosetteParamSetBase):
         """Internal. Do not use."""
         for n in ("name", "targetLanguage"):  # required
             if self[n] is None:
-                raise RosetteException("missing parameter", "Required RNT parameter not supplied", repr(n))
+                raise RosetteException("missingParameter", "Required RNT parameter not supplied", repr(n))
         return self._for_serialize()
 
 
