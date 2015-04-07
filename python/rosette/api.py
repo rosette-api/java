@@ -75,7 +75,7 @@ def _retrying_request(op, url, data, headers):
         # This will not help with a persistent or impassible delay situation,
         # but the former case is thought to be more likely.
     message = None
-    code = "error"
+    code = "unknownError"
     if rdata is not None:
         try:
             the_json = _my_loads(rdata)
@@ -380,7 +380,7 @@ class Operator:
             if "code" in the_json:
                 serverCode = the_json["code"]
             else:
-                serverCode = "error"
+                serverCode = "unknownError"
 
             raise RosetteException(serverCode,
                                    complaint_url + " : failed to communicate with Rosette",
