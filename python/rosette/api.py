@@ -14,7 +14,9 @@ with `restricted rights' as those terms are defined in DAR and ASPR
 7-104.9(a).
 """
 _ACCEPTABLE_SERVER_VERSION = "0.5"
-_GZIP_KEY = [0x1F, 0x8b, 0x08]
+_GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
+N_RETRIES = 3
+
 
 import sys
 _IsPy3 = sys.version_info[0] == 3
@@ -35,9 +37,9 @@ except ImportError:
     import http.client as httplib
 
 if _IsPy3:
-    _GZIP_SIGNATURE = bytearray(_GZIP_KEY)
+    _GZIP_SIGNATURE = _GZIP_BYTEARRAY
 else:
-    _GZIP_SIGNATURE = "".join([chr(x) for x in _GZIP_KEY])
+    _GZIP_SIGNATURE = str(_GZIP_BYTEARRAY)
 
 
 class _ReturnObject:
@@ -55,36 +57,57 @@ def _my_loads(obj):
     else:
         return json.loads(obj)
 
+def _retrying_request(op, url, data, headers):
+    conn = httplib.HTTPConnection(urlparse(url).netloc)
+    rdata = None
+    for i in range(N_RETRIES):
+        conn.request(op, url, data, headers)
+        response = conn.getresponse()
+        status = response.status
+        rdata = response.read()
+        if status < 500:
+            conn.close()
+            return rdata, status
+        conn.close()
+        # Do not wait to retry -- the model is that a bunch of dynamically-routed
+        # resources has failed -- Retry means some other set of servelets and their
+        # underlings will be called up, and maybe they'll do better.
+        # This will not help with a persistent or impassible delay situation,
+        # but the former case is thought to be more likely.
+    message = None
+    code = "unknownError"
+    if rdata is not None:
+        try:
+            the_json = _my_loads(rdata)
+            if "message" in the_json:
+                message = the_json["message"]
+            if "code" in the_json:
+                code = the_json["code"]
+        except:
+            pass
+
+    if message is None:
+        message = "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts"
+
+    raise RosetteException(code, message, url)
 
 def _get_http(url, headers):
-    conn = httplib.HTTPConnection(urlparse(url).netloc)
-    #  Might signal socket.err
-    conn.request("GET", url, None, headers)
-    response = conn.getresponse()
-    rdata = response.read()
-    conn.close()
-    return _ReturnObject(_my_loads(rdata), response.status)
-
+    (rdata, status) = _retrying_request("GET", url, None, headers)
+    return _ReturnObject(_my_loads(rdata), status)
 
 def _post_http(url, data, headers):
-    conn = httplib.HTTPConnection(urlparse(url).netloc)
-    #  Might signal socket.err
     if data is None:
         json_data = ""
     else:
         json_data = json.dumps(data)
-    conn.request("POST", url, json_data, headers)
-    response = conn.getresponse()
-    rdata = response.read()
-    conn.close()
+
+    (rdata,status) = _retrying_request("POST", url, json_data, headers)
 
     if len(rdata) > 3 and rdata[0:3] == _GZIP_SIGNATURE:
         buf = BytesIO(rdata)
         rdata = gzip.GzipFile(fileobj=buf).read()
 
-    return _ReturnObject(_my_loads(rdata), response.status)
-
-VALID_SCHEMES = ('http', 'https', 'ftp', 'ftps')
+    return _ReturnObject(_my_loads(rdata), status)
 
 
 class RosetteException(Exception):
@@ -99,7 +122,10 @@ class RosetteException(Exception):
         self.response_message = response_message
 
     def __str__(self):
-        return self.message + ":\n " + self.response_message
+        sst = self.status
+        if not (isinstance(sst, str)):
+            sst = repr(sst)
+        return sst + ": " + self.message + ":\n  " + self.response_message
 
 
 class _PseudoEnum:
@@ -113,8 +139,10 @@ class _PseudoEnum:
             if not k.startswith("__"):
                 values += [v]
 
+        # this is still needed to make sure that the parameter NAMES are known.
+        # If python didn't allow setting unknown values, this would be a language error.
         if value not in values:
-            raise RosetteException("badKey", "The value supplied for " + name +
+            raise RosetteException("unknownVariable", "The value supplied for " + name +
                                    " is not one of " + ", ".join(values) + ".", repr(value))
 
 
@@ -135,7 +163,6 @@ class DataFormat(_PseudoEnum):
     """The data is of unknown format, it may be a binary data type (the contents of a binary file),
     or may not.  It will be sent as is and identified and analyzed by the server."""
 
-
 class InputUnit(_PseudoEnum):
     """Elements are used in the L{RosetteParameters} class to specify whether textual data
     is to be treated as one sentence or possibly many."""
@@ -143,7 +170,6 @@ class InputUnit(_PseudoEnum):
     """The data is a whole document; it may or may not contain multiple sentences."""
     SENTENCE = "sentence"
     """The data is a single sentence."""
-
 
 class MorphologyOutput(_PseudoEnum):
     LEMMAS = "lemmas"
@@ -177,14 +203,6 @@ class _RosetteParamSetBase:
             else:
                 v[key] = val
         return v
-
-
-def _validate_uri(uri):
-    parsed = urlparse(uri)
-    if parsed.scheme not in VALID_SCHEMES:
-        raise RosetteException("bad URI", "URI scheme not one of " + repr(VALID_SCHEMES), uri)
-    if '.' not in parsed.netloc:
-        raise RosetteException("bad URI", "URI does not contain a fully qualified hostname or IP address.", uri)
 
 
 def _byteify(s):  # py 3 only
@@ -222,21 +240,15 @@ class RosetteParameters(_RosetteParamSetBase):
 
     def serializable(self):
         """Internal. Do not use."""
-        if self["contentUri"] is not None:
-            _validate_uri(self["contentUri"])
 
         if self["content"] is None:
             if self["contentUri"] is None:
-                raise RosetteException("bad argument", "Must supply one of Content or ContentUri", "bad arguments")
+                raise RosetteException("badArgument", "Must supply one of Content or ContentUri", "bad arguments")
         else:  # self["content"] not None
             if self["contentUri"] is not None:
-                raise RosetteException("bad argument", "Cannot supply both Content and ContentUri", "bad arguments")
+                raise RosetteException("badArgument", "Cannot supply both Content and ContentUri", "bad arguments")
 
-        if self["contentType"] is None:
-            pass
-        else:
-            DataFormat.validate(self["contentType"], "content type")
-        InputUnit.validate(self["unit"], "unit")
+
         slz = self._for_serialize()
         if self["contentType"] is None and self["contentUri"] is None:
             slz["contentType"] = DataFormat.SIMPLE
@@ -264,7 +276,7 @@ class RosetteParameters(_RosetteParamSetBase):
         @type data_type: L{DataFormat}
         """
         if data_type not in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
-            raise RosetteException(data_type, "Must supply one of HTML, XHTML, or UNSPECIFIED", data_type)
+            raise RosetteException("badArgument", "Must supply one of HTML, XHTML, or UNSPECIFIED", data_type)
         self.load_document_string(open(path, "rb").read(), data_type)
 
     def load_document_string(self, s, data_type):
@@ -279,7 +291,6 @@ class RosetteParameters(_RosetteParamSetBase):
         @parameter data_type: The data type of the string, as per L{DataFormat}.
         @type data_type: L{DataFormat}
         """
-        DataFormat.validate(data_type, "string data format")
         self["content"] = s
         self["contentType"] = data_type
         self["unit"] = InputUnit.DOC
@@ -319,7 +330,7 @@ class RntParameters(_RosetteParamSetBase):
         """Internal. Do not use."""
         for n in ("name", "targetLanguage"):  # required
             if self[n] is None:
-                raise RosetteException("missing parameter", "Required RNT parameter not supplied", repr(n))
+                raise RosetteException("missingParameter", "Required RNT parameter not supplied", repr(n))
         return self._for_serialize()
 
 
@@ -366,7 +377,13 @@ class Operator:
             else:
                 complaint_url = ename + " " + self.suburl
 
-            raise RosetteException(code, complaint_url + " : failed to communicate with Rosette",
+            if "code" in the_json:
+                serverCode = the_json["code"]
+            else:
+                serverCode = "unknownError"
+
+            raise RosetteException(serverCode,
+                                   complaint_url + " : failed to communicate with Rosette",
                                    msg)
 
     def _set_use_multipart(self, value):
@@ -506,7 +523,6 @@ class API:
         @param facet: The facet desired, to be returned by the created L{Operator}.
         @type facet: An element of L{MorphologyOutput}.
         """
-        MorphologyOutput.validate(facet, "morphology output type")
         return Operator(self, "morphology/" + facet)
 
     def entities(self, linked):
