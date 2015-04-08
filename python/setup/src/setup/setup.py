@@ -5,6 +5,5 @@ setup(name='ws-client-binding',
       package_dir={
         'rosette': '../rosette'
       },
-      requires=["requests (>= 0.14.0)"],
       setup_requires=['nose>=1.0', 'nose-pathmunge>=0.1.2']
       )
