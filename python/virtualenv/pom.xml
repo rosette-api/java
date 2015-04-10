@@ -27,6 +27,7 @@
                             <arguments>
                                 <argument>scripts/venv.sh</argument>
                                 <argument>${virtualenv}</argument>
+				<argument>${rosettedir}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -42,6 +43,7 @@
                             <arguments>
                                 <argument>scripts/venv3.sh</argument>
                                 <argument>${virtualenv3}</argument>
+				<argument>${rosettedir}</argument>
                             </arguments>
                         </configuration>
                     </execution>
