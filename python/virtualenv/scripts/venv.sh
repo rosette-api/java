@@ -5,17 +5,17 @@
 
 vroot=$1
 rosettedir=$2
-python=$vroot/bin/python
-
+expyv=2.7
 
 rm -rf $vroot
-echo VENV.SH
-python --version
 virtualenv $vroot
 . $vroot/bin/activate
-$python --version
+python check_version.py $expyv
+if [[ $? != 0 ]] ; then
+    exit 1
+fi
 pip install nose
-$python $rosettedir/setup.py install
+python $rosettedir/setup.py install
 pip install epydoc
 easy_install nose-pathmunge
 
