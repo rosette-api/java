@@ -195,10 +195,14 @@
                         <configuration>
                             <arguments>
                                 <argument>${run}</argument>
+				<argument>--cwd</argument>
+				<argument>${rosettedir}</argument>
                                 <argument>${virtualenv}</argument>
                                 <argument>${python}</argument>
-                                <argument>${rosettedir}/setup.py</argument>
+                                <argument>setup.py</argument>
                                 <argument>sdist</argument>
+				<argument>--dist-dir</argument>
+				<argument>../target/dist</argument>
                             </arguments>
                         </configuration>
                     </execution>
