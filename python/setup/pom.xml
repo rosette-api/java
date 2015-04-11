@@ -195,8 +195,6 @@
                         <configuration>
                             <arguments>
                                 <argument>${run}</argument>
-				<argument>--cwd</argument>
-				<argument>${rosettedir}</argument>
                                 <argument>${virtualenv}</argument>
                                 <argument>${python}</argument>
                                 <argument>setup.py</argument>
@@ -204,6 +202,7 @@
 				<argument>--dist-dir</argument>
 				<argument>../target/dist</argument>
                             </arguments>
+			    <workingDirectory>${rosettedir}</workingDirectory>
                         </configuration>
                     </execution>
 
