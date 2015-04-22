@@ -22,7 +22,7 @@ def parse(pyfile,docdir):
         elif snip:
             if line.lstrip().startswith(end):
                 out.close()
-                print 'See', snippet
+                sys.stdout.write('See '+ + snippet + '\n') # no compatible print in py3
                 snip = False
             else:
                 # put in the correct url for end users and the documentation.
@@ -33,7 +33,7 @@ def main():
     if (len(sys.argv) == 3):
         (samplesdir, docdir) = sys.argv[1:]
     else:
-        print >>sys.stderr, 'Usage: %s samplesdir docdir' % sys.argv[0]
+        sys.stdout.write('Usage: %s samplesdir docdir\n' % sys.argv[0])
         sys.exit(1)    
     if not(os.path.isdir(docdir)):
         os.makedirs(docdir, mode=0777)
@@ -42,7 +42,7 @@ def main():
         if f.endswith('.py'):
             jf = os.path.join(samplesdir, f)
             pyfile = codecs.open(jf, 'r', 'utf8')
-            print 'Parsing',pyfile
+            print ('Parsing ' + str(pyfile) + '\n')
             parse(pyfile, docdir)
             pyfile.close()
 
