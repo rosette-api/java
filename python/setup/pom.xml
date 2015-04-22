@@ -101,38 +101,6 @@
                     </environmentvariables>
                 </configuration>
                 <executions>
-                   <execution>
-                        <id>setup-clean py3</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv3}</argument>
-                                <argument>${python3}</argument>
-                                <argument>setup.py</argument>
-                                <argument>clean</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                   <execution>
-                        <id>setup-clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv}</argument>
-                                <argument>${python}</argument>
-                                <argument>setup.py</argument>
-                                <argument>clean</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>setup build</id>
                         <phase>compile</phase>
