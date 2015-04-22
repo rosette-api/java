@@ -137,6 +137,19 @@ print("/translated_name\n", result)
 ##_
 
 
+#_matched_name
+from rosette.api import API, RniParameters
+
+api = API(service_url="http://jugmaster.basistech.net/rest/v1", user_key="1234567890")
+params = RniParameters()
+params["name1"] = { "text":"Elizabeth Doe", "language": "eng", "entityType":"PERSON" }
+params["name2"] = { "text":"Liz Doe", "language": "eng", "entityType":"PERSON" }
+op = api.matched_name()
+result = op.operate(params)
+print("/matched_name\n", result)
+##_
+
+
 #_multipart_form
 from rosette.api import API, RosetteParameters, DataFormat
 

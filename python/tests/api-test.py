@@ -16,7 +16,7 @@
 
 import unittest
 import logging
-from rosette.api import API, RosetteParameters, RntParameters, DataFormat, MorphologyOutput
+from rosette.api import API, RosetteParameters, RntParameters, DataFormat, MorphologyOutput, RniParameters
 import os
 import sys
 
@@ -228,3 +228,19 @@ class APITestCase(unittest.TestCase):
         result = op.operate(params)
         result = result["result"]
         self.assertEqual(result['translation'], u"جُورْج بُوش")
+
+    def test_matched_name(self):
+        op = self.api.matched_name()
+
+        params = RniParameters()
+        params["name1"] = { "text" : "John Doe" }
+        params["name2"] = { "text" : "Jane Doe" }
+        result = op.operate(params)
+        result = result["result"]
+        self.assertNotEquals(result["score"], 1.0)
+
+        params["name1"] = { "text" : "John Doe" }
+        params["name2"] = { "text" : "John Doe" }
+        result = op.operate(params)
+        result = result["result"]
+        self.assertEquals(result["score"], 1.0)
