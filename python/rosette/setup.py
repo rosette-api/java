@@ -8,7 +8,7 @@ from setuptools import setup
 setup(name=NAME,
       author=AUTHOR,
       description=DESCRIPTION,
-      license="Python (MIT Style)",
+      license="Python (Apache License)",
       long_description=DESCRIPTION,
       package_dir={
         'rosette': '.'
@@ -16,6 +16,6 @@ setup(name=NAME,
       packages=['rosette'],
       platforms=PLATFORMS,
       url=HOMEPAGE,
-      version='1.0',
+      version='0.5',
 
       )
