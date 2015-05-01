@@ -60,7 +60,12 @@ def _my_loads(obj):
         return json.loads(obj)
 
 def _retrying_request(op, url, data, headers):
-    conn = httplib.HTTPConnection(urlparse(url).netloc)
+    parsed = urlparse(url)
+    loc = parsed.netloc
+    if (parsed.scheme == "https"):
+        conn = httplib.HTTPSConnection(loc)
+    else:
+        conn = httplib.HTTPConnection(loc)
     rdata = None
     for i in range(N_RETRIES):
         conn.request(op, url, data, headers)
