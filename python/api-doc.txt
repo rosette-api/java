@@ -2,7 +2,7 @@
 
 rosette.api interim documentation.
 
-From rosette.api, import API, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput,RntParameters
+From rosette.api, import API, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput, RniParameters
 
 You must create an API (symbol above) with the "service_url" parameter providing the
 base URL for Rosette services and the optional user key, e.g.,
@@ -44,14 +44,14 @@ operator, with the sinsingle argument of the parameters dictionary described abo
         result = op.operate(self.TagParams)
         print "should be 30 tokens", len(result['tokens'])
 
-The known operators which can be requested are (other than ping, whose call is described above), are
+The known operators which can be requested (other than ping, whose call is described above), are
 
     API.language()
          On the operator returned by API.language(), you may also call
          languages = op.info()
      to obtain an array (or JSON-embedded array) of available languages.
     API.sentences()
-    API. tokens()
+    API.tokens()
     API.morphology(tag)
       tag must be one of the members of MorphologyOutput,
          i.e., LEMMAS, PARTS_OF_SPEECH, COMPOUND_COMPONENTS, HAN_READINGS, or COMPLETE
@@ -60,6 +60,7 @@ The known operators which can be requested are (other than ping, whose call is d
     API.categories()
     API.sentiment()
     API.translated_name()
+    API.matched_name()
 
 DataFormat values
 

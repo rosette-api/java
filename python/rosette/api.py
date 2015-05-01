@@ -341,6 +341,37 @@ class RntParameters(_RosetteParamSetBase):
         return self._for_serialize()
 
 
+class RniParameters(_RosetteParamSetBase):
+    """Parameter object for C{matched_name} endpoint.
+    All are required.
+
+    C{name1} The name to be matched, a C{name} object.
+
+    C{name2} The name to be matched, a C{name} object.
+
+    The C{name} object contains these fields:
+
+    C{text} Text of the name, required.
+
+    C{language} Language of the name in ISO639 three-letter code, optional.
+
+    C{script} The ISO15924 code of the name, optional.
+
+    C{entityType} The entity type, can be "PERSON", "LOCATION" or "ORGANIZATION", optional.
+    """
+
+    def __init__(self):
+        _RosetteParamSetBase.__init__(self, ("name1", "name2"))
+
+    def serializable(self):
+
+        """Internal. Do not use."""
+        for n in ("name1", "name2"):  # required
+            if self[n] is None:
+                raise RosetteException("missingParameter", "Required RNI parameter not supplied", repr(n))
+        return self._for_serialize()
+
+
 class Operator:
     """L{Operator} objects are invoked via their instance methods to obtain results
     from the Rosette server described by the L{API} object from which they
@@ -430,8 +461,9 @@ class Operator:
         """Invokes the endpoint to which this L{Operator} is bound.
         Passes data and metadata specified by C{parameters} to the server
         endpoint to which this L{Operator} object is bound.  For all
-        endpoints except C{translated_name}, it must be a L{RosetteParameters}
-        object; for C{translated_name}, it must be an L{RntParameters} object.
+        endpoints except C{translated_name} and C{matched_name}, it must be a L{RosetteParameters}
+        object; for C{translated_name}, it must be an L{RntParameters} object;
+        for C{matched_name}, it must be an L{RniParameters} object.
 
         In all cases, the result is returned as a python dictionary
         conforming to the JSON object described in the endpoint's entry
@@ -569,3 +601,11 @@ class API:
         """
         return Operator(self, "translated-name")
 
+    def matched_name(self):
+        """Create an L{Operator} to perform name matching.
+        Note that that L{Operator}'s L{Operator.operate} method requires an L{RniParameters} argument,
+        not the L{RosetteParameters} required by L{Operator}s created by
+        other instance methods.
+        @return: An L{Operator} which can perform name matching.
+        """
+        return Operator(self, "matched-name")
