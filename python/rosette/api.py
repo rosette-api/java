@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 Code and constant classes for operating Rosette Web Service from python.
 
@@ -459,7 +461,7 @@ class API:
     Call instance methods upon this object to obtain L{Operator} objects
     which can communicate with particular Rosette server endpoints.
     """
-    def __init__(self, user_key=None, service_url='http://api.rosette.com/rest/v1'):
+    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1'):
         """ Create an L{API} object.
         @param user_key: (Optional; required for servers requiring authentication.) An authentication string to be sent
          as user_key with all requests.  The default Rosette server requires authentication.
@@ -561,3 +563,4 @@ class API:
         @return: An L{Operator} which can perform name analysis and translation.
         """
         return Operator(self, "translated-name")
+
