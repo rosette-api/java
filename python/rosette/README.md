@@ -5,7 +5,7 @@ Installation
 ------------
 
 1. `git clone https://github.com/basis-technology-corp/rosette-api`
-1. `cd python`
+1. `cd rosette-api/python`
 1. `sudo python setup.py install`
 
 Documentation
