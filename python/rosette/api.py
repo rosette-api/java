@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 Code and constant classes for operating Rosette Web Service from python.
 
@@ -58,7 +60,12 @@ def _my_loads(obj):
         return json.loads(obj)
 
 def _retrying_request(op, url, data, headers):
-    conn = httplib.HTTPConnection(urlparse(url).netloc)
+    parsed = urlparse(url)
+    loc = parsed.netloc
+    if (parsed.scheme == "https"):
+        conn = httplib.HTTPSConnection(loc)
+    else:
+        conn = httplib.HTTPConnection(loc)
     rdata = None
     for i in range(N_RETRIES):
         conn.request(op, url, data, headers)
@@ -491,7 +498,7 @@ class API:
     Call instance methods upon this object to obtain L{Operator} objects
     which can communicate with particular Rosette server endpoints.
     """
-    def __init__(self, user_key=None, service_url='http://api.rosette.com/rest/v1'):
+    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1'):
         """ Create an L{API} object.
         @param user_key: (Optional; required for servers requiring authentication.) An authentication string to be sent
          as user_key with all requests.  The default Rosette server requires authentication.

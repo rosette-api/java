@@ -20,6 +20,7 @@
 	<documentables>../rosette/*.py</documentables>
         <python3>../virtualenv/target/vroot3/bin/python</python3>
         <pip3>../virtualenv/target/vroot3/bin/pip</pip3>
+	<rosettedir>../rosette</rosettedir>
     </properties>
     <modules>
         <module>virtualenv</module>
