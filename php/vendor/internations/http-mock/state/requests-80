@@ -1,0 +1,10 @@
+a:1:{i:0;s:1584:"a:2:{s:6:"server";a:24:{s:13:"DOCUMENT_ROOT";s:66:"C:\Dev\WS-Client-Bindings\php\vendor\internations\http-mock\public";s:11:"REMOTE_ADDR";s:3:"::1";s:11:"REMOTE_PORT";s:5:"51311";s:15:"SERVER_SOFTWARE";s:28:"PHP 5.6.8 Development Server";s:15:"SERVER_PROTOCOL";s:8:"HTTP/1.1";s:11:"SERVER_NAME";s:9:"localhost";s:11:"SERVER_PORT";s:2:"80";s:11:"REQUEST_URI";s:16:"/translated-name";s:14:"REQUEST_METHOD";s:4:"POST";s:11:"SCRIPT_NAME";s:10:"/index.php";s:15:"SCRIPT_FILENAME";s:76:"C:\Dev\WS-Client-Bindings\php\vendor\internations\http-mock\public\index.php";s:9:"PATH_INFO";s:16:"/translated-name";s:8:"PHP_SELF";s:26:"/index.php/translated-name";s:15:"HTTP_USER_AGENT";s:18:"php-requests/1.6.1";s:9:"HTTP_HOST";s:9:"localhost";s:12:"HTTP_REFERER";s:32:"http://localhost/translated-name";s:11:"HTTP_ACCEPT";s:16:"application/json";s:20:"HTTP_ACCEPT_ENCODING";s:4:"gzip";s:17:"HTTP_CONTENT_TYPE";s:16:"application/json";s:19:"HTTP_CONTENT_LENGTH";s:3:"166";s:18:"REQUEST_TIME_FLOAT";d:1430849150.8681290149688720703125;s:12:"REQUEST_TIME";i:1430849150;s:14:"CONTENT_LENGTH";s:3:"166";s:12:"CONTENT_TYPE";s:16:"application/json";}s:7:"request";s:431:"POST /translated-name HTTP/1.1
+Accept:          application/json
+Accept-Encoding: gzip
+Content-Length:  166
+Content-Type:    application/json
+Host:            localhost
+Referer:         http://localhost/translated-name
+User-Agent:      php-requests/1.6.1
+
+{"name":"George Bush","targetLanguage":"zho","entityType":"PERSON","sourceLanguageOfOrigin":"eng","sourceScript":"Latn","targetScript":"Hani","targetScheme":"NATIVE"}";}";}
