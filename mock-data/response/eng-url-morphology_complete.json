@@ -1,0 +1,6727 @@
+{
+  "compounds": [], 
+  "hanReadings": [], 
+  "lemmas": [
+    {
+      "lemma": "Getty", 
+      "text": "Getty"
+    }, 
+    {
+      "lemma": "image", 
+      "text": "Images"
+    }, 
+    {
+      "lemma": "this", 
+      "text": "This"
+    }, 
+    {
+      "lemma": "video", 
+      "text": "Video"
+    }, 
+    {
+      "lemma": "player", 
+      "text": "Player"
+    }, 
+    {
+      "lemma": "require", 
+      "text": "Requires"
+    }, 
+    {
+      "lemma": "JavaScript", 
+      "text": "JavaScript"
+    }, 
+    {
+      "lemma": "it", 
+      "text": "It"
+    }, 
+    {
+      "lemma": "have", 
+      "text": "has"
+    }, 
+    {
+      "lemma": "come", 
+      "text": "come"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "we", 
+      "text": "our"
+    }, 
+    {
+      "lemma": "attention", 
+      "text": "attention"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "browser", 
+      "text": "browser"
+    }, 
+    {
+      "lemma": "you", 
+      "text": "you"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "are"
+    }, 
+    {
+      "lemma": "use", 
+      "text": "using"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "is"
+    }, 
+    {
+      "lemma": "either", 
+      "text": "either"
+    }, 
+    {
+      "lemma": "not", 
+      "text": "not"
+    }, 
+    {
+      "lemma": "run", 
+      "text": "running"
+    }, 
+    {
+      "lemma": "javascript", 
+      "text": "javascript"
+    }, 
+    {
+      "lemma": "or", 
+      "text": "or"
+    }, 
+    {
+      "lemma": "out", 
+      "text": "out"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "date", 
+      "text": "date"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "please", 
+      "text": "Please"
+    }, 
+    {
+      "lemma": "enable", 
+      "text": "enable"
+    }, 
+    {
+      "lemma": "javascript", 
+      "text": "javascript"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "/", 
+      "text": "/"
+    }, 
+    {
+      "lemma": "or", 
+      "text": "or"
+    }, 
+    {
+      "lemma": "update", 
+      "text": "update"
+    }, 
+    {
+      "lemma": "you", 
+      "text": "your"
+    }, 
+    {
+      "lemma": "browser", 
+      "text": "browser"
+    }, 
+    {
+      "lemma": "if", 
+      "text": "if"
+    }, 
+    {
+      "lemma": "possible", 
+      "text": "possible"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "2", 
+      "text": "2"
+    }, 
+    {
+      "lemma": "hour", 
+      "text": "hours"
+    }, 
+    {
+      "lemma": "German", 
+      "text": "German"
+    }, 
+    {
+      "lemma": "plane", 
+      "text": "Plane"
+    }, 
+    {
+      "lemma": "crash", 
+      "text": "Crash"
+    }, 
+    {
+      "lemma": "84", 
+      "text": "84"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "84", 
+      "text": "84"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "In"
+    }, 
+    {
+      "lemma": "this", 
+      "text": "this"
+    }, 
+    {
+      "lemma": "photo", 
+      "text": "photo"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "co", 
+      "text": "co"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "pilot", 
+      "text": "pilot"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "germanwings", 
+      "text": "Germanwings"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": "4U9525", 
+      "text": "4U9525"
+    }, 
+    {
+      "lemma": "Andrea", 
+      "text": "Andreas"
+    }, 
+    {
+      "lemma": "Lubitz", 
+      "text": "Lubitz"
+    }, 
+    {
+      "lemma": "participate", 
+      "text": "participates"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "Frankfurt", 
+      "text": "Frankfurt"
+    }, 
+    {
+      "lemma": "City", 
+      "text": "City"
+    }, 
+    {
+      "lemma": "half", 
+      "text": "Half"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "marathon", 
+      "text": "Marathon"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "March", 
+      "text": "March"
+    }, 
+    {
+      "lemma": "14", 
+      "text": "14"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "2010", 
+      "text": "2010"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "Frankfurt", 
+      "text": "Frankfurt"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "Germany", 
+      "text": "Germany"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Germanwings", 
+      "text": "Germanwings"
+    }, 
+    {
+      "lemma": "Co", 
+      "text": "Co"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "pilot", 
+      "text": "Pilot"
+    }, 
+    {
+      "lemma": "Lubitz", 
+      "text": "Lubitz"
+    }, 
+    {
+      "lemma": "rehearse", 
+      "text": "Rehearsed"
+    }, 
+    {
+      "lemma": "crash", 
+      "text": "Crash"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "previous", 
+      "text": "Previous"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "Flight"
+    }, 
+    {
+      "lemma": ":", 
+      "text": ":"
+    }, 
+    {
+      "lemma": "Bea", 
+      "text": "BEA"
+    }, 
+    {
+      "lemma": "report", 
+      "text": "Report"
+    }, 
+    {
+      "lemma": "by", 
+      "text": "By"
+    }, 
+    {
+      "lemma": "Alastair", 
+      "text": "Alastair"
+    }, 
+    {
+      "lemma": "Jamieson", 
+      "text": "Jamieson"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "The"
+    }, 
+    {
+      "lemma": "germanwings", 
+      "text": "Germanwings"
+    }, 
+    {
+      "lemma": "co", 
+      "text": "co"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "pilot", 
+      "text": "pilot"
+    }, 
+    {
+      "lemma": "suspect", 
+      "text": "suspected"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "deliberately", 
+      "text": "deliberately"
+    }, 
+    {
+      "lemma": "down", 
+      "text": "downing"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "his"
+    }, 
+    {
+      "lemma": "plane", 
+      "text": "plane"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "French", 
+      "text": "French"
+    }, 
+    {
+      "lemma": "Alps", 
+      "text": "Alps"
+    }, 
+    {
+      "lemma": "appear", 
+      "text": "appears"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "have", 
+      "text": "have"
+    }, 
+    {
+      "lemma": "rehearse", 
+      "text": "rehearsed"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "tragedy", 
+      "text": "tragedy"
+    }, 
+    {
+      "lemma": "by", 
+      "text": "by"
+    }, 
+    {
+      "lemma": "enter", 
+      "text": "entering"
+    }, 
+    {
+      "lemma": "crash", 
+      "text": "crash"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "altitude", 
+      "text": "altitude"
+    }, 
+    {
+      "lemma": "setting", 
+      "text": "settings"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "aircraft", 
+      "text": "aircraft"
+    }, 
+    {
+      "lemma": "'s", 
+      "text": "'s"
+    }, 
+    {
+      "lemma": "previous", 
+      "text": "previous"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "accord", 
+      "text": "according"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "preliminary", 
+      "text": "preliminary"
+    }, 
+    {
+      "lemma": "report", 
+      "text": "report"
+    }, 
+    {
+      "lemma": "Wednesday", 
+      "text": "Wednesday"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Andrea", 
+      "text": "Andreas"
+    }, 
+    {
+      "lemma": "Lubitz", 
+      "text": "Lubitz"
+    }, 
+    {
+      "lemma": "repeatedly", 
+      "text": "repeatedly"
+    }, 
+    {
+      "lemma": "set", 
+      "text": "set"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "altitude", 
+      "text": "altitude"
+    }, 
+    {
+      "lemma": "dial", 
+      "text": "dial"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "Airbus", 
+      "text": "Airbus"
+    }, 
+    {
+      "lemma": "A320", 
+      "text": "A320"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "100", 
+      "text": "100"
+    }, 
+    {
+      "lemma": "foot", 
+      "text": "feet"
+    }, 
+    {
+      "lemma": "while", 
+      "text": "while"
+    }, 
+    {
+      "lemma": "alone", 
+      "text": "alone"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "cockpit", 
+      "text": "cockpit"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "route", 
+      "text": "route"
+    }, 
+    {
+      "lemma": "from", 
+      "text": "from"
+    }, 
+    {
+      "lemma": "Dusseldorf", 
+      "text": "Dusseldorf"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "Barcelona", 
+      "text": "Barcelona"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "March", 
+      "text": "March"
+    }, 
+    {
+      "lemma": "24", 
+      "text": "24"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "investigator", 
+      "text": "investigators"
+    }, 
+    {
+      "lemma": "at", 
+      "text": "at"
+    }, 
+    {
+      "lemma": "French", 
+      "text": "French"
+    }, 
+    {
+      "lemma": "safety", 
+      "text": "safety"
+    }, 
+    {
+      "lemma": "agency", 
+      "text": "agency"
+    }, 
+    {
+      "lemma": "Bea", 
+      "text": "BEA"
+    }, 
+    {
+      "lemma": "find", 
+      "text": "found"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "that", 
+      "text": "That"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": "land", 
+      "text": "landed"
+    }, 
+    {
+      "lemma": "normally", 
+      "text": "normally"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "Spain", 
+      "text": "Spain"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "cockpit", 
+      "text": "Cockpit"
+    }, 
+    {
+      "lemma": "voice", 
+      "text": "voice"
+    }, 
+    {
+      "lemma": "recording", 
+      "text": "recordings"
+    }, 
+    {
+      "lemma": "show", 
+      "text": "show"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": "Lubitz", 
+      "text": "Lubitz"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "27", 
+      "text": "27"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "lock", 
+      "text": "locked"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "captain", 
+      "text": "captain"
+    }, 
+    {
+      "lemma": "out", 
+      "text": "out"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "cockpit", 
+      "text": "cockpit"
+    }, 
+    {
+      "lemma": "during", 
+      "text": "during"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "bathroom", 
+      "text": "bathroom"
+    }, 
+    {
+      "lemma": "break", 
+      "text": "break"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "return", 
+      "text": "return"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "Dusseldorf", 
+      "text": "Dusseldorf"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "crash", 
+      "text": "crashed"
+    }, 
+    {
+      "lemma": "it", 
+      "text": "it"
+    }, 
+    {
+      "lemma": "into", 
+      "text": "into"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "mountainside", 
+      "text": "mountainside"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "kill", 
+      "text": "killing"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "himself"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "149", 
+      "text": "149"
+    }, 
+    {
+      "lemma": "other", 
+      "text": "others"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "board", 
+      "text": "board"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "the", 
+      "text": "The"
+    }, 
+    {
+      "lemma": "captain", 
+      "text": "captain"
+    }, 
+    {
+      "lemma": "can", 
+      "text": "can"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "be"
+    }, 
+    {
+      "lemma": "hear", 
+      "text": "heard"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "recording", 
+      "text": "recordings"
+    }, 
+    {
+      "lemma": "demand", 
+      "text": "demanding"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "be"
+    }, 
+    {
+      "lemma": "let", 
+      "text": "let"
+    }, 
+    {
+      "lemma": "back", 
+      "text": "back"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "try", 
+      "text": "trying"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "break", 
+      "text": "break"
+    }, 
+    {
+      "lemma": "down", 
+      "text": "down"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "door", 
+      "text": "door"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Wednesday", 
+      "text": "Wednesday"
+    }, 
+    {
+      "lemma": "'s", 
+      "text": "'s"
+    }, 
+    {
+      "lemma": "report", 
+      "text": "report"
+    }, 
+    {
+      "lemma": "find", 
+      "text": "found"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": "air", 
+      "text": "air"
+    }, 
+    {
+      "lemma": "traffic", 
+      "text": "traffic"
+    }, 
+    {
+      "lemma": "controller", 
+      "text": "controllers"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "military", 
+      "text": "military"
+    }, 
+    {
+      "lemma": "defense", 
+      "text": "defense"
+    }, 
+    {
+      "lemma": "personnel", 
+      "text": "personnel"
+    }, 
+    {
+      "lemma": "try", 
+      "text": "tried"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "contact", 
+      "text": "contact"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "plane", 
+      "text": "plane"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "14", 
+      "text": "14"
+    }, 
+    {
+      "lemma": "occasion", 
+      "text": "occasions"
+    }, 
+    {
+      "lemma": "while", 
+      "text": "while"
+    }, 
+    {
+      "lemma": "it", 
+      "text": "it"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "was"
+    }, 
+    {
+      "lemma": "descend", 
+      "text": "descending"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "add", 
+      "text": "adding"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "doomed", 
+      "text": "doomed"
+    }, 
+    {
+      "lemma": "jet", 
+      "text": "jet"
+    }, 
+    {
+      "lemma": "have", 
+      "text": "had"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "been"
+    }, 
+    {
+      "lemma": "cruise", 
+      "text": "cruising"
+    }, 
+    {
+      "lemma": "at", 
+      "text": "at"
+    }, 
+    {
+      "lemma": "273", 
+      "text": "273"
+    }, 
+    {
+      "lemma": "knot", 
+      "text": "knots"
+    }, 
+    {
+      "lemma": "but", 
+      "text": "but"
+    }, 
+    {
+      "lemma": "it", 
+      "text": "its"
+    }, 
+    {
+      "lemma": "speed", 
+      "text": "speed"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "was"
+    }, 
+    {
+      "lemma": "deliberately", 
+      "text": "deliberately"
+    }, 
+    {
+      "lemma": "increase", 
+      "text": "increased"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "345", 
+      "text": "345"
+    }, 
+    {
+      "lemma": "knot", 
+      "text": "knots"
+    }, 
+    {
+      "lemma": "as", 
+      "text": "as"
+    }, 
+    {
+      "lemma": "it", 
+      "text": "it"
+    }, 
+    {
+      "lemma": "head", 
+      "text": "headed"
+    }, 
+    {
+      "lemma": "towards", 
+      "text": "towards"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "mountainside", 
+      "text": "mountainside"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "no", 
+      "text": "No"
+    }, 
+    {
+      "lemma": "manual", 
+      "text": "manual"
+    }, 
+    {
+      "lemma": "change", 
+      "text": "change"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "jet", 
+      "text": "jet"
+    }, 
+    {
+      "lemma": "'s", 
+      "text": "'s"
+    }, 
+    {
+      "lemma": "downward", 
+      "text": "downward"
+    }, 
+    {
+      "lemma": "path", 
+      "text": "path"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "was"
+    }, 
+    {
+      "lemma": "record", 
+      "text": "recorded"
+    }, 
+    {
+      "lemma": "until", 
+      "text": "until"
+    }, 
+    {
+      "lemma": "93", 
+      "text": "93"
+    }, 
+    {
+      "lemma": "second", 
+      "text": "seconds"
+    }, 
+    {
+      "lemma": "before", 
+      "text": "before"
+    }, 
+    {
+      "lemma": "impact", 
+      "text": "impact"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "report", 
+      "text": "report"
+    }, 
+    {
+      "lemma": "state", 
+      "text": "stated"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "the", 
+      "text": "The"
+    }, 
+    {
+      "lemma": "sound", 
+      "text": "sound"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "breathe", 
+      "text": "breathing"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "was"
+    }, 
+    {
+      "lemma": "record", 
+      "text": "recorded"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "[", 
+      "text": "["
+    }, 
+    {
+      "lemma": "cockpit", 
+      "text": "cockpit"
+    }, 
+    {
+      "lemma": "voice", 
+      "text": "voice"
+    }, 
+    {
+      "lemma": "recorder", 
+      "text": "recorder"
+    }, 
+    {
+      "lemma": "]", 
+      "text": "]"
+    }, 
+    {
+      "lemma": "until", 
+      "text": "until"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "few", 
+      "text": "few"
+    }, 
+    {
+      "lemma": "second", 
+      "text": "seconds"
+    }, 
+    {
+      "lemma": "before", 
+      "text": "before"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "end", 
+      "text": "end"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "it", 
+      "text": "it"
+    }, 
+    {
+      "lemma": "conclude", 
+      "text": "concluded"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "Flight"
+    }, 
+    {
+      "lemma": "4U9525", 
+      "text": "4U9525"
+    }, 
+    {
+      "lemma": "smash", 
+      "text": "smashed"
+    }, 
+    {
+      "lemma": "into", 
+      "text": "into"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "ground", 
+      "text": "ground"
+    }, 
+    {
+      "lemma": "at", 
+      "text": "at"
+    }, 
+    {
+      "lemma": "9.41", 
+      "text": "9.41"
+    }, 
+    {
+      "lemma": "a.m.", 
+      "text": "a.m."
+    }, 
+    {
+      "lemma": "local", 
+      "text": "local"
+    }, 
+    {
+      "lemma": "time", 
+      "text": "time"
+    }, 
+    {
+      "lemma": "(", 
+      "text": "("
+    }, 
+    {
+      "lemma": "5.41", 
+      "text": "5.41"
+    }, 
+    {
+      "lemma": "a.m.", 
+      "text": "a.m."
+    }, 
+    {
+      "lemma": "ET", 
+      "text": "ET"
+    }, 
+    {
+      "lemma": ")", 
+      "text": ")"
+    }, 
+    {
+      "lemma": "—", 
+      "text": "—"
+    }, 
+    {
+      "lemma": "nine", 
+      "text": "nine"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "half", 
+      "text": "half"
+    }, 
+    {
+      "lemma": "minute", 
+      "text": "minutes"
+    }, 
+    {
+      "lemma": "after", 
+      "text": "after"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "captain", 
+      "text": "captain"
+    }, 
+    {
+      "lemma": "get", 
+      "text": "got"
+    }, 
+    {
+      "lemma": "up", 
+      "text": "up"
+    }, 
+    {
+      "lemma": "from", 
+      "text": "from"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "his"
+    }, 
+    {
+      "lemma": "seat", 
+      "text": "seat"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "the", 
+      "text": "The"
+    }, 
+    {
+      "lemma": "report", 
+      "text": "report"
+    }, 
+    {
+      "lemma": "do", 
+      "text": "did"
+    }, 
+    {
+      "lemma": "not", 
+      "text": "not"
+    }, 
+    {
+      "lemma": "comment", 
+      "text": "comment"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "Lubitz", 
+      "text": "Lubitz"
+    }, 
+    {
+      "lemma": "'s", 
+      "text": "'s"
+    }, 
+    {
+      "lemma": "action", 
+      "text": "actions"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "preceding", 
+      "text": "preceding"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "but", 
+      "text": "but"
+    }, 
+    {
+      "lemma": "one", 
+      "text": "one"
+    }, 
+    {
+      "lemma": "aviation", 
+      "text": "aviation"
+    }, 
+    {
+      "lemma": "expert", 
+      "text": "expert"
+    }, 
+    {
+      "lemma": "believe", 
+      "text": "believes"
+    }, 
+    {
+      "lemma": "they", 
+      "text": "they"
+    }, 
+    {
+      "lemma": "indicate", 
+      "text": "indicate"
+    }, 
+    {
+      "lemma": "an", 
+      "text": "an"
+    }, 
+    {
+      "lemma": "aborted", 
+      "text": "aborted"
+    }, 
+    {
+      "lemma": "suicide", 
+      "text": "suicide"
+    }, 
+    {
+      "lemma": "attempt", 
+      "text": "attempt"
+    }, 
+    {
+      "lemma": "rather", 
+      "text": "rather"
+    }, 
+    {
+      "lemma": "than", 
+      "text": "than"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "rehearsal", 
+      "text": "rehearsal"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "I", 
+      "text": "My"
+    }, 
+    {
+      "lemma": "perspective", 
+      "text": "perspective"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "this", 
+      "text": "this"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "is"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "was"
+    }, 
+    {
+      "lemma": "actually", 
+      "text": "actually"
+    }, 
+    {
+      "lemma": "think", 
+      "text": "thinking"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "commit", 
+      "text": "committing"
+    }, 
+    {
+      "lemma": "suicide", 
+      "text": "suicide"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "way", 
+      "text": "way"
+    }, 
+    {
+      "lemma": "out", 
+      "text": "out"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "outbound", 
+      "text": "outbound"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": "but", 
+      "text": "but"
+    }, 
+    {
+      "lemma": "change", 
+      "text": "changed"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "his"
+    }, 
+    {
+      "lemma": "mind", 
+      "text": "mind"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "said", 
+      "text": "said"
+    }, 
+    {
+      "lemma": "aviation", 
+      "text": "aviation"
+    }, 
+    {
+      "lemma": "expert", 
+      "text": "expert"
+    }, 
+    {
+      "lemma": "Alastair", 
+      "text": "Alastair"
+    }, 
+    {
+      "lemma": "Rosenschein", 
+      "text": "Rosenschein"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "former", 
+      "text": "former"
+    }, 
+    {
+      "lemma": "captain", 
+      "text": "captain"
+    }, 
+    {
+      "lemma": "with", 
+      "text": "with"
+    }, 
+    {
+      "lemma": "British", 
+      "text": "British"
+    }, 
+    {
+      "lemma": "airway", 
+      "text": "Airways"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "there", 
+      "text": "There"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "is"
+    }, 
+    {
+      "lemma": "no", 
+      "text": "no"
+    }, 
+    {
+      "lemma": "need", 
+      "text": "need"
+    }, 
+    {
+      "lemma": "for", 
+      "text": "for"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "pilot", 
+      "text": "pilot"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "practice", 
+      "text": "practice"
+    }, 
+    {
+      "lemma": "do", 
+      "text": "doing"
+    }, 
+    {
+      "lemma": "this", 
+      "text": "this"
+    }, 
+    {
+      "lemma": "sort", 
+      "text": "sort"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "thing", 
+      "text": "thing"
+    }, 
+    {
+      "lemma": "because", 
+      "text": "because"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "know", 
+      "text": "knows"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "equipment", 
+      "text": "equipment"
+    }, 
+    {
+      "lemma": "fully", 
+      "text": "fully"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "it", 
+      "text": "It"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "'s"
+    }, 
+    {
+      "lemma": "not", 
+      "text": "not"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "question", 
+      "text": "question"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "'", 
+      "text": "'"
+    }, 
+    {
+      "lemma": "if", 
+      "text": "if"
+    }, 
+    {
+      "lemma": "I", 
+      "text": "I"
+    }, 
+    {
+      "lemma": "turn", 
+      "text": "turn"
+    }, 
+    {
+      "lemma": "this", 
+      "text": "this"
+    }, 
+    {
+      "lemma": "knob", 
+      "text": "knob"
+    }, 
+    {
+      "lemma": "will", 
+      "text": "will"
+    }, 
+    {
+      "lemma": "this", 
+      "text": "this"
+    }, 
+    {
+      "lemma": "happen", 
+      "text": "happen"
+    }, 
+    {
+      "lemma": "?", 
+      "text": "?"
+    }, 
+    {
+      "lemma": "'", 
+      "text": "'"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "He"
+    }, 
+    {
+      "lemma": "already", 
+      "text": "already"
+    }, 
+    {
+      "lemma": "know", 
+      "text": "knows"
+    }, 
+    {
+      "lemma": "all", 
+      "text": "all"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "'s"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "qualified", 
+      "text": "qualified"
+    }, 
+    {
+      "lemma": "airline", 
+      "text": "airline"
+    }, 
+    {
+      "lemma": "pilot", 
+      "text": "pilot"
+    }, 
+    {
+      "lemma": "so", 
+      "text": "so"
+    }, 
+    {
+      "lemma": "I", 
+      "text": "I"
+    }, 
+    {
+      "lemma": "think", 
+      "text": "think"
+    }, 
+    {
+      "lemma": "it", 
+      "text": "it"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "was"
+    }, 
+    {
+      "lemma": "just", 
+      "text": "just"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "bottle", 
+      "text": "bottled"
+    }, 
+    {
+      "lemma": "out", 
+      "text": "out"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "commit", 
+      "text": "committing"
+    }, 
+    {
+      "lemma": "suicide", 
+      "text": "suicide"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "outbound", 
+      "text": "outbound"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "although", 
+      "text": "Although"
+    }, 
+    {
+      "lemma": "Lubitz", 
+      "text": "Lubitz"
+    }, 
+    {
+      "lemma": "'s", 
+      "text": "'s"
+    }, 
+    {
+      "lemma": "erratic", 
+      "text": "erratic"
+    }, 
+    {
+      "lemma": "altitude", 
+      "text": "altitude"
+    }, 
+    {
+      "lemma": "selection", 
+      "text": "selections"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "were"
+    }, 
+    {
+      "lemma": "pick", 
+      "text": "picked"
+    }, 
+    {
+      "lemma": "up", 
+      "text": "up"
+    }, 
+    {
+      "lemma": "by", 
+      "text": "by"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": "data", 
+      "text": "data"
+    }, 
+    {
+      "lemma": "recorder", 
+      "text": "recorder"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "plane", 
+      "text": "plane"
+    }, 
+    {
+      "lemma": "do", 
+      "text": "did"
+    }, 
+    {
+      "lemma": "not", 
+      "text": "not"
+    }, 
+    {
+      "lemma": "descend", 
+      "text": "descend"
+    }, 
+    {
+      "lemma": "below", 
+      "text": "below"
+    }, 
+    {
+      "lemma": "it", 
+      "text": "its"
+    }, 
+    {
+      "lemma": "planned", 
+      "text": "planned"
+    }, 
+    {
+      "lemma": "height", 
+      "text": "height"
+    }, 
+    {
+      "lemma": "because", 
+      "text": "because"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "input", 
+      "text": "inputs"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "were"
+    }, 
+    {
+      "lemma": "never", 
+      "text": "never"
+    }, 
+    {
+      "lemma": "actioned", 
+      "text": "actioned"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "Rosenschein", 
+      "text": "Rosenschein"
+    }, 
+    {
+      "lemma": "say", 
+      "text": "said"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "he", 
+      "text": "He"
+    }, 
+    {
+      "lemma": "have not", 
+      "text": "hadn't"
+    }, 
+    {
+      "lemma": "actually", 
+      "text": "actually"
+    }, 
+    {
+      "lemma": "pull", 
+      "text": "pulled"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "knob", 
+      "text": "knob"
+    }, 
+    {
+      "lemma": "out", 
+      "text": "out"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "engage", 
+      "text": "engage"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "autopilot", 
+      "text": "autopilot"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "carry", 
+      "text": "carry"
+    }, 
+    {
+      "lemma": "out", 
+      "text": "out"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": "maneuver", 
+      "text": "maneuver"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "tell", 
+      "text": "told"
+    }, 
+    {
+      "lemma": "NBC", 
+      "text": "NBC"
+    }, 
+    {
+      "lemma": "New", 
+      "text": "News"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Wednesday", 
+      "text": "Wednesday"
+    }, 
+    {
+      "lemma": "'s", 
+      "text": "'s"
+    }, 
+    {
+      "lemma": "preliminary", 
+      "text": "preliminary"
+    }, 
+    {
+      "lemma": "report", 
+      "text": "report"
+    }, 
+    {
+      "lemma": "say", 
+      "text": "said"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "ongoing", 
+      "text": "ongoing"
+    }, 
+    {
+      "lemma": "investigation", 
+      "text": "investigation"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "will", 
+      "text": "will"
+    }, 
+    {
+      "lemma": "also", 
+      "text": "also"
+    }, 
+    {
+      "lemma": "study", 
+      "text": "study"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "systemic", 
+      "text": "systemic"
+    }, 
+    {
+      "lemma": "failing", 
+      "text": "failings"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": "may", 
+      "text": "may"
+    }, 
+    {
+      "lemma": "have", 
+      "text": "have"
+    }, 
+    {
+      "lemma": "lead", 
+      "text": "led"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "this", 
+      "text": "this"
+    }, 
+    {
+      "lemma": "accident", 
+      "text": "accident"
+    }, 
+    {
+      "lemma": "or", 
+      "text": "or"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "similar", 
+      "text": "similar"
+    }, 
+    {
+      "lemma": "event", 
+      "text": "events"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "including", 
+      "text": "including"
+    }, 
+    {
+      "lemma": "medical", 
+      "text": "medical"
+    }, 
+    {
+      "lemma": "regulation", 
+      "text": "regulations"
+    }, 
+    {
+      "lemma": "for", 
+      "text": "for"
+    }, 
+    {
+      "lemma": "pilot", 
+      "text": "pilots"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "cockpit", 
+      "text": "cockpit"
+    }, 
+    {
+      "lemma": "door", 
+      "text": "door"
+    }, 
+    {
+      "lemma": "rule", 
+      "text": "rules"
+    }, 
+    {
+      "lemma": "that", 
+      "text": "that"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "were"
+    }, 
+    {
+      "lemma": "introduce", 
+      "text": "introduced"
+    }, 
+    {
+      "lemma": "after", 
+      "text": "after"
+    }, 
+    {
+      "lemma": "9", 
+      "text": "9"
+    }, 
+    {
+      "lemma": "/", 
+      "text": "/"
+    }, 
+    {
+      "lemma": "11", 
+      "text": "11"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Lubitz", 
+      "text": "Lubitz"
+    }, 
+    {
+      "lemma": "'s", 
+      "text": "'"
+    }, 
+    {
+      "lemma": "professional", 
+      "text": "professional"
+    }, 
+    {
+      "lemma": "level", 
+      "text": "level"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "be", 
+      "text": "was"
+    }, 
+    {
+      "lemma": "above", 
+      "text": "above"
+    }, 
+    {
+      "lemma": "standard", 
+      "text": "standard"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "Bea", 
+      "text": "BEA"
+    }, 
+    {
+      "lemma": "report", 
+      "text": "report"
+    }, 
+    {
+      "lemma": "add", 
+      "text": "added"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "the", 
+      "text": "The"
+    }, 
+    {
+      "lemma": "co", 
+      "text": "co"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "pilot", 
+      "text": "pilot"
+    }, 
+    {
+      "lemma": "have", 
+      "text": "had"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "been"
+    }, 
+    {
+      "lemma": "treat", 
+      "text": "treated"
+    }, 
+    {
+      "lemma": "for", 
+      "text": "for"
+    }, 
+    {
+      "lemma": "depression", 
+      "text": "depression"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "past", 
+      "text": "past"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "search", 
+      "text": "search"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "his"
+    }, 
+    {
+      "lemma": "home", 
+      "text": "home"
+    }, 
+    {
+      "lemma": "reveal", 
+      "text": "revealed"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "have", 
+      "text": "had"
+    }, 
+    {
+      "lemma": "research", 
+      "text": "researched"
+    }, 
+    {
+      "lemma": "suicide", 
+      "text": "suicide"
+    }, 
+    {
+      "lemma": "method", 
+      "text": "methods"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "his"
+    }, 
+    {
+      "lemma": "tablet", 
+      "text": "tablet"
+    }, 
+    {
+      "lemma": "computer", 
+      "text": "computer"
+    }, 
+    {
+      "lemma": "day", 
+      "text": "days"
+    }, 
+    {
+      "lemma": "before", 
+      "text": "before"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "crash", 
+      "text": "crash"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "investigator", 
+      "text": "Investigators"
+    }, 
+    {
+      "lemma": "also", 
+      "text": "also"
+    }, 
+    {
+      "lemma": "find", 
+      "text": "found"
+    }, 
+    {
+      "lemma": "tear", 
+      "text": "torn"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "up", 
+      "text": "up"
+    }, 
+    {
+      "lemma": "sick", 
+      "text": "sick"
+    }, 
+    {
+      "lemma": "note", 
+      "text": "notes"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "the", 
+      "text": "The"
+    }, 
+    {
+      "lemma": "federal", 
+      "text": "Federal"
+    }, 
+    {
+      "lemma": "aviation", 
+      "text": "Aviation"
+    }, 
+    {
+      "lemma": "administration", 
+      "text": "Administration"
+    }, 
+    {
+      "lemma": "award", 
+      "text": "awarded"
+    }, 
+    {
+      "lemma": "Lubitz", 
+      "text": "Lubitz"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "U.S.", 
+      "text": "U.S."
+    }, 
+    {
+      "lemma": "pilot", 
+      "text": "pilot"
+    }, 
+    {
+      "lemma": "license", 
+      "text": "license"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "2010", 
+      "text": "2010"
+    }, 
+    {
+      "lemma": "despite", 
+      "text": "despite"
+    }, 
+    {
+      "lemma": "concern", 
+      "text": "concerns"
+    }, 
+    {
+      "lemma": "about", 
+      "text": "about"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "his"
+    }, 
+    {
+      "lemma": "mental", 
+      "text": "mental"
+    }, 
+    {
+      "lemma": "fitness", 
+      "text": "fitness"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Records", 
+      "text": "Records"
+    }, 
+    {
+      "lemma": "post", 
+      "text": "posted"
+    }, 
+    {
+      "lemma": "online", 
+      "text": "online"
+    }, 
+    {
+      "lemma": "show", 
+      "text": "show"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "apply", 
+      "text": "applied"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "2010", 
+      "text": "2010"
+    }, 
+    {
+      "lemma": "while", 
+      "text": "while"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "was"
+    }, 
+    {
+      "lemma": "employ", 
+      "text": "employed"
+    }, 
+    {
+      "lemma": "by", 
+      "text": "by"
+    }, 
+    {
+      "lemma": "Lufthansa", 
+      "text": "Lufthansa"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "training", 
+      "text": "training"
+    }, 
+    {
+      "lemma": "at", 
+      "text": "at"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "flight", 
+      "text": "flight"
+    }, 
+    {
+      "lemma": "school", 
+      "text": "school"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "Phoenix", 
+      "text": "Phoenix"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "as", 
+      "text": "As"
+    }, 
+    {
+      "lemma": "part", 
+      "text": "part"
+    }, 
+    {
+      "lemma": "of", 
+      "text": "of"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "application", 
+      "text": "application"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "initially", 
+      "text": "initially"
+    }, 
+    {
+      "lemma": "submit", 
+      "text": "submitted"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "medical", 
+      "text": "medical"
+    }, 
+    {
+      "lemma": "form", 
+      "text": "form"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "FAA", 
+      "text": "FAA"
+    }, 
+    {
+      "lemma": "assert", 
+      "text": "asserting"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "have", 
+      "text": "had"
+    }, 
+    {
+      "lemma": "no", 
+      "text": "no"
+    }, 
+    {
+      "lemma": "mental", 
+      "text": "mental"
+    }, 
+    {
+      "lemma": "disorder", 
+      "text": "disorders"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "he", 
+      "text": "He"
+    }, 
+    {
+      "lemma": "then", 
+      "text": "then"
+    }, 
+    {
+      "lemma": "resubmit", 
+      "text": "resubmitted"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "the"
+    }, 
+    {
+      "lemma": "form", 
+      "text": "form"
+    }, 
+    {
+      "lemma": "acknowledge", 
+      "text": "acknowledging"
+    }, 
+    {
+      "lemma": "he", 
+      "text": "he"
+    }, 
+    {
+      "lemma": "have", 
+      "text": "had"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "been"
+    }, 
+    {
+      "lemma": "treat", 
+      "text": "treated"
+    }, 
+    {
+      "lemma": "for", 
+      "text": "for"
+    }, 
+    {
+      "lemma": "severe", 
+      "text": "severe"
+    }, 
+    {
+      "lemma": "depression", 
+      "text": "depression"
+    }, 
+    {
+      "lemma": "from", 
+      "text": "from"
+    }, 
+    {
+      "lemma": "2008", 
+      "text": "2008"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "2009", 
+      "text": "2009"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "—", 
+      "text": "—"
+    }, 
+    {
+      "lemma": "NBC", 
+      "text": "NBC"
+    }, 
+    {
+      "lemma": "New", 
+      "text": "News"
+    }, 
+    {
+      "lemma": "'s", 
+      "text": "'"
+    }, 
+    {
+      "lemma": "Katy", 
+      "text": "Katy"
+    }, 
+    {
+      "lemma": "Tur", 
+      "text": "Tur"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "Amy", 
+      "text": "Amy"
+    }, 
+    {
+      "lemma": "Perrette", 
+      "text": "Perrette"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "Nancy", 
+      "text": "Nancy"
+    }, 
+    {
+      "lemma": "Ing", 
+      "text": "Ing"
+    }, 
+    {
+      "lemma": "contribute", 
+      "text": "contributed"
+    }, 
+    {
+      "lemma": "to", 
+      "text": "to"
+    }, 
+    {
+      "lemma": "this", 
+      "text": "this"
+    }, 
+    {
+      "lemma": "report", 
+      "text": "report"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "one", 
+      "text": "First"
+    }, 
+    {
+      "lemma": "publish", 
+      "text": "published"
+    }, 
+    {
+      "lemma": "May", 
+      "text": "May"
+    }, 
+    {
+      "lemma": "6", 
+      "text": "6"
+    }, 
+    {
+      "lemma": "2015", 
+      "text": "2015"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "3:13", 
+      "text": "3:13"
+    }, 
+    {
+      "lemma": "AM", 
+      "text": "AM"
+    }, 
+    {
+      "lemma": "Alastair", 
+      "text": "Alastair"
+    }, 
+    {
+      "lemma": "Jamieson", 
+      "text": "Jamieson"
+    }, 
+    {
+      "lemma": "Alastair", 
+      "text": "Alastair"
+    }, 
+    {
+      "lemma": "Jamieson", 
+      "text": "Jamieson"
+    }, 
+    {
+      "lemma": "be", 
+      "text": "is"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "London", 
+      "text": "London"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "based", 
+      "text": "based"
+    }, 
+    {
+      "lemma": "reporter", 
+      "text": "reporter"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "editor", 
+      "text": "editor"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "homepage", 
+      "text": "homepage"
+    }, 
+    {
+      "lemma": "producer", 
+      "text": "producer"
+    }, 
+    {
+      "lemma": "for", 
+      "text": "for"
+    }, 
+    {
+      "lemma": "NBC", 
+      "text": "NBC"
+    }, 
+    {
+      "lemma": "New", 
+      "text": "News"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "he", 
+      "text": "He"
+    }, 
+    {
+      "lemma": "join", 
+      "text": "joined"
+    }, 
+    {
+      "lemma": "NBCNews.com", 
+      "text": "NBCNews.com"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "2011", 
+      "text": "2011"
+    }, 
+    {
+      "lemma": "after", 
+      "text": "after"
+    }, 
+    {
+      "lemma": "more", 
+      "text": "more"
+    }, 
+    {
+      "lemma": "than", 
+      "text": "than"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "decade", 
+      "text": "decade"
+    }, 
+    {
+      "lemma": "work", 
+      "text": "working"
+    }, 
+    {
+      "lemma": "as", 
+      "text": "as"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "reporter", 
+      "text": "reporter"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "news", 
+      "text": "news"
+    }, 
+    {
+      "lemma": "editor", 
+      "text": "editor"
+    }, 
+    {
+      "lemma": "for", 
+      "text": "for"
+    }, 
+    {
+      "lemma": "British", 
+      "text": "British"
+    }, 
+    {
+      "lemma": "newspaper", 
+      "text": "newspapers"
+    }, 
+    {
+      "lemma": "include", 
+      "text": "including"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "The"
+    }, 
+    {
+      "lemma": "Sunday", 
+      "text": "Sunday"
+    }, 
+    {
+      "lemma": "telegraph", 
+      "text": "Telegraph"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "daily", 
+      "text": "Daily"
+    }, 
+    {
+      "lemma": "telegraph", 
+      "text": "Telegraph"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "London", 
+      "text": "London"
+    }, 
+    {
+      "lemma": "and", 
+      "text": "and"
+    }, 
+    {
+      "lemma": "the", 
+      "text": "The"
+    }, 
+    {
+      "lemma": "Scotsman", 
+      "text": "Scotsman"
+    }, 
+    {
+      "lemma": "in", 
+      "text": "in"
+    }, 
+    {
+      "lemma": "Edinburgh", 
+      "text": "Edinburgh"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }
+  ], 
+  "posTags": [
+    {
+      "pos": "PROP", 
+      "text": "Getty"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "Images"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "This"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Video"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Player"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "Requires"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "JavaScript"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "It"
+    }, 
+    {
+      "pos": "VHPRES", 
+      "text": "has"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "come"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "our"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "attention"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "that"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "browser"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "you"
+    }, 
+    {
+      "pos": "VBPRES", 
+      "text": "are"
+    }, 
+    {
+      "pos": "VPROG", 
+      "text": "using"
+    }, 
+    {
+      "pos": "VBPRES", 
+      "text": "is"
+    }, 
+    {
+      "pos": "COADV", 
+      "text": "either"
+    }, 
+    {
+      "pos": "NOT", 
+      "text": "not"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "running"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "javascript"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "or"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "out"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "date"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "Please"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "enable"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "javascript"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "/"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "or"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "update"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "your"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "browser"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "if"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "possible"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "2"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "hours"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "German"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "Plane"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Crash"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "84"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "84"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "In"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "this"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "photo"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "co"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "pilot"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "Germanwings"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "4U9525"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Andreas"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Lubitz"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "participates"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Frankfurt"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "City"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Half"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Marathon"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "March"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "14"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "2010"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Frankfurt"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Germany"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Germanwings"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Co"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "Pilot"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Lubitz"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "Rehearsed"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Crash"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "Previous"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Flight"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": ":"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "BEA"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Report"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "By"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Alastair"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Jamieson"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "The"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "Germanwings"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "co"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "pilot"
+    }, 
+    {
+      "pos": "PARTPAST", 
+      "text": "suspected"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "deliberately"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "downing"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "his"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "plane"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "French"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Alps"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "appears"
+    }, 
+    {
+      "pos": "INFTO", 
+      "text": "to"
+    }, 
+    {
+      "pos": "VHI", 
+      "text": "have"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "rehearsed"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "tragedy"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "by"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "entering"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "crash"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "altitude"
+    }, 
+    {
+      "pos": "NOUNING", 
+      "text": "settings"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "aircraft"
+    }, 
+    {
+      "pos": "POSS", 
+      "text": "'s"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "previous"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "according"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "preliminary"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "report"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Wednesday"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Andreas"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Lubitz"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "repeatedly"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "set"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "altitude"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "dial"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Airbus"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "A320"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "100"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "feet"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "while"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "alone"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "cockpit"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "en"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "route"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "from"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Dusseldorf"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Barcelona"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "March"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "24"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "investigators"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "at"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "French"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "safety"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "agency"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "BEA"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "found"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET", 
+      "text": "That"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "landed"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "normally"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Spain"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Cockpit"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "voice"
+    }, 
+    {
+      "pos": "NOUNING", 
+      "text": "recordings"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "show"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "that"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Lubitz"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "27"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "locked"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "captain"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "out"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "cockpit"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "during"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "bathroom"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "break"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "return"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Dusseldorf"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "crashed"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "it"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "into"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "mountainside"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "killing"
+    }, 
+    {
+      "pos": "PRONREFL", 
+      "text": "himself"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "149"
+    }, 
+    {
+      "pos": "ADJPRON", 
+      "text": "others"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "board"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET", 
+      "text": "The"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "captain"
+    }, 
+    {
+      "pos": "VAUX", 
+      "text": "can"
+    }, 
+    {
+      "pos": "VBI", 
+      "text": "be"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "heard"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUNING", 
+      "text": "recordings"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "demanding"
+    }, 
+    {
+      "pos": "INFTO", 
+      "text": "to"
+    }, 
+    {
+      "pos": "VBI", 
+      "text": "be"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "let"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "back"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "trying"
+    }, 
+    {
+      "pos": "INFTO", 
+      "text": "to"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "break"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "down"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "door"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Wednesday"
+    }, 
+    {
+      "pos": "POSS", 
+      "text": "'s"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "report"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "found"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "that"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "air"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "traffic"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "controllers"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "military"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "defense"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "personnel"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "tried"
+    }, 
+    {
+      "pos": "INFTO", 
+      "text": "to"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "contact"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "plane"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "14"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "occasions"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "while"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "it"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "was"
+    }, 
+    {
+      "pos": "VPROG", 
+      "text": "descending"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "adding"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "that"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "ADJPAP", 
+      "text": "doomed"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "jet"
+    }, 
+    {
+      "pos": "VHPAST", 
+      "text": "had"
+    }, 
+    {
+      "pos": "VBPAP", 
+      "text": "been"
+    }, 
+    {
+      "pos": "VPROG", 
+      "text": "cruising"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "at"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "273"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "knots"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "but"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "its"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "speed"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "was"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "deliberately"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "increased"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "345"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "knots"
+    }, 
+    {
+      "pos": "PREPADVAS", 
+      "text": "as"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "it"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "headed"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "towards"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "mountainside"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET", 
+      "text": "No"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "manual"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "change"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "jet"
+    }, 
+    {
+      "pos": "POSS", 
+      "text": "'s"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "downward"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "path"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "was"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "recorded"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "until"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "93"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "seconds"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "before"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "impact"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "report"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "stated"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "DET", 
+      "text": "The"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "sound"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "breathing"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "was"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "recorded"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "["
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "cockpit"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "voice"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "recorder"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "]"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "until"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "QUANT", 
+      "text": "few"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "seconds"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "before"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "end"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "it"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "concluded"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Flight"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "4U9525"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "smashed"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "into"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "ground"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "at"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "9.41"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "a.m."
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "local"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "time"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "("
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "5.41"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "a.m."
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "ET"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": ")"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "—"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "nine"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "QUANT", 
+      "text": "half"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "minutes"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "after"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "captain"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "got"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "up"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "from"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "his"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "seat"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET", 
+      "text": "The"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "report"
+    }, 
+    {
+      "pos": "VDPAST", 
+      "text": "did"
+    }, 
+    {
+      "pos": "NOT", 
+      "text": "not"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "comment"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Lubitz"
+    }, 
+    {
+      "pos": "POSS", 
+      "text": "'s"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "actions"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "ADJING", 
+      "text": "preceding"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "but"
+    }, 
+    {
+      "pos": "CARDONE", 
+      "text": "one"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "aviation"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "expert"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "believes"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "they"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "indicate"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "an"
+    }, 
+    {
+      "pos": "ADJPAP", 
+      "text": "aborted"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "suicide"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "attempt"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "rather"
+    }, 
+    {
+      "pos": "COTHAN", 
+      "text": "than"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "rehearsal"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "DET", 
+      "text": "My"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "perspective"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "this"
+    }, 
+    {
+      "pos": "VBPRES", 
+      "text": "is"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "that"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "was"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "actually"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "thinking"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "committing"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "suicide"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "way"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "out"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "outbound"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "but"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "changed"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "his"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "mind"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "ADJPAP", 
+      "text": "said"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "aviation"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "expert"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Alastair"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Rosenschein"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "former"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "captain"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "with"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "British"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Airways"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "There"
+    }, 
+    {
+      "pos": "VBPRES", 
+      "text": "is"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "no"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "need"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "for"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "pilot"
+    }, 
+    {
+      "pos": "INFTO", 
+      "text": "to"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "practice"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "doing"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "this"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "sort"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "thing"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "because"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "knows"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "equipment"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "fully"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "It"
+    }, 
+    {
+      "pos": "VS", 
+      "text": "'s"
+    }, 
+    {
+      "pos": "NOT", 
+      "text": "not"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "question"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "'"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "if"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "I"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "turn"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "this"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "knob"
+    }, 
+    {
+      "pos": "VAUX", 
+      "text": "will"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "this"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "happen"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "?"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "'"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "He"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "already"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "knows"
+    }, 
+    {
+      "pos": "QUANT", 
+      "text": "all"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "that"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VS", 
+      "text": "'s"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "ADJPAP", 
+      "text": "qualified"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "airline"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "pilot"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "so"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "I"
+    }, 
+    {
+      "pos": "VPRES", 
+      "text": "think"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "it"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "was"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "just"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "that"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "bottled"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "out"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "committing"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "suicide"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "outbound"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "Although"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Lubitz"
+    }, 
+    {
+      "pos": "POSS", 
+      "text": "'s"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "erratic"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "altitude"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "selections"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "were"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "picked"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "up"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "by"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "data"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "recorder"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "plane"
+    }, 
+    {
+      "pos": "VDPAST", 
+      "text": "did"
+    }, 
+    {
+      "pos": "NOT", 
+      "text": "not"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "descend"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "below"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "its"
+    }, 
+    {
+      "pos": "ADJPAP", 
+      "text": "planned"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "height"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "because"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "inputs"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "were"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "never"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "actioned"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Rosenschein"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "said"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "He"
+    }, 
+    {
+      "pos": "VHPAST", 
+      "text": "hadn't"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "actually"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "pulled"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "knob"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "out"
+    }, 
+    {
+      "pos": "INFTO", 
+      "text": "to"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "engage"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "autopilot"
+    }, 
+    {
+      "pos": "INFTO", 
+      "text": "to"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "carry"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "out"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "that"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "maneuver"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "told"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "NBC"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "News"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Wednesday"
+    }, 
+    {
+      "pos": "POSS", 
+      "text": "'s"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "preliminary"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "report"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "said"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "ongoing"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "investigation"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "VAUX", 
+      "text": "will"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "also"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "study"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "systemic"
+    }, 
+    {
+      "pos": "NOUNING", 
+      "text": "failings"
+    }, 
+    {
+      "pos": "PRONREL", 
+      "text": "that"
+    }, 
+    {
+      "pos": "VAUX", 
+      "text": "may"
+    }, 
+    {
+      "pos": "VHI", 
+      "text": "have"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "led"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "this"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "accident"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "or"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "similar"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "events"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "ADJING", 
+      "text": "including"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "medical"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "regulations"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "for"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "pilots"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "cockpit"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "door"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "rules"
+    }, 
+    {
+      "pos": "PRONREL", 
+      "text": "that"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "were"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "introduced"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "after"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "9"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "/"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "11"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Lubitz"
+    }, 
+    {
+      "pos": "POSS", 
+      "text": "'"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "professional"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "level"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "was"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "above"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "standard"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "BEA"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "report"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "added"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET", 
+      "text": "The"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "co"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "pilot"
+    }, 
+    {
+      "pos": "VHPAST", 
+      "text": "had"
+    }, 
+    {
+      "pos": "VBPAP", 
+      "text": "been"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "treated"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "for"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "depression"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "past"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "search"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "his"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "home"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "revealed"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VHPAST", 
+      "text": "had"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "researched"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "suicide"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "methods"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "on"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "his"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "tablet"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "computer"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "days"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "before"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "crash"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Investigators"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "also"
+    }, 
+    {
+      "pos": "PARTPAST", 
+      "text": "found"
+    }, 
+    {
+      "pos": "PARTPAST", 
+      "text": "torn"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "up"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "sick"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "notes"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET", 
+      "text": "The"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "Federal"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Aviation"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Administration"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "awarded"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Lubitz"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "U.S."
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "pilot"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "license"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "2010"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "despite"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "concerns"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "about"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "his"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "mental"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "fitness"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Records"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "posted"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "online"
+    }, 
+    {
+      "pos": "VI", 
+      "text": "show"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "applied"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "2010"
+    }, 
+    {
+      "pos": "COSUB", 
+      "text": "while"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VBPAST", 
+      "text": "was"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "employed"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "by"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Lufthansa"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "NOUNING", 
+      "text": "training"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "at"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "flight"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "school"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Phoenix"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PREPADVAS", 
+      "text": "As"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "part"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "of"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "application"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "initially"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "submitted"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "medical"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "form"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "FAA"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "asserting"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VHPAST", 
+      "text": "had"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "no"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "mental"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "disorders"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "He"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "then"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "resubmitted"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "the"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "form"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "acknowledging"
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "he"
+    }, 
+    {
+      "pos": "VHPAST", 
+      "text": "had"
+    }, 
+    {
+      "pos": "VBPAP", 
+      "text": "been"
+    }, 
+    {
+      "pos": "VPAP", 
+      "text": "treated"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "for"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "severe"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "depression"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "from"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "2008"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "2009"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "—"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "NBC"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "News"
+    }, 
+    {
+      "pos": "POSS", 
+      "text": "'"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Katy"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Tur"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Amy"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Perrette"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Nancy"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Ing"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "contributed"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "to"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "this"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "report"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "ORD", 
+      "text": "First"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "published"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "May"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "6"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "2015"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "3:13"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "AM"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Alastair"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Jamieson"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Alastair"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Jamieson"
+    }, 
+    {
+      "pos": "VBPRES", 
+      "text": "is"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "London"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "ADJPAP", 
+      "text": "based"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "reporter"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "editor"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "homepage"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "producer"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "for"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "NBC"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "News"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PRONPERS", 
+      "text": "He"
+    }, 
+    {
+      "pos": "VPAST", 
+      "text": "joined"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "NBCNews.com"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "CARD", 
+      "text": "2011"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "after"
+    }, 
+    {
+      "pos": "QUANTCMP", 
+      "text": "more"
+    }, 
+    {
+      "pos": "COTHAN", 
+      "text": "than"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "decade"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "working"
+    }, 
+    {
+      "pos": "PREPADVAS", 
+      "text": "as"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "a"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "reporter"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "news"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "editor"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "for"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "British"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "newspapers"
+    }, 
+    {
+      "pos": "PARTPRES", 
+      "text": "including"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "The"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Sunday"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Telegraph"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "ADJ", 
+      "text": "Daily"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Telegraph"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "London"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "and"
+    }, 
+    {
+      "pos": "DET", 
+      "text": "The"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Scotsman"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "in"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Edinburgh"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }
+  ], 
+  "requestId": "965dac4e-f170-4ce4-9d4a-44d465e65142", 
+  "timers": {
+    "rblJe": 3, 
+    "rliJe": 2, 
+    "textExtractor": 10, 
+    "urlContentDownloader": 35
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "entities": [
+    {
+      "confidence": 0.12715131385672637, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 1, 
+      "mention": "دبي"
+    }, 
+    {
+      "confidence": 0.042186298524124505, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 5, 
+      "mention": "محمد بن راشد آل مكتوم"
+    }, 
+    {
+      "confidence": 0.5538773727851752, 
+      "entityId": "Q20716", 
+      "indocChainId": 12, 
+      "mention": "Samsung"
+    }, 
+    {
+      "confidence": 0.17336296024934034, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 14, 
+      "mention": "روبرت بوث"
+    }
+  ], 
+  "requestId": "de2a8560-d2d2-4b11-bd69-5a12fe6f5d4b", 
+  "timers": {
+    "rblJe": 23, 
+    "res": 231, 
+    "rexJe": 30, 
+    "rliJe": 2
+  }
+}

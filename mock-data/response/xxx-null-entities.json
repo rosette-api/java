@@ -1,0 +1,674 @@
+{
+  "entities": [
+    {
+      "confidence": 0.029286757111549377, 
+      "count": 4, 
+      "indocChainId": 31, 
+      "mention": "김일성의", 
+      "normalized": "김일성", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.08171877264976501, 
+      "count": 2, 
+      "indocChainId": 4, 
+      "mention": "한국의", 
+      "normalized": "한국", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.027279704809188843, 
+      "count": 2, 
+      "indocChainId": 35, 
+      "mention": "대동군", 
+      "normalized": "대동군", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.02583456039428711, 
+      "count": 2, 
+      "indocChainId": 39, 
+      "mention": "김형직", 
+      "normalized": "김형직", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.013154834508895874, 
+      "count": 2, 
+      "indocChainId": 67, 
+      "mention": "성주", 
+      "normalized": "성주", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.035726189613342285, 
+      "count": 2, 
+      "indocChainId": 78, 
+      "mention": "김형직의", 
+      "normalized": "김형직", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.03078913688659668, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "김일성", 
+      "normalized": "김일성", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.02243131399154663, 
+      "count": 1, 
+      "indocChainId": 1, 
+      "mention": "金日成", 
+      "normalized": "金日成", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 2, 
+      "mention": "1912년 4월 15일", 
+      "normalized": "1912년 4월 일", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 3, 
+      "mention": "1994년 7월 8일", 
+      "normalized": "1994년 7월 일", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 0.0011264681816101074, 
+      "count": 1, 
+      "indocChainId": 5, 
+      "mention": "조선민주주의", 
+      "normalized": "조선민주주의", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.022229373455047607, 
+      "count": 1, 
+      "indocChainId": 6, 
+      "mention": "만주", 
+      "normalized": "만주", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.014998257160186768, 
+      "count": 1, 
+      "indocChainId": 7, 
+      "mention": "조선혁명군", 
+      "normalized": "조선혁명군", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 8, 
+      "mention": "1948년부터", 
+      "normalized": "1948년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 9, 
+      "mention": "1972년까지는", 
+      "normalized": "1972년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.014556348323822021, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "조선민주주의인민공화국의", 
+      "normalized": "조선민주주의인민공화국", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.056416988372802734, 
+      "count": 1, 
+      "indocChainId": 11, 
+      "mention": "총리", 
+      "normalized": "총리", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 12, 
+      "mention": "1972년부터는", 
+      "normalized": "1972년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.00541764497756958, 
+      "count": 1, 
+      "indocChainId": 13, 
+      "mention": "국가주석이었고", 
+      "normalized": "국가주석", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 14, 
+      "mention": "1990년", 
+      "normalized": "년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 7.998943328857422e-05, 
+      "count": 1, 
+      "indocChainId": 15, 
+      "mention": "김성주", 
+      "normalized": "김성주", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.007235527038574219, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "金成柱", 
+      "normalized": "金成柱", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.011066615581512451, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "成柱", 
+      "normalized": "成柱", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.007889330387115479, 
+      "count": 1, 
+      "indocChainId": 17, 
+      "mention": "金聖柱", 
+      "normalized": "金聖柱", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.011066615581512451, 
+      "count": 1, 
+      "indocChainId": 17, 
+      "mention": "聖柱", 
+      "normalized": "聖柱", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.006453454494476318, 
+      "count": 1, 
+      "indocChainId": 18, 
+      "mention": "김일성으로", 
+      "normalized": "김일성", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 19, 
+      "mention": "1966년 10월", 
+      "normalized": "1966년 월", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 0.009601771831512451, 
+      "count": 1, 
+      "indocChainId": 20, 
+      "mention": "당중앙위원회", 
+      "normalized": "당중앙위원회", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.011325597763061523, 
+      "count": 1, 
+      "indocChainId": 21, 
+      "mention": "조선로동당", 
+      "normalized": "조선로동당", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 22, 
+      "mention": "1970", 
+      "normalized": "1970 년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 23, 
+      "mention": "1980년", 
+      "normalized": "1980년 10월", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 24, 
+      "mention": "10월에의", 
+      "normalized": "10월", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 0.01815629005432129, 
+      "count": 1, 
+      "indocChainId": 25, 
+      "mention": "당중앙위원회", 
+      "normalized": "당중앙위원회", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.01677417755126953, 
+      "count": 1, 
+      "indocChainId": 26, 
+      "mention": "총비서로", 
+      "normalized": "총비서로", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.05808520317077637, 
+      "count": 1, 
+      "indocChainId": 27, 
+      "mention": "대한민국에서는", 
+      "normalized": "대한민국", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.031978487968444824, 
+      "count": 1, 
+      "indocChainId": 28, 
+      "mention": "한국전쟁을", 
+      "normalized": "한국전쟁", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 29, 
+      "mention": "1994년", 
+      "normalized": "년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.03301578760147095, 
+      "count": 1, 
+      "indocChainId": 30, 
+      "mention": "김정일에게", 
+      "normalized": "김정일", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 32, 
+      "mention": "1912년 4월", 
+      "normalized": "1912년 4월 15", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 33, 
+      "mention": "15일에", 
+      "normalized": "15일", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.007983863353729248, 
+      "count": 1, 
+      "indocChainId": 34, 
+      "mention": "평안남도", 
+      "normalized": "평안남도", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.007568657398223877, 
+      "count": 1, 
+      "indocChainId": 36, 
+      "mention": "古平面", 
+      "normalized": "古平面", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0014829635620117188, 
+      "count": 1, 
+      "indocChainId": 37, 
+      "mention": "칠곡", 
+      "normalized": "칠곡", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.013450860977172852, 
+      "count": 1, 
+      "indocChainId": 38, 
+      "mention": "평양", 
+      "normalized": "평양", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.006928801536560059, 
+      "count": 1, 
+      "indocChainId": 40, 
+      "mention": "金亨稷", 
+      "normalized": "金亨稷", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 41, 
+      "mention": "1894년 7월 10일", 
+      "normalized": "1894년 7월 일", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 42, 
+      "mention": "1926년", 
+      "normalized": "년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.0026016831398010254, 
+      "count": 1, 
+      "indocChainId": 43, 
+      "mention": "康盤石", 
+      "normalized": "康盤石", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 44, 
+      "mention": "1892년", 
+      "normalized": "년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 45, 
+      "mention": "1932년", 
+      "normalized": "년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.009665250778198242, 
+      "count": 1, 
+      "indocChainId": 46, 
+      "mention": "삼형제의", 
+      "normalized": "삼형제의", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.007337808609008789, 
+      "count": 1, 
+      "indocChainId": 48, 
+      "mention": "전주", 
+      "normalized": "전주", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.015667617321014404, 
+      "count": 1, 
+      "indocChainId": 49, 
+      "mention": "김씨", 
+      "normalized": "김", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.03180760145187378, 
+      "count": 1, 
+      "indocChainId": 50, 
+      "mention": "전라북도", 
+      "normalized": "전라북도", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.018997251987457275, 
+      "count": 1, 
+      "indocChainId": 51, 
+      "mention": "평양으로", 
+      "normalized": "평양", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.006733238697052002, 
+      "count": 1, 
+      "indocChainId": 52, 
+      "mention": "김응우는", 
+      "normalized": "김응우", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.06167328357696533, 
+      "count": 1, 
+      "indocChainId": 53, 
+      "mention": "북조선에서는", 
+      "normalized": "북조선", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.02985900640487671, 
+      "count": 1, 
+      "indocChainId": 54, 
+      "mention": "김응우가", 
+      "normalized": "김응우", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.02808237075805664, 
+      "count": 1, 
+      "indocChainId": 55, 
+      "mention": "셔먼 호", 
+      "normalized": "셔먼 호", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.010071277618408203, 
+      "count": 1, 
+      "indocChainId": 56, 
+      "mention": "김형직은", 
+      "normalized": "김형직", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.008799254894256592, 
+      "count": 1, 
+      "indocChainId": 57, 
+      "mention": "일본", 
+      "normalized": "일본", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 59, 
+      "mention": "기독교", 
+      "normalized": "기독교", 
+      "type": "RELIGION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 60, 
+      "mention": "장로교", 
+      "normalized": "장로교", 
+      "type": "RELIGION"
+    }, 
+    {
+      "confidence": 0.030930042266845703, 
+      "count": 1, 
+      "indocChainId": 62, 
+      "mention": "강진석", 
+      "normalized": "강진석", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.030141055583953857, 
+      "count": 1, 
+      "indocChainId": 63, 
+      "mention": "康晋錫", 
+      "normalized": "康晋錫", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.017605960369110107, 
+      "count": 1, 
+      "indocChainId": 64, 
+      "mention": "강돈욱은", 
+      "normalized": "강돈욱", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0037651658058166504, 
+      "count": 1, 
+      "indocChainId": 66, 
+      "mention": "김보현이", 
+      "normalized": "김보현", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.008741617202758789, 
+      "count": 1, 
+      "indocChainId": 71, 
+      "mention": "어려서", 
+      "normalized": "어려서", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.00987255573272705, 
+      "count": 1, 
+      "indocChainId": 72, 
+      "mention": "지린성", 
+      "normalized": "지린성", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.014460921287536621, 
+      "count": 1, 
+      "indocChainId": 73, 
+      "mention": "吉林省", 
+      "normalized": "吉林省", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.03636670112609863, 
+      "count": 1, 
+      "indocChainId": 74, 
+      "mention": "撫松", 
+      "normalized": "撫松", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 75, 
+      "mention": "1919년", 
+      "normalized": "년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.016781389713287354, 
+      "count": 1, 
+      "indocChainId": 76, 
+      "mention": "김형직을", 
+      "normalized": "김형직", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.018501698970794678, 
+      "count": 1, 
+      "indocChainId": 77, 
+      "mention": "만주로", 
+      "normalized": "만주", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 79, 
+      "mention": "1923년", 
+      "normalized": "년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 80, 
+      "mention": "1925년", 
+      "normalized": "년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.0028474926948547363, 
+      "count": 1, 
+      "indocChainId": 82, 
+      "mention": "용산면", 
+      "normalized": "용산면", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 83, 
+      "mention": "1907년", 
+      "normalized": "년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 84, 
+      "mention": "5년제", 
+      "normalized": "5년", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.009296059608459473, 
+      "count": 1, 
+      "indocChainId": 86, 
+      "mention": "강돈욱도", 
+      "normalized": "강돈욱", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.011080443859100342, 
+      "count": 1, 
+      "indocChainId": 88, 
+      "mention": "김형직이", 
+      "normalized": "김형직", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 89, 
+      "mention": "1923년 3월", 
+      "normalized": "1923년 월", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 0.0009360313415527344, 
+      "count": 1, 
+      "indocChainId": 90, 
+      "mention": "중국", 
+      "normalized": "중국", 
+      "type": "LOCATION"
+    }
+  ], 
+  "requestId": "1cafd128-9014-4614-ad35-5256aac73aa0", 
+  "timers": {
+    "rblJe": 17, 
+    "rexJe": 23, 
+    "rliJe": 2
+  }
+}

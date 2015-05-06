@@ -1,0 +1,28 @@
+{
+  "languageDetections": [
+    {
+      "confidence": 0.29200437645298716, 
+      "language": "jpn"
+    }, 
+    {
+      "confidence": 0.004150142265373913, 
+      "language": "zhs"
+    }, 
+    {
+      "confidence": 0.004111454363226685, 
+      "language": "zht"
+    }, 
+    {
+      "confidence": 1.956436811267892e-05, 
+      "language": "jpn"
+    }, 
+    {
+      "confidence": 1.1015740151831821e-05, 
+      "language": "por"
+    }
+  ], 
+  "requestId": "da5a29a4-4a80-4703-9dce-2e0f50e63ae3", 
+  "timers": {
+    "rliJe": 2
+  }
+}

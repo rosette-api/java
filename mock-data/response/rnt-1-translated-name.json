@@ -1,0 +1,16 @@
+{
+  "requestId": "331a8beb-6f9b-49a7-b020-4830e4bddc74", 
+  "result": {
+    "confidence": 1.0, 
+    "sourceLanguageOfOrigin": "zho", 
+    "sourceLanguageOfUse": "zho", 
+    "sourceScript": "Hani", 
+    "targetLanguage": "eng", 
+    "targetScheme": "HYPY_TONED", 
+    "targetScript": "Latn", 
+    "translation": "Mao2 Ze2dong1"
+  }, 
+  "timers": {
+    "rnt": 56
+  }
+}

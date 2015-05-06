@@ -1,0 +1,47 @@
+{
+  "entities": [
+    {
+      "confidence": 0.5611644591773626, 
+      "entityId": "Q458", 
+      "indocChainId": 0, 
+      "mention": "UE"
+    }, 
+    {
+      "confidence": 0.9441229963538638, 
+      "entityId": "Q105667", 
+      "indocChainId": 1, 
+      "mention": "Catherine Ashton"
+    }, 
+    {
+      "confidence": 0.9561641002041671, 
+      "entityId": "Q8889", 
+      "indocChainId": 2, 
+      "mention": "Parlamento Europeo"
+    }, 
+    {
+      "confidence": 0.5454336781217812, 
+      "entityId": "Q242313", 
+      "indocChainId": 3, 
+      "mention": "Rumiana Jeleva"
+    }, 
+    {
+      "confidence": 0.5670443076317309, 
+      "entityId": "Q597", 
+      "indocChainId": 5, 
+      "mention": "Lisboa"
+    }, 
+    {
+      "confidence": 0.6257869189192576, 
+      "entityId": "Q30", 
+      "indocChainId": 6, 
+      "mention": "Estados Unidos"
+    }
+  ], 
+  "requestId": "3b209d31-e347-4451-ab5e-ddeb5a8c3a28", 
+  "timers": {
+    "rblJe": 2, 
+    "res": 160, 
+    "rexJe": 8, 
+    "rliJe": 2
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "entities": [
+    {
+      "confidence": 0.013133347034454346, 
+      "count": 5, 
+      "indocChainId": 5, 
+      "mention": "中国红十字会", 
+      "normalized": "中国红十字会", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.017486731211344402, 
+      "count": 3, 
+      "indocChainId": 1, 
+      "mention": "副主席", 
+      "normalized": "副主席", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.01291424036026001, 
+      "count": 3, 
+      "indocChainId": 3, 
+      "mention": "中国红十字会名誉", 
+      "normalized": "中国红十字会名誉", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.015752991040547688, 
+      "count": 3, 
+      "indocChainId": 4, 
+      "mention": "会长", 
+      "normalized": "会长", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.02309998869895935, 
+      "count": 2, 
+      "indocChainId": 2, 
+      "mention": "李源潮", 
+      "normalized": "李源潮", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.00010383129119873047, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "人民网首页", 
+      "normalized": "人民网首页", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.01012641191482544, 
+      "count": 1, 
+      "indocChainId": 6, 
+      "mention": "京", 
+      "normalized": "京", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0022315382957458496, 
+      "count": 1, 
+      "indocChainId": 8, 
+      "mention": "中国红十字会章程", 
+      "normalized": "中国红十字会章程", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.046940624713897705, 
+      "count": 1, 
+      "indocChainId": 9, 
+      "mention": "中共中央政治局", 
+      "normalized": "中共中央政治局", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.024680674076080322, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "委员", 
+      "normalized": "委员", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.02313363552093506, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "全国政协", 
+      "normalized": "全国政协", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.030782997608184814, 
+      "count": 1, 
+      "indocChainId": 18, 
+      "mention": "韩启德", 
+      "normalized": "韩启德", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.02614748477935791, 
+      "count": 1, 
+      "indocChainId": 20, 
+      "mention": "副会长", 
+      "normalized": "副会长", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.025269508361816406, 
+      "count": 1, 
+      "indocChainId": 21, 
+      "mention": "全国人大常委会", 
+      "normalized": "全国人大常委会", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.02978414297103882, 
+      "count": 1, 
+      "indocChainId": 22, 
+      "mention": "副委员长", 
+      "normalized": "副委员长", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.022504448890686035, 
+      "count": 1, 
+      "indocChainId": 23, 
+      "mention": "陈竺", 
+      "normalized": "陈竺", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.014548718929290771, 
+      "count": 1, 
+      "indocChainId": 26, 
+      "mention": "中国红十字会第九届理事会", 
+      "normalized": "中国红十字会第九届理事会", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.010888636112213135, 
+      "count": 1, 
+      "indocChainId": 27, 
+      "mention": "中国", 
+      "normalized": "中国", 
+      "type": "LOCATION"
+    }
+  ], 
+  "requestId": "a6f1aec9-2537-4ede-9822-82b290a0e28d", 
+  "timers": {
+    "rblJe": 4, 
+    "rexJe": 133, 
+    "rliJe": 2, 
+    "textExtractor": 6, 
+    "urlContentDownloader": 274
+  }
+}

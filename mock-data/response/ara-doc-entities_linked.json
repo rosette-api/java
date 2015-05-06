@@ -1,0 +1,119 @@
+{
+  "entities": [
+    {
+      "confidence": 0.37771112349537284, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 4, 
+      "mention": "مكة المكرمة"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 6, 
+      "mention": "غرينتش"
+    }, 
+    {
+      "confidence": 0.33667106149545123, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 7, 
+      "mention": "ناتو"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 8, 
+      "mention": "لأفغانستان"
+    }, 
+    {
+      "confidence": 0.400163940965954, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 9, 
+      "mention": "حلف شمال الأطلسي"
+    }, 
+    {
+      "confidence": 0.08076207391921948, 
+      "entityId": "Q889", 
+      "indocChainId": 11, 
+      "mention": "أفغانستان"
+    }, 
+    {
+      "confidence": 0.046650455983228215, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 12, 
+      "mention": "وول ستريت"
+    }, 
+    {
+      "confidence": 0.03788179418442042, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 15, 
+      "mention": "كابل"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 17, 
+      "mention": "لندن"
+    }, 
+    {
+      "confidence": 0.03838923646476093, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 21, 
+      "mention": "الولايات المتحدة"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 25, 
+      "mention": "لأمم المتحدة"
+    }, 
+    {
+      "confidence": 0.09216499319497426, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 26, 
+      "mention": "بان كي مون"
+    }, 
+    {
+      "confidence": 0.1618797398997418, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 28, 
+      "mention": "إيساف"
+    }, 
+    {
+      "confidence": 0.5285676715894777, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 29, 
+      "mention": "حلف الأطلسي"
+    }, 
+    {
+      "confidence": 0.7330267360476646, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 30, 
+      "mention": "الولايات"
+    }, 
+    {
+      "confidence": 0.10540353465332042, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 33, 
+      "mention": "ستانلي ماكريستال"
+    }, 
+    {
+      "confidence": 0.3532220208502774, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 39, 
+      "mention": "حركة طالبان"
+    }, 
+    {
+      "confidence": 0.1410193780321835, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 42, 
+      "mention": "مارك سيدويل"
+    }
+  ], 
+  "requestId": "39c24a4a-3ca8-45d7-9564-a6f95644c8e4", 
+  "timers": {
+    "rblJe": 29, 
+    "res": 631, 
+    "rexJe": 42, 
+    "rliJe": 2
+  }
+}

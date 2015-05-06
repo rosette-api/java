@@ -1,0 +1,77 @@
+{
+  "entities": [
+    {
+      "confidence": 0.2052619214803113, 
+      "entityId": "Q46", 
+      "indocChainId": 1, 
+      "mention": "Europa"
+    }, 
+    {
+      "confidence": 0.5528665936225337, 
+      "entityId": "Q29", 
+      "indocChainId": 2, 
+      "mention": "Spanien"
+    }, 
+    {
+      "confidence": 0.6979882213268707, 
+      "entityId": "Q40846", 
+      "indocChainId": 3, 
+      "mention": "Teneriffa"
+    }, 
+    {
+      "confidence": 0.47010745043578817, 
+      "entityId": "Q458", 
+      "indocChainId": 4, 
+      "mention": "Europäische Union"
+    }, 
+    {
+      "confidence": 0.32497248648864807, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 10, 
+      "mention": "Klaus J. Bade"
+    }, 
+    {
+      "confidence": 0.6947186605264987, 
+      "entityId": "Q702499", 
+      "indocChainId": 11, 
+      "mention": "Universität Osnabrück"
+    }, 
+    {
+      "confidence": 0.17635248886197027, 
+      "entityId": "Q1045", 
+      "indocChainId": 12, 
+      "mention": "Somalia"
+    }, 
+    {
+      "confidence": 0.08200027227056786, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 13, 
+      "mention": "Fischer"
+    }, 
+    {
+      "confidence": 0.6378421473937389, 
+      "entityId": "Q16019", 
+      "indocChainId": 15, 
+      "mention": "Wolfgang Schäuble"
+    }, 
+    {
+      "confidence": 0.3922050563130806, 
+      "entityId": "Q49762", 
+      "indocChainId": 16, 
+      "mention": "CDU"
+    }, 
+    {
+      "confidence": 0.597059098572666, 
+      "entityId": "Q240", 
+      "indocChainId": 17, 
+      "mention": "Brüssel"
+    }
+  ], 
+  "requestId": "40002ac0-0757-40ce-a754-e5d40cfa0205", 
+  "timers": {
+    "rblJe": 2, 
+    "res": 259, 
+    "rexJe": 15, 
+    "rliJe": 2
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "entities": [
+    {
+      "confidence": 0.1888910178315948, 
+      "entityId": "Q205150", 
+      "indocChainId": 0, 
+      "mention": "FN"
+    }, 
+    {
+      "confidence": 0.67948336568141, 
+      "entityId": "Q12927", 
+      "indocChainId": 2, 
+      "mention": "Marine Le Pen"
+    }, 
+    {
+      "confidence": 0.17553647793037638, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 3, 
+      "mention": "Laurent Martinet"
+    }, 
+    {
+      "confidence": 0.7963275016749828, 
+      "entityId": "Q130879", 
+      "indocChainId": 9, 
+      "mention": "REUTERS"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 10, 
+      "mention": "Philippe Wojazer Jeanne"
+    }, 
+    {
+      "confidence": 0.4033887748618216, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 12, 
+      "mention": "Yves Claisse"
+    }, 
+    {
+      "confidence": 0.24062297915948302, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 13, 
+      "mention": "Claisse"
+    }, 
+    {
+      "confidence": 0.059953228174463226, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 17, 
+      "mention": "Front nationale"
+    }, 
+    {
+      "confidence": 0.16640387844206309, 
+      "entityId": "Q1384784", 
+      "indocChainId": 20, 
+      "mention": "Express"
+    }, 
+    {
+      "confidence": 0.40866974335395057, 
+      "entityId": "Q201275", 
+      "indocChainId": 23, 
+      "mention": "NDR"
+    }, 
+    {
+      "confidence": 0.588594151670583, 
+      "entityId": "Q268634", 
+      "indocChainId": 27, 
+      "mention": "Cécile Duflot"
+    }, 
+    {
+      "confidence": 0.5515381895551424, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 28, 
+      "mention": "Cambadélis"
+    }, 
+    {
+      "confidence": 0.4635724206726943, 
+      "entityId": "Q205150", 
+      "indocChainId": 29, 
+      "mention": "Front national"
+    }, 
+    {
+      "confidence": 0.6190853526912423, 
+      "entityId": "Q3369875", 
+      "indocChainId": 30, 
+      "mention": "Patrick Sébastien"
+    }, 
+    {
+      "confidence": 0.7684659831843864, 
+      "entityId": "Q329", 
+      "indocChainId": 32, 
+      "mention": "Sarkozy"
+    }, 
+    {
+      "confidence": 0.6168392732374138, 
+      "entityId": "Q173152", 
+      "indocChainId": 33, 
+      "mention": "UMP"
+    }, 
+    {
+      "confidence": 0.8259013309560906, 
+      "entityId": "Q355", 
+      "indocChainId": 34, 
+      "mention": "Facebook"
+    }, 
+    {
+      "confidence": 0.5211557504842236, 
+      "entityId": "Q680653", 
+      "indocChainId": 35, 
+      "mention": "Publier"
+    }
+  ], 
+  "requestId": "ac507300-c6fa-4c2d-877c-5aafd45845ff", 
+  "timers": {
+    "rblJe": 3, 
+    "res": 392, 
+    "rexJe": 158, 
+    "rliJe": 2, 
+    "textExtractor": 10, 
+    "urlContentDownloader": 206
+  }
+}

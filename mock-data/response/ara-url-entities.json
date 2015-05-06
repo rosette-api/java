@@ -1,0 +1,244 @@
+{
+  "entities": [
+    {
+      "confidence": 0.028982532024383546, 
+      "count": 10, 
+      "indocChainId": 24, 
+      "mention": "غرينتش", 
+      "normalized": "غرينتش", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 3, 
+      "indocChainId": 0, 
+      "mention": "خمس سنوات", 
+      "normalized": "خمس سنوات", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.017888943354288738, 
+      "count": 3, 
+      "indocChainId": 3, 
+      "mention": "سلمان خان", 
+      "normalized": "سلمان خان", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 3, 
+      "indocChainId": 18, 
+      "mention": "alhayat.com", 
+      "normalized": "alhayat.com", 
+      "type": "IDENTIFIER:URL"
+    }, 
+    {
+      "confidence": 0.002583742141723633, 
+      "count": 2, 
+      "indocChainId": 1, 
+      "mention": "للممثل", 
+      "normalized": "لممثل", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 2, 
+      "indocChainId": 2, 
+      "mention": "الهندي", 
+      "normalized": "الهندي", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.0040569305419921875, 
+      "count": 1, 
+      "indocChainId": 3, 
+      "mention": "خان", 
+      "normalized": "خان", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.012083590030670166, 
+      "count": 1, 
+      "indocChainId": 4, 
+      "mention": "نيودلهي", 
+      "normalized": "نيودلهي", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.00888359546661377, 
+      "count": 1, 
+      "indocChainId": 5, 
+      "mention": "رويترز", 
+      "normalized": "رويترز", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 6, 
+      "mention": "هندية", 
+      "normalized": "هندية", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 7, 
+      "mention": "الأربعاء", 
+      "normalized": "الأربعاء", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 0.0019336938858032227, 
+      "count": 1, 
+      "indocChainId": 9, 
+      "mention": "الممثل", 
+      "normalized": "الممثل", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.05486541986465454, 
+      "count": 1, 
+      "indocChainId": 11, 
+      "mention": "القاضي", 
+      "normalized": "القاضي", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.08143645524978638, 
+      "count": 1, 
+      "indocChainId": 12, 
+      "mention": "مومباي", 
+      "normalized": "مومباي", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 14, 
+      "mention": "49 عاماً", 
+      "normalized": "49 عاماً", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.0582200288772583, 
+      "count": 1, 
+      "indocChainId": 15, 
+      "mention": "الله", 
+      "normalized": "الله", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "الأربعاء 06 أيار 2015", 
+      "normalized": "الأربعاء 06 أيار 2015", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 17, 
+      "mention": "3:50 م", 
+      "normalized": "3:50 م", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.0016154050827026367, 
+      "count": 1, 
+      "indocChainId": 21, 
+      "mention": "بالتوسيع", 
+      "normalized": "التوسيع", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.004297435283660889, 
+      "count": 1, 
+      "indocChainId": 22, 
+      "mention": "كلينتون", 
+      "normalized": "كلينتون", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.00196993350982666, 
+      "count": 1, 
+      "indocChainId": 23, 
+      "mention": "رئيساً", 
+      "normalized": "رئيساً", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 25, 
+      "mention": "نيبال", 
+      "normalized": "نيبال", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 32, 
+      "mention": "أفغان", 
+      "normalized": "أفغان", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.009469807147979736, 
+      "count": 1, 
+      "indocChainId": 33, 
+      "mention": "كابول", 
+      "normalized": "كابول", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 35, 
+      "mention": "الولايات المتحدة", 
+      "normalized": "الولايات المتحدة", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.009806573390960693, 
+      "count": 1, 
+      "indocChainId": 36, 
+      "mention": "كوبا", 
+      "normalized": "كوبا", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 37, 
+      "mention": "50 عاماً", 
+      "normalized": "50 عاماً", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.01014024019241333, 
+      "count": 1, 
+      "indocChainId": 39, 
+      "mention": "محمد بن راشد", 
+      "normalized": "محمد بن راشد", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 44, 
+      "mention": "البريطاني", 
+      "normalized": "البريطاني", 
+      "type": "NATIONALITY"
+    }
+  ], 
+  "requestId": "846e6378-6305-4def-8fbb-600f4c7149ee", 
+  "timers": {
+    "rblJe": 37, 
+    "rexJe": 63, 
+    "rliJe": 2, 
+    "textExtractor": 16, 
+    "urlContentDownloader": 143
+  }
+}

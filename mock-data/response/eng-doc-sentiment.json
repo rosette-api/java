@@ -1,0 +1,18 @@
+{
+  "requestId": "44b0c3a8-6fda-49c3-b672-c856cbcc2a4d", 
+  "sentiment": [
+    {
+      "confidence": 0.8065098103642114, 
+      "label": "neg"
+    }, 
+    {
+      "confidence": 0.1934901896357885, 
+      "label": "pos"
+    }
+  ], 
+  "timers": {
+    "rblJe": 2, 
+    "rliJe": 3, 
+    "sent": 5
+  }
+}

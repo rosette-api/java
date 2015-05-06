@@ -1,0 +1,138 @@
+{
+  "entities": [
+    {
+      "confidence": 0.004127860069274902, 
+      "count": 2, 
+      "indocChainId": 1, 
+      "mention": "دبي", 
+      "normalized": "دبي", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 2, 
+      "indocChainId": 3, 
+      "mention": "4 يناير 2010", 
+      "normalized": "4 يناير 2010", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "يناير 2004", 
+      "normalized": "يناير 2004", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 2, 
+      "mention": "أميركي", 
+      "normalized": "أميركي", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.006189882755279541, 
+      "count": 1, 
+      "indocChainId": 4, 
+      "mention": "الشيخ", 
+      "normalized": "الشيخ", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0035448074340820312, 
+      "count": 1, 
+      "indocChainId": 5, 
+      "mention": "محمد بن راشد آل مكتوم", 
+      "normalized": "محمد بن راشد آل مكتوم", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 7, 
+      "mention": "828 مترا", 
+      "normalized": "828 مترا", 
+      "type": "IDENTIFIER:DISTANCE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 8, 
+      "mention": "4,000,000 متر", 
+      "normalized": "4,000,000 متر", 
+      "type": "IDENTIFIER:DISTANCE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 9, 
+      "mention": "10م", 
+      "normalized": "10م", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "500 م", 
+      "normalized": "500 م", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 11, 
+      "mention": "55 ثانية", 
+      "normalized": "55 ثانية", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 12, 
+      "mention": "Samsung", 
+      "normalized": "Samsung", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 13, 
+      "mention": "ثلاث أيام", 
+      "normalized": "ثلاث أيام", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.009792327880859375, 
+      "count": 1, 
+      "indocChainId": 14, 
+      "mention": "روبرت بوث", 
+      "normalized": "روبرت بوث", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.006067812442779541, 
+      "count": 1, 
+      "indocChainId": 15, 
+      "mention": "المدير التنفيذي", 
+      "normalized": "المدير التنفيذي", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "الإماراتية", 
+      "normalized": "الإماراتية", 
+      "type": "NATIONALITY"
+    }
+  ], 
+  "requestId": "0f6e0901-777d-486b-a75c-b2e63886975c", 
+  "timers": {
+    "rblJe": 22, 
+    "rexJe": 29, 
+    "rliJe": 2
+  }
+}

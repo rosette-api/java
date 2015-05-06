@@ -1,0 +1,91 @@
+{
+  "entities": [
+    {
+      "confidence": 0.6448530682195855, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 0, 
+      "mention": "SMS"
+    }, 
+    {
+      "confidence": 0.17806805450273389, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 1, 
+      "mention": "Cantarell"
+    }, 
+    {
+      "confidence": 0.9890237825507597, 
+      "entityId": "Q806208", 
+      "indocChainId": 2, 
+      "mention": "Banxico"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 3, 
+      "mention": "Sara Cantera"
+    }, 
+    {
+      "confidence": 0.4013833884378723, 
+      "entityId": "Q168383", 
+      "indocChainId": 4, 
+      "mention": "Universal"
+    }, 
+    {
+      "confidence": 0.23871443621203675, 
+      "entityId": "Q96", 
+      "indocChainId": 5, 
+      "mention": "México"
+    }, 
+    {
+      "confidence": 0.3232147090213711, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 9, 
+      "mention": "Foto"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 10, 
+      "mention": "Notas Relacionadas"
+    }, 
+    {
+      "confidence": 0.9913019549163815, 
+      "entityId": "Q806208", 
+      "indocChainId": 13, 
+      "mention": "Banco de México"
+    }, 
+    {
+      "confidence": 0.9506952051399505, 
+      "entityId": "Q399129", 
+      "indocChainId": 15, 
+      "mention": "Agustín Carstens"
+    }, 
+    {
+      "confidence": 0.5088993465237824, 
+      "entityId": "Q387282", 
+      "indocChainId": 16, 
+      "mention": "Convención de Aseguradores de México"
+    }, 
+    {
+      "confidence": 0.800662426206261, 
+      "entityId": "Q871308", 
+      "indocChainId": 21, 
+      "mention": "Pemex"
+    }, 
+    {
+      "confidence": 0.6892721973558815, 
+      "entityId": "Q30", 
+      "indocChainId": 26, 
+      "mention": "Estados Unidos"
+    }
+  ], 
+  "requestId": "8d0c66cd-9cc6-4317-89c8-8ae6920051f4", 
+  "timers": {
+    "rblJe": 2, 
+    "res": 477, 
+    "rexJe": 50, 
+    "rliJe": 2, 
+    "textExtractor": 9, 
+    "urlContentDownloader": 85
+  }
+}

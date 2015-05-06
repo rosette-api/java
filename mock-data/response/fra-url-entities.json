@@ -1,0 +1,212 @@
+{
+  "entities": [
+    {
+      "confidence": 0.03085571527481079, 
+      "count": 6, 
+      "indocChainId": 10, 
+      "mention": "Jeanne", 
+      "normalized": "Jeanne", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.028120040893554688, 
+      "count": 5, 
+      "indocChainId": 2, 
+      "mention": "Marine Le Pen", 
+      "normalized": "Marine Le Pen", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.05271759629249573, 
+      "count": 2, 
+      "indocChainId": 12, 
+      "mention": "Yves Claisse", 
+      "normalized": "Yves Claisse", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.031818777322769165, 
+      "count": 2, 
+      "indocChainId": 13, 
+      "mention": "Claisse", 
+      "normalized": "Claisse", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 2, 
+      "indocChainId": 34, 
+      "mention": "Facebook", 
+      "normalized": "Facebook", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0014691948890686035, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "FN", 
+      "normalized": "FN", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.01807427406311035, 
+      "count": 1, 
+      "indocChainId": 3, 
+      "mention": "Laurent Martinet", 
+      "normalized": "Laurent Martinet", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 4, 
+      "mention": "06/05/2015", 
+      "normalized": "06/05/2015", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 5, 
+      "mention": "17:59", 
+      "normalized": "17:59", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 6, 
+      "mention": "18:06", 
+      "normalized": "18:06", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 8, 
+      "mention": "mai 2015", 
+      "normalized": "mai 2015", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 9, 
+      "mention": "REUTERS", 
+      "normalized": "REUTERS", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.005244851112365723, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "Philippe Wojazer\nJeanne", 
+      "normalized": "Philippe Wojazer Jeanne", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "mercredi", 
+      "normalized": "mercredi", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 0.0416526198387146, 
+      "count": 1, 
+      "indocChainId": 17, 
+      "mention": "Front nationale", 
+      "normalized": "Front nationale", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.001185774803161621, 
+      "count": 1, 
+      "indocChainId": 20, 
+      "mention": "Express", 
+      "normalized": "Express", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0047994256019592285, 
+      "count": 1, 
+      "indocChainId": 23, 
+      "mention": "NDR", 
+      "normalized": "NDR", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.012258946895599365, 
+      "count": 1, 
+      "indocChainId": 27, 
+      "mention": "Cécile Duflot", 
+      "normalized": "Cécile Duflot", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0051839351654052734, 
+      "count": 1, 
+      "indocChainId": 28, 
+      "mention": "Cambadélis", 
+      "normalized": "Cambadélis", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.07053500413894653, 
+      "count": 1, 
+      "indocChainId": 29, 
+      "mention": "Front national", 
+      "normalized": "Front national", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.012778759002685547, 
+      "count": 1, 
+      "indocChainId": 30, 
+      "mention": "Patrick Sébastien", 
+      "normalized": "Patrick Sébastien", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.007687509059906006, 
+      "count": 1, 
+      "indocChainId": 31, 
+      "mention": "secrétaire d'Etat", 
+      "normalized": "secrétaire d'Etat", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.004832863807678223, 
+      "count": 1, 
+      "indocChainId": 32, 
+      "mention": "Sarkozy", 
+      "normalized": "Sarkozy", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.007721960544586182, 
+      "count": 1, 
+      "indocChainId": 33, 
+      "mention": "UMP", 
+      "normalized": "UMP", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0011484622955322266, 
+      "count": 1, 
+      "indocChainId": 35, 
+      "mention": "Publier", 
+      "normalized": "Publier", 
+      "type": "ORGANIZATION"
+    }
+  ], 
+  "requestId": "03dc2e30-f3af-4910-9e6e-3f71d2593d57", 
+  "timers": {
+    "rblJe": 7, 
+    "rexJe": 159, 
+    "rliJe": 3, 
+    "textExtractor": 18, 
+    "urlContentDownloader": 214
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "entities": [
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "news.xinhuanet.com/", 
+      "normalized": "news.xinhuanet.com/", 
+      "type": "IDENTIFIER:URL"
+    }
+  ], 
+  "requestId": "d9dd9fb4-108e-40c7-8dd5-6251d9aef53a", 
+  "timers": {
+    "rblJe": 2, 
+    "rexJe": 3, 
+    "rliJe": 1
+  }
+}
