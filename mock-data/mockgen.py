@@ -45,7 +45,7 @@ def capture(req, endpoints, filename_prefix):
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
                                  description="create RosApi mocked test data")
 parser.add_argument("--endpoint", default="http://jugmaster.basistech.net/rest/v1", help="RosApi endpoint")
-parser.add_argument("--user-key", help="RosApi user_ley")
+parser.add_argument("--user-key", help="RosApi user_key")
 args = parser.parse_args()
 
 headers = {"Content-Type": "application/json"}
