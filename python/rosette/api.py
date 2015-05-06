@@ -1,19 +1,21 @@
 #!/usr/bin/env python
 
 """
-Code and constant classes for operating Rosette Web Service from python.
+Python client for the Rosette API.
 
-This data and information is proprietary to, and a valuable trade secret
-of, Basis Technology Corp.  It is given in confidence by Basis Technology
-and may only be used as permitted under the license agreement under which
-it has been distributed, and in no other way.
+  Copyright (c) 2014-2015 Basis Technology Corporation.
 
-Copyright (c) 2015 Basis Technology Corporation All rights reserved.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-The technical data and information provided herein are provided with
-`limited rights', and the computer software provided herein is provided
-with `restricted rights' as those terms are defined in DAR and ASPR
-7-104.9(a).
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 """
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
