@@ -1,5 +1,5 @@
 ---
-title: PHP Binding - General Usage
+#PHP Binding
 ---
 #Summary
 
@@ -17,7 +17,7 @@ use BasisTechnology\Rosette\RosetteParameters;
 
 require dirname(__DIR__).'/source/BasisTechnology/Rosette/Rosette.php';
 ```
-Instantiate and instance of the api, providing the Rosette API URL and the required User Key, e.g.
+Instantiate an instance of the api, providing the Rosette API URL and the required User Key, e.g.
 ```
 $api = new $api($url, $userKey);
 ```
