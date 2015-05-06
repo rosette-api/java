@@ -1,0 +1,163 @@
+{
+  "entities": [
+    {
+      "confidence": 0.710674414365572, 
+      "entityId": "Q1520122", 
+      "indocChainId": 0, 
+      "mention": "Getty Images"
+    }, 
+    {
+      "confidence": 0.7688107136486276, 
+      "entityId": "Q155038", 
+      "indocChainId": 3, 
+      "mention": "Germanwings"
+    }, 
+    {
+      "confidence": 0.27026112048391693, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 4, 
+      "mention": "Andreas Lubitz"
+    }, 
+    {
+      "confidence": 0.29622539971205003, 
+      "entityId": "Q1794", 
+      "indocChainId": 5, 
+      "mention": "Frankfurt"
+    }, 
+    {
+      "confidence": 0.2510114018806241, 
+      "entityId": "Q183", 
+      "indocChainId": 8, 
+      "mention": "Germany"
+    }, 
+    {
+      "confidence": 0.2675786074669684, 
+      "entityId": "Q919252", 
+      "indocChainId": 11, 
+      "mention": "BEA"
+    }, 
+    {
+      "confidence": 0.3211353373112593, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 12, 
+      "mention": "Alastair Jamieson"
+    }, 
+    {
+      "confidence": 0.8045588869974638, 
+      "entityId": "Q67", 
+      "indocChainId": 17, 
+      "mention": "Airbus"
+    }, 
+    {
+      "confidence": 0.44771437625467325, 
+      "entityId": "Q1718", 
+      "indocChainId": 20, 
+      "mention": "Dusseldorf"
+    }, 
+    {
+      "confidence": 0.1507446070527876, 
+      "entityId": "Q1492", 
+      "indocChainId": 21, 
+      "mention": "Barcelona"
+    }, 
+    {
+      "confidence": 0.1346152298535233, 
+      "entityId": "Q29", 
+      "indocChainId": 25, 
+      "mention": "Spain"
+    }, 
+    {
+      "confidence": 0.30559822767014017, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 32, 
+      "mention": "Alastair Rosenschein"
+    }, 
+    {
+      "confidence": 0.7150726971494208, 
+      "entityId": "Q8766", 
+      "indocChainId": 33, 
+      "mention": "British Airways"
+    }, 
+    {
+      "confidence": 0.5584775566604284, 
+      "entityId": "Q13974", 
+      "indocChainId": 36, 
+      "mention": "NBC News"
+    }, 
+    {
+      "confidence": 0.7771265726107426, 
+      "entityId": "Q335357", 
+      "indocChainId": 40, 
+      "mention": "Federal Aviation Administration"
+    }, 
+    {
+      "confidence": 0.8481300602883002, 
+      "entityId": "Q30", 
+      "indocChainId": 42, 
+      "mention": "U.S."
+    }, 
+    {
+      "confidence": 0.5900081230977838, 
+      "entityId": "Q9325", 
+      "indocChainId": 43, 
+      "mention": "Lufthansa"
+    }, 
+    {
+      "confidence": 0.035645845165231074, 
+      "entityId": "Q16556", 
+      "indocChainId": 44, 
+      "mention": "Phoenix"
+    }, 
+    {
+      "confidence": 0.6596112982884413, 
+      "entityId": "Q16211007", 
+      "indocChainId": 47, 
+      "mention": "Katy Tur"
+    }, 
+    {
+      "confidence": 0.3246040965669532, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 48, 
+      "mention": "Amy Perrette"
+    }, 
+    {
+      "confidence": 0.8386099044377157, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 49, 
+      "mention": "Nancy Ing"
+    }, 
+    {
+      "confidence": 0.14818494504892715, 
+      "entityId": "Q84", 
+      "indocChainId": 54, 
+      "mention": "London"
+    }, 
+    {
+      "confidence": 0.44118040893550076, 
+      "entityId": "Q12741725", 
+      "indocChainId": 59, 
+      "mention": "Sunday Telegraph"
+    }, 
+    {
+      "confidence": 0.6729164934495676, 
+      "entityId": "Q192621", 
+      "indocChainId": 60, 
+      "mention": "Daily Telegraph"
+    }, 
+    {
+      "confidence": 0.32288224996392667, 
+      "entityId": "Q23436", 
+      "indocChainId": 63, 
+      "mention": "Edinburgh"
+    }
+  ], 
+  "requestId": "01ef0a25-835a-49e1-a5f5-ccf757c8b3f4", 
+  "timers": {
+    "rblJe": 3, 
+    "res": 635, 
+    "rexJe": 119, 
+    "rliJe": 3, 
+    "textExtractor": 9, 
+    "urlContentDownloader": 23
+  }
+}

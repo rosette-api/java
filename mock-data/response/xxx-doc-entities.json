@@ -1,0 +1,130 @@
+{
+  "entities": [
+    {
+      "confidence": 0.05986414849758148, 
+      "count": 4, 
+      "indocChainId": 1, 
+      "mention": "Europa", 
+      "normalized": "Europa", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.008987635374069214, 
+      "count": 2, 
+      "indocChainId": 3, 
+      "mention": "Teneriffa", 
+      "normalized": "Teneriffa", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "3.11.06", 
+      "normalized": "3.11.06", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 0.035944998264312744, 
+      "count": 1, 
+      "indocChainId": 2, 
+      "mention": "Spanien", 
+      "normalized": "Spanien", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.03711158037185669, 
+      "count": 1, 
+      "indocChainId": 4, 
+      "mention": "Europäische Union", 
+      "normalized": "Europäische Union", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.03636401891708374, 
+      "count": 1, 
+      "indocChainId": 5, 
+      "mention": "Innenminister", 
+      "normalized": "Innenminister", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.01726752519607544, 
+      "count": 1, 
+      "indocChainId": 9, 
+      "mention": "Professor", 
+      "normalized": "Professor", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.00736004114151001, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "Klaus J. Bade", 
+      "normalized": "Klaus J. Bade", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.013958752155303955, 
+      "count": 1, 
+      "indocChainId": 11, 
+      "mention": "Universität Osnabrück", 
+      "normalized": "Universität Osnabrück", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.03818148374557495, 
+      "count": 1, 
+      "indocChainId": 12, 
+      "mention": "Somalia", 
+      "normalized": "Somalia", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.03774428367614746, 
+      "count": 1, 
+      "indocChainId": 13, 
+      "mention": "Fischer", 
+      "normalized": "Fischer", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.019688069820404053, 
+      "count": 1, 
+      "indocChainId": 15, 
+      "mention": "Wolfgang Schäuble", 
+      "normalized": "Wolfgang Schäuble", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.06329077482223511, 
+      "count": 1, 
+      "indocChainId": 15, 
+      "mention": "Schäuble", 
+      "normalized": "Schäuble", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.024634122848510742, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "CDU", 
+      "normalized": "CDU", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.023647606372833252, 
+      "count": 1, 
+      "indocChainId": 17, 
+      "mention": "Brüssel", 
+      "normalized": "Brüssel", 
+      "type": "LOCATION"
+    }
+  ], 
+  "requestId": "bf06d68b-7858-4d76-b3be-608a4672dc86", 
+  "timers": {
+    "rblJe": 2, 
+    "rexJe": 16, 
+    "rliJe": 2
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "entities": [
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 1, 
+      "mention": "لممثل"
+    }, 
+    {
+      "confidence": 0.0436747012960415, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 3, 
+      "mention": "سلمان خان"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 4, 
+      "mention": "نيودلهي"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 5, 
+      "mention": "رويترز"
+    }, 
+    {
+      "confidence": 0.04105871711995119, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 12, 
+      "mention": "مومباي"
+    }, 
+    {
+      "confidence": 0.04063634078014916, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 15, 
+      "mention": "الله"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 21, 
+      "mention": "التوسيع"
+    }, 
+    {
+      "confidence": 0.03936728399584748, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 22, 
+      "mention": "كلينتون"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 24, 
+      "mention": "غرينتش"
+    }, 
+    {
+      "confidence": 0.05209178143651696, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 25, 
+      "mention": "نيبال"
+    }, 
+    {
+      "confidence": 0.0707721806751196, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 33, 
+      "mention": "كابول"
+    }, 
+    {
+      "confidence": 0.039226316173441626, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 35, 
+      "mention": "الولايات المتحدة"
+    }, 
+    {
+      "confidence": 0.026256616048450917, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 36, 
+      "mention": "كوبا"
+    }, 
+    {
+      "confidence": 0.03020173005084994, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 39, 
+      "mention": "محمد بن راشد"
+    }
+  ], 
+  "requestId": "5570e146-9423-4c5a-8c4a-afb257ab6f72", 
+  "timers": {
+    "rblJe": 35, 
+    "res": 631, 
+    "rexJe": 66, 
+    "rliJe": 2, 
+    "textExtractor": 18, 
+    "urlContentDownloader": 95
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "entities": [
+    {
+      "confidence": 0.6102319185894147, 
+      "entityId": "Q20716", 
+      "indocChainId": 0, 
+      "mention": "Samsung"
+    }, 
+    {
+      "confidence": 0.6229082371169389, 
+      "entityId": "Q20718", 
+      "indocChainId": 2, 
+      "mention": "Samsung Electronics"
+    }, 
+    {
+      "confidence": 0.4885659008584999, 
+      "entityId": "Q312", 
+      "indocChainId": 3, 
+      "mention": "Apple"
+    }, 
+    {
+      "confidence": 0.17191878533440455, 
+      "entityId": "Q30", 
+      "indocChainId": 10, 
+      "mention": "United States"
+    }, 
+    {
+      "confidence": 0.7413823597043555, 
+      "entityId": "Q6698345", 
+      "indocChainId": 23, 
+      "mention": "Lucy Koh"
+    }, 
+    {
+      "confidence": 0.6577294222420172, 
+      "entityId": "Q163820", 
+      "indocChainId": 50, 
+      "mention": "Silicon Valley"
+    }, 
+    {
+      "confidence": 0.10995215181475533, 
+      "entityId": "Q408", 
+      "indocChainId": 55, 
+      "mention": "Australia"
+    }
+  ], 
+  "requestId": "f0f3bccd-f921-4a79-88b9-1789f75d1148", 
+  "timers": {
+    "rblJe": 2, 
+    "res": 207, 
+    "rexJe": 59, 
+    "rliJe": 2
+  }
+}

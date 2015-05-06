@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {
+      "confidence": 0.2201367393082986, 
+      "label": "TRAVEL"
+    }
+  ], 
+  "requestId": "96f4139b-934c-4ea5-a619-1c54fa17c34c", 
+  "timers": {
+    "cat": 14, 
+    "rblJe": 3, 
+    "rliJe": 2, 
+    "textExtractor": 12, 
+    "urlContentDownloader": 21
+  }
+}

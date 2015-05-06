@@ -1,0 +1,5519 @@
+{
+  "compounds": [], 
+  "hanReadings": [], 
+  "lemmas": [
+    {
+      "lemma": "FN", 
+      "text": "FN"
+    }, 
+    {
+      "lemma": "afficher", 
+      "text": "Afficher"
+    }, 
+    {
+      "lemma": "/", 
+      "text": "/"
+    }, 
+    {
+      "lemma": "masquer", 
+      "text": "Masquer"
+    }, 
+    {
+      "lemma": "plus", 
+      "text": "plus"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "d'"
+    }, 
+    {
+      "lemma": "entrée", 
+      "text": "entrées"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "A"
+    }, 
+    {
+      "lemma": "voir", 
+      "text": "voir"
+    }, 
+    {
+      "lemma": ":", 
+      "text": ":"
+    }, 
+    {
+      "lemma": "Jeanne", 
+      "text": "Jeanne"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "micro", 
+      "text": "micro"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "parti", 
+      "text": "parti"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "Marine", 
+      "text": "Marine"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Le"
+    }, 
+    {
+      "lemma": "Pen", 
+      "text": "Pen"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "risque", 
+      "text": "risque"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "sanction", 
+      "text": "sanctions"
+    }, 
+    {
+      "lemma": "financier", 
+      "text": "financières"
+    }, 
+    {
+      "lemma": "par", 
+      "text": "Par"
+    }, 
+    {
+      "lemma": "Laurent", 
+      "text": "Laurent"
+    }, 
+    {
+      "lemma": "martinet", 
+      "text": "Martinet"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "publier", 
+      "text": "publié"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "06", 
+      "text": "06"
+    }, 
+    {
+      "lemma": "/", 
+      "text": "/"
+    }, 
+    {
+      "lemma": "05", 
+      "text": "05"
+    }, 
+    {
+      "lemma": "/", 
+      "text": "/"
+    }, 
+    {
+      "lemma": "2015", 
+      "text": "2015"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "17:59", 
+      "text": "17:59"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "mettre", 
+      "text": "mis"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "jour", 
+      "text": "jour"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "18:06", 
+      "text": "18:06"
+    }, 
+    {
+      "lemma": "partage", 
+      "text": "partages"
+    }, 
+    {
+      "lemma": "mariner", 
+      "text": "Marine"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Le"
+    }, 
+    {
+      "lemma": "Pen", 
+      "text": "Pen"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "premier", 
+      "text": "premier"
+    }, 
+    {
+      "lemma": "mai", 
+      "text": "mai"
+    }, 
+    {
+      "lemma": "2015", 
+      "text": "2015"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Reuters", 
+      "text": "REUTERS"
+    }, 
+    {
+      "lemma": "/", 
+      "text": "/"
+    }, 
+    {
+      "lemma": "Philippe", 
+      "text": "Philippe"
+    }, 
+    {
+      "lemma": "Wojazer", 
+      "text": "Wojazer"
+    }, 
+    {
+      "lemma": "Jeanne", 
+      "text": "Jeanne"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "micro", 
+      "text": "micro"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "parti", 
+      "text": "parti"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "Marine", 
+      "text": "Marine"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Le"
+    }, 
+    {
+      "lemma": "Pen", 
+      "text": "Pen"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "avoir", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "été"
+    }, 
+    {
+      "lemma": "mettre", 
+      "text": "mis"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "examen", 
+      "text": "examen"
+    }, 
+    {
+      "lemma": "pour", 
+      "text": "pour"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "financement", 
+      "text": "financement"
+    }, 
+    {
+      "lemma": "par", 
+      "text": "par"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "personne", 
+      "text": "personne"
+    }, 
+    {
+      "lemma": "moral", 
+      "text": "morale"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "et", 
+      "text": "et"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "escroquerie", 
+      "text": "escroquerie"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Yves", 
+      "text": "Yves"
+    }, 
+    {
+      "lemma": "Claisse", 
+      "text": "Claisse"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "avocat", 
+      "text": "avocat"
+    }, 
+    {
+      "lemma": "chez", 
+      "text": "chez"
+    }, 
+    {
+      "lemma": "Claisse", 
+      "text": "Claisse"
+    }, 
+    {
+      "lemma": "et", 
+      "text": "et"
+    }, 
+    {
+      "lemma": "associer", 
+      "text": "associés"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "décrypter", 
+      "text": "décrypte"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "les"
+    }, 
+    {
+      "lemma": "enjeu", 
+      "text": "enjeux"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "procédure", 
+      "text": "procédure"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Jeanne", 
+      "text": "Jeanne"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "micro", 
+      "text": "micro"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "parti", 
+      "text": "parti"
+    }, 
+    {
+      "lemma": "fonder", 
+      "text": "fondé"
+    }, 
+    {
+      "lemma": "par", 
+      "text": "par"
+    }, 
+    {
+      "lemma": "Marine", 
+      "text": "Marine"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Le"
+    }, 
+    {
+      "lemma": "Pen", 
+      "text": "Pen"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "avoir", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "été"
+    }, 
+    {
+      "lemma": "mettre", 
+      "text": "mis"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "examen", 
+      "text": "examen"
+    }, 
+    {
+      "lemma": "ce", 
+      "text": "ce"
+    }, 
+    {
+      "lemma": "mercredi", 
+      "text": "mercredi"
+    }, 
+    {
+      "lemma": "pour", 
+      "text": "pour"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "acceptation", 
+      "text": "acceptation"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "financement", 
+      "text": "financement"
+    }, 
+    {
+      "lemma": "par", 
+      "text": "par"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "personne", 
+      "text": "personne"
+    }, 
+    {
+      "lemma": "moral", 
+      "text": "morale"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "et", 
+      "text": "et"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "escroquerie", 
+      "text": "escroquerie"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "le", 
+      "text": "La"
+    }, 
+    {
+      "lemma": "structure", 
+      "text": "structure"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "est"
+    }, 
+    {
+      "lemma": "soupçonner", 
+      "text": "soupçonnée"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "d'"
+    }, 
+    {
+      "lemma": "avoir", 
+      "text": "avoir"
+    }, 
+    {
+      "lemma": "aider", 
+      "text": "aidé"
+    }, 
+    {
+      "lemma": "à le", 
+      "text": "au"
+    }, 
+    {
+      "lemma": "financement", 
+      "text": "financement"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "du"
+    }, 
+    {
+      "lemma": "front", 
+      "text": "Front"
+    }, 
+    {
+      "lemma": "national", 
+      "text": "nationale"
+    }, 
+    {
+      "lemma": "lors", 
+      "text": "lors"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "campagne", 
+      "text": "campagnes"
+    }, 
+    {
+      "lemma": "législatif", 
+      "text": "législatives"
+    }, 
+    {
+      "lemma": "et", 
+      "text": "et"
+    }, 
+    {
+      "lemma": "présidentielle", 
+      "text": "présidentielles"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "2012", 
+      "text": "2012"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "surfacturer", 
+      "text": "surfacturant"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "du"
+    }, 
+    {
+      "lemma": "matériel", 
+      "text": "matériel"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "campagne", 
+      "text": "campagne"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "son", 
+      "text": "ses"
+    }, 
+    {
+      "lemma": "candidat", 
+      "text": "candidats"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Yves", 
+      "text": "Yves"
+    }, 
+    {
+      "lemma": "Claisse", 
+      "text": "Claisse"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "avocat", 
+      "text": "avocat"
+    }, 
+    {
+      "lemma": "chez", 
+      "text": "chez"
+    }, 
+    {
+      "lemma": "Claisse", 
+      "text": "Claisse"
+    }, 
+    {
+      "lemma": "et", 
+      "text": "et"
+    }, 
+    {
+      "lemma": "associer", 
+      "text": "associés"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "expliquer", 
+      "text": "explique"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "L'"
+    }, 
+    {
+      "lemma": "express", 
+      "text": "Express"
+    }, 
+    {
+      "lemma": "pourquoi", 
+      "text": "pourquoi"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "un"
+    }, 
+    {
+      "lemma": "parti", 
+      "text": "parti"
+    }, 
+    {
+      "lemma": "politique", 
+      "text": "politique"
+    }, 
+    {
+      "lemma": "pouvoir", 
+      "text": "peut"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "être"
+    }, 
+    {
+      "lemma": "mettre", 
+      "text": "mis"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "examen", 
+      "text": "examen"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "ce", 
+      "text": "C'"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "est"
+    }, 
+    {
+      "lemma": "normal", 
+      "text": "normal"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "mettre", 
+      "text": "mettre"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "un"
+    }, 
+    {
+      "lemma": "parti", 
+      "text": "parti"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "examen", 
+      "text": "examen"
+    }, 
+    {
+      "lemma": "?", 
+      "text": "?"
+    }, 
+    {
+      "lemma": "ce", 
+      "text": "C'"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "est"
+    }, 
+    {
+      "lemma": "normal", 
+      "text": "normal"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "ça", 
+      "text": "ça"
+    }, 
+    {
+      "lemma": "ne", 
+      "text": "ne"
+    }, 
+    {
+      "lemma": "surprendre", 
+      "text": "surprend"
+    }, 
+    {
+      "lemma": "pas", 
+      "text": "pas"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "depuis", 
+      "text": "Depuis"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "l'"
+    }, 
+    {
+      "lemma": "entrée", 
+      "text": "entrée"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "vigueur", 
+      "text": "vigueur"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "du"
+    }, 
+    {
+      "lemma": "nouveau", 
+      "text": "nouveau"
+    }, 
+    {
+      "lemma": "code", 
+      "text": "code"
+    }, 
+    {
+      "lemma": "pénal", 
+      "text": "pénal"
+    }, 
+    {
+      "lemma": "il", 
+      "text": "il"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "avoir", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "quinzaine", 
+      "text": "quinzaine"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "d'"
+    }, 
+    {
+      "lemma": "année", 
+      "text": "années"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "responsabilité", 
+      "text": "responsabilité"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "d'"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "personne", 
+      "text": "personne"
+    }, 
+    {
+      "lemma": "moral", 
+      "text": "morale"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "est"
+    }, 
+    {
+      "lemma": "engager", 
+      "text": "engagée"
+    }, 
+    {
+      "lemma": "quand", 
+      "text": "quand"
+    }, 
+    {
+      "lemma": "il", 
+      "text": "il"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "avoir", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "infraction", 
+      "text": "infraction"
+    }, 
+    {
+      "lemma": "pénal", 
+      "text": "pénale"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "bien", 
+      "text": "Bien"
+    }, 
+    {
+      "lemma": "que", 
+      "text": "que"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "les"
+    }, 
+    {
+      "lemma": "parti", 
+      "text": "partis"
+    }, 
+    {
+      "lemma": "politique", 
+      "text": "politiques"
+    }, 
+    {
+      "lemma": "avoir", 
+      "text": "aient"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "existence", 
+      "text": "existence"
+    }, 
+    {
+      "lemma": "constitutionnel", 
+      "text": "constitutionnelle"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "il", 
+      "text": "il"
+    }, 
+    {
+      "lemma": "ne", 
+      "text": "n'"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "avoir", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "pas", 
+      "text": "pas"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "d'"
+    }, 
+    {
+      "lemma": "exemption", 
+      "text": "exemption"
+    }, 
+    {
+      "lemma": "pour", 
+      "text": "pour"
+    }, 
+    {
+      "lemma": "lui", 
+      "text": "eux"
+    }, 
+    {
+      "lemma": "dans", 
+      "text": "dans"
+    }, 
+    {
+      "lemma": "notre", 
+      "text": "notre"
+    }, 
+    {
+      "lemma": "droit", 
+      "text": "droit"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "il", 
+      "text": "Ils"
+    }, 
+    {
+      "lemma": "pouvoir", 
+      "text": "peuvent"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "être"
+    }, 
+    {
+      "lemma": "mettre", 
+      "text": "mis"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "examen", 
+      "text": "examen"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "exactement", 
+      "text": "exactement"
+    }, 
+    {
+      "lemma": "comme", 
+      "text": "comme"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "société", 
+      "text": "société"
+    }, 
+    {
+      "lemma": "commercial", 
+      "text": "commerciale"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "que", 
+      "text": "Que"
+    }, 
+    {
+      "lemma": "signifier", 
+      "text": "signifient"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "les"
+    }, 
+    {
+      "lemma": "infraction", 
+      "text": "infractions"
+    }, 
+    {
+      "lemma": "reprocher", 
+      "text": "reprochées"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "Jeanne", 
+      "text": "Jeanne"
+    }, 
+    {
+      "lemma": "?", 
+      "text": "?"
+    }, 
+    {
+      "lemma": "ce", 
+      "text": "Ce"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "sont"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "infraction", 
+      "text": "infractions"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "début", 
+      "text": "début"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "procédure", 
+      "text": "procédure"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "qui", 
+      "text": "qui"
+    }, 
+    {
+      "lemma": "pouvoir", 
+      "text": "peuvent"
+    }, 
+    {
+      "lemma": "évoluer", 
+      "text": "évoluer"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "depuis", 
+      "text": "Depuis"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "loi", 
+      "text": "loi"
+    }, 
+    {
+      "lemma": "sur", 
+      "text": "sur"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "financement", 
+      "text": "financement"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "vie", 
+      "text": "vie"
+    }, 
+    {
+      "lemma": "politique", 
+      "text": "politique"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "1995", 
+      "text": "1995"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "le", 
+      "text": "les"
+    }, 
+    {
+      "lemma": "parti", 
+      "text": "partis"
+    }, 
+    {
+      "lemma": "ne", 
+      "text": "ne"
+    }, 
+    {
+      "lemma": "pouvoir", 
+      "text": "peuvent"
+    }, 
+    {
+      "lemma": "plus", 
+      "text": "plus"
+    }, 
+    {
+      "lemma": "accepter", 
+      "text": "accepter"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "l'"
+    }, 
+    {
+      "lemma": "argent", 
+      "text": "argent"
+    }, 
+    {
+      "lemma": "provenir", 
+      "text": "provenant"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "d'"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "personne", 
+      "text": "personne"
+    }, 
+    {
+      "lemma": "moral", 
+      "text": "morale"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "ce", 
+      "text": "ce"
+    }, 
+    {
+      "lemma": "qui", 
+      "text": "qui"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "est"
+    }, 
+    {
+      "lemma": "reprocher", 
+      "text": "reproché"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "Jeanne", 
+      "text": "Jeanne"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "[", 
+      "text": "["
+    }, 
+    {
+      "lemma": "il", 
+      "text": "Ils"
+    }, 
+    {
+      "lemma": "devoir", 
+      "text": "doivent"
+    }, 
+    {
+      "lemma": "vivre", 
+      "text": "vivre"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "cotisation", 
+      "text": "cotisations"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "leur", 
+      "text": "leur"
+    }, 
+    {
+      "lemma": "adhérent", 
+      "text": "adhérents"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "un", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "contribution", 
+      "text": "contributions"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "personne", 
+      "text": "personnes"
+    }, 
+    {
+      "lemma": "priver", 
+      "text": "privés"
+    }, 
+    {
+      "lemma": "et", 
+      "text": "et"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "du"
+    }, 
+    {
+      "lemma": "financement", 
+      "text": "financement"
+    }, 
+    {
+      "lemma": "public", 
+      "text": "public"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "NDR", 
+      "text": "NDR"
+    }, 
+    {
+      "lemma": "]", 
+      "text": "]"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "quant", 
+      "text": "Quant"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "l'"
+    }, 
+    {
+      "lemma": "infraction", 
+      "text": "infraction"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "d'"
+    }, 
+    {
+      "lemma": "escroquerie", 
+      "text": "escroquerie"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "il", 
+      "text": "elle"
+    }, 
+    {
+      "lemma": "ne", 
+      "text": "n'"
+    }, 
+    {
+      "lemma": "avoir", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "rien", 
+      "text": "rien"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "voir", 
+      "text": "voir"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "il", 
+      "text": "elle"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "même", 
+      "text": "même"
+    }, 
+    {
+      "lemma": "avec", 
+      "text": "avec"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "vie", 
+      "text": "vie"
+    }, 
+    {
+      "lemma": "politique", 
+      "text": "politique"
+    }, 
+    {
+      "lemma": "mais", 
+      "text": "mais"
+    }, 
+    {
+      "lemma": "relève", 
+      "text": "relève"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "du"
+    }, 
+    {
+      "lemma": "droit", 
+      "text": "droit"
+    }, 
+    {
+      "lemma": "commun", 
+      "text": "commun"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "que", 
+      "text": "Que"
+    }, 
+    {
+      "lemma": "risque", 
+      "text": "risque"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "Jeanne", 
+      "text": "Jeanne"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "?", 
+      "text": "?"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "La"
+    }, 
+    {
+      "lemma": "police", 
+      "text": "police"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "du"
+    }, 
+    {
+      "lemma": "financement", 
+      "text": "financement"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "vie", 
+      "text": "vie"
+    }, 
+    {
+      "lemma": "politique", 
+      "text": "politique"
+    }, 
+    {
+      "lemma": "prévoir", 
+      "text": "prévoit"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "sanction", 
+      "text": "sanctions"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "tout", 
+      "text": "toutes"
+    }, 
+    {
+      "lemma": "nature", 
+      "text": "natures"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "cela", 
+      "text": "Cela"
+    }, 
+    {
+      "lemma": "aller", 
+      "text": "va"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "du"
+    }, 
+    {
+      "lemma": "refus", 
+      "text": "refus"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "remboursement", 
+      "text": "remboursement"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "dépense", 
+      "text": "dépenses"
+    }, 
+    {
+      "lemma": "électoral", 
+      "text": "électorales"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "sanction", 
+      "text": "sanctions"
+    }, 
+    {
+      "lemma": "civique", 
+      "text": "civiques"
+    }, 
+    {
+      "lemma": "comme", 
+      "text": "comme"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "l'"
+    }, 
+    {
+      "lemma": "inégibilité", 
+      "text": "inégibilité"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "mais", 
+      "text": "Mais"
+    }, 
+    {
+      "lemma": "on", 
+      "text": "on"
+    }, 
+    {
+      "lemma": "ne", 
+      "text": "ne"
+    }, 
+    {
+      "lemma": "pouvoir", 
+      "text": "peut"
+    }, 
+    {
+      "lemma": "pas", 
+      "text": "pas"
+    }, 
+    {
+      "lemma": "mettre", 
+      "text": "mettre"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "personne", 
+      "text": "personne"
+    }, 
+    {
+      "lemma": "moral", 
+      "text": "morale"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "prison", 
+      "text": "prison"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Le"
+    }, 
+    {
+      "lemma": "plus", 
+      "text": "plus"
+    }, 
+    {
+      "lemma": "probable", 
+      "text": "probable"
+    }, 
+    {
+      "lemma": "dans", 
+      "text": "dans"
+    }, 
+    {
+      "lemma": "ce", 
+      "text": "cette"
+    }, 
+    {
+      "lemma": "affaire", 
+      "text": "affaire"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "est"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "sanction", 
+      "text": "sanction"
+    }, 
+    {
+      "lemma": "financier", 
+      "text": "financière"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "si", 
+      "text": "si"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "procédure", 
+      "text": "procédure"
+    }, 
+    {
+      "lemma": "parvenir", 
+      "text": "parvient"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "prouver", 
+      "text": "prouver"
+    }, 
+    {
+      "lemma": "ce", 
+      "text": "ces"
+    }, 
+    {
+      "lemma": "infraction", 
+      "text": "infractions"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "pour", 
+      "text": "Pour"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "un"
+    }, 
+    {
+      "lemma": "parti", 
+      "text": "parti"
+    }, 
+    {
+      "lemma": "politique", 
+      "text": "politique"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "il", 
+      "text": "il"
+    }, 
+    {
+      "lemma": "me", 
+      "text": "me"
+    }, 
+    {
+      "lemma": "paraître", 
+      "text": "paraît"
+    }, 
+    {
+      "lemma": "difficile", 
+      "text": "difficile"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "d'"
+    }, 
+    {
+      "lemma": "imaginer", 
+      "text": "imaginer"
+    }, 
+    {
+      "lemma": "autre", 
+      "text": "autre"
+    }, 
+    {
+      "lemma": "chose", 
+      "text": "chose"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Les"
+    }, 
+    {
+      "lemma": "avis", 
+      "text": "avis"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "sont"
+    }, 
+    {
+      "lemma": "partager", 
+      "text": "partagés"
+    }, 
+    {
+      "lemma": "?", 
+      "text": "?"
+    }, 
+    {
+      "lemma": "laisser", 
+      "text": "Laissez"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "vôtre", 
+      "text": "vôtre"
+    }, 
+    {
+      "lemma": "+", 
+      "text": "+"
+    }, 
+    {
+      "lemma": "et", 
+      "text": "Et"
+    }, 
+    {
+      "lemma": "aussi", 
+      "text": "aussi"
+    }, 
+    {
+      "lemma": ":", 
+      "text": ":"
+    }, 
+    {
+      "lemma": "Jeanne", 
+      "text": "Jeanne"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "micro", 
+      "text": "micro"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "parti", 
+      "text": "parti"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "Marine", 
+      "text": "Marine"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Le"
+    }, 
+    {
+      "lemma": "Pen", 
+      "text": "Pen"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "risque", 
+      "text": "risque"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "sanction", 
+      "text": "sanctions"
+    }, 
+    {
+      "lemma": "financier", 
+      "text": "financières"
+    }, 
+    {
+      "lemma": "Cécile", 
+      "text": "Cécile"
+    }, 
+    {
+      "lemma": "Duflot", 
+      "text": "Duflot"
+    }, 
+    {
+      "lemma": "dénoncer", 
+      "text": "dénonce"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "son", 
+      "text": "son"
+    }, 
+    {
+      "lemma": "tour", 
+      "text": "tour"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "sexisme", 
+      "text": "sexisme"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "du"
+    }, 
+    {
+      "lemma": "monde", 
+      "text": "monde"
+    }, 
+    {
+      "lemma": "politiquer", 
+      "text": "politique"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Le"
+    }, 
+    {
+      "lemma": "retrait", 
+      "text": "retrait"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "réforme", 
+      "text": "réforme"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "du"
+    }, 
+    {
+      "lemma": "collège", 
+      "text": "collège"
+    }, 
+    {
+      "lemma": "exiger", 
+      "text": "exigé"
+    }, 
+    {
+      "lemma": "par", 
+      "text": "par"
+    }, 
+    {
+      "lemma": "153", 
+      "text": "153"
+    }, 
+    {
+      "lemma": "parlementaire", 
+      "text": "parlementaires"
+    }, 
+    {
+      "lemma": "Oups", 
+      "text": "Oups"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "Cambadélis", 
+      "text": "Cambadélis"
+    }, 
+    {
+      "lemma": "reprendre", 
+      "text": "reprend"
+    }, 
+    {
+      "lemma": "un", 
+      "text": "une"
+    }, 
+    {
+      "lemma": "expression", 
+      "text": "expression"
+    }, 
+    {
+      "lemma": "pétainiste", 
+      "text": "pétainiste"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Les"
+    }, 
+    {
+      "lemma": "+", 
+      "text": "+"
+    }, 
+    {
+      "lemma": "partager", 
+      "text": "partagés"
+    }, 
+    {
+      "lemma": "vidéo", 
+      "text": "VIDEO"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "le", 
+      "text": "Le"
+    }, 
+    {
+      "lemma": "nouveau", 
+      "text": "nouveau"
+    }, 
+    {
+      "lemma": "nouveau", 
+      "text": "nouveau"
+    }, 
+    {
+      "lemma": "nouveau", 
+      "text": "nouveau"
+    }, 
+    {
+      "lemma": "front", 
+      "text": "Front"
+    }, 
+    {
+      "lemma": "national", 
+      "text": "national"
+    }, 
+    {
+      "lemma": "906partages", 
+      "text": "906partages"
+    }, 
+    {
+      "lemma": "vidéo", 
+      "text": "VIDEO"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "le", 
+      "text": "La"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "petit", 
+      "text": "petite"
+    }, 
+    {
+      "lemma": "pipe", 
+      "text": "pipe"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "Patrick", 
+      "text": "Patrick"
+    }, 
+    {
+      "lemma": "Sébastien", 
+      "text": "Sébastien"
+    }, 
+    {
+      "lemma": "indigner", 
+      "text": "indigne"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "secrétaire", 
+      "text": "secrétaire"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "d'"
+    }, 
+    {
+      "lemma": "état", 
+      "text": "Etat"
+    }, 
+    {
+      "lemma": "688partages", 
+      "text": "688partages"
+    }, 
+    {
+      "lemma": "renseignement", 
+      "text": "Renseignement"
+    }, 
+    {
+      "lemma": ":", 
+      "text": ":"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "le", 
+      "text": "La"
+    }, 
+    {
+      "lemma": "loi", 
+      "text": "loi"
+    }, 
+    {
+      "lemma": "ne", 
+      "text": "ne"
+    }, 
+    {
+      "lemma": "aller", 
+      "text": "va"
+    }, 
+    {
+      "lemma": "rien", 
+      "text": "rien"
+    }, 
+    {
+      "lemma": "changer", 
+      "text": "changer"
+    }, 
+    {
+      "lemma": "dans", 
+      "text": "dans"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "lutte", 
+      "text": "lutte"
+    }, 
+    {
+      "lemma": "contre", 
+      "text": "contre"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "terrorisme", 
+      "text": "terrorisme"
+    }, 
+    {
+      "lemma": "\"", 
+      "text": "\""
+    }, 
+    {
+      "lemma": "493partages", 
+      "text": "493partages"
+    }, 
+    {
+      "lemma": "comment", 
+      "text": "Comment"
+    }, 
+    {
+      "lemma": "Sarkozy", 
+      "text": "Sarkozy"
+    }, 
+    {
+      "lemma": "se", 
+      "text": "s'"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "est"
+    }, 
+    {
+      "lemma": "résoudre", 
+      "text": "résolu"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "mettre", 
+      "text": "mettre"
+    }, 
+    {
+      "lemma": "à le", 
+      "text": "au"
+    }, 
+    {
+      "lemma": "vote", 
+      "text": "vote"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "le"
+    }, 
+    {
+      "lemma": "nouveau", 
+      "text": "nouveau"
+    }, 
+    {
+      "lemma": "nom", 
+      "text": "nom"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "l'"
+    }, 
+    {
+      "lemma": "UMP", 
+      "text": "UMP"
+    }, 
+    {
+      "lemma": "402partages", 
+      "text": "402partages"
+    }, 
+    {
+      "lemma": "recevoir", 
+      "text": "Recevez"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "l'"
+    }, 
+    {
+      "lemma": "essentiel", 
+      "text": "essentiel"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "l'"
+    }, 
+    {
+      "lemma": "actualité", 
+      "text": "actualité"
+    }, 
+    {
+      "lemma": "politique", 
+      "text": "politique"
+    }, 
+    {
+      "lemma": "sélectionné", 
+      "text": "sélectionné"
+    }, 
+    {
+      "lemma": "par", 
+      "text": "par"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "rédaction", 
+      "text": "rédaction"
+    }, 
+    {
+      "lemma": "votre", 
+      "text": "Votre"
+    }, 
+    {
+      "lemma": "adresse", 
+      "text": "adresse"
+    }, 
+    {
+      "lemma": "e", 
+      "text": "e"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "mailOk", 
+      "text": "mailOk"
+    }, 
+    {
+      "lemma": "bienvenu", 
+      "text": "Bienvenue"
+    }, 
+    {
+      "lemma": "Pseudo", 
+      "text": "Pseudo"
+    }, 
+    {
+      "lemma": "vous", 
+      "text": "Vous"
+    }, 
+    {
+      "lemma": "pouvoir", 
+      "text": "pouvez"
+    }, 
+    {
+      "lemma": "commenter", 
+      "text": "commenter"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "direct", 
+      "text": "direct"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "commentaire", 
+      "text": "Commentaire"
+    }, 
+    {
+      "lemma": ":", 
+      "text": ":"
+    }, 
+    {
+      "lemma": "E", 
+      "text": "E"
+    }, 
+    {
+      "lemma": "-", 
+      "text": "-"
+    }, 
+    {
+      "lemma": "mail", 
+      "text": "mail"
+    }, 
+    {
+      "lemma": "mot", 
+      "text": "Mot"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "passe", 
+      "text": "passe"
+    }, 
+    {
+      "lemma": "se", 
+      "text": "Se"
+    }, 
+    {
+      "lemma": "connecter", 
+      "text": "connecter"
+    }, 
+    {
+      "lemma": "et", 
+      "text": "et"
+    }, 
+    {
+      "lemma": "publier", 
+      "text": "publier"
+    }, 
+    {
+      "lemma": "je", 
+      "text": "Je"
+    }, 
+    {
+      "lemma": "me", 
+      "text": "m'"
+    }, 
+    {
+      "lemma": "inscrire", 
+      "text": "inscris"
+    }, 
+    {
+      "lemma": "ou", 
+      "text": "ou"
+    }, 
+    {
+      "lemma": "se", 
+      "text": "Se"
+    }, 
+    {
+      "lemma": "connecter", 
+      "text": "connecter"
+    }, 
+    {
+      "lemma": "avec", 
+      "text": "avec"
+    }, 
+    {
+      "lemma": "Facebook", 
+      "text": "Facebook"
+    }, 
+    {
+      "lemma": "votre", 
+      "text": "Votre"
+    }, 
+    {
+      "lemma": "commentaire", 
+      "text": "commentaire"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "sera"
+    }, 
+    {
+      "lemma": "publier", 
+      "text": "publié"
+    }, 
+    {
+      "lemma": "directement", 
+      "text": "directement"
+    }, 
+    {
+      "lemma": "et", 
+      "text": "et"
+    }, 
+    {
+      "lemma": "modérer", 
+      "text": "modéré"
+    }, 
+    {
+      "lemma": "à", 
+      "text": "à"
+    }, 
+    {
+      "lemma": "posteriori", 
+      "text": "posteriori"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "en", 
+      "text": "En"
+    }, 
+    {
+      "lemma": "publier", 
+      "text": "publiant"
+    }, 
+    {
+      "lemma": "vous", 
+      "text": "vous"
+    }, 
+    {
+      "lemma": "accepter", 
+      "text": "acceptez"
+    }, 
+    {
+      "lemma": "le", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "charte", 
+      "text": "charte"
+    }, 
+    {
+      "lemma": "de le", 
+      "text": "des"
+    }, 
+    {
+      "lemma": "commentaire", 
+      "text": "commentaires"
+    }, 
+    {
+      "lemma": "publier", 
+      "text": "Publier"
+    }, 
+    {
+      "lemma": "mon", 
+      "text": "ma"
+    }, 
+    {
+      "lemma": "réaction", 
+      "text": "réaction"
+    }, 
+    {
+      "lemma": "sur", 
+      "text": "sur"
+    }, 
+    {
+      "lemma": "Facebook", 
+      "text": "Facebook"
+    }, 
+    {
+      "lemma": "publier", 
+      "text": "Publier"
+    }, 
+    {
+      "lemma": "votre", 
+      "text": "votre"
+    }, 
+    {
+      "lemma": "commentaire", 
+      "text": "commentaire"
+    }, 
+    {
+      "lemma": "c", 
+      "text": "c"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "est"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "bon", 
+      "text": "bonne"
+    }, 
+    {
+      "lemma": "guerre", 
+      "text": "guerre"
+    }, 
+    {
+      "lemma": "!", 
+      "text": "!"
+    }, 
+    {
+      "lemma": "!", 
+      "text": "!"
+    }, 
+    {
+      "lemma": "!", 
+      "text": "!"
+    }, 
+    {
+      "lemma": "falloir", 
+      "text": "fallait"
+    }, 
+    {
+      "lemma": "s", 
+      "text": "s"
+    }, 
+    {
+      "lemma": "'", 
+      "text": "'"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "douter", 
+      "text": "douter"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "répondre", 
+      "text": "Répondre"
+    }, 
+    {
+      "lemma": "c", 
+      "text": "c"
+    }, 
+    {
+      "lemma": "être", 
+      "text": "est"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "bon", 
+      "text": "bonne"
+    }, 
+    {
+      "lemma": "guerre", 
+      "text": "guerre"
+    }, 
+    {
+      "lemma": "!", 
+      "text": "!"
+    }, 
+    {
+      "lemma": "!", 
+      "text": "!"
+    }, 
+    {
+      "lemma": "!", 
+      "text": "!"
+    }, 
+    {
+      "lemma": "falloir", 
+      "text": "fallait"
+    }, 
+    {
+      "lemma": "s", 
+      "text": "s"
+    }, 
+    {
+      "lemma": "'", 
+      "text": "'"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "douter", 
+      "text": "douter"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "répondre", 
+      "text": "Répondre"
+    }
+  ], 
+  "posTags": [
+    {
+      "pos": "NOUN_INV", 
+      "text": "FN"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "Afficher"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "/"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "Masquer"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "plus"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "d'"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "entrées"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "A"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "voir"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": ":"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Jeanne"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "micro"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "parti"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Marine"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Le"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Pen"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "risque"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "sanctions"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "financières"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "Par"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Laurent"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "Martinet"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PAP_SG", 
+      "text": "publié"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "NUM", 
+      "text": "06"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "/"
+    }, 
+    {
+      "pos": "NUM", 
+      "text": "05"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "/"
+    }, 
+    {
+      "pos": "NUM", 
+      "text": "2015"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "17:59"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PAP_INV", 
+      "text": "mis"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "jour"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "18:06"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "partages"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "Marine"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Le"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Pen"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "ADJ2_SG", 
+      "text": "premier"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "mai"
+    }, 
+    {
+      "pos": "NUM", 
+      "text": "2015"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "REUTERS"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "/"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Philippe"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Wojazer"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Jeanne"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "micro"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "parti"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Marine"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Le"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Pen"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "a"
+    }, 
+    {
+      "pos": "VAUX_PAP", 
+      "text": "été"
+    }, 
+    {
+      "pos": "PAP_INV", 
+      "text": "mis"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "examen"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "pour"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "financement"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "par"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "personne"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "morale"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "et"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "escroquerie"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Yves"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Claisse"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "avocat"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "chez"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Claisse"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "et"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "associés"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "décrypte"
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "les"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "enjeux"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "procédure"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Jeanne"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "micro"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "parti"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "fondé"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "par"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Marine"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Le"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Pen"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "a"
+    }, 
+    {
+      "pos": "VAUX_PAP", 
+      "text": "été"
+    }, 
+    {
+      "pos": "PAP_INV", 
+      "text": "mis"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "examen"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "ce"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "mercredi"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "pour"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "acceptation"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "financement"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "par"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "personne"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "morale"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "et"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "escroquerie"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "La"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "structure"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "est"
+    }, 
+    {
+      "pos": "PAP_SG", 
+      "text": "soupçonnée"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "d'"
+    }, 
+    {
+      "pos": "VAUX_INF", 
+      "text": "avoir"
+    }, 
+    {
+      "pos": "PAP_SG", 
+      "text": "aidé"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "au"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "financement"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "du"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "Front"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "nationale"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "lors"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "campagnes"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "législatives"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "et"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "présidentielles"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NUM", 
+      "text": "2012"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "VERB_PRP", 
+      "text": "surfacturant"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "du"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "matériel"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "campagne"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "ses"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "candidats"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Yves"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Claisse"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "avocat"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "chez"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Claisse"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "et"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "associés"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "explique"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "L'"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Express"
+    }, 
+    {
+      "pos": "CONN", 
+      "text": "pourquoi"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "un"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "parti"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "politique"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "peut"
+    }, 
+    {
+      "pos": "VAUX_INF", 
+      "text": "être"
+    }, 
+    {
+      "pos": "PAP_INV", 
+      "text": "mis"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "examen"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "C'"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "est"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "normal"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "mettre"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "un"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "parti"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "examen"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "?"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "C'"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "est"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "normal"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "ça"
+    }, 
+    {
+      "pos": "NEG", 
+      "text": "ne"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "surprend"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "pas"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "Depuis"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "l'"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "entrée"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "vigueur"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "du"
+    }, 
+    {
+      "pos": "ADJ2_SG", 
+      "text": "nouveau"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "code"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "pénal"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "il"
+    }, 
+    {
+      "pos": "PC", 
+      "text": "y"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "a"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "quinzaine"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "d'"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "années"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "responsabilité"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "d'"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "personne"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "morale"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "est"
+    }, 
+    {
+      "pos": "PAP_SG", 
+      "text": "engagée"
+    }, 
+    {
+      "pos": "CONN", 
+      "text": "quand"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "il"
+    }, 
+    {
+      "pos": "PC", 
+      "text": "y"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "a"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "infraction"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "pénale"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "ADJ_INV", 
+      "text": "Bien"
+    }, 
+    {
+      "pos": "CONJQUE", 
+      "text": "que"
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "les"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "partis"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "politiques"
+    }, 
+    {
+      "pos": "VAUX_P3PL", 
+      "text": "aient"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "existence"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "constitutionnelle"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "il"
+    }, 
+    {
+      "pos": "NEG", 
+      "text": "n'"
+    }, 
+    {
+      "pos": "PC", 
+      "text": "y"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "a"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "pas"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "d'"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "exemption"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "pour"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "eux"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "dans"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "notre"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "droit"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "Ils"
+    }, 
+    {
+      "pos": "VERB_P3PL", 
+      "text": "peuvent"
+    }, 
+    {
+      "pos": "VAUX_INF", 
+      "text": "être"
+    }, 
+    {
+      "pos": "PAP_INV", 
+      "text": "mis"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "examen"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "exactement"
+    }, 
+    {
+      "pos": "COMME", 
+      "text": "comme"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "société"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "commerciale"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "CONJQUE", 
+      "text": "Que"
+    }, 
+    {
+      "pos": "VERB_P3PL", 
+      "text": "signifient"
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "les"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "infractions"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "reprochées"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Jeanne"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "?"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "Ce"
+    }, 
+    {
+      "pos": "VAUX_P3PL", 
+      "text": "sont"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "infractions"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "début"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "procédure"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "RELPRO", 
+      "text": "qui"
+    }, 
+    {
+      "pos": "VERB_P3PL", 
+      "text": "peuvent"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "évoluer"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "Depuis"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "loi"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "sur"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "financement"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "vie"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "politique"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NUM", 
+      "text": "1995"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "les"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "partis"
+    }, 
+    {
+      "pos": "NEG", 
+      "text": "ne"
+    }, 
+    {
+      "pos": "VERB_P3PL", 
+      "text": "peuvent"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "plus"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "accepter"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "l'"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "argent"
+    }, 
+    {
+      "pos": "VERB_PRP", 
+      "text": "provenant"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "d'"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "personne"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "morale"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "ce"
+    }, 
+    {
+      "pos": "RELPRO", 
+      "text": "qui"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "est"
+    }, 
+    {
+      "pos": "PAP_SG", 
+      "text": "reproché"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Jeanne"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "["
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "Ils"
+    }, 
+    {
+      "pos": "VERB_P3PL", 
+      "text": "doivent"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "vivre"
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "cotisations"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "leur"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "adhérents"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "contributions"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "personnes"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "privés"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "et"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "du"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "financement"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "public"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "NDR"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "]"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "MISC", 
+      "text": "Quant"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "l'"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "infraction"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "d'"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "escroquerie"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "elle"
+    }, 
+    {
+      "pos": "NEG", 
+      "text": "n'"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "a"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "rien"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "voir"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "elle"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "même"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "avec"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "vie"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "politique"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "mais"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "relève"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "du"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "droit"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "commun"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "CONJQUE", 
+      "text": "Que"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "risque"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Jeanne"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "?"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "La"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "police"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "du"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "financement"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "vie"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "politique"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "prévoit"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "sanctions"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "toutes"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "natures"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "Cela"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "va"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "du"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "refus"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "remboursement"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "dépenses"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "électorales"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "sanctions"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "civiques"
+    }, 
+    {
+      "pos": "COMME", 
+      "text": "comme"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "l'"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "inégibilité"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "Mais"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "on"
+    }, 
+    {
+      "pos": "NEG", 
+      "text": "ne"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "peut"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "pas"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "mettre"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "personne"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "morale"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "prison"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Le"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "plus"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "probable"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "dans"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "cette"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "affaire"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "est"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "sanction"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "financière"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "CONN", 
+      "text": "si"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "procédure"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "parvient"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "prouver"
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "ces"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "infractions"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "Pour"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "un"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "parti"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "politique"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "il"
+    }, 
+    {
+      "pos": "PC", 
+      "text": "me"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "paraît"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "difficile"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "d'"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "imaginer"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "autre"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "chose"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "Les"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "avis"
+    }, 
+    {
+      "pos": "VAUX_P3PL", 
+      "text": "sont"
+    }, 
+    {
+      "pos": "PAP_PL", 
+      "text": "partagés"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "?"
+    }, 
+    {
+      "pos": "VERB_P1P2", 
+      "text": "Laissez"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "vôtre"
+    }, 
+    {
+      "pos": "SYM", 
+      "text": "+"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "Et"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "aussi"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": ":"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Jeanne"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "micro"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "parti"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Marine"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Le"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Pen"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "risque"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "sanctions"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "financières"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Cécile"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Duflot"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "dénonce"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "son"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "tour"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "sexisme"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "du"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "monde"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "politique"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Le"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "retrait"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "réforme"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "du"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "collège"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "exigé"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "par"
+    }, 
+    {
+      "pos": "NUM", 
+      "text": "153"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "parlementaires"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Oups"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Cambadélis"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "reprend"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "une"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "expression"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "pétainiste"
+    }, 
+    {
+      "pos": "DET_PL", 
+      "text": "Les"
+    }, 
+    {
+      "pos": "SYM", 
+      "text": "+"
+    }, 
+    {
+      "pos": "ADJ_PL", 
+      "text": "partagés"
+    }, 
+    {
+      "pos": "ADJ_INV", 
+      "text": "VIDEO"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Le"
+    }, 
+    {
+      "pos": "ADJ2_SG", 
+      "text": "nouveau"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "nouveau"
+    }, 
+    {
+      "pos": "ADJ2_SG", 
+      "text": "nouveau"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "Front"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "national"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "906partages"
+    }, 
+    {
+      "pos": "ADJ_INV", 
+      "text": "VIDEO"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "La"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "ADJ2_SG", 
+      "text": "petite"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "pipe"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Patrick"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Sébastien"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "indigne"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "secrétaire"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "d'"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "Etat"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "688partages"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "Renseignement"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": ":"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "La"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "loi"
+    }, 
+    {
+      "pos": "NEG", 
+      "text": "ne"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "va"
+    }, 
+    {
+      "pos": "PRON", 
+      "text": "rien"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "changer"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "dans"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "lutte"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "contre"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "terrorisme"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "\""
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "493partages"
+    }, 
+    {
+      "pos": "CONN", 
+      "text": "Comment"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Sarkozy"
+    }, 
+    {
+      "pos": "PC", 
+      "text": "s'"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "est"
+    }, 
+    {
+      "pos": "PAP_SG", 
+      "text": "résolu"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "mettre"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "au"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "vote"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "le"
+    }, 
+    {
+      "pos": "ADJ2_SG", 
+      "text": "nouveau"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "nom"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "l'"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "UMP"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "402partages"
+    }, 
+    {
+      "pos": "VERB_P1P2", 
+      "text": "Recevez"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "l'"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "essentiel"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "l'"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "actualité"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "politique"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "sélectionné"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "par"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "rédaction"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Votre"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "adresse"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "e"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "mailOk"
+    }, 
+    {
+      "pos": "ADJ_SG", 
+      "text": "Bienvenue"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Pseudo"
+    }, 
+    {
+      "pos": "PRON_P1P2", 
+      "text": "Vous"
+    }, 
+    {
+      "pos": "VERB_P1P2", 
+      "text": "pouvez"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "commenter"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "direct"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "Commentaire"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": ":"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "E"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "-"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "mail"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "Mot"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "passe"
+    }, 
+    {
+      "pos": "PC", 
+      "text": "Se"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "connecter"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "et"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "publier"
+    }, 
+    {
+      "pos": "PRON_P1P2", 
+      "text": "Je"
+    }, 
+    {
+      "pos": "PC", 
+      "text": "m'"
+    }, 
+    {
+      "pos": "VERB_P1P2", 
+      "text": "inscris"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "ou"
+    }, 
+    {
+      "pos": "PC", 
+      "text": "Se"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "connecter"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "avec"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Facebook"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "Votre"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "commentaire"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "sera"
+    }, 
+    {
+      "pos": "PAP_SG", 
+      "text": "publié"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "directement"
+    }, 
+    {
+      "pos": "COORD", 
+      "text": "et"
+    }, 
+    {
+      "pos": "PAP_SG", 
+      "text": "modéré"
+    }, 
+    {
+      "pos": "PREP_A", 
+      "text": "à"
+    }, 
+    {
+      "pos": "MISC", 
+      "text": "posteriori"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "En"
+    }, 
+    {
+      "pos": "VERB_PRP", 
+      "text": "publiant"
+    }, 
+    {
+      "pos": "PRON_P1P2", 
+      "text": "vous"
+    }, 
+    {
+      "pos": "VERB_P1P2", 
+      "text": "acceptez"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "charte"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "des"
+    }, 
+    {
+      "pos": "NOUN_PL", 
+      "text": "commentaires"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "Publier"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "ma"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "réaction"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "sur"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "Facebook"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "Publier"
+    }, 
+    {
+      "pos": "DET_SG", 
+      "text": "votre"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "commentaire"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "c"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "est"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "ADJ2_SG", 
+      "text": "bonne"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "guerre"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "!"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "!"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "!"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "fallait"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "s"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "'"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "douter"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "Répondre"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "c"
+    }, 
+    {
+      "pos": "VAUX_P3SG", 
+      "text": "est"
+    }, 
+    {
+      "pos": "PREP_DE", 
+      "text": "de"
+    }, 
+    {
+      "pos": "ADJ2_SG", 
+      "text": "bonne"
+    }, 
+    {
+      "pos": "NOUN_SG", 
+      "text": "guerre"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "!"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "!"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "!"
+    }, 
+    {
+      "pos": "VERB_P3SG", 
+      "text": "fallait"
+    }, 
+    {
+      "pos": "NOUN_INV", 
+      "text": "s"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "'"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "douter"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "VERB_INF", 
+      "text": "Répondre"
+    }
+  ], 
+  "requestId": "31e261a5-7b95-44c4-8bfa-23b21427a773", 
+  "timers": {
+    "rblJe": 6, 
+    "rliJe": 3, 
+    "textExtractor": 22, 
+    "urlContentDownloader": 325
+  }
+}

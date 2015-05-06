@@ -1,0 +1,156 @@
+{
+  "entities": [
+    {
+      "confidence": 1.0, 
+      "count": 3, 
+      "indocChainId": 2, 
+      "mention": "Banxico", 
+      "normalized": "Banxico", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.010579625765482584, 
+      "count": 3, 
+      "indocChainId": 5, 
+      "mention": "México", 
+      "normalized": "México", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.015536626180013021, 
+      "count": 3, 
+      "indocChainId": 12, 
+      "mention": "gobernador", 
+      "normalized": "gobernador", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 3, 
+      "indocChainId": 13, 
+      "mention": "Banco de México", 
+      "normalized": "Banco de México", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.01605890194574992, 
+      "count": 3, 
+      "indocChainId": 15, 
+      "mention": "Carstens", 
+      "normalized": "Carstens", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 2, 
+      "indocChainId": 8, 
+      "mention": "13 meses", 
+      "normalized": "13 meses", 
+      "type": "TEMPORAL:TIME"
+    }, 
+    {
+      "confidence": 0.0014202594757080078, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "SMS", 
+      "normalized": "SMS", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0062760114669799805, 
+      "count": 1, 
+      "indocChainId": 1, 
+      "mention": "Cantarell", 
+      "normalized": "Cantarell", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.007886528968811035, 
+      "count": 1, 
+      "indocChainId": 3, 
+      "mention": "Sara Cantera", 
+      "normalized": "Sara Cantera", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 4, 
+      "mention": "Universal", 
+      "normalized": "Universal", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 6, 
+      "mention": "Miércoles 06 de mayo de 2015", 
+      "normalized": "Miércoles 06 de mayo de 2015", 
+      "type": "TEMPORAL:DATE"
+    }, 
+    {
+      "confidence": 0.0027440786361694336, 
+      "count": 1, 
+      "indocChainId": 9, 
+      "mention": "Foto", 
+      "normalized": "Foto", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0032094717025756836, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "Notas Relacionadas", 
+      "normalized": "Notas Relacionadas", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 11, 
+      "mention": "sara.cantera@eluniversal.com.mx", 
+      "normalized": "sara.cantera@eluniversal.com.mx", 
+      "type": "IDENTIFIER:EMAIL"
+    }, 
+    {
+      "confidence": 0.01673954725265503, 
+      "count": 1, 
+      "indocChainId": 15, 
+      "mention": "Agustín Carstens", 
+      "normalized": "Agustín Carstens", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.004801273345947266, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "Convención de Aseguradores de México", 
+      "normalized": "Convención de Aseguradores de México", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 21, 
+      "mention": "Pemex", 
+      "normalized": "Pemex", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.02040201425552368, 
+      "count": 1, 
+      "indocChainId": 26, 
+      "mention": "Estados Unidos", 
+      "normalized": "Estados Unidos", 
+      "type": "LOCATION"
+    }
+  ], 
+  "requestId": "f004b1b0-8556-4b64-8465-2a5fd883d6e8", 
+  "timers": {
+    "rblJe": 2, 
+    "rexJe": 55, 
+    "rliJe": 2, 
+    "textExtractor": 9, 
+    "urlContentDownloader": 90
+  }
+}

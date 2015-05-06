@@ -1,0 +1,143 @@
+{
+  "entities": [
+    {
+      "confidence": 0.6757731162541462, 
+      "entityId": "Q30", 
+      "indocChainId": 0, 
+      "mention": "Etats-Unis"
+    }, 
+    {
+      "confidence": 0.8179594505873957, 
+      "entityId": "Q637413", 
+      "indocChainId": 2, 
+      "mention": "Census Bureau"
+    }, 
+    {
+      "confidence": 0.6144289389137962, 
+      "entityId": "Q156616", 
+      "indocChainId": 3, 
+      "mention": "Insee"
+    }, 
+    {
+      "confidence": 0.6938284971860521, 
+      "entityId": "Q76", 
+      "indocChainId": 7, 
+      "mention": "Barack Obama"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 10, 
+      "mention": "Amérique"
+    }, 
+    {
+      "confidence": 0.2995797563925766, 
+      "entityId": "Q12061445", 
+      "indocChainId": 11, 
+      "mention": "Maison Blanche"
+    }, 
+    {
+      "confidence": 0.561319992657631, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 12, 
+      "mention": "Parti démocrate"
+    }, 
+    {
+      "confidence": 0.4899446466710728, 
+      "entityId": "Q222122", 
+      "indocChainId": 17, 
+      "mention": "Dean Baker"
+    }, 
+    {
+      "confidence": 0.4294247830448455, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 18, 
+      "mention": "démocrate"
+    }, 
+    {
+      "confidence": 0.027728298816730144, 
+      "entityId": "Q61", 
+      "indocChainId": 19, 
+      "mention": "Washington"
+    }, 
+    {
+      "confidence": 0.08733735113954331, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 22, 
+      "mention": "républicain"
+    }, 
+    {
+      "confidence": 0.7260731129311291, 
+      "entityId": "Q9960", 
+      "indocChainId": 23, 
+      "mention": "Ronald Reagan"
+    }, 
+    {
+      "confidence": 0.36431453936042363, 
+      "entityId": "Q207", 
+      "indocChainId": 30, 
+      "mention": "George Bush"
+    }, 
+    {
+      "confidence": 0.6106572200810811, 
+      "entityId": "Q270379", 
+      "indocChainId": 34, 
+      "mention": "Christina Romer"
+    }, 
+    {
+      "confidence": 0.7384301938229976, 
+      "entityId": "Q193326", 
+      "indocChainId": 40, 
+      "mention": "Goldman Sachs"
+    }, 
+    {
+      "confidence": 0.40539735993965664, 
+      "entityId": "Q2495862", 
+      "indocChainId": 45, 
+      "mention": "Congrès"
+    }, 
+    {
+      "confidence": 0.11207317564882509, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 47, 
+      "mention": "républicains"
+    }, 
+    {
+      "confidence": 0.31895867518967097, 
+      "entityId": "Q519838", 
+      "indocChainId": 55, 
+      "mention": "David Axelrod"
+    }, 
+    {
+      "confidence": 0.6071196529575754, 
+      "entityId": "Q215987", 
+      "indocChainId": 58, 
+      "mention": "Sénat"
+    }, 
+    {
+      "confidence": 0.38032143652092254, 
+      "entityId": "Q314459", 
+      "indocChainId": 60, 
+      "mention": "Harry Reid"
+    }, 
+    {
+      "confidence": 0.10778157781084687, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 61, 
+      "mention": "démocrates"
+    }, 
+    {
+      "confidence": 0.7572827511123869, 
+      "entityId": "Q2097742", 
+      "indocChainId": 64, 
+      "mention": "TARP"
+    }
+  ], 
+  "requestId": "d08f4f82-229f-4442-abc1-a66da389fee3", 
+  "timers": {
+    "rblJe": 4, 
+    "res": 434, 
+    "rexJe": 160, 
+    "rliJe": 3
+  }
+}

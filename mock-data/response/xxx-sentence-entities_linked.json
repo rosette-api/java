@@ -1,0 +1,41 @@
+{
+  "entities": [
+    {
+      "confidence": 0.044098760699874756, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 0, 
+      "mention": "Таллинне"
+    }, 
+    {
+      "confidence": 0.029349793816372406, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 1, 
+      "mention": "Ванкувере"
+    }, 
+    {
+      "confidence": 0.40353957170348054, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 2, 
+      "mention": "Олег Овсянников"
+    }, 
+    {
+      "confidence": 0.25460128495790857, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 3, 
+      "mention": "Сборная России"
+    }, 
+    {
+      "confidence": 0.029349793816372406, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 5, 
+      "mention": "Ванкувер"
+    }
+  ], 
+  "requestId": "39a798a4-02bc-481d-b906-2c9488a404ff", 
+  "timers": {
+    "rblJe": 2, 
+    "res": 384, 
+    "rexJe": 4, 
+    "rliJe": 2
+  }
+}

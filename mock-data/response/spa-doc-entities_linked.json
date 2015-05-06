@@ -1,0 +1,83 @@
+{
+  "entities": [
+    {
+      "confidence": 0.974617500907149, 
+      "entityId": "Q1538109", 
+      "indocChainId": 0, 
+      "mention": "Plaza Murillo"
+    }, 
+    {
+      "confidence": 0.24632774121373424, 
+      "entityId": "Q1357543", 
+      "indocChainId": 1, 
+      "mention": "Congreso"
+    }, 
+    {
+      "confidence": 0.5041555964841847, 
+      "entityId": "Q750", 
+      "indocChainId": 2, 
+      "mention": "Bolivia"
+    }, 
+    {
+      "confidence": 0.9969397057454642, 
+      "entityId": "Q320", 
+      "indocChainId": 4, 
+      "mention": "Michelle Bachelet"
+    }, 
+    {
+      "confidence": 0.9577388463738699, 
+      "entityId": "Q42410", 
+      "indocChainId": 5, 
+      "mention": "Evo Morales"
+    }, 
+    {
+      "confidence": 0.9944393714105648, 
+      "entityId": "Q306", 
+      "indocChainId": 11, 
+      "mention": "Sebastián Piñera"
+    }, 
+    {
+      "confidence": 0.4243315068802296, 
+      "entityId": "Q298", 
+      "indocChainId": 12, 
+      "mention": "Chile"
+    }, 
+    {
+      "confidence": 0.5489754552774566, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 13, 
+      "mention": "Mandataria"
+    }, 
+    {
+      "confidence": 0.11775438348038722, 
+      "entityId": "Q1491", 
+      "indocChainId": 17, 
+      "mention": "La Paz"
+    }, 
+    {
+      "confidence": 0.684389634066673, 
+      "entityId": "Q326", 
+      "indocChainId": 20, 
+      "mention": "Eduardo Frei"
+    }, 
+    {
+      "confidence": 0.6660524458959112, 
+      "entityId": "Q98", 
+      "indocChainId": 22, 
+      "mention": "Pacífico"
+    }, 
+    {
+      "confidence": 0.9203204091581866, 
+      "entityId": "Q58136", 
+      "indocChainId": 25, 
+      "mention": "David Choquehuanca"
+    }
+  ], 
+  "requestId": "483b59c9-30bd-4813-b9c9-d153538cb259", 
+  "timers": {
+    "rblJe": 2, 
+    "res": 222, 
+    "rexJe": 49, 
+    "rliJe": 2
+  }
+}

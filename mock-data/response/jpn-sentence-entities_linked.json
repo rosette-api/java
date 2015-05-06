@@ -1,0 +1,65 @@
+{
+  "entities": [
+    {
+      "confidence": 0.6175913356092138, 
+      "entityId": "Q615236", 
+      "indocChainId": 0, 
+      "mention": "中川一郎"
+    }, 
+    {
+      "confidence": 0.423371432080459, 
+      "entityId": "Q11701", 
+      "indocChainId": 2, 
+      "mention": "衆議院"
+    }, 
+    {
+      "confidence": 0.36072314236225633, 
+      "entityId": "Q232595", 
+      "indocChainId": 3, 
+      "mention": "自民党"
+    }, 
+    {
+      "confidence": 0.27724590967666807, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 4, 
+      "mention": "田中"
+    }, 
+    {
+      "confidence": 0.4396630641648159, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 5, 
+      "mention": "鳩山家"
+    }, 
+    {
+      "confidence": 0.5991365336619733, 
+      "entityId": "Q35581", 
+      "indocChainId": 6, 
+      "mention": "北海道"
+    }, 
+    {
+      "confidence": 0.5216361207496285, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 7, 
+      "mention": "鳩山"
+    }, 
+    {
+      "confidence": 0.2341278540314588, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 8, 
+      "mention": "三枝三郎"
+    }, 
+    {
+      "confidence": 0.2680620800875827, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 11, 
+      "mention": "高橋辰夫"
+    }
+  ], 
+  "requestId": "8e43c94e-923e-4b58-8699-e2023fcb9ffa", 
+  "timers": {
+    "rblJe": 5, 
+    "res": 495, 
+    "rexJe": 14, 
+    "rliJe": 2
+  }
+}
