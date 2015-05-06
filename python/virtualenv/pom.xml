@@ -23,11 +23,9 @@
                         </goals>
                         <configuration>
                             <executable>bash</executable>
-                            <workingDirectory>${basedir}</workingDirectory>
                             <arguments>
                                 <argument>scripts/venv.sh</argument>
-                                <argument>${virtualenv}</argument>
-				<argument>${rosettedir}</argument>
+                                <argument>../${virtualenv}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -39,11 +37,9 @@
                         </goals>
                         <configuration>
                             <executable>bash</executable>
-                            <workingDirectory>${basedir}</workingDirectory>
                             <arguments>
                                 <argument>scripts/venv3.sh</argument>
-                                <argument>${virtualenv3}</argument>
-				<argument>${rosettedir}</argument>
+                                <argument>../${virtualenv3}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -52,3 +48,4 @@
         </plugins>
     </build>
 </project>
+

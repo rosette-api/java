@@ -10,17 +10,15 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
     <properties>
-        <virtualenv>../virtualenv/target/vroot</virtualenv>
-        <python>../virtualenv/target/vroot/bin/python</python>
-        <pip>../virtualenv/target/vroot/bin/pip</pip>
-        <run>../src/scripts/run_in_venv.sh</run>
-        <virtualenv3>../virtualenv/target/vroot3</virtualenv3>
-	<epydoc>../virtualenv/target/vroot/bin/epydoc</epydoc>
-	<doctarget>../target/html</doctarget>
-	<documentables>../rosette/*.py</documentables>
-        <python3>../virtualenv/target/vroot3/bin/python</python3>
-        <pip3>../virtualenv/target/vroot3/bin/pip</pip3>
-	<rosettedir>../rosette</rosettedir>
+        <virtualenv>virtualenv/target/vroot</virtualenv>
+        <python>virtualenv/target/vroot/bin/python</python>
+        <pip>virtualenv/target/vroot/bin/pip</pip>
+        <virtualenv3>virtualenv/target/vroot3</virtualenv3>
+	<epydoc>virtualenv/target/vroot/bin/epydoc</epydoc>
+	<doctarget>target/html</doctarget>
+	<documentables>rosette/*.py</documentables>
+        <python3>virtualenv/target/vroot3/bin/python</python3>
+        <pip3>virtualenv/target/vroot3/bin/pip</pip3>
     </properties>
     <modules>
         <module>virtualenv</module>

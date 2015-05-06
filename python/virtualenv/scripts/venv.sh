@@ -4,7 +4,6 @@
 # this is the version for the default python
 
 vroot=$1
-rosettedir=$2
 expyv=2.7
 
 rm -rf $vroot
@@ -14,8 +13,9 @@ python check_version.py $expyv
 if [[ $? != 0 ]] ; then
     exit 1
 fi
-pip install nose
-python $rosettedir/setup.py install
-pip install epydoc
-easy_install nose-pathmunge
+# TODO: don't put this in the test env, just in a doc-build env.
+$vroot/bin/pip install epydoc
+# later
+#$vroot/bin/pip install sphinx
+$vroot/bin/pip install pytest
 
