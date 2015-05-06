@@ -70,7 +70,7 @@ public class RosetteAPI {
         return sendRequest(payloadStr, urlStr);
     }
 
-    public LanguageResponse getLanguageFromFile(File file) throws RosetteAPIException {
+    public LanguageResponse getLanguage(File file) throws RosetteAPIException {
         String jsonStr = sendRequestFromFileWorker(file, null, urlBase + language);
         try {
             return mapper.readValue(jsonStr, LanguageResponse.class);
@@ -79,7 +79,7 @@ public class RosetteAPI {
         }
     }
 
-    public LanguageResponse getLanguageFromUrl(URL url) throws RosetteAPIException {
+    public LanguageResponse getLanguage(URL url) throws RosetteAPIException {
         String jsonStr = sendRequestWorker(url, urlBase + language);
         try {
             return mapper.readValue(jsonStr, LanguageResponse.class);
@@ -88,7 +88,7 @@ public class RosetteAPI {
         }
     }
 
-    public LanguageResponse getLanguageFromText(String content) throws RosetteAPIException {
+    public LanguageResponse getLanguage(String content) throws RosetteAPIException {
         String jsonStr =  sendRequestWorker(content, urlBase + language);
         try {
             return mapper.readValue(jsonStr, LanguageResponse.class);
@@ -97,54 +97,49 @@ public class RosetteAPI {
         }
     }
 
-    public EntityResponse getEntityFromFile(File file) throws RosetteAPIException, IOException {
+    public EntityResponse getEntity(File file) throws RosetteAPIException, IOException {
         String jsonStr =  sendRequestFromFileWorker(file, null, urlBase + entities);
         return mapper.readValue(jsonStr, EntityResponse.class);
     }
 
-    public EntityResponse getEntityFromUrl(URL url) throws RosetteAPIException, IOException {
+    public EntityResponse getEntity(URL url) throws RosetteAPIException, IOException {
         String jsonStr = sendRequestWorker(url, urlBase + entities);
         return mapper.readValue(jsonStr, EntityResponse.class);
     }
 
-    public EntityResponse getEntityFromText(String content) throws RosetteAPIException, IOException {
+    public EntityResponse getEntity(String content) throws RosetteAPIException, IOException {
         String jsonStr = sendRequestWorker(content, urlBase + entities);
         return mapper.readValue(jsonStr, EntityResponse.class);
     }
 
-    public LinkedEntityResponse getResolvedEntityFromFile(File file) throws RosetteAPIException, IOException {
+    public LinkedEntityResponse getResolvedEntity(File file) throws RosetteAPIException, IOException {
         String jsonStr = sendRequestFromFileWorker(file, null, urlBase + entitiesLinked);
         return mapper.readValue(jsonStr, LinkedEntityResponse.class);
     }
 
-    public LinkedEntityResponse getResolvedEntityFromUrl(URL url) throws RosetteAPIException, IOException {
+    public LinkedEntityResponse getResolvedEntity(URL url) throws RosetteAPIException, IOException {
         String jsonStr = sendRequestWorker(url, urlBase + entitiesLinked);
         return mapper.readValue(jsonStr, LinkedEntityResponse.class);
     }
 
-    public LinkedEntityResponse getResolvedEntityFromText(String content) throws RosetteAPIException, IOException {
+    public LinkedEntityResponse getResolvedEntity(String content) throws RosetteAPIException, IOException {
         String jsonStr = sendRequestWorker(content, urlBase + entitiesLinked);
         return mapper.readValue(jsonStr, LinkedEntityResponse.class);
     }
 
-    public SentimentResponse getSentimentFromFile(File file) throws RosetteAPIException, IOException {
-        String jsonStr = sendRequestFromFileWorker(file, null, urlBase + sentiment);
-        return mapper.readValue(jsonStr, SentimentResponse.class);
-    }
-
-    public SentimentResponse getSentimentFromFile(File file, SentOptions options) throws RosetteAPIException, IOException {
+    public SentimentResponse getSentiment(File file, SentOptions options) throws RosetteAPIException, IOException {
         String optionsStr = mapper.writeValueAsString(options);
         String jsonStr = sendRequestFromFileWorker(file, optionsStr, urlBase + sentiment);
         return mapper.readValue(jsonStr, SentimentResponse.class);
     }
 
-    public SentimentResponse getSentimentFromUrl(URL url, SentOptions options) throws RosetteAPIException, IOException {
+    public SentimentResponse getSentiment(URL url, SentOptions options) throws RosetteAPIException, IOException {
         String optionsStr = mapper.writeValueAsString(options);
         String jsonStr = sendRequestWorker(url, optionsStr, urlBase + sentiment);
         return mapper.readValue(jsonStr, SentimentResponse.class);
     }
 
-    public SentimentResponse getSentimentFromText(String content, SentOptions options) throws RosetteAPIException, IOException {
+    public SentimentResponse getSentiment(String content, SentOptions options) throws RosetteAPIException, IOException {
         String optionsStr = mapper.writeValueAsString(options);
         String jsonStr = sendRequestWorker(content, optionsStr, urlBase + sentiment);
         return mapper.readValue(jsonStr, SentimentResponse.class);
@@ -155,9 +150,7 @@ public class RosetteAPI {
             MultipartUtility multipartUtility = new MultipartUtility(url + debugOutput, "UTF-8", key);
             multipartUtility.addFilePart("content", file);
             if (options != null && options.length() > 0) {
-                String optionsStr = "{\"options\":";
-                optionsStr += options;
-                optionsStr += "}";
+                String optionsStr = "{\"options\":" + options + "}";
                 InputStream inputStream = new ByteArrayInputStream(optionsStr.getBytes(StandardCharsets.UTF_8));
                 multipartUtility.addFilePart("options", inputStream, "application/json");
             }
@@ -165,12 +158,12 @@ public class RosetteAPI {
             List<String> response = multipartUtility.finish();
 
             if (response.size() > 0) {
-                return response.get(0).toString();
+                return response.get(0);
             } else {
                 return "";
             }
         } catch (IOException e) {
-            throw new RosetteAPIException(404, new ErrorResponse(null, e.getMessage(), file.getAbsolutePath()));
+            throw new RosetteAPIException(500, new ErrorResponse(null, e.getMessage(), file.getAbsolutePath()));
         }
     }
 
@@ -179,13 +172,17 @@ public class RosetteAPI {
     }
 
     private String sendRequestWorker(URL url, String options, String serviceUrl) throws RosetteAPIException {
+        return sendRequest(payloadWorker("contentUri", url.toString(), options), serviceUrl);
+    }
+
+    private String payloadWorker(String key, String value, String options) {
         String payloadStr = "{";
-        payloadStr += "\"contentUri\":\"" + url + "\"";
+        payloadStr += "\"" + key + "\":\"" + value + "\"";
         if (options != null && options.length() != 0) {
             payloadStr += ", \"options\":" + options;
         }
         payloadStr += "}";
-        return sendRequest(payloadStr, serviceUrl);
+        return payloadStr;
     }
 
     private String sendRequestWorker(String content, String serviceUrl) throws RosetteAPIException {
@@ -193,13 +190,7 @@ public class RosetteAPI {
     }
 
     private String sendRequestWorker(String content, String options, String serviceUrl) throws RosetteAPIException {
-        String payloadStr = "{";
-        payloadStr += "\"content\":\"" + content + "\"";
-        if (options != null && options.length() != 0) {
-            payloadStr += ", \"options\":" + options;
-        }
-        payloadStr += "}";
-        return sendRequest(payloadStr, serviceUrl);
+        return sendRequest(payloadWorker("content", content, options), serviceUrl);
     }
 
     private String sendRequest(String payloadStr, String urlStr) throws RosetteAPIException {

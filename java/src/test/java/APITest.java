@@ -1,7 +1,10 @@
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
+
+import org.junit.Test;
 
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
@@ -24,7 +27,8 @@ public class APITest {
     private static final String key = "770977ec17b43a6f4d1e526b173f3a1c"; // Your Rosette API user_key
     private static RosetteAPI rosetteAPI;
 
-    public static void main(String[] args) {
+    @Test
+    public void testRosetteAPI() throws URISyntaxException {
         String website = "http://www.basistech.com";
         URL url = null;
         try {
@@ -43,37 +47,43 @@ public class APITest {
         testNameTranslationRequest("John Doe", LanguageCode.SPANISH);
         testNameTranslationRequest("习近平", LanguageCode.ENGLISH);
 
-        testLanguageRequestFromUrl(url);
-        testLanguageRequestFromText(text);
-        testLanguageRequestFromFile(new File("Chinese.txt"));
-        testLanguageRequestFromFile(new File("FileNotFound.txt"));
-        testLanguageRequestFromFile(new File("src/main/resources"));
-        testLanguageRequestFromFile(new File("Numbers.txt"));
+        testLanguageRequest(url);
+        testLanguageRequest(text);
+        testLanguageRequest(getTestResource("Chinese.txt"));
+        testLanguageRequest(getTestResource("Chinese-GBK.txt"));
+        testLanguageRequest(new File("FileNotFound.txt"));
+        testLanguageRequest(new File("src/main"));
+        testLanguageRequest(getTestResource("Numbers.txt"));
+        testLanguageRequest(getTestResource("Empty.txt"));
 
-        testEntityRequestFromUrl(url);
-        testEntityRequestFromText(text);
-        testEntityRequestFromFile(new File("Chinese.txt"));
-        testEntityRequestFromFile(new File("NoEntity.txt"));
+        testEntityRequest(url);
+        testEntityRequest(text);
+        testEntityRequest(getTestResource("Chinese.txt"));
+        testEntityRequest(getTestResource("NoEntity.txt"));
 
-        testResolvedEntityFromUrl(url);
-        testResolvedEntityFromText(text);
-        testResolvedEntityFromFile(new File("Chinese.txt"));
+        testResolvedEntity(url);
+        testResolvedEntity(text);
+        testResolvedEntity(getTestResource("Chinese.txt"));
 
-        testSentimentFromUrl(url, new SentOptions(SentimentModel.REVIEW, true));
-        testSentimentFromText(text);
-        testSentimentFromText(text, new SentOptions(SentimentModel.SHORT_STRING, true));
-        testSentimentFromFile(new File("Chinese.txt"));
-        testSentimentFromFile(new File("English.txt"));
-        testSentimentFromFile(new File("English.txt"), new SentOptions(SentimentModel.REVIEW, true));
+        testSentiment(url);
+        testSentiment(url, new SentOptions(SentimentModel.REVIEW, true));
+        testSentiment(text);
+        testSentiment(text, new SentOptions(SentimentModel.SHORT_STRING, true));
+        testSentiment(getTestResource("Chinese.txt"));
+        testSentiment(getTestResource("English.txt"));
+        testSentiment(getTestResource("English.txt"), new SentOptions(SentimentModel.REVIEW, true));
     }
 
-    private static void testSentimentFromFile(File file) {
-        testSentimentFromFile(file, null);
+    private File getTestResource(String filename) throws URISyntaxException {
+        return new File(getClass().getClassLoader().getResource(filename).toURI());
+    }
+    private static void testSentiment(File file) {
+        testSentiment(file, null);
     }
 
-    private static void testSentimentFromFile(File file, SentOptions options) {
+    private static void testSentiment(File file, SentOptions options) {
         try {
-            SentimentResponse sentimentResponse = rosetteAPI.getSentimentFromFile(file, options);
+            SentimentResponse sentimentResponse = rosetteAPI.getSentiment(file, options);
             print(sentimentResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -82,13 +92,13 @@ public class APITest {
         }
     }
 
-    private static void testSentimentFromText(String text) {
-        testSentimentFromText(text, null);
+    private static void testSentiment(String text) {
+        testSentiment(text, null);
     }
 
-    private static void testSentimentFromText(String text, SentOptions options) {
+    private static void testSentiment(String text, SentOptions options) {
         try {
-            SentimentResponse sentimentResponse = rosetteAPI.getSentimentFromText(text, options);
+            SentimentResponse sentimentResponse = rosetteAPI.getSentiment(text, options);
             print(sentimentResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -97,13 +107,13 @@ public class APITest {
         }
     }
 
-    private static void testSentimentFromUrl(URL url) {
-        testSentimentFromUrl(url, null);
+    private static void testSentiment(URL url) {
+        testSentiment(url, null);
     }
 
-    private static void testSentimentFromUrl(URL url, SentOptions options) {
+    private static void testSentiment(URL url, SentOptions options) {
         try {
-            SentimentResponse sentimentResponse = rosetteAPI.getSentimentFromUrl(url, options);
+            SentimentResponse sentimentResponse = rosetteAPI.getSentiment(url, options);
             print(sentimentResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -125,9 +135,9 @@ public class APITest {
         System.out.println();
     }
 
-    private static void testResolvedEntityFromFile(File file) {
+    private static void testResolvedEntity(File file) {
         try {
-            LinkedEntityResponse entityResponse = rosetteAPI.getResolvedEntityFromFile(file);
+            LinkedEntityResponse entityResponse = rosetteAPI.getResolvedEntity(file);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -144,9 +154,9 @@ public class APITest {
         System.out.println();
     }
 
-    private static void testResolvedEntityFromText(String text) {
+    private static void testResolvedEntity(String text) {
         try {
-            LinkedEntityResponse entityResponse = rosetteAPI.getResolvedEntityFromText(text);
+            LinkedEntityResponse entityResponse = rosetteAPI.getResolvedEntity(text);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -155,9 +165,9 @@ public class APITest {
         }
     }
 
-    private static void testResolvedEntityFromUrl(URL url) {
+    private static void testResolvedEntity(URL url) {
         try {
-            LinkedEntityResponse entityResponse = rosetteAPI.getResolvedEntityFromUrl(url);
+            LinkedEntityResponse entityResponse = rosetteAPI.getResolvedEntity(url);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -166,9 +176,9 @@ public class APITest {
         }
     }
 
-    private static void testEntityRequestFromFile(File file) {
+    private static void testEntityRequest(File file) {
         try {
-            EntityResponse entityResponse = rosetteAPI.getEntityFromFile(file);
+            EntityResponse entityResponse = rosetteAPI.getEntity(file);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -184,9 +194,9 @@ public class APITest {
         }
     }
 
-    private static void testEntityRequestFromText(String text) {
+    private static void testEntityRequest(String text) {
         try {
-            EntityResponse entityResponse = rosetteAPI.getEntityFromText(text);
+            EntityResponse entityResponse = rosetteAPI.getEntity(text);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -195,9 +205,9 @@ public class APITest {
         }
     }
 
-    private static void testEntityRequestFromUrl(URL url) {
+    private static void testEntityRequest(URL url) {
         try {
-            EntityResponse entityResponse = rosetteAPI.getEntityFromUrl(url);
+            EntityResponse entityResponse = rosetteAPI.getEntity(url);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -206,27 +216,27 @@ public class APITest {
         }
     }
 
-    private static void testLanguageRequestFromFile(File file) {
+    private static void testLanguageRequest(File file) {
         try {
-            LanguageResponse response = rosetteAPI.getLanguageFromFile(file);
+            LanguageResponse response = rosetteAPI.getLanguage(file);
             System.out.println(response.toString());
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
         }
     }
 
-    private static void testLanguageRequestFromText(String text) {
+    private static void testLanguageRequest(String text) {
         try {
-            LanguageResponse response = rosetteAPI.getLanguageFromText(text);
+            LanguageResponse response = rosetteAPI.getLanguage(text);
             System.out.println(response.toString());
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
         }
     }
 
-    private static void testLanguageRequestFromUrl(URL url) {
+    private static void testLanguageRequest(URL url) {
         try {
-            LanguageResponse response = rosetteAPI.getLanguageFromUrl(url);
+            LanguageResponse response = rosetteAPI.getLanguage(url);
             System.out.println(response.toString());
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());

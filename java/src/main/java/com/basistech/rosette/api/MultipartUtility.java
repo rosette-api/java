@@ -79,7 +79,8 @@ public class MultipartUtility {
      * Adds a upload file section to the request
      *
      * @param fieldName  name attribute in <input type="file" name="..." />
-     * @param uploadFile a File to be uploaded
+     * @param inputStream a file input stream to be uploaded
+     * @param contentType content type for the file
      * @throws IOException
      */
     public void addFilePart(String fieldName, InputStream inputStream, String contentType) throws IOException {
