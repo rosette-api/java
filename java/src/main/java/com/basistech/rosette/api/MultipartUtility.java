@@ -1,8 +1,6 @@
 package com.basistech.rosette.api;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,7 +9,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,16 +87,14 @@ public class MultipartUtility {
                 "Content-Disposition: form-data; name=\"" + fieldName
                         + "\"; filename=\"" + fileName + "\"")
                 .append(LINE_FEED);
-        writer.append(
-                "Content-Type: "
-                        + contentType)
+        writer.append("Content-Type: " + contentType)
                 .append(LINE_FEED);
         writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
         writer.append(LINE_FEED);
         writer.flush();
 
         byte[] buffer = new byte[4096];
-        int bytesRead = -1;
+        int bytesRead;
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
         }
@@ -110,25 +105,22 @@ public class MultipartUtility {
         writer.flush();
     }
 
-    public void addFilePart(String fieldName, File uploadFile)
+    public void addFilePart(String fieldName, InputStream inputStream)
             throws IOException {
-        String fileName = uploadFile.getName();
+        String fileName = "inputfile";
         writer.append("--" + boundary).append(LINE_FEED);
         writer.append(
                 "Content-Disposition: form-data; name=\"" + fieldName
                         + "\"; filename=\"" + fileName + "\"")
                 .append(LINE_FEED);
-        writer.append(
-                "Content-Type: "
-                        + URLConnection.guessContentTypeFromName(fileName))
+        writer.append("Content-Type: application/octet-stream")
                 .append(LINE_FEED);
         writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
         writer.append(LINE_FEED);
         writer.flush();
 
-        FileInputStream inputStream = new FileInputStream(uploadFile);
         byte[] buffer = new byte[4096];
-        int bytesRead = -1;
+        int bytesRead;
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
         }
@@ -173,12 +165,8 @@ public class MultipartUtility {
         reader.close();
         httpConn.disconnect();
         if (HttpURLConnection.HTTP_OK != status) {
-            try {
-                ErrorResponse errorResponse = mapper.readValue(response.get(0), ErrorResponse.class);
-                throw new RosetteAPIException(status, errorResponse);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            ErrorResponse errorResponse = mapper.readValue(response.get(0), ErrorResponse.class);
+            throw new RosetteAPIException(status, errorResponse);
         }
         return response;
     }

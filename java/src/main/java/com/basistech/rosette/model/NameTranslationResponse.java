@@ -17,8 +17,4 @@ public final class NameTranslationResponse extends Response {
     public TranslatedNameResult getResult() {
         return result;
     }
-
-    public String toString() {
-        return super.toString() + ", " + result.toString();
-    }
 }

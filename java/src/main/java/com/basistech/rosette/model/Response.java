@@ -33,17 +33,4 @@ public abstract class Response {
     }
 
     public Map<String, Long> getTimers() { return timers; }
-
-    public void setTimers(Map<String, Long> timers) {
-        this.timers = timers;
-    }
-
-    public String toString() {
-        String result = "requestId: " + requestId;
-        if (timers != null) {
-            result += " timers: " + timers.entrySet().toString();
-        }
-        return result;
-    }
-
 }

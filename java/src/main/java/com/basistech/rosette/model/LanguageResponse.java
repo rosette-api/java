@@ -30,16 +30,7 @@ public final class LanguageResponse extends Response {
         this.languageDetections = languageDetections;
     }
 
-    // Getter
     public List<LanguageDetectionResult> getLanguageDetections() {
         return languageDetections;
-    }
-
-    public String toString() {
-        String result = super.toString() + ", ";
-        for (LanguageDetectionResult ldr : languageDetections) {
-            result += ldr.getLanguage() + ": " + ldr.getConfidence() + ", ";
-        }
-        return result;
     }
 }

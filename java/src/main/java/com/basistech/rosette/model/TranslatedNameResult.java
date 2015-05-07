@@ -66,16 +66,4 @@ public class TranslatedNameResult {
     public double getConfidence() {
         return confidence;
     }
-
-    public String toString() {
-        String result = "sourceScript: " + sourceScript + ", "
-                + "sourceLanguageOfOrigin: " + sourceLanguageOfOrigin + ", "
-                + "sourceLanguageOfUse: " + sourceLanguageOfUse + ", "
-                + "translation: " + translation + ", "
-                + "targetLanguage: " + targetLanguage + ", "
-                + "targetScript: " + targetScript + ", "
-                + "targetScheme: " + targetScheme + ", "
-                + "confidence: " + confidence;
-        return result;
-    }
 }
