@@ -16,8 +16,6 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
-import java.util.zip.Inflater;
-import java.util.zip.InflaterInputStream;
 
 import com.basistech.rosette.model.CategoryOptions;
 import com.basistech.rosette.model.CategoryResponse;
