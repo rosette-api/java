@@ -1,5 +1,11 @@
 {
-  "code": "unsupportedLanguage", 
-  "message": "Pushto is not supported by Rosette Base Linguistics", 
-  "requestId": "50138003-b84a-4000-8950-707aea88262d"
+  "compounds": [], 
+  "hanReadings": [], 
+  "lemmas": [], 
+  "posTags": [], 
+  "requestId": "f4eaf1f3-363a-4e56-a7b7-caf07ba6f671", 
+  "timers": {
+    "rblJe": 2, 
+    "rliJe": 5
+  }
 }

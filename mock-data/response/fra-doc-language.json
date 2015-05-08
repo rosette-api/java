@@ -1,28 +1,28 @@
 {
   "languageDetections": [
     {
-      "confidence": 0.039061726951962306, 
+      "confidence": 0.03904621249856588, 
       "language": "fra"
     }, 
     {
-      "confidence": 0.012967920993842252, 
+      "confidence": 0.013008506693825472, 
       "language": "cat"
     }, 
     {
-      "confidence": 0.012234062578704297, 
+      "confidence": 0.0122736724745941, 
       "language": "spa"
     }, 
     {
-      "confidence": 0.009923808580026394, 
+      "confidence": 0.009873975012486658, 
       "language": "ron"
     }, 
     {
-      "confidence": 0.00975639357941882, 
+      "confidence": 0.009735170679701866, 
       "language": "por"
     }
   ], 
-  "requestId": "6ad7df9a-978e-4c5b-9afe-66499b3f8670", 
+  "requestId": "128145b1-fd6f-4492-899d-a68ec9d2e60a", 
   "timers": {
-    "rliJe": 3
+    "rliJe": 4
   }
 }

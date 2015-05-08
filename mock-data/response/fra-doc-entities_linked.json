@@ -1,143 +1,149 @@
 {
   "entities": [
     {
-      "confidence": 0.6757731162541462, 
+      "confidence": 0.7399947032225278, 
       "entityId": "Q30", 
       "indocChainId": 0, 
       "mention": "Etats-Unis"
     }, 
     {
-      "confidence": 0.8179594505873957, 
+      "confidence": 0.7695386692779599, 
       "entityId": "Q637413", 
-      "indocChainId": 2, 
+      "indocChainId": 1, 
       "mention": "Census Bureau"
     }, 
     {
-      "confidence": 0.6144289389137962, 
+      "confidence": 0.5632621294140603, 
       "entityId": "Q156616", 
-      "indocChainId": 3, 
+      "indocChainId": 2, 
       "mention": "Insee"
     }, 
     {
-      "confidence": 0.6938284971860521, 
+      "confidence": 0.5647101952655027, 
       "entityId": "Q76", 
-      "indocChainId": 7, 
+      "indocChainId": 4, 
       "mention": "Barack Obama"
     }, 
     {
       "confidence": 1.0, 
       "entityId": "NEW-CLUSTER", 
-      "indocChainId": 10, 
+      "indocChainId": 5, 
       "mention": "Amérique"
     }, 
     {
-      "confidence": 0.2995797563925766, 
+      "confidence": 0.33092102218083125, 
       "entityId": "Q12061445", 
-      "indocChainId": 11, 
+      "indocChainId": 6, 
       "mention": "Maison Blanche"
     }, 
     {
-      "confidence": 0.561319992657631, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 12, 
+      "confidence": 0.6351177924228053, 
+      "entityId": "Q587370", 
+      "indocChainId": 7, 
       "mention": "Parti démocrate"
     }, 
     {
-      "confidence": 0.4899446466710728, 
+      "confidence": 0.4383803078324337, 
       "entityId": "Q222122", 
-      "indocChainId": 17, 
+      "indocChainId": 10, 
       "mention": "Dean Baker"
     }, 
     {
-      "confidence": 0.4294247830448455, 
+      "confidence": 0.4106734597843912, 
       "entityId": "NEW-CLUSTER", 
-      "indocChainId": 18, 
+      "indocChainId": 11, 
       "mention": "démocrate"
     }, 
     {
-      "confidence": 0.027728298816730144, 
+      "confidence": 0.030134547096501898, 
       "entityId": "Q61", 
-      "indocChainId": 19, 
+      "indocChainId": 12, 
       "mention": "Washington"
     }, 
     {
-      "confidence": 0.08733735113954331, 
+      "confidence": 0.09650250560984247, 
       "entityId": "NEW-CLUSTER", 
-      "indocChainId": 22, 
+      "indocChainId": 14, 
       "mention": "républicain"
     }, 
     {
-      "confidence": 0.7260731129311291, 
+      "confidence": 0.5634191715704597, 
       "entityId": "Q9960", 
-      "indocChainId": 23, 
+      "indocChainId": 15, 
       "mention": "Ronald Reagan"
     }, 
     {
-      "confidence": 0.36431453936042363, 
+      "confidence": 0.32451423678740127, 
       "entityId": "Q207", 
-      "indocChainId": 30, 
+      "indocChainId": 20, 
       "mention": "George Bush"
     }, 
     {
-      "confidence": 0.6106572200810811, 
+      "confidence": 0.5312767444554036, 
       "entityId": "Q270379", 
-      "indocChainId": 34, 
+      "indocChainId": 22, 
       "mention": "Christina Romer"
     }, 
     {
-      "confidence": 0.7384301938229976, 
+      "confidence": 0.741644907969852, 
       "entityId": "Q193326", 
-      "indocChainId": 40, 
+      "indocChainId": 28, 
       "mention": "Goldman Sachs"
     }, 
     {
-      "confidence": 0.40539735993965664, 
+      "confidence": 0.5171464236003176, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 29, 
+      "mention": "Jan Hatzius"
+    }, 
+    {
+      "confidence": 0.41208003203903637, 
       "entityId": "Q2495862", 
-      "indocChainId": 45, 
+      "indocChainId": 33, 
       "mention": "Congrès"
     }, 
     {
-      "confidence": 0.11207317564882509, 
+      "confidence": 0.10281969831910404, 
       "entityId": "NEW-CLUSTER", 
-      "indocChainId": 47, 
+      "indocChainId": 35, 
       "mention": "républicains"
     }, 
     {
-      "confidence": 0.31895867518967097, 
+      "confidence": 0.2681724823103919, 
       "entityId": "Q519838", 
-      "indocChainId": 55, 
+      "indocChainId": 42, 
       "mention": "David Axelrod"
     }, 
     {
-      "confidence": 0.6071196529575754, 
+      "confidence": 0.626544968074185, 
       "entityId": "Q215987", 
-      "indocChainId": 58, 
+      "indocChainId": 44, 
       "mention": "Sénat"
     }, 
     {
-      "confidence": 0.38032143652092254, 
+      "confidence": 0.3161503511291147, 
       "entityId": "Q314459", 
-      "indocChainId": 60, 
+      "indocChainId": 46, 
       "mention": "Harry Reid"
     }, 
     {
-      "confidence": 0.10778157781084687, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 61, 
+      "confidence": 0.09461631971440848, 
+      "entityId": "Q1185830", 
+      "indocChainId": 47, 
       "mention": "démocrates"
     }, 
     {
-      "confidence": 0.7572827511123869, 
+      "confidence": 0.7608374999013565, 
       "entityId": "Q2097742", 
-      "indocChainId": 64, 
+      "indocChainId": 50, 
       "mention": "TARP"
     }
   ], 
-  "requestId": "d08f4f82-229f-4442-abc1-a66da389fee3", 
+  "requestId": "88f85c50-081d-49bd-9105-2e040c50735e", 
   "timers": {
-    "rblJe": 4, 
-    "res": 434, 
-    "rexJe": 160, 
-    "rliJe": 3
+    "rblJe": 10, 
+    "res": 822, 
+    "rexJe": 46, 
+    "rliJe": 6
   }
 }

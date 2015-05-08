@@ -15,7 +15,7 @@
       "text": "-"
     }, 
     {
-      "lemma": "uni", 
+      "lemma": "unir", 
       "text": "Unis"
     }, 
     {
@@ -683,7 +683,7 @@
       "text": "les"
     }, 
     {
-      "lemma": "média", 
+      "lemma": "médias", 
       "text": "médias"
     }, 
     {
@@ -2115,7 +2115,7 @@
       "text": "un"
     }, 
     {
-      "lemma": "Américain", 
+      "lemma": "américain", 
       "text": "Américain"
     }, 
     {
@@ -2303,7 +2303,7 @@
       "text": "fois"
     }, 
     {
-      "lemma": "élire", 
+      "lemma": "élu", 
       "text": "élu"
     }, 
     {
@@ -3007,7 +3007,7 @@
       "text": "Compte"
     }, 
     {
-      "lemma": "tenir", 
+      "lemma": "tenu", 
       "text": "tenu"
     }, 
     {
@@ -3911,7 +3911,7 @@
       "text": "les"
     }, 
     {
-      "lemma": "Américain", 
+      "lemma": "américain", 
       "text": "Américains"
     }, 
     {
@@ -4003,7 +4003,7 @@
       "text": "emplois"
     }, 
     {
-      "lemma": "perdre", 
+      "lemma": "perdu", 
       "text": "perdus"
     }, 
     {
@@ -4463,7 +4463,7 @@
       "text": "dollars"
     }, 
     {
-      "lemma": "prendre", 
+      "lemma": "pris", 
       "text": "pris"
     }, 
     {
@@ -9653,9 +9653,9 @@
       "text": "2010.01.21"
     }
   ], 
-  "requestId": "c3c2e81c-60f0-4669-8314-9aa659516563", 
+  "requestId": "c4bdf301-9d26-41cf-b9ef-26f83ded0fb9", 
   "timers": {
-    "rblJe": 3, 
-    "rliJe": 2
+    "rblJe": 535, 
+    "rliJe": 4
   }
 }
