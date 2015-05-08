@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 import com.basistech.rosette.model.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,8 +47,8 @@ public class MultipartUtility {
         httpConn.setDoInput(true);
         httpConn.setRequestProperty("user_key", key);
         httpConn.setRequestProperty("Accept", "application/json");
-        httpConn.setRequestProperty("Content-Type",
-                "multipart/form-data; boundary=" + boundary);
+        httpConn.setRequestProperty("Accept-Encoding", "gzip");
+        httpConn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
         outputStream = httpConn.getOutputStream();
         writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
                 true);
@@ -156,8 +157,13 @@ public class MultipartUtility {
 
         // checks server's status code first
         int status = httpConn.getResponseCode();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                status == HttpURLConnection.HTTP_OK ? httpConn.getInputStream() : httpConn.getErrorStream()));
+        InputStream inputStream = status == HttpURLConnection.HTTP_OK ? httpConn.getInputStream() : httpConn.getErrorStream();
+        String encoding = httpConn.getContentEncoding();
+        if ("gzip".equalsIgnoreCase(encoding)) {
+            inputStream = new GZIPInputStream(inputStream);
+        }
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
         while ((line = reader.readLine()) != null) {
             response.add(line);

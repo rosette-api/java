@@ -113,6 +113,8 @@ public class APIExample {
             e.printStackTrace();
         } catch (RosetteAPIParameterException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -432,6 +434,8 @@ public class APIExample {
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
         } catch (RosetteAPIParameterException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
             System.err.println(e.toString());
         }
     }
