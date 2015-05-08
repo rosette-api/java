@@ -3,2078 +3,1010 @@
   "hanReadings": [], 
   "lemmas": [
     {
-      "lemma": "usar", 
-      "text": "Usó"
+      "lemma": "00", 
+      "text": "00"
     }, 
     {
-      "lemma": "carta", 
-      "text": "cartas"
+      "lemma": "00", 
+      "text": "00"
     }, 
     {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "y", 
-      "text": "e"
-    }, 
-    {
-      "lemma": "-", 
-      "text": "-"
-    }, 
-    {
-      "lemma": "mails", 
-      "text": "mails"
-    }, 
-    {
-      "lemma": "y", 
-      "text": "y"
-    }, 
-    {
-      "lemma": "mensaje", 
-      "text": "mensajes"
-    }, 
-    {
-      "lemma": "SMS", 
-      "text": "SMS"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "entre", 
-      "text": "entre"
-    }, 
-    {
-      "lemma": "otro", 
-      "text": "otros"
-    }, 
-    {
-      "lemma": "medio", 
-      "text": "medios"
-    }, 
-    {
-      "lemma": "flipear", 
-      "text": "flipear"
-    }, 
-    {
-      "lemma": "tener", 
-      "text": "Tienen"
-    }, 
-    {
-      "lemma": "un", 
-      "text": "una"
-    }, 
-    {
-      "lemma": "cultura", 
-      "text": "cultura"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "lealtad", 
-      "text": "lealtad"
-    }, 
-    {
-      "lemma": "y", 
-      "text": "y"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "desarrollo", 
-      "text": "desarrollo"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "los"
-    }, 
-    {
-      "lemma": "millennials", 
-      "text": "millennials"
-    }, 
-    {
-      "lemma": "no", 
-      "text": "no"
-    }, 
-    {
-      "lemma": "flipear", 
-      "text": "flipear"
-    }, 
-    {
-      "lemma": "experto", 
-      "text": "Expertos"
-    }, 
-    {
-      "lemma": "pronosticar", 
-      "text": "pronostican"
-    }, 
-    {
-      "lemma": "un", 
-      "text": "un"
-    }, 
-    {
-      "lemma": "valor", 
-      "text": "valor"
-    }, 
-    {
-      "lemma": "promedio", 
-      "text": "promedio"
-    }, 
-    {
-      "lemma": "de el", 
-      "text": "del"
-    }, 
-    {
-      "lemma": "barril", 
-      "text": "barril"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "hasta", 
-      "text": "hasta"
-    }, 
-    {
-      "lemma": "60", 
-      "text": "60"
-    }, 
-    {
-      "lemma": "dólar", 
-      "text": "dólares"
-    }, 
-    {
-      "lemma": "flipear", 
-      "text": "flipear"
-    }, 
-    {
-      "lemma": "tanto", 
-      "text": "Tanto"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "las"
-    }, 
-    {
-      "lemma": "grande", 
-      "text": "grandes"
-    }, 
-    {
-      "lemma": "organización", 
-      "text": "organizaciones"
-    }, 
-    {
-      "lemma": "como", 
-      "text": "como"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "las"
-    }, 
-    {
-      "lemma": "pymes", 
-      "text": "pymes"
-    }, 
-    {
-      "lemma": "necesitar", 
-      "text": "necesitan"
-    }, 
-    {
-      "lemma": "cambiar", 
-      "text": "cambiar"
-    }, 
-    {
-      "lemma": "él", 
-      "text": "su"
-    }, 
-    {
-      "lemma": "visión", 
-      "text": "visión"
-    }, 
-    {
-      "lemma": "flipear", 
-      "text": "flipear"
-    }, 
-    {
-      "lemma": "ser", 
-      "text": "Son"
-    }, 
-    {
-      "lemma": "segundo", 
-      "text": "segunda"
-    }, 
-    {
-      "lemma": "fuente", 
-      "text": "fuente"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "divisa", 
-      "text": "divisas"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "manufactura", 
-      "text": "Manufacturas"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "principal", 
-      "text": "principal"
-    }, 
-    {
-      "lemma": "generador", 
-      "text": "generador"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "recurso", 
-      "text": "recursos"
-    }, 
-    {
-      "lemma": "flipear", 
-      "text": "flipear"
-    }, 
-    {
-      "lemma": "querer", 
-      "text": "Quiere"
-    }, 
-    {
-      "lemma": "tecnología", 
-      "text": "tecnología"
-    }, 
-    {
-      "lemma": "para", 
-      "text": "para"
-    }, 
-    {
-      "lemma": "evitar", 
-      "text": "evitar"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "caída", 
-      "text": "caída"
-    }, 
-    {
-      "lemma": "en", 
-      "text": "en"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "nivel", 
-      "text": "nivel"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "producción", 
-      "text": "producción"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "Cantarell", 
-      "text": "Cantarell"
-    }, 
-    {
-      "lemma": "Banxico", 
-      "text": "Banxico"
-    }, 
-    {
-      "lemma": ":", 
-      "text": ":"
-    }, 
-    {
-      "lemma": "minería", 
-      "text": "minería"
-    }, 
-    {
-      "lemma": "y", 
-      "text": "y"
-    }, 
-    {
-      "lemma": "construcción", 
-      "text": "construcción"
-    }, 
-    {
-      "lemma": "pegar", 
-      "text": "pegan"
-    }, 
-    {
-      "lemma": "a", 
-      "text": "a"
-    }, 
-    {
-      "lemma": "crecimiento", 
-      "text": "crecimiento"
-    }, 
-    {
-      "lemma": "Sara", 
-      "text": "Sara"
-    }, 
-    {
-      "lemma": "cantera", 
-      "text": "Cantera"
+      "lemma": "00", 
+      "text": "00"
     }, 
     {
       "lemma": "|", 
       "text": "|"
     }, 
     {
-      "lemma": "el", 
-      "text": "El"
+      "lemma": "00:00", 
+      "text": "00:00"
     }, 
     {
-      "lemma": "universal", 
-      "text": "Universal"
+      "lemma": "sección", 
+      "text": "SECCIONES"
     }, 
     {
-      "lemma": "11:04Ciudad", 
-      "text": "11:04Ciudad"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
+      "lemma": "sociedad", 
+      "text": "Sociedad"
     }, 
     {
       "lemma": "México", 
       "text": "México"
     }, 
     {
-      "lemma": "|", 
-      "text": "|"
-    }, 
-    {
-      "lemma": "miércoles", 
-      "text": "Miércoles"
-    }, 
-    {
-      "lemma": "06", 
-      "text": "06"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "mayo", 
-      "text": "mayo"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "2015", 
-      "text": "2015"
-    }, 
-    {
-      "lemma": "Tweet", 
-      "text": "Tweet"
-    }, 
-    {
-      "lemma": "en", 
-      "text": "En"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "caso", 
-      "text": "caso"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "construcción", 
-      "text": "construcción"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "Carstens", 
-      "text": "Carstens"
-    }, 
-    {
-      "lemma": "explicar", 
-      "text": "explicó"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "éste", 
-      "text": "ésta"
-    }, 
-    {
-      "lemma": "ya", 
-      "text": "ya"
-    }, 
-    {
-      "lemma": "se", 
-      "text": "se"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "había"
-    }, 
-    {
-      "lemma": "recuperar", 
-      "text": "recuperado"
-    }, 
-    {
-      "lemma": "en", 
-      "text": "en"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "los"
-    }, 
-    {
-      "lemma": "último", 
-      "text": "últimos"
-    }, 
-    {
-      "lemma": "13", 
-      "text": "13"
-    }, 
-    {
-      "lemma": "mes", 
-      "text": "meses"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "pero", 
-      "text": "pero"
-    }, 
-    {
-      "lemma": "reciente", 
-      "text": "recientemente"
-    }, 
-    {
-      "lemma": "caer", 
-      "text": "cayó"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "(", 
-      "text": "("
-    }, 
-    {
-      "lemma": "foto", 
-      "text": "Foto"
-    }, 
-    {
-      "lemma": ":", 
-      "text": ":"
-    }, 
-    {
-      "lemma": "archivo", 
-      "text": "Archivo"
-    }, 
-    {
-      "lemma": ")", 
-      "text": ")"
-    }, 
-    {
-      "lemma": "nota", 
-      "text": "Notas"
-    }, 
-    {
-      "lemma": "relacionar", 
-      "text": "Relacionadas"
-    }, 
-    {
-      "lemma": ":", 
-      "text": ":"
-    }, 
-    {
-      "lemma": "sara.cantera", 
-      "text": "sara.cantera"
-    }, 
-    {
-      "lemma": "@", 
-      "text": "@"
-    }, 
-    {
-      "lemma": "eluniversal.com.mx", 
-      "text": "eluniversal.com.mx"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "El"
-    }, 
-    {
-      "lemma": "gobernador", 
-      "text": "gobernador"
-    }, 
-    {
-      "lemma": "de el", 
-      "text": "del"
-    }, 
-    {
-      "lemma": "banco", 
-      "text": "Banco"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "México", 
-      "text": "México"
-    }, 
-    {
-      "lemma": "(", 
-      "text": "("
-    }, 
-    {
-      "lemma": "Banxico", 
-      "text": "Banxico"
-    }, 
-    {
-      "lemma": ")", 
-      "text": ")"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "Agustín", 
-      "text": "Agustín"
-    }, 
-    {
-      "lemma": "Carstens", 
-      "text": "Carstens"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "recomendar", 
-      "text": "recomendó"
-    }, 
-    {
-      "lemma": "no", 
-      "text": "no"
-    }, 
-    {
-      "lemma": "subir", 
-      "text": "subir"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "las"
-    }, 
-    {
-      "lemma": "tasa", 
-      "text": "tasas"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "interés", 
-      "text": "interés"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "por", 
-      "text": "por"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "momento", 
-      "text": "momento"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "deber", 
-      "text": "debido"
-    }, 
-    {
-      "lemma": "a", 
-      "text": "a"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "las"
-    }, 
-    {
-      "lemma": "perspectiva", 
-      "text": "perspectivas"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "crecimiento", 
-      "text": "crecimiento"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "economía", 
-      "text": "economía"
-    }, 
-    {
-      "lemma": "se", 
-      "text": "se"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "han"
-    }, 
-    {
-      "lemma": "revisar", 
-      "text": "revisado"
-    }, 
-    {
-      "lemma": "a", 
-      "text": "a"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "baja", 
-      "text": "baja"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "durante", 
-      "text": "Durante"
-    }, 
-    {
-      "lemma": "él", 
-      "text": "su"
-    }, 
-    {
-      "lemma": "participación", 
-      "text": "participación"
-    }, 
-    {
-      "lemma": "en", 
-      "text": "en"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "25", 
-      "text": "25"
-    }, 
-    {
-      "lemma": "Convención", 
-      "text": "Convención"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "asegurador", 
-      "text": "Aseguradores"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "México", 
-      "text": "México"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "Carstens", 
-      "text": "Carstens"
-    }, 
-    {
-      "lemma": "mencionar", 
-      "text": "mencionó"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "economía", 
-      "text": "economía"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "ha"
-    }, 
-    {
-      "lemma": "disminuir", 
-      "text": "disminuido"
-    }, 
-    {
-      "lemma": "por", 
-      "text": "por"
-    }, 
-    {
-      "lemma": "un", 
-      "text": "una"
-    }, 
-    {
-      "lemma": "menor", 
-      "text": "menor"
-    }, 
-    {
-      "lemma": "actividad", 
-      "text": "actividad"
-    }, 
-    {
-      "lemma": "en", 
-      "text": "en"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "sector", 
-      "text": "sector"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "construcción", 
-      "text": "construcción"
-    }, 
-    {
       "lemma": "y", 
       "text": "y"
     }, 
     {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "minería", 
-      "text": "minería"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "\"", 
-      "text": "\""
-    }, 
-    {
-      "lemma": "el", 
-      "text": "La"
-    }, 
-    {
-      "lemma": "economía", 
-      "text": "economía"
-    }, 
-    {
-      "lemma": "mexicano", 
-      "text": "mexicana"
-    }, 
-    {
-      "lemma": "seguir", 
-      "text": "sigue"
-    }, 
-    {
-      "lemma": "crecer", 
-      "text": "creciendo"
-    }, 
-    {
-      "lemma": "quizá", 
-      "text": "quizá"
-    }, 
-    {
-      "lemma": "a", 
-      "text": "a"
-    }, 
-    {
-      "lemma": "un", 
-      "text": "un"
-    }, 
-    {
-      "lemma": "ritmo", 
-      "text": "ritmo"
-    }, 
-    {
-      "lemma": "menor", 
-      "text": "menor"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "lo"
-    }, 
-    {
-      "lemma": "esperar", 
-      "text": "esperado"
+      "lemma": "Colombia", 
+      "text": "Colombia"
     }, 
     {
       "lemma": ",", 
       "text": ","
     }, 
     {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "producción", 
-      "text": "producción"
-    }, 
-    {
-      "lemma": "industrial", 
-      "text": "industrial"
-    }, 
-    {
-      "lemma": "no", 
-      "text": "no"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "ha"
-    }, 
-    {
-      "lemma": "crecer", 
-      "text": "crecido"
-    }, 
-    {
-      "lemma": "tanto", 
-      "text": "tanto"
-    }, 
-    {
-      "lemma": "como", 
-      "text": "como"
-    }, 
-    {
-      "lemma": "nosotros", 
-      "text": "nos"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "hubiera"
-    }, 
-    {
-      "lemma": "gustar", 
-      "text": "gustado"
-    }, 
-    {
-      "lemma": "y", 
-      "text": "y"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "los"
-    }, 
-    {
-      "lemma": "dos", 
-      "text": "dos"
-    }, 
-    {
-      "lemma": "factor", 
-      "text": "factores"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "han"
-    }, 
-    {
-      "lemma": "contribuir", 
-      "text": "contribuido"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "han"
-    }, 
-    {
-      "lemma": "ser", 
-      "text": "sido"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "minería", 
-      "text": "minería"
-    }, 
-    {
-      "lemma": "y", 
-      "text": "y"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "construcción", 
-      "text": "construcción"
-    }, 
-    {
-      "lemma": "\"", 
-      "text": "\""
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "decir", 
-      "text": "dijo"
-    }, 
-    {
-      "lemma": "Carstens", 
-      "text": "Carstens"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "en", 
-      "text": "En"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "caso", 
-      "text": "caso"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "construcción", 
-      "text": "construcción"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "Banxico", 
-      "text": "Banxico"
-    }, 
-    {
-      "lemma": "explicar", 
-      "text": "explicó"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "éste", 
-      "text": "ésta"
-    }, 
-    {
-      "lemma": "ya", 
-      "text": "ya"
-    }, 
-    {
-      "lemma": "se", 
-      "text": "se"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "había"
-    }, 
-    {
-      "lemma": "recuperar", 
-      "text": "recuperado"
-    }, 
-    {
-      "lemma": "en", 
-      "text": "en"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "los"
-    }, 
-    {
-      "lemma": "último", 
-      "text": "últimos"
-    }, 
-    {
-      "lemma": "13", 
-      "text": "13"
-    }, 
-    {
-      "lemma": "mes", 
-      "text": "meses"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "pero", 
-      "text": "pero"
-    }, 
-    {
-      "lemma": "más", 
-      "text": "más"
-    }, 
-    {
-      "lemma": "reciente", 
-      "text": "recientemente"
-    }, 
-    {
-      "lemma": "caer", 
-      "text": "cayó"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "tanto", 
-      "text": "tanto"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "residencial", 
-      "text": "residencial"
-    }, 
-    {
-      "lemma": "como", 
-      "text": "como"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "no", 
-      "text": "no"
-    }, 
-    {
-      "lemma": "residencial", 
-      "text": "residencial"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "mientras", 
-      "text": "mientras"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "construcción", 
-      "text": "construcción"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "infraestructura", 
-      "text": "infraestructura"
-    }, 
-    {
-      "lemma": "de el", 
-      "text": "del"
-    }, 
-    {
-      "lemma": "gobierno", 
-      "text": "gobierno"
-    }, 
-    {
-      "lemma": "también", 
-      "text": "también"
-    }, 
-    {
-      "lemma": "se", 
-      "text": "se"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "ha"
-    }, 
-    {
-      "lemma": "rezagar", 
-      "text": "rezagado"
-    }, 
-    {
-      "lemma": "un", 
-      "text": "un"
-    }, 
-    {
-      "lemma": "poco", 
-      "text": "poco"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "en", 
-      "text": "En"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "caso", 
-      "text": "caso"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "minería", 
-      "text": "minería"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "factor", 
-      "text": "factor"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "más", 
-      "text": "más"
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "ha"
-    }, 
-    {
-      "lemma": "contribuir", 
-      "text": "contribuido"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "haber", 
-      "text": "ha"
-    }, 
-    {
-      "lemma": "ser", 
-      "text": "sido"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "plataforma", 
-      "text": "plataforma"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "producción", 
-      "text": "producción"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "Pemex", 
-      "text": "Pemex"
-    }, 
-    {
-      "lemma": "y", 
-      "text": "y"
-    }, 
-    {
-      "lemma": "todo", 
-      "text": "todas"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "las"
-    }, 
-    {
-      "lemma": "actividad", 
-      "text": "actividades"
-    }, 
-    {
-      "lemma": "relacionar", 
-      "text": "relacionadas"
+      "lemma": "nación", 
+      "text": "naciones"
     }, 
     {
       "lemma": "con", 
       "text": "con"
     }, 
     {
-      "lemma": "el", 
-      "text": "la"
+      "lemma": "objetivo", 
+      "text": "objetivos"
     }, 
     {
-      "lemma": "extracción", 
-      "text": "extracción"
+      "lemma": "común", 
+      "text": "comunes"
     }, 
     {
-      "lemma": "de", 
-      "text": "de"
+      "lemma": ":", 
+      "text": ":"
     }, 
     {
-      "lemma": "petróleo", 
-      "text": "petróleo"
+      "lemma": "EPN", 
+      "text": "EPN"
     }, 
     {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "por", 
-      "text": "por"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "lo"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
+      "lemma": "en", 
+      "text": "En"
     }, 
     {
       "lemma": "el", 
       "text": "el"
     }, 
     {
-      "lemma": "gobernador", 
-      "text": "gobernador"
-    }, 
-    {
-      "lemma": "de el", 
-      "text": "del"
-    }, 
-    {
-      "lemma": "banco", 
-      "text": "Banco"
+      "lemma": "marco", 
+      "text": "marco"
     }, 
     {
       "lemma": "de", 
       "text": "de"
-    }, 
-    {
-      "lemma": "México", 
-      "text": "México"
-    }, 
-    {
-      "lemma": "demandar", 
-      "text": "demandó"
     }, 
     {
       "lemma": "el", 
       "text": "la"
     }, 
     {
-      "lemma": "urgencia", 
-      "text": "urgencia"
+      "lemma": "visita", 
+      "text": "visita"
     }, 
     {
       "lemma": "de", 
       "text": "de"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "se", 
-      "text": "se"
-    }, 
-    {
-      "lemma": "implemente", 
-      "text": "implemente"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "lo"
-    }, 
-    {
-      "lemma": "antes", 
-      "text": "antes"
-    }, 
-    {
-      "lemma": "posible", 
-      "text": "posible"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "reforma", 
-      "text": "reforma"
-    }, 
-    {
-      "lemma": "en", 
-      "text": "en"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "sector", 
-      "text": "sector"
-    }, 
-    {
-      "lemma": "petrolero", 
-      "text": "petrolero"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "durante", 
-      "text": "Durante"
-    }, 
-    {
-      "lemma": "él", 
-      "text": "su"
-    }, 
-    {
-      "lemma": "presentación", 
-      "text": "presentación"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "gobernador", 
-      "text": "gobernador"
-    }, 
-    {
-      "lemma": "de el", 
-      "text": "del"
-    }, 
-    {
-      "lemma": "banco", 
-      "text": "Banco"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "México", 
-      "text": "México"
-    }, 
-    {
-      "lemma": "asegurar", 
-      "text": "aseguró"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "el"
-    }, 
-    {
-      "lemma": "aumento", 
-      "text": "aumento"
-    }, 
-    {
-      "lemma": "en", 
-      "text": "en"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "las"
-    }, 
-    {
-      "lemma": "tasa", 
-      "text": "tasas"
-    }, 
-    {
-      "lemma": "de", 
-      "text": "de"
-    }, 
-    {
-      "lemma": "interés", 
-      "text": "interés"
-    }, 
-    {
-      "lemma": "en", 
-      "text": "en"
     }, 
     {
       "lemma": "estado", 
-      "text": "Estados"
-    }, 
-    {
-      "lemma": "unir", 
-      "text": "Unidos"
-    }, 
-    {
-      "lemma": "ser", 
-      "text": "son"
-    }, 
-    {
-      "lemma": "bueno", 
-      "text": "buenas"
-    }, 
-    {
-      "lemma": "noticia", 
-      "text": "noticias"
-    }, 
-    {
-      "lemma": "para", 
-      "text": "para"
-    }, 
-    {
-      "lemma": "México", 
-      "text": "México"
-    }, 
-    {
-      "lemma": "porque", 
-      "text": "porque"
-    }, 
-    {
-      "lemma": "ése", 
-      "text": "eso"
-    }, 
-    {
-      "lemma": "significar", 
-      "text": "significa"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "el", 
-      "text": "la"
-    }, 
-    {
-      "lemma": "economía", 
-      "text": "economía"
-    }, 
-    {
-      "lemma": "estadounidense", 
-      "text": "estadounidense"
-    }, 
-    {
-      "lemma": "estar", 
-      "text": "está"
-    }, 
-    {
-      "lemma": "crecer", 
-      "text": "creciendo"
+      "text": "Estado"
     }, 
     {
       "lemma": "y", 
       "text": "y"
     }, 
     {
-      "lemma": "si", 
-      "text": "si"
+      "lemma": "el", 
+      "text": "la"
     }, 
     {
-      "lemma": "haber", 
-      "text": "hay"
+      "lemma": "ceremonia", 
+      "text": "ceremonia"
     }, 
     {
-      "lemma": "un", 
-      "text": "un"
-    }, 
-    {
-      "lemma": "país", 
-      "text": "país"
-    }, 
-    {
-      "lemma": "que", 
-      "text": "que"
-    }, 
-    {
-      "lemma": "se", 
-      "text": "se"
-    }, 
-    {
-      "lemma": "poder", 
-      "text": "puede"
-    }, 
-    {
-      "lemma": "beneficiar se", 
-      "text": "beneficiarse"
+      "lemma": "oficial", 
+      "text": "oficial"
     }, 
     {
       "lemma": "de", 
       "text": "de"
     }, 
     {
-      "lemma": "ése", 
-      "text": "eso"
+      "lemma": "bienvenido", 
+      "text": "bienvenida"
+    }, 
+    {
+      "lemma": "a el", 
+      "text": "al"
+    }, 
+    {
+      "lemma": "presidente", 
+      "text": "presidente"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "Colombia", 
+      "text": "Colombia"
     }, 
     {
       "lemma": ",", 
       "text": ","
     }, 
     {
-      "lemma": "ser", 
-      "text": "es"
+      "lemma": "juan", 
+      "text": "juan"
+    }, 
+    {
+      "lemma": "Manuel", 
+      "text": "Manuel"
+    }, 
+    {
+      "lemma": "Santos", 
+      "text": "Santos"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "el", 
+      "text": "el"
+    }, 
+    {
+      "lemma": "mandatario", 
+      "text": "mandatario"
+    }, 
+    {
+      "lemma": "mexicano", 
+      "text": "mexicano"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "Enrique", 
+      "text": "Enrique"
+    }, 
+    {
+      "lemma": "Peña", 
+      "text": "Peña"
+    }, 
+    {
+      "lemma": "Nieto", 
+      "text": "Nieto"
+    }, 
+    {
+      "lemma": "destacar", 
+      "text": "destacó"
+    }, 
+    {
+      "lemma": "que", 
+      "text": "que"
+    }, 
+    {
+      "lemma": "Colombia", 
+      "text": "Colombia"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
     }, 
     {
       "lemma": "México", 
       "text": "México"
     }, 
     {
+      "lemma": "ser", 
+      "text": "son"
+    }, 
+    {
+      "lemma": "dos", 
+      "text": "dos"
+    }, 
+    {
+      "lemma": "nación", 
+      "text": "naciones"
+    }, 
+    {
+      "lemma": "hermano", 
+      "text": "hermanas"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "unir", 
+      "text": "unidas"
+    }, 
+    {
+      "lemma": "por", 
+      "text": "por"
+    }, 
+    {
+      "lemma": "valor", 
+      "text": "valores"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "afecto", 
+      "text": "afectos"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "objetivo", 
+      "text": "objetivos"
+    }, 
+    {
+      "lemma": "común", 
+      "text": "comunes"
+    }, 
+    {
       "lemma": ".", 
       "text": "."
     }, 
     {
-      "lemma": "tcm", 
-      "text": "tcm"
+      "lemma": "compartir", 
+      "text": "compartir"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": ":", 
+      "text": ":"
+    }, 
+    {
+      "lemma": "por", 
+      "text": "Por"
+    }, 
+    {
+      "lemma": ":", 
+      "text": ":"
+    }, 
+    {
+      "lemma": "redacción", 
+      "text": "Redacción"
+    }, 
+    {
+      "lemma": "viernes", 
+      "text": "Viernes"
+    }, 
+    {
+      "lemma": "08", 
+      "text": "08"
+    }, 
+    {
+      "lemma": "05", 
+      "text": "05"
+    }, 
+    {
+      "lemma": "15", 
+      "text": "15"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "En"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "el"
+    }, 
+    {
+      "lemma": "marco", 
+      "text": "marco"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "visita", 
+      "text": "visita"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "estado", 
+      "text": "Estado"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "ceremonia", 
+      "text": "ceremonia"
+    }, 
+    {
+      "lemma": "oficial", 
+      "text": "oficial"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "bienvenido", 
+      "text": "bienvenida"
+    }, 
+    {
+      "lemma": "a el", 
+      "text": "al"
+    }, 
+    {
+      "lemma": "presidente", 
+      "text": "presidente"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "Colombia", 
+      "text": "Colombia"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "Juan", 
+      "text": "Juan"
+    }, 
+    {
+      "lemma": "Manuel", 
+      "text": "Manuel"
+    }, 
+    {
+      "lemma": "Santos", 
+      "text": "Santos"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "el", 
+      "text": "el"
+    }, 
+    {
+      "lemma": "mandatario", 
+      "text": "mandatario"
+    }, 
+    {
+      "lemma": "mexicano", 
+      "text": "mexicano"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "Enrique", 
+      "text": "Enrique"
+    }, 
+    {
+      "lemma": "Peña", 
+      "text": "Peña"
+    }, 
+    {
+      "lemma": "Nieto", 
+      "text": "Nieto"
+    }, 
+    {
+      "lemma": "destacar", 
+      "text": "destacó"
+    }, 
+    {
+      "lemma": "que", 
+      "text": "que"
+    }, 
+    {
+      "lemma": "Colombia", 
+      "text": "Colombia"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "México", 
+      "text": "México"
+    }, 
+    {
+      "lemma": "ser", 
+      "text": "son"
+    }, 
+    {
+      "lemma": "dos", 
+      "text": "dos"
+    }, 
+    {
+      "lemma": "nación", 
+      "text": "naciones"
+    }, 
+    {
+      "lemma": "hermano", 
+      "text": "hermanas"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "unir", 
+      "text": "unidas"
+    }, 
+    {
+      "lemma": "por", 
+      "text": "por"
+    }, 
+    {
+      "lemma": "valor", 
+      "text": "valores"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "afecto", 
+      "text": "afectos"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "objetivo", 
+      "text": "objetivos"
+    }, 
+    {
+      "lemma": "común", 
+      "text": "comunes"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "sostener", 
+      "text": "Sostuvo"
+    }, 
+    {
+      "lemma": "que", 
+      "text": "que"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "el"
+    }, 
+    {
+      "lemma": "comercio", 
+      "text": "comercio"
+    }, 
+    {
+      "lemma": "bilateral", 
+      "text": "bilateral"
+    }, 
+    {
+      "lemma": "entre", 
+      "text": "entre"
+    }, 
+    {
+      "lemma": "ambos", 
+      "text": "ambas"
+    }, 
+    {
+      "lemma": "nación", 
+      "text": "naciones"
+    }, 
+    {
+      "lemma": "haber", 
+      "text": "ha"
+    }, 
+    {
+      "lemma": "crecer", 
+      "text": "crecido"
+    }, 
+    {
+      "lemma": "14", 
+      "text": "14"
+    }, 
+    {
+      "lemma": "%", 
+      "text": "%"
+    }, 
+    {
+      "lemma": "a el", 
+      "text": "al"
+    }, 
+    {
+      "lemma": "año", 
+      "text": "año"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "hoy", 
+      "text": "hoy"
+    }, 
+    {
+      "lemma": "ser", 
+      "text": "es"
+    }, 
+    {
+      "lemma": "12", 
+      "text": "12"
+    }, 
+    {
+      "lemma": "vez", 
+      "text": "veces"
+    }, 
+    {
+      "lemma": "más", 
+      "text": "más"
+    }, 
+    {
+      "lemma": "grande", 
+      "text": "grande"
+    }, 
+    {
+      "lemma": "que", 
+      "text": "que"
+    }, 
+    {
+      "lemma": "hacer", 
+      "text": "hace"
+    }, 
+    {
+      "lemma": "apenas", 
+      "text": "apenas"
+    }, 
+    {
+      "lemma": "dos", 
+      "text": "dos"
+    }, 
+    {
+      "lemma": "década", 
+      "text": "décadas"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "por", 
+      "text": "Por"
+    }, 
+    {
+      "lemma": "él", 
+      "text": "su"
+    }, 
+    {
+      "lemma": "parte", 
+      "text": "parte"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "el"
+    }, 
+    {
+      "lemma": "mandatario", 
+      "text": "mandatario"
+    }, 
+    {
+      "lemma": "Juan", 
+      "text": "Juan"
+    }, 
+    {
+      "lemma": "Manuel", 
+      "text": "Manuel"
+    }, 
+    {
+      "lemma": "Santos", 
+      "text": "Santos"
+    }, 
+    {
+      "lemma": "decir", 
+      "text": "dijo"
+    }, 
+    {
+      "lemma": "que", 
+      "text": "que"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "las"
+    }, 
+    {
+      "lemma": "relación", 
+      "text": "relaciones"
+    }, 
+    {
+      "lemma": "entre", 
+      "text": "entre"
+    }, 
+    {
+      "lemma": "México", 
+      "text": "México"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "Colombia", 
+      "text": "Colombia"
+    }, 
+    {
+      "lemma": "se", 
+      "text": "se"
+    }, 
+    {
+      "lemma": "elevar", 
+      "text": "elevarán"
+    }, 
+    {
+      "lemma": "a el", 
+      "text": "al"
+    }, 
+    {
+      "lemma": "rango", 
+      "text": "rango"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "asociación", 
+      "text": "asociación"
+    }, 
+    {
+      "lemma": "estratégico", 
+      "text": "estratégica"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "destacar", 
+      "text": "Destacó"
+    }, 
+    {
+      "lemma": "que", 
+      "text": "que"
+    }, 
+    {
+      "lemma": "“", 
+      "text": "“"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "alianza", 
+      "text": "Alianza"
+    }, 
+    {
+      "lemma": "pacífico", 
+      "text": "Pacífico"
+    }, 
+    {
+      "lemma": "haber", 
+      "text": "ha"
+    }, 
+    {
+      "lemma": "potenciar", 
+      "text": "potenciado"
+    }, 
+    {
+      "lemma": "nosotros", 
+      "text": "nuestro"
+    }, 
+    {
+      "lemma": "papel", 
+      "text": "papel"
+    }, 
+    {
+      "lemma": "en", 
+      "text": "en"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "región", 
+      "text": "región"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "junto", 
+      "text": "Junto"
+    }, 
+    {
+      "lemma": "con", 
+      "text": "con"
+    }, 
+    {
+      "lemma": "México", 
+      "text": "México"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "Perú", 
+      "text": "Perú"
+    }, 
+    {
+      "lemma": "y", 
+      "text": "y"
+    }, 
+    {
+      "lemma": "chile", 
+      "text": "Chile"
+    }, 
+    {
+      "lemma": "equivaler", 
+      "text": "equivalemos"
+    }, 
+    {
+      "lemma": "a", 
+      "text": "a"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "la"
+    }, 
+    {
+      "lemma": "sexto", 
+      "text": "sexta"
+    }, 
+    {
+      "lemma": "economía", 
+      "text": "economía"
+    }, 
+    {
+      "lemma": "de el", 
+      "text": "del"
+    }, 
+    {
+      "lemma": "mundo", 
+      "text": "mundo"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "el", 
+      "text": "La"
+    }, 
+    {
+      "lemma": "alianza", 
+      "text": "alianza"
+    }, 
+    {
+      "lemma": "ser", 
+      "text": "es"
+    }, 
+    {
+      "lemma": "el", 
+      "text": "el"
+    }, 
+    {
+      "lemma": "proceso", 
+      "text": "proceso"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "integración", 
+      "text": "integración"
+    }, 
+    {
+      "lemma": "más", 
+      "text": "más"
+    }, 
+    {
+      "lemma": "exitoso", 
+      "text": "exitoso"
+    }, 
+    {
+      "lemma": "de", 
+      "text": "de"
+    }, 
+    {
+      "lemma": "América", 
+      "text": "América"
+    }, 
+    {
+      "lemma": "Latina", 
+      "text": "Latina"
+    }, 
+    {
+      "lemma": "”", 
+      "text": "”"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "Alianza", 
+      "text": "Alianza"
+    }, 
+    {
+      "lemma": "de el", 
+      "text": "del"
+    }, 
+    {
+      "lemma": "pacífico", 
+      "text": "Pacífico"
+    }, 
+    {
+      "lemma": ",", 
+      "text": ","
+    }, 
+    {
+      "lemma": "abrir", 
+      "text": "abierta"
+    }, 
+    {
+      "lemma": "a el", 
+      "text": "al"
+    }, 
+    {
+      "lemma": "libre", 
+      "text": "libre"
+    }, 
+    {
+      "lemma": "comercio", 
+      "text": "comercio"
+    }, 
+    {
+      "lemma": ":", 
+      "text": ":"
+    }, 
+    {
+      "lemma": "Peña", 
+      "text": "Peña"
+    }, 
+    {
+      "lemma": "Nieto", 
+      "text": "Nieto"
+    }, 
+    {
+      "lemma": "ver", 
+      "text": "Ver"
+    }, 
+    {
+      "lemma": "nota", 
+      "text": "nota"
+    }, 
+    {
+      "lemma": ".", 
+      "text": "."
+    }, 
+    {
+      "lemma": "mrc", 
+      "text": "mrc"
     }
   ], 
   "posTags": [
     {
-      "pos": "VERBFIN", 
-      "text": "Usó"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "cartas"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "CONJ", 
-      "text": "e"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "-"
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "mails"
-    }, 
-    {
-      "pos": "CONJ", 
-      "text": "y"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "mensajes"
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "SMS"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "entre"
-    }, 
-    {
-      "pos": "ADJPL", 
-      "text": "otros"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "medios"
-    }, 
-    {
-      "pos": "VERBINF", 
-      "text": "flipear"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "Tienen"
-    }, 
-    {
-      "pos": "DETQUANTSG", 
-      "text": "una"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "cultura"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "lealtad"
-    }, 
-    {
-      "pos": "CONJ", 
-      "text": "y"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "desarrollo"
-    }, 
-    {
-      "pos": "QUE", 
-      "text": "que"
-    }, 
-    {
-      "pos": "DETPL", 
-      "text": "los"
-    }, 
-    {
-      "pos": "ADJ", 
-      "text": "millennials"
-    }, 
-    {
-      "pos": "ADVNEG", 
-      "text": "no"
-    }, 
-    {
-      "pos": "VERBINF", 
-      "text": "flipear"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "Expertos"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "pronostican"
-    }, 
-    {
-      "pos": "DETQUANTSG", 
-      "text": "un"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "valor"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "promedio"
-    }, 
-    {
-      "pos": "PREPDET", 
-      "text": "del"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "barril"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "hasta"
+      "pos": "DIG", 
+      "text": "00"
     }, 
     {
       "pos": "DIG", 
-      "text": "60"
+      "text": "00"
     }, 
     {
-      "pos": "NOUNPL", 
-      "text": "dólares"
-    }, 
-    {
-      "pos": "VERBINF", 
-      "text": "flipear"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "Tanto"
-    }, 
-    {
-      "pos": "DETPL", 
-      "text": "las"
-    }, 
-    {
-      "pos": "ADJPL", 
-      "text": "grandes"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "organizaciones"
-    }, 
-    {
-      "pos": "COMO", 
-      "text": "como"
-    }, 
-    {
-      "pos": "DETPL", 
-      "text": "las"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "pymes"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "necesitan"
-    }, 
-    {
-      "pos": "VERBINF", 
-      "text": "cambiar"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "su"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "visión"
-    }, 
-    {
-      "pos": "VERBINF", 
-      "text": "flipear"
-    }, 
-    {
-      "pos": "AUX", 
-      "text": "Son"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "segunda"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "fuente"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "divisas"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "Manufacturas"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "principal"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "generador"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "recursos"
-    }, 
-    {
-      "pos": "VERBINF", 
-      "text": "flipear"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "Quiere"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "tecnología"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "para"
-    }, 
-    {
-      "pos": "VERBINF", 
-      "text": "evitar"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "caída"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "en"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "el"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "nivel"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "producción"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "Cantarell"
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "Banxico"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ":"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "minería"
-    }, 
-    {
-      "pos": "CONJ", 
-      "text": "y"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "construcción"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "pegan"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "a"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "crecimiento"
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "Sara"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "Cantera"
+      "pos": "DIG", 
+      "text": "00"
     }, 
     {
       "pos": "PUNCT", 
       "text": "|"
     }, 
     {
-      "pos": "DETSG", 
-      "text": "El"
+      "pos": "DIG", 
+      "text": "00:00"
     }, 
     {
-      "pos": "ADJSG", 
-      "text": "Universal"
+      "pos": "NOUNPL", 
+      "text": "SECCIONES"
     }, 
     {
-      "pos": "ADV", 
-      "text": "11:04Ciudad"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
+      "pos": "NOUNSG", 
+      "text": "Sociedad"
     }, 
     {
       "pos": "PROP", 
       "text": "México"
     }, 
     {
-      "pos": "PUNCT", 
-      "text": "|"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Miércoles"
-    }, 
-    {
-      "pos": "DIG", 
-      "text": "06"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "mayo"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "DIG", 
-      "text": "2015"
+      "pos": "CONJ", 
+      "text": "y"
     }, 
     {
       "pos": "PROP", 
-      "text": "Tweet"
+      "text": "Colombia"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "naciones"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "con"
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "objetivos"
+    }, 
+    {
+      "pos": "ADJPL", 
+      "text": "comunes"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": ":"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "EPN"
     }, 
     {
       "pos": "PREP", 
@@ -2086,7 +1018,7 @@
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "caso"
+      "text": "marco"
     }, 
     {
       "pos": "PREP", 
@@ -2098,143 +1030,47 @@
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "construcción"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "Carstens"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "explicó"
-    }, 
-    {
-      "pos": "QUE", 
-      "text": "que"
-    }, 
-    {
-      "pos": "PRONDEM", 
-      "text": "ésta"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "ya"
-    }, 
-    {
-      "pos": "SE", 
-      "text": "se"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "había"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "recuperado"
+      "text": "visita"
     }, 
     {
       "pos": "PREP", 
-      "text": "en"
+      "text": "de"
     }, 
     {
-      "pos": "DETPL", 
-      "text": "los"
-    }, 
-    {
-      "pos": "ADJPL", 
-      "text": "últimos"
-    }, 
-    {
-      "pos": "DIG", 
-      "text": "13"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "meses"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
+      "pos": "NOUNSG", 
+      "text": "Estado"
     }, 
     {
       "pos": "CONJ", 
-      "text": "pero"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "recientemente"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "cayó"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "("
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "Foto"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ":"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "Archivo"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ")"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "Notas"
-    }, 
-    {
-      "pos": "PAPPL", 
-      "text": "Relacionadas"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ":"
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "sara.cantera"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "@"
-    }, 
-    {
-      "pos": "ADJ", 
-      "text": "eluniversal.com.mx"
+      "text": "y"
     }, 
     {
       "pos": "DETSG", 
-      "text": "El"
+      "text": "la"
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "gobernador"
+      "text": "ceremonia"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "oficial"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "de"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "bienvenida"
     }, 
     {
       "pos": "PREPDET", 
-      "text": "del"
+      "text": "al"
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "Banco"
+      "text": "presidente"
     }, 
     {
       "pos": "PREP", 
@@ -2242,19 +1078,7 @@
     }, 
     {
       "pos": "PROP", 
-      "text": "México"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "("
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "Banxico"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ")"
+      "text": "Colombia"
     }, 
     {
       "pos": "CM", 
@@ -2262,51 +1086,19 @@
     }, 
     {
       "pos": "PROP", 
-      "text": "Agustín"
+      "text": "juan"
     }, 
     {
       "pos": "PROP", 
-      "text": "Carstens"
+      "text": "Manuel"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Santos"
     }, 
     {
       "pos": "CM", 
       "text": ","
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "recomendó"
-    }, 
-    {
-      "pos": "ADVNEG", 
-      "text": "no"
-    }, 
-    {
-      "pos": "VERBINF", 
-      "text": "subir"
-    }, 
-    {
-      "pos": "DETPL", 
-      "text": "las"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "tasas"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "interés"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "por"
     }, 
     {
       "pos": "DETSG", 
@@ -2314,323 +1106,51 @@
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "momento"
+      "text": "mandatario"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "mexicano"
     }, 
     {
       "pos": "CM", 
       "text": ","
     }, 
     {
-      "pos": "PAPSG", 
-      "text": "debido"
+      "pos": "PROP", 
+      "text": "Enrique"
     }, 
     {
-      "pos": "PREP", 
-      "text": "a"
+      "pos": "PROP", 
+      "text": "Peña"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Nieto"
+    }, 
+    {
+      "pos": "VERBFIN", 
+      "text": "destacó"
     }, 
     {
       "pos": "QUE", 
       "text": "que"
     }, 
     {
-      "pos": "DETPL", 
-      "text": "las"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "perspectivas"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "crecimiento"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "economía"
-    }, 
-    {
-      "pos": "SE", 
-      "text": "se"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "han"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "revisado"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "a"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "baja"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "Durante"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "su"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "participación"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "en"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "DIG", 
-      "text": "25"
-    }, 
-    {
       "pos": "PROP", 
-      "text": "Convención"
+      "text": "Colombia"
     }, 
     {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "Aseguradores"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
+      "pos": "CONJ", 
+      "text": "y"
     }, 
     {
       "pos": "PROP", 
       "text": "México"
     }, 
     {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "Carstens"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "mencionó"
-    }, 
-    {
-      "pos": "QUE", 
-      "text": "que"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "economía"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "ha"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "disminuido"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "por"
-    }, 
-    {
-      "pos": "DETQUANTSG", 
-      "text": "una"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "menor"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "actividad"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "en"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "el"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "sector"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "construcción"
-    }, 
-    {
-      "pos": "CONJ", 
-      "text": "y"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "minería"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "\""
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "La"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "economía"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "mexicana"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "sigue"
-    }, 
-    {
-      "pos": "VERBPRP", 
-      "text": "creciendo"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "quizá"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "a"
-    }, 
-    {
-      "pos": "DETQUANTSG", 
-      "text": "un"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "ritmo"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "menor"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "lo"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "esperado"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "producción"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "industrial"
-    }, 
-    {
-      "pos": "ADVNEG", 
-      "text": "no"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "ha"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "crecido"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "tanto"
-    }, 
-    {
-      "pos": "COMO", 
-      "text": "como"
-    }, 
-    {
-      "pos": "PRONCLIT", 
-      "text": "nos"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "hubiera"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "gustado"
-    }, 
-    {
-      "pos": "CONJ", 
-      "text": "y"
-    }, 
-    {
-      "pos": "DETPL", 
-      "text": "los"
+      "pos": "AUX", 
+      "text": "son"
     }, 
     {
       "pos": "NUM", 
@@ -2638,407 +1158,95 @@
     }, 
     {
       "pos": "NOUNPL", 
-      "text": "factores"
-    }, 
-    {
-      "pos": "QUE", 
-      "text": "que"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "han"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "contribuido"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "han"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "sido"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "minería"
-    }, 
-    {
-      "pos": "CONJ", 
-      "text": "y"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "construcción"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "\""
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "dijo"
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "Carstens"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "En"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "el"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "caso"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "construcción"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "Banxico"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "explicó"
-    }, 
-    {
-      "pos": "QUE", 
-      "text": "que"
-    }, 
-    {
-      "pos": "PRONDEM", 
-      "text": "ésta"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "ya"
-    }, 
-    {
-      "pos": "SE", 
-      "text": "se"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "había"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "recuperado"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "en"
-    }, 
-    {
-      "pos": "DETPL", 
-      "text": "los"
-    }, 
-    {
-      "pos": "ADJPL", 
-      "text": "últimos"
-    }, 
-    {
-      "pos": "DIG", 
-      "text": "13"
+      "text": "naciones"
     }, 
     {
       "pos": "NOUNPL", 
-      "text": "meses"
+      "text": "hermanas"
     }, 
     {
       "pos": "CM", 
       "text": ","
-    }, 
-    {
-      "pos": "CONJ", 
-      "text": "pero"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "más"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "recientemente"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "cayó"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "tanto"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "residencial"
-    }, 
-    {
-      "pos": "COMO", 
-      "text": "como"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "ADVNEG", 
-      "text": "no"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "residencial"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "mientras"
-    }, 
-    {
-      "pos": "QUE", 
-      "text": "que"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "construcción"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "infraestructura"
-    }, 
-    {
-      "pos": "PREPDET", 
-      "text": "del"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "gobierno"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "también"
-    }, 
-    {
-      "pos": "SE", 
-      "text": "se"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "ha"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "rezagado"
-    }, 
-    {
-      "pos": "DETQUANTSG", 
-      "text": "un"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "poco"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "En"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "el"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "caso"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "minería"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "el"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "factor"
-    }, 
-    {
-      "pos": "QUE", 
-      "text": "que"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "más"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "ha"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "contribuido"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "ha"
-    }, 
-    {
-      "pos": "PAPSG", 
-      "text": "sido"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "plataforma"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "producción"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "PROP", 
-      "text": "Pemex"
-    }, 
-    {
-      "pos": "CONJ", 
-      "text": "y"
-    }, 
-    {
-      "pos": "PREDETPL", 
-      "text": "todas"
-    }, 
-    {
-      "pos": "DETPL", 
-      "text": "las"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "actividades"
     }, 
     {
       "pos": "PAPPL", 
-      "text": "relacionadas"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "con"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "extracción"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "petróleo"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
+      "text": "unidas"
     }, 
     {
       "pos": "PREP", 
       "text": "por"
     }, 
     {
-      "pos": "DETSG", 
-      "text": "lo"
+      "pos": "NOUNPL", 
+      "text": "valores"
     }, 
     {
-      "pos": "QUE", 
-      "text": "que"
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "afectos"
+    }, 
+    {
+      "pos": "CONJ", 
+      "text": "y"
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "objetivos"
+    }, 
+    {
+      "pos": "ADJPL", 
+      "text": "comunes"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "VERBINF", 
+      "text": "compartir"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": ":"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "Por"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": ":"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "Redacción"
+    }, 
+    {
+      "pos": "NOUN", 
+      "text": "Viernes"
+    }, 
+    {
+      "pos": "DIG", 
+      "text": "08"
+    }, 
+    {
+      "pos": "DIG", 
+      "text": "05"
+    }, 
+    {
+      "pos": "DIG", 
+      "text": "15"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "En"
     }, 
     {
       "pos": "DETSG", 
@@ -3046,15 +1254,59 @@
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "gobernador"
+      "text": "marco"
     }, 
     {
-      "pos": "PREPDET", 
-      "text": "del"
+      "pos": "PREP", 
+      "text": "de"
+    }, 
+    {
+      "pos": "DETSG", 
+      "text": "la"
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "Banco"
+      "text": "visita"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "Estado"
+    }, 
+    {
+      "pos": "CONJ", 
+      "text": "y"
+    }, 
+    {
+      "pos": "DETSG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "ceremonia"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "oficial"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "de"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "bienvenida"
+    }, 
+    {
+      "pos": "PREPDET", 
+      "text": "al"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "presidente"
     }, 
     {
       "pos": "PREP", 
@@ -3062,59 +1314,27 @@
     }, 
     {
       "pos": "PROP", 
-      "text": "México"
+      "text": "Colombia"
     }, 
     {
-      "pos": "VERBFIN", 
-      "text": "demandó"
+      "pos": "CM", 
+      "text": ","
     }, 
     {
-      "pos": "DETSG", 
-      "text": "la"
+      "pos": "PROP", 
+      "text": "Juan"
     }, 
     {
-      "pos": "NOUNSG", 
-      "text": "urgencia"
+      "pos": "PROP", 
+      "text": "Manuel"
     }, 
     {
-      "pos": "PREP", 
-      "text": "de"
+      "pos": "PROP", 
+      "text": "Santos"
     }, 
     {
-      "pos": "QUE", 
-      "text": "que"
-    }, 
-    {
-      "pos": "SE", 
-      "text": "se"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "implemente"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "lo"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "antes"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "posible"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "reforma"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "en"
+      "pos": "CM", 
+      "text": ","
     }, 
     {
       "pos": "DETSG", 
@@ -3122,11 +1342,207 @@
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "sector"
+      "text": "mandatario"
     }, 
     {
       "pos": "ADJSG", 
-      "text": "petrolero"
+      "text": "mexicano"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Enrique"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Peña"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Nieto"
+    }, 
+    {
+      "pos": "VERBFIN", 
+      "text": "destacó"
+    }, 
+    {
+      "pos": "QUE", 
+      "text": "que"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Colombia"
+    }, 
+    {
+      "pos": "CONJ", 
+      "text": "y"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "México"
+    }, 
+    {
+      "pos": "AUX", 
+      "text": "son"
+    }, 
+    {
+      "pos": "NUM", 
+      "text": "dos"
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "naciones"
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "hermanas"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PAPPL", 
+      "text": "unidas"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "por"
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "valores"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "afectos"
+    }, 
+    {
+      "pos": "CONJ", 
+      "text": "y"
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "objetivos"
+    }, 
+    {
+      "pos": "ADJPL", 
+      "text": "comunes"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "VERBFIN", 
+      "text": "Sostuvo"
+    }, 
+    {
+      "pos": "QUE", 
+      "text": "que"
+    }, 
+    {
+      "pos": "DETSG", 
+      "text": "el"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "comercio"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "bilateral"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "entre"
+    }, 
+    {
+      "pos": "DETQUANTPL", 
+      "text": "ambas"
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "naciones"
+    }, 
+    {
+      "pos": "HAB", 
+      "text": "ha"
+    }, 
+    {
+      "pos": "PAPSG", 
+      "text": "crecido"
+    }, 
+    {
+      "pos": "DIG", 
+      "text": "14"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "%"
+    }, 
+    {
+      "pos": "PREPDET", 
+      "text": "al"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "año"
+    }, 
+    {
+      "pos": "CONJ", 
+      "text": "y"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "hoy"
+    }, 
+    {
+      "pos": "AUX", 
+      "text": "es"
+    }, 
+    {
+      "pos": "DIG", 
+      "text": "12"
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "veces"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "más"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "grande"
+    }, 
+    {
+      "pos": "QUE", 
+      "text": "que"
+    }, 
+    {
+      "pos": "VERBFIN", 
+      "text": "hace"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "apenas"
+    }, 
+    {
+      "pos": "NUM", 
+      "text": "dos"
+    }, 
+    {
+      "pos": "NOUNPL", 
+      "text": "décadas"
     }, 
     {
       "pos": "SENT", 
@@ -3134,7 +1550,7 @@
     }, 
     {
       "pos": "PREP", 
-      "text": "Durante"
+      "text": "Por"
     }, 
     {
       "pos": "DETSG", 
@@ -3142,11 +1558,7 @@
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "presentación"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
+      "text": "parte"
     }, 
     {
       "pos": "DETSG", 
@@ -3154,43 +1566,27 @@
     }, 
     {
       "pos": "NOUNSG", 
-      "text": "gobernador"
-    }, 
-    {
-      "pos": "PREPDET", 
-      "text": "del"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "Banco"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "de"
+      "text": "mandatario"
     }, 
     {
       "pos": "PROP", 
-      "text": "México"
+      "text": "Juan"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Manuel"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Santos"
     }, 
     {
       "pos": "VERBFIN", 
-      "text": "aseguró"
+      "text": "dijo"
     }, 
     {
       "pos": "QUE", 
       "text": "que"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "el"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "aumento"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "en"
     }, 
     {
       "pos": "DETPL", 
@@ -3198,43 +1594,11 @@
     }, 
     {
       "pos": "NOUNPL", 
-      "text": "tasas"
+      "text": "relaciones"
     }, 
     {
       "pos": "PREP", 
-      "text": "de"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "interés"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "en"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "Estados"
-    }, 
-    {
-      "pos": "PAPPL", 
-      "text": "Unidos"
-    }, 
-    {
-      "pos": "AUX", 
-      "text": "son"
-    }, 
-    {
-      "pos": "ADJPL", 
-      "text": "buenas"
-    }, 
-    {
-      "pos": "NOUNPL", 
-      "text": "noticias"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "para"
+      "text": "entre"
     }, 
     {
       "pos": "PROP", 
@@ -3242,63 +1606,11 @@
     }, 
     {
       "pos": "CONJ", 
-      "text": "porque"
-    }, 
-    {
-      "pos": "PRONDEM", 
-      "text": "eso"
-    }, 
-    {
-      "pos": "VERBFIN", 
-      "text": "significa"
-    }, 
-    {
-      "pos": "QUE", 
-      "text": "que"
-    }, 
-    {
-      "pos": "DETSG", 
-      "text": "la"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "economía"
-    }, 
-    {
-      "pos": "ADJSG", 
-      "text": "estadounidense"
-    }, 
-    {
-      "pos": "AUX", 
-      "text": "está"
-    }, 
-    {
-      "pos": "VERBPRP", 
-      "text": "creciendo"
-    }, 
-    {
-      "pos": "CONJ", 
       "text": "y"
     }, 
     {
-      "pos": "CONJ", 
-      "text": "si"
-    }, 
-    {
-      "pos": "HAB", 
-      "text": "hay"
-    }, 
-    {
-      "pos": "DETQUANTSG", 
-      "text": "un"
-    }, 
-    {
-      "pos": "NOUNSG", 
-      "text": "país"
-    }, 
-    {
-      "pos": "QUE", 
-      "text": "que"
+      "pos": "PROP", 
+      "text": "Colombia"
     }, 
     {
       "pos": "SE", 
@@ -3306,31 +1618,199 @@
     }, 
     {
       "pos": "VERBFIN", 
-      "text": "puede"
+      "text": "elevarán"
     }, 
     {
-      "pos": "VERBINFCL", 
-      "text": "beneficiarse"
+      "pos": "PREPDET", 
+      "text": "al"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "rango"
     }, 
     {
       "pos": "PREP", 
       "text": "de"
     }, 
     {
-      "pos": "PRONDEM", 
-      "text": "eso"
+      "pos": "NOUNSG", 
+      "text": "asociación"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "estratégica"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "VERBFIN", 
+      "text": "Destacó"
+    }, 
+    {
+      "pos": "QUE", 
+      "text": "que"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "“"
+    }, 
+    {
+      "pos": "DETSG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "Alianza"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "Pacífico"
+    }, 
+    {
+      "pos": "HAB", 
+      "text": "ha"
+    }, 
+    {
+      "pos": "PAPSG", 
+      "text": "potenciado"
+    }, 
+    {
+      "pos": "DETSG", 
+      "text": "nuestro"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "papel"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "en"
+    }, 
+    {
+      "pos": "DETSG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "región"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "Junto"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "con"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "México"
     }, 
     {
       "pos": "CM", 
       "text": ","
     }, 
     {
+      "pos": "PROP", 
+      "text": "Perú"
+    }, 
+    {
+      "pos": "CONJ", 
+      "text": "y"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "Chile"
+    }, 
+    {
+      "pos": "VERBFIN", 
+      "text": "equivalemos"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "a"
+    }, 
+    {
+      "pos": "DETSG", 
+      "text": "la"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "sexta"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "economía"
+    }, 
+    {
+      "pos": "PREPDET", 
+      "text": "del"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "mundo"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "DETSG", 
+      "text": "La"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "alianza"
+    }, 
+    {
       "pos": "AUX", 
       "text": "es"
     }, 
     {
+      "pos": "DETSG", 
+      "text": "el"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "proceso"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "de"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "integración"
+    }, 
+    {
+      "pos": "ADV", 
+      "text": "más"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "exitoso"
+    }, 
+    {
+      "pos": "PREP", 
+      "text": "de"
+    }, 
+    {
       "pos": "PROP", 
-      "text": "México"
+      "text": "América"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Latina"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": "”"
     }, 
     {
       "pos": "SENT", 
@@ -3338,14 +1818,70 @@
     }, 
     {
       "pos": "PROP", 
-      "text": "tcm"
+      "text": "Alianza"
+    }, 
+    {
+      "pos": "PREPDET", 
+      "text": "del"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "Pacífico"
+    }, 
+    {
+      "pos": "CM", 
+      "text": ","
+    }, 
+    {
+      "pos": "PAPSG", 
+      "text": "abierta"
+    }, 
+    {
+      "pos": "PREPDET", 
+      "text": "al"
+    }, 
+    {
+      "pos": "ADJSG", 
+      "text": "libre"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "comercio"
+    }, 
+    {
+      "pos": "PUNCT", 
+      "text": ":"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Peña"
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "Nieto"
+    }, 
+    {
+      "pos": "VERBINF", 
+      "text": "Ver"
+    }, 
+    {
+      "pos": "NOUNSG", 
+      "text": "nota"
+    }, 
+    {
+      "pos": "SENT", 
+      "text": "."
+    }, 
+    {
+      "pos": "PROP", 
+      "text": "mrc"
     }
   ], 
-  "requestId": "005add3d-01c1-48a7-863f-c2d1c845d98c", 
+  "requestId": "c77f0d0f-1474-4d2c-b6cc-a88bcc32f4cb", 
   "timers": {
-    "rblJe": 2, 
+    "rblJe": 3, 
     "rliJe": 2, 
-    "textExtractor": 11, 
-    "urlContentDownloader": 182
+    "textExtractor": 16, 
+    "urlContentDownloader": 394
   }
 }

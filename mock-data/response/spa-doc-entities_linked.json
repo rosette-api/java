@@ -1,83 +1,83 @@
 {
   "entities": [
     {
-      "confidence": 0.974617500907149, 
+      "confidence": 0.8757866343012634, 
       "entityId": "Q1538109", 
       "indocChainId": 0, 
       "mention": "Plaza Murillo"
     }, 
     {
-      "confidence": 0.24632774121373424, 
-      "entityId": "Q1357543", 
+      "confidence": 0.23325987595467873, 
+      "entityId": "Q1968468", 
       "indocChainId": 1, 
       "mention": "Congreso"
     }, 
     {
-      "confidence": 0.5041555964841847, 
+      "confidence": 0.4943574784967166, 
       "entityId": "Q750", 
       "indocChainId": 2, 
       "mention": "Bolivia"
     }, 
     {
-      "confidence": 0.9969397057454642, 
+      "confidence": 0.9709488590752338, 
       "entityId": "Q320", 
       "indocChainId": 4, 
       "mention": "Michelle Bachelet"
     }, 
     {
-      "confidence": 0.9577388463738699, 
+      "confidence": 0.9073784117252339, 
       "entityId": "Q42410", 
       "indocChainId": 5, 
       "mention": "Evo Morales"
     }, 
     {
-      "confidence": 0.9944393714105648, 
+      "confidence": 0.9782520190044777, 
       "entityId": "Q306", 
-      "indocChainId": 11, 
+      "indocChainId": 9, 
       "mention": "Sebastián Piñera"
     }, 
     {
-      "confidence": 0.4243315068802296, 
+      "confidence": 0.44526039329725764, 
       "entityId": "Q298", 
-      "indocChainId": 12, 
+      "indocChainId": 10, 
       "mention": "Chile"
     }, 
     {
-      "confidence": 0.5489754552774566, 
+      "confidence": 0.41413787584636874, 
       "entityId": "NEW-CLUSTER", 
-      "indocChainId": 13, 
+      "indocChainId": 11, 
       "mention": "Mandataria"
     }, 
     {
-      "confidence": 0.11775438348038722, 
+      "confidence": 0.12817777394769103, 
       "entityId": "Q1491", 
-      "indocChainId": 17, 
+      "indocChainId": 15, 
       "mention": "La Paz"
     }, 
     {
-      "confidence": 0.684389634066673, 
+      "confidence": 0.40243466858079857, 
       "entityId": "Q326", 
-      "indocChainId": 20, 
+      "indocChainId": 17, 
       "mention": "Eduardo Frei"
     }, 
     {
-      "confidence": 0.6660524458959112, 
+      "confidence": 0.34244930604731305, 
       "entityId": "Q98", 
-      "indocChainId": 22, 
+      "indocChainId": 19, 
       "mention": "Pacífico"
     }, 
     {
-      "confidence": 0.9203204091581866, 
+      "confidence": 0.8375832214872945, 
       "entityId": "Q58136", 
-      "indocChainId": 25, 
+      "indocChainId": 21, 
       "mention": "David Choquehuanca"
     }
   ], 
-  "requestId": "483b59c9-30bd-4813-b9c9-d153538cb259", 
+  "requestId": "702b7c21-68f4-4250-bd30-2b82eb9f5736", 
   "timers": {
-    "rblJe": 2, 
-    "res": 222, 
-    "rexJe": 49, 
-    "rliJe": 2
+    "rblJe": 5, 
+    "res": 1429, 
+    "rexJe": 18, 
+    "rliJe": 3
   }
 }

@@ -1,18 +1,18 @@
 {
-  "requestId": "44b0c3a8-6fda-49c3-b672-c856cbcc2a4d", 
+  "requestId": "406f10ca-ca7b-4ea2-ba81-103df64202c7", 
   "sentiment": [
     {
-      "confidence": 0.8065098103642114, 
+      "confidence": 0.8017006157160519, 
       "label": "neg"
     }, 
     {
-      "confidence": 0.1934901896357885, 
+      "confidence": 0.19829938428394817, 
       "label": "pos"
     }
   ], 
   "timers": {
-    "rblJe": 2, 
-    "rliJe": 3, 
-    "sent": 5
+    "rblJe": 11, 
+    "rliJe": 21, 
+    "sent": 39
   }
 }

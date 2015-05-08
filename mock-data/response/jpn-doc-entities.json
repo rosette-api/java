@@ -3,7 +3,7 @@
     {
       "confidence": 0.005091860890388489, 
       "count": 4, 
-      "indocChainId": 12, 
+      "indocChainId": 11, 
       "mention": "イギリス", 
       "normalized": "イギリス", 
       "type": "ORGANIZATION"
@@ -11,7 +11,7 @@
     {
       "confidence": 1.0, 
       "count": 3, 
-      "indocChainId": 35, 
+      "indocChainId": 29, 
       "mention": "下院", 
       "normalized": "下院", 
       "type": "ORGANIZATION"
@@ -19,7 +19,7 @@
     {
       "confidence": 1.0, 
       "count": 3, 
-      "indocChainId": 43, 
+      "indocChainId": 37, 
       "mention": "上院", 
       "normalized": "上院", 
       "type": "ORGANIZATION"
@@ -75,7 +75,7 @@
     {
       "confidence": 1.0, 
       "count": 2, 
-      "indocChainId": 16, 
+      "indocChainId": 14, 
       "mention": "ハーバード大学", 
       "normalized": "ハーバード大学", 
       "type": "ORGANIZATION"
@@ -83,7 +83,7 @@
     {
       "confidence": 1.0, 
       "count": 2, 
-      "indocChainId": 38, 
+      "indocChainId": 32, 
       "mention": "共和党", 
       "normalized": "共和党", 
       "type": "ORGANIZATION"
@@ -145,17 +145,9 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 11, 
-      "mention": "1935年", 
-      "normalized": "1935年", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.0014181733131408691, 
       "count": 1, 
-      "indocChainId": 13, 
+      "indocChainId": 12, 
       "mention": "ロンドン", 
       "normalized": "ロンドン", 
       "type": "LOCATION"
@@ -163,7 +155,7 @@
     {
       "confidence": 0.0014181733131408691, 
       "count": 1, 
-      "indocChainId": 14, 
+      "indocChainId": 13, 
       "mention": "オブ・エコノミクス", 
       "normalized": "オブ・エコノミクス", 
       "type": "ORGANIZATION"
@@ -172,30 +164,14 @@
       "confidence": 1.0, 
       "count": 1, 
       "indocChainId": 15, 
-      "mention": "1年間", 
-      "normalized": "1年間", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 17, 
       "mention": "プリンストン大学", 
       "normalized": "プリンストン大学", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 18, 
-      "mention": "1936年", 
-      "normalized": "1936年", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.012808084487915039, 
       "count": 1, 
-      "indocChainId": 20, 
+      "indocChainId": 17, 
       "mention": "ヨーロッパ", 
       "normalized": "ヨーロッパ", 
       "type": "LOCATION"
@@ -203,31 +179,15 @@
     {
       "confidence": 0.012429237365722656, 
       "count": 1, 
-      "indocChainId": 21, 
+      "indocChainId": 18, 
       "mention": "大使", 
       "normalized": "大使", 
       "type": "TITLE"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 23, 
-      "mention": "1940年6月", 
-      "normalized": "1940年6月", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 24, 
-      "mention": "1938年", 
-      "normalized": "1938年", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.010786056518554688, 
       "count": 1, 
-      "indocChainId": 25, 
+      "indocChainId": 20, 
       "mention": "ミュンヘン", 
       "normalized": "ミュンヘン", 
       "type": "LOCATION"
@@ -235,23 +195,15 @@
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 28, 
+      "indocChainId": 23, 
       "mention": "ハーバード", 
       "normalized": "ハーバード", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 30, 
-      "mention": "1946年", 
-      "normalized": "1946年", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.0019164681434631348, 
       "count": 1, 
-      "indocChainId": 31, 
+      "indocChainId": 25, 
       "mention": "ジェームズ・M・カーレイ", 
       "normalized": "ジェームズ・M・カーレイ", 
       "type": "ORGANIZATION"
@@ -259,7 +211,7 @@
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 34, 
+      "indocChainId": 28, 
       "mention": "民主党", 
       "normalized": "民主党", 
       "type": "ORGANIZATION"
@@ -267,7 +219,7 @@
     {
       "confidence": 0.04107320308685303, 
       "count": 1, 
-      "indocChainId": 42, 
+      "indocChainId": 36, 
       "mention": "ジョセフ・マッカーシー", 
       "normalized": "ジョセフ・マッカーシー", 
       "type": "PERSON"
@@ -275,7 +227,7 @@
     {
       "confidence": 0.0024489164352416992, 
       "count": 1, 
-      "indocChainId": 44, 
+      "indocChainId": 38, 
       "mention": "赤狩り", 
       "normalized": "赤狩り", 
       "type": "ORGANIZATION"
@@ -283,23 +235,15 @@
     {
       "confidence": 0.01878488063812256, 
       "count": 1, 
-      "indocChainId": 45, 
+      "indocChainId": 39, 
       "mention": "エレノア・ルーズヴェルト", 
       "normalized": "エレノア・ルーズヴェルト", 
       "type": "PERSON"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 48, 
-      "mention": "1952年", 
-      "normalized": "1952年", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.010483860969543457, 
       "count": 1, 
-      "indocChainId": 51, 
+      "indocChainId": 44, 
       "mention": "ヘンリー・カボット・ロッジ", 
       "normalized": "ヘンリー・カボット・ロッジ", 
       "type": "PERSON"
@@ -307,23 +251,15 @@
     {
       "confidence": 0.03342700004577637, 
       "count": 1, 
-      "indocChainId": 52, 
+      "indocChainId": 45, 
       "mention": "都市", 
       "normalized": "都市", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 53, 
-      "mention": "1953年9月12日", 
-      "normalized": "1953年9月12日", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.021946430206298828, 
       "count": 1, 
-      "indocChainId": 54, 
+      "indocChainId": 46, 
       "mention": "フランス", 
       "normalized": "フランス", 
       "type": "LOCATION"
@@ -331,7 +267,7 @@
     {
       "confidence": 0.009429752826690674, 
       "count": 1, 
-      "indocChainId": 55, 
+      "indocChainId": 47, 
       "mention": "ジャクリーン・リー・ブーヴィエ", 
       "normalized": "ジャクリーン・リー・ブーヴィエ", 
       "type": "PERSON"
@@ -339,15 +275,7 @@
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 56, 
-      "mention": "2年間", 
-      "normalized": "2年間", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 58, 
+      "indocChainId": 49, 
       "mention": "黒人", 
       "normalized": "黒人", 
       "type": "NATIONALITY"
@@ -355,24 +283,16 @@
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 59, 
-      "mention": "ja.wikipedia.org/", 
-      "normalized": "ja.wikipedia.org/", 
+      "indocChainId": 50, 
+      "mention": "http://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%B3%E3%83%BBF%E3%83%BB%E3%82%B1%E3%83%8D%E3%83%87%E3%82%A3", 
+      "normalized": "http://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%B3%E3%83%BBF%E3%83%BB%E3%82%B1%E3%83%8D%E3%83%87%E3%82%A3", 
       "type": "IDENTIFIER:URL"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 60, 
-      "mention": "2010.01.26", 
-      "normalized": "2010.01.26", 
-      "type": "TEMPORAL:DATE"
     }
   ], 
-  "requestId": "6602915c-b1a6-4fb6-9434-efde8828d630", 
+  "requestId": "d32a9669-1a57-40ee-8f8d-893d2c9ac20f", 
   "timers": {
-    "rblJe": 9, 
-    "rexJe": 70, 
-    "rliJe": 2
+    "rblJe": 27, 
+    "rexJe": 67, 
+    "rliJe": 3
   }
 }

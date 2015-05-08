@@ -2,11 +2,11 @@
   "languageDetections": [
     {
       "confidence": 0.04065858941640477, 
-      "language": "zhs"
+      "language": "zho"
     }, 
     {
       "confidence": 0.01644532195896431, 
-      "language": "zht"
+      "language": "zho"
     }, 
     {
       "confidence": 0.004008360564392355, 
@@ -21,8 +21,8 @@
       "language": "ita"
     }
   ], 
-  "requestId": "bfc8f627-719d-40e0-b0a9-c632f3f032ae", 
+  "requestId": "936affd3-4f51-47f1-a2ff-4b7b9b89847d", 
   "timers": {
-    "rliJe": 1
+    "rliJe": 10
   }
 }

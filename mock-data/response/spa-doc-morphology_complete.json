@@ -1019,7 +1019,7 @@
       "text": "Paz"
     }, 
     {
-      "lemma": "crear", 
+      "lemma": "creer", 
       "text": "creen"
     }, 
     {
@@ -3213,9 +3213,9 @@
       "text": "2010.01.23"
     }
   ], 
-  "requestId": "ff2b75d3-c1c8-4ab7-a6a9-c0279cbc0b32", 
+  "requestId": "adcc0f54-1882-44af-ae25-2de733ee5ca0", 
   "timers": {
-    "rblJe": 2, 
-    "rliJe": 2
+    "rblJe": 76, 
+    "rliJe": 3
   }
 }
