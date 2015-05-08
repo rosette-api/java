@@ -1,19 +1,19 @@
 {
   "languageDetections": [
     {
-      "confidence": 0.2575170968964936, 
+      "confidence": 0.2576247444801467, 
       "language": "kor"
     }, 
     {
-      "confidence": 0.00029441641873084734, 
-      "language": "zht"
+      "confidence": 0.0002490209464562909, 
+      "language": "zho"
     }, 
     {
-      "confidence": 0.00025290563778190833, 
-      "language": "zhs"
+      "confidence": 0.00021850038841830788, 
+      "language": "zho"
     }, 
     {
-      "confidence": 0.00013251889484222623, 
+      "confidence": 0.00010487340166964731, 
       "language": "jpn"
     }, 
     {
@@ -21,8 +21,8 @@
       "language": "ara"
     }
   ], 
-  "requestId": "f9887980-23d8-4228-80df-6948dc6e6248", 
+  "requestId": "7abef8d4-b045-41d3-a3d4-00b5ef1fd6a4", 
   "timers": {
-    "rliJe": 2
+    "rliJe": 5
   }
 }

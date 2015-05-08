@@ -35,7 +35,7 @@
     {
       "confidence": 0.015497177839279175, 
       "count": 2, 
-      "indocChainId": 11, 
+      "indocChainId": 9, 
       "mention": "Piñera", 
       "normalized": "Piñera", 
       "type": "PERSON"
@@ -73,25 +73,9 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 6, 
-      "mention": "cinco años", 
-      "normalized": "cinco años", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 8, 
-      "mention": "primera hora", 
-      "normalized": "primera hora", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
       "confidence": 0.028369784355163574, 
       "count": 1, 
-      "indocChainId": 11, 
+      "indocChainId": 9, 
       "mention": "Sebastián Piñera", 
       "normalized": "Sebastián Piñera", 
       "type": "PERSON"
@@ -99,7 +83,7 @@
     {
       "confidence": 0.03386145830154419, 
       "count": 1, 
-      "indocChainId": 12, 
+      "indocChainId": 10, 
       "mention": "Chile", 
       "normalized": "Chile", 
       "type": "LOCATION"
@@ -107,7 +91,7 @@
     {
       "confidence": 0.002088606357574463, 
       "count": 1, 
-      "indocChainId": 13, 
+      "indocChainId": 11, 
       "mention": "Mandataria", 
       "normalized": "Mandataria", 
       "type": "ORGANIZATION"
@@ -115,23 +99,15 @@
     {
       "confidence": 0.03489595651626587, 
       "count": 1, 
-      "indocChainId": 17, 
+      "indocChainId": 15, 
       "mention": "La Paz", 
       "normalized": "La Paz", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 18, 
-      "mention": "dos semanas", 
-      "normalized": "dos semanas", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
       "confidence": 0.013820111751556396, 
       "count": 1, 
-      "indocChainId": 20, 
+      "indocChainId": 17, 
       "mention": "Eduardo Frei", 
       "normalized": "Eduardo Frei", 
       "type": "PERSON"
@@ -139,7 +115,7 @@
     {
       "confidence": 0.015299737453460693, 
       "count": 1, 
-      "indocChainId": 21, 
+      "indocChainId": 18, 
       "mention": "Presidente", 
       "normalized": "Presidente", 
       "type": "TITLE"
@@ -147,23 +123,15 @@
     {
       "confidence": 0.0008376836776733398, 
       "count": 1, 
-      "indocChainId": 22, 
+      "indocChainId": 19, 
       "mention": "Pacífico", 
       "normalized": "Pacífico", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 24, 
-      "mention": "martes", 
-      "normalized": "martes", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.02315753698348999, 
       "count": 1, 
-      "indocChainId": 25, 
+      "indocChainId": 21, 
       "mention": "David Choquehuanca", 
       "normalized": "David Choquehuanca", 
       "type": "PERSON"
@@ -171,32 +139,16 @@
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 26, 
-      "mention": "diario.elmercurio.com/", 
-      "normalized": "diario.elmercurio.com/", 
+      "indocChainId": 22, 
+      "mention": "http://diario.elmercurio.com/2010/01/23/nacional/politica/noticias/47D6CA26-B011-40B5-AEAB-D0E6A5F52E59.htm?id={47D6CA26-B011-40B5-AEAB-D0E6A5F52E59}", 
+      "normalized": "http://diario.elmercurio.com/2010/01/23/nacional/politica/noticias/47D6CA26-B011-40B5-AEAB-D0E6A5F52E59.htm?id={47D6CA26-B011-40B5-AEAB-D0E6A5F52E59}", 
       "type": "IDENTIFIER:URL"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 27, 
-      "mention": "2010/01/23", 
-      "normalized": "2010/01/23", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 28, 
-      "mention": "2010.01.23", 
-      "normalized": "2010.01.23", 
-      "type": "TEMPORAL:DATE"
     }
   ], 
-  "requestId": "cc301cb5-62dd-495a-9ead-07c247bd22b3", 
+  "requestId": "c3de7a33-2be8-41ea-9b4b-bd683be93442", 
   "timers": {
-    "rblJe": 2, 
-    "rexJe": 50, 
-    "rliJe": 2
+    "rblJe": 8, 
+    "rexJe": 31, 
+    "rliJe": 4
   }
 }

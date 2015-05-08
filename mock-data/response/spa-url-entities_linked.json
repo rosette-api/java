@@ -1,91 +1,85 @@
 {
   "entities": [
     {
-      "confidence": 0.6448530682195855, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 0, 
-      "mention": "SMS"
-    }, 
-    {
-      "confidence": 0.17806805450273389, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 1, 
-      "mention": "Cantarell"
-    }, 
-    {
-      "confidence": 0.9890237825507597, 
-      "entityId": "Q806208", 
-      "indocChainId": 2, 
-      "mention": "Banxico"
-    }, 
-    {
       "confidence": 1.0, 
       "entityId": "NEW-CLUSTER", 
-      "indocChainId": 3, 
-      "mention": "Sara Cantera"
+      "indocChainId": 0, 
+      "mention": "SECCIONES Sociedad México"
     }, 
     {
-      "confidence": 0.4013833884378723, 
-      "entityId": "Q168383", 
-      "indocChainId": 4, 
-      "mention": "Universal"
+      "confidence": 0.3842942678466512, 
+      "entityId": "Q739", 
+      "indocChainId": 1, 
+      "mention": "Colombia"
     }, 
     {
-      "confidence": 0.23871443621203675, 
+      "confidence": 0.29145007042506105, 
+      "entityId": "Q296741", 
+      "indocChainId": 2, 
+      "mention": "EPN"
+    }, 
+    {
+      "confidence": 0.9576033902530637, 
+      "entityId": "Q296741", 
+      "indocChainId": 6, 
+      "mention": "Enrique Peña Nieto"
+    }, 
+    {
+      "confidence": 0.25986302388359683, 
       "entityId": "Q96", 
-      "indocChainId": 5, 
+      "indocChainId": 8, 
       "mention": "México"
     }, 
     {
-      "confidence": 0.3232147090213711, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 9, 
-      "mention": "Foto"
+      "confidence": 0.8635177623456834, 
+      "entityId": "Q57311", 
+      "indocChainId": 11, 
+      "mention": "Juan Manuel Santos"
     }, 
     {
-      "confidence": 1.0, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 10, 
-      "mention": "Notas Relacionadas"
+      "confidence": 0.31713577301095347, 
+      "entityId": "Q7122288", 
+      "indocChainId": 18, 
+      "mention": "Alianza Pacífico"
     }, 
     {
-      "confidence": 0.9913019549163815, 
-      "entityId": "Q806208", 
-      "indocChainId": 13, 
-      "mention": "Banco de México"
+      "confidence": 0.5114125729137015, 
+      "entityId": "Q419", 
+      "indocChainId": 20, 
+      "mention": "Perú"
     }, 
     {
-      "confidence": 0.9506952051399505, 
-      "entityId": "Q399129", 
-      "indocChainId": 15, 
-      "mention": "Agustín Carstens"
-    }, 
-    {
-      "confidence": 0.5088993465237824, 
-      "entityId": "Q387282", 
-      "indocChainId": 16, 
-      "mention": "Convención de Aseguradores de México"
-    }, 
-    {
-      "confidence": 0.800662426206261, 
-      "entityId": "Q871308", 
+      "confidence": 0.30983850993114276, 
+      "entityId": "Q298", 
       "indocChainId": 21, 
-      "mention": "Pemex"
+      "mention": "Chile"
     }, 
     {
-      "confidence": 0.6892721973558815, 
-      "entityId": "Q30", 
-      "indocChainId": 26, 
-      "mention": "Estados Unidos"
+      "confidence": 0.8050428060258218, 
+      "entityId": "Q12585", 
+      "indocChainId": 22, 
+      "mention": "América Latina"
+    }, 
+    {
+      "confidence": 0.41896853374939264, 
+      "entityId": "Q98", 
+      "indocChainId": 23, 
+      "mention": "Pacífico"
+    }, 
+    {
+      "confidence": 0.9132640852566012, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 24, 
+      "mention": "Peña Nieto Ver"
     }
   ], 
-  "requestId": "8d0c66cd-9cc6-4317-89c8-8ae6920051f4", 
+  "requestId": "f7202522-6e5c-4635-ba9d-867f4b96352f", 
   "timers": {
-    "rblJe": 2, 
-    "res": 477, 
-    "rexJe": 50, 
-    "rliJe": 2, 
-    "textExtractor": 9, 
-    "urlContentDownloader": 85
+    "rblJe": 1, 
+    "res": 944, 
+    "rexJe": 12, 
+    "rliJe": 4, 
+    "textExtractor": 14, 
+    "urlContentDownloader": 279
   }
 }

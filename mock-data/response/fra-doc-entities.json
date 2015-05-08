@@ -3,7 +3,7 @@
     {
       "confidence": 0.05105915239879063, 
       "count": 7, 
-      "indocChainId": 7, 
+      "indocChainId": 4, 
       "mention": "Obama", 
       "normalized": "Obama", 
       "type": "PERSON"
@@ -11,7 +11,7 @@
     {
       "confidence": 0.03971593578656515, 
       "count": 6, 
-      "indocChainId": 15, 
+      "indocChainId": 8, 
       "mention": "M.", 
       "normalized": "M.", 
       "type": "TITLE"
@@ -19,7 +19,7 @@
     {
       "confidence": 0.028711426258087158, 
       "count": 5, 
-      "indocChainId": 6, 
+      "indocChainId": 3, 
       "mention": "président", 
       "normalized": "président", 
       "type": "TITLE"
@@ -35,23 +35,15 @@
     {
       "confidence": 0.03095032771428426, 
       "count": 3, 
-      "indocChainId": 47, 
+      "indocChainId": 35, 
       "mention": "républicains", 
       "normalized": "républicains", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 2, 
-      "indocChainId": 4, 
-      "mention": "deux ans", 
-      "normalized": "deux ans", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
       "confidence": 0.01543426513671875, 
       "count": 2, 
-      "indocChainId": 7, 
+      "indocChainId": 4, 
       "mention": "Barack Obama", 
       "normalized": "Barack Obama", 
       "type": "PERSON"
@@ -59,23 +51,15 @@
     {
       "confidence": 0.019789844751358032, 
       "count": 2, 
-      "indocChainId": 10, 
+      "indocChainId": 5, 
       "mention": "Amérique", 
       "normalized": "Amérique", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 2, 
-      "indocChainId": 13, 
-      "mention": "dix mois", 
-      "normalized": "dix mois", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
       "confidence": 0.018558651208877563, 
       "count": 2, 
-      "indocChainId": 17, 
+      "indocChainId": 10, 
       "mention": "Dean Baker", 
       "normalized": "Dean Baker", 
       "type": "PERSON"
@@ -83,23 +67,15 @@
     {
       "confidence": 0.00832781195640564, 
       "count": 2, 
-      "indocChainId": 22, 
+      "indocChainId": 14, 
       "mention": "républicain", 
       "normalized": "républicain", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 2, 
-      "indocChainId": 24, 
-      "mention": "un an", 
-      "normalized": "un an", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
       "confidence": 0.011866271495819092, 
       "count": 2, 
-      "indocChainId": 45, 
+      "indocChainId": 33, 
       "mention": "Congrès", 
       "normalized": "Congrès", 
       "type": "ORGANIZATION"
@@ -107,23 +83,15 @@
     {
       "confidence": 0.03181558847427368, 
       "count": 2, 
-      "indocChainId": 58, 
+      "indocChainId": 44, 
       "mention": "Sénat", 
       "normalized": "Sénat", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 1, 
-      "mention": "lundi 18 janvier", 
-      "normalized": "lundi 18 janvier", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.016073524951934814, 
       "count": 1, 
-      "indocChainId": 2, 
+      "indocChainId": 1, 
       "mention": "Census Bureau", 
       "normalized": "Census Bureau", 
       "type": "ORGANIZATION"
@@ -131,39 +99,15 @@
     {
       "confidence": 0.013657450675964355, 
       "count": 1, 
-      "indocChainId": 3, 
+      "indocChainId": 2, 
       "mention": "Insee", 
       "normalized": "Insee", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 5, 
-      "mention": "décembre", 
-      "normalized": "décembre", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 8, 
-      "mention": "20 janvier 2009", 
-      "normalized": "20 janvier 2009", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 9, 
-      "mention": "une heure", 
-      "normalized": "une heure", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
       "confidence": 0.009501934051513672, 
       "count": 1, 
-      "indocChainId": 11, 
+      "indocChainId": 6, 
       "mention": "Maison Blanche", 
       "normalized": "Maison Blanche", 
       "type": "ORGANIZATION"
@@ -171,23 +115,15 @@
     {
       "confidence": 0.01004105806350708, 
       "count": 1, 
-      "indocChainId": 12, 
+      "indocChainId": 7, 
       "mention": "Parti démocrate", 
       "normalized": "Parti démocrate", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 14, 
-      "mention": "novembre", 
-      "normalized": "novembre", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.03106057643890381, 
       "count": 1, 
-      "indocChainId": 17, 
+      "indocChainId": 10, 
       "mention": "Baker", 
       "normalized": "Baker", 
       "type": "PERSON"
@@ -195,7 +131,7 @@
     {
       "confidence": 0.006049156188964844, 
       "count": 1, 
-      "indocChainId": 18, 
+      "indocChainId": 11, 
       "mention": "démocrate", 
       "normalized": "démocrate", 
       "type": "ORGANIZATION"
@@ -203,23 +139,15 @@
     {
       "confidence": 0.011113584041595459, 
       "count": 1, 
-      "indocChainId": 19, 
+      "indocChainId": 12, 
       "mention": "Washington", 
       "normalized": "Washington", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 20, 
-      "mention": "8 janvier", 
-      "normalized": "8 janvier", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.010755836963653564, 
       "count": 1, 
-      "indocChainId": 23, 
+      "indocChainId": 15, 
       "mention": "Ronald Reagan", 
       "normalized": "Ronald Reagan", 
       "type": "PERSON"
@@ -227,23 +155,15 @@
     {
       "confidence": 0.020975351333618164, 
       "count": 1, 
-      "indocChainId": 30, 
+      "indocChainId": 20, 
       "mention": "George Bush", 
       "normalized": "George Bush", 
       "type": "PERSON"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 33, 
-      "mention": "10 janvier", 
-      "normalized": "10 janvier", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.01764160394668579, 
       "count": 1, 
-      "indocChainId": 34, 
+      "indocChainId": 22, 
       "mention": "Christina Romer", 
       "normalized": "Christina Romer", 
       "type": "PERSON"
@@ -251,7 +171,7 @@
     {
       "confidence": 0.003275454044342041, 
       "count": 1, 
-      "indocChainId": 35, 
+      "indocChainId": 23, 
       "mention": "présidente du conseil économique", 
       "normalized": "présidente du conseil économique", 
       "type": "TITLE"
@@ -259,47 +179,31 @@
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 40, 
+      "indocChainId": 28, 
       "mention": "Goldman Sachs", 
       "normalized": "Goldman Sachs", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
+      "confidence": 0.014990746974945068, 
       "count": 1, 
-      "indocChainId": 41, 
-      "mention": "Jan", 
-      "normalized": "Jan", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 52, 
-      "mention": "Mercredi", 
-      "normalized": "Mercredi", 
-      "type": "TEMPORAL:DATE"
+      "indocChainId": 29, 
+      "mention": "Jan Hatzius", 
+      "normalized": "Jan Hatzius", 
+      "type": "PERSON"
     }, 
     {
       "confidence": 0.03833216428756714, 
       "count": 1, 
-      "indocChainId": 55, 
+      "indocChainId": 42, 
       "mention": "David Axelrod", 
       "normalized": "David Axelrod", 
       "type": "PERSON"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 57, 
-      "mention": "décembre 2009", 
-      "normalized": "décembre 2009", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.05773395299911499, 
       "count": 1, 
-      "indocChainId": 60, 
+      "indocChainId": 46, 
       "mention": "Harry Reid", 
       "normalized": "Harry Reid", 
       "type": "PERSON"
@@ -307,7 +211,7 @@
     {
       "confidence": 0.022663354873657227, 
       "count": 1, 
-      "indocChainId": 61, 
+      "indocChainId": 47, 
       "mention": "démocrates", 
       "normalized": "démocrates", 
       "type": "ORGANIZATION"
@@ -315,7 +219,7 @@
     {
       "confidence": 0.004793286323547363, 
       "count": 1, 
-      "indocChainId": 64, 
+      "indocChainId": 50, 
       "mention": "TARP", 
       "normalized": "TARP", 
       "type": "ORGANIZATION"
@@ -323,32 +227,16 @@
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 68, 
-      "mention": "www.lemonde.fr/", 
-      "normalized": "www.lemonde.fr/", 
+      "indocChainId": 53, 
+      "mention": "http://www.lemonde.fr/ameriques/article/2010/01/21/les-etats-unis-face-au-defi-persistant-du-chomage_1294839_3222.html#xtor=RSS-3210", 
+      "normalized": "http://www.lemonde.fr/ameriques/article/2010/01/21/les-etats-unis-face-au-defi-persistant-du-chomage_1294839_3222.html#xtor=RSS-3210", 
       "type": "IDENTIFIER:URL"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 69, 
-      "mention": "2010/01/21", 
-      "normalized": "2010/01/21", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 70, 
-      "mention": "2010.01.21", 
-      "normalized": "2010.01.21", 
-      "type": "TEMPORAL:DATE"
     }
   ], 
-  "requestId": "b3aefb21-048e-4e14-9bc0-85bd107f9b9a", 
+  "requestId": "fe809e0f-8caf-4180-8f1a-cbd27258df14", 
   "timers": {
-    "rblJe": 4, 
-    "rexJe": 164, 
-    "rliJe": 2
+    "rblJe": 13, 
+    "rexJe": 54, 
+    "rliJe": 6
   }
 }

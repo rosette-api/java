@@ -368,7 +368,7 @@
       "text": "Teneriffa"
     }, 
     {
-      "lemma": "in das", 
+      "lemma": "in der", 
       "text": "im"
     }, 
     {
@@ -744,7 +744,7 @@
       "text": "damit"
     }, 
     {
-      "lemma": "müsse", 
+      "lemma": "müssen", 
       "text": "müsse"
     }, 
     {
@@ -844,7 +844,7 @@
       "text": "Es"
     }, 
     {
-      "lemma": "muss", 
+      "lemma": "müssen", 
       "text": "muss"
     }, 
     {
@@ -884,7 +884,7 @@
       "text": "Außengrenzen"
     }, 
     {
-      "lemma": "muss", 
+      "lemma": "müssen", 
       "text": "muss"
     }, 
     {
@@ -980,7 +980,7 @@
       "text": "ganz"
     }, 
     {
-      "lemma": "in das", 
+      "lemma": "in der", 
       "text": "im"
     }, 
     {
@@ -1330,7 +1330,7 @@
       "text": "existieren"
     }, 
     {
-      "pos": "VVINF", 
+      "pos": "VMFIN", 
       "text": "können"
     }, 
     {
@@ -1650,11 +1650,11 @@
       "text": ","
     }, 
     {
-      "pos": "COSUB", 
+      "pos": "ADV", 
       "text": "damit"
     }, 
     {
-      "pos": "ADV", 
+      "pos": "VMFIN", 
       "text": "müsse"
     }, 
     {
@@ -1754,7 +1754,7 @@
       "text": "Es"
     }, 
     {
-      "pos": "ADV", 
+      "pos": "VMFIN", 
       "text": "muss"
     }, 
     {
@@ -1794,7 +1794,7 @@
       "text": "Außengrenzen"
     }, 
     {
-      "pos": "ADV", 
+      "pos": "VMFIN", 
       "text": "muss"
     }, 
     {
@@ -1906,9 +1906,9 @@
       "text": "\""
     }
   ], 
-  "requestId": "7cff692e-28cd-4146-8f4b-68df8a7ef7cc", 
+  "requestId": "4e114334-6092-497f-9c00-93cacd700ebf", 
   "timers": {
-    "rblJe": 1, 
-    "rliJe": 2
+    "rblJe": 133, 
+    "rliJe": 4
   }
 }

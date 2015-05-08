@@ -1,163 +1,229 @@
 {
   "entities": [
     {
-      "confidence": 0.710674414365572, 
-      "entityId": "Q1520122", 
+      "confidence": 0.09260963387673546, 
+      "entityId": "NEW-CLUSTER", 
       "indocChainId": 0, 
-      "mention": "Getty Images"
+      "mention": "City, State"
     }, 
     {
-      "confidence": 0.7688107136486276, 
-      "entityId": "Q155038", 
+      "confidence": 0.7363573634794515, 
+      "entityId": "Q918", 
+      "indocChainId": 1, 
+      "mention": "Twitter"
+    }, 
+    {
+      "confidence": 0.8558907150896853, 
+      "entityId": "Q95", 
+      "indocChainId": 2, 
+      "mention": "Google"
+    }, 
+    {
+      "confidence": 0.7989502467143261, 
+      "entityId": "Q213660", 
       "indocChainId": 3, 
-      "mention": "Germanwings"
+      "mention": "LinkedIn"
     }, 
     {
-      "confidence": 0.27026112048391693, 
-      "entityId": "NEW-CLUSTER", 
+      "confidence": 0.6261777456363734, 
+      "entityId": "Q165023", 
       "indocChainId": 4, 
-      "mention": "Andreas Lubitz"
+      "mention": "Nike"
     }, 
     {
-      "confidence": 0.29622539971205003, 
-      "entityId": "Q1794", 
-      "indocChainId": 5, 
-      "mention": "Frankfurt"
+      "confidence": 0.580918930055919, 
+      "entityId": "Q76", 
+      "indocChainId": 6, 
+      "mention": "Obama"
     }, 
     {
-      "confidence": 0.2510114018806241, 
-      "entityId": "Q183", 
-      "indocChainId": 8, 
-      "mention": "Germany"
+      "confidence": 0.8198021796089213, 
+      "entityId": "Q355", 
+      "indocChainId": 9, 
+      "mention": "Facebook"
     }, 
     {
-      "confidence": 0.2675786074669684, 
-      "entityId": "Q919252", 
-      "indocChainId": 11, 
-      "mention": "BEA"
-    }, 
-    {
-      "confidence": 0.3211353373112593, 
+      "confidence": 0.48472828194168266, 
       "entityId": "NEW-CLUSTER", 
-      "indocChainId": 12, 
-      "mention": "Alastair Jamieson"
+      "indocChainId": 22, 
+      "mention": "Gregory Korte"
     }, 
     {
-      "confidence": 0.8045588869974638, 
-      "entityId": "Q67", 
-      "indocChainId": 17, 
-      "mention": "Airbus"
-    }, 
-    {
-      "confidence": 0.44771437625467325, 
-      "entityId": "Q1718", 
-      "indocChainId": 20, 
-      "mention": "Dusseldorf"
-    }, 
-    {
-      "confidence": 0.1507446070527876, 
-      "entityId": "Q1492", 
-      "indocChainId": 21, 
-      "mention": "Barcelona"
-    }, 
-    {
-      "confidence": 0.1346152298535233, 
-      "entityId": "Q29", 
-      "indocChainId": 25, 
-      "mention": "Spain"
-    }, 
-    {
-      "confidence": 0.30559822767014017, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 32, 
-      "mention": "Alastair Rosenschein"
-    }, 
-    {
-      "confidence": 0.7150726971494208, 
-      "entityId": "Q8766", 
-      "indocChainId": 33, 
-      "mention": "British Airways"
-    }, 
-    {
-      "confidence": 0.5584775566604284, 
-      "entityId": "Q13974", 
-      "indocChainId": 36, 
-      "mention": "NBC News"
-    }, 
-    {
-      "confidence": 0.7771265726107426, 
-      "entityId": "Q335357", 
-      "indocChainId": 40, 
-      "mention": "Federal Aviation Administration"
-    }, 
-    {
-      "confidence": 0.8481300602883002, 
+      "confidence": 0.934688817800125, 
       "entityId": "Q30", 
-      "indocChainId": 42, 
-      "mention": "U.S."
+      "indocChainId": 23, 
+      "mention": "USA"
     }, 
     {
-      "confidence": 0.5900081230977838, 
-      "entityId": "Q9325", 
+      "confidence": 0.6674546995482082, 
+      "entityId": "Q824", 
+      "indocChainId": 27, 
+      "mention": "Ore."
+    }, 
+    {
+      "confidence": 0.47112052899963985, 
+      "entityId": "Q29552", 
+      "indocChainId": 29, 
+      "mention": "Democrats"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 30, 
+      "mention": "Pablo Martinez Monsivais"
+    }, 
+    {
+      "confidence": 0.2034163102133998, 
+      "entityId": "Q40469", 
+      "indocChainId": 31, 
+      "mention": "AP"
+    }, 
+    {
+      "confidence": 0.15449450932471964, 
+      "entityId": "Q98", 
+      "indocChainId": 34, 
+      "mention": "Pacific"
+    }, 
+    {
+      "confidence": 0.23079330313599078, 
+      "entityId": "Q16551", 
+      "indocChainId": 39, 
+      "mention": "Vermont"
+    }, 
+    {
+      "confidence": 0.8339844509143421, 
+      "entityId": "Q359442", 
+      "indocChainId": 41, 
+      "mention": "Bernie Sanders"
+    }, 
+    {
+      "confidence": 0.2171907026020583, 
+      "entityId": "Q881", 
       "indocChainId": 43, 
-      "mention": "Lufthansa"
+      "mention": "Vietnam"
     }, 
     {
-      "confidence": 0.035645845165231074, 
-      "entityId": "Q16556", 
-      "indocChainId": 44, 
-      "mention": "Phoenix"
-    }, 
-    {
-      "confidence": 0.6596112982884413, 
-      "entityId": "Q16211007", 
-      "indocChainId": 47, 
-      "mention": "Katy Tur"
-    }, 
-    {
-      "confidence": 0.3246040965669532, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 48, 
-      "mention": "Amy Perrette"
-    }, 
-    {
-      "confidence": 0.8386099044377157, 
-      "entityId": "NEW-CLUSTER", 
+      "confidence": 0.052853329084155916, 
+      "entityId": "Q6106", 
       "indocChainId": 49, 
-      "mention": "Nancy Ing"
+      "mention": "Portland"
     }, 
     {
-      "confidence": 0.14818494504892715, 
-      "entityId": "Q84", 
+      "confidence": 0.06500005510445091, 
+      "entityId": "Q66096", 
+      "indocChainId": 51, 
+      "mention": "Senate"
+    }, 
+    {
+      "confidence": 0.4966018948670623, 
+      "entityId": "Q30", 
       "indocChainId": 54, 
-      "mention": "London"
+      "mention": "United States"
     }, 
     {
-      "confidence": 0.44118040893550076, 
-      "entityId": "Q12741725", 
-      "indocChainId": 59, 
-      "mention": "Sunday Telegraph"
+      "confidence": 0.12517966475058961, 
+      "entityId": "Q11268", 
+      "indocChainId": 56, 
+      "mention": "Congress"
     }, 
     {
-      "confidence": 0.6729164934495676, 
-      "entityId": "Q192621", 
+      "confidence": 0.5401864536008631, 
+      "entityId": "Q1900344", 
       "indocChainId": 60, 
-      "mention": "Daily Telegraph"
+      "mention": "Mark Parker"
     }, 
     {
-      "confidence": 0.32288224996392667, 
-      "entityId": "Q23436", 
-      "indocChainId": 63, 
-      "mention": "Edinburgh"
+      "confidence": 0.3672055307109911, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 65, 
+      "mention": "Eric Hauser"
+    }, 
+    {
+      "confidence": 0.8073673635923817, 
+      "entityId": "Q464271", 
+      "indocChainId": 66, 
+      "mention": "AFL-CIO"
+    }, 
+    {
+      "confidence": 0.0754921314204974, 
+      "entityId": "Q1124", 
+      "indocChainId": 71, 
+      "mention": "Clinton"
+    }, 
+    {
+      "confidence": 0.8733602619662788, 
+      "entityId": "Q29552", 
+      "indocChainId": 73, 
+      "mention": "Democratic"
+    }, 
+    {
+      "confidence": 0.2071496461994983, 
+      "entityId": "Q35525", 
+      "indocChainId": 74, 
+      "mention": "White House"
+    }, 
+    {
+      "confidence": 0.1337796168379229, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 75, 
+      "mention": "Trans-Pacific"
+    }, 
+    {
+      "confidence": 0.3347718004129003, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 84, 
+      "mention": "TPP"
+    }, 
+    {
+      "confidence": 1.0, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 85, 
+      "mention": "Murshed Zaheed"
+    }, 
+    {
+      "confidence": 0.4449559756113517, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 86, 
+      "mention": "Credo Action"
+    }, 
+    {
+      "confidence": 0.20568806272114726, 
+      "entityId": "Q48", 
+      "indocChainId": 88, 
+      "mention": "Asia"
+    }, 
+    {
+      "confidence": 0.5279031985169756, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 90, 
+      "mention": "Sentinel Hotel"
+    }, 
+    {
+      "confidence": 0.2557855226598088, 
+      "entityId": "NEW-CLUSTER", 
+      "indocChainId": 94, 
+      "mention": "Thomas Boyd"
+    }, 
+    {
+      "confidence": 0.3050614695591455, 
+      "entityId": "Q439955", 
+      "indocChainId": 98, 
+      "mention": "Michael Wolff"
+    }, 
+    {
+      "confidence": 0.21278551689928094, 
+      "entityId": "Q145", 
+      "indocChainId": 99, 
+      "mention": "Britain"
     }
   ], 
-  "requestId": "01ef0a25-835a-49e1-a5f5-ccf757c8b3f4", 
+  "requestId": "5de2e00b-efcd-4fd0-a404-f9629dc60619", 
   "timers": {
-    "rblJe": 3, 
-    "res": 635, 
-    "rexJe": 119, 
-    "rliJe": 3, 
-    "textExtractor": 9, 
-    "urlContentDownloader": 23
+    "rblJe": 7, 
+    "res": 1408, 
+    "rexJe": 68, 
+    "rliJe": 5, 
+    "textExtractor": 19, 
+    "urlContentDownloader": 103
   }
 }
