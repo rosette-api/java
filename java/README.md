@@ -1,4 +1,6 @@
 To run the example
+==================
 
-Copy your Rosette API key into java/src/main/resources/api-key.txt
-
+    cd ws-client-bindings/java/target
+    echo your-rosette-api-key > api-key.txt
+    java -jar Rosette-API-jar-with-dependencies.jar api-key.txt
