@@ -50,9 +50,7 @@ public class MultipartUtility {
         httpConn.setRequestProperty("Accept-Encoding", "gzip");
         httpConn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
         outputStream = httpConn.getOutputStream();
-        writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
-                true);
-
+        writer = new PrintWriter(new OutputStreamWriter(outputStream, charset), true);
         mapper = new ObjectMapper();
     }
 
@@ -64,10 +62,8 @@ public class MultipartUtility {
      */
     public void addFormField(String name, String value) {
         writer.append("--" + boundary).append(LINE_FEED);
-        writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
-                .append(LINE_FEED);
-        writer.append("Content-Type: text/plain; charset=" + charset).append(
-                LINE_FEED);
+        writer.append("Content-Disposition: form-data; name=\"" + name + "\"").append(LINE_FEED);
+        writer.append("Content-Type: text/plain; charset=" + charset).append(LINE_FEED);
         writer.append(LINE_FEED);
         writer.append(value).append(LINE_FEED);
         writer.flush();
@@ -84,12 +80,9 @@ public class MultipartUtility {
     public void addFilePart(String fieldName, InputStream inputStream, String contentType) throws IOException {
         String fileName = "options.json";
         writer.append("--" + boundary).append(LINE_FEED);
-        writer.append(
-                "Content-Disposition: form-data; name=\"" + fieldName
-                        + "\"; filename=\"" + fileName + "\"")
-                .append(LINE_FEED);
-        writer.append("Content-Type: " + contentType)
-                .append(LINE_FEED);
+        writer.append("Content-Disposition: form-data; name=\"" + fieldName
+                        + "\"; filename=\"" + fileName + "\"").append(LINE_FEED);
+        writer.append("Content-Type: " + contentType).append(LINE_FEED);
         writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
         writer.append(LINE_FEED);
         writer.flush();
@@ -110,12 +103,9 @@ public class MultipartUtility {
             throws IOException {
         String fileName = "inputfile";
         writer.append("--" + boundary).append(LINE_FEED);
-        writer.append(
-                "Content-Disposition: form-data; name=\"" + fieldName
-                        + "\"; filename=\"" + fileName + "\"")
-                .append(LINE_FEED);
-        writer.append("Content-Type: application/octet-stream")
-                .append(LINE_FEED);
+        writer.append("Content-Disposition: form-data; name=\"" + fieldName
+                        + "\"; filename=\"" + fileName + "\"").append(LINE_FEED);
+        writer.append("Content-Type: application/octet-stream").append(LINE_FEED);
         writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
         writer.append(LINE_FEED);
         writer.flush();

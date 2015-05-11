@@ -66,6 +66,15 @@
         <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.5.4</version>
                 <configuration>
@@ -97,6 +106,7 @@
                 <directory>../mock-data</directory>
                 <includes>
                     <include>**/*.json</include>
+                    <include>**/*.status</include>
                 </includes>
                 <filtering>false</filtering>
             </testResource>

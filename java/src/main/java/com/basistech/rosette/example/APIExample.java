@@ -2,7 +2,6 @@ package com.basistech.rosette.example;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -44,12 +43,7 @@ public class APIExample {
 
     public static void main(String[] args) throws URISyntaxException, IOException, RosetteAPIParameterException {
         String website = "http://www.basistech.com";
-        URL url = null;
-        try {
-            url = new URL(website);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        URL url = new URL(website);
         String text = "I live in Boston, Massachusetts.";
 
         if (args.length != 1) {
@@ -58,7 +52,6 @@ public class APIExample {
         }
         String apiFilename = args[0];
         rosetteAPI = new RosetteAPI(apiFilename);
-//        rosetteAPI.setServiceUrl("http://localhost:8755/rest/v1/");
         ClassLoader cl = APIExample.class.getClassLoader();
 
         testNameMatcherRequest("John Doe", "John Doe");
@@ -109,12 +102,8 @@ public class APIExample {
             NameMatcherRequest request = new NameMatcherRequest(new Name(name1), new Name(name2));
             NameMatcherResponse response = rosetteAPI.matchName(request);
             print(request, response);
-        } catch (RosetteAPIException e) {
-            e.printStackTrace();
-        } catch (RosetteAPIParameterException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (RosetteAPIException | RosetteAPIParameterException | IOException e) {
+            System.err.println(e.toString());
         }
     }
 

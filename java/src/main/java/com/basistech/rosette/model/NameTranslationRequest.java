@@ -23,20 +23,22 @@ public class NameTranslationRequest {
 
     private String name;
     private String entityType;
-    private ISO15924 sourceScript;
+    private String sourceScript;
     private String sourceLanguageOfOrigin;
     private String sourceLanguageOfUse;
     private String targetLanguage;
-    private ISO15924 targetScript;
+    private String targetScript;
     private TransliterationScheme targetScheme;
+
+    public NameTranslationRequest() {}
 
     public NameTranslationRequest(String name,
                                   String entityType,
-                                  ISO15924 sourceScript,
+                                  String sourceScript,
                                   String sourceLanguageOfOrigin,
                                   String sourceLanguageOfUse,
                                   String targetLanguage,
-                                  ISO15924 targetScript,
+                                  String targetScript,
                                   TransliterationScheme targetScheme) throws RosetteAPIParameterException {
         this.name = name;
         this.entityType = entityType;
@@ -62,7 +64,7 @@ public class NameTranslationRequest {
         return entityType;
     }
 
-    public ISO15924 getSourceScript() {
+    public String getSourceScript() {
         return sourceScript;
     }
 
@@ -78,7 +80,7 @@ public class NameTranslationRequest {
         return targetLanguage;
     }
 
-    public ISO15924 getTargetScript() {
+    public String getTargetScript() {
         return targetScript;
     }
 
