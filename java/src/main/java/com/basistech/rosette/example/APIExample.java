@@ -90,7 +90,8 @@ public class APIExample {
         testSentiment(text);
         testSentiment(text, new SentimentOptions(SentimentModel.SHORT_STRING, true));
         testSentiment(cl.getResourceAsStream("English.txt"));
-        testSentiment(cl.getResourceAsStream("English.txt"), new SentimentOptions(SentimentModel.REVIEW, true));
+        testSentiment(cl.getResourceAsStream("English.txt"), "eng", new SentimentOptions(SentimentModel.REVIEW, true));
+        testSentiment(cl.getResourceAsStream("Chinese.txt"));
     }
 
     private static void usage() {
@@ -128,7 +129,7 @@ public class APIExample {
 
     private static void testCategories(URL url, CategoryOptions options) {
         try {
-            CategoryResponse categoryResponse = rosetteAPI.getCategories(url, options);
+            CategoryResponse categoryResponse = rosetteAPI.getCategories(url, null, options);
             print(categoryResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -139,7 +140,7 @@ public class APIExample {
 
     private static void testCategories(InputStream inputStream, CategoryOptions options) {
         try {
-            CategoryResponse categoryResponse = rosetteAPI.getCategories(inputStream, options);
+            CategoryResponse categoryResponse = rosetteAPI.getCategories(inputStream, null, options);
             print(categoryResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -150,7 +151,7 @@ public class APIExample {
 
     private static void testCategories(String text, CategoryOptions options) {
         try {
-            CategoryResponse categoryResponse = rosetteAPI.getCategories(text, options);
+            CategoryResponse categoryResponse = rosetteAPI.getCategories(text, null, options);
             print(categoryResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -171,12 +172,16 @@ public class APIExample {
     }
 
     private static void testSentiment(InputStream file) {
-        testSentiment(file, null);
+        testSentiment(file, null, null);
     }
 
-    private static void testSentiment(InputStream file, SentimentOptions options) {
+    private static void testSentiment(InputStream file, String language) {
+        testSentiment(file, language, null);
+    }
+
+    private static void testSentiment(InputStream file, String language, SentimentOptions options) {
         try {
-            SentimentResponse sentimentResponse = rosetteAPI.getSentiment(file, options);
+            SentimentResponse sentimentResponse = rosetteAPI.getSentiment(file, language, options);
             print(sentimentResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -191,7 +196,7 @@ public class APIExample {
 
     private static void testSentiment(String text, SentimentOptions options) {
         try {
-            SentimentResponse sentimentResponse = rosetteAPI.getSentiment(text, options);
+            SentimentResponse sentimentResponse = rosetteAPI.getSentiment(text, null, options);
             print(sentimentResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -206,7 +211,7 @@ public class APIExample {
 
     private static void testSentiment(URL url, SentimentOptions options) {
         try {
-            SentimentResponse sentimentResponse = rosetteAPI.getSentiment(url, options);
+            SentimentResponse sentimentResponse = rosetteAPI.getSentiment(url, null, options);
             print(sentimentResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -230,7 +235,7 @@ public class APIExample {
 
     private static void testResolvedEntity(InputStream file) {
         try {
-            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(file);
+            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(file, null, null);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -253,7 +258,7 @@ public class APIExample {
 
     private static void testResolvedEntity(String text) {
         try {
-            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(text);
+            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(text, null, null);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -264,7 +269,7 @@ public class APIExample {
 
     private static void testResolvedEntity(URL url) {
         try {
-            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(url);
+            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(url, null, null);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -275,7 +280,7 @@ public class APIExample {
 
     private static void testEntityRequest(InputStream file) {
         try {
-            EntityResponse entityResponse = rosetteAPI.getEntity(file);
+            EntityResponse entityResponse = rosetteAPI.getEntity(file, null, null);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -299,7 +304,7 @@ public class APIExample {
 
     private static void testEntityRequest(String text) {
         try {
-            EntityResponse entityResponse = rosetteAPI.getEntity(text);
+            EntityResponse entityResponse = rosetteAPI.getEntity(text, null, null);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -310,7 +315,7 @@ public class APIExample {
 
     private static void testEntityRequest(URL url) {
         try {
-            EntityResponse entityResponse = rosetteAPI.getEntity(url);
+            EntityResponse entityResponse = rosetteAPI.getEntity(url, null, null);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -321,7 +326,7 @@ public class APIExample {
 
     private static void testLanguageRequest(InputStream file) {
         try {
-            LanguageResponse response = rosetteAPI.getLanguage(file);
+            LanguageResponse response = rosetteAPI.getLanguage(file, null);
             print(response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -340,7 +345,7 @@ public class APIExample {
 
     private static void testLanguageRequest(String text) {
         try {
-            LanguageResponse response = rosetteAPI.getLanguage(text);
+            LanguageResponse response = rosetteAPI.getLanguage(text, null);
             print(response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -351,7 +356,7 @@ public class APIExample {
 
     private static void testLanguageRequest(URL url) {
         try {
-            LanguageResponse response = rosetteAPI.getLanguage(url);
+            LanguageResponse response = rosetteAPI.getLanguage(url, null);
             print(response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -362,7 +367,7 @@ public class APIExample {
 
     private static void testMorphologyRequest(InputStream file) {
         try {
-            MorphologyResponse response = rosetteAPI.getMorphology(file);
+            MorphologyResponse response = rosetteAPI.getMorphology(file, null, null);
             print(response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -373,7 +378,7 @@ public class APIExample {
 
     private static void testMorphologyRequest(String text) {
         try {
-            MorphologyResponse response = rosetteAPI.getMorphology(text);
+            MorphologyResponse response = rosetteAPI.getMorphology(text, null, null);
             print(response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -384,7 +389,7 @@ public class APIExample {
 
     private static void testMorphologyRequest(URL url) {
         try {
-            MorphologyResponse response = rosetteAPI.getMorphology(url);
+            MorphologyResponse response = rosetteAPI.getMorphology(url, null, null);
             print(response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
