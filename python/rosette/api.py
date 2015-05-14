@@ -1,17 +1,21 @@
+#!/usr/bin/env python
+
 """
-Code and constant classes for operating Rosette Web Service from python.
+Python client for the Rosette API.
 
-This data and information is proprietary to, and a valuable trade secret
-of, Basis Technology Corp.  It is given in confidence by Basis Technology
-and may only be used as permitted under the license agreement under which
-it has been distributed, and in no other way.
+  Copyright (c) 2014-2015 Basis Technology Corporation.
 
-Copyright (c) 2015 Basis Technology Corporation All rights reserved.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-The technical data and information provided herein are provided with
-`limited rights', and the computer software provided herein is provided
-with `restricted rights' as those terms are defined in DAR and ASPR
-7-104.9(a).
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 """
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
@@ -58,7 +62,12 @@ def _my_loads(obj):
         return json.loads(obj)
 
 def _retrying_request(op, url, data, headers):
-    conn = httplib.HTTPConnection(urlparse(url).netloc)
+    parsed = urlparse(url)
+    loc = parsed.netloc
+    if (parsed.scheme == "https"):
+        conn = httplib.HTTPSConnection(loc)
+    else:
+        conn = httplib.HTTPConnection(loc)
     rdata = None
     for i in range(N_RETRIES):
         conn.request(op, url, data, headers)
@@ -334,6 +343,37 @@ class RntParameters(_RosetteParamSetBase):
         return self._for_serialize()
 
 
+class RniParameters(_RosetteParamSetBase):
+    """Parameter object for C{matched_name} endpoint.
+    All are required.
+
+    C{name1} The name to be matched, a C{name} object.
+
+    C{name2} The name to be matched, a C{name} object.
+
+    The C{name} object contains these fields:
+
+    C{text} Text of the name, required.
+
+    C{language} Language of the name in ISO639 three-letter code, optional.
+
+    C{script} The ISO15924 code of the name, optional.
+
+    C{entityType} The entity type, can be "PERSON", "LOCATION" or "ORGANIZATION", optional.
+    """
+
+    def __init__(self):
+        _RosetteParamSetBase.__init__(self, ("name1", "name2"))
+
+    def serializable(self):
+
+        """Internal. Do not use."""
+        for n in ("name1", "name2"):  # required
+            if self[n] is None:
+                raise RosetteException("missingParameter", "Required RNI parameter not supplied", repr(n))
+        return self._for_serialize()
+
+
 class Operator:
     """L{Operator} objects are invoked via their instance methods to obtain results
     from the Rosette server described by the L{API} object from which they
@@ -423,8 +463,9 @@ class Operator:
         """Invokes the endpoint to which this L{Operator} is bound.
         Passes data and metadata specified by C{parameters} to the server
         endpoint to which this L{Operator} object is bound.  For all
-        endpoints except C{translated_name}, it must be a L{RosetteParameters}
-        object; for C{translated_name}, it must be an L{RntParameters} object.
+        endpoints except C{translated_name} and C{matched_name}, it must be a L{RosetteParameters}
+        object; for C{translated_name}, it must be an L{RntParameters} object;
+        for C{matched_name}, it must be an L{RniParameters} object.
 
         In all cases, the result is returned as a python dictionary
         conforming to the JSON object described in the endpoint's entry
@@ -459,7 +500,7 @@ class API:
     Call instance methods upon this object to obtain L{Operator} objects
     which can communicate with particular Rosette server endpoints.
     """
-    def __init__(self, user_key=None, service_url='http://api.rosette.com/rest/v1'):
+    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1'):
         """ Create an L{API} object.
         @param user_key: (Optional; required for servers requiring authentication.) An authentication string to be sent
          as user_key with all requests.  The default Rosette server requires authentication.
@@ -561,3 +602,12 @@ class API:
         @return: An L{Operator} which can perform name analysis and translation.
         """
         return Operator(self, "translated-name")
+
+    def matched_name(self):
+        """Create an L{Operator} to perform name matching.
+        Note that that L{Operator}'s L{Operator.operate} method requires an L{RniParameters} argument,
+        not the L{RosetteParameters} required by L{Operator}s created by
+        other instance methods.
+        @return: An L{Operator} which can perform name matching.
+        """
+        return Operator(self, "matched-name")

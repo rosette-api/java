@@ -1,0 +1,4 @@
+[submodule "rosette_api_site"]
+	path = rosette_api_site
+	url = git@github.com:basis-technology-corp/rosette-api.git
+	branch = gh-pages
