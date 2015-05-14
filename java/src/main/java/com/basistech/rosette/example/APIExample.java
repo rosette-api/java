@@ -39,10 +39,23 @@ import com.basistech.rosette.model.SentimentOptions;
 import com.basistech.rosette.model.SentimentResponse;
 import com.basistech.rosette.model.TranslatedNameResult;
 
+/**
+ * Provides examples on how to use the {@link com.basistech.rosette.api RosetteAPI} endpoints.
+ */
 public class APIExample {
 
     private static RosetteAPI rosetteAPI;
 
+    /**
+     * Main program.
+     * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
+     * Calls all RosetteAPI methods as a demonstration of usage.
+     *
+     * @param args
+     * @throws URISyntaxException
+     * @throws IOException
+     * @throws RosetteAPIParameterException
+     */
     public static void main(String[] args) throws URISyntaxException, IOException, RosetteAPIParameterException {
         String website = "http://www.basistech.com";
         URL url = new URL(website);
@@ -57,55 +70,61 @@ public class APIExample {
         rosetteAPI = new RosetteAPI(apiKey);
         ClassLoader cl = APIExample.class.getClassLoader();
 
-        testGetInfo();
-        testPing();
+        doGetInfo();
+        doPing();
 
-        testNameMatcherRequest("John Doe", "John Doe");
-        testNameMatcherRequest("John Doe", "Jon Doe");
-        testNameMatcherRequest("习近平", "Xi Jinping");
+        doNameMatcherRequest("John Doe", "John Doe");
+        doNameMatcherRequest("John Doe", "Jon Doe");
+        doNameMatcherRequest("习近平", "Xi Jinping");
 
-        testNameTranslationRequest("John Doe", LanguageCode.KOREAN);
-        testNameTranslationRequest("习近平", LanguageCode.ENGLISH);
+        doNameTranslationRequest("John Doe", LanguageCode.KOREAN);
+        doNameTranslationRequest("习近平", LanguageCode.ENGLISH);
 
-        testLanguageRequest(url);
-        testLanguageRequest(text);
-        testLanguageRequest(cl.getResourceAsStream("Chinese.txt"));
+        doLanguageRequest(url);
+        doLanguageRequest(text);
+        doLanguageRequest(cl.getResourceAsStream("Chinese.txt"));
 
-        testMorphologyRequest(url);
-        testMorphologyRequest(text);
-        testMorphologyRequest(cl.getResourceAsStream("Chinese.txt"));
+        doMorphologyRequest(url);
+        doMorphologyRequest(text);
+        doMorphologyRequest(cl.getResourceAsStream("Chinese.txt"));
 
-        testEntityRequest(url);
-        testEntityRequest(text);
-        testEntityRequest(cl.getResourceAsStream("English.txt"));
+        doEntityRequest(url);
+        doEntityRequest(text);
+        doEntityRequest(cl.getResourceAsStream("English.txt"));
 
-        testResolvedEntity(url);
-        testResolvedEntity(text);
-        testResolvedEntity(cl.getResourceAsStream("English.txt"));
+        doLinkedEntity(url);
+        doLinkedEntity(text);
+        doLinkedEntity(cl.getResourceAsStream("English.txt"));
 
-        testCategories(url);
-        testCategories(url, new CategoryOptions(CategorizationModel.QAG));
-        testCategories(url, new CategoryOptions(CategorizationModel.QAG, true));
-        testCategories(url, new CategoryOptions(CategorizationModel.QAG, true, 10));
-        testCategories(text);
-        testCategories(cl.getResourceAsStream("English.txt"));
+        doCategories(url);
+        doCategories(url, new CategoryOptions(CategorizationModel.QAG));
+        doCategories(url, new CategoryOptions(CategorizationModel.QAG, true));
+        doCategories(url, new CategoryOptions(CategorizationModel.QAG, true, 10));
+        doCategories(text);
+        doCategories(cl.getResourceAsStream("English.txt"));
 
-        testSentiment(url);
-        testSentiment(url, new SentimentOptions(SentimentModel.REVIEW));
-        testSentiment(url, new SentimentOptions(SentimentModel.REVIEW, true));
-        testSentiment(text);
-        testSentiment(text, new SentimentOptions(SentimentModel.SHORT_STRING, true));
-        testSentiment(cl.getResourceAsStream("English.txt"));
-        testSentiment(cl.getResourceAsStream("English.txt"), "eng", new SentimentOptions(SentimentModel.REVIEW, true));
+        doSentiment(url);
+        doSentiment(url, new SentimentOptions(SentimentModel.REVIEW));
+        doSentiment(url, new SentimentOptions(SentimentModel.REVIEW, true));
+        doSentiment(text);
+        doSentiment(text, new SentimentOptions(SentimentModel.SHORT_STRING, true));
+        doSentiment(cl.getResourceAsStream("English.txt"));
+        doSentiment(cl.getResourceAsStream("English.txt"), "eng", new SentimentOptions(SentimentModel.REVIEW, true));
     }
 
+    /**
+     * Usage
+     */
     private static void usage() {
         System.out.println("Usage: java -jar Rosette-API-Example.jar -Drosette.api.key=your-api-key");
     }
 
-    private static void testPing() {
+    /**
+     * Pings Rosette API.
+     */
+    private static void doPing() {
         try {
-            PingResponse pingResponse = rosetteAPI.getPing();
+            PingResponse pingResponse = rosetteAPI.ping();
             print(pingResponse);
         } catch (IOException e) {
             System.err.println(e.toString());
@@ -114,6 +133,10 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints ping response.
+     * @param pingResponse
+     */
     private static void print(PingResponse pingResponse) {
         System.out.printf("Message: %s\tTime: %s\n",
                 pingResponse.getMessage(),
@@ -122,9 +145,12 @@ public class APIExample {
         System.out.println();
     }
 
-    private static void testGetInfo() {
+    /**
+     * Sends info request.
+     */
+    private static void doGetInfo() {
         try {
-            InfoResponse infoResponse = rosetteAPI.getInfo();
+            InfoResponse infoResponse = rosetteAPI.info();
             print(infoResponse);
         } catch (IOException e) {
             System.err.println(e.toString());
@@ -133,6 +159,10 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints info response.
+     * @param infoResponse
+     */
     private static void print(InfoResponse infoResponse) {
         System.out.printf("Name: %s\tVersion: %s\tBuild number: %s\tBuild time: %s\n",
                 infoResponse.getName(),
@@ -143,7 +173,12 @@ public class APIExample {
         System.out.println();
     }
 
-    private static void testNameMatcherRequest(String name1, String name2) {
+    /**
+     * Sends NameMatcherRequest.
+     * @param name1
+     * @param name2
+     */
+    private static void doNameMatcherRequest(String name1, String name2) {
         try {
             NameMatcherRequest request = new NameMatcherRequest(new Name(name1), new Name(name2));
             NameMatcherResponse response = rosetteAPI.matchName(request);
@@ -153,6 +188,11 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints NameMatcherResponse.
+     * @param request
+     * @param response
+     */
     private static void print(NameMatcherRequest request, NameMatcherResponse response) {
         System.out.println(response.getRequestId());
         NameMatcherResult result = response.getResult();
@@ -160,19 +200,36 @@ public class APIExample {
         System.out.println();
     }
 
-    private static void testCategories(URL url) {
-        testCategories(url, null);
+    /**
+     * Sends URL category request
+     * @param url
+     */
+    private static void doCategories(URL url) {
+        doCategories(url, null);
     }
 
-    private static void testCategories(InputStream file) {
-        testCategories(file, null);
+    /**
+     * Sends file category request
+     * @param file
+     */
+    private static void doCategories(InputStream file) {
+        doCategories(file, null);
     }
 
-    private static void testCategories(String text) {
-        testCategories(text, null);
+    /**
+     * Sends string category request
+     * @param text
+     */
+    private static void doCategories(String text) {
+        doCategories(text, null);
     }
 
-    private static void testCategories(URL url, CategoryOptions options) {
+    /**
+     * Sends URL category request with options.
+     * @param url
+     * @param options
+     */
+    private static void doCategories(URL url, CategoryOptions options) {
         try {
             CategoryResponse categoryResponse = rosetteAPI.getCategories(url, null, options);
             print(categoryResponse);
@@ -183,7 +240,12 @@ public class APIExample {
         }
     }
 
-    private static void testCategories(InputStream inputStream, CategoryOptions options) {
+    /**
+     * Sends InputStream category request with options.
+     * @param inputStream
+     * @param options
+     */
+    private static void doCategories(InputStream inputStream, CategoryOptions options) {
         try {
             CategoryResponse categoryResponse = rosetteAPI.getCategories(inputStream, null, options);
             print(categoryResponse);
@@ -194,7 +256,12 @@ public class APIExample {
         }
     }
 
-    private static void testCategories(String text, CategoryOptions options) {
+    /**
+     * Sends string category request with options.
+     * @param text
+     * @param options
+     */
+    private static void doCategories(String text, CategoryOptions options) {
         try {
             CategoryResponse categoryResponse = rosetteAPI.getCategories(text, null, options);
             print(categoryResponse);
@@ -205,6 +272,10 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints CategoryResponse.
+     * @param categoryResponse
+     */
     private static void print(CategoryResponse categoryResponse) {
         System.out.println(categoryResponse.getRequestId());
         for (Category category : categoryResponse.getCategories()) {
@@ -216,15 +287,30 @@ public class APIExample {
         System.out.println();
     }
 
-    private static void testSentiment(InputStream file) {
-        testSentiment(file, null, null);
+    /**
+     * Sends file Sentiment request.
+     * @param file
+     */
+    private static void doSentiment(InputStream file) {
+        doSentiment(file, null, null);
     }
 
-    private static void testSentiment(InputStream file, String language) {
-        testSentiment(file, language, null);
+    /**
+     * Sends file Sentiment request with language option.
+     * @param file
+     * @param language
+     */
+    private static void doSentiment(InputStream file, String language) {
+        doSentiment(file, language, null);
     }
 
-    private static void testSentiment(InputStream file, String language, SentimentOptions options) {
+    /**
+     * Sends file Sentiment request with language and SentimentOptions.
+     * @param file
+     * @param language
+     * @param options
+     */
+    private static void doSentiment(InputStream file, String language, SentimentOptions options) {
         try {
             SentimentResponse sentimentResponse = rosetteAPI.getSentiment(file, language, options);
             print(sentimentResponse);
@@ -235,11 +321,20 @@ public class APIExample {
         }
     }
 
-    private static void testSentiment(String text) {
-        testSentiment(text, null);
+    /**
+     * Sends string Sentiment request.
+     * @param text
+     */
+    private static void doSentiment(String text) {
+        doSentiment(text, null);
     }
 
-    private static void testSentiment(String text, SentimentOptions options) {
+    /**
+     * Sends string Sentiment request with SentimentOptions.
+     * @param text
+     * @param options
+     */
+    private static void doSentiment(String text, SentimentOptions options) {
         try {
             SentimentResponse sentimentResponse = rosetteAPI.getSentiment(text, null, options);
             print(sentimentResponse);
@@ -250,11 +345,20 @@ public class APIExample {
         }
     }
 
-    private static void testSentiment(URL url) {
-        testSentiment(url, null);
+    /**
+     * Sends URL Sentiment request.
+     * @param url
+     */
+    private static void doSentiment(URL url) {
+        doSentiment(url, null);
     }
 
-    private static void testSentiment(URL url, SentimentOptions options) {
+    /**
+     * Sends URL Sentiment request with SentimentOptions.
+     * @param url
+     * @param options
+     */
+    private static void doSentiment(URL url, SentimentOptions options) {
         try {
             SentimentResponse sentimentResponse = rosetteAPI.getSentiment(url, null, options);
             print(sentimentResponse);
@@ -265,6 +369,10 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints SentimentResponse.
+     * @param sentimentResponse
+     */
     private static void print(SentimentResponse sentimentResponse) {
         System.out.println(sentimentResponse.getRequestId());
         for (Sentiment sentiment : sentimentResponse.getSentiment()) {
@@ -278,7 +386,11 @@ public class APIExample {
         System.out.println();
     }
 
-    private static void testResolvedEntity(InputStream file) {
+    /**
+     * Sends file LinkedEntity request.
+     * @param file
+     */
+    private static void doLinkedEntity(InputStream file) {
         try {
             LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(file, null, null);
             print(entityResponse);
@@ -289,6 +401,10 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints LinkedEntityResponse.
+     * @param entityResponse
+     */
     private static void print(LinkedEntityResponse entityResponse) {
         System.out.println(entityResponse.getRequestId());
         for (LinkedEntity entity : entityResponse.getEntities()) {
@@ -301,7 +417,11 @@ public class APIExample {
         System.out.println();
     }
 
-    private static void testResolvedEntity(String text) {
+    /**
+     * Sends string LinkedEntity request.
+     * @param text
+     */
+    private static void doLinkedEntity(String text) {
         try {
             LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(text, null, null);
             print(entityResponse);
@@ -312,7 +432,11 @@ public class APIExample {
         }
     }
 
-    private static void testResolvedEntity(URL url) {
+    /**
+     * Sends URL LinkedEntity request.
+     * @param url
+     */
+    private static void doLinkedEntity(URL url) {
         try {
             LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(url, null, null);
             print(entityResponse);
@@ -323,7 +447,11 @@ public class APIExample {
         }
     }
 
-    private static void testEntityRequest(InputStream file) {
+    /**
+     * Sends file Entity request.
+     * @param file
+     */
+    private static void doEntityRequest(InputStream file) {
         try {
             EntityResponse entityResponse = rosetteAPI.getEntity(file, null, null);
             print(entityResponse);
@@ -334,6 +462,10 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints EntityResponse.
+     * @param entityResponse
+     */
     private static void print(EntityResponse entityResponse) {
         System.out.println(entityResponse.getRequestId());
         for (ExtractedEntity entity : entityResponse.getEntities()) {
@@ -347,7 +479,11 @@ public class APIExample {
         }
     }
 
-    private static void testEntityRequest(String text) {
+    /**
+     * Sends string Entity request.
+     * @param text
+     */
+    private static void doEntityRequest(String text) {
         try {
             EntityResponse entityResponse = rosetteAPI.getEntity(text, null, null);
             print(entityResponse);
@@ -358,7 +494,11 @@ public class APIExample {
         }
     }
 
-    private static void testEntityRequest(URL url) {
+    /**
+     * Sends URL Entity request.
+     * @param url
+     */
+    private static void doEntityRequest(URL url) {
         try {
             EntityResponse entityResponse = rosetteAPI.getEntity(url, null, null);
             print(entityResponse);
@@ -369,7 +509,11 @@ public class APIExample {
         }
     }
 
-    private static void testLanguageRequest(InputStream file) {
+    /**
+     * Sends file Language request.
+     * @param file
+     */
+    private static void doLanguageRequest(InputStream file) {
         try {
             LanguageResponse response = rosetteAPI.getLanguage(file, null);
             print(response);
@@ -380,6 +524,10 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints LanguageResponse.
+     * @param response
+     */
     private static void print(LanguageResponse response) {
         System.out.println(response.getRequestId());
         for (LanguageDetectionResult ldr : response.getLanguageDetections()) {
@@ -388,7 +536,11 @@ public class APIExample {
         System.out.println();
     }
 
-    private static void testLanguageRequest(String text) {
+    /**
+     * Sends string Language request.
+     * @param text
+     */
+    private static void doLanguageRequest(String text) {
         try {
             LanguageResponse response = rosetteAPI.getLanguage(text, null);
             print(response);
@@ -399,7 +551,11 @@ public class APIExample {
         }
     }
 
-    private static void testLanguageRequest(URL url) {
+    /**
+     * Sends URL Language request.
+     * @param url
+     */
+    private static void doLanguageRequest(URL url) {
         try {
             LanguageResponse response = rosetteAPI.getLanguage(url, null);
             print(response);
@@ -410,9 +566,13 @@ public class APIExample {
         }
     }
 
-    private static void testMorphologyRequest(InputStream file) {
+    /**
+     * Sends file Morphology request.
+     * @param file
+     */
+    private static void doMorphologyRequest(InputStream file) {
         try {
-            MorphologyResponse response = rosetteAPI.getMorphology(file, null, null);
+            MorphologyResponse response = rosetteAPI.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, file, null, null);
             print(response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -421,9 +581,13 @@ public class APIExample {
         }
     }
 
-    private static void testMorphologyRequest(String text) {
+    /**
+     * Sends string Morphology request.
+     * @param text
+     */
+    private static void doMorphologyRequest(String text) {
         try {
-            MorphologyResponse response = rosetteAPI.getMorphology(text, null, null);
+            MorphologyResponse response = rosetteAPI.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, text, null, null);
             print(response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -432,9 +596,13 @@ public class APIExample {
         }
     }
 
-    private static void testMorphologyRequest(URL url) {
+    /**
+     * Sends URL Morphology request.
+     * @param url
+     */
+    private static void doMorphologyRequest(URL url) {
         try {
-            MorphologyResponse response = rosetteAPI.getMorphology(url, null, null);
+            MorphologyResponse response = rosetteAPI.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, url, null, null);
             print(response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -443,29 +611,46 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints MorphologyResponse.
+     * @param response
+     */
     private static void print(MorphologyResponse response) {
         System.out.println(response.getRequestId());
         String result = "===== posTags =====\n";
-        for (PartOfSpeech partOfSpeech : response.getPosTags()) {
-            result += partOfSpeech.getText() + "\t" + partOfSpeech.getPos() + "\n";
+        if (response.getPosTags() != null) {
+            for (PartOfSpeech partOfSpeech : response.getPosTags()) {
+                result += partOfSpeech.getText() + "\t" + partOfSpeech.getPos() + "\n";
+            }
         }
         result += "===== lemmas =====\n";
-        for (Lemma lemma : response.getLemmas()) {
-            result += lemma.getText() + "\t" + lemma.getLemma() + "\n";
+        if (response.getLemmas() != null) {
+            for (Lemma lemma : response.getLemmas()) {
+                result += lemma.getText() + "\t" + lemma.getLemma() + "\n";
+            }
         }
         result += "===== compounds =====\n";
-        for (Decompounding compoud : response.getCompounds()) {
-            result += compoud.getText() + "\t" + compoud.getCompoundComponents() + "\n";
+        if (response.getCompounds() != null) {
+            for (Decompounding compoud : response.getCompounds()) {
+                result += compoud.getText() + "\t" + compoud.getCompoundComponents() + "\n";
+            }
         }
         result += "===== hanReadings =====\n";
-        for (HanReadings reading : response.getHanReadings()) {
-            result += reading.getText() + "\t" + reading.getHanReadings() + "\n";
+        if (response.getHanReadings() != null) {
+            for (HanReadings reading : response.getHanReadings()) {
+                result += reading.getText() + "\t" + reading.getHanReadings() + "\n";
+            }
         }
         result += "\n";
         System.out.println(result);
     }
 
-    private static void testNameTranslationRequest(String name, String targetLanguage) {
+    /**
+     * Sends name translation request.
+     * @param name
+     * @param targetLanguage
+     */
+    private static void doNameTranslationRequest(String name, String targetLanguage) {
         try {
             NameTranslationRequest nameTranslationRequest = new NameTranslationRequest(name, null, null, null, null, targetLanguage, null, null);
             NameTranslationResponse response = rosetteAPI.translateName(nameTranslationRequest);
@@ -479,6 +664,11 @@ public class APIExample {
         }
     }
 
+    /**
+     * Prints NameTranslationResponse.
+     * @param name
+     * @param response
+     */
     private static void print(String name, NameTranslationResponse response) {
         System.out.println(response.getRequestId());
         TranslatedNameResult result = response.getResult();

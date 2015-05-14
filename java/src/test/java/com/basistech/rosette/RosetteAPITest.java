@@ -52,24 +52,6 @@ public class RosetteAPITest extends Assert {
     private ClientAndServer mockServer;
     private String language;
 
-    // convert InputStream to String
-    private static String getStringFromInputStream(InputStream is) throws IOException {
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
-        String line;
-        try {
-            br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        } finally {
-            if (br != null) {
-                br.close();
-            }
-        }
-        return sb.toString();
-    }
-
     public RosetteAPITest(String filename) {
         testFilename = filename;
     }
@@ -116,7 +98,7 @@ public class RosetteAPITest extends Assert {
 
         String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
         api = new RosetteAPI();
-        api.setServiceUrl(mockServiceUrl);
+        api.setUrlBase(mockServiceUrl);
     }
 
     @After
@@ -227,7 +209,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue();
         try {
-            MorphologyResponse response = api.getMorphology(request.getContent(), null, null);
+            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, request.getContent(), null, null);
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -246,7 +228,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue();
         try {
-            MorphologyResponse response = api.getMorphology(new URL(request.getContentUri()), null, null);
+            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, new URL(request.getContentUri()), null, null);
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -260,7 +242,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue();
         try {
-            MorphologyResponse response = api.getMorphology(request.getContent(), null, InputUnit.SENTENCE, null);
+            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, request.getContent(), null, InputUnit.SENTENCE, null);
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -464,5 +446,17 @@ public class RosetteAPITest extends Assert {
     private void verifyException(RosetteAPIException e) throws IOException {
         ErrorResponse goldResponse = mapper.readValue(responseStr, ErrorResponse.class);
         assertEquals(e.getCode(), goldResponse.getCode());
+    }
+
+    private static String getStringFromInputStream(InputStream is) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        String line;
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(is)))
+        {
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+        }
+        return sb.toString();
     }
 }
