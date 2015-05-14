@@ -37,7 +37,23 @@
                     </execution>
                 </executions>
             </plugin>
-             <plugin>
+      	    <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>.</directory>
+                            <includes>
+                                <include>setup.py</include>
+                                <include>setup.cfg</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
@@ -48,38 +64,6 @@
                     </environmentvariables>
                 </configuration>
                 <executions>
-                   <execution>
-                        <id>setup-clean py3</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv3}</argument>
-                                <argument>${python3}</argument>
-                                <argument>setup.py</argument>
-                                <argument>clean</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                   <execution>
-                        <id>setup-clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv}</argument>
-                                <argument>${python}</argument>
-                                <argument>setup.py</argument>
-                                <argument>clean</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>setup build</id>
                         <phase>compile</phase>
