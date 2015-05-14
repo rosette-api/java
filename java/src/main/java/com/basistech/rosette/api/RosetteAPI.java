@@ -1,14 +1,10 @@
 package com.basistech.rosette.api;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -22,6 +18,7 @@ import com.basistech.rosette.model.EntityOptions;
 import com.basistech.rosette.model.EntityRequest;
 import com.basistech.rosette.model.EntityResponse;
 import com.basistech.rosette.model.ErrorResponse;
+import com.basistech.rosette.model.InfoResponse;
 import com.basistech.rosette.model.InputUnit;
 import com.basistech.rosette.model.LanguageOptions;
 import com.basistech.rosette.model.LanguageRequest;
@@ -36,6 +33,7 @@ import com.basistech.rosette.model.NameMatcherRequest;
 import com.basistech.rosette.model.NameMatcherResponse;
 import com.basistech.rosette.model.NameTranslationRequest;
 import com.basistech.rosette.model.NameTranslationResponse;
+import com.basistech.rosette.model.PingResponse;
 import com.basistech.rosette.model.Request;
 import com.basistech.rosette.model.Response;
 import com.basistech.rosette.model.SentimentOptions;
@@ -47,9 +45,9 @@ import static java.net.HttpURLConnection.HTTP_OK;
 
 public class RosetteAPI {
 
-    private static String key;
-    private static String urlBase = "https://api.rosette.com/rest/v1/";
-    private final String debugOutput = "?debug=true";
+    private String key;
+    private String urlBase = "https://api.rosette.com/rest/v1/";
+    private String debugOutput = "";
     private final static String languageServicePath = "language";
     private final static String morphologyServicePath = "morphology/complete";
     private final static String entitiesServicePath = "entities";
@@ -58,39 +56,40 @@ public class RosetteAPI {
     private final static String sentimentServicePath = "sentiment";
     private final static String translatedNameServicePath = "translated-name";
     private final static String matchedNameServicePath = "matched-name";
+    private final static String infoServicePath = "info";
+    private final static String pingServicePath = "ping";
     private final ObjectMapper mapper;
 
-    public RosetteAPI(String filename) throws IOException {
-        loadAPIKey(filename);
+    public RosetteAPI(String key) {
+        this.key = key;
         mapper = new ObjectMapper();
     }
 
     public RosetteAPI() {
+        this.key = System.getenv("ROSETTE_API_KEY");
         mapper = new ObjectMapper();
     }
 
     public void setServiceUrl(String url) {
-        urlBase = url;
+        if (!url.endsWith("/")) {
+            urlBase = url + "/";
+        }
     }
 
     public void setAPIKey(String key) {
-        RosetteAPI.key = key;
+        this.key = key;
     }
 
-    private void loadAPIKey(String filename) throws IOException, IllegalArgumentException {
-        if (null == filename || 0 == filename.length())
-            throw new IllegalArgumentException("Empty API key file specified.");
+    public void setDebugOutput(boolean flag) {
+        this.debugOutput = flag ? "?debug=true" : "";
+    }
 
-        File file = new File(filename);
-        FileInputStream fis = new FileInputStream(file);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-        String line = reader.readLine();
-        if (line == null || line.isEmpty()) {
-            throw new IllegalArgumentException("Empty API key file specified.");
-        }
-        key = line.replaceAll("\\n", "").replaceAll("\\r", "");
-        fis.close();
-        reader.close();
+    public InfoResponse getInfo() throws IOException, RosetteAPIException {
+        return (InfoResponse) sendGetRequest(urlBase + infoServicePath, InfoResponse.class);
+    }
+
+    public PingResponse getPing() throws IOException, RosetteAPIException {
+        return (PingResponse) sendGetRequest(urlBase + pingServicePath, PingResponse.class);
     }
 
     public NameMatcherResponse matchName(NameMatcherRequest request) throws RosetteAPIException, IOException {
@@ -227,8 +226,15 @@ public class RosetteAPI {
         return (SentimentResponse) sendRequest(request, urlBase + sentimentServicePath, SentimentResponse.class);
     }
 
+    private Response sendGetRequest(String urlStr, Class<? extends Response> clazz) throws IOException, RosetteAPIException {
+        HttpURLConnection httpUrlConnection = openHttpURLConnection(urlStr);
+        httpUrlConnection.setRequestMethod("GET");
+        return getResponse(httpUrlConnection, clazz);
+    }
+
     private Response sendRequest(Request request, String urlStr, Class<? extends Response> clazz) throws RosetteAPIException, IOException {
         HttpURLConnection httpUrlConnection = openHttpURLConnection(urlStr);
+        httpUrlConnection.setRequestMethod("POST");
         OutputStream os = httpUrlConnection.getOutputStream();
         mapper.writeValue(os, request);
         os.close();
@@ -237,7 +243,8 @@ public class RosetteAPI {
 
     private Response sendRequest(NameMatcherRequest request, String urlStr, Class<? extends Response> clazz) throws RosetteAPIException, IOException {
         HttpURLConnection httpUrlConnection = openHttpURLConnection(urlStr);
-        OutputStream os  = httpUrlConnection.getOutputStream();
+        httpUrlConnection.setRequestMethod("POST");
+        DataOutputStream os  = new DataOutputStream(httpUrlConnection.getOutputStream());
         mapper.writeValue(os, request);
         os.close();
         return getResponse(httpUrlConnection, clazz);
@@ -245,6 +252,7 @@ public class RosetteAPI {
 
     private Response sendRequest(NameTranslationRequest request, String urlStr, Class<? extends Response> clazz) throws RosetteAPIException, IOException {
         HttpURLConnection httpUrlConnection = openHttpURLConnection(urlStr);
+        httpUrlConnection.setRequestMethod("POST");
         OutputStream os  = httpUrlConnection.getOutputStream();
         mapper.writeValue(os, request);
         os.close();
@@ -255,12 +263,13 @@ public class RosetteAPI {
         URL url = new URL(urlStr + debugOutput);
         HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
         httpUrlConnection.setDoOutput(true);
-        httpUrlConnection.setRequestMethod("POST");
+        if (key == null) {
+            key = "";
+        }
         httpUrlConnection.setRequestProperty("user_key", key);
         httpUrlConnection.setRequestProperty("Content-Type", "application/json");
-        httpUrlConnection.setRequestProperty("Accept", "application/json");
         httpUrlConnection.setRequestProperty("Accept-Encoding", "gzip");
-        httpUrlConnection.connect();
+        httpUrlConnection.setRequestProperty("Connection", "keep-alive");
         return httpUrlConnection;
     }
 
@@ -272,13 +281,11 @@ public class RosetteAPI {
             InputStream inputStream =
                 ("gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream)
         ) {
-            DataInputStream istream = new DataInputStream(inputStream);
-
             if (HTTP_OK != status) {
-                ErrorResponse errorResponse = mapper.readValue(istream, ErrorResponse.class);
+                ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
                 throw new RosetteAPIException(status, errorResponse);
             } else {
-                return mapper.readValue(istream, clazz);
+                return mapper.readValue(inputStream, clazz);
             }
         }
     }

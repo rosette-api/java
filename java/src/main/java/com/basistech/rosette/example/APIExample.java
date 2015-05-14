@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Date;
 
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
@@ -16,6 +17,7 @@ import com.basistech.rosette.model.Decompounding;
 import com.basistech.rosette.model.EntityResponse;
 import com.basistech.rosette.model.ExtractedEntity;
 import com.basistech.rosette.model.HanReadings;
+import com.basistech.rosette.model.InfoResponse;
 import com.basistech.rosette.model.LanguageCode;
 import com.basistech.rosette.model.LanguageDetectionResult;
 import com.basistech.rosette.model.LanguageResponse;
@@ -30,6 +32,7 @@ import com.basistech.rosette.model.NameMatcherResult;
 import com.basistech.rosette.model.NameTranslationRequest;
 import com.basistech.rosette.model.NameTranslationResponse;
 import com.basistech.rosette.model.PartOfSpeech;
+import com.basistech.rosette.model.PingResponse;
 import com.basistech.rosette.model.Sentiment;
 import com.basistech.rosette.model.SentimentModel;
 import com.basistech.rosette.model.SentimentOptions;
@@ -38,21 +41,19 @@ import com.basistech.rosette.model.TranslatedNameResult;
 
 public class APIExample {
 
-    private static final String key = "Rosette API key"; // Your Rosette API key
     private static RosetteAPI rosetteAPI;
 
     public static void main(String[] args) throws URISyntaxException, IOException, RosetteAPIParameterException {
         String website = "http://www.basistech.com";
         URL url = new URL(website);
         String text = "I live in Boston, Massachusetts.";
+        String apiKey = System.getProperty("rosette.api.key");
 
-        if (args.length != 1) {
-            usage();
-            return;
-        }
-        String apiFilename = args[0];
-        rosetteAPI = new RosetteAPI(apiFilename);
+        rosetteAPI = new RosetteAPI(apiKey);
         ClassLoader cl = APIExample.class.getClassLoader();
+
+        testGetInfo();
+        testPing();
 
         testNameMatcherRequest("John Doe", "John Doe");
         testNameMatcherRequest("John Doe", "Jon Doe");
@@ -91,11 +92,50 @@ public class APIExample {
         testSentiment(text, new SentimentOptions(SentimentModel.SHORT_STRING, true));
         testSentiment(cl.getResourceAsStream("English.txt"));
         testSentiment(cl.getResourceAsStream("English.txt"), "eng", new SentimentOptions(SentimentModel.REVIEW, true));
-        testSentiment(cl.getResourceAsStream("Chinese.txt"));
+    }
+
+    private static void testPing() {
+        try {
+            PingResponse pingResponse = rosetteAPI.getPing();
+            print(pingResponse);
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    private static void print(PingResponse pingResponse) {
+        System.out.printf("Message: %s\tTime: %s\n",
+                pingResponse.getMessage(),
+                new Date(pingResponse.getTime()).toString()
+        );
+        System.out.println();
+    }
+
+    private static void testGetInfo() {
+        try {
+            InfoResponse infoResponse = rosetteAPI.getInfo();
+            print(infoResponse);
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    private static void print(InfoResponse infoResponse) {
+        System.out.printf("Name: %s\tVersion: %s\tBuild number: %s\tBuild time: %s\n",
+                infoResponse.getName(),
+                infoResponse.getVersion(),
+                infoResponse.getBuildNumber(),
+                infoResponse.getBuildTime()
+        );
+        System.out.println();
     }
 
     private static void usage() {
-        System.out.println("Usage: java -jar Rosette-API.jar api-key.txt");
+        System.out.println("Usage: java -jar Rosette-API.jar -Drosette.api.key=your-api-key");
     }
 
     private static void testNameMatcherRequest(String name1, String name2) {
