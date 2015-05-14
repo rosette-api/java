@@ -49,6 +49,11 @@ public class APIExample {
         String text = "I live in Boston, Massachusetts.";
         String apiKey = System.getProperty("rosette.api.key");
 
+        if (apiKey == null) {
+            usage();
+            return;
+        }
+
         rosetteAPI = new RosetteAPI(apiKey);
         ClassLoader cl = APIExample.class.getClassLoader();
 
@@ -94,6 +99,10 @@ public class APIExample {
         testSentiment(cl.getResourceAsStream("English.txt"), "eng", new SentimentOptions(SentimentModel.REVIEW, true));
     }
 
+    private static void usage() {
+        System.out.println("Usage: java -jar Rosette-API-Example.jar -Drosette.api.key=your-api-key");
+    }
+
     private static void testPing() {
         try {
             PingResponse pingResponse = rosetteAPI.getPing();
@@ -132,10 +141,6 @@ public class APIExample {
                 infoResponse.getBuildTime()
         );
         System.out.println();
-    }
-
-    private static void usage() {
-        System.out.println("Usage: java -jar Rosette-API.jar -Drosette.api.key=your-api-key");
     }
 
     private static void testNameMatcherRequest(String name1, String name2) {
