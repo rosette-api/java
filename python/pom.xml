@@ -2,21 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ws-client-bindings-python</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
     <parent>
         <groupId>com.basistech.ws</groupId>
         <artifactId>ws-client-bindings</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.5-SNAPSHOT</version>
     </parent>
     <properties>
         <virtualenv>virtualenv/target/vroot</virtualenv>
         <python>virtualenv/target/vroot/bin/python</python>
         <pip>virtualenv/target/vroot/bin/pip</pip>
         <virtualenv3>virtualenv/target/vroot3</virtualenv3>
-	<epydoc>virtualenv/target/vroot/bin/epydoc</epydoc>
-	<doctarget>target/html</doctarget>
-	<documentables>rosette/*.py</documentables>
+	    <epydoc>virtualenv/target/vroot/bin/epydoc</epydoc>
+        <epydoc.css>epydoc.css</epydoc.css>
+	    <doctarget>target/html</doctarget>
+	    <documentables>rosette/*.py</documentables>
         <python3>virtualenv/target/vroot3/bin/python</python3>
         <pip3>virtualenv/target/vroot3/bin/pip</pip3>
     </properties>
@@ -24,4 +25,19 @@
         <module>virtualenv</module>
         <module>setup</module>
     </modules>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>rosette_api.egg-info</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>

@@ -3,31 +3,15 @@
     <parent>
         <groupId>com.basistech.ws</groupId>
         <artifactId>ws-client-bindings-python</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.5-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ws-client-bindings-setup</artifactId>
     <properties>
-      <run>setup/run_in_venv.sh</run>
+        <run>setup/run_in_venv.sh</run>
     </properties>
     <build>
         <plugins>
-      	    <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.4.1</version>
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>.</directory>
-                            <includes>
-                                <include>setup.py</include>
-                                <include>setup.cfg</include>
-                            </includes>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                    </filesets>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -88,6 +72,8 @@
                                 <argument>-v</argument>
                                 <argument>--no-private</argument>
                                 <argument>--no-frames</argument>
+                                <argument>--css</argument>
+                                <argument>${epydoc.css}</argument>
                                 <argument>-o</argument>
                                 <argument>${doctarget}</argument>
                                 <argument>${documentables}</argument>
@@ -110,8 +96,8 @@
                                 <argument>build_sphinx</argument>
                             </arguments>
                         </configuration>
-                        </execution>
-                        -->
+                    </execution>
+                    -->
                     <execution>
                         <id>build dist</id>
                         <phase>compile</phase>
@@ -137,16 +123,16 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.5.4</version>
                 <executions>
-                  <execution>
-                    <id>assembly</id>
-                    <phase>package</phase>
-                    <goals>
-                      <goal>single</goal>
-                    </goals>
-                  </execution>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
                 </executions>
                 <configuration>
-                  <finalName>publish</finalName>
+                    <finalName>publish</finalName>
                     <descriptors>
                         <descriptor>src/assembly/publish.xml</descriptor>
                     </descriptors>

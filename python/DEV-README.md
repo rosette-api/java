@@ -88,7 +88,7 @@ With the file tree in the above state (from mvn, not an install), cd to the
 
 To test from Python 3
 
-    ./test_from_shell3.sh
+    ./test_from_shell_py3.sh
 
 These tests will hit jugmaster.basistech.net; if you don't like that, change or rewrite
 either or both of these one-line scripts to use some other URL.  If a user key is needed,

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # This assumes that you have run a build and so the doc is sitting in target/html
 #

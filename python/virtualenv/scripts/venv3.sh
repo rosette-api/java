@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # shell script to set up a virtual environment
 # this is the py3 script
 # add additional required packages in the pip commands below.
