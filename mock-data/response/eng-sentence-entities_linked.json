@@ -1,29 +1,29 @@
 {
   "entities": [
     {
-      "confidence": 0.7343137047421749, 
+      "confidence": 0.7663931614955327, 
       "entityId": "Q30", 
       "indocChainId": 0, 
       "mention": "U.S."
     }, 
     {
-      "confidence": 0.3036010904404845, 
+      "confidence": 0.29775268161399915, 
       "entityId": "Q796", 
       "indocChainId": 1, 
       "mention": "Iraq"
     }, 
     {
-      "confidence": 0.24946948003589306, 
+      "confidence": 0.23271222742588785, 
       "entityId": "Q889", 
       "indocChainId": 2, 
       "mention": "Afghanistan"
     }
   ], 
-  "requestId": "35aa71c2-b5a3-4936-b0bc-eda4dd74a5b9", 
+  "requestId": "8e106556-7bf6-4dbf-82e5-393d4cdebaee", 
   "timers": {
-    "rblJe": 1, 
-    "res": 59, 
-    "rexJe": 5, 
-    "rliJe": 2
+    "rblJe": 2, 
+    "res": 188, 
+    "rexJe": 4, 
+    "rliJe": 13
   }
 }

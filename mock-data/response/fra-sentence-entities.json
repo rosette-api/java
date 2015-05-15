@@ -65,10 +65,10 @@
       "type": "LOCATION"
     }
   ], 
-  "requestId": "d38d6620-ad49-44bb-ad30-144f8d82018d", 
+  "requestId": "a153dfb0-d82c-40f3-82d8-f6da36b7901a", 
   "timers": {
     "rblJe": 1, 
-    "rexJe": 6, 
-    "rliJe": 2
+    "rexJe": 9, 
+    "rliJe": 4
   }
 }

@@ -1,372 +1,356 @@
 {
   "entities": [
     {
-      "confidence": 0.025296056270599367, 
-      "count": 5, 
-      "indocChainId": 4, 
-      "mention": "Lubitz", 
-      "normalized": "Lubitz", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.01501554250717163, 
-      "count": 3, 
-      "indocChainId": 3, 
-      "mention": "Germanwings", 
-      "normalized": "Germanwings", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.03354485829671224, 
-      "count": 3, 
-      "indocChainId": 11, 
-      "mention": "BEA", 
-      "normalized": "BEA", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.01700049638748169, 
-      "count": 3, 
-      "indocChainId": 12, 
-      "mention": "Alastair Jamieson", 
-      "normalized": "Alastair Jamieson", 
-      "type": "PERSON"
-    }, 
-    {
       "confidence": 1.0, 
-      "count": 3, 
-      "indocChainId": 15, 
-      "mention": "Wednesday", 
-      "normalized": "Wednesday", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 0.017333348592122395, 
-      "count": 3, 
-      "indocChainId": 36, 
-      "mention": "NBC News", 
-      "normalized": "NBC News", 
+      "count": 18, 
+      "indocChainId": 4, 
+      "mention": "Nike", 
+      "normalized": "Nike", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.017287522554397583, 
-      "count": 2, 
-      "indocChainId": 4, 
-      "mention": "Andreas Lubitz", 
-      "normalized": "Andreas Lubitz", 
+      "confidence": 0.026053469628095627, 
+      "count": 16, 
+      "indocChainId": 6, 
+      "mention": "Obama", 
+      "normalized": "Obama", 
       "type": "PERSON"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 2, 
+      "confidence": 0.0356166809797287, 
+      "count": 8, 
       "indocChainId": 5, 
-      "mention": "Frankfurt", 
-      "normalized": "Frankfurt", 
+      "mention": "President", 
+      "normalized": "President", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 4, 
+      "indocChainId": 23, 
+      "mention": "USA", 
+      "normalized": "USA", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 1.0, 
-      "count": 2, 
-      "indocChainId": 14, 
-      "mention": "French", 
-      "normalized": "French", 
+      "count": 4, 
+      "indocChainId": 35, 
+      "mention": "American", 
+      "normalized": "American", 
       "type": "NATIONALITY"
     }, 
     {
-      "confidence": 0.017390310764312744, 
-      "count": 2, 
-      "indocChainId": 20, 
-      "mention": "Dusseldorf", 
-      "normalized": "Dusseldorf", 
+      "confidence": 1.0, 
+      "count": 3, 
+      "indocChainId": 9, 
+      "mention": "Facebook", 
+      "normalized": "Facebook", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 3, 
+      "indocChainId": 43, 
+      "mention": "Vietnam", 
+      "normalized": "Vietnam", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.030961960554122925, 
+      "confidence": 1.0, 
+      "count": 2, 
+      "indocChainId": 1, 
+      "mention": "Twitter", 
+      "normalized": "Twitter", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 2, 
+      "indocChainId": 17, 
+      "mention": "http://usat.ly/1bDiUq2", 
+      "normalized": "http://usat.ly/1bDiUq2", 
+      "type": "IDENTIFIER:URL"
+    }, 
+    {
+      "confidence": 0.016632944345474243, 
+      "count": 2, 
+      "indocChainId": 31, 
+      "mention": "AP", 
+      "normalized": "AP", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.01539921760559082, 
+      "count": 2, 
+      "indocChainId": 34, 
+      "mention": "Pacific", 
+      "normalized": "Pacific", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 1.0, 
       "count": 2, 
       "indocChainId": 54, 
-      "mention": "London", 
-      "normalized": "London", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 0, 
-      "mention": "Getty Images", 
-      "normalized": "Getty Images", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 1, 
-      "mention": "2 hours", 
-      "normalized": "2 hours", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 2, 
-      "mention": "German", 
-      "normalized": "German", 
-      "type": "NATIONALITY"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 6, 
-      "mention": "March 14, 2010", 
-      "normalized": "March 14, 2010", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 8, 
-      "mention": "Germany", 
-      "normalized": "Germany", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0010210871696472168, 
-      "count": 1, 
-      "indocChainId": 10, 
-      "mention": "Co-Pilot Lubitz Rehearsed Crash", 
-      "normalized": "Co-Pilot Lubitz Rehearsed Crash", 
-      "type": "PRODUCT"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 17, 
-      "mention": "Airbus", 
-      "normalized": "Airbus", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0061301589012146, 
-      "count": 1, 
-      "indocChainId": 18, 
-      "mention": "A320", 
-      "normalized": "A320", 
-      "type": "PRODUCT"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 19, 
-      "mention": "100 feet", 
-      "normalized": "100 feet", 
-      "type": "IDENTIFIER:DISTANCE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 21, 
-      "mention": "Barcelona", 
-      "normalized": "Barcelona", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 22, 
-      "mention": "March 24", 
-      "normalized": "March 24", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 25, 
-      "mention": "Spain", 
-      "normalized": "Spain", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 29, 
-      "mention": "93 seconds", 
-      "normalized": "93 seconds", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 30, 
-      "mention": "a half minutes", 
-      "normalized": "a half minutes", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 0.01632106304168701, 
-      "count": 1, 
-      "indocChainId": 32, 
-      "mention": "Rosenschein", 
-      "normalized": "Rosenschein", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.023340463638305664, 
-      "count": 1, 
-      "indocChainId": 32, 
-      "mention": "Alastair Rosenschein", 
-      "normalized": "Alastair Rosenschein", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 33, 
-      "mention": "British Airways", 
-      "normalized": "British Airways", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.04278641939163208, 
-      "count": 1, 
-      "indocChainId": 40, 
-      "mention": "Federal Aviation Administration", 
-      "normalized": "Federal Aviation Administration", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0299951434135437, 
-      "count": 1, 
-      "indocChainId": 40, 
-      "mention": "FAA", 
-      "normalized": "FAA", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 42, 
       "mention": "U.S.", 
       "normalized": "U.S.", 
       "type": "LOCATION"
     }, 
     {
+      "confidence": 0.020548731088638306, 
+      "count": 2, 
+      "indocChainId": 56, 
+      "mention": "Congress", 
+      "normalized": "Congress", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.03334552049636841, 
+      "count": 2, 
+      "indocChainId": 73, 
+      "mention": "Democratic", 
+      "normalized": "Democratic", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.022478938102722168, 
+      "count": 2, 
+      "indocChainId": 74, 
+      "mention": "White House", 
+      "normalized": "White House", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0002225041389465332, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "City, State", 
+      "normalized": "City, State", 
+      "type": "LOCATION"
+    }, 
+    {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 43, 
-      "mention": "Lufthansa", 
-      "normalized": "Lufthansa", 
+      "indocChainId": 2, 
+      "mention": "Google", 
+      "normalized": "Google", 
       "type": "ORGANIZATION"
     }, 
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 44, 
-      "mention": "Phoenix", 
-      "normalized": "Phoenix", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.013911128044128418, 
-      "count": 1, 
-      "indocChainId": 47, 
-      "mention": "Katy Tur", 
-      "normalized": "Katy Tur", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.01322263479232788, 
-      "count": 1, 
-      "indocChainId": 48, 
-      "mention": "Amy Perrette", 
-      "normalized": "Amy Perrette", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.016346335411071777, 
-      "count": 1, 
-      "indocChainId": 49, 
-      "mention": "Nancy Ing", 
-      "normalized": "Nancy Ing", 
-      "type": "PERSON"
+      "indocChainId": 3, 
+      "mention": "LinkedIn", 
+      "normalized": "LinkedIn", 
+      "type": "ORGANIZATION"
     }, 
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 50, 
-      "mention": "May 6 2015", 
-      "normalized": "May 6 2015", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 51, 
-      "mention": "3:13 AM", 
-      "normalized": "3:13 AM", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 56, 
-      "mention": "NBCNews.com", 
-      "normalized": "NBCNews.com", 
+      "indocChainId": 16, 
+      "mention": "USATODAY.com", 
+      "normalized": "USATODAY.com", 
       "type": "IDENTIFIER:URL"
     }, 
     {
-      "confidence": 1.0, 
+      "confidence": 0.01601588726043701, 
       "count": 1, 
-      "indocChainId": 57, 
-      "mention": "a decade", 
-      "normalized": "a decade", 
-      "type": "TEMPORAL:TIME"
+      "indocChainId": 22, 
+      "mention": "Gregory Korte", 
+      "normalized": "Gregory Korte", 
+      "type": "PERSON"
     }, 
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 58, 
-      "mention": "British", 
-      "normalized": "British", 
-      "type": "NATIONALITY"
+      "indocChainId": 27, 
+      "mention": "Ore.", 
+      "normalized": "Ore.", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.023429572582244873, 
+      "count": 1, 
+      "indocChainId": 29, 
+      "mention": "Democrats", 
+      "normalized": "Democrats", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.009600162506103516, 
+      "count": 1, 
+      "indocChainId": 30, 
+      "mention": "Pablo Martinez Monsivais", 
+      "normalized": "Pablo Martinez Monsivais", 
+      "type": "PERSON"
     }, 
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 59, 
-      "mention": "Sunday Telegraph", 
-      "normalized": "Sunday Telegraph", 
+      "indocChainId": 39, 
+      "mention": "Vermont", 
+      "normalized": "Vermont", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.01797032356262207, 
+      "count": 1, 
+      "indocChainId": 40, 
+      "mention": "Sen.", 
+      "normalized": "Sen.", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.029442191123962402, 
+      "count": 1, 
+      "indocChainId": 41, 
+      "mention": "Bernie Sanders", 
+      "normalized": "Bernie Sanders", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 49, 
+      "mention": "Portland", 
+      "normalized": "Portland", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0008523464202880859, 
+      "count": 1, 
+      "indocChainId": 51, 
+      "mention": "Senate", 
+      "normalized": "Senate", 
       "type": "ORGANIZATION"
     }, 
     {
       "confidence": 1.0, 
+      "count": 1, 
+      "indocChainId": 54, 
+      "mention": "United States", 
+      "normalized": "United States", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.02184152603149414, 
       "count": 1, 
       "indocChainId": 60, 
-      "mention": "Daily Telegraph", 
-      "normalized": "Daily Telegraph", 
+      "mention": "Parker", 
+      "normalized": "Parker", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.027263343334197998, 
+      "count": 1, 
+      "indocChainId": 60, 
+      "mention": "Mark Parker", 
+      "normalized": "Mark Parker", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.07037776708602905, 
+      "count": 1, 
+      "indocChainId": 65, 
+      "mention": "Eric Hauser", 
+      "normalized": "Eric Hauser", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.017060577869415283, 
+      "count": 1, 
+      "indocChainId": 66, 
+      "mention": "AFL-CIO", 
+      "normalized": "AFL-CIO", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
+      "confidence": 0.021783530712127686, 
       "count": 1, 
-      "indocChainId": 62, 
-      "mention": "Scotsman", 
-      "normalized": "Scotsman", 
-      "type": "NATIONALITY"
+      "indocChainId": 71, 
+      "mention": "Clinton", 
+      "normalized": "Clinton", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.01363682746887207, 
+      "count": 1, 
+      "indocChainId": 75, 
+      "mention": "Trans-Pacific", 
+      "normalized": "Trans-Pacific", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.00797349214553833, 
+      "count": 1, 
+      "indocChainId": 84, 
+      "mention": "TPP", 
+      "normalized": "TPP", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.025950074195861816, 
+      "count": 1, 
+      "indocChainId": 85, 
+      "mention": "Murshed Zaheed", 
+      "normalized": "Murshed Zaheed", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0026077628135681152, 
+      "count": 1, 
+      "indocChainId": 86, 
+      "mention": "Credo Action", 
+      "normalized": "Credo Action", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.03961271047592163, 
+      "count": 1, 
+      "indocChainId": 88, 
+      "mention": "Asia", 
+      "normalized": "Asia", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.022504746913909912, 
+      "count": 1, 
+      "indocChainId": 90, 
+      "mention": "Sentinel Hotel", 
+      "normalized": "Sentinel Hotel", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.019158661365509033, 
+      "count": 1, 
+      "indocChainId": 94, 
+      "mention": "Thomas Boyd", 
+      "normalized": "Thomas Boyd", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.012987256050109863, 
+      "count": 1, 
+      "indocChainId": 98, 
+      "mention": "Michael Wolff", 
+      "normalized": "Michael Wolff", 
+      "type": "PERSON"
     }, 
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 63, 
-      "mention": "Edinburgh", 
-      "normalized": "Edinburgh", 
+      "indocChainId": 99, 
+      "mention": "Britain", 
+      "normalized": "Britain", 
       "type": "LOCATION"
     }
   ], 
-  "requestId": "14ff04a2-9377-4acf-9f15-8fdc1ad58d78", 
+  "requestId": "20cc0667-b5d1-45ca-8649-388b42695ed6", 
   "timers": {
-    "rblJe": 3, 
-    "rexJe": 124, 
-    "rliJe": 2, 
-    "textExtractor": 10, 
-    "urlContentDownloader": 22
+    "rblJe": 6, 
+    "rexJe": 194, 
+    "rliJe": 6, 
+    "textExtractor": 14, 
+    "urlContentDownloader": 117
   }
 }

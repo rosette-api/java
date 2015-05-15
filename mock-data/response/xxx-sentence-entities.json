@@ -33,26 +33,18 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 4, 
-      "mention": "31 января", 
-      "normalized": "31 января", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
       "confidence": 0.01137775182723999, 
       "count": 1, 
-      "indocChainId": 5, 
+      "indocChainId": 4, 
       "mention": "Ванкувер", 
       "normalized": "Ванкувер", 
       "type": "LOCATION"
     }
   ], 
-  "requestId": "463af68a-13ba-42cc-a6a6-bbad51ca3e03", 
+  "requestId": "3d554165-486c-4716-aea7-868c316fb883", 
   "timers": {
     "rblJe": 1, 
-    "rexJe": 3, 
-    "rliJe": 1
+    "rexJe": 29, 
+    "rliJe": 4
   }
 }

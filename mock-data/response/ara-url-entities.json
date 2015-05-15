@@ -1,244 +1,212 @@
 {
   "entities": [
     {
-      "confidence": 0.028982532024383546, 
-      "count": 10, 
-      "indocChainId": 24, 
-      "mention": "غرينتش", 
-      "normalized": "غرينتش", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 3, 
-      "indocChainId": 0, 
-      "mention": "خمس سنوات", 
-      "normalized": "خمس سنوات", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 0.017888943354288738, 
-      "count": 3, 
-      "indocChainId": 3, 
-      "mention": "سلمان خان", 
-      "normalized": "سلمان خان", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 3, 
-      "indocChainId": 18, 
-      "mention": "alhayat.com", 
-      "normalized": "alhayat.com", 
-      "type": "IDENTIFIER:URL"
-    }, 
-    {
-      "confidence": 0.002583742141723633, 
-      "count": 2, 
-      "indocChainId": 1, 
-      "mention": "للممثل", 
-      "normalized": "لممثل", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 2, 
+      "confidence": 0.01820140414767795, 
+      "count": 9, 
       "indocChainId": 2, 
-      "mention": "الهندي", 
-      "normalized": "الهندي", 
-      "type": "NATIONALITY"
-    }, 
-    {
-      "confidence": 0.0040569305419921875, 
-      "count": 1, 
-      "indocChainId": 3, 
-      "mention": "خان", 
-      "normalized": "خان", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.012083590030670166, 
-      "count": 1, 
-      "indocChainId": 4, 
-      "mention": "نيودلهي", 
-      "normalized": "نيودلهي", 
+      "mention": "صعدة", 
+      "normalized": "صعدة", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.00888359546661377, 
-      "count": 1, 
-      "indocChainId": 5, 
-      "mention": "رويترز", 
-      "normalized": "رويترز", 
+      "confidence": 0.013964295387268066, 
+      "count": 6, 
+      "indocChainId": 9, 
+      "mention": "الجزيرة", 
+      "normalized": "الجزيرة", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
+      "confidence": 0.02017374833424886, 
+      "count": 3, 
       "indocChainId": 6, 
-      "mention": "هندية", 
-      "normalized": "هندية", 
-      "type": "NATIONALITY"
+      "mention": "قيادة التحالف", 
+      "normalized": "قيادة التحالف", 
+      "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 7, 
-      "mention": "الأربعاء", 
-      "normalized": "الأربعاء", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 0.0019336938858032227, 
-      "count": 1, 
-      "indocChainId": 9, 
-      "mention": "الممثل", 
-      "normalized": "الممثل", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.05486541986465454, 
-      "count": 1, 
-      "indocChainId": 11, 
-      "mention": "القاضي", 
-      "normalized": "القاضي", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.08143645524978638, 
-      "count": 1, 
+      "confidence": 0.01915818452835083, 
+      "count": 3, 
       "indocChainId": 12, 
-      "mention": "مومباي", 
-      "normalized": "مومباي", 
+      "mention": "قوات التحالف", 
+      "normalized": "قوات التحالف", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.01995900273323059, 
+      "count": 2, 
+      "indocChainId": 3, 
+      "mention": "شبوة", 
+      "normalized": "شبوه", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.016160041093826294, 
+      "count": 2, 
+      "indocChainId": 8, 
+      "mention": "اليمن", 
+      "normalized": "اليمن", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.012926608324050903, 
+      "count": 2, 
+      "indocChainId": 19, 
+      "mention": "طيران التحالف", 
+      "normalized": "طيران التحالف", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.02015608549118042, 
+      "count": 2, 
+      "indocChainId": 22, 
+      "mention": "السعودية", 
+      "normalized": "السعودية", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.029470980167388916, 
+      "count": 2, 
+      "indocChainId": 29, 
+      "mention": "عسيري", 
+      "normalized": "عسيري", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.008821934461593628, 
+      "count": 2, 
+      "indocChainId": 29, 
+      "mention": "أحمد عسيري", 
+      "normalized": "أحمد عسيري", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.00783047080039978, 
+      "count": 2, 
+      "indocChainId": 35, 
+      "mention": "أمس", 
+      "normalized": "أمس", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.011575579643249512, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "مكة المكرمة", 
+      "normalized": "مكة المكرمة", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 14, 
-      "mention": "49 عاماً", 
-      "normalized": "49 عاماً", 
-      "type": "TEMPORAL:TIME"
+      "indocChainId": 1, 
+      "mention": "عربي", 
+      "normalized": "عربي", 
+      "type": "NATIONALITY"
     }, 
     {
-      "confidence": 0.0582200288772583, 
+      "confidence": 0.013428866863250732, 
       "count": 1, 
-      "indocChainId": 15, 
-      "mention": "الله", 
-      "normalized": "الله", 
-      "type": "PERSON"
+      "indocChainId": 4, 
+      "mention": "وعدن", 
+      "normalized": "عدن", 
+      "type": "LOCATION"
     }, 
     {
-      "confidence": 1.0, 
+      "confidence": 0.007166385650634766, 
+      "count": 1, 
+      "indocChainId": 5, 
+      "mention": "وتعز", 
+      "normalized": "تعز", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0020186901092529297, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "مركز وبرج الاتصالات", 
+      "normalized": "مركز وبرج الاتصالات", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.006102204322814941, 
+      "count": 1, 
+      "indocChainId": 13, 
+      "mention": "جماعة الحوثي", 
+      "normalized": "جماعة الحوثي", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.013759136199951172, 
       "count": 1, 
       "indocChainId": 16, 
-      "mention": "الأربعاء 06 أيار 2015", 
-      "normalized": "الأربعاء 06 أيار 2015", 
-      "type": "TEMPORAL:DATE"
+      "mention": "ضحيان", 
+      "normalized": "ضحيان", 
+      "type": "LOCATION"
     }, 
     {
-      "confidence": 1.0, 
+      "confidence": 0.008876323699951172, 
       "count": 1, 
       "indocChainId": 17, 
-      "mention": "3:50 م", 
-      "normalized": "3:50 م", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 0.0016154050827026367, 
-      "count": 1, 
-      "indocChainId": 21, 
-      "mention": "بالتوسيع", 
-      "normalized": "التوسيع", 
+      "mention": "مذاب الصفراء", 
+      "normalized": "مذاب الصفراء", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.004297435283660889, 
+      "confidence": 0.007346391677856445, 
       "count": 1, 
-      "indocChainId": 22, 
-      "mention": "كلينتون", 
-      "normalized": "كلينتون", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.00196993350982666, 
-      "count": 1, 
-      "indocChainId": 23, 
-      "mention": "رئيساً", 
-      "normalized": "رئيساً", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 25, 
-      "mention": "نيبال", 
-      "normalized": "نيبال", 
+      "indocChainId": 20, 
+      "mention": "رازح", 
+      "normalized": "رازح", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 32, 
-      "mention": "أفغان", 
-      "normalized": "أفغان", 
+      "indocChainId": 30, 
+      "mention": "اليمنيين", 
+      "normalized": "اليمنيين", 
       "type": "NATIONALITY"
     }, 
     {
-      "confidence": 0.009469807147979736, 
+      "confidence": 0.027194619178771973, 
       "count": 1, 
       "indocChainId": 33, 
-      "mention": "كابول", 
-      "normalized": "كابول", 
+      "mention": "عتق", 
+      "normalized": "عتق", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.038842201232910156, 
+      "count": 1, 
+      "indocChainId": 34, 
+      "mention": "عدن", 
+      "normalized": "عدن", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 1.0, 
       "count": 1, 
-      "indocChainId": 35, 
-      "mention": "الولايات المتحدة", 
-      "normalized": "الولايات المتحدة", 
-      "type": "LOCATION"
+      "indocChainId": 43, 
+      "mention": "اليمنية", 
+      "normalized": "اليمنية", 
+      "type": "NATIONALITY"
     }, 
     {
-      "confidence": 0.009806573390960693, 
-      "count": 1, 
-      "indocChainId": 36, 
-      "mention": "كوبا", 
-      "normalized": "كوبا", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 37, 
-      "mention": "50 عاماً", 
-      "normalized": "50 عاماً", 
-      "type": "TEMPORAL:TIME"
-    }, 
-    {
-      "confidence": 0.01014024019241333, 
-      "count": 1, 
-      "indocChainId": 39, 
-      "mention": "محمد بن راشد", 
-      "normalized": "محمد بن راشد", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 1.0, 
+      "confidence": 0.02414029836654663, 
       "count": 1, 
       "indocChainId": 44, 
-      "mention": "البريطاني", 
-      "normalized": "البريطاني", 
-      "type": "NATIONALITY"
+      "mention": "نجران", 
+      "normalized": "نجران", 
+      "type": "LOCATION"
     }
   ], 
-  "requestId": "846e6378-6305-4def-8fbb-600f4c7149ee", 
+  "requestId": "82b6d07c-87c2-4f2d-afac-7dde3d420af6", 
   "timers": {
-    "rblJe": 37, 
-    "rexJe": 63, 
-    "rliJe": 2, 
-    "textExtractor": 16, 
-    "urlContentDownloader": 143
+    "rblJe": 53, 
+    "rexJe": 228, 
+    "rliJe": 5, 
+    "textExtractor": 49, 
+    "urlContentDownloader": 168
   }
 }

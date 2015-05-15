@@ -1,30 +1,30 @@
 {
   "languageDetections": [
     {
-      "confidence": 0.04165635451539307, 
+      "confidence": 0.029893909972914412, 
       "language": "spa"
     }, 
     {
-      "confidence": 0.021776532652952985, 
+      "confidence": 0.01496215995459671, 
       "language": "cat"
     }, 
     {
-      "confidence": 0.01481079668511509, 
+      "confidence": 0.012349912140416586, 
       "language": "por"
     }, 
     {
-      "confidence": 0.010894295404532461, 
-      "language": "ron"
+      "confidence": 0.009009841891852277, 
+      "language": "fra"
     }, 
     {
-      "confidence": 0.010729846471635218, 
-      "language": "fra"
+      "confidence": 0.007744138165555303, 
+      "language": "ita"
     }
   ], 
-  "requestId": "a79ff755-f84d-4f99-a536-1c3a763ffe65", 
+  "requestId": "7f05d390-d540-4cfd-acbc-ffc00a594318", 
   "timers": {
-    "rliJe": 3, 
-    "textExtractor": 11, 
-    "urlContentDownloader": 176
+    "rliJe": 2, 
+    "textExtractor": 160, 
+    "urlContentDownloader": 2190
   }
 }

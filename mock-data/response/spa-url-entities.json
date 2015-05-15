@@ -1,156 +1,124 @@
 {
   "entities": [
     {
-      "confidence": 1.0, 
-      "count": 3, 
-      "indocChainId": 2, 
-      "mention": "Banxico", 
-      "normalized": "Banxico", 
-      "type": "ORGANIZATION"
+      "confidence": 0.011255035797754923, 
+      "count": 6, 
+      "indocChainId": 1, 
+      "mention": "Colombia", 
+      "normalized": "Colombia", 
+      "type": "LOCATION"
     }, 
     {
-      "confidence": 0.010579625765482584, 
-      "count": 3, 
-      "indocChainId": 5, 
+      "confidence": 0.026651740074157715, 
+      "count": 4, 
+      "indocChainId": 8, 
       "mention": "México", 
       "normalized": "México", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.015536626180013021, 
-      "count": 3, 
-      "indocChainId": 12, 
-      "mention": "gobernador", 
-      "normalized": "gobernador", 
+      "confidence": 0.017740070819854736, 
+      "count": 2, 
+      "indocChainId": 3, 
+      "mention": "presidente", 
+      "normalized": "presidente", 
       "type": "TITLE"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 3, 
-      "indocChainId": 13, 
-      "mention": "Banco de México", 
-      "normalized": "Banco de México", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.01605890194574992, 
-      "count": 3, 
-      "indocChainId": 15, 
-      "mention": "Carstens", 
-      "normalized": "Carstens", 
+      "confidence": 0.012101918458938599, 
+      "count": 2, 
+      "indocChainId": 6, 
+      "mention": "Enrique Peña Nieto", 
+      "normalized": "Enrique Peña Nieto", 
       "type": "PERSON"
     }, 
     {
-      "confidence": 1.0, 
+      "confidence": 0.01789921522140503, 
       "count": 2, 
-      "indocChainId": 8, 
-      "mention": "13 meses", 
-      "normalized": "13 meses", 
-      "type": "TEMPORAL:TIME"
+      "indocChainId": 11, 
+      "mention": "Juan Manuel Santos", 
+      "normalized": "Juan Manuel Santos", 
+      "type": "PERSON"
     }, 
     {
-      "confidence": 0.0014202594757080078, 
+      "confidence": 0.0028449296951293945, 
       "count": 1, 
       "indocChainId": 0, 
-      "mention": "SMS", 
-      "normalized": "SMS", 
+      "mention": "SECCIONES\nSociedad\nMéxico", 
+      "normalized": "SECCIONES Sociedad México", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0062760114669799805, 
+      "confidence": 0.007503092288970947, 
       "count": 1, 
-      "indocChainId": 1, 
-      "mention": "Cantarell", 
-      "normalized": "Cantarell", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.007886528968811035, 
-      "count": 1, 
-      "indocChainId": 3, 
-      "mention": "Sara Cantera", 
-      "normalized": "Sara Cantera", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 4, 
-      "mention": "Universal", 
-      "normalized": "Universal", 
+      "indocChainId": 2, 
+      "mention": "EPN", 
+      "normalized": "EPN", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
-      "count": 1, 
-      "indocChainId": 6, 
-      "mention": "Miércoles 06 de mayo de 2015", 
-      "normalized": "Miércoles 06 de mayo de 2015", 
-      "type": "TEMPORAL:DATE"
-    }, 
-    {
-      "confidence": 0.0027440786361694336, 
-      "count": 1, 
-      "indocChainId": 9, 
-      "mention": "Foto", 
-      "normalized": "Foto", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0032094717025756836, 
-      "count": 1, 
-      "indocChainId": 10, 
-      "mention": "Notas Relacionadas", 
-      "normalized": "Notas Relacionadas", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 1.0, 
+      "confidence": 0.00871974229812622, 
       "count": 1, 
       "indocChainId": 11, 
-      "mention": "sara.cantera@eluniversal.com.mx", 
-      "normalized": "sara.cantera@eluniversal.com.mx", 
-      "type": "IDENTIFIER:EMAIL"
-    }, 
-    {
-      "confidence": 0.01673954725265503, 
-      "count": 1, 
-      "indocChainId": 15, 
-      "mention": "Agustín Carstens", 
-      "normalized": "Agustín Carstens", 
+      "mention": "Manuel Santos", 
+      "normalized": "Manuel Santos", 
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.004801273345947266, 
+      "confidence": 0.027437686920166016, 
       "count": 1, 
-      "indocChainId": 16, 
-      "mention": "Convención de Aseguradores de México", 
-      "normalized": "Convención de Aseguradores de México", 
+      "indocChainId": 18, 
+      "mention": "Alianza Pacífico", 
+      "normalized": "Alianza Pacífico", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 1.0, 
+      "confidence": 0.056813716888427734, 
+      "count": 1, 
+      "indocChainId": 20, 
+      "mention": "Perú", 
+      "normalized": "Perú", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.062174439430236816, 
       "count": 1, 
       "indocChainId": 21, 
-      "mention": "Pemex", 
-      "normalized": "Pemex", 
-      "type": "ORGANIZATION"
+      "mention": "Chile", 
+      "normalized": "Chile", 
+      "type": "LOCATION"
     }, 
     {
-      "confidence": 0.02040201425552368, 
+      "confidence": 0.04952973127365112, 
       "count": 1, 
-      "indocChainId": 26, 
-      "mention": "Estados Unidos", 
-      "normalized": "Estados Unidos", 
+      "indocChainId": 22, 
+      "mention": "América Latina", 
+      "normalized": "América Latina", 
       "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.014632940292358398, 
+      "count": 1, 
+      "indocChainId": 23, 
+      "mention": "Pacífico", 
+      "normalized": "Pacífico", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.02009981870651245, 
+      "count": 1, 
+      "indocChainId": 24, 
+      "mention": "Peña Nieto Ver", 
+      "normalized": "Peña Nieto Ver", 
+      "type": "PERSON"
     }
   ], 
-  "requestId": "f004b1b0-8556-4b64-8465-2a5fd883d6e8", 
+  "requestId": "f0cfd156-e9cd-4c97-bb0e-0337fad05458", 
   "timers": {
-    "rblJe": 2, 
-    "rexJe": 55, 
-    "rliJe": 2, 
-    "textExtractor": 9, 
-    "urlContentDownloader": 90
+    "rblJe": 1, 
+    "rexJe": 60, 
+    "rliJe": 4, 
+    "textExtractor": 18, 
+    "urlContentDownloader": 243
   }
 }
