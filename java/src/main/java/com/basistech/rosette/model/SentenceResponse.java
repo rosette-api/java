@@ -12,44 +12,37 @@
  ** 7-104.9(a).
  ******************************************************************************/
 
+
 package com.basistech.rosette.model;
 
-public class LanguageWeight {
-    private String language;
-    private ISO15924 script;
-    private Integer weight;
+import java.util.List;
 
-    public LanguageWeight() {
+/** 
+ * Simple api response data model for sentence determination requests 
+ */
+public final class SentenceResponse extends Response {
+
+    private List<String> sentences;
+
+    public SentenceResponse() { super(); }
+
+    /**
+     * constructor for {@code SentenceResponse}
+     * @param requestId request id
+     * @param sentences list of sentences
+     */
+    public SentenceResponse(
+            String requestId,
+            List<String> sentences) {
+        super(requestId);
+        this.sentences = sentences;
     }
 
-    public LanguageWeight(
-            String language,
-            ISO15924 script,
-            Integer weight
-    ) {
-        this.language = language;
-        this.weight = weight;
-        this.script = script;
-    }
-
-    public LanguageWeight(
-            String language,
-            Integer weight
-    ) {
-        this.language = language;
-        this.weight = weight;
-        this.script = null;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public ISO15924 getScript() {
-        return script;
+    /**
+     * get the list of sentences
+     * @return the list of sentences
+     */
+    public List<String> getSentences() {
+        return sentences;
     }
 }

@@ -12,43 +12,36 @@
  ** 7-104.9(a).
  ******************************************************************************/
 
+
 package com.basistech.rosette.model;
 
+import java.util.List;
+
 /**
- * lemma (canonical form) of the word
+ * Simple api response data model for Rosette Name Translator
  */
-public class Lemma {
-    private String text;
-    private String lemma;
+public final class BatchNameTranslationResponse extends Response {
+    
+    private List<TranslatedNameResult> results;
 
-    public Lemma() { }
+    public BatchNameTranslationResponse() { super(); }
 
     /**
-     * constructor for {@code lemma}
-     * @param text text
-     * @param lemma lemma
+     * Constructor for {@code BatchNameTranslationResponse}
+     * @param requestId request id
+     * @param results list of translated name results
      */
-    public Lemma(
-            String text, 
-            String lemma
-    ) {
-        this.text = text;
-        this.lemma = lemma;
+    public BatchNameTranslationResponse(String requestId,
+                                        List<TranslatedNameResult> results) {
+        super(requestId);
+        this.results = results;
     }
 
     /**
-     * get the text 
-     * @return the text
+     * Get the list of translated name results
+     * @return the list of translated name results
      */
-    public String getText() {
-        return text;
-    }
-
-    /**
-     * get the lemma
-     * @return the lemma
-     */
-    public String getLemma() {
-        return lemma;
+    public List<TranslatedNameResult> getResults() {
+        return results;
     }
 }

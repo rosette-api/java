@@ -12,44 +12,37 @@
  ** 7-104.9(a).
  ******************************************************************************/
 
+
 package com.basistech.rosette.model;
 
-public class LanguageWeight {
-    private String language;
-    private ISO15924 script;
-    private Integer weight;
+import java.util.List;
 
-    public LanguageWeight() {
+
+/**
+ * Response data model for scripts 
+ */
+public final class ScriptResponse extends Response {
+
+    private List<String> scripts;
+
+    public ScriptResponse() { super(); }
+
+    /**
+     * constructor for {@code ScriptResponse}
+     * @param requestId request id
+     * @param scripts list of scripts
+     */
+    public ScriptResponse(String requestId,
+                          List<String> scripts) {
+        super(requestId);
+        this.scripts = scripts;
     }
 
-    public LanguageWeight(
-            String language,
-            ISO15924 script,
-            Integer weight
-    ) {
-        this.language = language;
-        this.weight = weight;
-        this.script = script;
-    }
-
-    public LanguageWeight(
-            String language,
-            Integer weight
-    ) {
-        this.language = language;
-        this.weight = weight;
-        this.script = null;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public ISO15924 getScript() {
-        return script;
+    /**
+     * get the list of scripts
+     * @return
+     */
+    public List<String> getScripts() {
+        return scripts;
     }
 }

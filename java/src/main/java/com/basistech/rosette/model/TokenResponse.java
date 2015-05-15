@@ -12,44 +12,38 @@
  ** 7-104.9(a).
  ******************************************************************************/
 
+
 package com.basistech.rosette.model;
 
-public class LanguageWeight {
-    private String language;
-    private ISO15924 script;
-    private Integer weight;
+import java.util.List;
 
-    public LanguageWeight() {
+
+/**
+ * Simple api response data model for tokenization requests 
+ */
+public final class TokenResponse extends Response {
+
+    private List<String> tokens;
+    
+    public TokenResponse() { super(); }
+
+    /**
+     * constructor for {@code TokenResponse}
+     * @param requestId request id
+     * @param tokens list of tokens
+     */
+    public TokenResponse(
+            String requestId,
+            List<String> tokens) {
+        super(requestId);
+        this.tokens = tokens;
     }
 
-    public LanguageWeight(
-            String language,
-            ISO15924 script,
-            Integer weight
-    ) {
-        this.language = language;
-        this.weight = weight;
-        this.script = script;
-    }
-
-    public LanguageWeight(
-            String language,
-            Integer weight
-    ) {
-        this.language = language;
-        this.weight = weight;
-        this.script = null;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public ISO15924 getScript() {
-        return script;
+    /**
+     * get the list of tokens
+     * @return the list of tokens
+     */
+    public List<String> getTokens() {
+        return tokens;
     }
 }

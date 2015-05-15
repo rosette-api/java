@@ -1,12 +1,10 @@
-package com.basistech.rosette.model;
-
 /******************************************************************************
  ** This data and information is proprietary to, and a valuable trade secret
  ** of, Basis Technology Corp.  It is given in confidence by Basis Technology
  ** and may only be used as permitted under the license agreement under which
  ** it has been distributed, and in no other way.
  **
- ** Copyright (c) 2014 Basis Technology Corporation All rights reserved.
+ ** Copyright (c) 2015 Basis Technology Corporation All rights reserved.
  **
  ** The technical data and information provided herein are provided with
  ** `limited rights', and the computer software provided herein is provided
@@ -15,16 +13,25 @@ package com.basistech.rosette.model;
  ******************************************************************************/
 
 
+package com.basistech.rosette.model;
+
 import java.util.List;
 
-/* Simple api response data model for entity extraction */
+
+/** 
+ * Simple api response data model for entity extraction 
+ */
 public final class EntityResponse extends Response {
 
     private List<ExtractedEntity> entities;
+    
+    public EntityResponse() { super(); }
 
-    public EntityResponse() {
-    }
-
+    /**
+     * Constructor for {@code EntityResponse}
+     * @param requestId request id
+     * @param entities list of extracted entities
+     */
     public EntityResponse(
             String requestId,
             List<ExtractedEntity> entities
@@ -33,6 +40,10 @@ public final class EntityResponse extends Response {
         this.entities = entities;
     }
 
+    /**
+     * get the list of extracted entities
+     * @return the list of extracted entities
+     */
     public List<ExtractedEntity> getEntities() {
         return entities;
     }

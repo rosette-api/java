@@ -657,8 +657,6 @@ public class APIExample {
             print(name, response);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
-        } catch (RosetteAPIParameterException e) {
-            System.err.println(e.toString());
         } catch (IOException e) {
             System.err.println(e.toString());
         }

@@ -1,12 +1,10 @@
-package com.basistech.rosette.model;
-
 /******************************************************************************
  ** This data and information is proprietary to, and a valuable trade secret
  ** of, Basis Technology Corp.  It is given in confidence by Basis Technology
  ** and may only be used as permitted under the license agreement under which
  ** it has been distributed, and in no other way.
  **
- ** Copyright (c) 2014 Basis Technology Corporation All rights reserved.
+ ** Copyright (c) 2015 Basis Technology Corporation All rights reserved.
  **
  ** The technical data and information provided herein are provided with
  ** `limited rights', and the computer software provided herein is provided
@@ -14,7 +12,7 @@ package com.basistech.rosette.model;
  ** 7-104.9(a).
  ******************************************************************************/
 
-import com.basistech.rosette.api.RosetteAPIParameterException;
+package com.basistech.rosette.model;
 
 /**
  * Class that represents the data from a RaaS client name translation request
@@ -28,10 +26,21 @@ public class NameTranslationRequest {
     private String sourceLanguageOfUse;
     private String targetLanguage;
     private String targetScript;
-    private TransliterationScheme targetScheme;
+    private String targetScheme;
+    
+    public NameTranslationRequest() { }
 
-    public NameTranslationRequest() {}
-
+    /**
+     * constructor for {@code NameTranslationRequest}
+     * @param name name to be translated
+     * @param entityType name's entity type
+     * @param sourceScript name's script code
+     * @param sourceLanguageOfOrigin name's language of origin
+     * @param sourceLanguageOfUse name's language of use
+     * @param targetLanguage target language code
+     * @param targetScript target script code
+     * @param targetScheme target transliteration scheme
+     */
     public NameTranslationRequest(String name,
                                   String entityType,
                                   String sourceScript,
@@ -39,7 +48,7 @@ public class NameTranslationRequest {
                                   String sourceLanguageOfUse,
                                   String targetLanguage,
                                   String targetScript,
-                                  TransliterationScheme targetScheme) throws RosetteAPIParameterException {
+                                  String targetScheme) {
         this.name = name;
         this.entityType = entityType;
         this.sourceScript = sourceScript;
@@ -48,43 +57,65 @@ public class NameTranslationRequest {
         this.targetLanguage = targetLanguage;
         this.targetScript = targetScript;
         this.targetScheme = targetScheme;
-        if (this.name == null || "".equals(this.name)) {
-            throw new RosetteAPIParameterException(new ErrorResponse(null, "missingParameter", "Required parameter \"name\" not supplied"));
-        }
-        if (this.targetLanguage == null || "".equals(this.targetLanguage)) {
-            throw new RosetteAPIParameterException(new ErrorResponse(null, "missingParameter", "Required parameter \"targetLanguage\" not supplied"));
-        }
     }
 
+    /**
+     * get the name to be translated 
+     * @return the name to be translated 
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * get the entity type of the name (PERSON, LOCATION, or ORGANIZATION) 
+     * @return the entity type of the name
+     */
     public String getEntityType() {
         return entityType;
     }
 
+    /**
+     * get the code for the name's script
+     * @return code for the name's script
+     */
     public String getSourceScript() {
         return sourceScript;
     }
 
+    /**
+     * get the code for the name's language of origin 
+     * @return code for the name's language of origin
+     */
     public String getSourceLanguageOfOrigin() {
         return sourceLanguageOfOrigin;
     }
 
-    public String getSourceLanguageOfUse() {
-        return sourceLanguageOfUse;
-    }
+    /**
+     * get the code for the name's language of use 
+     * @return code for the name's language of use
+     */
+    public String getSourceLanguageOfUse() { return sourceLanguageOfUse; }
 
-    public String getTargetLanguage() {
-        return targetLanguage;
-    }
+    /**
+     * get code for the translation language
+     * @return code for the translation language
+     */
+    public String getTargetLanguage() { return targetLanguage; }
 
+    /**
+     * get the code for the target script 
+     * @return code for the target script
+     */
     public String getTargetScript() {
         return targetScript;
     }
 
-    public TransliterationScheme getTargetScheme() {
+    /**
+     * get the transliteration scheme for the translation
+     * @return the transliteration scheme for the translation
+     */
+    public String getTargetScheme() {
         return targetScheme;
     }
 }

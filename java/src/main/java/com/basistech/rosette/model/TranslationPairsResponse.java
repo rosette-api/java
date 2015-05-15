@@ -12,43 +12,35 @@
  ** 7-104.9(a).
  ******************************************************************************/
 
+
 package com.basistech.rosette.model;
 
+import java.util.List;
+
 /**
- * lemma (canonical form) of the word
+ * Response data model for supported translation pairs 
  */
-public class Lemma {
-    private String text;
-    private String lemma;
+public final class TranslationPairsResponse extends Response {
+    private List<Object> translationPairs;
 
-    public Lemma() { }
+    public TranslationPairsResponse() { super(); }
 
     /**
-     * constructor for {@code lemma}
-     * @param text text
-     * @param lemma lemma
+     * constructor for {@code TranslationPairsResponse}
+     * @param requestId request id
+     * @param translationPairs list of translation pairs
      */
-    public Lemma(
-            String text, 
-            String lemma
-    ) {
-        this.text = text;
-        this.lemma = lemma;
+    public TranslationPairsResponse(String requestId,
+                                    List<Object> translationPairs) {
+        super(requestId);
+        this.translationPairs = translationPairs;
     }
 
     /**
-     * get the text 
-     * @return the text
+     * get the list of translation pairs 
+     * @return the list of translation pairs
      */
-    public String getText() {
-        return text;
-    }
-
-    /**
-     * get the lemma
-     * @return the lemma
-     */
-    public String getLemma() {
-        return lemma;
+    public List<Object> getTranslationPairs() {
+        return translationPairs;
     }
 }

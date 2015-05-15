@@ -14,42 +14,29 @@
 
 package com.basistech.rosette.model;
 
-public class LanguageWeight {
-    private String language;
-    private ISO15924 script;
-    private Integer weight;
+/**
+ * Data from constant tickets
+ */
+public class ConstantsResponse extends Response {
 
-    public LanguageWeight() {
-    }
+    //CHECKSTYLE:OFF
+    public String version;
+    public String build;
+    public Object support;
+    //CHECKSTYLE:ON
+    public ConstantsResponse() { super(); }
 
-    public LanguageWeight(
-            String language,
-            ISO15924 script,
-            Integer weight
-    ) {
-        this.language = language;
-        this.weight = weight;
-        this.script = script;
-    }
-
-    public LanguageWeight(
-            String language,
-            Integer weight
-    ) {
-        this.language = language;
-        this.weight = weight;
-        this.script = null;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public ISO15924 getScript() {
-        return script;
+    /**
+     * Constructor for {@code ConstantsResponse}
+     * @param requestId request id
+     * @param version component version
+     * @param build component build
+     * @param support support
+     */
+    public ConstantsResponse(String requestId, String version, String build, Object support) {
+        super(requestId);
+        this.version = version;
+        this.build = build;
+        this.support = support;
     }
 }
