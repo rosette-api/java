@@ -16,4 +16,4 @@ Copyright (c) 2014-2015 Basis Technology Corporation.
  limitations under the License.
 """
 
-__version__='0.5.1dev'
+__version__='0.5.0'
