@@ -34,10 +34,23 @@
                         <fileset>
                             <directory>rosette_api.egg-info</directory>
                         </fileset>
+                        <fileset>
+                            <directory>rosette</directory>
+                            <includes>
+                                <include>__pycache__</include>
+                                <include>**/*.pyc</include>
+                            </includes>
+                        </fileset>
+                        <fileset>
+                            <directory>tests</directory>
+                            <includes>
+                                <include>__pycache__</include>
+                                <include>**/*.pyc</include>
+                            </includes>
+                        </fileset>
                     </filesets>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>
