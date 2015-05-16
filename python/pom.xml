@@ -32,6 +32,9 @@
                 <configuration>
                     <filesets>
                         <fileset>
+                            <directory>dist</directory>
+                        </fileset>
+                        <fileset>
                             <directory>rosette_api.egg-info</directory>
                         </fileset>
                         <fileset>
