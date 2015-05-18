@@ -1,9 +1,8 @@
 package com.basistech.rosette.api;
 
-import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -832,14 +831,15 @@ public class RosetteAPI {
      * @throws IOException
      */
     private static byte[] getBytes(InputStream is) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        String line;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(is)))
-        {
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        }
-        return sb.toString().getBytes();
+        int len;
+        int size = 1024;
+        byte[] buf;
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        buf = new byte[size];
+        while ((len = is.read(buf, 0, size)) != -1)
+            bos.write(buf, 0, len);
+        buf = bos.toByteArray();
+        return buf;
     }
 }
