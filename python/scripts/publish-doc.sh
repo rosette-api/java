@@ -6,6 +6,6 @@
 repo=git@github.com:basis-technology-corp/rosette-api.git
 branch=gh-pages
 
-(cd target; git clone $repo $branch; cd $branch; git checkout $branch)
-(cd target/html; find . -print | cpio -pdmv ../$branch)
-(cd target/$branch; git add .; git commit; git push)
+(cd target; git clone $repo $branch; cd $branch/python; git checkout $branch; git rm -rf .)
+(cd target/html; find . -print | cpio -pdmv ../$branch/python)
+(cd target/$branch/python; git add .; git commit; git push)
