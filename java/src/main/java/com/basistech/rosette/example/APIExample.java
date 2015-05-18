@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Date;
+import java.util.Map;
+import java.util.Set;
 
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
@@ -13,13 +15,16 @@ import com.basistech.rosette.model.CategorizationModel;
 import com.basistech.rosette.model.Category;
 import com.basistech.rosette.model.CategoryOptions;
 import com.basistech.rosette.model.CategoryResponse;
+import com.basistech.rosette.model.ConstantsResponse;
 import com.basistech.rosette.model.Decompounding;
 import com.basistech.rosette.model.EntityResponse;
 import com.basistech.rosette.model.ExtractedEntity;
 import com.basistech.rosette.model.HanReadings;
 import com.basistech.rosette.model.InfoResponse;
+import com.basistech.rosette.model.InputUnit;
 import com.basistech.rosette.model.LanguageCode;
 import com.basistech.rosette.model.LanguageDetectionResult;
+import com.basistech.rosette.model.LanguageInfoResponse;
 import com.basistech.rosette.model.LanguageResponse;
 import com.basistech.rosette.model.Lemma;
 import com.basistech.rosette.model.LinkedEntity;
@@ -33,10 +38,12 @@ import com.basistech.rosette.model.NameTranslationRequest;
 import com.basistech.rosette.model.NameTranslationResponse;
 import com.basistech.rosette.model.PartOfSpeech;
 import com.basistech.rosette.model.PingResponse;
+import com.basistech.rosette.model.SentenceResponse;
 import com.basistech.rosette.model.Sentiment;
 import com.basistech.rosette.model.SentimentModel;
 import com.basistech.rosette.model.SentimentOptions;
 import com.basistech.rosette.model.SentimentResponse;
+import com.basistech.rosette.model.TokenResponse;
 import com.basistech.rosette.model.TranslatedNameResult;
 
 /**
@@ -51,7 +58,7 @@ public class APIExample {
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Calls all RosetteAPI methods as a demonstration of usage.
      *
-     * @param args
+     * @param args not used
      * @throws URISyntaxException
      * @throws IOException
      * @throws RosetteAPIParameterException
@@ -59,7 +66,7 @@ public class APIExample {
     public static void main(String[] args) throws URISyntaxException, IOException, RosetteAPIParameterException {
         String website = "http://www.basistech.com";
         URL url = new URL(website);
-        String text = "I live in Boston, Massachusetts.";
+        String text = "I live in Boston, Massachusetts. I work for Basis Technology.";
         String apiKey = System.getProperty("rosette.api.key");
 
         if (apiKey == null) {
@@ -73,24 +80,32 @@ public class APIExample {
         doGetInfo();
         doPing();
 
-        doNameMatcherRequest("John Doe", "John Doe");
-        doNameMatcherRequest("John Doe", "Jon Doe");
-        doNameMatcherRequest("习近平", "Xi Jinping");
+        doLanguageInfo();
+        doInfo(RosetteAPI.EndpointInfo.ENTITIES);
+        doInfo(RosetteAPI.EndpointInfo.LINKED_ENTITIES);
+        doInfo(RosetteAPI.EndpointInfo.CATEGORIES);
+        doInfo(RosetteAPI.EndpointInfo.SENTIMENT);
+        doInfo(RosetteAPI.EndpointInfo.TRANSLATED_NAME);
+        doInfo(RosetteAPI.EndpointInfo.MATCHED_NAME);
 
-        doNameTranslationRequest("John Doe", LanguageCode.KOREAN);
-        doNameTranslationRequest("习近平", LanguageCode.ENGLISH);
+        doNameMatcher("John Doe", "John Doe");
+        doNameMatcher("John Doe", "Jon Doe");
+        doNameMatcher("习近平", "Xi Jinping");
 
-        doLanguageRequest(url);
-        doLanguageRequest(text);
-        doLanguageRequest(cl.getResourceAsStream("Chinese.txt"));
+        doNameTranslation("John Doe", LanguageCode.KOREAN);
+        doNameTranslation("习近平", LanguageCode.ENGLISH);
 
-        doMorphologyRequest(url);
-        doMorphologyRequest(text);
-        doMorphologyRequest(cl.getResourceAsStream("Chinese.txt"));
+        doLanguage(url);
+        doLanguage(text);
+        doLanguage(cl.getResourceAsStream("Chinese.txt"));
 
-        doEntityRequest(url);
-        doEntityRequest(text);
-        doEntityRequest(cl.getResourceAsStream("English.txt"));
+        doMorphology(url);
+        doMorphology(text);
+        doMorphology(cl.getResourceAsStream("Chinese.txt"));
+
+        doEntity(url);
+        doEntity(text);
+        doEntity(cl.getResourceAsStream("English.txt"));
 
         doLinkedEntity(url);
         doLinkedEntity(text);
@@ -109,7 +124,64 @@ public class APIExample {
         doSentiment(text);
         doSentiment(text, new SentimentOptions(SentimentModel.SHORT_STRING, true));
         doSentiment(cl.getResourceAsStream("English.txt"));
-        doSentiment(cl.getResourceAsStream("English.txt"), "eng", new SentimentOptions(SentimentModel.REVIEW, true));
+        doSentiment(cl.getResourceAsStream("English.txt"), LanguageCode.ENGLISH, new SentimentOptions(SentimentModel.REVIEW, true));
+        doSentiment(cl.getResourceAsStream("Chinese.txt"));
+        rosetteAPI.setDebugOutput(true);
+        doSentiment(cl.getResourceAsStream("Chinese.txt"));
+        rosetteAPI.setDebugOutput(false);
+
+        doTokens(url);
+        doTokens(text);
+        doTokens(cl.getResourceAsStream("English.txt"));
+        doTokens(cl.getResourceAsStream("Chinese.txt"), LanguageCode.CHINESE);
+
+        doSentences(url);
+        doSentences(text);
+        doSentences(text, LanguageCode.ENGLISH, InputUnit.SENTENCE);
+        doSentences(cl.getResourceAsStream("English.txt"));
+        doSentences(cl.getResourceAsStream("Chinese.txt"));
+    }
+
+    private static void doInfo(RosetteAPI.EndpointInfo endpoint) {
+        try {
+            ConstantsResponse response = rosetteAPI.getInfo(endpoint);
+            printInfo(endpoint.getDescription(), response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    private static void printInfo(String description, ConstantsResponse response) {
+        System.out.printf("%s\tversion: %s\tbuild: %s\tsupport: %s\n", description, response.version, response.build, response.support);
+        System.out.println();
+    }
+
+    private static void doLanguageInfo() {
+        try {
+            LanguageInfoResponse response = rosetteAPI.getLanguageInfo();
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    private static void print(LanguageInfoResponse response) {
+        System.out.println("LanguageInfo");
+        Map<String, Set<String>> supportedLanguages = response.getSupportedLanguages();
+        for (Map.Entry<String, Set<String>> stringSetEntry : supportedLanguages.entrySet()) {
+            System.out.print("language: " + stringSetEntry.getKey());
+            System.out.println(" scripts: " + stringSetEntry.getValue().toString());
+        }
+        Map<String, Set<String>> supportedScripts = response.getSupportedScripts();
+        for (Map.Entry<String, Set<String>> stringSetEntry : supportedScripts.entrySet()) {
+            System.out.print("scripts: " + stringSetEntry.getKey());
+            System.out.println(" languages: " + stringSetEntry.getValue().toString());
+        }
+        System.out.println();
     }
 
     /**
@@ -178,7 +250,7 @@ public class APIExample {
      * @param name1
      * @param name2
      */
-    private static void doNameMatcherRequest(String name1, String name2) {
+    private static void doNameMatcher(String name1, String name2) {
         try {
             NameMatcherRequest request = new NameMatcherRequest(new Name(name1), new Name(name2));
             NameMatcherResponse response = rosetteAPI.matchName(request);
@@ -451,7 +523,7 @@ public class APIExample {
      * Sends file Entity request.
      * @param file
      */
-    private static void doEntityRequest(InputStream file) {
+    private static void doEntity(InputStream file) {
         try {
             EntityResponse entityResponse = rosetteAPI.getEntity(file, null, null);
             print(entityResponse);
@@ -483,7 +555,7 @@ public class APIExample {
      * Sends string Entity request.
      * @param text
      */
-    private static void doEntityRequest(String text) {
+    private static void doEntity(String text) {
         try {
             EntityResponse entityResponse = rosetteAPI.getEntity(text, null, null);
             print(entityResponse);
@@ -498,7 +570,7 @@ public class APIExample {
      * Sends URL Entity request.
      * @param url
      */
-    private static void doEntityRequest(URL url) {
+    private static void doEntity(URL url) {
         try {
             EntityResponse entityResponse = rosetteAPI.getEntity(url, null, null);
             print(entityResponse);
@@ -513,7 +585,7 @@ public class APIExample {
      * Sends file Language request.
      * @param file
      */
-    private static void doLanguageRequest(InputStream file) {
+    private static void doLanguage(InputStream file) {
         try {
             LanguageResponse response = rosetteAPI.getLanguage(file, null);
             print(response);
@@ -540,7 +612,7 @@ public class APIExample {
      * Sends string Language request.
      * @param text
      */
-    private static void doLanguageRequest(String text) {
+    private static void doLanguage(String text) {
         try {
             LanguageResponse response = rosetteAPI.getLanguage(text, null);
             print(response);
@@ -555,7 +627,7 @@ public class APIExample {
      * Sends URL Language request.
      * @param url
      */
-    private static void doLanguageRequest(URL url) {
+    private static void doLanguage(URL url) {
         try {
             LanguageResponse response = rosetteAPI.getLanguage(url, null);
             print(response);
@@ -570,7 +642,7 @@ public class APIExample {
      * Sends file Morphology request.
      * @param file
      */
-    private static void doMorphologyRequest(InputStream file) {
+    private static void doMorphology(InputStream file) {
         try {
             MorphologyResponse response = rosetteAPI.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, file, null, null);
             print(response);
@@ -585,7 +657,7 @@ public class APIExample {
      * Sends string Morphology request.
      * @param text
      */
-    private static void doMorphologyRequest(String text) {
+    private static void doMorphology(String text) {
         try {
             MorphologyResponse response = rosetteAPI.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, text, null, null);
             print(response);
@@ -600,7 +672,7 @@ public class APIExample {
      * Sends URL Morphology request.
      * @param url
      */
-    private static void doMorphologyRequest(URL url) {
+    private static void doMorphology(URL url) {
         try {
             MorphologyResponse response = rosetteAPI.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, url, null, null);
             print(response);
@@ -650,7 +722,7 @@ public class APIExample {
      * @param name
      * @param targetLanguage
      */
-    private static void doNameTranslationRequest(String name, String targetLanguage) {
+    private static void doNameTranslation(String name, String targetLanguage) {
         try {
             NameTranslationRequest nameTranslationRequest = new NameTranslationRequest(name, null, null, null, null, targetLanguage, null, null);
             NameTranslationResponse response = rosetteAPI.translateName(nameTranslationRequest);
@@ -680,5 +752,164 @@ public class APIExample {
                 + "targetScheme: " + result.getTargetScheme() + ", "
                 + "confidence: " + result.getConfidence());
         System.out.println();
+    }
+
+    /**
+     * Sends file token request.
+     * @param file
+     */
+    private static void doTokens(InputStream file) {
+        try {
+            TokenResponse response = rosetteAPI.getTokens(file, null);
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    /**
+     * Sends file token request.
+     * @param file
+     */
+    private static void doTokens(InputStream file, String languageCode) {
+        try {
+            TokenResponse response = rosetteAPI.getTokens(file, languageCode);
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    /**
+     * Prints TokensResponse.
+     * @param response
+     */
+    private static void print(TokenResponse response) {
+        System.out.println(response.getRequestId());
+        for (String token : response.getTokens()) {
+            System.out.println(token);
+        }
+        System.out.println();
+    }
+
+    /**
+     * Sends string token request.
+     * @param text
+     */
+    private static void doTokens(String text) {
+        try {
+            TokenResponse response = rosetteAPI.getTokens(text, null);
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    /**
+     * Sends URL token request.
+     * @param url
+     */
+    private static void doTokens(URL url) {
+        try {
+            TokenResponse response = rosetteAPI.getTokens(url, null);
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    /**
+     * Sends file sentences request.
+     * @param file
+     */
+    private static void doSentences(InputStream file) {
+        try {
+            SentenceResponse response = rosetteAPI.getSentences(file, null);
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    /**
+     * Sends file sentences request.
+     * @param file
+     */
+    private static void doSentences(InputStream file, String languageCode) {
+        try {
+            SentenceResponse response = rosetteAPI.getSentences(file, languageCode);
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    /**
+     * Prints TokensResponse.
+     * @param response
+     */
+    private static void print(SentenceResponse response) {
+        System.out.println(response.getRequestId());
+        for (String sentence : response.getSentences()) {
+            System.out.println(sentence);
+        }
+        System.out.println();
+    }
+
+    /**
+     * Sends string sentences request.
+     * @param text
+     */
+    private static void doSentences(String text) {
+        try {
+            SentenceResponse response = rosetteAPI.getSentences(text, null);
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    /**
+     * Sends file sentences request.
+     * @param text
+     */
+    private static void doSentences(String text, String languageCode, InputUnit unit) {
+        try {
+            SentenceResponse response = rosetteAPI.getSentences(text, languageCode, unit);
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    /**
+     * Sends URL sentences request.
+     * @param url
+     */
+    private static void doSentences(URL url) {
+        try {
+            SentenceResponse response = rosetteAPI.getSentences(url, null);
+            print(response);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
     }
 }
