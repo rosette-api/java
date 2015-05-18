@@ -69,6 +69,10 @@ upload to pypi will fail.
 And then you likely want to make a pull request on github for your
 version.
 
+## Publishing docs to github.com
+
+    sh scripts/publish-doc.sh
+
 ## Merge and tag in the public repo
 
 ## Push to the public package repo
