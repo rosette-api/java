@@ -7,8 +7,9 @@ import io
 NAME = "rosette_api"
 DESCRIPTION = "Rosette API Python client SDK"
 AUTHOR = "Basis Techology Corp."
+AUTHOR_EMAIL = "rosette_api@basistech.com"
 HOMEPAGE = "https://developer.rosette.com"
-VERSION=rosette.__version__
+VERSION = rosette.__version__
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -25,8 +26,9 @@ long_description = read('README.txt', 'CHANGES.txt')
 
 setup(name=NAME,
       author=AUTHOR,
+      author_email=AUTHOR_EMAIL,
       description=DESCRIPTION,
-      license="Apache License",
+      license='Apache License',
       long_description=long_description,
       packages=['rosette'],
       platforms='any',

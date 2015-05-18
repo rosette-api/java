@@ -57,7 +57,8 @@ Use the gitflow release branch convention.
 ## Set the version in  `rosette/__init__.py` 
 
 Make sure that `rosette/__init__.py` has the version you want to
-publish.
+publish, and it has to be > than the latest one exists in pypi or
+upload to pypi will fail.
 
 ## Make a tag
 
@@ -68,13 +69,17 @@ publish.
 And then you likely want to make a pull request on github for your
 version.
 
+## Publishing docs to github.com
+
+    sh scripts/publish-doc.sh
+
 ## Merge and tag in the public repo
 
 ## Push to the public package repo
 
-Note that we need to work out accounts and credentials for this.
+Contact lxu for pypi credentials.
 
-    python setup.py register
+    python setup.py register   # only needed for the very first time
     python setup.py sdist upload
 
 
