@@ -25,8 +25,10 @@ class APITest extends \PHPUnit_Framework_TestCase
 {
     use \InterNations\Component\HttpMock\PHPUnit\HttpMockTrait;
 
-    public $testUrl = 'http://localhost:8082';  // should match setupBeforeClass()
+    public $testUrl = null;
     public $userKey = null;
+    static public $port = '8082';
+    static public $IP = '127.0.0.1';
     public $hamParams;
     public $hamParamsU;
     public $dtHtmlParams;
@@ -85,7 +87,13 @@ EOD;
 
     public static function setUpBeforeClass()
     {
-        static::setUpHttpMockBeforeClass('8082', 'localhost');
+        // retrieve an available socket
+        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        socket_bind($socket, APITest::$IP, 0);
+        socket_getsockname($socket, $socket_address, $socket_port);
+        APITest::$port = $socket_port;
+        socket_close($socket);
+        static::setUpHttpMockBeforeClass(APITest::$port, APITest::$IP);
     }
 
     public static function tearDownAfterClass()
@@ -97,6 +105,7 @@ EOD;
     {
         $this->setUpHttpMock();
 
+        $this->testUrl = 'http://'.APITest::$IP.':'.APITest::$port;
         $rp = new RosetteParameters();
         $rp->params['content'] = $this->HAM_SENTENCE;
         $this->hamParams = $rp;
