@@ -24,5 +24,6 @@
     </distributionManagement>
     <modules>
         <module>python</module>
+        <module>java</module>
     </modules>
 </project>
