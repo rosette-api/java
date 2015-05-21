@@ -9,11 +9,3 @@ release.properties
 *~
 *.pyc
 mockserver*log
-php-adm/
-php/docs/
-mockHttp/
-php/vendor - adjusted for Windows/composer/autoload_real.php
-php/vendor - adjusted for Windows/
-php/phpDoc.dist.xml
-php/phpunit.phar
-php/tests/rosette/php_errors.log

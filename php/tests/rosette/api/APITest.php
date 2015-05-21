@@ -25,11 +25,8 @@ class APITest extends \PHPUnit_Framework_TestCase
 {
     use \InterNations\Component\HttpMock\PHPUnit\HttpMockTrait;
 
-    //public $testUrl = 'http://jugmaster.basistech.net/rest/v1';
     public $testUrl = 'http://localhost:8082';  // should match setupBeforeClass()
     public $userKey = null;
-    //public $testUrl = 'https://api.rosette.com/rest/v1';
-    //public $userKey = '7c3e0f9f51334a0793dde4be37cb22ce';
     public $hamParams;
     public $hamParamsU;
     public $dtHtmlParams;
