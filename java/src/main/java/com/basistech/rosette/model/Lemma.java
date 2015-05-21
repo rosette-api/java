@@ -51,4 +51,43 @@ public class Lemma {
     public String getLemma() {
         return lemma;
     }
+
+    /**
+     * set the text 
+     * @param text the text
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     * set the lemma 
+     * @param lemma the lemma
+     */
+    public void setLemma(String lemma) {
+        this.lemma = lemma;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = text != null ? text.hashCode() : 0;
+        result = 31 * result + (lemma != null ? lemma.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code Lemma}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Lemma) {
+            Lemma that = (Lemma) o;
+            return text != null ? text.equals(that.getText()) : text == that.getText()
+                    && lemma != null ? lemma.equals(that.getLemma()) : lemma == that.getLemma();
+        } else {
+            return false;
+        }
+    }
 }

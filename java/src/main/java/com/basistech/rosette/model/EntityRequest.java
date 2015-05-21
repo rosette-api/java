@@ -50,4 +50,35 @@ public class EntityRequest extends Request {
     public EntityOptions getOptions() {
         return options;
     }
+
+    /**
+     * set the entity extraction options 
+     * @param options the entity extraction options
+     */
+    public void setOptions(EntityOptions options) {
+        this.options = options;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (options != null ? options.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code EntityRequest}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof EntityRequest) {
+            EntityRequest that = (EntityRequest) o;
+            return super.equals(o)
+                    && options != null ? getOptions().equals(that.getOptions()) : options == that.getOptions();
+        } else {
+            return false;
+        }
+    }
 }

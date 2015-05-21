@@ -65,4 +65,56 @@ public class Sentiment {
     public List<String> getExplanations() {
         return explanations;
     }
+
+    /**
+     * set the sentiment label 
+     * @param label the sentiment label
+     */
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    /**
+     * set the confidence 
+     * @param confidence the confidence
+     */
+    public void setConfidence(double confidence) {
+        this.confidence = confidence;
+    }
+
+    /**
+     * set the list of explanations contributing to determination of sentiment
+     * @param explanations the list of explanations
+     */
+    public void setExplanations(List<String> explanations) {
+        this.explanations = explanations;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = label != null ? label.hashCode() : 0;
+        temp = Double.doubleToLongBits(confidence);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (explanations != null ? explanations.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code Sentiment}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Sentiment) {
+            Sentiment that = (Sentiment) o;
+            return label != null ? label.equals(that.getLabel()) : label == that.getLabel()
+                    && confidence == that.getConfidence()
+                    && explanations != null ? explanations.equals(that.getExplanations()) : explanations == that.getExplanations();
+        } else {
+            return false;
+        }
+    }
 }

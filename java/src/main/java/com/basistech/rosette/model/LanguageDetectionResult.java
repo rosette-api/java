@@ -51,4 +51,46 @@ public class LanguageDetectionResult {
     public double getConfidence() {
         return confidence;
     }
+
+    /**
+     * set the detected language 
+     * @param language the language
+     */
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    /**
+     * set the detection confidence 
+     * @param confidence the confidence
+     */
+    public void setConfidence(double confidence) {
+        this.confidence = confidence;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = language != null ? language.hashCode() : 0;
+        temp = Double.doubleToLongBits(confidence);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    /**
+     * if the param is a {@code LanguageDetectionResult}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LanguageDetectionResult) {
+            LanguageDetectionResult that = (LanguageDetectionResult) o;
+            return language != null ? language.equals(that.getLanguage()) : language == that.getLanguage()
+                    && confidence == that.getConfidence();
+        } else {
+            return false;
+        }
+    }
 }

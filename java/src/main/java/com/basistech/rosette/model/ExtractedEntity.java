@@ -78,7 +78,7 @@ public class ExtractedEntity {
 
     /**
      * get the normalized mention text 
-     * @return the mention text
+     * @return the normalized mention text
      */
     public String getNormalized() {
         return normalized;
@@ -98,5 +98,87 @@ public class ExtractedEntity {
      */
     public double getConfidence() {
         return confidence;
+    }
+
+    /**
+     * set the in-document entity chain id 
+     * @param indocChainId the id
+     */
+    public void setIndocChainId(int indocChainId) {
+        this.indocChainId = indocChainId;
+    }
+
+    /**
+     * set the entity type 
+     * @param type the entity type
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * set the mention text
+     * @param mention the mention text
+     */
+    public void setMention(String mention) {
+        this.mention = mention;
+    }
+
+    /**
+     * set the normalized mention text
+     * @param normalized the normalized mention text
+     */
+    public void setNormalized(String normalized) {
+        this.normalized = normalized;
+    }
+
+    /**
+     * set the mention count 
+     * @param count the mention count
+     */
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    /**
+     * set the confidence 
+     * @param confidence the confidence
+     */
+    public void setConfidence(double confidence) {
+        this.confidence = confidence;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = indocChainId;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (mention != null ? mention.hashCode() : 0);
+        result = 31 * result + (normalized != null ? normalized.hashCode() : 0);
+        result = 31 * result + count;
+        temp = Double.doubleToLongBits(confidence);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    /**
+     * if the param is a {@code ExtractedEntity}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ExtractedEntity) {
+            ExtractedEntity that = (ExtractedEntity) o;
+            return indocChainId == that.getIndocChainId()
+                    && type != null ? type.equals(that.getType()) : type == that.getType()
+                    && mention != null ? mention.equals(that.getMention()) : mention == that.getMention()
+                    && normalized != null ? normalized.equals(that.getNormalized()) : normalized == that.getNormalized()
+                    && count == that.getCount()
+                    && confidence == that.getConfidence();
+        } else {
+            return false;
+        }
     }
 }

@@ -50,4 +50,33 @@ public class LinguisticsRequest extends Request {
     public LinguisticsOptions getOptions() {
         return options;
     }
+
+    /**
+     * set the base linguistics options
+     * @param options the base linguistics options
+     */
+    public void setOptions(LinguisticsOptions options) {
+        this.options = options;
+    }
+
+    @Override
+    public int hashCode() {
+        return options != null ? options.hashCode() : 0;
+    }
+
+    /**
+     * if the param is a {@code LinguisticsRequest}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LinguisticsRequest) {
+            LinguisticsRequest that = (LinguisticsRequest) o;
+            return super.equals(o)
+                    && options != null ? options.equals(that.getOptions()) : options == that.getOptions();
+        } else {
+            return false;
+        }
+    }
 }

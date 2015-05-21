@@ -46,10 +46,41 @@ public abstract class Response {
     public Map<String, Long> getTimers() { return timers; }
 
     /**
+     * set the request id for tracking purposes 
+     * @param requestId the request id
+     */
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    /**
      * set the timing info
      * @param timers the timing info
      */
     public void setTimers(Map<String, Long> timers) {
         this.timers = timers;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = requestId != null ? requestId.hashCode() : 0;
+        result = 31 * result + (timers != null ? timers.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a response, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Response) {
+            Response that = (Response) o;
+            return requestId != null ? requestId.equals(that.getRequestId()) : requestId == that.getRequestId()
+                    && timers != null ? timers.equals(that.getTimers()) : timers == that.getTimers();
+        } else {
+            return false;
+        }
     }
 }

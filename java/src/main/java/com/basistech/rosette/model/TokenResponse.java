@@ -46,4 +46,35 @@ public final class TokenResponse extends Response {
     public List<String> getTokens() {
         return tokens;
     }
+
+    /**
+     * set the list of tokens
+     * @param tokens the list of tokens
+     */
+    public void setTokens(List<String> tokens) {
+        this.tokens = tokens;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (tokens != null ? tokens.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code TokenResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof TokenResponse) {
+            TokenResponse that = (TokenResponse) o;
+            return super.equals(o)
+                    && tokens != null ? tokens.equals(that.getTokens()) : tokens == that.getTokens();
+        } else {
+            return false;
+        }
+    }
 }

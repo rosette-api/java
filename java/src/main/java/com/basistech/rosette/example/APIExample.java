@@ -137,7 +137,7 @@ public class APIExample {
 
         doSentences(url);
         doSentences(text);
-        doSentences(text, LanguageCode.ENGLISH, InputUnit.SENTENCE);
+        doSentences(text, LanguageCode.ENGLISH, InputUnit.sentence);
         doSentences(cl.getResourceAsStream("English.txt"));
         doSentences(cl.getResourceAsStream("Chinese.txt"));
     }
@@ -464,7 +464,7 @@ public class APIExample {
      */
     private static void doLinkedEntity(InputStream file) {
         try {
-            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(file, null, null);
+            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(file, null);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());
@@ -510,7 +510,7 @@ public class APIExample {
      */
     private static void doLinkedEntity(URL url) {
         try {
-            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(url, null, null);
+            LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(url, null);
             print(entityResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());

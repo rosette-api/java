@@ -44,4 +44,35 @@ public final class SchemeResponse extends Response {
     public List<String> getSchemes() {
         return schemes;
     }
+
+    /**
+     * set the list of schemes
+     * @param schemes the list of schemes
+     */
+    public void setSchemes(List<String> schemes) {
+        this.schemes = schemes;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (schemes != null ? schemes.hashCode() : 0);
+        return result;
+    }
+
+    /**
+    * if the param is a {@code SchemeResponse}, compare contents for equality
+    * @param o the object
+    * @return whether or not the param object is equal to this object
+    */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof SchemeResponse) {
+            SchemeResponse that = (SchemeResponse) o;
+            return super.equals(o)
+                    && schemes != null ? schemes.equals(that.getSchemes()) : schemes == that.getSchemes();
+        } else {
+            return false;
+        }
+    }
 }

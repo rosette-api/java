@@ -43,4 +43,33 @@ public final class LanguageResponse extends Response {
     public List<LanguageDetectionResult> getLanguageDetections() {
         return languageDetections;
     }
+
+    /**
+     * set the list of detected languages
+     * @param languageDetections the list of detected languages
+     */
+    public void setLanguageDetections(List<LanguageDetectionResult> languageDetections) {
+        this.languageDetections = languageDetections;
+    }
+
+    @Override
+    public int hashCode() {
+        return languageDetections != null ? languageDetections.hashCode() : 0;
+    }
+
+    /**
+     * if the param is a {@code CategoryResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LanguageResponse) {
+            LanguageResponse that = (LanguageResponse) o;
+            return super.equals(o)
+                    && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : languageDetections == that.getLanguageDetections();
+        } else {
+            return false;
+        }
+    }
 }

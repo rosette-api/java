@@ -60,14 +60,6 @@ public class TranslatedNameResult {
     }
 
     /**
-     * get the translation 
-     * @return the translation
-     */
-    public String getTranslation() {
-        return translation;
-    }
-
-    /**
      * get the code for the script of the name to translate 
      * @return the source script code
      */
@@ -109,10 +101,18 @@ public class TranslatedNameResult {
 
     /**
      * get the transliteration scheme for the translation 
-     * @return the code for the transliteration scheme
+     * @return code for the transliteration scheme
      */
     public String getTargetScheme() {
         return targetScheme;
+    }
+
+    /**
+     * get the translation 
+     * @return the translation
+     */
+    public String getTranslation() {
+        return translation;
     }
 
     /**
@@ -121,5 +121,106 @@ public class TranslatedNameResult {
      */
     public double getConfidence() {
         return confidence;
+    }
+
+    /**
+     * set the code for the script of the name to translate 
+     * @param sourceScript the source script code
+     */
+    public void setSourceScript(String sourceScript) {
+        this.sourceScript = sourceScript;
+    }
+
+    /**
+     * set the code for the name's language of origin
+     * @param sourceLanguageOfOrigin the source language of origin code
+     */
+    public void setSourceLanguageOfOrigin(String sourceLanguageOfOrigin) {
+        this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
+    }
+
+    /**
+     * set the code for the name's language of use
+     * @param sourceLanguageOfUse the source language of use code
+     */
+    public void setSourceLanguageOfUse(String sourceLanguageOfUse) {
+        this.sourceLanguageOfUse = sourceLanguageOfUse;
+    }
+
+    /**
+     * set the code for the translation language 
+     * @param targetLanguage code for the translation language
+     */
+    public void setTargetLanguage(String targetLanguage) {
+        this.targetLanguage = targetLanguage;
+    }
+
+    /**
+     * set the code for the translation script 
+     * @param targetScript code for the translation script
+     */
+    public void setTargetScript(String targetScript) {
+        this.targetScript = targetScript;
+    }
+
+    /**
+     * set the transliteration scheme for the translation
+     * @param targetScheme code for the transliteration scheme 
+     */
+    public void setTargetScheme(String targetScheme) {
+        this.targetScheme = targetScheme;
+    }
+
+    /**
+     * set the translation 
+     * @param translation the translation
+     */
+    public void setTranslation(String translation) {
+        this.translation = translation;
+    }
+
+    /**
+     * set the confidence of the translation
+     * @param confidence the confidence of the translation
+     */
+    public void setConfidence(double confidence) {
+        this.confidence = confidence;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = sourceScript != null ? sourceScript.hashCode() : 0;
+        result = 31 * result + (sourceLanguageOfOrigin != null ? sourceLanguageOfOrigin.hashCode() : 0);
+        result = 31 * result + (sourceLanguageOfUse != null ? sourceLanguageOfUse.hashCode() : 0);
+        result = 31 * result + (targetLanguage != null ? targetLanguage.hashCode() : 0);
+        result = 31 * result + (targetScript != null ? targetScript.hashCode() : 0);
+        result = 31 * result + (targetScheme != null ? targetScheme.hashCode() : 0);
+        result = 31 * result + (translation != null ? translation.hashCode() : 0);
+        temp = Double.doubleToLongBits(confidence);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    /**
+     * if the param is a translated name result, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof TranslatedNameResult) {
+            TranslatedNameResult that = (TranslatedNameResult) o;
+            return sourceScript != null ? sourceScript.equals(that.getSourceScript()) : sourceScript == that.getSourceScript()
+                    && sourceLanguageOfOrigin != null ? sourceLanguageOfOrigin.equals(that.getSourceLanguageOfOrigin()) : sourceLanguageOfOrigin == that.getSourceLanguageOfOrigin()
+                    && sourceLanguageOfUse != null ? sourceLanguageOfUse.equals(that.getSourceLanguageOfUse()) : sourceLanguageOfUse == that.getSourceLanguageOfUse()
+                    && targetLanguage != null ? targetLanguage.equals(that.getTargetLanguage()) : targetLanguage == that.getTargetLanguage()
+                    && targetScript != null ? targetScript.equals(that.getTargetScript()) : targetScript == that.getTargetScript()
+                    && targetScheme != null ? targetScheme.equals(that.getTargetScheme()) : targetScheme == that.getTargetScheme()
+                    && confidence == that.getConfidence();
+        } else {
+            return false;
+        }
     }
 }

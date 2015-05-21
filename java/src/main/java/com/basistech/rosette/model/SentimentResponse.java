@@ -43,4 +43,35 @@ public final class SentimentResponse extends Response {
     public List<Sentiment> getSentiment() {
         return sentiment;
     }
+
+    /**
+     * set the list of sentiment analysis results
+     * @param sentiment the list of sentiment analysis results
+     */
+    public void setSentiment(List<Sentiment> sentiment) {
+        this.sentiment = sentiment;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (sentiment != null ? sentiment.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code SentimentResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof SentimentResponse) {
+            SentimentResponse that = (SentimentResponse) o;
+            return super.equals(o)
+                    && sentiment != null ? sentiment.equals(that.getSentiment()) : sentiment == that.getSentiment();
+        } else {
+            return false;
+        }
+    }
 }

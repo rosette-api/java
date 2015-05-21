@@ -14,23 +14,78 @@
 
 package com.basistech.rosette.model;
 
+/**
+ * Response ping data
+ */
 public class PingResponse extends Response {
     private String message;
     private long time;
 
-    public PingResponse() {
-    }
+    public PingResponse() { }
 
+    /**
+     * constructor for {@code PingResponse} 
+     * @param message ping response message
+     * @param time ping response timestamp
+     */
     public PingResponse(String message, long time) {
         this.message = message;
         this.time = time;
     }
 
+    /**
+     * get the ping response message
+     * @return the message
+     */
     public String getMessage() {
         return message;
     }
 
+    /**
+     * get the ping response timestamp
+     * @return the ping response timestamp
+     */
     public long getTime() {
         return time;
+    }
+
+    /**
+     * set the ping response message 
+     * @param message the message
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    /**
+     * set the ping response timestamp
+     * @param time the ping response timestamp
+     */
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = message != null ? message.hashCode() : 0;
+        result = 31 * result + (int) (time ^ (time >>> 32));
+        return result;
+    }
+
+    /**
+     * if the param is a {@code PingResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof PingResponse) {
+            PingResponse that = (PingResponse) o;
+            return super.equals(o)
+                    && message != null ? message.equals(that.getMessage()) : message == that.getMessage()
+                    && time == that.getTime();
+        } else {
+            return false;
+        }
     }
 }

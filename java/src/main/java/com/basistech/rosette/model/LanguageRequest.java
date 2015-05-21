@@ -48,4 +48,33 @@ public class LanguageRequest extends Request {
     public LanguageOptions getOptions() {
         return options;
     }
+
+    /**
+     * set the languages detection options
+     * @param options the languages detection options
+     */
+    public void setOptions(LanguageOptions options) {
+        this.options = options;
+    }
+
+    @Override
+    public int hashCode() {
+        return options != null ? options.hashCode() : 0;
+    }
+
+    /**
+     * if the param is a {@code LanguageRequest}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LanguageRequest) {
+            LanguageRequest that = (LanguageRequest) o;
+            return super.equals(o)
+                    && options != null ? options.equals(that.options) : that.options == null;
+        } else {
+            return false;
+        }
+    }
 }

@@ -45,4 +45,35 @@ public final class SentenceResponse extends Response {
     public List<String> getSentences() {
         return sentences;
     }
+
+    /**
+     * set the list of sentences
+     * @param sentences the list of sentences
+     */
+    public void setSentences(List<String> sentences) {
+        this.sentences = sentences;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (sentences != null ? sentences.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code SentenceResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof SentenceResponse) {
+            SentenceResponse that = (SentenceResponse) o;
+            return super.equals(o)
+                    && sentences != null ? sentences.equals(that.getSentences()) : sentences == that.getSentences();
+        } else {
+            return false;
+        }
+    }
 }

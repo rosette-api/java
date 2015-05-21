@@ -50,4 +50,35 @@ public class CategoryRequest extends Request {
     public CategoryOptions getOptions() {
         return options;
     }
+
+    /**
+     * set the categorization options
+     * @param options
+     */
+    public void setOptions(CategoryOptions options) {
+        this.options = options;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (options != null ? options.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code CategoryRequest}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof CategoryRequest) {
+            CategoryRequest that = (CategoryRequest) o;
+            return super.equals(o)
+                    && options != null ? options.equals(that.getOptions()) : options == that.getOptions();
+        } else {
+            return false;
+        }
+    }
 }

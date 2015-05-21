@@ -44,4 +44,35 @@ public final class BatchNameTranslationResponse extends Response {
     public List<TranslatedNameResult> getResults() {
         return results;
     }
+
+    /**
+     * Set the list of translated name results
+     * @param results the list of translated name results
+     */
+    public void setResults(List<TranslatedNameResult> results) {
+        this.results = results;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (results != null ? results.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code BatchNameTranslationResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof BatchNameTranslationResponse) {
+            BatchNameTranslationResponse that = (BatchNameTranslationResponse) o;
+            return super.equals(o)
+                    && results != null ? results.equals(that.getResults()) : results == that.getResults();
+        } else {
+            return false;
+        }
+    }
 }

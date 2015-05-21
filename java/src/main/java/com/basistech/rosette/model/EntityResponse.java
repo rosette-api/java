@@ -17,7 +17,6 @@ package com.basistech.rosette.model;
 
 import java.util.List;
 
-
 /** 
  * Simple api response data model for entity extraction 
  */
@@ -46,5 +45,36 @@ public final class EntityResponse extends Response {
      */
     public List<ExtractedEntity> getEntities() {
         return entities;
+    }
+
+    /**
+     * set the list of extracted entities 
+     * @param entities the list of extracted entities
+     */
+    public void setEntities(List<ExtractedEntity> entities) {
+        this.entities = entities;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (entities != null ? entities.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code EntityResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof EntityResponse) {
+            EntityResponse that = (EntityResponse) o;
+            return super.equals(o)
+                    && entities != null ? entities.equals(that.getEntities()) : entities == that.getEntities();
+        } else {
+            return false;
+        }
     }
 }

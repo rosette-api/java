@@ -55,10 +55,66 @@ public class Category {
     }
 
     /**
-     * get the list of input text elements contributing to identification of this category
+     * get the list of text elements contributing to identification of this category
      * @return the list of text elements
      */
     public List<String> getExplanations() {
         return explanations;
+    }
+
+    /**
+     * set the label for contextual category 
+     * @param label the label
+     */
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    /**
+     * set the confidence (0-1) 
+     * @param confidence the confidence
+     */
+    public void setConfidence(double confidence) {
+        if (confidence >= 0 && confidence <= 1) {
+            this.confidence = confidence;
+        } else {
+            throw new IllegalArgumentException("confidence 0-1");
+        }
+    }
+
+    /**
+     * set the list of text elements contributing to identification of this category
+     * @param explanations the list of text elements
+     */
+    public void setExplanations(List<String> explanations) {
+        this.explanations = explanations;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = label != null ? label.hashCode() : 0;
+        temp = Double.doubleToLongBits(confidence);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (explanations != null ? explanations.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code Category}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Category) {
+            Category that = (Category) o;
+            return label != null ? label.equals(that.label) : that.label == null
+                    && confidence == that.confidence
+                    && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;
+        } else {
+            return false;
+        }
     }
 }

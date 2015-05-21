@@ -25,7 +25,6 @@ import com.basistech.rosette.model.LanguageRequest;
 import com.basistech.rosette.model.LanguageResponse;
 import com.basistech.rosette.model.LinguisticsOptions;
 import com.basistech.rosette.model.LinguisticsRequest;
-import com.basistech.rosette.model.LinkedEntityOption;
 import com.basistech.rosette.model.LinkedEntityRequest;
 import com.basistech.rosette.model.LinkedEntityResponse;
 import com.basistech.rosette.model.MorphologyResponse;
@@ -410,14 +409,13 @@ public class RosetteAPI {
      *
      * @param inputStream Input stream of file.
      * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param options LinkedEntity options.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
-    public LinkedEntityResponse getLinkedEntity(InputStream inputStream, String language, LinkedEntityOption options) throws RosetteAPIException, IOException {
+    public LinkedEntityResponse getLinkedEntity(InputStream inputStream, String language) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
-        LinkedEntityRequest request = new LinkedEntityRequest(language, encodedStr, null, "text/html", null, options);
+        LinkedEntityRequest request = new LinkedEntityRequest(language, encodedStr, null, "text/html", null);
         return (LinkedEntityResponse) sendRequest(request, urlBase + entitiesLinkedServicePath, LinkedEntityResponse.class);
     }
 
@@ -429,13 +427,12 @@ public class RosetteAPI {
      *
      * @param url URL containing the data.
      * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param options LinkedEntity options.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
-    public LinkedEntityResponse getLinkedEntity(URL url, String language, LinkedEntityOption options) throws RosetteAPIException, IOException {
-        LinkedEntityRequest request = new LinkedEntityRequest(language, null, url.toString(), null, null, options);
+    public LinkedEntityResponse getLinkedEntity(URL url, String language) throws RosetteAPIException, IOException {
+        LinkedEntityRequest request = new LinkedEntityRequest(language, null, url.toString(), null, null);
         return (LinkedEntityResponse) sendRequest(request, urlBase + entitiesLinkedServicePath, LinkedEntityResponse.class);
     }
 
@@ -447,13 +444,12 @@ public class RosetteAPI {
      *
      * @param content String containing the data.
      * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param options LinkedEntity options.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
-    public LinkedEntityResponse getLinkedEntity(String content, String language, LinkedEntityOption options) throws RosetteAPIException, IOException {
-        LinkedEntityRequest request = new LinkedEntityRequest(language, content, null, null, null, options);
+    public LinkedEntityResponse getLinkedEntity(String content, String language) throws RosetteAPIException, IOException {
+        LinkedEntityRequest request = new LinkedEntityRequest(language, content, null, null, null);
         return (LinkedEntityResponse) sendRequest(request, urlBase + entitiesLinkedServicePath, LinkedEntityResponse.class);
     }
 
@@ -466,13 +462,12 @@ public class RosetteAPI {
      * @param content String containing the data.
      * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
      * @param unit The unit of content (see {@link com.basistech.rosette.model.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
-     * @param options LinkedEntity options.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
-    public LinkedEntityResponse getLinkedEntity(String content, String language, InputUnit unit, LinkedEntityOption options) throws RosetteAPIException, IOException {
-        LinkedEntityRequest request = new LinkedEntityRequest(language, content, null, null, unit, options);
+    public LinkedEntityResponse getLinkedEntity(String content, String language, InputUnit unit) throws RosetteAPIException, IOException {
+        LinkedEntityRequest request = new LinkedEntityRequest(language, content, null, null, unit);
         return (LinkedEntityResponse) sendRequest(request, urlBase + entitiesLinkedServicePath, LinkedEntityResponse.class);
     }
 

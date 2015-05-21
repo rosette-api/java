@@ -14,6 +14,8 @@
 
 package com.basistech.rosette.model;
 
+import java.util.Arrays;
+
 /**
  * Class containing data common to RaaS client requests
  */
@@ -24,7 +26,7 @@ public abstract class Request {
     private String contentUri;
     private byte[] contentBytes;
     private String contentType;
-    private String unit;
+    private InputUnit unit;
     
     protected Request() { }
 
@@ -52,14 +54,14 @@ public abstract class Request {
         this.contentUri = contentUri;
         this.contentType = contentType;
         if (unit == null) {
-            this.unit = InputUnit.DOC.toValue();
+            this.unit = InputUnit.doc;
         } else {
-            this.unit = unit.toValue();
+            this.unit = unit;
         }
     }
 
     /**
-     * get the language code (ignored for /language endpoint)
+     * get the language code
      * @return the language code
      */
     public String getLanguage() {
@@ -67,21 +69,11 @@ public abstract class Request {
     }
 
     /**
-     * string input to process (JSON string or base64 encoding of non-JSON string) 
-     * @return
+     * get content to process (JSON string or base64 encoding of non-JSON string) 
+     * @return the content
      */
     public String getContent() {
         return content;
-    }
-
-    /**
-     * set the attached content bytes and content type
-     * @param contentBytes the content bytes
-     * @param contentType the content type
-     */
-    public void setAttachedContent(byte[] contentBytes, String contentType) {
-        this.contentBytes = contentBytes;
-        this.contentType = contentType;
     }
 
     /**
@@ -97,7 +89,11 @@ public abstract class Request {
      * @return the content URI
      */
     public String getContentUri() { return contentUri; }
-    
+
+    /**
+     * get the content type 
+     * @return the content type
+     */
     public String getContentType() {
         return contentType;
     }
@@ -105,9 +101,89 @@ public abstract class Request {
     /**
      * get the {@code InputUnit} code
      * @see InputUnit
-     * @return the InputUnit code
+     * @return the {@code InputUnit} code
      */
-    public String getUnit() {
+    public InputUnit getUnit() {
         return unit;
+    }
+
+    /**
+     * set the language code 
+     * @param language the language code
+     */
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    /**
+     * set content to process (JSON string or base64 encoding of non-JSON string)
+     * @param content the content
+     */
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    /**
+     * set the URI to accessible content (content and contentURI are mutually exlcusive) 
+     * @param contentUri the content URI
+     */
+    public void setContentUri(String contentUri) {
+        this.contentUri = contentUri;
+    }
+
+    /**
+     * set the content as an array of bytes 
+     * @param contentBytes the content as bytes
+     */
+    public void setContentBytes(byte[] contentBytes) {
+        this.contentBytes = contentBytes;
+    }
+
+    /**
+     * set the content type
+     * @param contentType the content type
+     */
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    /**
+     * set the {@code InputUnit} code 
+     * @see InputUnit
+     * @param unit the {@code InputUnit} code
+     */
+    public void setUnit(InputUnit unit) {
+        this.unit = unit;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = language != null ? language.hashCode() : 0;
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (contentUri != null ? contentUri.hashCode() : 0);
+        result = 31 * result + (contentBytes != null ? Arrays.hashCode(contentBytes) : 0);
+        result = 31 * result + (contentType != null ? contentType.hashCode() : 0);
+        result = 31 * result + (unit != null ? unit.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code Request}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Request) {
+            Request that = (Request) o;
+            return language != null ? language.equals(that.getLanguage()) : language == that.getLanguage()
+                    && content != null ? content.equals(that.getContent()) : content == that.getContent()
+                    && contentUri != null ? contentUri.equals(that.getContentUri()) : contentUri == that.getContentUri()
+                    && contentType != null ? contentType.equals(that.getContentType()) : contentType == that.getContentType()
+                    && unit != null ? unit.equals(that.getUnit()) : unit == that.getUnit()
+                    && Arrays.equals(contentBytes, that.getContentBytes());
+        } else {
+            return false;
+        }
     }
 }

@@ -49,7 +49,7 @@ public final class MorphologyResponse extends Response {
     }
 
     /**
-     * list of part of speech tags 
+     * get the list of part of speech tags 
      * @return the list of part of speech tags
      */
     public List<PartOfSpeech> getPosTags() {
@@ -78,5 +78,65 @@ public final class MorphologyResponse extends Response {
      */
     public List<HanReadings> getHanReadings() {
         return hanReadings;
+    }
+
+    /**
+     * set the list of part of speech tags
+     * @param posTags the list of part of speech tags
+     */
+    public void setPosTags(List<PartOfSpeech> posTags) {
+        this.posTags = posTags;
+    }
+
+    /**
+     * set the list of lemmas 
+     * @param lemmas the list of lemmas
+     */
+    public void setLemmas(List<Lemma> lemmas) {
+        this.lemmas = lemmas;
+    }
+
+    /**
+     * set the list of compounds 
+     * @param compounds the list of compounds
+     */
+    public void setCompounds(List<Decompounding> compounds) {
+        this.compounds = compounds;
+    }
+
+    /**
+     * set the list of Han readings
+     * @param hanReadings the list of Han readings
+     */
+    public void setHanReadings(List<HanReadings> hanReadings) {
+        this.hanReadings = hanReadings;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = posTags != null ? posTags.hashCode() : 0;
+        result = 31 * result + (lemmas != null ? lemmas.hashCode() : 0);
+        result = 31 * result + (compounds != null ? compounds.hashCode() : 0);
+        result = 31 * result + (hanReadings != null ? hanReadings.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code MorphologyResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof MorphologyResponse) {
+            MorphologyResponse that = (MorphologyResponse) o;
+            return super.equals(o)
+                    && posTags != null ? posTags.equals(that.getPosTags()) : posTags == that.getPosTags()
+                    && lemmas != null ? lemmas.equals(that.getLemmas()) : lemmas == that.getLemmas()
+                    && compounds != null ? compounds.equals(that.getCompounds()) : compounds == that.getCompounds()
+                    && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : hanReadings == that.getHanReadings();
+        } else {
+            return false;
+        }
     }
 }

@@ -18,8 +18,7 @@ package com.basistech.rosette.model;
  * Class that represents the data from a RaaS client entity resolution request
  */
 public class LinkedEntityRequest extends Request {
-    private LinkedEntityOption options;
-    
+
     public LinkedEntityRequest() { super(); }
 
     /**
@@ -29,25 +28,33 @@ public class LinkedEntityRequest extends Request {
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
      * @param unit input unit code
-     * @param options entity resolver options
      */
     public LinkedEntityRequest(
             String language,
             String content,
             String contentUri,
             String contentType,
-            InputUnit unit,
-            LinkedEntityOption options
+            InputUnit unit
     ) {
         super(language, content, contentUri, contentType, unit);
-        this.options = options;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**
-     * get the entity resolver options
-     * @return the entity resolver options
+     * if the param is a {@code LinguisticsRequest}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
      */
-    public LinkedEntityOption getOptions() {
-        return options;
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LinkedEntityRequest) {
+            return super.equals(o);
+        } else {
+            return false;
+        }
     }
 }

@@ -24,6 +24,7 @@ public class ConstantsResponse extends Response {
     public String build;
     public Object support;
     //CHECKSTYLE:ON
+    
     public ConstantsResponse() { super(); }
 
     /**
@@ -38,5 +39,80 @@ public class ConstantsResponse extends Response {
         this.version = version;
         this.build = build;
         this.support = support;
+    }
+
+    /**
+     * get the component version 
+     * @return the component version
+     */
+    public String getVersion() {
+        return version;
+    }
+
+    /**
+     * get the component build 
+     * @return the component build
+     */
+    public String getBuild() {
+        return build;
+    }
+
+    /**
+     * get support 
+     * @return support
+     */
+    public Object getSupport() {
+        return support;
+    }
+
+    /**
+     * set the component version 
+     * @param version the version
+     */
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    /**
+     * set the component build 
+     * @param build the build
+     */
+    public void setBuild(String build) {
+        this.build = build;
+    }
+
+    /**
+     * set support 
+     * @param support support
+     */
+    public void setSupport(Object support) {
+        this.support = support;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (version != null ? version.hashCode() : 0);
+        result = 31 * result + (build != null ? build.hashCode() : 0);
+        result = 31 * result + (support != null ? support.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code ConstantsResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ConstantsResponse) {
+            ConstantsResponse that = (ConstantsResponse) o;
+            return super.equals(o)
+                    && version != null ? version.equals(that.getVersion()) : version == that.getVersion()
+                    && build != null ? build.equals(that.getBuild()) : build == that.getBuild()
+                    && support != null ? support.equals(that.getSupport()) : support == that.getSupport();
+        } else {
+            return false;
+        }
     }
 }

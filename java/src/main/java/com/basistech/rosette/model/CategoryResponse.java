@@ -43,4 +43,35 @@ public final class CategoryResponse extends Response {
     public List<Category> getCategories() {
         return categories;
     }
+
+    /**
+     * set the list of categories 
+     * @param categories the list of categories
+     */
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (categories != null ? categories.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code CategoryResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof CategoryResponse) {
+            CategoryResponse that = (CategoryResponse) o;
+            return super.equals(o)
+                    && categories != null ? categories.equals(that.getCategories()) : categories == that.getCategories();
+        } else {
+            return false;
+        }
+    }
 }

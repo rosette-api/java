@@ -17,6 +17,7 @@ package com.basistech.rosette.model;
 /**
  * Class that represents the data from a RaaS client name translation request
  */
+// todo: should this extend request?
 public class NameTranslationRequest {
 
     private String name;
@@ -68,7 +69,7 @@ public class NameTranslationRequest {
     }
 
     /**
-     * get the entity type of the name (PERSON, LOCATION, or ORGANIZATION) 
+     * get the entity type of the name
      * @return the entity type of the name
      */
     public String getEntityType() {
@@ -117,5 +118,104 @@ public class NameTranslationRequest {
      */
     public String getTargetScheme() {
         return targetScheme;
+    }
+
+    /**
+     * set the name to be translated 
+     * @param name the name to be translated
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * set the entity type of the name
+     * @param entityType the entity type of the name
+     */
+    public void setEntityType(String entityType) {
+        this.entityType = entityType;
+    }
+
+    /**
+     * set the code for the name's script 
+     * @param sourceScript code for the name's script
+     */
+    public void setSourceScript(String sourceScript) {
+        this.sourceScript = sourceScript;
+    }
+
+    /**
+     * set the code for the name's language of origin 
+     * @param sourceLanguageOfOrigin the name's language of origin
+     */
+    public void setSourceLanguageOfOrigin(String sourceLanguageOfOrigin) {
+        this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
+    }
+
+    /**
+     * set the code for the name's language of use 
+     * @param sourceLanguageOfUse code for the name's language of use
+     */
+    public void setSourceLanguageOfUse(String sourceLanguageOfUse) {
+        this.sourceLanguageOfUse = sourceLanguageOfUse;
+    }
+
+    /**
+     * set code for the translation language 
+     * @param targetLanguage code for the translation language
+     */
+    public void setTargetLanguage(String targetLanguage) {
+        this.targetLanguage = targetLanguage;
+    }
+
+    /**
+     * set the code for the target script 
+     * @param targetScript code for the target script
+     */
+    public void setTargetScript(String targetScript) {
+        this.targetScript = targetScript;
+    }
+
+    /**
+     * set the transliteration scheme for the translation
+     * @param targetScheme the transliteration scheme for the translation
+     */
+    public void setTargetScheme(String targetScheme) {
+        this.targetScheme = targetScheme;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (entityType != null ? entityType.hashCode() : 0);
+        result = 31 * result + (sourceScript != null ? sourceScript.hashCode() : 0);
+        result = 31 * result + (sourceLanguageOfOrigin != null ? sourceLanguageOfOrigin.hashCode() : 0);
+        result = 31 * result + (sourceLanguageOfUse != null ? sourceLanguageOfUse.hashCode() : 0);
+        result = 31 * result + (targetLanguage != null ? targetLanguage.hashCode() : 0);
+        result = 31 * result + (targetScript != null ? targetScript.hashCode() : 0);
+        result = 31 * result + (targetScheme != null ? targetScheme.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code NameTranslationRequest}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof NameTranslationRequest) {
+            NameTranslationRequest that = (NameTranslationRequest) o;
+            return name != null ? name.equals(that.getName()) : name == that.getName()
+                    && entityType != null ? entityType.equals(that.getEntityType()) : entityType == that.getEntityType()
+                    && sourceScript != null ? sourceScript.equals(that.getSourceScript()) : sourceScript == that.getSourceScript()
+                    && sourceLanguageOfOrigin != null ? sourceLanguageOfOrigin.equals(that.getSourceLanguageOfOrigin()) : sourceLanguageOfOrigin == that.getSourceLanguageOfOrigin()
+                    && sourceLanguageOfUse != null ? sourceLanguageOfUse.equals(that.getSourceLanguageOfUse()) : sourceLanguageOfUse == that.getSourceLanguageOfUse()
+                    && targetLanguage != null ? targetLanguage.equals(that.getTargetLanguage()) : targetLanguage == that.getTargetLanguage()
+                    && targetScript != null ? targetScript.equals(that.getTargetScript()) : targetScript == that.getTargetScript()
+                    && targetScheme != null ? targetScheme.equals(that.getTargetScheme()) : targetScheme == that.getTargetScheme();
+        } else {
+            return false;
+        }
     }
 }

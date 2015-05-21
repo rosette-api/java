@@ -14,42 +14,116 @@
 
 package com.basistech.rosette.model;
 
+/**
+ * language weight used to resolve ambiguous results
+ */
 public class LanguageWeight {
     private String language;
-    private ISO15924 script;
+    private String script;
     private Integer weight;
 
-    public LanguageWeight() {
-    }
+    public LanguageWeight() { }
 
+    /**
+     * constructor for {@code LanguageWeight} 
+     * @param language language
+     * @param script script
+     * @param weight weight used to resolve ambiguous results
+     */
     public LanguageWeight(
             String language,
-            ISO15924 script,
+            String script,
             Integer weight
     ) {
         this.language = language;
-        this.weight = weight;
         this.script = script;
+        this.weight = weight;
     }
 
+/**
+ * constructor for {@code LanguageWeight}
+ * @param language language
+ * @param weight weight used to resolve ambiguous results
+ */             
     public LanguageWeight(
             String language,
             Integer weight
     ) {
         this.language = language;
-        this.weight = weight;
         this.script = null;
+        this.weight = weight;
     }
 
+    /**
+     * get the language 
+     * @return the language
+     */
     public String getLanguage() {
         return language;
     }
 
+    /**
+     * get the script 
+     * @return the script
+     */
+    public String getScript() {
+        return script;
+    }
+
+    /**
+     * get the weight used to resolve ambiguous results
+     * @return the weight
+     */
     public Integer getWeight() {
         return weight;
     }
 
-    public ISO15924 getScript() {
-        return script;
+    /**
+     * set the language 
+     * @param language the language
+     */
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    /**
+     * set the script 
+     * @param script the script
+     */
+    public void setScript(String script) {
+        this.script = script;
+    }
+
+    /**
+     * set the weight used to resolve ambiguous results
+     * @param weight
+     */
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = language != null ? language.hashCode() : 0;
+        result = 31 * result + (script != null ? script.hashCode() : 0);
+        result = 31 * result + (weight != null ? weight.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code LanguageWeight}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LanguageWeight) {
+            LanguageWeight that = (LanguageWeight) o;
+            return language != null ? language.equals(that.getLanguage()) : language == that.getLanguage()
+                    && weight != null ? weight.equals(that.getWeight()) : weight == that.getWeight()
+                    && script != null ? script.equals(that.getScript()) : script == that.getScript();
+        } else {
+            return false;
+        }
     }
 }

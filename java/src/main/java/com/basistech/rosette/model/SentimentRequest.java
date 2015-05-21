@@ -50,4 +50,35 @@ public class SentimentRequest extends Request {
     public SentimentOptions getOptions() {
         return options;
     }
+
+    /**
+     * set the sentiment options
+     * @param options the sentiment options
+     */
+    public void setOptions(SentimentOptions options) {
+        this.options = options;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (options != null ? options.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code SentimentRequest}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof SentimentRequest) {
+            SentimentRequest that = (SentimentRequest) o;
+            return super.equals(o)
+                    && getOptions().equals(that.getOptions());
+        } else {
+            return false;
+        }
+    }
 }

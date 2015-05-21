@@ -14,12 +14,21 @@
 
 package com.basistech.rosette.model;
 
+/**
+ * Sentiment options
+ */
 public final class SentimentOptions {
     private String model = SentimentModel.REVIEW;
     private Boolean explain = false;
 
-    public SentimentOptions() { }
+    public SentimentOptions() {
+    }
 
+    /**
+     * constructor for {@code SentimentOptions}
+     * @param model   model to use for sentiment analysis
+     * @param explain whether to return explanation strings for the sentiment results returned
+     */
     public SentimentOptions(
             String model,
             Boolean explain) {
@@ -27,17 +36,67 @@ public final class SentimentOptions {
         this.explain = explain;
     }
 
+    /**
+     * constructor for {@code SentimentOptions}
+     * @param model model to use for sentiment analysis
+     */
     public SentimentOptions(
             String model) {
         this.model = model;
     }
 
+    /**
+     * get the model to use for sentiment analysis
+     * @return the model to use for sentiment analysis
+     */
     public String getModel() {
         return model;
     }
 
+    /**
+     * get whether to return explanation strings for the sentiment results returned
+     * @return whether to return explanation strings for the sentiment results returned
+     */
     public Boolean getExplain() {
         return explain;
     }
 
+    /**
+     * set the model to use for sentiment analysis 
+     * @param model the model to use for sentiment analysis
+     */
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    /**
+     * set whether to return explanation strings for the sentiment results returned
+     * @param explain whether to return explanation strings for the sentiment results returned
+     */
+    public void setExplain(Boolean explain) {
+        this.explain = explain;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = model != null ? model.hashCode() : 0;
+        result = 31 * result + (explain != null ? explain.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code SentimentOptions}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof SentimentOptions) {
+            SentimentOptions that = (SentimentOptions) o;
+            return model != null ? model.equals(that.getModel()) : model == that.getModel()
+                    && explain != null ? explain.equals(that.getExplain()) : explain == that.getExplain();
+        } else {
+            return false;
+        }
+    }
 }

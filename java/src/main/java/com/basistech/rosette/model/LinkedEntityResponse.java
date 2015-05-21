@@ -44,4 +44,33 @@ public final class LinkedEntityResponse extends Response {
     public List<LinkedEntity> getEntities() {
         return entities;
     }
+
+    /**
+     * set the list of resolved (against the knowledgebase) entities
+     * @param entities the list of resolved entities
+     */
+    public void setEntities(List<LinkedEntity> entities) {
+        this.entities = entities;
+    }
+
+    @Override
+    public int hashCode() {
+        return entities != null ? entities.hashCode() : 0;
+    }
+
+    /**
+     * if the param is a {@code LinkedEntityResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LinkedEntityResponse) {
+            LinkedEntityResponse that = (LinkedEntityResponse) o;
+            return super.equals(o)
+                    && entities != null ? entities.equals(that.getEntities()) : entities == that.getEntities();
+        } else {
+            return false;
+        }
+    }
 }

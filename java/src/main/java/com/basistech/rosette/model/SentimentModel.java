@@ -14,6 +14,9 @@
 
 package com.basistech.rosette.model;
 
+/**
+ * Rosette API sentiment model
+ */
 public final class SentimentModel {
     public static final String REVIEW = "review";
     public static final String SHORT_STRING = "short-string";

@@ -14,6 +14,10 @@
 
 package com.basistech.rosette.model;
 
+/**
+ * The ISO15924 system of script codes. There is one string item for each defined code,
+ * named after its CODE4 value.
+ */
 public final class ISO15924 {
     // CHECKSTYLE:OFF
 

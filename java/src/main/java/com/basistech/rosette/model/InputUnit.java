@@ -14,14 +14,18 @@
 
 package com.basistech.rosette.model;
 
+import java.util.EnumSet;
+
 /**
  * Unit of input
  */
 public enum InputUnit {
-    DOC("doc"),
-    SENTENCE("sentence"),
-    WORDS("words"),
-    QUERY("query");
+    //CHECKSTYLE:OFF
+    doc("doc"),
+    sentence("sentence"),
+    words("words"),
+    query("query");
+    //CHECKSTYLE:ON
 
     private String label;
 
@@ -38,6 +42,29 @@ public enum InputUnit {
      */
     public String getLabel() {
         return label;
+    }
+
+    /**
+     * set the label
+     * @param label the label
+     */
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    /**
+     * checks if value is a valid {@code InputUnit} enum
+     * @param value input value
+     * @return {@code InputUnit corresponding to input value}
+     * @throws IllegalArgumentException
+     */
+    public static InputUnit forValue(String value) throws IllegalArgumentException {
+        for (InputUnit unit : EnumSet.allOf(InputUnit.class)) {
+            if (unit.getLabel().equalsIgnoreCase(value)) {
+                return unit;
+            }
+        }
+        throw new IllegalArgumentException("invalid doc unit: " + value);
     }
 
     /**

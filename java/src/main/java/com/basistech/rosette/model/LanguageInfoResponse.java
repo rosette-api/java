@@ -55,4 +55,44 @@ public final class LanguageInfoResponse extends Response {
     public Map<String, Set<String>> getSupportedScripts() {
         return supportedScripts;
     }
+
+    /**
+     * set the list of supported languages 
+     * @param supportedLanguages the list of supported languages
+     */
+    public void setSupportedLanguages(Map<String, Set<String>> supportedLanguages) {
+        this.supportedLanguages = supportedLanguages;
+    }
+
+    /**
+     * set the list of supported scripts
+     * @param supportedScripts the list of supported scripts
+     */
+    public void setSupportedScripts(Map<String, Set<String>> supportedScripts) {
+        this.supportedScripts = supportedScripts;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = supportedLanguages != null ? supportedLanguages.hashCode() : 0;
+        result = 31 * result + (supportedScripts != null ? supportedScripts.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code LanguageInfoResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LanguageInfoResponse) {
+            LanguageInfoResponse that = (LanguageInfoResponse) o;
+            return super.equals(o)
+                    && supportedLanguages != null ? supportedLanguages.equals(that.getSupportedLanguages()) : supportedLanguages == that.getSupportedLanguages()
+                    && supportedScripts != null ? supportedScripts.equals(that.getSupportedScripts()) : supportedScripts == that.getSupportedScripts();
+        } else {
+            return false;
+        }
+    }
 }

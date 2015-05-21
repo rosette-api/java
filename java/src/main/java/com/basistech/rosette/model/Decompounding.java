@@ -53,4 +53,43 @@ public class Decompounding {
     public List<String> getCompoundComponents() {
         return compoundComponents;
     }
+
+    /**
+     * set the compound word 
+     * @param text the compound word
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     * set the list of compound components 
+     * @param compoundComponents the list of compound components
+     */
+    public void setCompoundComponents(List<String> compoundComponents) {
+        this.compoundComponents = compoundComponents;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = text != null ? text.hashCode() : 0;
+        result = 31 * result + (compoundComponents != null ? compoundComponents.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code Decompounding}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Decompounding) {
+            Decompounding that = (Decompounding) o;
+            return text != null ? text.equals(that.getText()) : text == that.getText()
+                    && compoundComponents != null ? compoundComponents.equals(that.getCompoundComponents()) : compoundComponents == that.getCompoundComponents();
+        } else {
+            return false;
+        }
+    }
 }

@@ -52,4 +52,44 @@ public class ErrorResponse extends Response {
     public String getMessage() {
         return message;
     }
+
+    /**
+     * set the error code 
+     * @param code the error code
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    /**
+     * set the message 
+     * @param message the message
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = code != null ? code.hashCode() : 0;
+        result = 31 * result + (message != null ? message.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code ErrorResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ErrorResponse) {
+            ErrorResponse that = (ErrorResponse) o;
+            return super.equals(o)
+                    && code != null ? code.equals(that.getCode()) : code == that.getCode()
+                    && message != null ? message.equals(that.getMessage()) : message == that.getMessage();
+        } else {
+            return false;
+        }
+    }
 }

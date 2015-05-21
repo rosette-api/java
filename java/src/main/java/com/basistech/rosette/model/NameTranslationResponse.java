@@ -41,4 +41,33 @@ public final class NameTranslationResponse extends Response {
     public TranslatedNameResult getResult() {
         return result;
     }
+
+    /**
+     * set the name's translation result
+     * @param result the name translation result
+     */
+    public void setResult(TranslatedNameResult result) {
+        this.result = result;
+    }
+
+    @Override
+    public int hashCode() {
+        return result != null ? result.hashCode() : 0;
+    }
+
+    /**
+     * if the param is a {@code NameTranslationResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof NameTranslationResponse) {
+            NameTranslationResponse that = (NameTranslationResponse) o;
+            return super.equals(o)
+                    && result != null ? result.equals(that.getResult()) : result == that.getResult();
+        } else {
+            return false;
+        }
+    }
 }

@@ -17,7 +17,6 @@ package com.basistech.rosette.model;
 
 import java.util.List;
 
-
 /**
  * Response data model for scripts 
  */
@@ -40,9 +39,40 @@ public final class ScriptResponse extends Response {
 
     /**
      * get the list of scripts
-     * @return
+     * @return the list of scripts
      */
     public List<String> getScripts() {
         return scripts;
+    }
+
+    /**
+     * set the list of scripts
+     * @param scripts the list of scripts
+     */
+    public void setScripts(List<String> scripts) {
+        this.scripts = scripts;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (scripts != null ? scripts.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code ScriptResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ScriptResponse) {
+            ScriptResponse that = (ScriptResponse) o;
+            return super.equals(o)
+                    && scripts != null ? scripts.equals(that.getScripts()) : scripts == that.getScripts();
+        } else {
+            return false;
+        }
     }
 }

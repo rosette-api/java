@@ -201,7 +201,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(LanguageRequest.class);
         try {
-            LanguageResponse response = api.getLanguage(request.getContent(), InputUnit.SENTENCE, null);
+            LanguageResponse response = api.getLanguage(request.getContent(), InputUnit.sentence, null);
             verifyLanguage(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -248,7 +248,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(LinguisticsRequest.class);
         try {
-            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, request.getContent(), null, InputUnit.SENTENCE, null);
+            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, request.getContent(), null, InputUnit.sentence, null);
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -295,7 +295,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(EntityRequest.class);
         try {
-            EntityResponse response = api.getEntity(request.getContent(), null, InputUnit.SENTENCE, null);
+            EntityResponse response = api.getEntity(request.getContent(), null, InputUnit.sentence, null);
             verifyEntity(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -328,7 +328,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(LinkedEntityRequest.class);
         try {
-            LinkedEntityResponse response = api.getLinkedEntity(new URL(request.getContentUri()), null, null);
+            LinkedEntityResponse response = api.getLinkedEntity(new URL(request.getContentUri()), null);
             verifyLinkedEntity(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -342,7 +342,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(LinkedEntityRequest.class);
         try {
-            LinkedEntityResponse response = api.getLinkedEntity(request.getContent(), null, InputUnit.SENTENCE, null);
+            LinkedEntityResponse response = api.getLinkedEntity(request.getContent(), null, InputUnit.sentence);
             verifyLinkedEntity(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -390,7 +390,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(CategoryRequest.class);
         try {
-            CategoryResponse response = api.getCategories(request.getContent(), null, InputUnit.SENTENCE, null);
+            CategoryResponse response = api.getCategories(request.getContent(), null, InputUnit.sentence, null);
             verifyCategory(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -437,7 +437,7 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(SentimentRequest.class);
         try {
-            SentimentResponse response = api.getSentiment(request.getContent(), language, InputUnit.SENTENCE, null);
+            SentimentResponse response = api.getSentiment(request.getContent(), language, InputUnit.sentence, null);
             verifySentiment(response);
         } catch (RosetteAPIException e) {
             verifyException(e);

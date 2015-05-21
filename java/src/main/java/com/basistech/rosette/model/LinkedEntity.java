@@ -74,4 +74,66 @@ public class LinkedEntity {
     public double getConfidence() {
         return confidence;
     }
+
+    /**
+     * set the resolved entity id 
+     * @param entityId the entity id
+     */
+    public void setEntityId(String entityId) {
+        this.entityId = entityId;
+    }
+
+    /**
+     * set the in-document chain id 
+     * @param indocChainId the in-document chain id
+     */
+    public void setIndocChainId(int indocChainId) {
+        this.indocChainId = indocChainId;
+    }
+
+    /**
+     * set the mention text 
+     * @param mention the mention text
+     */
+    public void setMention(String mention) {
+        this.mention = mention;
+    }
+
+    /**
+     * set the confidence
+     * @param confidence the confidence
+     */
+    public void setConfidence(double confidence) {
+        this.confidence = confidence;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = entityId != null ? entityId.hashCode() : 0;
+        result = 31 * result + indocChainId;
+        result = 31 * result + (mention != null ? mention.hashCode() : 0);
+        temp = Double.doubleToLongBits(confidence);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    /**
+     * if the param is a {@code LinkedEntity}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LinkedEntity) {
+            LinkedEntity that = (LinkedEntity) o;
+            return entityId != null ? entityId.equals(that.getEntityId()) : entityId == that.getEntityId()
+                    && indocChainId == that.getIndocChainId()
+                    && mention != null ? mention.equals(that.getMention()) : mention == that.getMention()
+                    && confidence == that.getConfidence();
+        } else {
+            return false;
+        }
+    }
 }
