@@ -10,6 +10,10 @@
             <source>README.md</source>
             <lineEnding>unix</lineEnding>
         </file>
+        <file>
+            <source>composer.json</source>
+            <lineEnding>unix</lineEnding>
+        </file>
     </files>
     <fileSets>
         <fileSet>

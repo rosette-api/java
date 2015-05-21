@@ -70,7 +70,7 @@ class Api
      * all requests.  The default Api server requires authentication to
      * the server.
      */
-    public function __construct($service_url = "http://api.rosette.com/rest/v1", $user_key = null)
+    public function __construct($service_url = "https://api.rosette.com/rest/v1", $user_key = null)
     {
         spl_autoload_extensions('.php');
         spl_autoload_register();
