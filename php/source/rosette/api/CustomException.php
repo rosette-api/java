@@ -53,6 +53,7 @@ class CustomException extends \Exception implements IException
         if (!$message) {
             throw new $this('Unknown '. get_class($this));
         }
+        $code = is_numeric($code) ? $code : 0;
         parent::__construct($message, $code);
     }
 

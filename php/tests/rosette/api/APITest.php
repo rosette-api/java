@@ -151,16 +151,16 @@ EOD;
 
     public function testAPIConstructor()
     {
-        $api = new Api();
+        $api = new Api($this->userKey);
         $this->assertEquals('http://api.rosette.com/rest/v1', $api->getServiceUrl());
-        $api = new Api('http://test.url.com', 'testKey');
+        $api = new Api('testKey', 'http://test.url.com');
         $this->assertEquals('testKey', $api->getUserKey());
         $this->assertEquals('http://test.url.com', $api->getServiceUrl());
     }
 
     public function testSetMultiPart()
     {
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         $multiPart = $api->isUseMultiPart();
         $api->setUseMultiPart(!$multiPart);
         $this->assertEquals(!$multiPart, $api->isUseMultiPart());
@@ -177,7 +177,7 @@ EOD;
             "buildTime": "2015.04.30_17:00:41"}'
         );
 
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         $this->setExpectedException('rosette\api\RosetteException', 'The server version is not 1.0');
         $api->checkVersion('1.0');
     }
@@ -193,7 +193,7 @@ EOD;
             "buildTime": "2015.04.30_17:00:41"}'
         );
 
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         $result = $api->checkVersion();
         $this->assertTrue($result);
     }
@@ -209,7 +209,7 @@ EOD;
             "buildTime": "2015.04.30_17:00:41"}'
         );
 
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         $result = $api->info();
 
         $this->assertEquals('Api API', $result['name']);
@@ -219,7 +219,7 @@ EOD;
     {
         $this->httpMock('GET', '/ping', '{"message": "Api API at your service",  "time": 1430750475393}');
 
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         $result = $api->ping();
 
         $this->assertEquals('Api API at your service', $result['message']);
@@ -249,7 +249,7 @@ EOD;
                 }
             }');
 
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -329,7 +329,7 @@ EOD;
             }'
         );
 
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -352,7 +352,7 @@ EOD;
                   ]
             }'
         );
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -387,7 +387,7 @@ EOD;
             "."
           ]
         }');
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -700,7 +700,7 @@ EOD;
           ]
         }');
 
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -880,7 +880,7 @@ EOD;
               "hanReadings": []
             }'
         );
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1050,7 +1050,7 @@ EOD;
               "compounds": [],
               "hanReadings": []
             }');
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1148,7 +1148,7 @@ EOD;
               ]
             }'
         );
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1215,7 +1215,7 @@ EOD;
               ]
             }'
         );
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1314,7 +1314,7 @@ EOD;
               ]
             }'
         );
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1367,7 +1367,7 @@ EOD;
             }'
         );
 
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1391,7 +1391,7 @@ EOD;
           ]
         }'
         );
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1419,7 +1419,7 @@ EOD;
           ]
         }'
         );
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1448,7 +1448,7 @@ EOD;
           ]
         }'
         );
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1470,7 +1470,7 @@ EOD;
 
     public function testTranslatedNameFrom()
     {
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);
@@ -1506,7 +1506,7 @@ EOD;
 
     public function testTranslatedNameTo()
     {
-        $api = new API($this->testUrl, $this->userKey);
+        $api = new API($this->userKey, $this->testUrl);
         // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
         // not exist.
         $api->setVersionChecked(true);

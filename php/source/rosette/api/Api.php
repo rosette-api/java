@@ -60,17 +60,38 @@ class Api
      * @var null|string
      */
     private $subUrl;
+    /**
+     * Max timeout (seconds)
+     * @var
+     */
+    private $timeout;
+
+    /**
+     * Returns the max timeout value (seconds)
+     * @return mixed
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * Sets the max timeout value (seconds)
+     * @param mixed $timeout
+     */
+    public function setTimeout($timeout)
+    {
+        $this->timeout = $timeout;
+    }
 
     /**
      * Create an L{API} object.
      *
      * @param string $service_url URL of the Api API
-     * @param string $user_key    (Optional; required for servers requiring
-     * authentication.) An authentication string to be sent as user_key with
-     * all requests.  The default Api server requires authentication to
-     * the server.
+     * @param string $user_key  An authentication string to be sent as user_key with
+     * all requests.
      */
-    public function __construct($service_url = "http://api.rosette.com/rest/v1", $user_key = null)
+    public function __construct($user_key, $service_url = "http://api.rosette.com/rest/v1")
     {
         spl_autoload_extensions('.php');
         spl_autoload_register();
@@ -81,6 +102,16 @@ class Api
         $this->useMultiPart = false;
         $this->version_checked = false;
         $this->subUrl = null;
+        $this->timeout = 300;
+    }
+
+    /**
+     * Creates the Request option based on current settings
+     */
+    private function getOptions()
+    {
+        $options = ['timeout' => $this->timeout];
+        return $options;
     }
 
     /**
@@ -140,7 +171,7 @@ class Api
         if ($this->user_key) {
             $headers['user_key'] = $this->user_key;
         }
-        $resultObject = GetHttp($url, $headers);
+        $resultObject = GetHttp($url, $headers, $this->getOptions());
         return $this->finishResult($resultObject, 'ping');
     }
 
@@ -194,7 +225,7 @@ class Api
         if ($this->user_key) {
             $headers['user_key'] = $this->user_key;
         }
-        $resultObject = GetHttp($url, $headers);
+        $resultObject = GetHttp($url, $headers, $this->getOptions());
         return $this->finishResult($resultObject, 'language-info');
     }
 
@@ -235,7 +266,7 @@ class Api
         }
         $headers['Content-Type'] = 'application/json';
 
-        $resultObject = PostHttp($url, $headers, $paramsToSerialize);
+        $resultObject = PostHttp($url, $headers, $paramsToSerialize, $this->getOptions());
 
         return $this->finishResult($resultObject, "operate");
     }
@@ -279,7 +310,7 @@ class Api
         if ($this->user_key) {
             $headers['user_key'] = $this->user_key;
         }
-        $resultObject = GetHttp($url, $headers);
+        $resultObject = GetHttp($url, $headers, $this->getOptions());
 
         return $this->FinishResult($resultObject, 'info');
     }
@@ -375,6 +406,7 @@ class Api
  * @param $op
  * @param $url
  * @param $headers
+ * @param $options
  * @param string $data
  * @return null|\Requests_Response object or RosetteException
  * @throws RosetteException
@@ -383,15 +415,15 @@ class Api
  * @internal param $headers : header data
  * @internal param data $optional : submission data
  */
-function RetryingRequest($op, $url, $headers, $data = "")
+function RetryingRequest($op, $url, $headers, $options, $data = "")
 {
     $numberRetries = 3;
     $response = null;
     for ($range = 0; $range < $numberRetries; $range++) {
         if ($op == "GET") {
-            $response = \Requests::get($url, $headers);
+            $response = \Requests::get($url, $headers, $options);
         } else {
-            $response = \Requests::post($url, $headers, $data);
+            $response = \Requests::post($url, $headers, $data, $options);
         }
         if ($response->status_code < 500) {
             return $response;
@@ -401,11 +433,11 @@ function RetryingRequest($op, $url, $headers, $data = "")
     $code = 'unknown error';
     if ($response != null) {
         try {
-            $json = json_decode($response->body);
-            if (strpos($json, "message") === true) {
+            $json = json_decode($response->body, true);
+            if (array_key_exists('message', $json)) {
                 $message = $json["message"];
             }
-            if (strpos($json, "code") === true) {
+            if (array_key_exists('code', $json)) {
                 $code = $json["code"];
             }
         } catch (\Exception $e) {
@@ -421,32 +453,41 @@ function RetryingRequest($op, $url, $headers, $data = "")
 /**
  * Standard GET helper
  *
- * @param url: target URL
- * @param headers: header data
- *
+ * @param $url
+ * @param $headers
+ * @param $options
  * @return ReturnObject
+ * @throws RosetteException
+ * @internal param $url : target URL
+ * @internal param $headers : header data
+ *
  */
-function GetHttp($url, $headers)
+function GetHttp($url, $headers, $options)
 {
-    $response = RetryingRequest("GET", $url, $headers);
+    $response = RetryingRequest("GET", $url, $headers, $options);
     return new ReturnObject($response);
 }
 
 /**
  * Standard POST helper
  *
- * @param url: target URL
- * @param headers: header data
- * @param data: submission data
- *
+ * @param $url
+ * @param $headers
+ * @param $data
+ * @param $options
  * @return ReturnObject
+ * @throws RosetteException
+ * @internal param $url : target URL
+ * @internal param $headers : header data
+ * @internal param $data : submission data
+ *
  */
-function PostHttp($url, $headers, $data)
+function PostHttp($url, $headers, $data, $options)
 {
     //echo $url."\n";
     $data = $data == null ? "" : json_encode($data);
 
-    $response = RetryingRequest("POST", $url, $headers, $data);
+    $response = RetryingRequest("POST", $url, $headers, $options, $data);
 
     return new ReturnObject($response);
 }

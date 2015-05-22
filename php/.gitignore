@@ -1,8 +1,7 @@
 composer.lock
 vendor
 docs/
-vendor - adjusted for Windows/composer/autoload_real.php
-vendor - adjusted for Windows/
+vendor - W
 phpDoc.dist.xml
 phpunit.phar
 tests/rosette/php_errors.log
