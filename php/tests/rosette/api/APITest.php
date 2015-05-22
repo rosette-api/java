@@ -152,7 +152,7 @@ EOD;
     public function testAPIConstructor()
     {
         $api = new Api($this->userKey);
-        $this->assertEquals('http://api.rosette.com/rest/v1', $api->getServiceUrl());
+        $this->assertEquals('https://api.rosette.com/rest/v1', $api->getServiceUrl());
         $api = new Api('testKey', 'http://test.url.com');
         $this->assertEquals('testKey', $api->getUserKey());
         $this->assertEquals('http://test.url.com', $api->getServiceUrl());

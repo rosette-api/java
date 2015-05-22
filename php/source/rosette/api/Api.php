@@ -91,7 +91,7 @@ class Api
      * @param string $user_key  An authentication string to be sent as user_key with
      * all requests.
      */
-    public function __construct($user_key, $service_url = "http://api.rosette.com/rest/v1")
+    public function __construct($user_key, $service_url = "https://api.rosette.com/rest/v1")
     {
         spl_autoload_extensions('.php');
         spl_autoload_register();
