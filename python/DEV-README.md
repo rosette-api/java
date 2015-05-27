@@ -64,14 +64,14 @@ upload to pypi will fail.
 
 ## Push the content to a branch in the rosette-api repo on github.com
 
-    sh scripts/publish-api.sh new-branch-name
+    (cd ..; sh scripts/publish-api.sh python new-branch-name)
     
 And then you likely want to make a pull request on github for your
 version.
 
 ## Publishing docs to github.com
 
-    sh scripts/publish-doc.sh
+    (cd ..; sh scripts/publish-doc.sh python)
 
 ## Merge and tag in the public repo
 

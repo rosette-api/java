@@ -1,0 +1,7 @@
+composer.lock
+vendor
+docs/
+vendor - W
+phpDoc.dist.xml
+phpunit.phar
+tests/rosette/php_errors.log

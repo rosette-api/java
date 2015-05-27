@@ -132,7 +132,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <finalName>publish</finalName>
+                    <finalName>github</finalName>
                     <descriptors>
                         <descriptor>src/assembly/publish.xml</descriptor>
                     </descriptors>
