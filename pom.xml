@@ -23,6 +23,7 @@
         </site>
     </distributionManagement>
     <modules>
+        <module>php</module>
         <module>python</module>
     </modules>
 </project>

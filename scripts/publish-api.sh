@@ -5,18 +5,20 @@
 
 public=git@github.com:basis-technology-corp/rosette-api.git
 
-if [ "$#" -ne 1 ]; then
-    echo "Usage: publish-api NEW_BRANCH_NAME"
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 [java|js|php|python|ruby|...] [NEW_BRANCH_NAME]"
     exit 1
 fi
 
-branch=$1
-tmp=$PWD/target/public
+binding=$1
+branch=$2
+script_dir=$(dirname "${BASH_SOURCE[0]}")
+tmp=$(dirname "$script_dir")/target/github
 clone=$tmp/rosette-api
 rm -rf "$tmp"
 mkdir -p "$tmp"
 (cd "$tmp"; git clone $public)
 (cd "$clone"; git checkout -b $branch)
-(cd "$clone"; git rm -rf python)
-(cd setup/target/publish-publish; find . -type f -print | cpio -pdmv "$clone/python")
-(cd "$clone"; git add python; git commit; git push -u)
+(cd "$clone"; git rm -rf $binding)
+(cd $binding/target/github-publish; find . -type f -print | cpio -pdmv "$clone/$binding")
+(cd "$clone"; git add $binding; git commit; git push -u)
