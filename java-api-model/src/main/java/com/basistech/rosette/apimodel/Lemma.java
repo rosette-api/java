@@ -1,0 +1,75 @@
+/******************************************************************************
+ ** This data and information is proprietary to, and a valuable trade secret
+ ** of, Basis Technology Corp.  It is given in confidence by Basis Technology
+ ** and may only be used as permitted under the license agreement under which
+ ** it has been distributed, and in no other way.
+ **
+ ** Copyright (c) 2015 Basis Technology Corporation All rights reserved.
+ **
+ ** The technical data and information provided herein are provided with
+ ** `limited rights', and the computer software provided herein is provided
+ ** with `restricted rights' as those terms are defined in DAR and ASPR
+ ** 7-104.9(a).
+ ******************************************************************************/
+
+package com.basistech.rosette.apimodel;
+
+/**
+ * lemma (canonical form) of the word
+ */
+public class Lemma {
+    private final String text;
+    private final String lemma;
+
+    /**
+     * constructor for {@code lemma}
+     * @param text text
+     * @param lemma lemma
+     */
+    public Lemma(
+            String text, 
+            String lemma
+    ) {
+        this.text = text;
+        this.lemma = lemma;
+    }
+
+    /**
+     * get the text 
+     * @return the text
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * get the lemma
+     * @return the lemma
+     */
+    public String getLemma() {
+        return lemma;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = text != null ? text.hashCode() : 0;
+        result = 31 * result + (lemma != null ? lemma.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code Lemma}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Lemma) {
+            Lemma that = (Lemma) o;
+            return text != null ? text.equals(that.getText()) : text == that.getText()
+                    && lemma != null ? lemma.equals(that.getLemma()) : lemma == that.getLemma();
+        } else {
+            return false;
+        }
+    }
+}

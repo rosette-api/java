@@ -1,3 +1,17 @@
+/******************************************************************************
+ ** This data and information is proprietary to, and a valuable trade secret
+ ** of, Basis Technology Corp.  It is given in confidence by Basis Technology
+ ** and may only be used as permitted under the license agreement under which
+ ** it has been distributed, and in no other way.
+ **
+ ** Copyright (c) 2015 Basis Technology Corporation All rights reserved.
+ **
+ ** The technical data and information provided herein are provided with
+ ** `limited rights', and the computer software provided herein is provided
+ ** with `restricted rights' as those terms are defined in DAR and ASPR
+ ** 7-104.9(a).
+ ******************************************************************************/
+
 package com.basistech.rosette.api;
 
 import java.io.ByteArrayOutputStream;
@@ -9,65 +23,67 @@ import java.net.URL;
 import java.util.zip.GZIPInputStream;
 import javax.xml.bind.DatatypeConverter;
 
-import com.basistech.rosette.model.CategoryOptions;
-import com.basistech.rosette.model.CategoryRequest;
-import com.basistech.rosette.model.CategoryResponse;
-import com.basistech.rosette.model.ConstantsResponse;
-import com.basistech.rosette.model.EntityOptions;
-import com.basistech.rosette.model.EntityRequest;
-import com.basistech.rosette.model.EntityResponse;
-import com.basistech.rosette.model.ErrorResponse;
-import com.basistech.rosette.model.InfoResponse;
-import com.basistech.rosette.model.InputUnit;
-import com.basistech.rosette.model.LanguageInfoResponse;
-import com.basistech.rosette.model.LanguageOptions;
-import com.basistech.rosette.model.LanguageRequest;
-import com.basistech.rosette.model.LanguageResponse;
-import com.basistech.rosette.model.LinguisticsOptions;
-import com.basistech.rosette.model.LinguisticsRequest;
-import com.basistech.rosette.model.LinkedEntityRequest;
-import com.basistech.rosette.model.LinkedEntityResponse;
-import com.basistech.rosette.model.MorphologyResponse;
-import com.basistech.rosette.model.NameMatcherRequest;
-import com.basistech.rosette.model.NameMatcherResponse;
-import com.basistech.rosette.model.NameTranslationRequest;
-import com.basistech.rosette.model.NameTranslationResponse;
-import com.basistech.rosette.model.PingResponse;
-import com.basistech.rosette.model.Response;
-import com.basistech.rosette.model.SentenceResponse;
-import com.basistech.rosette.model.SentimentOptions;
-import com.basistech.rosette.model.SentimentRequest;
-import com.basistech.rosette.model.SentimentResponse;
-import com.basistech.rosette.model.TokenResponse;
+import com.basistech.rosette.apimodel.CategoryOptions;
+import com.basistech.rosette.apimodel.CategoryRequest;
+import com.basistech.rosette.apimodel.CategoryResponse;
+import com.basistech.rosette.apimodel.ConstantsResponse;
+import com.basistech.rosette.apimodel.EntityOptions;
+import com.basistech.rosette.apimodel.EntityRequest;
+import com.basistech.rosette.apimodel.EntityResponse;
+import com.basistech.rosette.apimodel.ErrorResponse;
+import com.basistech.rosette.apimodel.InfoResponse;
+import com.basistech.rosette.apimodel.InputUnit;
+import com.basistech.rosette.apimodel.LanguageInfoResponse;
+import com.basistech.rosette.apimodel.LanguageOptions;
+import com.basistech.rosette.apimodel.LanguageRequest;
+import com.basistech.rosette.apimodel.LanguageResponse;
+import com.basistech.rosette.apimodel.LinguisticsOptions;
+import com.basistech.rosette.apimodel.LinguisticsRequest;
+import com.basistech.rosette.apimodel.LinkedEntityRequest;
+import com.basistech.rosette.apimodel.LinkedEntityResponse;
+import com.basistech.rosette.apimodel.MorphologyResponse;
+import com.basistech.rosette.apimodel.NameMatcherRequest;
+import com.basistech.rosette.apimodel.NameMatcherResponse;
+import com.basistech.rosette.apimodel.NameTranslationRequest;
+import com.basistech.rosette.apimodel.NameTranslationResponse;
+import com.basistech.rosette.apimodel.PingResponse;
+import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.SentenceResponse;
+import com.basistech.rosette.apimodel.SentimentOptions;
+import com.basistech.rosette.apimodel.SentimentRequest;
+import com.basistech.rosette.apimodel.SentimentResponse;
+import com.basistech.rosette.apimodel.TokenResponse;
+import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static java.net.HttpURLConnection.HTTP_OK;
 
 /**
- * You can use the RosetteAPI to access Rosette API endpoints, which can analyze, summarize, and classify large amounts
- * of unstructured text.
+ * You can use the RosetteAPI to access Rosette API endpoints.
+ * RosetteAPI is thread-safe and immutable.
  */
 public class RosetteAPI {
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1/";
 
+    private static final String LANGUAGE_SERVICE_PATH = "language";
+    private static final String MORPHOLOGY_SERVICE_PATH = "morphology/";
+    private static final String ENTITIES_SERVICE_PATH = "entities";
+    private static final String ENTITIES_LINKED_SERVICE_PATH = "entities/linked";
+    private static final String CATEGORIES_SERVICE_PATH = "categories";
+    private static final String SENTIMENT_SERVICE_PATH = "sentiment";
+    private static final String TRANSLATED_NAME_SERVICE_PATH = "translated-name";
+    private static final String MATCHED_NAME_SERVICE_PATH = "matched-name";
+    private static final String TOKENS_SERVICE_PATH = "tokens";
+    private static final String SENTENCES_SERVICE_PATH = "sentences";
+    private static final String INFO_SERVICE_PATH = "info";
+    private static final String PING_SERVICE_PATH = "ping";
+    private static final String DEBUG_PARAM_ON = "?debug=true";
+    private static final String DEBUG_PARAM_OFF = "";
+
     private String key;
     private String urlBase = DEFAULT_URL_BASE;
     private String debugOutput = "";
-    private final static String languageServicePath = "language";
-    private final static String morphologyServicePath = "morphology/";
-    private final static String entitiesServicePath = "entities";
-    private final static String entitiesLinkedServicePath = "entities/linked";
-    private final static String categoriesServicePath = "categories";
-    private final static String sentimentServicePath = "sentiment";
-    private final static String translatedNameServicePath = "translated-name";
-    private final static String matchedNameServicePath = "matched-name";
-    private final static String tokensServicePath = "tokens";
-    private final static String sentencesServicePath = "sentences";
-    private final static String infoServicePath = "info";
-    private final static String pingServicePath = "ping";
-    private final static String DEBUG_PARAM_ON = "?debug=true";
-    private final static String DEBUG_PARAM_OFF = "";
-    private final ObjectMapper mapper;
+    private ObjectMapper mapper;
 
     /**
      * Specify which feature you want Rosette API Morphology endpoint to return. Specify COMPLETE for every feature.
@@ -92,12 +108,12 @@ public class RosetteAPI {
     }
 
     public enum EndpointInfo {
-        ENTITIES("Entities", entitiesServicePath),
-        LINKED_ENTITIES("Linked Entities", entitiesLinkedServicePath),
-        CATEGORIES("Categories", categoriesServicePath),
-        SENTIMENT("Sentiment", sentimentServicePath),
-        TRANSLATED_NAME("Translated Name", translatedNameServicePath),
-        MATCHED_NAME("Matched Name", matchedNameServicePath);
+        ENTITIES("Entities", ENTITIES_SERVICE_PATH),
+        LINKED_ENTITIES("Linked Entities", ENTITIES_LINKED_SERVICE_PATH),
+        CATEGORIES("Categories", CATEGORIES_SERVICE_PATH),
+        SENTIMENT("Sentiment", SENTIMENT_SERVICE_PATH),
+        TRANSLATED_NAME("Translated Name", TRANSLATED_NAME_SERVICE_PATH),
+        MATCHED_NAME("Matched Name", MATCHED_NAME_SERVICE_PATH);
 
         private String description;
         private String servicePath;
@@ -119,14 +135,15 @@ public class RosetteAPI {
     public RosetteAPI(String key) {
         this.key = key;
         mapper = new ObjectMapper();
+        mapper = ApiModelMixinModule.setupObjectMapper(mapper);
     }
 
     /**
-     * Constructs a Rosette API instance, using ROSETTE_API_KEY environment variable as key.
+     * Constructs a Rosette API instance.
      */
     public RosetteAPI() {
-        this.key = System.getenv("ROSETTE_API_KEY");
         mapper = new ObjectMapper();
+        mapper = ApiModelMixinModule.setupObjectMapper(mapper);
     }
 
     /**
@@ -158,23 +175,23 @@ public class RosetteAPI {
     }
 
     /**
-     * Gets information about the Rosette API.
+     * Gets information about the Rosette API, returns name, version, build number and build time.
      * @return InfoResponse
      * @throws IOException
      * @throws RosetteAPIException
      */
     public InfoResponse info() throws IOException, RosetteAPIException {
-        return (InfoResponse) sendGetRequest(urlBase + infoServicePath, InfoResponse.class);
+        return (InfoResponse) sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);
     }
 
     /**
-     * Pings the Rosette API.
+     * Pings the Rosette API for a response indicting that the service is available.
      * @return PingResponse
      * @throws IOException
      * @throws RosetteAPIException
      */
     public PingResponse ping() throws IOException, RosetteAPIException {
-        return (PingResponse) sendGetRequest(urlBase + pingServicePath, PingResponse.class);
+        return (PingResponse) sendGetRequest(urlBase + PING_SERVICE_PATH, PingResponse.class);
     }
 
     /**
@@ -185,7 +202,7 @@ public class RosetteAPI {
      * @throws IOException
      */
     public NameMatcherResponse matchName(NameMatcherRequest request) throws RosetteAPIException, IOException {
-        return (NameMatcherResponse) sendRequest(request, urlBase + matchedNameServicePath, NameMatcherResponse.class);
+        return (NameMatcherResponse) sendRequest(request, urlBase + MATCHED_NAME_SERVICE_PATH, NameMatcherResponse.class);
     }
 
     /**
@@ -196,11 +213,11 @@ public class RosetteAPI {
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public NameTranslationResponse translateName(NameTranslationRequest request) throws RosetteAPIException, IOException {
-        return (NameTranslationResponse) sendRequest(request, urlBase + translatedNameServicePath, NameTranslationResponse.class);
+        return (NameTranslationResponse) sendRequest(request, urlBase + TRANSLATED_NAME_SERVICE_PATH, NameTranslationResponse.class);
     }
 
     /**
-     * Returns a list of candidate languages in order of descending confidence from an InputStream.
+     * Performs language identification on data read from an InputStream. Return a list of languages.
      * @param inputStream Input stream of file.
      * @param options Options to Language API.
      * @return An ordered list of detected languages, including language and detection confidence, sorted by descending confidence.
@@ -210,11 +227,11 @@ public class RosetteAPI {
     public LanguageResponse getLanguage(InputStream inputStream, LanguageOptions options) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LanguageRequest request = new LanguageRequest(encodedStr, null, "text/html", null, options);
-        return (LanguageResponse) sendRequest(request, urlBase + languageServicePath, LanguageResponse.class);
+        return (LanguageResponse) sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
-     * Returns a list of candidate languages in order of descending confidence from an URL.
+     * Performs language identification on data read from an URL. Return a list of languages.
      * @param url URL for language detection.
      * @param options Options to Language API.
      * @return An ordered list of detected languages, including language and detection confidence, sorted by descending confidence.
@@ -223,11 +240,11 @@ public class RosetteAPI {
      */
     public LanguageResponse getLanguage(URL url, LanguageOptions options) throws RosetteAPIException, IOException {
         LanguageRequest request = new LanguageRequest(null, url.toString(), null, null, options);
-        return (LanguageResponse) sendRequest(request, urlBase + languageServicePath, LanguageResponse.class);
+        return (LanguageResponse) sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
-     * Returns a list of candidate languages in order of descending confidence from a string.
+     * Performs language identification on data read from a string. Return a list of languages.
      * @param content String content for language detection.
      * @param options Options to Language API.
      * @return An ordered list of detected languages, including language and detection confidence, sorted by descending confidence.
@@ -236,7 +253,7 @@ public class RosetteAPI {
      */
     public LanguageResponse getLanguage(String content, LanguageOptions options) throws RosetteAPIException, IOException {
         LanguageRequest request = new LanguageRequest(content, null, null, null, options);
-        return (LanguageResponse) sendRequest(request, urlBase + languageServicePath, LanguageResponse.class);
+        return (LanguageResponse) sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
@@ -250,7 +267,7 @@ public class RosetteAPI {
      */
     public LanguageResponse getLanguage(String content, InputUnit unit, LanguageOptions options) throws RosetteAPIException, IOException {
         LanguageRequest request = new LanguageRequest(content, null, null, unit, options);
-        return (LanguageResponse) sendRequest(request, urlBase + languageServicePath, LanguageResponse.class);
+        return (LanguageResponse) sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
@@ -258,7 +275,7 @@ public class RosetteAPI {
      * The response may include lemmas, part of speech tags, compound word components, and Han readings. Support for specific return types depends on language.
      * @param morphologicalFeature Type of morphological analysis to perform.
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null
      * @param options Linguistics options
      * @return MorphologyResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -267,7 +284,7 @@ public class RosetteAPI {
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, InputStream inputStream, String language, LinguisticsOptions options) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LinguisticsRequest request = new LinguisticsRequest(language, encodedStr, null, "text/html", null, options);
-        return (MorphologyResponse) sendRequest(request, urlBase + morphologyServicePath + morphologicalFeature.toString(), MorphologyResponse.class);
+        return (MorphologyResponse) sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
     }
 
     /**
@@ -275,7 +292,7 @@ public class RosetteAPI {
      * The response may include lemmas, part of speech tags, compound word components, and Han readings. Support for specific return types depends on language.
      * @param morphologicalFeature Type of morphological analysis to perform.
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null
      * @param options Linguistics options
      * @return MorphologyResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -283,7 +300,7 @@ public class RosetteAPI {
      */
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, URL url, String language, LinguisticsOptions options) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, null, url.toString(), null, null, options);
-        return (MorphologyResponse) sendRequest(request, urlBase + morphologyServicePath + morphologicalFeature.toString(), MorphologyResponse.class);
+        return (MorphologyResponse) sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
     }
 
     /**
@@ -291,7 +308,7 @@ public class RosetteAPI {
      * The response may include lemmas, part of speech tags, compound word components, and Han readings. Support for specific return types depends on language.
      * @param morphologicalFeature Type of morphological analysis to perform.
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null
      * @param options Linguistics options
      * @return MorphologyResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -299,7 +316,7 @@ public class RosetteAPI {
      */
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, String content, String language, LinguisticsOptions options) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, null, options);
-        return (MorphologyResponse) sendRequest(request, urlBase + morphologyServicePath + morphologicalFeature.toString(), MorphologyResponse.class);
+        return (MorphologyResponse) sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
     }
 
     /**
@@ -307,8 +324,8 @@ public class RosetteAPI {
      * The response may include lemmas, part of speech tags, compound word components, and Han readings. Support for specific return types depends on language.
      * @param morphologicalFeature Type of morphological analysis to perform.
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param unit The unit of content (see {@link com.basistech.rosette.model.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @param options Linguistics options
      * @return MorphologyResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -316,7 +333,7 @@ public class RosetteAPI {
      */
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, String content, String language, InputUnit unit, LinguisticsOptions options) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, unit, options);
-        return (MorphologyResponse) sendRequest(request, urlBase + morphologyServicePath + morphologicalFeature.toString(), MorphologyResponse.class);
+        return (MorphologyResponse) sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
     }
 
     /**
@@ -328,7 +345,7 @@ public class RosetteAPI {
      * count (how many times this entity appears in the input), and the confidence associated with the extraction.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @param options Entity options.
      * @return EntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -337,7 +354,7 @@ public class RosetteAPI {
     public EntityResponse getEntity(InputStream inputStream, String language, EntityOptions options) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         EntityRequest request = new EntityRequest(language, encodedStr, null, "text/html", null, options);
-        return (EntityResponse) sendRequest(request, urlBase + entitiesServicePath, EntityResponse.class);
+        return (EntityResponse) sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
     }
 
     /**
@@ -349,7 +366,7 @@ public class RosetteAPI {
      * count (how many times this entity appears in the input), and the confidence associated with the extraction.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @param options Entity options.
      * @return EntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -357,7 +374,7 @@ public class RosetteAPI {
      */
     public EntityResponse getEntity(URL url, String language, EntityOptions options) throws RosetteAPIException, IOException {
         EntityRequest request = new EntityRequest(language, null, url.toString(), null, null, options);
-        return (EntityResponse) sendRequest(request, urlBase + entitiesServicePath, EntityResponse.class);
+        return (EntityResponse) sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
     }
 
     /**
@@ -369,7 +386,7 @@ public class RosetteAPI {
      * count (how many times this entity appears in the input), and the confidence associated with the extraction.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @param options Entity options.
      * @return EntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -377,7 +394,7 @@ public class RosetteAPI {
      */
     public EntityResponse getEntity(String content, String language, EntityOptions options) throws RosetteAPIException, IOException {
         EntityRequest request = new EntityRequest(language, content, null, null, null, options);
-        return (EntityResponse) sendRequest(request, urlBase + entitiesServicePath, EntityResponse.class);
+        return (EntityResponse) sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
     }
 
     /**
@@ -389,8 +406,8 @@ public class RosetteAPI {
      * count (how many times this entity appears in the input), and the confidence associated with the extraction.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param unit The unit of content (see {@link com.basistech.rosette.model.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @param options Entity options.
      * @return EntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -398,7 +415,7 @@ public class RosetteAPI {
      */
     public EntityResponse getEntity(String content, String language, InputUnit unit, EntityOptions options) throws RosetteAPIException, IOException {
         EntityRequest request = new EntityRequest(language, content, null, null, unit, options);
-        return (EntityResponse) sendRequest(request, urlBase + entitiesServicePath, EntityResponse.class);
+        return (EntityResponse) sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
     }
 
     /**
@@ -408,7 +425,7 @@ public class RosetteAPI {
      * the mention (entity text from the input), and confidence associated with the linking.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -416,7 +433,7 @@ public class RosetteAPI {
     public LinkedEntityResponse getLinkedEntity(InputStream inputStream, String language) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LinkedEntityRequest request = new LinkedEntityRequest(language, encodedStr, null, "text/html", null);
-        return (LinkedEntityResponse) sendRequest(request, urlBase + entitiesLinkedServicePath, LinkedEntityResponse.class);
+        return (LinkedEntityResponse) sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
     }
 
     /**
@@ -426,14 +443,14 @@ public class RosetteAPI {
      * the mention (entity text from the input), and confidence associated with the linking.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public LinkedEntityResponse getLinkedEntity(URL url, String language) throws RosetteAPIException, IOException {
         LinkedEntityRequest request = new LinkedEntityRequest(language, null, url.toString(), null, null);
-        return (LinkedEntityResponse) sendRequest(request, urlBase + entitiesLinkedServicePath, LinkedEntityResponse.class);
+        return (LinkedEntityResponse) sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
     }
 
     /**
@@ -443,14 +460,14 @@ public class RosetteAPI {
      * the mention (entity text from the input), and confidence associated with the linking.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public LinkedEntityResponse getLinkedEntity(String content, String language) throws RosetteAPIException, IOException {
         LinkedEntityRequest request = new LinkedEntityRequest(language, content, null, null, null);
-        return (LinkedEntityResponse) sendRequest(request, urlBase + entitiesLinkedServicePath, LinkedEntityResponse.class);
+        return (LinkedEntityResponse) sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
     }
 
     /**
@@ -460,15 +477,15 @@ public class RosetteAPI {
      * the mention (entity text from the input), and confidence associated with the linking.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param unit The unit of content (see {@link com.basistech.rosette.model.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public LinkedEntityResponse getLinkedEntity(String content, String language, InputUnit unit) throws RosetteAPIException, IOException {
         LinkedEntityRequest request = new LinkedEntityRequest(language, content, null, null, unit);
-        return (LinkedEntityResponse) sendRequest(request, urlBase + entitiesLinkedServicePath, LinkedEntityResponse.class);
+        return (LinkedEntityResponse) sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
     }
 
     /**
@@ -477,7 +494,7 @@ public class RosetteAPI {
      * The response is the contextual categories identified in the input.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @param options CategoryOptions.
      * @return CategoryResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -486,7 +503,7 @@ public class RosetteAPI {
     public CategoryResponse getCategories(InputStream inputStream, String language, CategoryOptions options)  throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         CategoryRequest request = new CategoryRequest(language, encodedStr, null, "text/html", null, options);
-        return (CategoryResponse) sendRequest(request, urlBase + categoriesServicePath, CategoryResponse.class);
+        return (CategoryResponse) sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
     }
 
     /**
@@ -495,7 +512,7 @@ public class RosetteAPI {
      * The response is the contextual categories identified in the input.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @param options CategoryOptions.
      * @return CategoryResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -503,7 +520,7 @@ public class RosetteAPI {
      */
     public CategoryResponse getCategories(URL url, String language, CategoryOptions options)  throws RosetteAPIException, IOException {
         CategoryRequest request = new CategoryRequest(language, null, url.toString(), null, null, options);
-        return (CategoryResponse) sendRequest(request, urlBase + categoriesServicePath, CategoryResponse.class);
+        return (CategoryResponse) sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
     }
 
     /**
@@ -512,7 +529,7 @@ public class RosetteAPI {
      * The response is the contextual categories identified in the input.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @param options CategoryOptions.
      * @return CategoryResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -520,7 +537,7 @@ public class RosetteAPI {
      */
     public CategoryResponse getCategories(String content, String language, CategoryOptions options)  throws RosetteAPIException, IOException {
         CategoryRequest request = new CategoryRequest(language, content, null, null, null, options);
-        return (CategoryResponse) sendRequest(request, urlBase + categoriesServicePath, CategoryResponse.class);
+        return (CategoryResponse) sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
     }
 
     /**
@@ -529,8 +546,8 @@ public class RosetteAPI {
      * The response is the contextual categories identified in the input.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param unit The unit of content (see {@link com.basistech.rosette.model.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @param options CategoryOptions.
      * @return CategoryResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -538,7 +555,7 @@ public class RosetteAPI {
      */
     public CategoryResponse getCategories(String content, String language, InputUnit unit, CategoryOptions options)  throws RosetteAPIException, IOException {
         CategoryRequest request = new CategoryRequest(language, content, null, null, unit, options);
-        return (CategoryResponse) sendRequest(request, urlBase + categoriesServicePath, CategoryResponse.class);
+        return (CategoryResponse) sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
     }
 
     /**
@@ -547,7 +564,7 @@ public class RosetteAPI {
      * The response contains sentiment analysis results.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @param options SentimentOptions.
      * @return SentimentResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -556,7 +573,7 @@ public class RosetteAPI {
     public SentimentResponse getSentiment(InputStream inputStream, String language, SentimentOptions options) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         SentimentRequest request = new SentimentRequest(language, encodedStr, null, "text/html", null, options);
-        return (SentimentResponse) sendRequest(request, urlBase + sentimentServicePath, SentimentResponse.class);
+        return (SentimentResponse) sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -565,7 +582,7 @@ public class RosetteAPI {
      * The response contains sentiment analysis results.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @param options SentimentOptions.
      * @return SentimentResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -573,7 +590,7 @@ public class RosetteAPI {
      */
     public SentimentResponse getSentiment(URL url, String language, SentimentOptions options) throws RosetteAPIException, IOException {
         SentimentRequest request = new SentimentRequest(language, null, url.toString(), null, null, options);
-        return (SentimentResponse) sendRequest(request, urlBase + sentimentServicePath, SentimentResponse.class);
+        return (SentimentResponse) sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -582,7 +599,7 @@ public class RosetteAPI {
      * The response contains sentiment analysis results.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @param options SentimentOptions.
      * @return SentimentResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -590,7 +607,7 @@ public class RosetteAPI {
      */
     public SentimentResponse getSentiment(String content, String language, SentimentOptions options) throws RosetteAPIException, IOException {
         SentimentRequest request = new SentimentRequest(language, content, null, null, null, options);
-        return (SentimentResponse) sendRequest(request, urlBase + sentimentServicePath, SentimentResponse.class);
+        return (SentimentResponse) sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -599,8 +616,8 @@ public class RosetteAPI {
      * The response contains sentiment analysis results.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param unit The unit of content (see {@link com.basistech.rosette.model.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @param options SentimentOptions.
      * @return SentimentResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -608,14 +625,14 @@ public class RosetteAPI {
      */
     public SentimentResponse getSentiment(String content, String language, InputUnit unit, SentimentOptions options) throws RosetteAPIException, IOException {
         SentimentRequest request = new SentimentRequest(language, content, null, null, unit, options);
-        return (SentimentResponse) sendRequest(request, urlBase + sentimentServicePath, SentimentResponse.class);
+        return (SentimentResponse) sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
      * Divides the input into tokens.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @return The response contains a list of tokens.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -623,57 +640,57 @@ public class RosetteAPI {
     public TokenResponse getTokens(InputStream inputStream, String language) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LinguisticsRequest request = new LinguisticsRequest(language, encodedStr, null, "text/html", null, null);
-        return (TokenResponse) sendRequest(request, urlBase + tokensServicePath, TokenResponse.class);
+        return (TokenResponse) sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
     }
 
     /**
      * Divides the input into tokens.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @return The response contains a list of tokens.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public TokenResponse getTokens(URL url, String language) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, null, url.toString(), null, null, null);
-        return (TokenResponse) sendRequest(request, urlBase + tokensServicePath, TokenResponse.class);
+        return (TokenResponse) sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
     }
 
     /**
      * Divides the input into tokens.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @return The response contains a list of tokens.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public TokenResponse getTokens(String content, String language) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, null, null);
-        return (TokenResponse) sendRequest(request, urlBase + tokensServicePath, TokenResponse.class);
+        return (TokenResponse) sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
     }
 
     /**
      * Divides the input into tokens.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param unit The unit of content (see {@link com.basistech.rosette.model.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @return The response contains a list of tokens.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public TokenResponse getTokens(String content, String language, InputUnit unit) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, unit, null);
-        return (TokenResponse) sendRequest(request, urlBase + tokensServicePath, TokenResponse.class);
+        return (TokenResponse) sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
     }
 
     /**
      * Divides the input into sentences.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @return The response contains a list of sentences.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -681,58 +698,58 @@ public class RosetteAPI {
     public SentenceResponse getSentences(InputStream inputStream, String language) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LinguisticsRequest request = new LinguisticsRequest(language, encodedStr, null, "text/html", null, null);
-        return (SentenceResponse) sendRequest(request, urlBase + sentencesServicePath, SentenceResponse.class);
+        return (SentenceResponse) sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
     }
 
     /**
      * Divides the input into sentences.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @return The response contains a list of sentences.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public SentenceResponse getSentences(URL url, String language) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, null, url.toString(), null, null, null);
-        return (SentenceResponse) sendRequest(request, urlBase + sentencesServicePath, SentenceResponse.class);
+        return (SentenceResponse) sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
     }
 
     /**
      * Divides the input into sentences.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
      * @return The response contains a list of sentences.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public SentenceResponse getSentences(String content, String language) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, null, null);
-        return (SentenceResponse) sendRequest(request, urlBase + sentencesServicePath, SentenceResponse.class);
+        return (SentenceResponse) sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
     }
 
     /**
      * Divides the input into sentences.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.model.LanguageCode}), or null.
-     * @param unit The unit of content (see {@link com.basistech.rosette.model.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}). Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @return The response contains a list of sentences.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public SentenceResponse getSentences(String content, String language, InputUnit unit) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, unit, null);
-        return (SentenceResponse) sendRequest(request, urlBase + sentencesServicePath, SentenceResponse.class);
+        return (SentenceResponse) sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
     }
 
     public LanguageInfoResponse getLanguageInfo() throws RosetteAPIException, IOException {
-        return (LanguageInfoResponse) sendGetRequest(urlBase + languageServicePath + "/" + infoServicePath, LanguageInfoResponse.class);
+        return (LanguageInfoResponse) sendGetRequest(urlBase + LANGUAGE_SERVICE_PATH + "/" + INFO_SERVICE_PATH, LanguageInfoResponse.class);
     }
 
     public ConstantsResponse getInfo(EndpointInfo endpointInfo) throws RosetteAPIException, IOException {
-        return (ConstantsResponse) sendGetRequest(urlBase + endpointInfo.getServicePath() + "/" + infoServicePath, ConstantsResponse.class);
+        return (ConstantsResponse) sendGetRequest(urlBase + endpointInfo.getServicePath() + "/" + INFO_SERVICE_PATH, ConstantsResponse.class);
     }
 
     /**
@@ -807,7 +824,7 @@ public class RosetteAPI {
         try (
             InputStream stream = status != HTTP_OK ? httpUrlConnection.getErrorStream() : httpUrlConnection.getInputStream();
             InputStream inputStream =
-                ("gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream)
+                "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream;
         ) {
             if (HTTP_OK != status) {
                 ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
@@ -832,8 +849,9 @@ public class RosetteAPI {
 
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         buf = new byte[size];
-        while ((len = is.read(buf, 0, size)) != -1)
+        while ((len = is.read(buf, 0, size)) != -1) {
             bos.write(buf, 0, len);
+        }
         buf = bos.toByteArray();
         return buf;
     }

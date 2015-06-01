@@ -5,11 +5,6 @@
     <artifactId>ws-client-bindings</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <parent>
-        <groupId>com.basistech</groupId>
-        <artifactId>textanalytics</artifactId>
-        <version>56.1.0</version>
-    </parent>
     <inceptionYear>2014</inceptionYear>
     <url>http://git.basistech.net/pages/textanalytics/ws-client-bindings</url>
     <scm>
@@ -22,8 +17,14 @@
             <url>scm:git:git@git.basistech.net:textanalytics/ws-client-bindings.git</url>
         </site>
     </distributionManagement>
+    <properties>
+        <bt-jackson-version>2.4.3</bt-jackson-version>
+        <maven-shade-plugin-version>2.3</maven-shade-plugin-version>
+    </properties>
     <modules>
         <module>python</module>
         <module>java</module>
+        <module>java-json</module>
+        <module>java-api-model</module>
     </modules>
 </project>

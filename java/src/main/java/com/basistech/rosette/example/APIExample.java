@@ -1,3 +1,17 @@
+/******************************************************************************
+ ** This data and information is proprietary to, and a valuable trade secret
+ ** of, Basis Technology Corp.  It is given in confidence by Basis Technology
+ ** and may only be used as permitted under the license agreement under which
+ ** it has been distributed, and in no other way.
+ **
+ ** Copyright (c) 2015 Basis Technology Corporation All rights reserved.
+ **
+ ** The technical data and information provided herein are provided with
+ ** `limited rights', and the computer software provided herein is provided
+ ** with `restricted rights' as those terms are defined in DAR and ASPR
+ ** 7-104.9(a).
+ ******************************************************************************/
+
 package com.basistech.rosette.example;
 
 import java.io.IOException;
@@ -10,41 +24,40 @@ import java.util.Set;
 
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
-import com.basistech.rosette.api.RosetteAPIParameterException;
-import com.basistech.rosette.model.CategorizationModel;
-import com.basistech.rosette.model.Category;
-import com.basistech.rosette.model.CategoryOptions;
-import com.basistech.rosette.model.CategoryResponse;
-import com.basistech.rosette.model.ConstantsResponse;
-import com.basistech.rosette.model.Decompounding;
-import com.basistech.rosette.model.EntityResponse;
-import com.basistech.rosette.model.ExtractedEntity;
-import com.basistech.rosette.model.HanReadings;
-import com.basistech.rosette.model.InfoResponse;
-import com.basistech.rosette.model.InputUnit;
-import com.basistech.rosette.model.LanguageCode;
-import com.basistech.rosette.model.LanguageDetectionResult;
-import com.basistech.rosette.model.LanguageInfoResponse;
-import com.basistech.rosette.model.LanguageResponse;
-import com.basistech.rosette.model.Lemma;
-import com.basistech.rosette.model.LinkedEntity;
-import com.basistech.rosette.model.LinkedEntityResponse;
-import com.basistech.rosette.model.MorphologyResponse;
-import com.basistech.rosette.model.Name;
-import com.basistech.rosette.model.NameMatcherRequest;
-import com.basistech.rosette.model.NameMatcherResponse;
-import com.basistech.rosette.model.NameMatcherResult;
-import com.basistech.rosette.model.NameTranslationRequest;
-import com.basistech.rosette.model.NameTranslationResponse;
-import com.basistech.rosette.model.PartOfSpeech;
-import com.basistech.rosette.model.PingResponse;
-import com.basistech.rosette.model.SentenceResponse;
-import com.basistech.rosette.model.Sentiment;
-import com.basistech.rosette.model.SentimentModel;
-import com.basistech.rosette.model.SentimentOptions;
-import com.basistech.rosette.model.SentimentResponse;
-import com.basistech.rosette.model.TokenResponse;
-import com.basistech.rosette.model.TranslatedNameResult;
+import com.basistech.rosette.apimodel.CategorizationModel;
+import com.basistech.rosette.apimodel.Category;
+import com.basistech.rosette.apimodel.CategoryOptions;
+import com.basistech.rosette.apimodel.CategoryResponse;
+import com.basistech.rosette.apimodel.ConstantsResponse;
+import com.basistech.rosette.apimodel.Decompounding;
+import com.basistech.rosette.apimodel.EntityResponse;
+import com.basistech.rosette.apimodel.ExtractedEntity;
+import com.basistech.rosette.apimodel.HanReadings;
+import com.basistech.rosette.apimodel.InfoResponse;
+import com.basistech.rosette.apimodel.InputUnit;
+import com.basistech.rosette.apimodel.LanguageCode;
+import com.basistech.rosette.apimodel.LanguageDetectionResult;
+import com.basistech.rosette.apimodel.LanguageInfoResponse;
+import com.basistech.rosette.apimodel.LanguageResponse;
+import com.basistech.rosette.apimodel.Lemma;
+import com.basistech.rosette.apimodel.LinkedEntity;
+import com.basistech.rosette.apimodel.LinkedEntityResponse;
+import com.basistech.rosette.apimodel.MorphologyResponse;
+import com.basistech.rosette.apimodel.Name;
+import com.basistech.rosette.apimodel.NameMatcherRequest;
+import com.basistech.rosette.apimodel.NameMatcherResponse;
+import com.basistech.rosette.apimodel.NameMatcherResult;
+import com.basistech.rosette.apimodel.NameTranslationRequest;
+import com.basistech.rosette.apimodel.NameTranslationResponse;
+import com.basistech.rosette.apimodel.PartOfSpeech;
+import com.basistech.rosette.apimodel.PingResponse;
+import com.basistech.rosette.apimodel.SentenceResponse;
+import com.basistech.rosette.apimodel.Sentiment;
+import com.basistech.rosette.apimodel.SentimentModel;
+import com.basistech.rosette.apimodel.SentimentOptions;
+import com.basistech.rosette.apimodel.SentimentResponse;
+import com.basistech.rosette.apimodel.TokenResponse;
+import com.basistech.rosette.apimodel.TranslatedNameResult;
 
 /**
  * Provides examples on how to use the {@link com.basistech.rosette.api RosetteAPI} endpoints.
@@ -61,9 +74,8 @@ public class APIExample {
      * @param args not used
      * @throws URISyntaxException
      * @throws IOException
-     * @throws RosetteAPIParameterException
      */
-    public static void main(String[] args) throws URISyntaxException, IOException, RosetteAPIParameterException {
+    public static void main(String[] args) throws URISyntaxException, IOException {
         String website = "http://www.basistech.com";
         URL url = new URL(website);
         String text = "I live in Boston, Massachusetts. I work for Basis Technology.";
@@ -154,7 +166,7 @@ public class APIExample {
     }
 
     private static void printInfo(String description, ConstantsResponse response) {
-        System.out.printf("%s\tversion: %s\tbuild: %s\tsupport: %s\n", description, response.version, response.build, response.support);
+        System.out.printf("%s\tversion: %s\tbuild: %s\tsupport: %s\n", description, response.getVersion(), response.getBuild(), response.getSupport());
         System.out.println();
     }
 
@@ -255,7 +267,7 @@ public class APIExample {
             NameMatcherRequest request = new NameMatcherRequest(new Name(name1), new Name(name2));
             NameMatcherResponse response = rosetteAPI.matchName(request);
             print(request, response);
-        } catch (RosetteAPIException | RosetteAPIParameterException | IOException e) {
+        } catch (RosetteAPIException | IOException e) {
             System.err.println(e.toString());
         }
     }
