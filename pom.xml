@@ -17,14 +17,8 @@
             <url>scm:git:git@git.basistech.net:textanalytics/ws-client-bindings.git</url>
         </site>
     </distributionManagement>
-    <properties>
-        <bt-jackson-version>2.4.3</bt-jackson-version>
-        <maven-shade-plugin-version>2.3</maven-shade-plugin-version>
-    </properties>
     <modules>
         <module>python</module>
         <module>java</module>
-        <module>java-json</module>
-        <module>java-api-model</module>
     </modules>
 </project>
