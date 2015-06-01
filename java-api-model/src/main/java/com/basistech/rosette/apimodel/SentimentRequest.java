@@ -18,7 +18,7 @@ package com.basistech.rosette.apimodel;
  * Class that represents the data from a RaaS sentiment analysis request
  */
 public class SentimentRequest extends Request {
-    private SentimentOptions options;
+    private final SentimentOptions options;
     
     /**
      * constructor for {@code SentimentRequest}
@@ -47,14 +47,6 @@ public class SentimentRequest extends Request {
      */
     public SentimentOptions getOptions() {
         return options;
-    }
-
-    /**
-     * set the sentiment options
-     * @param options the sentiment options
-     */
-    public void setOptions(SentimentOptions options) {
-        this.options = options;
     }
 
     @Override

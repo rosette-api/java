@@ -18,7 +18,7 @@ package com.basistech.rosette.apimodel;
  * Class that represents the data from a RaaS client base linguistics request
  */
 public class LinguisticsRequest extends Request {
-    private LinguisticsOptions options;
+    private final LinguisticsOptions options;
     
     /**
      * constructor for {@code LinguisticsRequest}
@@ -47,14 +47,6 @@ public class LinguisticsRequest extends Request {
      */
     public LinguisticsOptions getOptions() {
         return options;
-    }
-
-    /**
-     * set the base linguistics options
-     * @param options the base linguistics options
-     */
-    public void setOptions(LinguisticsOptions options) {
-        this.options = options;
     }
 
     @Override

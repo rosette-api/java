@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
  */
 public class NameMatcherResult {
 
-    private double score;
+    private final double score;
 
     /**
      * Constructor for {@code NameMatcherResult}

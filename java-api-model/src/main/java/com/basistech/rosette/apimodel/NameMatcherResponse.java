@@ -18,7 +18,7 @@ package com.basistech.rosette.apimodel;
  * Response data model for name matcher
  */
 public final class NameMatcherResponse extends Response {
-    private NameMatcherResult result;
+    private final NameMatcherResult result;
 
     /**
      * Constructor for {@code NameMatcherResponse}

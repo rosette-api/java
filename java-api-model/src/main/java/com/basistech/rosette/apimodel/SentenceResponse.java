@@ -22,7 +22,7 @@ import java.util.List;
  */
 public final class SentenceResponse extends Response {
 
-    private List<String> sentences;
+    private final List<String> sentences;
 
     /**
      * constructor for {@code SentenceResponse}
@@ -42,14 +42,6 @@ public final class SentenceResponse extends Response {
      */
     public List<String> getSentences() {
         return sentences;
-    }
-
-    /**
-     * set the list of sentences
-     * @param sentences the list of sentences
-     */
-    public void setSentences(List<String> sentences) {
-        this.sentences = sentences;
     }
 
     @Override

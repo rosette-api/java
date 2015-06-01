@@ -19,10 +19,10 @@ package com.basistech.rosette.apimodel;
  */
 public class Name {
 
-    private String text;
-    private String entityType;
-    private String script;
-    private String language;
+    private final String text;
+    private final String entityType;
+    private final String script;
+    private final String language;
 
     /**
      * Constructor for {@code Name}

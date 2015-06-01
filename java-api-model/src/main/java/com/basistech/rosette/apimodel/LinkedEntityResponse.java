@@ -21,9 +21,7 @@ import java.util.List;
  */
 public final class LinkedEntityResponse extends Response {
 
-    private List<LinkedEntity> entities;
-
-    public LinkedEntityResponse() { super(null); }
+    private final List<LinkedEntity> entities;
 
     /**
      * constructor for {@code LinkedEntityResponse}

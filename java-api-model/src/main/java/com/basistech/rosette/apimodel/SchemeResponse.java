@@ -22,7 +22,7 @@ import java.util.List;
  */
 public final class SchemeResponse extends Response {
 
-    private List<String> schemes;
+    private final List<String> schemes;
 
     /**
      * constructor for {@code SchemeResponse}
@@ -41,14 +41,6 @@ public final class SchemeResponse extends Response {
      */
     public List<String> getSchemes() {
         return schemes;
-    }
-
-    /**
-     * set the list of schemes
-     * @param schemes the list of schemes
-     */
-    public void setSchemes(List<String> schemes) {
-        this.schemes = schemes;
     }
 
     @Override

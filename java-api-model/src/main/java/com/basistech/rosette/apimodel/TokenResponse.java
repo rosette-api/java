@@ -23,7 +23,7 @@ import java.util.List;
  */
 public final class TokenResponse extends Response {
 
-    private List<String> tokens;
+    private final List<String> tokens;
     
     /**
      * constructor for {@code TokenResponse}
@@ -43,14 +43,6 @@ public final class TokenResponse extends Response {
      */
     public List<String> getTokens() {
         return tokens;
-    }
-
-    /**
-     * set the list of tokens
-     * @param tokens the list of tokens
-     */
-    public void setTokens(List<String> tokens) {
-        this.tokens = tokens;
     }
 
     @Override

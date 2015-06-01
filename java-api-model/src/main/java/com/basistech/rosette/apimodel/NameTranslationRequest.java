@@ -20,14 +20,14 @@ package com.basistech.rosette.apimodel;
 // todo: should this extend request?
 public class NameTranslationRequest {
 
-    private String name;
-    private String entityType;
-    private String sourceScript;
-    private String sourceLanguageOfOrigin;
-    private String sourceLanguageOfUse;
-    private String targetLanguage;
-    private String targetScript;
-    private String targetScheme;
+    private final String name;
+    private final String entityType;
+    private final String sourceScript;
+    private final String sourceLanguageOfOrigin;
+    private final String sourceLanguageOfUse;
+    private final String targetLanguage;
+    private final String targetScript;
+    private final String targetScheme;
     
     /**
      * constructor for {@code NameTranslationRequest}
@@ -116,70 +116,6 @@ public class NameTranslationRequest {
      */
     public String getTargetScheme() {
         return targetScheme;
-    }
-
-    /**
-     * set the name to be translated 
-     * @param name the name to be translated
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * set the entity type of the name
-     * @param entityType the entity type of the name
-     */
-    public void setEntityType(String entityType) {
-        this.entityType = entityType;
-    }
-
-    /**
-     * set the code for the name's script 
-     * @param sourceScript code for the name's script
-     */
-    public void setSourceScript(String sourceScript) {
-        this.sourceScript = sourceScript;
-    }
-
-    /**
-     * set the code for the name's language of origin 
-     * @param sourceLanguageOfOrigin the name's language of origin
-     */
-    public void setSourceLanguageOfOrigin(String sourceLanguageOfOrigin) {
-        this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
-    }
-
-    /**
-     * set the code for the name's language of use 
-     * @param sourceLanguageOfUse code for the name's language of use
-     */
-    public void setSourceLanguageOfUse(String sourceLanguageOfUse) {
-        this.sourceLanguageOfUse = sourceLanguageOfUse;
-    }
-
-    /**
-     * set code for the translation language 
-     * @param targetLanguage code for the translation language
-     */
-    public void setTargetLanguage(String targetLanguage) {
-        this.targetLanguage = targetLanguage;
-    }
-
-    /**
-     * set the code for the target script 
-     * @param targetScript code for the target script
-     */
-    public void setTargetScript(String targetScript) {
-        this.targetScript = targetScript;
-    }
-
-    /**
-     * set the transliteration scheme for the translation
-     * @param targetScheme the transliteration scheme for the translation
-     */
-    public void setTargetScheme(String targetScheme) {
-        this.targetScheme = targetScheme;
     }
 
     @Override

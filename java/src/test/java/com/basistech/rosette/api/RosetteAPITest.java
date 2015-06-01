@@ -78,8 +78,7 @@ public class RosetteAPITest extends Assert {
         try (ServerSocket s = new ServerSocket(0)) {
             serverPort = s.getLocalPort();
         }
-        mapper = new ObjectMapper();
-        mapper = ApiModelMixinModule.setupObjectMapper(mapper);
+        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
     @Before

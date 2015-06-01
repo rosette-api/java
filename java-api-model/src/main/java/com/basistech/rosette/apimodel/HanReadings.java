@@ -20,8 +20,8 @@ import java.util.List;
  * Han morphological analysis readings
  */
 public class HanReadings {
-    private String text;
-    private List<String> hanReadings;
+    private final String text;
+    private final List<String> hanReadings;
     
     /**
      * Constructor for {@code HanReadings}
@@ -50,22 +50,6 @@ public class HanReadings {
      */
     public List<String> getHanReadings() {
         return hanReadings;
-    }
-
-    /**
-     * set the text 
-     * @param text the text
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    /**
-     * set the list of han readings 
-     * @param hanReadings the list of han readings
-     */
-    public void setHanReadings(List<String> hanReadings) {
-        this.hanReadings = hanReadings;
     }
 
     @Override

@@ -18,8 +18,8 @@ package com.basistech.rosette.apimodel;
  * Rosette API response error data
  */
 public class ErrorResponse extends Response {
-    private String code;
-    private String message;
+    private final String code;
+    private final String message;
 
     /**
      * constructor for {@code ErrorResponse}

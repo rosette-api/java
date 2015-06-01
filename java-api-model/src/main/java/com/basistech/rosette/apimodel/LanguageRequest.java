@@ -18,7 +18,7 @@ package com.basistech.rosette.apimodel;
  * Data from a RosetteAPI client languages detection request
  */
 public class LanguageRequest extends Request {
-    private LanguageOptions options;
+    private final LanguageOptions options;
     
     /**
      * constructor for {@code LanguageRequest}

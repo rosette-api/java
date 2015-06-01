@@ -18,10 +18,8 @@ package com.basistech.rosette.apimodel;
  * Response ping data
  */
 public class PingResponse extends Response {
-    private String message;
-    private long time;
-
-    public PingResponse() { super(null); }
+    private final String message;
+    private final long time;
 
     /**
      * constructor for {@code PingResponse} 
@@ -48,22 +46,6 @@ public class PingResponse extends Response {
      */
     public long getTime() {
         return time;
-    }
-
-    /**
-     * set the ping response message 
-     * @param message the message
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    /**
-     * set the ping response timestamp
-     * @param time the ping response timestamp
-     */
-    public void setTime(long time) {
-        this.time = time;
     }
 
     @Override

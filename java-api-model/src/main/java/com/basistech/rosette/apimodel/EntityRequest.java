@@ -18,7 +18,7 @@ package com.basistech.rosette.apimodel;
  * Class that represents the data from a RaaS client entity extraction request
  */
 public class EntityRequest extends Request {
-    private EntityOptions options;
+    private final EntityOptions options;
     
     /**
      * Constructor for {@code EntityRequest}
@@ -39,10 +39,6 @@ public class EntityRequest extends Request {
     ) {
         super(language, content, contentUri, contentType, unit);
         this.options = options;
-    }
-
-    public EntityRequest() {
-        super(null, null, null, null, null);
     }
 
     /**

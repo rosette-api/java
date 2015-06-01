@@ -22,7 +22,7 @@ import java.util.List;
  */
 public final class ScriptResponse extends Response {
 
-    private List<String> scripts;
+    private final List<String> scripts;
 
     /**
      * constructor for {@code ScriptResponse}
@@ -41,14 +41,6 @@ public final class ScriptResponse extends Response {
      */
     public List<String> getScripts() {
         return scripts;
-    }
-
-    /**
-     * set the list of scripts
-     * @param scripts the list of scripts
-     */
-    public void setScripts(List<String> scripts) {
-        this.scripts = scripts;
     }
 
     @Override

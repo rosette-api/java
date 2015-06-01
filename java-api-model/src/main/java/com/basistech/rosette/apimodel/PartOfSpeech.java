@@ -18,8 +18,8 @@ package com.basistech.rosette.apimodel;
  * Token's part of speech
  */
 public class PartOfSpeech {
-    private String text;
-    private String pos;
+    private final String text;
+    private final String pos;
 
     /**
      * constructor for {@code PartOfSpeech}
@@ -45,22 +45,6 @@ public class PartOfSpeech {
      */
     public String getPos() {
         return pos;
-    }
-
-    /**
-     * set the text 
-     * @param text the text
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    /**
-     * set the part of speech
-     * @param pos the part of speeh
-     */
-    public void setPos(String pos) {
-        this.pos = pos;
     }
 
     @Override

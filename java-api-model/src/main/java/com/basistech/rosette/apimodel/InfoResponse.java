@@ -18,10 +18,10 @@ package com.basistech.rosette.apimodel;
  * Rosette API information 
  */
 public class InfoResponse extends Response {
-    private String name;
-    private String version;
-    private String buildNumber;
-    private String buildTime;
+    private final String name;
+    private final String version;
+    private final String buildNumber;
+    private final String buildTime;
 
     /**
      * constructor for {@code InfoResponse} 
@@ -68,38 +68,6 @@ public class InfoResponse extends Response {
      */
     public String getBuildTime() {
         return buildTime;
-    }
-
-    /**
-     * set the name 
-     * @param name the name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * set the version 
-     * @param version the version
-     */
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    /**
-     * set the build number 
-     * @param buildNumber the build number
-     */
-    public void setBuildNumber(String buildNumber) {
-        this.buildNumber = buildNumber;
-    }
-
-    /**
-     * set the build time 
-     * @param buildTime the build time
-     */
-    public void setBuildTime(String buildTime) {
-        this.buildTime = buildTime;
     }
 
     @Override

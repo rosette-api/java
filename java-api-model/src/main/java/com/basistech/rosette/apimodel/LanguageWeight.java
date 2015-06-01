@@ -18,9 +18,9 @@ package com.basistech.rosette.apimodel;
  * language weight used to resolve ambiguous results
  */
 public class LanguageWeight {
-    private String language;
-    private String script;
-    private Integer weight;
+    private final String language;
+    private final String script;
+    private final Integer weight;
 
     /**
      * constructor for {@code LanguageWeight} 

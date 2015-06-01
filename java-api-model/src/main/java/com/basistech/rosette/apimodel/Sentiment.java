@@ -21,9 +21,9 @@ import java.util.List;
  */
 public class Sentiment {
 
-    private String label;
-    private double confidence;
-    private List<String> explanations;
+    private final String label;
+    private final double confidence;
+    private final List<String> explanations;
 
     /**
      * constructor for {@code Sentiment}
@@ -62,30 +62,6 @@ public class Sentiment {
      */
     public List<String> getExplanations() {
         return explanations;
-    }
-
-    /**
-     * set the sentiment label 
-     * @param label the sentiment label
-     */
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    /**
-     * set the confidence 
-     * @param confidence the confidence
-     */
-    public void setConfidence(double confidence) {
-        this.confidence = confidence;
-    }
-
-    /**
-     * set the list of explanations contributing to determination of sentiment
-     * @param explanations the list of explanations
-     */
-    public void setExplanations(List<String> explanations) {
-        this.explanations = explanations;
     }
 
     @Override

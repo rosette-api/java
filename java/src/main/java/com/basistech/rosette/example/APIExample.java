@@ -131,7 +131,7 @@ public class APIExample {
         doCategories(cl.getResourceAsStream("English.txt"));
 
         doSentiment(url);
-        doSentiment(url, new SentimentOptions(SentimentModel.REVIEW));
+        doSentiment(url, new SentimentOptions(SentimentModel.REVIEW, false));
         doSentiment(url, new SentimentOptions(SentimentModel.REVIEW, true));
         doSentiment(text);
         doSentiment(text, new SentimentOptions(SentimentModel.SHORT_STRING, true));

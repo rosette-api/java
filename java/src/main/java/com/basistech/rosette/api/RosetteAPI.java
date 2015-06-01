@@ -134,16 +134,14 @@ public class RosetteAPI {
      */
     public RosetteAPI(String key) {
         this.key = key;
-        mapper = new ObjectMapper();
-        mapper = ApiModelMixinModule.setupObjectMapper(mapper);
+        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
     /**
      * Constructs a Rosette API instance.
      */
     public RosetteAPI() {
-        mapper = new ObjectMapper();
-        mapper = ApiModelMixinModule.setupObjectMapper(mapper);
+        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
     /**

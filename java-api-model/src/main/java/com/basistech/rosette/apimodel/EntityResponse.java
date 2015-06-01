@@ -22,10 +22,8 @@ import java.util.List;
  */
 public final class EntityResponse extends Response {
 
-    private List<ExtractedEntity> entities;
+    private final List<ExtractedEntity> entities;
     
-    public EntityResponse() { super(null); }
-
     /**
      * Constructor for {@code EntityResponse}
      * @param requestId request id

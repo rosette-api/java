@@ -18,12 +18,12 @@ package com.basistech.rosette.apimodel;
  * entity extractor (REX) entity
  */
 public class ExtractedEntity {
-    private int indocChainId;
-    private String type;
-    private String mention;
-    private String normalized;
-    private int count;
-    private double confidence;
+    private final int indocChainId;
+    private final String type;
+    private final String mention;
+    private final String normalized;
+    private final int count;
+    private final double confidence;
 
     /**
      * constructor for {@code ExtractedEntity}

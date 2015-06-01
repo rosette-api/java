@@ -37,10 +37,6 @@ public class LinkedEntityRequest extends Request {
         super(language, content, contentUri, contentType, unit);
     }
 
-    public LinkedEntityRequest() {
-        super(null, null, null, null, null);
-    }
-
     @Override
     public int hashCode() {
         return super.hashCode();

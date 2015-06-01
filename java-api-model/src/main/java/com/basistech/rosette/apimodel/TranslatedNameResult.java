@@ -19,14 +19,14 @@ package com.basistech.rosette.apimodel;
  */
 public class TranslatedNameResult {
 
-    private String sourceScript;
-    private String sourceLanguageOfOrigin;
-    private String sourceLanguageOfUse;
-    private String targetLanguage;
-    private String targetScript;
-    private String targetScheme;
-    private String translation;
-    private double confidence;
+    private final String sourceScript;
+    private final String sourceLanguageOfOrigin;
+    private final String sourceLanguageOfUse;
+    private final String targetLanguage;
+    private final String targetScript;
+    private final String targetScheme;
+    private final String translation;
+    private final double confidence;
     
     /**
      * constructor for {@code TranslatedNamesResult}
@@ -119,70 +119,6 @@ public class TranslatedNameResult {
      */
     public double getConfidence() {
         return confidence;
-    }
-
-    /**
-     * set the code for the script of the name to translate 
-     * @param sourceScript the source script code
-     */
-    public void setSourceScript(String sourceScript) {
-        this.sourceScript = sourceScript;
-    }
-
-    /**
-     * set the code for the name's language of origin
-     * @param sourceLanguageOfOrigin the source language of origin code
-     */
-    public void setSourceLanguageOfOrigin(String sourceLanguageOfOrigin) {
-        this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
-    }
-
-    /**
-     * set the code for the name's language of use
-     * @param sourceLanguageOfUse the source language of use code
-     */
-    public void setSourceLanguageOfUse(String sourceLanguageOfUse) {
-        this.sourceLanguageOfUse = sourceLanguageOfUse;
-    }
-
-    /**
-     * set the code for the translation language 
-     * @param targetLanguage code for the translation language
-     */
-    public void setTargetLanguage(String targetLanguage) {
-        this.targetLanguage = targetLanguage;
-    }
-
-    /**
-     * set the code for the translation script 
-     * @param targetScript code for the translation script
-     */
-    public void setTargetScript(String targetScript) {
-        this.targetScript = targetScript;
-    }
-
-    /**
-     * set the transliteration scheme for the translation
-     * @param targetScheme code for the transliteration scheme 
-     */
-    public void setTargetScheme(String targetScheme) {
-        this.targetScheme = targetScheme;
-    }
-
-    /**
-     * set the translation 
-     * @param translation the translation
-     */
-    public void setTranslation(String translation) {
-        this.translation = translation;
-    }
-
-    /**
-     * set the confidence of the translation
-     * @param confidence the confidence of the translation
-     */
-    public void setConfidence(double confidence) {
-        this.confidence = confidence;
     }
 
     @Override

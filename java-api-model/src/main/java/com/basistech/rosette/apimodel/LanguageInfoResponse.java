@@ -21,8 +21,8 @@ import java.util.Set;
  *  API response data model for RLI support info
  */
 public final class LanguageInfoResponse extends Response {
-    private Map<String, Set<String>> supportedLanguages;
-    private Map<String, Set<String>> supportedScripts;
+    private final Map<String, Set<String>> supportedLanguages;
+    private final Map<String, Set<String>> supportedScripts;
     
     /**
      * constructor for {@code LanguageInfoResponse}

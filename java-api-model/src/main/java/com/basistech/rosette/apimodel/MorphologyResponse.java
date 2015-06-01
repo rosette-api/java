@@ -20,10 +20,10 @@ import java.util.List;
  * Simple api response data model for morphology requests 
  */
 public final class MorphologyResponse extends Response {
-    private List<PartOfSpeech> posTags;
-    private List<Lemma> lemmas;
-    private List<Decompounding> compounds;
-    private List<HanReadings> hanReadings;
+    private final List<PartOfSpeech> posTags;
+    private final List<Lemma> lemmas;
+    private final List<Decompounding> compounds;
+    private final List<HanReadings> hanReadings;
     
     /**
      * constructor for {@code MorphologyResponse}
@@ -76,38 +76,6 @@ public final class MorphologyResponse extends Response {
      */
     public List<HanReadings> getHanReadings() {
         return hanReadings;
-    }
-
-    /**
-     * set the list of part of speech tags
-     * @param posTags the list of part of speech tags
-     */
-    public void setPosTags(List<PartOfSpeech> posTags) {
-        this.posTags = posTags;
-    }
-
-    /**
-     * set the list of lemmas 
-     * @param lemmas the list of lemmas
-     */
-    public void setLemmas(List<Lemma> lemmas) {
-        this.lemmas = lemmas;
-    }
-
-    /**
-     * set the list of compounds 
-     * @param compounds the list of compounds
-     */
-    public void setCompounds(List<Decompounding> compounds) {
-        this.compounds = compounds;
-    }
-
-    /**
-     * set the list of Han readings
-     * @param hanReadings the list of Han readings
-     */
-    public void setHanReadings(List<HanReadings> hanReadings) {
-        this.hanReadings = hanReadings;
     }
 
     @Override

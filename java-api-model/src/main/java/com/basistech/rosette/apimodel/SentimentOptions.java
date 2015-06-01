@@ -18,8 +18,8 @@ package com.basistech.rosette.apimodel;
  * Sentiment options
  */
 public final class SentimentOptions {
-    private String model = SentimentModel.REVIEW;
-    private Boolean explain = false;
+    private final String model;
+    private final Boolean explain;
 
     /**
      * constructor for {@code SentimentOptions}
@@ -31,15 +31,6 @@ public final class SentimentOptions {
             Boolean explain) {
         this.model = model;
         this.explain = explain;
-    }
-
-    /**
-     * constructor for {@code SentimentOptions}
-     * @param model model to use for sentiment analysis
-     */
-    public SentimentOptions(
-            String model) {
-        this.model = model;
     }
 
     /**
@@ -56,22 +47,6 @@ public final class SentimentOptions {
      */
     public Boolean getExplain() {
         return explain;
-    }
-
-    /**
-     * set the model to use for sentiment analysis 
-     * @param model the model to use for sentiment analysis
-     */
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    /**
-     * set whether to return explanation strings for the sentiment results returned
-     * @param explain whether to return explanation strings for the sentiment results returned
-     */
-    public void setExplain(Boolean explain) {
-        this.explain = explain;
     }
 
     @Override

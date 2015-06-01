@@ -21,7 +21,7 @@ import java.util.List;
  **/
 public final class SentimentResponse extends Response {
 
-    private List<Sentiment> sentiment;
+    private final List<Sentiment> sentiment;
     
     /**
      * constructor for {@code SentimentResponse}
@@ -40,14 +40,6 @@ public final class SentimentResponse extends Response {
      */
     public List<Sentiment> getSentiment() {
         return sentiment;
-    }
-
-    /**
-     * set the list of sentiment analysis results
-     * @param sentiment the list of sentiment analysis results
-     */
-    public void setSentiment(List<Sentiment> sentiment) {
-        this.sentiment = sentiment;
     }
 
     @Override

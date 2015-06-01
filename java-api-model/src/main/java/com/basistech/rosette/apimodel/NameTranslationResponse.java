@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
  * Simple api response data model for name translation
  */
 public final class NameTranslationResponse extends Response {
-    private TranslatedNameResult result;
+    private final TranslatedNameResult result;
     
     /**
      * constructor for {@code NameTranslationResponse}
@@ -38,14 +38,6 @@ public final class NameTranslationResponse extends Response {
      */
     public TranslatedNameResult getResult() {
         return result;
-    }
-
-    /**
-     * set the name's translation result
-     * @param result the name translation result
-     */
-    public void setResult(TranslatedNameResult result) {
-        this.result = result;
     }
 
     @Override

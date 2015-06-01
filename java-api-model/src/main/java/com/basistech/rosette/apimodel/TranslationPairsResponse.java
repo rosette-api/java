@@ -21,7 +21,7 @@ import java.util.List;
  * Response data model for supported translation pairs 
  */
 public final class TranslationPairsResponse extends Response {
-    private List<Object> translationPairs;
+    private final List<Object> translationPairs;
 
     /**
      * constructor for {@code TranslationPairsResponse}

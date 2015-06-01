@@ -21,8 +21,8 @@ package com.basistech.rosette.apimodel;
  */
 public class NameMatcherRequest {
 
-    private Name name1;
-    private Name name2;
+    private final Name name1;
+    private final Name name2;
 
     /**
      * Constructor for {@code NameMatcherRequest}
@@ -31,7 +31,6 @@ public class NameMatcherRequest {
      */
     public NameMatcherRequest(Name name1,
                               Name name2) {
-
         this.name1 = name1;
         this.name2 = name2;
     }
