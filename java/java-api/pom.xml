@@ -71,7 +71,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.basistech.rosette.apimodel.example.APIExample</mainClass>
+                            <mainClass>com.basistech.rosette.example.APIExample</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
