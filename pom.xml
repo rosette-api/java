@@ -4,6 +4,11 @@
     <groupId>com.basistech.ws</groupId>
     <artifactId>ws-client-bindings</artifactId>
     <version>0.1-SNAPSHOT</version>
+    <parent>
+        <groupId>com.basistech</groupId>
+        <artifactId>open-source-parent</artifactId>
+        <version>0.0.5</version>
+    </parent>
     <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
     <url>http://git.basistech.net/pages/textanalytics/ws-client-bindings</url>
