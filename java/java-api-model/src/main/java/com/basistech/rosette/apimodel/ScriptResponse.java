@@ -60,7 +60,7 @@ public final class ScriptResponse extends Response {
         if (o instanceof ScriptResponse) {
             ScriptResponse that = (ScriptResponse) o;
             return super.equals(o)
-                    && scripts != null ? scripts.equals(that.getScripts()) : scripts == that.getScripts();
+                    && scripts != null ? scripts.equals(that.getScripts()) : that.scripts == null;
         } else {
             return false;
         }

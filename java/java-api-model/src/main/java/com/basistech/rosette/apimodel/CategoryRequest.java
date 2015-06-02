@@ -66,7 +66,7 @@ public class CategoryRequest extends Request {
         if (o instanceof CategoryRequest) {
             CategoryRequest that = (CategoryRequest) o;
             return super.equals(o)
-                    && options != null ? options.equals(that.getOptions()) : options == that.getOptions();
+                    && options != null ? options.equals(that.getOptions()) : that.options == null;
         } else {
             return false;
         }

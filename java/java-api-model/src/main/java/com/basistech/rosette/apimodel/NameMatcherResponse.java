@@ -39,4 +39,24 @@ public final class NameMatcherResponse extends Response {
     public NameMatcherResult getResult() {
         return result;
     }
+
+    @Override
+    public int hashCode() {
+        return result != null ? result.hashCode() : 0;
+    }
+
+    /**
+     * if the param is a {@code NameMatcherResponse}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof NameMatcherResponse) {
+            NameMatcherResponse that = (NameMatcherResponse) o;
+            return result != null ? result.equals(that.getResult()) : that.result == null;
+        } else {
+            return false;
+        }
+    }
 }

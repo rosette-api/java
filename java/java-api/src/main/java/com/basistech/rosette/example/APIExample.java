@@ -124,8 +124,8 @@ public class APIExample {
         doLinkedEntity(cl.getResourceAsStream("English.txt"));
 
         doCategories(url);
-        doCategories(url, new CategoryOptions(CategorizationModel.QAG));
-        doCategories(url, new CategoryOptions(CategorizationModel.QAG, true));
+        doCategories(url, new CategoryOptions(CategorizationModel.QAG, false, 1));
+        doCategories(url, new CategoryOptions(CategorizationModel.QAG, true, 1));
         doCategories(url, new CategoryOptions(CategorizationModel.QAG, true, 10));
         doCategories(text);
         doCategories(cl.getResourceAsStream("English.txt"));

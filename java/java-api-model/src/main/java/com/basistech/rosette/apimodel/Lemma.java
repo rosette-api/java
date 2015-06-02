@@ -66,8 +66,8 @@ public class Lemma {
     public boolean equals(Object o) {
         if (o instanceof Lemma) {
             Lemma that = (Lemma) o;
-            return text != null ? text.equals(that.getText()) : text == that.getText()
-                    && lemma != null ? lemma.equals(that.getLemma()) : lemma == that.getLemma();
+            return text != null ? text.equals(that.getText()) : that.text == null
+                    && lemma != null ? lemma.equals(that.getLemma()) : that.lemma == null;
         } else {
             return false;
         }

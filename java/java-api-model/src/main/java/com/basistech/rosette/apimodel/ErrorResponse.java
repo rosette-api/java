@@ -68,8 +68,8 @@ public class ErrorResponse extends Response {
         if (o instanceof ErrorResponse) {
             ErrorResponse that = (ErrorResponse) o;
             return super.equals(o)
-                    && code != null ? code.equals(that.getCode()) : code == that.getCode()
-                    && message != null ? message.equals(that.getMessage()) : message == that.getMessage();
+                    && code != null ? code.equals(that.getCode()) : that.code == null
+                    && message != null ? message.equals(that.getMessage()) : that.message == null;
         } else {
             return false;
         }

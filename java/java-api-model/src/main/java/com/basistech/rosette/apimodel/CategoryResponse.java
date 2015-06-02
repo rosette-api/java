@@ -59,7 +59,7 @@ public final class CategoryResponse extends Response {
         if (o instanceof CategoryResponse) {
             CategoryResponse that = (CategoryResponse) o;
             return super.equals(o)
-                    && categories != null ? categories.equals(that.getCategories()) : categories == that.getCategories();
+                    && categories != null ? categories.equals(that.getCategories()) : that.categories == null;
         } else {
             return false;
         }

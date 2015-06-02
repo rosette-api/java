@@ -82,4 +82,31 @@ public class Name {
     public String getLanguage() {
         return language;
     }
+
+    @Override
+    public int hashCode() {
+        int result = text != null ? text.hashCode() : 0;
+        result = 31 * result + (entityType != null ? entityType.hashCode() : 0);
+        result = 31 * result + (script != null ? script.hashCode() : 0);
+        result = 31 * result + (language != null ? language.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code Name}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Name) {
+            Name that = (Name) o;
+            return text != null ? text.equals(that.getText()) : that.text == null
+                    && entityType != null ? entityType.equals(that.getEntityType()) : that.entityType == null
+                    && script != null ? script.equals(that.getScript()) : that.script == null
+                    && language != null ? language.equals(that.getScript()) : that.language == null;
+        } else {
+            return false;
+        }
+    }
 }

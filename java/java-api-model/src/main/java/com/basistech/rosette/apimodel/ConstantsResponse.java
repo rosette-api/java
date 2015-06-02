@@ -80,9 +80,9 @@ public class ConstantsResponse extends Response {
         if (o instanceof ConstantsResponse) {
             ConstantsResponse that = (ConstantsResponse) o;
             return super.equals(o)
-                    && version != null ? version.equals(that.getVersion()) : version == that.getVersion()
-                    && build != null ? build.equals(that.getBuild()) : build == that.getBuild()
-                    && support != null ? support.equals(that.getSupport()) : support == that.getSupport();
+                    && version != null ? version.equals(that.getVersion()) : that.version == null
+                    && build != null ? build.equals(that.getBuild()) : that.build == null
+                    && support != null ? support.equals(that.getSupport()) : that.support == null;
         } else {
             return false;
         }

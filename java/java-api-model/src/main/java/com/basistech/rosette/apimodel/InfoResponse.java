@@ -89,10 +89,10 @@ public class InfoResponse extends Response {
         if (o instanceof InfoResponse) {
             InfoResponse that = (InfoResponse) o;
             return super.equals(o)
-                    && name != null ? name.equals(that.getName()) : name == that.getName()
-                    && version != null ? version.equals(that.getVersion()) : version == that.getVersion()
-                    && buildNumber != null ? buildNumber.equals(that.getBuildNumber()) : buildNumber == that.getBuildNumber()
-                    && buildTime != null ? buildTime.equals(that.getBuildTime()) : buildTime == that.getBuildTime();
+                    && name != null ? name.equals(that.getName()) : that.name == null
+                    && version != null ? version.equals(that.getVersion()) : that.version == null
+                    && buildNumber != null ? buildNumber.equals(that.getBuildNumber()) : that.buildNumber == null
+                    && buildTime != null ? buildTime.equals(that.getBuildTime()) : that.buildTime == null;
         } else {
             return false;
         }

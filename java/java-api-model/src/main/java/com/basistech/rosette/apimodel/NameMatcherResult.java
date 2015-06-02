@@ -37,4 +37,25 @@ public class NameMatcherResult {
     public double getScore() {
         return score;
     }
+
+    @Override
+    public int hashCode() {
+        long temp = Double.doubleToLongBits(score);
+        return (int) (temp ^ (temp >>> 32));
+    }
+
+    /**
+     * if the param is a {@code NameMatcherResult}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof NameMatcherResult) {
+            NameMatcherResult that = (NameMatcherResult) o;
+            return score == that.getScore();
+        } else {
+            return false;
+        }
+    }
 }

@@ -69,7 +69,7 @@ public class LanguageDetectionResult {
     public boolean equals(Object o) {
         if (o instanceof LanguageDetectionResult) {
             LanguageDetectionResult that = (LanguageDetectionResult) o;
-            return language != null ? language.equals(that.getLanguage()) : language == that.getLanguage()
+            return language != null ? language.equals(that.getLanguage()) : that.language == null
                     && confidence == that.getConfidence();
         } else {
             return false;

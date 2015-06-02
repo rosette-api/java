@@ -62,7 +62,7 @@ public final class EntityResponse extends Response {
         if (o instanceof EntityResponse) {
             EntityResponse that = (EntityResponse) o;
             return super.equals(o)
-                    && entities != null ? entities.equals(that.getEntities()) : entities == that.getEntities();
+                    && entities != null ? entities.equals(that.getEntities()) : that.entities == null;
         } else {
             return false;
         }

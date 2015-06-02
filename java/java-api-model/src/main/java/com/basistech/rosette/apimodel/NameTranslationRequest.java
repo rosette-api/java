@@ -140,14 +140,14 @@ public class NameTranslationRequest {
     public boolean equals(Object o) {
         if (o instanceof NameTranslationRequest) {
             NameTranslationRequest that = (NameTranslationRequest) o;
-            return name != null ? name.equals(that.getName()) : name == that.getName()
-                    && entityType != null ? entityType.equals(that.getEntityType()) : entityType == that.getEntityType()
-                    && sourceScript != null ? sourceScript.equals(that.getSourceScript()) : sourceScript == that.getSourceScript()
-                    && sourceLanguageOfOrigin != null ? sourceLanguageOfOrigin.equals(that.getSourceLanguageOfOrigin()) : sourceLanguageOfOrigin == that.getSourceLanguageOfOrigin()
-                    && sourceLanguageOfUse != null ? sourceLanguageOfUse.equals(that.getSourceLanguageOfUse()) : sourceLanguageOfUse == that.getSourceLanguageOfUse()
-                    && targetLanguage != null ? targetLanguage.equals(that.getTargetLanguage()) : targetLanguage == that.getTargetLanguage()
-                    && targetScript != null ? targetScript.equals(that.getTargetScript()) : targetScript == that.getTargetScript()
-                    && targetScheme != null ? targetScheme.equals(that.getTargetScheme()) : targetScheme == that.getTargetScheme();
+            return name != null ? name.equals(that.getName()) : that.name == null
+                    && entityType != null ? entityType.equals(that.getEntityType()) : that.entityType == null
+                    && sourceScript != null ? sourceScript.equals(that.getSourceScript()) : that.sourceScript == null
+                    && sourceLanguageOfOrigin != null ? sourceLanguageOfOrigin.equals(that.getSourceLanguageOfOrigin()) : that.sourceLanguageOfOrigin == null
+                    && sourceLanguageOfUse != null ? sourceLanguageOfUse.equals(that.getSourceLanguageOfUse()) : that.sourceLanguageOfUse == null
+                    && targetLanguage != null ? targetLanguage.equals(that.getTargetLanguage()) : that.targetLanguage == null
+                    && targetScript != null ? targetScript.equals(that.getTargetScript()) : that.targetScript == null
+                    && targetScheme != null ? targetScheme.equals(that.getTargetScheme()) : that.targetScheme == null;
         } else {
             return false;
         }

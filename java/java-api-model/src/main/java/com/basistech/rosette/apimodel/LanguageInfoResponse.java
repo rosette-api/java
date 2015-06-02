@@ -71,8 +71,8 @@ public final class LanguageInfoResponse extends Response {
         if (o instanceof LanguageInfoResponse) {
             LanguageInfoResponse that = (LanguageInfoResponse) o;
             return super.equals(o)
-                    && supportedLanguages != null ? supportedLanguages.equals(that.getSupportedLanguages()) : supportedLanguages == that.getSupportedLanguages()
-                    && supportedScripts != null ? supportedScripts.equals(that.getSupportedScripts()) : supportedScripts == that.getSupportedScripts();
+                    && supportedLanguages != null ? supportedLanguages.equals(that.getSupportedLanguages()) : that.supportedLanguages == null
+                    && supportedScripts != null ? supportedScripts.equals(that.getSupportedScripts()) : that.supportedScripts == null;
         } else {
             return false;
         }

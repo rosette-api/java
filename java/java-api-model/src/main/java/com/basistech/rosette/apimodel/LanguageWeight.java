@@ -93,9 +93,9 @@ public class LanguageWeight {
     public boolean equals(Object o) {
         if (o instanceof LanguageWeight) {
             LanguageWeight that = (LanguageWeight) o;
-            return language != null ? language.equals(that.getLanguage()) : language == that.getLanguage()
-                    && weight != null ? weight.equals(that.getWeight()) : weight == that.getWeight()
-                    && script != null ? script.equals(that.getScript()) : script == that.getScript();
+            return language != null ? language.equals(that.getLanguage()) : that.language == null
+                    && weight != null ? weight.equals(that.getWeight()) : that.weight == null
+                    && script != null ? script.equals(that.getScript()) : that.script == null;
         } else {
             return false;
         }

@@ -97,10 +97,10 @@ public final class MorphologyResponse extends Response {
         if (o instanceof MorphologyResponse) {
             MorphologyResponse that = (MorphologyResponse) o;
             return super.equals(o)
-                    && posTags != null ? posTags.equals(that.getPosTags()) : posTags == that.getPosTags()
-                    && lemmas != null ? lemmas.equals(that.getLemmas()) : lemmas == that.getLemmas()
-                    && compounds != null ? compounds.equals(that.getCompounds()) : compounds == that.getCompounds()
-                    && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : hanReadings == that.getHanReadings();
+                    && posTags != null ? posTags.equals(that.getPosTags()) : that.posTags == null
+                    && lemmas != null ? lemmas.equals(that.getLemmas()) : that.lemmas == null
+                    && compounds != null ? compounds.equals(that.getCompounds()) : that.compounds == null
+                    && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : that.hanReadings == null;
         } else {
             return false;
         }

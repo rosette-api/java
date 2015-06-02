@@ -55,7 +55,7 @@ public final class NameTranslationResponse extends Response {
         if (o instanceof NameTranslationResponse) {
             NameTranslationResponse that = (NameTranslationResponse) o;
             return super.equals(o)
-                    && result != null ? result.equals(that.getResult()) : result == that.getResult();
+                    && result != null ? result.equals(that.getResult()) : that.result == null;
         } else {
             return false;
         }

@@ -63,8 +63,8 @@ public class PartOfSpeech {
     public boolean equals(Object o) {
         if (o instanceof PartOfSpeech) {
             PartOfSpeech that = (PartOfSpeech) o;
-            return text != null ? text.equals(that.getText()) : text == that.getText()
-                    && pos != null ? pos.equals(that.getPos()) : pos == that.getPos();
+            return text != null ? text.equals(that.getText()) : that.text == null
+                    && pos != null ? pos.equals(that.getPos()) : that.pos == null;
         } else {
             return false;
         }

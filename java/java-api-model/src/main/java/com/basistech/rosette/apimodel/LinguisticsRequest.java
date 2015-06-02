@@ -64,7 +64,7 @@ public class LinguisticsRequest extends Request {
         if (o instanceof LinguisticsRequest) {
             LinguisticsRequest that = (LinguisticsRequest) o;
             return super.equals(o)
-                    && options != null ? options.equals(that.getOptions()) : options == that.getOptions();
+                    && options != null ? options.equals(that.getOptions()) : that.options == null;
         } else {
             return false;
         }

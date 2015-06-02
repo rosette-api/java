@@ -2,15 +2,14 @@ package com.basistech.rosette.apimodel.jackson;
 
 import java.util.List;
 
-import com.basistech.rosette.apimodel.TranslatedNameResult;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class BatchNameTranslationResponseMixin {
+public class ScriptResponseMixin {
     @JsonCreator
-    public BatchNameTranslationResponseMixin(
+    public ScriptResponseMixin(
             @JsonProperty("requestId") String requestId,
-            @JsonProperty("results") List<TranslatedNameResult> results
+            @JsonProperty("scripts") List<String> scripts
     ) {
         //
     }

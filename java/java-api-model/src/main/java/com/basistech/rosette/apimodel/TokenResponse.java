@@ -62,7 +62,7 @@ public final class TokenResponse extends Response {
         if (o instanceof TokenResponse) {
             TokenResponse that = (TokenResponse) o;
             return super.equals(o)
-                    && tokens != null ? tokens.equals(that.getTokens()) : tokens == that.getTokens();
+                    && tokens != null ? tokens.equals(that.getTokens()) : that.tokens == null;
         } else {
             return false;
         }

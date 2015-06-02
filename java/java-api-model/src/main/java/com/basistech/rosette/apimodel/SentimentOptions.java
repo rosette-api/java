@@ -65,8 +65,8 @@ public final class SentimentOptions {
     public boolean equals(Object o) {
         if (o instanceof SentimentOptions) {
             SentimentOptions that = (SentimentOptions) o;
-            return model != null ? model.equals(that.getModel()) : model == that.getModel()
-                    && explain != null ? explain.equals(that.getExplain()) : explain == that.getExplain();
+            return model != null ? model.equals(that.getModel()) : that.model == null
+                    && explain != null ? explain.equals(that.getExplain()) : that.explain == null;
         } else {
             return false;
         }

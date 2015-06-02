@@ -68,8 +68,8 @@ public class HanReadings {
     public boolean equals(Object o) {
         if (o instanceof HanReadings) {
             HanReadings that = (HanReadings) o;
-            return text != null ? text.equals(that.getText()) : text == that.getText()
-                    && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : hanReadings == that.getHanReadings();
+            return text != null ? text.equals(that.getText()) : that.text == null
+                    && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : that.hanReadings == null;
         } else {
             return false;
         }

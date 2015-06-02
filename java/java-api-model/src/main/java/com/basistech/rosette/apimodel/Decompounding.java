@@ -68,8 +68,8 @@ public class Decompounding {
     public boolean equals(Object o) {
         if (o instanceof Decompounding) {
             Decompounding that = (Decompounding) o;
-            return text != null ? text.equals(that.getText()) : text == that.getText()
-                    && compoundComponents != null ? compoundComponents.equals(that.getCompoundComponents()) : compoundComponents == that.getCompoundComponents();
+            return text != null ? text.equals(that.getText()) : that.text == null
+                    && compoundComponents != null ? compoundComponents.equals(that.getCompoundComponents()) : that.compoundComponents == null;
         } else {
             return false;
         }

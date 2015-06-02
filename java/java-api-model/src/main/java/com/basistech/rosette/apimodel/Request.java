@@ -174,12 +174,12 @@ public abstract class Request {
     public boolean equals(Object o) {
         if (o instanceof Request) {
             Request that = (Request) o;
-            return language != null ? language.equals(that.getLanguage()) : language == that.getLanguage()
-                    && content != null ? content.equals(that.getContent()) : content == that.getContent()
-                    && contentUri != null ? contentUri.equals(that.getContentUri()) : contentUri == that.getContentUri()
-                    && contentType != null ? contentType.equals(that.getContentType()) : contentType == that.getContentType()
-                    && unit != null ? unit.equals(that.getUnit()) : unit == that.getUnit()
-                    && Arrays.equals(contentBytes, that.getContentBytes());
+            return language != null ? language.equals(that.getLanguage()) : that.language == null
+                    && content != null ? content.equals(that.getContent()) : that.content == null
+                    && contentUri != null ? contentUri.equals(that.getContentUri()) : that.contentUri == null
+                    && contentType != null ? contentType.equals(that.getContentType()) : that.contentType == null
+                    && unit != null ? unit.equals(that.getUnit()) : that.unit == null
+                    && contentBytes != null ? Arrays.equals(contentBytes, that.getContentBytes()) : that.contentBytes == null;
         } else {
             return false;
         }

@@ -67,8 +67,8 @@ public abstract class Response {
     public boolean equals(Object o) {
         if (o instanceof Response) {
             Response that = (Response) o;
-            return requestId != null ? requestId.equals(that.getRequestId()) : requestId == that.getRequestId()
-                    && timers != null ? timers.equals(that.getTimers()) : timers == that.getTimers();
+            return requestId != null ? requestId.equals(that.getRequestId()) : that.requestId == null
+                    && timers != null ? timers.equals(that.getTimers()) : that.timers == null;
         } else {
             return false;
         }

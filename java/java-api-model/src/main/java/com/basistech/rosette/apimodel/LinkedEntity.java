@@ -94,9 +94,9 @@ public class LinkedEntity {
     public boolean equals(Object o) {
         if (o instanceof LinkedEntity) {
             LinkedEntity that = (LinkedEntity) o;
-            return entityId != null ? entityId.equals(that.getEntityId()) : entityId == that.getEntityId()
+            return entityId != null ? entityId.equals(that.getEntityId()) : that.entityId == null
                     && indocChainId == that.getIndocChainId()
-                    && mention != null ? mention.equals(that.getMention()) : mention == that.getMention()
+                    && mention != null ? mention.equals(that.getMention()) : that.mention == null
                     && confidence == that.getConfidence();
         } else {
             return false;

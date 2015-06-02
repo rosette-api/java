@@ -20,11 +20,14 @@ import java.util.EnumSet;
  * Entity options 
  */
 public final class EntityOptions {
-    private Boolean resolveNamedEntities = true;
-    private Integer maxEntityTokens = 8;
-    private EnumSet<ProcessorType> processors = EnumSet.allOf(ProcessorType.class);
-    private Boolean allowPartialGazetteerMatches;
-    private Boolean redactorPreferLength;
+
+    public static final EntityOptions DEFAULT_OPTIONS = new EntityOptions(true, 8, EnumSet.allOf(ProcessorType.class), false, false);
+
+    private final Boolean resolveNamedEntities;
+    private final Integer maxEntityTokens;
+    private final EnumSet<ProcessorType> processors;
+    private final Boolean allowPartialGazetteerMatches;
+    private final Boolean redactorPreferLength;
 
     /**
      * Constructor for {@code EntityOptions}
@@ -87,46 +90,6 @@ public final class EntityOptions {
         return redactorPreferLength;
     }
 
-    /**
-     * set the resolve in-document named entities 
-     * @param resolveNamedEntities the resolve in-document named entities
-     */
-    public void setResolveNamedEntities(Boolean resolveNamedEntities) {
-        this.resolveNamedEntities = resolveNamedEntities;
-    }
-
-    /**
-     * set the max number of tokens allowed in an entity 
-     * @param maxEntityTokens the max number of tokens allowed in an entity
-     */
-    public void setMaxEntityTokens(Integer maxEntityTokens) {
-        this.maxEntityTokens = maxEntityTokens;
-    }
-
-    /**
-     * set the set of active processors 
-     * @param processors the set of active processors
-     */
-    public void setProcessors(EnumSet<ProcessorType> processors) {
-        this.processors = processors;
-    }
-
-    /**
-     * set whether to allow partial gazetteer matches 
-     * @param allowPartialGazetteerMatches whether to allow partial gazetteer matches
-     */
-    public void setAllowPartialGazetteerMatches(Boolean allowPartialGazetteerMatches) {
-        this.allowPartialGazetteerMatches = allowPartialGazetteerMatches;
-    }
-
-    /**
-     * set whether to prefer length over weights for redaction 
-     * @param redactorPreferLength whether to prefer length over weights for redaction
-     */
-    public void setRedactorPreferLength(Boolean redactorPreferLength) {
-        this.redactorPreferLength = redactorPreferLength;
-    }
-
     @Override
     public int hashCode() {
         int result = resolveNamedEntities != null ? resolveNamedEntities.hashCode() : 0;
@@ -146,11 +109,11 @@ public final class EntityOptions {
     public boolean equals(Object o) {
         if (o instanceof EntityOptions) {
             EntityOptions that = (EntityOptions) o;
-            return resolveNamedEntities != null ? resolveNamedEntities.equals(that.getResolveNamedEntities()) : resolveNamedEntities == that.getResolveNamedEntities()
-                    && maxEntityTokens != null ? maxEntityTokens.equals(that.getMaxEntityTokens()) : maxEntityTokens == that.getMaxEntityTokens()
-                    && processors != null ? processors.equals(that.getProcessors()) : processors == that.getProcessors()
-                    && allowPartialGazetteerMatches != null ? allowPartialGazetteerMatches.equals(that.getAllowPartialGazetteerMatches()) : allowPartialGazetteerMatches == that.getAllowPartialGazetteerMatches()
-                    && redactorPreferLength != null ? redactorPreferLength.equals(that.getRedactorPreferLength()) : redactorPreferLength == that.getRedactorPreferLength();
+            return resolveNamedEntities != null ? resolveNamedEntities.equals(that.getResolveNamedEntities()) : that.resolveNamedEntities == null
+                    && maxEntityTokens != null ? maxEntityTokens.equals(that.getMaxEntityTokens()) : that.maxEntityTokens == null
+                    && processors != null ? processors.equals(that.getProcessors()) : that.processors == null
+                    && allowPartialGazetteerMatches != null ? allowPartialGazetteerMatches.equals(that.getAllowPartialGazetteerMatches()) : that.allowPartialGazetteerMatches == null
+                    && redactorPreferLength != null ? redactorPreferLength.equals(that.getRedactorPreferLength()) : that.redactorPreferLength == null;
         } else {
             return false;
         }

@@ -61,7 +61,7 @@ public final class SentenceResponse extends Response {
         if (o instanceof SentenceResponse) {
             SentenceResponse that = (SentenceResponse) o;
             return super.equals(o)
-                    && sentences != null ? sentences.equals(that.getSentences()) : sentences == that.getSentences();
+                    && sentences != null ? sentences.equals(that.getSentences()) : that.sentences == null;
         } else {
             return false;
         }

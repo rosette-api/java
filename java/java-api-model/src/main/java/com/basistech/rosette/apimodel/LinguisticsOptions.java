@@ -19,14 +19,14 @@ package com.basistech.rosette.apimodel;
  */
 public final class LinguisticsOptions {
 
-    private Boolean disambiguate;
-    private Boolean query;
-    private Boolean tokenizeForScript;
-    private Integer minNonPrimaryScriptRegionLength;
-    private Boolean includeHebrewRoots;
-    private Boolean nfkcNormalize;
-    private Boolean fstTokenize;
-    private String defaultTokenizationLanguage;
+    private final Boolean disambiguate;
+    private final Boolean query;
+    private final Boolean tokenizeForScript;
+    private final Integer minNonPrimaryScriptRegionLength;
+    private final Boolean includeHebrewRoots;
+    private final Boolean nfkcNormalize;
+    private final Boolean fstTokenize;
+    private final String defaultTokenizationLanguage;
 
     /**
      * constructor for {@code LinguisticsOptions} 
@@ -127,74 +127,6 @@ public final class LinguisticsOptions {
         return defaultTokenizationLanguage;
     }
 
-    /**
-     * set whether the linguistics analysis should disambiguate results
-     * @param disambiguate whether the linguistics analysis should disambiguate results
-     */
-    public void setDisambiguate(Boolean disambiguate) {
-        this.disambiguate = disambiguate;
-    }
-
-    /**
-     * Request query processing. Linguistics analysis may change its behavior
-     * to reflect the fact that query input is often not in full sentences;
-     * typically, this disables disambiguation 
-     * @param query request query processing
-     */
-    public void setQuery(Boolean query) {
-        this.query = query;
-    }
-
-    /**
-     * Set whether to use different tokenizers for different scripts. 
-     * If false, uses the tokenizer for the {@code defaultTokenizationLanguage}. 
-     * Applies only to statistical segmentation languages 
-     * @param tokenizeForScript whether to use different tokenizers for different scripts
-     */
-    public void setTokenizeForScript(Boolean tokenizeForScript) {
-        this.tokenizeForScript = tokenizeForScript;
-    }
-
-    /**
-     * set the minimum non-primary scripting region length
-     * @param minNonPrimaryScriptRegionLength the minimum non-primary scripting region length
-     */
-    public void setMinNonPrimaryScriptRegionLength(Integer minNonPrimaryScriptRegionLength) {
-        this.minNonPrimaryScriptRegionLength = minNonPrimaryScriptRegionLength;
-    }
-
-    /**
-     * set whether to include Hebrew roots 
-     * @param includeHebrewRoots whether to include Hebrew roots
-     */
-    public void setIncludeHebrewRoots(Boolean includeHebrewRoots) {
-        this.includeHebrewRoots = includeHebrewRoots;
-    }
-
-    /**
-     * set whether to enable Unicode normalization before tokenization 
-     * @param nfkcNormalize whether to enable Unicode normalization before tokenization
-     */
-    public void setNfkcNormalize(Boolean nfkcNormalize) {
-        this.nfkcNormalize = nfkcNormalize;
-    }
-
-    /**
-     *  set whether to enable tokenization for supported languages
-     * @param fstTokenize whether to enable tokenization for supported languages
-     */
-    public void setFstTokenize(Boolean fstTokenize) {
-        this.fstTokenize = fstTokenize;
-    }
-
-    /**
-     * set the default tokenization language
-     * @param defaultTokenizationLanguage the default tokenization language
-     */
-    public void setDefaultTokenizationLanguage(String defaultTokenizationLanguage) {
-        this.defaultTokenizationLanguage = defaultTokenizationLanguage;
-    }
-
     @Override
     public int hashCode() {
         int result = disambiguate != null ? disambiguate.hashCode() : 0;
@@ -217,14 +149,14 @@ public final class LinguisticsOptions {
     public boolean equals(Object o) {
         if (o instanceof LinguisticsOptions) {
             LinguisticsOptions that = (LinguisticsOptions) o;
-            return disambiguate != null ? disambiguate.equals(that.getDisambiguate()) : disambiguate == that.getDisambiguate()
-                    && query != null ? query.equals(that.getQuery()) : query == that.getQuery()
-                    && tokenizeForScript != null ? tokenizeForScript.equals(that.getTokenizeForScript()) : tokenizeForScript == that.getTokenizeForScript()
-                    && minNonPrimaryScriptRegionLength != null ? minNonPrimaryScriptRegionLength.equals(that.getMinNonPrimaryScriptRegionLength()) : minNonPrimaryScriptRegionLength == that.getMinNonPrimaryScriptRegionLength()
-                    && includeHebrewRoots != null ? includeHebrewRoots.equals(that.getIncludeHebrewRoots()) : includeHebrewRoots == that.getIncludeHebrewRoots()
-                    && nfkcNormalize != null ? nfkcNormalize.equals(that.getNfkcNormalize()) : nfkcNormalize == that.getNfkcNormalize()
-                    && fstTokenize != null ? fstTokenize.equals(that.getNfkcNormalize()) : fstTokenize == that.getFstTokenize()
-                    && defaultTokenizationLanguage != null ? defaultTokenizationLanguage.equals(that.getDefaultTokenizationLanguage()) : defaultTokenizationLanguage == that.getDefaultTokenizationLanguage();
+            return disambiguate != null ? disambiguate.equals(that.getDisambiguate()) : that.disambiguate == null
+                    && query != null ? query.equals(that.getQuery()) : that.query == null
+                    && tokenizeForScript != null ? tokenizeForScript.equals(that.getTokenizeForScript()) : that.tokenizeForScript == null
+                    && minNonPrimaryScriptRegionLength != null ? minNonPrimaryScriptRegionLength.equals(that.getMinNonPrimaryScriptRegionLength()) : that.minNonPrimaryScriptRegionLength == null
+                    && includeHebrewRoots != null ? includeHebrewRoots.equals(that.getIncludeHebrewRoots()) : that.includeHebrewRoots == null
+                    && nfkcNormalize != null ? nfkcNormalize.equals(that.getNfkcNormalize()) : that.nfkcNormalize == null
+                    && fstTokenize != null ? fstTokenize.equals(that.getNfkcNormalize()) : that.fstTokenize == null
+                    && defaultTokenizationLanguage != null ? defaultTokenizationLanguage.equals(that.getDefaultTokenizationLanguage()) : that.defaultTokenizationLanguage == null;
         } else {
             return false;
         }

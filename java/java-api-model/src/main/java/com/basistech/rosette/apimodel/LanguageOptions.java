@@ -264,15 +264,15 @@ public final class LanguageOptions {
     public boolean equals(Object o) {
         if (o instanceof LanguageOptions) {
             LanguageOptions that = (LanguageOptions) o;
-            return minValidChars != null ? minValidChars.equals(that.getMinValidChars()) : minValidChars == that.getMinValidChars()
-                    && profileDepth != null ? profileDepth.equals(that.getProfileDepth()) : profileDepth == that.getProfileDepth()
-                    && ambiguityThreshold != null ? ambiguityThreshold.equals(that.getAmbiguityThreshold()) : ambiguityThreshold == that.getAmbiguityThreshold()
-                    && invalidityThreshold != null ? invalidityThreshold.equals(that.getInvalidityThreshold()) : invalidityThreshold == that.getInvalidityThreshold()
-                    && languageHint != null ? languageHint.equals(that.getLanguageHint()) : languageHint == that.getLanguageHint()
-                    && languageHintWeight != null ? languageHintWeight.equals(that.getLanguageHintWeight()) : languageHintWeight == that.getLanguageHintWeight()
-                    && encodingHint != null ? encodingHint.equals(that.getEncodingHint()) : encodingHint == that.getEncodingHint()
-                    && encodingHintWeight != null ? encodingHintWeight.equals(that.getEncodingHintWeight()) : encodingHintWeight == that.getEncodingHintWeight()
-                    && languageWeightAdjustments != null ? languageWeightAdjustments.equals(that.getLanguageWeightAdjustments()) : languageWeightAdjustments == that.getLanguageWeightAdjustments();
+            return minValidChars != null ? minValidChars.equals(that.getMinValidChars()) : that.minValidChars == null
+                    && profileDepth != null ? profileDepth.equals(that.getProfileDepth()) : that.profileDepth == null
+                    && ambiguityThreshold != null ? ambiguityThreshold.equals(that.getAmbiguityThreshold()) : that.ambiguityThreshold == null
+                    && invalidityThreshold != null ? invalidityThreshold.equals(that.getInvalidityThreshold()) : that.invalidityThreshold == null
+                    && languageHint != null ? languageHint.equals(that.getLanguageHint()) : that.languageHint == null
+                    && languageHintWeight != null ? languageHintWeight.equals(that.getLanguageHintWeight()) : that.languageHintWeight == null
+                    && encodingHint != null ? encodingHint.equals(that.getEncodingHint()) : that.encodingHint == null
+                    && encodingHintWeight != null ? encodingHintWeight.equals(that.getEncodingHintWeight()) : that.encodingHintWeight == null
+                    && languageWeightAdjustments != null ? languageWeightAdjustments.equals(that.getLanguageWeightAdjustments()) : that.languageWeightAdjustments == null;
         } else {
             return false;
         }

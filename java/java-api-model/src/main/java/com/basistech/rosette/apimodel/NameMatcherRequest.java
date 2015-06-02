@@ -50,4 +50,27 @@ public class NameMatcherRequest {
     public Name getName2() {
         return name2;
     }
+
+    @Override
+    public int hashCode() {
+        int result = name1 != null ? name1.hashCode() : 0;
+        result = 31 * result + (name2 != null ? name2.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * if the param is a {@code NameMatcherRequest}, compare contents for equality
+     * @param o the object
+     * @return whether or not the param object is equal to this object
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof NameMatcherRequest) {
+            NameMatcherRequest that = (NameMatcherRequest) o;
+            return name1 != null ? name1.equals(that.getName1()) : that.name1 == null
+                    && name2 != null ? name2.equals(that.getName1()) : that.name2 == null;
+        } else {
+            return false;
+        }
+    }
 }

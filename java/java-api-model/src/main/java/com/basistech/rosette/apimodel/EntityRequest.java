@@ -66,7 +66,7 @@ public class EntityRequest extends Request {
         if (o instanceof EntityRequest) {
             EntityRequest that = (EntityRequest) o;
             return super.equals(o)
-                    && options != null ? getOptions().equals(that.getOptions()) : options == that.getOptions();
+                    && options != null ? getOptions().equals(that.getOptions()) : that.options == null;
         } else {
             return false;
         }

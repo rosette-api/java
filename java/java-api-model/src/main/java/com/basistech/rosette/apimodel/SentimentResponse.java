@@ -59,7 +59,7 @@ public final class SentimentResponse extends Response {
         if (o instanceof SentimentResponse) {
             SentimentResponse that = (SentimentResponse) o;
             return super.equals(o)
-                    && sentiment != null ? sentiment.equals(that.getSentiment()) : sentiment == that.getSentiment();
+                    && sentiment != null ? sentiment.equals(that.getSentiment()) : that.sentiment == null;
         } else {
             return false;
         }

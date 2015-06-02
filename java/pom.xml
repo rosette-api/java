@@ -16,7 +16,9 @@
         <bt-jackson-version>2.4.3</bt-jackson-version>
         <maven-shade-plugin-version>2.3</maven-shade-plugin-version>
     </properties>
-
+    <build>
+        <defaultGoal>install</defaultGoal>
+    </build>
     <modules>
         <module>java-api</module>
         <module>java-api-model</module>

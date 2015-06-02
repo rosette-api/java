@@ -84,9 +84,9 @@ public class Sentiment {
     public boolean equals(Object o) {
         if (o instanceof Sentiment) {
             Sentiment that = (Sentiment) o;
-            return label != null ? label.equals(that.getLabel()) : label == that.getLabel()
+            return label != null ? label.equals(that.getLabel()) : that.label == null
                     && confidence == that.getConfidence()
-                    && explanations != null ? explanations.equals(that.getExplanations()) : explanations == that.getExplanations();
+                    && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;
         } else {
             return false;
         }

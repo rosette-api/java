@@ -65,7 +65,7 @@ public class PingResponse extends Response {
         if (o instanceof PingResponse) {
             PingResponse that = (PingResponse) o;
             return super.equals(o)
-                    && message != null ? message.equals(that.getMessage()) : message == that.getMessage()
+                    && message != null ? message.equals(that.getMessage()) : that.message == null
                     && time == that.getTime();
         } else {
             return false;

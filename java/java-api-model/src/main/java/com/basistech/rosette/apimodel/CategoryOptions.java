@@ -18,9 +18,10 @@ package com.basistech.rosette.apimodel;
  * Categorization options 
  */
 public final class CategoryOptions {
-    private String model = CategorizationModel.QAG;
-    private Boolean explain = false;
-    private Integer numCategories = 1;
+
+    private final String model;
+    private final Boolean explain;
+    private final Integer numCategories;
 
     /**
      * constructor for {@code CategoryOptions} 
@@ -38,29 +39,6 @@ public final class CategoryOptions {
         this.numCategories = numCategories;
     }
     
-    /**
-     * constructor for {@code CategoryOptions}
-     * @param model model to use for categorization
-     * @param explain whether to return explanation strings for each category returned
-     */                
-    public CategoryOptions(
-            String model,
-            Boolean explain
-    ) {
-        this.model = model;
-        this.explain = explain;
-    }
-    
-    /**
-     * constructor for {@code CategoryOptions}
-     * @param model model to use for categorization
-     */              
-    public CategoryOptions(
-            String model
-    ) {
-        this.model = model;
-    }
-
     /**
      * get the model to use for categorization 
      * @return the model
@@ -85,30 +63,6 @@ public final class CategoryOptions {
         return numCategories;
     }
 
-    /**
-     * set the model to use for categorization 
-     * @param model the model
-     */
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    /**
-     * set whether to return explanation strings for each category returned 
-     * @param explain whether to return explanation strings
-     */
-    public void setExplain(Boolean explain) {
-        this.explain = explain;
-    }
-
-    /**
-     * set max number of categories
-     * @param numCategories number of categories
-     */
-    public void setNumCategories(Integer numCategories) {
-        this.numCategories = numCategories;
-    }
-
     @Override
     public int hashCode() {
         int result = model != null ? model.hashCode() : 0;
@@ -126,9 +80,9 @@ public final class CategoryOptions {
     public boolean equals(Object o) {
         if (o instanceof CategoryOptions) {
             CategoryOptions that = (CategoryOptions) o;
-            return model != null ? model.equals(that.getModel()) : model == that.getModel()
-                    && explain != null ? explain.equals(that.getExplain())  : explain != that.getExplain()
-                    && numCategories != null ? numCategories.equals(that.getNumCategories()) : numCategories == that.getNumCategories();
+            return model != null ? model.equals(that.getModel()) : that.model == null
+                    && explain != null ? explain.equals(that.getExplain()) : that.explain == null
+                    && numCategories != null ? numCategories.equals(that.getNumCategories()) : that.numCategories == null;
         } else {
             return false;
         }

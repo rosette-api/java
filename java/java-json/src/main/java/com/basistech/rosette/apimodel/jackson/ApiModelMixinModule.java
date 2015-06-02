@@ -1,7 +1,5 @@
 package com.basistech.rosette.apimodel.jackson;
 
-
-import com.basistech.rosette.apimodel.BatchNameTranslationResponse;
 import com.basistech.rosette.apimodel.Category;
 import com.basistech.rosette.apimodel.CategoryOptions;
 import com.basistech.rosette.apimodel.CategoryRequest;
@@ -35,8 +33,11 @@ import com.basistech.rosette.apimodel.NameMatcherResult;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.PartOfSpeech;
+import com.basistech.rosette.apimodel.PingResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.SchemeResponse;
+import com.basistech.rosette.apimodel.ScriptResponse;
 import com.basistech.rosette.apimodel.SentenceResponse;
 import com.basistech.rosette.apimodel.Sentiment;
 import com.basistech.rosette.apimodel.SentimentOptions;
@@ -61,13 +62,11 @@ public class ApiModelMixinModule extends SimpleModule {
 
         public void setupModule(Module.SetupContext context) {
             super.setupModule(context);
-            context.setMixInAnnotations(ConstantsResponse.class, ConstantsResponseMixin.class);
-            context.setMixInAnnotations(BatchNameTranslationResponse.class, BatchNameTranslationResponseMixin.class);
             context.setMixInAnnotations(Category.class, CategoryMixin.class);
             context.setMixInAnnotations(CategoryOptions.class, CategoryOptionsMixin.class);
             context.setMixInAnnotations(CategoryRequest.class, CategoryRequestMixin.class);
             context.setMixInAnnotations(CategoryResponse.class, CategoryResponseMixin.class);
-            context.setMixInAnnotations(Request.class, RequestMixin.class);
+            context.setMixInAnnotations(ConstantsResponse.class, ConstantsResponseMixin.class);
             context.setMixInAnnotations(Decompounding.class, DecompoudingMixin.class);
             context.setMixInAnnotations(EntityOptions.class, EntityOptionsMixin.class);
             context.setMixInAnnotations(EntityRequest.class, EntityRequestMixin.class);
@@ -76,10 +75,10 @@ public class ApiModelMixinModule extends SimpleModule {
             context.setMixInAnnotations(ExtractedEntity.class, ExtractedEntityMixin.class);
             context.setMixInAnnotations(HanReadings.class, HanReadingsMixin.class);
             context.setMixInAnnotations(InfoResponse.class, InfoResponseMixin.class);
-            context.setMixInAnnotations(LanguageRequest.class, LanguageRequestMixin.class);
             context.setMixInAnnotations(LanguageDetectionResult.class, LanguageDetectionResultMixin.class);
             context.setMixInAnnotations(LanguageInfoResponse.class, LanguageInfoResponseMixin.class);
             context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);
+            context.setMixInAnnotations(LanguageRequest.class, LanguageRequestMixin.class);
             context.setMixInAnnotations(LanguageResponse.class, LanguageResponseMixin.class);
             context.setMixInAnnotations(LanguageWeight.class, LanguageWeightMixin.class);
             context.setMixInAnnotations(Lemma.class, LemmaMixin.class);
@@ -96,15 +95,18 @@ public class ApiModelMixinModule extends SimpleModule {
             context.setMixInAnnotations(NameTranslationRequest.class, NameTranslationRequestMixin.class);
             context.setMixInAnnotations(NameTranslationResponse.class, NameTranslationResponseMixin.class);
             context.setMixInAnnotations(PartOfSpeech.class, PartOfSpeechMixin.class);
+            context.setMixInAnnotations(PingResponse.class, PingResponseMixin.class);
+            context.setMixInAnnotations(Request.class, RequestMixin.class);
+            context.setMixInAnnotations(Response.class, ResponseMixin.class);
+            context.setMixInAnnotations(SchemeResponse.class, SchemeResponseMixin.class);
+            context.setMixInAnnotations(ScriptResponse.class, ScriptResponseMixin.class);
             context.setMixInAnnotations(Sentiment.class, SentimentMixin.class);
-            context.setMixInAnnotations(SentimentRequest.class, SentimentRequestMixin.class);
             context.setMixInAnnotations(SentimentOptions.class, SentimentOptionsMixin.class);
+            context.setMixInAnnotations(SentimentRequest.class, SentimentRequestMixin.class);
             context.setMixInAnnotations(SentimentResponse.class, SentimentResponseMixin.class);
             context.setMixInAnnotations(SentenceResponse.class, SentenceResponseMixin.class);
             context.setMixInAnnotations(TokenResponse.class, TokenResponseMixin.class);
             context.setMixInAnnotations(TranslatedNameResult.class, TranslatedNameResultMixin.class);
-
-            context.setMixInAnnotations(Response.class, ResponseMixin.class);
         }
 
         /**
