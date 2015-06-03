@@ -25,8 +25,8 @@ class NameMatchingParameters extends RosetteParamsSetBase
 {
     /**
      * constructor
-     * @param Name name1 source name to be matched
-     * @param Name name2 target name to be matched
+     * @param Name - name1 source name to be matched
+     * @param Name - name2 target name to be matched
      */
     public function __construct(Name $name1, Name $name2)
     {
