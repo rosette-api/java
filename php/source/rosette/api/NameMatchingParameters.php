@@ -1,6 +1,6 @@
 <?php
 /**
- * class NameTranslationParameters
+ * class NameMatchingParameters
  *
  * Parameters that are necessary for name translation operations.
  *
@@ -18,31 +18,34 @@
 namespace rosette\api;
 
 /**
- * Class NameTranslationParameters
+ * Class NameMatchingParameters
  * @package rosette\api
  */
-class NameTranslationParameters extends RosetteParamsSetBase
+class NameMatchingParameters extends RosetteParamsSetBase
 {
     /**
      * constructor
+     * @param Name name1 source name to be matched
+     * @param Name name2 target name to be matched
      */
-    public function __construct()
+    public function __construct(Name $name1, Name $name2)
     {
-        parent::__construct(['name', 'targetLanguage', 'entityType', 'sourceLanguageOfOrigin',
-            'sourceLanguageOfUse', 'sourceScript', 'targetScript', 'targetScheme']);
+        parent::__construct(['name1', 'name2']);
+        $this->params['name1'] = $name1;
+        $this->params['name2'] = $name2;
     }
 
     /**
      * Returns the serialized form of the parameters.
-     * @return array
+     * @return mixed
      * @throws RosetteException
      */
     public function serializable()
     {
-        foreach (['name', 'targetLanguage'] as $key) {
+        foreach (['name1', 'name2'] as $key) {
             if ($this->Get($key) == null) {
                 throw new RosetteException(
-                    sprintf("Required name translation parameter not supplied: %s", $key),
+                    sprintf("Required name matching parameter not supplied: %s", $key),
                     RosetteException::$BAD_REQUEST_FORMAT
                 );
             }

@@ -388,13 +388,24 @@ class Api
 
     /**
      * Calls the name translation endpoint
-     * @param $rntParams
+     * @param $nameTranslationParams
      * @return mixed
      * @throws RosetteException
      */
-    public function translatedName($rntParams)
+    public function translatedName($nameTranslationParams)
     {
-        return $this->operate($rntParams, "translated-name");
+        return $this->operate($nameTranslationParams, "translated-name");
+    }
+
+    /**
+     * Calls the name matching endpoint
+     * @param $nameMatchingParams
+     * @return mixed
+     * @throws RosetteException
+     */
+    public function matchedName($nameMatchingParams)
+    {
+        return $this->operate($nameMatchingParams, "matched-name");
     }
 }
 

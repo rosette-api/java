@@ -1540,4 +1540,27 @@ EOD;
         $result = $result['result'];
         $this->assertEquals('国铬普舍', $result['translation']);
     }
+
+    public function testMatchedName()
+    {
+        $api = new API($this->userKey, $this->testUrl);
+        // for testing, set version_checked to true, otherwise, the mock will fail because the endpoint "/info" does
+        // not exist.
+        $api->setVersionChecked(true);
+
+        $this->httpMock(
+            'POST',
+            '/matched-name',
+            '{
+          "requestId": "a4c147e0-1712-4c8c-a80c-42e8b23dfe81",
+          "result": {
+            "score": 0.8722986247544204
+          }
+        }'
+        );
+        $params = new NameMatchingParameters(new Name("Michael Smith"), new Name("Mike Smitty"));
+        $result = $api->matchedName($params);
+        $result = $result['result'];
+        $this->assertEquals(0.8722986247544204, $result['score']);
+    }
 }
