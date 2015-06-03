@@ -3,83 +3,25 @@
     <parent>
         <groupId>com.basistech.ws</groupId>
         <artifactId>ws-client-bindings-python</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.5-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ws-client-bindings-setup</artifactId>
     <properties>
-        <mock-service-port>12345</mock-service-port>
-	<!-- make raas-service-url blank to use above port of mock service -->
-	<raas-service-url>http://jugmaster.basistech.net/rest/v1</raas-service-url>
+        <run>setup/run_in_venv.sh</run>
     </properties>
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.7</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}</outputDirectory>
-                            <!-- can  we move this? -->
-                            <resources>
-                                <resource>
-                                    <directory>src/setup</directory>
-                                    <filtering>true</filtering>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
                     <executable>bash</executable>
-                    <workingDirectory>${basedir}</workingDirectory>
-                    <environmentvariables>
-                        <VERSION>${project.version}</VERSION>
-                    </environmentvariables>
+                    <!-- use the setup.py and everything else from the
+                       actual python source upstairs. -->
+                    <workingDirectory>..</workingDirectory>
                 </configuration>
                 <executions>
-                   <execution>
-                        <id>setup-clean py3</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv3}</argument>
-                                <argument>${python3}</argument>
-                                <argument>setup.py</argument>
-                                <argument>clean</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                   <execution>
-                        <id>setup-clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv}</argument>
-                                <argument>${python}</argument>
-                                <argument>setup.py</argument>
-                                <argument>clean</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>setup build</id>
                         <phase>compile</phase>
@@ -93,10 +35,12 @@
                                 <argument>${python}</argument>
                                 <argument>setup.py</argument>
                                 <argument>build</argument>
+                                <argument>-b</argument>
+                                <argument>setup/target/build2</argument>
                             </arguments>
                         </configuration>
                     </execution>
-		     <execution>
+                    <execution>
                         <id>setup build py3</id>
                         <phase>compile</phase>
                         <goals>
@@ -109,10 +53,12 @@
                                 <argument>${python3}</argument>
                                 <argument>setup.py</argument>
                                 <argument>build</argument>
+                                <argument>-b</argument>
+                                <argument>setup/target/build3</argument>
                             </arguments>
                         </configuration>
-                     </execution>
-		     <execution>
+                    </execution>
+                    <execution>
                         <id>epydoc</id>
                         <phase>compile</phase>
                         <goals>
@@ -125,15 +71,34 @@
                                 <argument>${epydoc}</argument>
                                 <argument>-v</argument>
                                 <argument>--no-private</argument>
-                                <argument>--no-frames</argument>				
+                                <argument>--no-frames</argument>
+                                <argument>--css</argument>
+                                <argument>${epydoc.css}</argument>
                                 <argument>-o</argument>
-				<argument>${doctarget}</argument>
-				<argument>${documentables}</argument>
+                                <argument>${doctarget}</argument>
+                                <argument>${documentables}</argument>
                             </arguments>
                         </configuration>
-                     </execution>
-
-		     <execution>
+                    </execution>
+                    <!--
+                    <execution>
+                        <id>sphinx</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>
+                                <argument>${run}</argument>
+                                <argument>${virtualenv}</argument>
+                                <argument>${python}</argument>
+                                <argument>setup.py</argument>
+                                <argument>build_sphinx</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    -->
+                    <execution>
                         <id>build dist</id>
                         <phase>compile</phase>
                         <goals>
@@ -146,100 +111,32 @@
                                 <argument>${python}</argument>
                                 <argument>setup.py</argument>
                                 <argument>sdist</argument>
-				<argument>--dist-dir</argument>
-				<argument>../target/dist</argument>
+                                <argument>--dist-dir</argument>
+                                <argument>target/dist</argument>
                             </arguments>
-			    <workingDirectory>${rosettedir}</workingDirectory>
+                            <workingDirectory>..</workingDirectory>
                         </configuration>
                     </execution>
-
-
-<!-- This causes more problems than it solves so far,
-        since it leaves droppings in the virtualenv we have nothing
-        'downstream' to consume them.
-
-                    <execution>
-                        <id>setup install</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv}</argument>
-                                <argument>${python}</argument>
-                                <argument>setup.py</argument>
-                                <argument>install</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
--->
-                    <!-- this isn't very compatible with mvn deploy until we have a repo or something.
-                    <execution>
-                        <id>setup deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv}</argument>
-                                <argument>${python}</argument>
-                                <argument>setup.py</argument>
-                                <argument>register</argument>
-                                <argument>sdist</argument>
-                                <argument>upload</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
--->
-                    <execution>
-                        <id>setuptools test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <skip>${maven.test.skip}</skip>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv}</argument>
-                                <argument>${python}</argument>
-                                <argument>setup.py</argument>
-                                <argument>nosetests</argument>
-                            </arguments>
-                            <environmentVariables>
-                              <MOCK_SERVICE_PORT>${mock-service-port}</MOCK_SERVICE_PORT>
-			      <RAAS_SERVICE_URL>${raas-service-url}</RAAS_SERVICE_URL>
-                            </environmentVariables>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>setuptools test py3</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <skip>${maven.test.skip}</skip>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv3}</argument>
-                                <argument>${python3}</argument>
-                                <argument>setup.py</argument>
-                                <argument>nosetests</argument>
-                            </arguments>
-                            <environmentVariables>
-                              <MOCK_SERVICE_PORT>${mock-service-port}</MOCK_SERVICE_PORT>
-			      <RAAS_SERVICE_URL>${raas-service-url}</RAAS_SERVICE_URL>
-                            </environmentVariables>
-                        </configuration>
-                    </execution>
-
-
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.4</version>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>github</finalName>
+                    <descriptors>
+                        <descriptor>src/assembly/publish.xml</descriptor>
+                    </descriptors>
+                </configuration>
             </plugin>
         </plugins>
     </build>

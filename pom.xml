@@ -3,7 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.ws</groupId>
     <artifactId>ws-client-bindings</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.5-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <parent>
         <groupId>com.basistech</groupId>
         <artifactId>open-source-parent</artifactId>
@@ -13,16 +14,17 @@
     <inceptionYear>2014</inceptionYear>
     <url>http://git.basistech.net/pages/textanalytics/ws-client-bindings</url>
     <scm>
-        <connection>scm:git:git@git.basistech.net:textanalytics/ws-client-bindings.git</connection>
-        <developerConnection>scm:git:git@git.basistech.net:textanalytics/ws-client-bindings.git</developerConnection>
+        <connection>scm:git:git@git.basistech.net:raas/ws-client-bindings.git</connection>
+        <developerConnection>scm:git:git@git.basistech.net:raas/ws-client-bindings.git</developerConnection>
     </scm>
     <distributionManagement>
         <site>
             <id>site</id>
-            <url>scm:git:git@git.basistech.net:textanalytics/ws-client-bindings.git</url>
+            <url>scm:git:git@git.basistech.net:raas/ws-client-bindings.git</url>
         </site>
     </distributionManagement>
     <modules>
+        <module>php</module>
         <module>python</module>
         <module>java</module>
     </modules>
