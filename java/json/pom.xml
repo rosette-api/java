@@ -10,7 +10,7 @@
         <version>0.5-SNAPSHOT</version>
     </parent>
 
-    <artifactId>java-json</artifactId>
+    <artifactId>json</artifactId>
     <version>0.5-SNAPSHOT</version>
 
     <dependencies>

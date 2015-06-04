@@ -9,7 +9,7 @@
         <version>0.5-SNAPSHOT</version>
     </parent>
 
-    <artifactId>java-api</artifactId>
+    <artifactId>api</artifactId>
     <version>0.5-SNAPSHOT</version>
 
     <properties>

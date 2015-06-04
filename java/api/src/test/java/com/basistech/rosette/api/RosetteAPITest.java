@@ -95,9 +95,6 @@ public class RosetteAPITest extends Assert {
 
     @BeforeClass
     public static void before() throws IOException {
-        try (ServerSocket s = new ServerSocket(0)) {
-            serverPort = s.getLocalPort();
-        }
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
@@ -115,6 +112,9 @@ public class RosetteAPITest extends Assert {
             statusCode = Integer.parseInt(statusStr);
         }
 
+        try (ServerSocket s = new ServerSocket(0)) {
+            serverPort = s.getLocalPort();
+        }
         mockServer = ClientAndServer.startClientAndServer(serverPort);
         mockServer.when(HttpRequest.request().withPath("/.*"))
                 .respond(HttpResponse.response().withStatusCode(statusCode).withBody(responseStr));

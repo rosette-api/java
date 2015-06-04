@@ -10,7 +10,7 @@
         <version>0.5-SNAPSHOT</version>
     </parent>
 
-    <artifactId>java-api-model</artifactId>
+    <artifactId>api-model</artifactId>
     <version>0.5-SNAPSHOT</version>
 
     <build>

@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>rosette-api</artifactId>
         <groupId>com.basistech.ws</groupId>
+        <artifactId>rosette-api</artifactId>
         <version>0.5-SNAPSHOT</version>
     </parent>
 
@@ -23,9 +23,9 @@
         <defaultGoal>install</defaultGoal>
     </build>
     <modules>
-        <module>java-api</module>
-        <module>java-api-model</module>
-        <module>java-json</module>
+        <module>api</module>
+        <module>api-model</module>
+        <module>json</module>
     </modules>
     <reporting>
         <plugins>
