@@ -35,24 +35,24 @@ class Name
      * Language of the name
      * @var
      */
-    public $languageCode;
+    public $language;
 
     /**
      * Script in which the name is written
      * @var
      */
-    public $scriptCode;
+    public $script;
 
     /**
      * Constructor
      *
      * @param $text
      * @param $entityType
-     * @param $languageCode
-     * @param $scriptCode
+     * @param $language
+     * @param $script
      * @throws RosetteException
      */
-    public function __construct($text, $entityType=null, $languageCode=null, $scriptCode=null)
+    public function __construct($text, $entityType=null, $language=null, $script=null)
     {
         if ($text === null) {
             throw new RosetteException(
@@ -60,15 +60,10 @@ class Name
                 RosetteException::$BAD_REQUEST_FORMAT
             );
         }
-        if ($entityType !== null) {
-            $this->entityType = $entityType;
-        }
-        if ($languageCode !== null) {
-            $this->languageCode = $languageCode;
-        }
-        if ($scriptCode !== null) {
-            $this->scriptCode = $scriptCode;
-        }
+        $this->text = $text;
+        $this->entityType = $entityType;
+        $this->language = $language;
+        $this->script = $script;
     }
 
     /**
