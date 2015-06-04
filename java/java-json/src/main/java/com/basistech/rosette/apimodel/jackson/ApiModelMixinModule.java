@@ -56,6 +56,7 @@ import com.basistech.rosette.apimodel.SchemeResponse;
 import com.basistech.rosette.apimodel.ScriptResponse;
 import com.basistech.rosette.apimodel.SentenceResponse;
 import com.basistech.rosette.apimodel.Sentiment;
+import com.basistech.rosette.apimodel.SentimentModel;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
@@ -65,6 +66,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.module.SimpleSerializers;
 
 /**
  * Jackson module to configure Json serialization and deserialization for the
@@ -123,6 +125,11 @@ public class ApiModelMixinModule extends SimpleModule {
             context.setMixInAnnotations(SentenceResponse.class, SentenceResponseMixin.class);
             context.setMixInAnnotations(TokenResponse.class, TokenResponseMixin.class);
             context.setMixInAnnotations(TranslatedNameResult.class, TranslatedNameResultMixin.class);
+
+            context.setMixInAnnotations(SentimentModel.class, SentimentModelMixin.class);
+            SimpleSerializers keySerializers = new SimpleSerializers();
+            keySerializers.addSerializer(new SentimentModelSerializer());
+            context.addKeySerializers(keySerializers);
         }
 
         /**

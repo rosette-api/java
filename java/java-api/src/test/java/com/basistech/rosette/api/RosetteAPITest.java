@@ -24,6 +24,9 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -76,14 +79,15 @@ public class RosetteAPITest extends Assert {
     }
 
     @Parameterized.Parameters
-    public static Collection<Object[]> data() throws URISyntaxException {
+    public static Collection<Object[]> data() throws URISyntaxException, IOException {
         URL url = RosetteAPITest.class.getClassLoader().getResource("response");
         File dir = new File(url.toURI());
-        File[] files = dir.listFiles();
         Collection<Object[]> params = new ArrayList<>();
-        for (File file : files) {
-            if (file.getName().endsWith(".json")) {
-                params.add(new Object[]{file.getName()});
+        try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
+            for (Path file : paths) {
+                if (file.toString().endsWith(".json")) {
+                    params.add(new Object[]{file.getFileName().toString()});
+                }
             }
         }
         return params;
@@ -98,9 +102,9 @@ public class RosetteAPITest extends Assert {
     }
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() throws IOException, InterruptedException {
         language = testFilename.substring(0, 3);
-        InputStream inputStream = RosetteAPITest.class.getClassLoader().getResourceAsStream("response/" + testFilename);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("response/" + testFilename);
         responseStr = getStringFromInputStream(inputStream);
 
         String statusFilename = testFilename.replace(".json", ".status");
@@ -457,7 +461,7 @@ public class RosetteAPITest extends Assert {
         }
     }
 
-    private Request readValue(Class<? extends Request> clazz) throws IOException {
+    private <T extends Request> T readValue(Class<T> clazz) throws IOException {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("request/" + testFilename);
         return mapper.readValue(inputStream, clazz);
     }
@@ -470,8 +474,7 @@ public class RosetteAPITest extends Assert {
     private static String getStringFromInputStream(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
         String line;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(is)))
-        {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
