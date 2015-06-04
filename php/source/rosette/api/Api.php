@@ -24,7 +24,7 @@ namespace rosette\api;
  * Call instance methods upon this object to communicate with particular
  * Api server endpoints.
  * Aside from ping() and info(), most of the methods require the construction
- * of either a RosetteParameters object or an RNTParameters object.  These
+ * of either a RosetteParameters object or an NameTranslationParameters object.  These
  * provide the content data that will be processed by the service.
  *
  * usage example: $api = new API($service_url, $user_key)
@@ -388,13 +388,24 @@ class Api
 
     /**
      * Calls the name translation endpoint
-     * @param $rntParams
+     * @param $nameTranslationParams
      * @return mixed
      * @throws RosetteException
      */
-    public function translatedName($rntParams)
+    public function translatedName($nameTranslationParams)
     {
-        return $this->operate($rntParams, "translated-name");
+        return $this->operate($nameTranslationParams, "translated-name");
+    }
+
+    /**
+     * Calls the name matching endpoint
+     * @param $nameMatchingParams
+     * @return mixed
+     * @throws RosetteException
+     */
+    public function matchedName($nameMatchingParams)
+    {
+        return $this->operate($nameMatchingParams, "matched-name");
     }
 }
 
