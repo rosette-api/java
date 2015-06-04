@@ -20,9 +20,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- *  API response data model for RLI support info
+ *  API response data model for language identification support info
  */
 public final class LanguageInfoResponse extends Response {
+
     private final Map<String, Set<String>> supportedLanguages;
     private final Map<String, Set<String>> supportedScripts;
     
@@ -70,13 +71,13 @@ public final class LanguageInfoResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof LanguageInfoResponse) {
-            LanguageInfoResponse that = (LanguageInfoResponse) o;
-            return super.equals(o)
-                    && supportedLanguages != null ? supportedLanguages.equals(that.getSupportedLanguages()) : that.supportedLanguages == null
-                    && supportedScripts != null ? supportedScripts.equals(that.getSupportedScripts()) : that.supportedScripts == null;
-        } else {
+        if (!(o instanceof LanguageInfoResponse)) {
             return false;
         }
+
+        LanguageInfoResponse that = (LanguageInfoResponse) o;
+        return super.equals(o)
+                && supportedLanguages != null ? supportedLanguages.equals(that.getSupportedLanguages()) : that.supportedLanguages == null
+                && supportedScripts != null ? supportedScripts.equals(that.getSupportedScripts()) : that.supportedScripts == null;
     }
 }

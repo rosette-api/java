@@ -4,7 +4,6 @@
     <groupId>com.basistech.ws</groupId>
     <artifactId>ws-client-bindings</artifactId>
     <version>0.5-SNAPSHOT</version>
-    <packaging>pom</packaging>
     <parent>
         <groupId>com.basistech</groupId>
         <artifactId>open-source-parent</artifactId>

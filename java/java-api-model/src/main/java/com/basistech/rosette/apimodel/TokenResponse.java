@@ -60,12 +60,12 @@ public final class TokenResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof TokenResponse) {
-            TokenResponse that = (TokenResponse) o;
-            return super.equals(o)
-                    && tokens != null ? tokens.equals(that.getTokens()) : that.tokens == null;
-        } else {
+        if (!(o instanceof TokenResponse)) {
             return false;
         }
+
+        TokenResponse that = (TokenResponse) o;
+        return super.equals(o)
+                && tokens != null ? tokens.equals(that.getTokens()) : that.tokens == null;
     }
 }

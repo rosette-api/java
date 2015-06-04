@@ -20,6 +20,7 @@ package com.basistech.rosette.apimodel;
  * Response data model for name matcher
  */
 public final class NameMatcherResponse extends Response {
+
     private final NameMatcherResult result;
 
     /**
@@ -54,11 +55,11 @@ public final class NameMatcherResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof NameMatcherResponse) {
-            NameMatcherResponse that = (NameMatcherResponse) o;
-            return result != null ? result.equals(that.getResult()) : that.result == null;
-        } else {
+        if (!(o instanceof NameMatcherResponse)) {
             return false;
         }
+
+        NameMatcherResponse that = (NameMatcherResponse) o;
+        return result != null ? result.equals(that.getResult()) : that.result == null;
     }
 }

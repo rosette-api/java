@@ -19,7 +19,8 @@ package com.basistech.rosette.apimodel;
 /**
  * Response ping data
  */
-public class PingResponse extends Response {
+public final class PingResponse extends Response {
+
     private final String message;
     private final long time;
 
@@ -64,13 +65,13 @@ public class PingResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof PingResponse) {
-            PingResponse that = (PingResponse) o;
-            return super.equals(o)
-                    && message != null ? message.equals(that.getMessage()) : that.message == null
-                    && time == that.getTime();
-        } else {
+        if (!(o instanceof PingResponse)) {
             return false;
         }
+
+        PingResponse that = (PingResponse) o;
+        return super.equals(o)
+                && message != null ? message.equals(that.getMessage()) : that.message == null
+                && time == that.getTime();
     }
 }

@@ -19,12 +19,12 @@ package com.basistech.rosette.apimodel;
 /**
  * Class that represents a name.
  */
-public class Name {
+public final class Name {
 
-    private final String text;
-    private final String entityType;
-    private final String script;
-    private final String language;
+    private String text;
+    private String entityType;
+    private String script;
+    private String language;
 
     /**
      * Constructor for {@code Name}
@@ -44,6 +44,7 @@ public class Name {
     }
 
     /**
+     * Constructor for {@code Name} with default entityType PERSON, unknown script and unknown language
      * @param name a name
      */
     public Name(String name) {
@@ -85,6 +86,38 @@ public class Name {
         return language;
     }
 
+    /**
+     * Sets the name text
+     * @param text name text
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     * Sets the entity type of a name
+     * @param entityType entity type of a name
+     */
+    public void setEntityType(String entityType) {
+        this.entityType = entityType;
+    }
+
+    /**
+     * Sets the script of a name
+     * @param script script of a name
+     */
+    public void setScript(String script) {
+        this.script = script;
+    }
+
+    /**
+     * Sets the language of a name
+     * @param language language of a name
+     */
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     @Override
     public int hashCode() {
         int result = text != null ? text.hashCode() : 0;
@@ -101,14 +134,14 @@ public class Name {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Name) {
-            Name that = (Name) o;
-            return text != null ? text.equals(that.getText()) : that.text == null
-                    && entityType != null ? entityType.equals(that.getEntityType()) : that.entityType == null
-                    && script != null ? script.equals(that.getScript()) : that.script == null
-                    && language != null ? language.equals(that.getScript()) : that.language == null;
-        } else {
+        if (!(o instanceof Name)) {
             return false;
         }
+
+        Name that = (Name) o;
+        return text != null ? text.equals(that.getText()) : that.text == null
+                && entityType != null ? entityType.equals(that.getEntityType()) : that.entityType == null
+                && script != null ? script.equals(that.getScript()) : that.script == null
+                && language != null ? language.equals(that.getScript()) : that.language == null;
     }
 }

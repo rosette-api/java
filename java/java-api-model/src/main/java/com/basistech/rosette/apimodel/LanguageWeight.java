@@ -19,7 +19,8 @@ package com.basistech.rosette.apimodel;
 /**
  * language weight used to resolve ambiguous results
  */
-public class LanguageWeight {
+public final class LanguageWeight {
+
     private final String language;
     private final String script;
     private final Integer weight;
@@ -93,13 +94,13 @@ public class LanguageWeight {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof LanguageWeight) {
-            LanguageWeight that = (LanguageWeight) o;
-            return language != null ? language.equals(that.getLanguage()) : that.language == null
-                    && weight != null ? weight.equals(that.getWeight()) : that.weight == null
-                    && script != null ? script.equals(that.getScript()) : that.script == null;
-        } else {
+        if (!(o instanceof LanguageWeight)) {
             return false;
         }
+
+        LanguageWeight that = (LanguageWeight) o;
+        return language != null ? language.equals(that.getLanguage()) : that.language == null
+                && weight != null ? weight.equals(that.getWeight()) : that.weight == null
+                && script != null ? script.equals(that.getScript()) : that.script == null;
     }
 }

@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 /**
  * name translation result 
  */
-public class TranslatedNameResult {
+public final class TranslatedNameResult {
 
     private final String sourceScript;
     private final String sourceLanguageOfOrigin;
@@ -146,17 +146,17 @@ public class TranslatedNameResult {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof TranslatedNameResult) {
-            TranslatedNameResult that = (TranslatedNameResult) o;
-            return sourceScript != null ? sourceScript.equals(that.getSourceScript()) : that.sourceScript == null
-                    && sourceLanguageOfOrigin != null ? sourceLanguageOfOrigin.equals(that.getSourceLanguageOfOrigin()) : that.sourceLanguageOfOrigin == null
-                    && sourceLanguageOfUse != null ? sourceLanguageOfUse.equals(that.getSourceLanguageOfUse()) : that.sourceLanguageOfUse == null
-                    && targetLanguage != null ? targetLanguage.equals(that.getTargetLanguage()) : that.targetLanguage == null
-                    && targetScript != null ? targetScript.equals(that.getTargetScript()) : that.targetScript == null
-                    && targetScheme != null ? targetScheme.equals(that.getTargetScheme()) : that.targetScheme == null
-                    && confidence == that.getConfidence();
-        } else {
+        if (!(o instanceof TranslatedNameResult)) {
             return false;
         }
+
+        TranslatedNameResult that = (TranslatedNameResult) o;
+        return sourceScript != null ? sourceScript.equals(that.getSourceScript()) : that.sourceScript == null
+                && sourceLanguageOfOrigin != null ? sourceLanguageOfOrigin.equals(that.getSourceLanguageOfOrigin()) : that.sourceLanguageOfOrigin == null
+                && sourceLanguageOfUse != null ? sourceLanguageOfUse.equals(that.getSourceLanguageOfUse()) : that.sourceLanguageOfUse == null
+                && targetLanguage != null ? targetLanguage.equals(that.getTargetLanguage()) : that.targetLanguage == null
+                && targetScript != null ? targetScript.equals(that.getTargetScript()) : that.targetScript == null
+                && targetScheme != null ? targetScheme.equals(that.getTargetScheme()) : that.targetScheme == null
+                && confidence == that.getConfidence();
     }
 }

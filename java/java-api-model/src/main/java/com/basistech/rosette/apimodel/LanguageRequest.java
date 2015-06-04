@@ -19,8 +19,9 @@ package com.basistech.rosette.apimodel;
 /**
  * Data from a RosetteAPI client languages detection request
  */
-public class LanguageRequest extends Request {
-    private final LanguageOptions options;
+public final class LanguageRequest extends Request {
+
+    private LanguageOptions options;
     
     /**
      * constructor for {@code LanguageRequest}
@@ -49,6 +50,14 @@ public class LanguageRequest extends Request {
         return options;
     }
 
+    /**
+     * set the languages detection options
+     * @param options the languages detection options
+     */
+    public void setOptions(LanguageOptions options) {
+        this.options = options;
+    }
+
     @Override
     public int hashCode() {
         return options != null ? options.hashCode() : 0;
@@ -61,12 +70,12 @@ public class LanguageRequest extends Request {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof LanguageRequest) {
-            LanguageRequest that = (LanguageRequest) o;
-            return super.equals(o)
-                    && options != null ? options.equals(that.options) : that.options == null;
-        } else {
+        if (!(o instanceof LanguageRequest)) {
             return false;
         }
+
+        LanguageRequest that = (LanguageRequest) o;
+        return super.equals(o)
+                && options != null ? options.equals(that.options) : that.options == null;
     }
 }

@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 /**
  * Data from constant tickets
  */
-public class ConstantsResponse extends Response {
+public final class ConstantsResponse extends Response {
 
     private final String version;
     private final String build;
@@ -28,9 +28,9 @@ public class ConstantsResponse extends Response {
     /**
      * Constructor for {@code ConstantsResponse}
      * @param requestId request id
-     * @param version component version
-     * @param build component build
-     * @param support support
+     * @param version Rosette API endpoint version
+     * @param build Rosette API endpoint build
+     * @param support support (reserved for future feature)
      */
     public ConstantsResponse(String requestId, String version, String build, Object support) {
         super(requestId);
@@ -79,14 +79,14 @@ public class ConstantsResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof ConstantsResponse) {
-            ConstantsResponse that = (ConstantsResponse) o;
-            return super.equals(o)
-                    && version != null ? version.equals(that.getVersion()) : that.version == null
-                    && build != null ? build.equals(that.getBuild()) : that.build == null
-                    && support != null ? support.equals(that.getSupport()) : that.support == null;
-        } else {
+        if (!(o instanceof ConstantsResponse)) {
             return false;
         }
+
+        ConstantsResponse that = (ConstantsResponse) o;
+        return super.equals(o)
+                && version != null ? version.equals(that.getVersion()) : that.version == null
+                && build != null ? build.equals(that.getBuild()) : that.build == null
+                && support != null ? support.equals(that.getSupport()) : that.support == null;
     }
 }

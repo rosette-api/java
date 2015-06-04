@@ -58,12 +58,12 @@ public final class SentimentResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof SentimentResponse) {
-            SentimentResponse that = (SentimentResponse) o;
-            return super.equals(o)
-                    && sentiment != null ? sentiment.equals(that.getSentiment()) : that.sentiment == null;
-        } else {
+        if (!(o instanceof SentimentResponse)) {
             return false;
         }
+
+        SentimentResponse that = (SentimentResponse) o;
+        return super.equals(o)
+                && sentiment != null ? sentiment.equals(that.getSentiment()) : that.sentiment == null;
     }
 }

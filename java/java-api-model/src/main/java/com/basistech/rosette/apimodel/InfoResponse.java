@@ -19,7 +19,8 @@ package com.basistech.rosette.apimodel;
 /**
  * Rosette API information 
  */
-public class InfoResponse extends Response {
+public final class InfoResponse extends Response {
+
     private final String name;
     private final String version;
     private final String buildNumber;
@@ -88,15 +89,15 @@ public class InfoResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof InfoResponse) {
-            InfoResponse that = (InfoResponse) o;
-            return super.equals(o)
-                    && name != null ? name.equals(that.getName()) : that.name == null
-                    && version != null ? version.equals(that.getVersion()) : that.version == null
-                    && buildNumber != null ? buildNumber.equals(that.getBuildNumber()) : that.buildNumber == null
-                    && buildTime != null ? buildTime.equals(that.getBuildTime()) : that.buildTime == null;
-        } else {
+        if (!(o instanceof InfoResponse)) {
             return false;
         }
+
+        InfoResponse that = (InfoResponse) o;
+        return super.equals(o)
+                && name != null ? name.equals(that.getName()) : that.name == null
+                && version != null ? version.equals(that.getVersion()) : that.version == null
+                && buildNumber != null ? buildNumber.equals(that.getBuildNumber()) : that.buildNumber == null
+                && buildTime != null ? buildTime.equals(that.getBuildTime()) : that.buildTime == null;
     }
 }

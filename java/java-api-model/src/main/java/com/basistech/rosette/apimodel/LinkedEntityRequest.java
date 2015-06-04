@@ -17,9 +17,9 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Class that represents the data from a RaaS client entity resolution request
+ * Class that represents the data from an entity resolution request
  */
-public class LinkedEntityRequest extends Request {
+public final class LinkedEntityRequest extends Request {
 
     /**
      * constructor for {@code LinkedEntityRequest}
@@ -51,10 +51,10 @@ public class LinkedEntityRequest extends Request {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof LinkedEntityRequest) {
-            return super.equals(o);
-        } else {
+        if (!(o instanceof LinkedEntityRequest)) {
             return false;
         }
+
+        return super.equals(o);
     }
 }

@@ -17,10 +17,11 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Class that represents the data from a RaaS client base linguistics request
+ * Class that represents the data from a linguistics request
  */
-public class LinguisticsRequest extends Request {
-    private final LinguisticsOptions options;
+public final class LinguisticsRequest extends Request {
+
+    private LinguisticsOptions options;
     
     /**
      * constructor for {@code LinguisticsRequest}
@@ -51,6 +52,14 @@ public class LinguisticsRequest extends Request {
         return options;
     }
 
+    /**
+     * set the base linguistics options
+     * @param options the base linguistics options
+     */
+    public void setOptions(LinguisticsOptions options) {
+        this.options = options;
+    }
+
     @Override
     public int hashCode() {
         return options != null ? options.hashCode() : 0;
@@ -63,12 +72,12 @@ public class LinguisticsRequest extends Request {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof LinguisticsRequest) {
-            LinguisticsRequest that = (LinguisticsRequest) o;
-            return super.equals(o)
-                    && options != null ? options.equals(that.getOptions()) : that.options == null;
-        } else {
+        if (!(o instanceof LinguisticsRequest)) {
             return false;
         }
+
+        LinguisticsRequest that = (LinguisticsRequest) o;
+        return super.equals(o)
+                && options != null ? options.equals(that.getOptions()) : that.options == null;
     }
 }

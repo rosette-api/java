@@ -58,12 +58,12 @@ public final class SchemeResponse extends Response {
     */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof SchemeResponse) {
-            SchemeResponse that = (SchemeResponse) o;
-            return super.equals(o)
-                    && schemes != null ? schemes.equals(that.getSchemes()) : that.schemes == null;
-        } else {
+        if (!(o instanceof SchemeResponse)) {
             return false;
         }
+
+        SchemeResponse that = (SchemeResponse) o;
+        return super.equals(o)
+                && schemes != null ? schemes.equals(that.getSchemes()) : that.schemes == null;
     }
 }

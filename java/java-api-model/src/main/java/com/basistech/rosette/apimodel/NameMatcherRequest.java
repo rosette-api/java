@@ -21,10 +21,10 @@ package com.basistech.rosette.apimodel;
  *
  * Request to match 2 names.
  */
-public class NameMatcherRequest {
+public final class NameMatcherRequest {
 
-    private final Name name1;
-    private final Name name2;
+    private Name name1;
+    private Name name2;
 
     /**
      * Constructor for {@code NameMatcherRequest}
@@ -53,6 +53,22 @@ public class NameMatcherRequest {
         return name2;
     }
 
+    /**
+     * Sets the first name
+     * @param name
+     */
+    public void setName1(Name name) {
+        name1 = name;
+    }
+
+    /**
+     * Sets the second name
+     * @param name
+     */
+    public void setName2(Name name) {
+        name1 = name;
+    }
+
     @Override
     public int hashCode() {
         int result = name1 != null ? name1.hashCode() : 0;
@@ -67,12 +83,12 @@ public class NameMatcherRequest {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof NameMatcherRequest) {
-            NameMatcherRequest that = (NameMatcherRequest) o;
-            return name1 != null ? name1.equals(that.getName1()) : that.name1 == null
-                    && name2 != null ? name2.equals(that.getName1()) : that.name2 == null;
-        } else {
+        if (!(o instanceof NameMatcherRequest)) {
             return false;
         }
+
+        NameMatcherRequest that = (NameMatcherRequest) o;
+        return name1 != null ? name1.equals(that.getName1()) : that.name1 == null
+                && name2 != null ? name2.equals(that.getName1()) : that.name2 == null;
     }
 }

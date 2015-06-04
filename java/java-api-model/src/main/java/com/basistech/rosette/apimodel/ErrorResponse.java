@@ -19,7 +19,8 @@ package com.basistech.rosette.apimodel;
 /**
  * Rosette API response error data
  */
-public class ErrorResponse extends Response {
+public final class ErrorResponse extends Response {
+
     private final String code;
     private final String message;
 
@@ -67,13 +68,13 @@ public class ErrorResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof ErrorResponse) {
-            ErrorResponse that = (ErrorResponse) o;
-            return super.equals(o)
-                    && code != null ? code.equals(that.getCode()) : that.code == null
-                    && message != null ? message.equals(that.getMessage()) : that.message == null;
-        } else {
+        if (!(o instanceof ErrorResponse)) {
             return false;
         }
+
+        ErrorResponse that = (ErrorResponse) o;
+        return super.equals(o)
+                && code != null ? code.equals(that.getCode()) : that.code == null
+                && message != null ? message.equals(that.getMessage()) : that.message == null;
     }
 }

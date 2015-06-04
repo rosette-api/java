@@ -59,12 +59,12 @@ public final class SentenceResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof SentenceResponse) {
-            SentenceResponse that = (SentenceResponse) o;
-            return super.equals(o)
-                    && sentences != null ? sentences.equals(that.getSentences()) : that.sentences == null;
-        } else {
+        if (!(o instanceof SentenceResponse)) {
             return false;
         }
+
+        SentenceResponse that = (SentenceResponse) o;
+        return super.equals(o)
+                && sentences != null ? sentences.equals(that.getSentences()) : that.sentences == null;
     }
 }

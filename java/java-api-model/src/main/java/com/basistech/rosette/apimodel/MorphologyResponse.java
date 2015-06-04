@@ -19,9 +19,12 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 
 /**
- * Simple api response data model for morphology requests 
+ * Simple API response data model returned by LinguisticsRequest
+ *
+ * See {@code LinguisticRequest} and {@code MorphologicalFeature} for details.
  */
 public final class MorphologyResponse extends Response {
+
     private final List<PartOfSpeech> posTags;
     private final List<Lemma> lemmas;
     private final List<Decompounding> compounds;
@@ -96,15 +99,15 @@ public final class MorphologyResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof MorphologyResponse) {
-            MorphologyResponse that = (MorphologyResponse) o;
-            return super.equals(o)
-                    && posTags != null ? posTags.equals(that.getPosTags()) : that.posTags == null
-                    && lemmas != null ? lemmas.equals(that.getLemmas()) : that.lemmas == null
-                    && compounds != null ? compounds.equals(that.getCompounds()) : that.compounds == null
-                    && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : that.hanReadings == null;
-        } else {
+        if (!(o instanceof MorphologyResponse)) {
             return false;
         }
+
+        MorphologyResponse that = (MorphologyResponse) o;
+        return super.equals(o)
+                && posTags != null ? posTags.equals(that.getPosTags()) : that.posTags == null
+                && lemmas != null ? lemmas.equals(that.getLemmas()) : that.lemmas == null
+                && compounds != null ? compounds.equals(that.getCompounds()) : that.compounds == null
+                && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : that.hanReadings == null;
     }
 }

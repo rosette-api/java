@@ -56,12 +56,12 @@ public final class LanguageResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof LanguageResponse) {
-            LanguageResponse that = (LanguageResponse) o;
-            return super.equals(o)
-                    && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
-        } else {
+        if (!(o instanceof LanguageResponse)) {
             return false;
         }
+
+        LanguageResponse that = (LanguageResponse) o;
+        return super.equals(o)
+                && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
     }
 }

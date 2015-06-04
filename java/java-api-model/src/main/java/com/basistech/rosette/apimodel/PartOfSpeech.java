@@ -19,7 +19,8 @@ package com.basistech.rosette.apimodel;
 /**
  * Token's part of speech
  */
-public class PartOfSpeech {
+public final class PartOfSpeech {
+
     private final String text;
     private final String pos;
 
@@ -63,12 +64,12 @@ public class PartOfSpeech {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof PartOfSpeech) {
-            PartOfSpeech that = (PartOfSpeech) o;
-            return text != null ? text.equals(that.getText()) : that.text == null
-                    && pos != null ? pos.equals(that.getPos()) : that.pos == null;
-        } else {
+        if (!(o instanceof PartOfSpeech)) {
             return false;
         }
+
+        PartOfSpeech that = (PartOfSpeech) o;
+        return text != null ? text.equals(that.getText()) : that.text == null
+                && pos != null ? pos.equals(that.getPos()) : that.pos == null;
     }
 }

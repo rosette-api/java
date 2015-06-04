@@ -17,12 +17,12 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * categorization model
+ * Categorization model
  */
 public final class CategorizationModel {
+    /**
+     * Use categories from IAB Quality Assurance Guidelines (QAG) Taxonomy
+     */
     public static final String QAG = "QAG"; // "Categories from IAB Quality Assurance Guidelines (QAG) Taxonomy"
 
-    private CategorizationModel() {
-
-    }
 }

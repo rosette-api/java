@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
-public enum ProcessorType {
+public enum ExtractionMethod {
     /** The statistical entity extractor. */
     statistical,
     /** The gazetteer based entity extractor. */

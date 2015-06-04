@@ -22,6 +22,7 @@ import java.util.Map;
  * Rosette api response data base
  */
 public abstract class Response {
+
     private String requestId;
     private Map<String, Long> timers;
 
@@ -67,12 +68,12 @@ public abstract class Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Response) {
-            Response that = (Response) o;
-            return requestId != null ? requestId.equals(that.getRequestId()) : that.requestId == null
-                    && timers != null ? timers.equals(that.getTimers()) : that.timers == null;
-        } else {
+        if (!(o instanceof Response)) {
             return false;
         }
+
+        Response that = (Response) o;
+        return requestId != null ? requestId.equals(that.getRequestId()) : that.requestId == null
+                && timers != null ? timers.equals(that.getTimers()) : that.timers == null;
     }
 }

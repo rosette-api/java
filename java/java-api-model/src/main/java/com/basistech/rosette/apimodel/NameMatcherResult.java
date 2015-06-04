@@ -16,19 +16,21 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.Objects;
+
 /**
  * Name matcher result
  */
-public class NameMatcherResult {
+public final class NameMatcherResult {
 
-    private final double score;
+    private final Double score;
 
     /**
      * Constructor for {@code NameMatcherResult}
      * @param score score of matching 2 names
      */
     public NameMatcherResult(
-            double score) {
+            Double score) {
         this.score = score;
     }
 
@@ -36,7 +38,7 @@ public class NameMatcherResult {
      * Gets the score of matching 2 names
      * @return score
      */
-    public double getScore() {
+    public Double getScore() {
         return score;
     }
 
@@ -53,11 +55,11 @@ public class NameMatcherResult {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof NameMatcherResult) {
-            NameMatcherResult that = (NameMatcherResult) o;
-            return score == that.getScore();
-        } else {
+        if (!(o instanceof NameMatcherResult)) {
             return false;
         }
+
+        NameMatcherResult that = (NameMatcherResult) o;
+        return Objects.equals(score, that.getScore());
     }
 }

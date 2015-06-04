@@ -20,8 +20,9 @@ package com.basistech.rosette.apimodel;
  * Sentiment options
  */
 public final class SentimentOptions {
-    private final String model;
-    private final Boolean explain;
+
+    private SentimentModel model;
+    private Boolean explain;
 
     /**
      * constructor for {@code SentimentOptions}
@@ -29,7 +30,7 @@ public final class SentimentOptions {
      * @param explain whether to return explanation strings for the sentiment results returned
      */
     public SentimentOptions(
-            String model,
+            SentimentModel model,
             Boolean explain) {
         this.model = model;
         this.explain = explain;
@@ -39,7 +40,7 @@ public final class SentimentOptions {
      * get the model to use for sentiment analysis
      * @return the model to use for sentiment analysis
      */
-    public String getModel() {
+    public SentimentModel getModel() {
         return model;
     }
 
@@ -49,6 +50,22 @@ public final class SentimentOptions {
      */
     public Boolean getExplain() {
         return explain;
+    }
+
+    /**
+     * set the model to use for sentiment analysis
+     * @param model the model to use for sentiment analysis
+     */
+    public void setModel(SentimentModel model) {
+        this.model = model;
+    }
+
+    /**
+     * set whether to return explanation strings for the sentiment results returned
+     * @param explain whether to return explanation strings for the sentiment results returned
+     */
+    public void setExplain(Boolean explain) {
+        this.explain = explain;
     }
 
     @Override
@@ -65,12 +82,12 @@ public final class SentimentOptions {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof SentimentOptions) {
-            SentimentOptions that = (SentimentOptions) o;
-            return model != null ? model.equals(that.getModel()) : that.model == null
-                    && explain != null ? explain.equals(that.getExplain()) : that.explain == null;
-        } else {
+        if (!(o instanceof SentimentOptions)) {
             return false;
         }
+
+        SentimentOptions that = (SentimentOptions) o;
+        return model != null ? model.equals(that.getModel()) : that.model == null
+                && explain != null ? explain.equals(that.getExplain()) : that.explain == null;
     }
 }

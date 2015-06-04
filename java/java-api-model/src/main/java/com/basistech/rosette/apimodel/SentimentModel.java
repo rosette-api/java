@@ -16,12 +16,61 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.EnumSet;
+
 /**
  * Rosette API sentiment model
  */
-public final class SentimentModel {
-    public static final String REVIEW = "review";
-    public static final String SHORT_STRING = "short-string";
+public enum SentimentModel {
+    REVIEW("review"),
+    SHORT_STRING("short-string");
 
+    private String label;
+
+    /**
+     * constructor for {@code SentimentModel} which sets a label for reference
+     */
+    SentimentModel(String label) {
+        this.label = label;
+    }
+
+    /**
+     * get the label
+     * @return the label
+     */
+    public String getLabel() {
+        return label;
+    }
+
+    /**
+     * set the label
+     * @param label the label
+     */
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    /**
+     * checks if value is a valid {@code SentimentModel} enum
+     * @param value input value
+     * @return {@code SentimentModel corresponding to input value}
+     * @throws IllegalArgumentException
+     */
+    public static SentimentModel forValue(String value) throws IllegalArgumentException {
+        for (SentimentModel model : EnumSet.allOf(SentimentModel.class)) {
+            if (model.getLabel().equalsIgnoreCase(value)) {
+                return model;
+            }
+        }
+        throw new IllegalArgumentException("invalid sentiment model: " + value);
+    }
+
+    /**
+     * get the label
+     * @return the label
+     */
+    public String toValue() {
+        return label;
+    }
 }
 

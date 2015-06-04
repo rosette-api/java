@@ -17,10 +17,11 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Class that represents the data from a RaaS client entity extraction request
+ * Class that represents the data from an entity extraction request
  */
 public class EntityRequest extends Request {
-    private final EntityOptions options;
+
+    private EntityOptions options;
     
     /**
      * Constructor for {@code EntityRequest}
@@ -51,6 +52,14 @@ public class EntityRequest extends Request {
         return options;
     }
 
+    /**
+     * set the entity extraction options
+     * @param options the entity extraction options
+     */
+    public void setOptions(EntityOptions options) {
+        this.options = options;
+    }
+
     @Override
     public int hashCode() {
         int result = super.hashCode();
@@ -65,12 +74,12 @@ public class EntityRequest extends Request {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof EntityRequest) {
-            EntityRequest that = (EntityRequest) o;
-            return super.equals(o)
-                    && options != null ? getOptions().equals(that.getOptions()) : that.options == null;
-        } else {
+        if (!(o instanceof EntityRequest)) {
             return false;
         }
+
+        EntityRequest that = (EntityRequest) o;
+        return super.equals(o)
+                && options != null ? getOptions().equals(that.getOptions()) : that.options == null;
     }
 }

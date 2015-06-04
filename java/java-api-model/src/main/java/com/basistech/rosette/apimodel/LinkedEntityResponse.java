@@ -57,12 +57,12 @@ public final class LinkedEntityResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof LinkedEntityResponse) {
-            LinkedEntityResponse that = (LinkedEntityResponse) o;
-            return super.equals(o)
-                    && entities != null ? entities.equals(that.getEntities()) : entities == that.getEntities();
-        } else {
+        if (!(o instanceof LinkedEntityResponse)) {
             return false;
         }
+
+        LinkedEntityResponse that = (LinkedEntityResponse) o;
+        return super.equals(o)
+                && entities != null ? entities.equals(that.getEntities()) : entities == that.getEntities();
     }
 }

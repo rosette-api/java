@@ -19,35 +19,35 @@ package com.basistech.rosette.apimodel;
 import java.util.EnumSet;
 
 /**
- * Entity options 
+ * Entity extraction options
  */
 public final class EntityOptions {
 
-    public static final EntityOptions DEFAULT_OPTIONS = new EntityOptions(true, 8, EnumSet.allOf(ProcessorType.class), false, false);
+    public static final EntityOptions DEFAULT_OPTIONS = new EntityOptions(true, 8, EnumSet.allOf(ExtractionMethod.class), false, false);
 
-    private final Boolean resolveNamedEntities;
-    private final Integer maxEntityTokens;
-    private final EnumSet<ProcessorType> processors;
-    private final Boolean allowPartialGazetteerMatches;
-    private final Boolean redactorPreferLength;
+    private Boolean resolveNamedEntities;
+    private Integer maxEntityTokens;
+    private EnumSet<ExtractionMethod> extractionMethods;
+    private Boolean allowPartialGazetteerMatches;
+    private Boolean redactorPreferLength;
 
     /**
      * Constructor for {@code EntityOptions}
      * @param resolveNamedEntities resolve in-document named entities
      * @param maxEntityTokens max number of tokens allowed in an entity
-     * @param processors get the set of active processors
+     * @param extractionMethods get the set of active extraction methods
      * @param allowPartialGazetteerMatches whether to allow partial gazetteer matches
      * @param redactorPreferLength whether to prefer length over weights for redaction
      */
     public EntityOptions(
             Boolean resolveNamedEntities,
             Integer maxEntityTokens,
-            EnumSet<ProcessorType> processors,
+            EnumSet<ExtractionMethod> extractionMethods,
             Boolean allowPartialGazetteerMatches,
             Boolean redactorPreferLength) {
         this.resolveNamedEntities = resolveNamedEntities;
         this.maxEntityTokens = maxEntityTokens;
-        this.processors = processors;
+        this.extractionMethods = extractionMethods;
         this.allowPartialGazetteerMatches = allowPartialGazetteerMatches;
         this.redactorPreferLength = redactorPreferLength;
     }
@@ -69,11 +69,11 @@ public final class EntityOptions {
     }
 
     /**
-     * get the set of active processors 
-     * @return the set of active processors
+     * get the set of active extraction methods
+     * @return the set of active extraction methods
      */
-    public EnumSet<ProcessorType> getProcessors() {
-        return processors;
+    public EnumSet<ExtractionMethod> getExtractionMethods() {
+        return extractionMethods;
     }
 
     /**
@@ -92,11 +92,51 @@ public final class EntityOptions {
         return redactorPreferLength;
     }
 
+    /**
+     * set the resolve in-document named entities
+     * @param resolveNamedEntities the resolve in-document named entities
+     */
+    public void setResolveNamedEntities(Boolean resolveNamedEntities) {
+        this.resolveNamedEntities = resolveNamedEntities;
+    }
+
+    /**
+     * set the max number of tokens allowed in an entity
+     * @param maxEntityTokens the max number of tokens allowed in an entity
+     */
+    public void setMaxEntityTokens(Integer maxEntityTokens) {
+        this.maxEntityTokens = maxEntityTokens;
+    }
+
+    /**
+     * set the set of active extraction methods
+     * @param ExtractionMethods the set of active extraction methods
+     */
+    public void setExtractionMethods(EnumSet<ExtractionMethod> ExtractionMethods) {
+        this.extractionMethods = ExtractionMethods;
+    }
+
+    /**
+     * set whether to allow partial gazetteer matches
+     * @param allowPartialGazetteerMatches whether to allow partial gazetteer matches
+     */
+    public void setAllowPartialGazetteerMatches(Boolean allowPartialGazetteerMatches) {
+        this.allowPartialGazetteerMatches = allowPartialGazetteerMatches;
+    }
+
+    /**
+     * set whether to prefer length over weights for redaction
+     * @param redactorPreferLength whether to prefer length over weights for redaction
+     */
+    public void setRedactorPreferLength(Boolean redactorPreferLength) {
+        this.redactorPreferLength = redactorPreferLength;
+    }
+
     @Override
     public int hashCode() {
         int result = resolveNamedEntities != null ? resolveNamedEntities.hashCode() : 0;
         result = 31 * result + (maxEntityTokens != null ? maxEntityTokens.hashCode() : 0);
-        result = 31 * result + (processors != null ? processors.hashCode() : 0);
+        result = 31 * result + (extractionMethods != null ? extractionMethods.hashCode() : 0);
         result = 31 * result + (allowPartialGazetteerMatches != null ? allowPartialGazetteerMatches.hashCode() : 0);
         result = 31 * result + (redactorPreferLength != null ? redactorPreferLength.hashCode() : 0);
         return result;
@@ -109,15 +149,15 @@ public final class EntityOptions {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof EntityOptions) {
-            EntityOptions that = (EntityOptions) o;
-            return resolveNamedEntities != null ? resolveNamedEntities.equals(that.getResolveNamedEntities()) : that.resolveNamedEntities == null
-                    && maxEntityTokens != null ? maxEntityTokens.equals(that.getMaxEntityTokens()) : that.maxEntityTokens == null
-                    && processors != null ? processors.equals(that.getProcessors()) : that.processors == null
-                    && allowPartialGazetteerMatches != null ? allowPartialGazetteerMatches.equals(that.getAllowPartialGazetteerMatches()) : that.allowPartialGazetteerMatches == null
-                    && redactorPreferLength != null ? redactorPreferLength.equals(that.getRedactorPreferLength()) : that.redactorPreferLength == null;
-        } else {
+        if (!(o instanceof EntityOptions)) {
             return false;
         }
+
+        EntityOptions that = (EntityOptions) o;
+        return resolveNamedEntities != null ? resolveNamedEntities.equals(that.getResolveNamedEntities()) : that.resolveNamedEntities == null
+                && maxEntityTokens != null ? maxEntityTokens.equals(that.getMaxEntityTokens()) : that.maxEntityTokens == null
+                && extractionMethods != null ? extractionMethods.equals(that.getExtractionMethods()) : that.extractionMethods == null
+                && allowPartialGazetteerMatches != null ? allowPartialGazetteerMatches.equals(that.getAllowPartialGazetteerMatches()) : that.allowPartialGazetteerMatches == null
+                && redactorPreferLength != null ? redactorPreferLength.equals(that.getRedactorPreferLength()) : that.redactorPreferLength == null;
     }
 }

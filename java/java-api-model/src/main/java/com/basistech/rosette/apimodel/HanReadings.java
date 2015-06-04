@@ -21,7 +21,8 @@ import java.util.List;
 /**
  * Han morphological analysis readings
  */
-public class HanReadings {
+public final class HanReadings {
+
     private final String text;
     private final List<String> hanReadings;
     
@@ -68,12 +69,12 @@ public class HanReadings {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof HanReadings) {
-            HanReadings that = (HanReadings) o;
-            return text != null ? text.equals(that.getText()) : that.text == null
-                    && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : that.hanReadings == null;
-        } else {
+        if (!(o instanceof HanReadings)) {
             return false;
         }
+
+        HanReadings that = (HanReadings) o;
+        return text != null ? text.equals(that.getText()) : that.text == null
+                && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : that.hanReadings == null;
     }
 }

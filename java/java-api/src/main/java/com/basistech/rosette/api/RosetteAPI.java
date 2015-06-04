@@ -65,20 +65,20 @@ import static java.net.HttpURLConnection.HTTP_OK;
  * RosetteAPI is thread-safe and immutable.
  */
 public class RosetteAPI {
-    public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1/";
+    public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
 
-    private static final String LANGUAGE_SERVICE_PATH = "language";
-    private static final String MORPHOLOGY_SERVICE_PATH = "morphology/";
-    private static final String ENTITIES_SERVICE_PATH = "entities";
-    private static final String ENTITIES_LINKED_SERVICE_PATH = "entities/linked";
-    private static final String CATEGORIES_SERVICE_PATH = "categories";
-    private static final String SENTIMENT_SERVICE_PATH = "sentiment";
-    private static final String TRANSLATED_NAME_SERVICE_PATH = "translated-name";
-    private static final String MATCHED_NAME_SERVICE_PATH = "matched-name";
-    private static final String TOKENS_SERVICE_PATH = "tokens";
-    private static final String SENTENCES_SERVICE_PATH = "sentences";
-    private static final String INFO_SERVICE_PATH = "info";
-    private static final String PING_SERVICE_PATH = "ping";
+    private static final String LANGUAGE_SERVICE_PATH = "/language";
+    private static final String MORPHOLOGY_SERVICE_PATH = "/morphology/";
+    private static final String ENTITIES_SERVICE_PATH = "/entities";
+    private static final String ENTITIES_LINKED_SERVICE_PATH = "/entities/linked";
+    private static final String CATEGORIES_SERVICE_PATH = "/categories";
+    private static final String SENTIMENT_SERVICE_PATH = "/sentiment";
+    private static final String TRANSLATED_NAME_SERVICE_PATH = "/translated-name";
+    private static final String MATCHED_NAME_SERVICE_PATH = "/matched-name";
+    private static final String TOKENS_SERVICE_PATH = "/tokens";
+    private static final String SENTENCES_SERVICE_PATH = "/sentences";
+    private static final String INFO_SERVICE_PATH = "/info";
+    private static final String PING_SERVICE_PATH = "/ping";
     private static final String DEBUG_PARAM_ON = "?debug=true";
     private static final String DEBUG_PARAM_OFF = "";
 
@@ -140,10 +140,10 @@ public class RosetteAPI {
     }
 
     /**
-     * Constructs a Rosette API instance.
+     * Constructs a Rosette API instance without an API key.
      */
     public RosetteAPI() {
-        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        this("");
     }
 
     /**
@@ -181,7 +181,7 @@ public class RosetteAPI {
      * @throws RosetteAPIException
      */
     public InfoResponse info() throws IOException, RosetteAPIException {
-        return (InfoResponse) sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);
+        return sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);
     }
 
     /**
@@ -191,7 +191,7 @@ public class RosetteAPI {
      * @throws RosetteAPIException
      */
     public PingResponse ping() throws IOException, RosetteAPIException {
-        return (PingResponse) sendGetRequest(urlBase + PING_SERVICE_PATH, PingResponse.class);
+        return sendGetRequest(urlBase + PING_SERVICE_PATH, PingResponse.class);
     }
 
     /**
@@ -202,7 +202,7 @@ public class RosetteAPI {
      * @throws IOException
      */
     public NameMatcherResponse matchName(NameMatcherRequest request) throws RosetteAPIException, IOException {
-        return (NameMatcherResponse) sendRequest(request, urlBase + MATCHED_NAME_SERVICE_PATH, NameMatcherResponse.class);
+        return sendRequest(request, urlBase + MATCHED_NAME_SERVICE_PATH, NameMatcherResponse.class);
     }
 
     /**
@@ -213,7 +213,7 @@ public class RosetteAPI {
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
      */
     public NameTranslationResponse translateName(NameTranslationRequest request) throws RosetteAPIException, IOException {
-        return (NameTranslationResponse) sendRequest(request, urlBase + TRANSLATED_NAME_SERVICE_PATH, NameTranslationResponse.class);
+        return sendRequest(request, urlBase + TRANSLATED_NAME_SERVICE_PATH, NameTranslationResponse.class);
     }
 
     /**
@@ -227,7 +227,7 @@ public class RosetteAPI {
     public LanguageResponse getLanguage(InputStream inputStream, LanguageOptions options) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LanguageRequest request = new LanguageRequest(encodedStr, null, "text/html", null, options);
-        return (LanguageResponse) sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
+        return sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
@@ -240,7 +240,7 @@ public class RosetteAPI {
      */
     public LanguageResponse getLanguage(URL url, LanguageOptions options) throws RosetteAPIException, IOException {
         LanguageRequest request = new LanguageRequest(null, url.toString(), null, null, options);
-        return (LanguageResponse) sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
+        return sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
@@ -253,7 +253,7 @@ public class RosetteAPI {
      */
     public LanguageResponse getLanguage(String content, LanguageOptions options) throws RosetteAPIException, IOException {
         LanguageRequest request = new LanguageRequest(content, null, null, null, options);
-        return (LanguageResponse) sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
+        return sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
@@ -267,7 +267,7 @@ public class RosetteAPI {
      */
     public LanguageResponse getLanguage(String content, InputUnit unit, LanguageOptions options) throws RosetteAPIException, IOException {
         LanguageRequest request = new LanguageRequest(content, null, null, unit, options);
-        return (LanguageResponse) sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
+        return sendRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
@@ -284,7 +284,7 @@ public class RosetteAPI {
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, InputStream inputStream, String language, LinguisticsOptions options) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LinguisticsRequest request = new LinguisticsRequest(language, encodedStr, null, "text/html", null, options);
-        return (MorphologyResponse) sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
+        return sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
     }
 
     /**
@@ -300,7 +300,7 @@ public class RosetteAPI {
      */
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, URL url, String language, LinguisticsOptions options) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, null, url.toString(), null, null, options);
-        return (MorphologyResponse) sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
+        return sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
     }
 
     /**
@@ -316,7 +316,7 @@ public class RosetteAPI {
      */
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, String content, String language, LinguisticsOptions options) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, null, options);
-        return (MorphologyResponse) sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
+        return sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
     }
 
     /**
@@ -333,7 +333,7 @@ public class RosetteAPI {
      */
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, String content, String language, InputUnit unit, LinguisticsOptions options) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, unit, options);
-        return (MorphologyResponse) sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
+        return sendRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(), MorphologyResponse.class);
     }
 
     /**
@@ -354,7 +354,7 @@ public class RosetteAPI {
     public EntityResponse getEntity(InputStream inputStream, String language, EntityOptions options) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         EntityRequest request = new EntityRequest(language, encodedStr, null, "text/html", null, options);
-        return (EntityResponse) sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
+        return sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
     }
 
     /**
@@ -374,7 +374,7 @@ public class RosetteAPI {
      */
     public EntityResponse getEntity(URL url, String language, EntityOptions options) throws RosetteAPIException, IOException {
         EntityRequest request = new EntityRequest(language, null, url.toString(), null, null, options);
-        return (EntityResponse) sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
+        return sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
     }
 
     /**
@@ -394,7 +394,7 @@ public class RosetteAPI {
      */
     public EntityResponse getEntity(String content, String language, EntityOptions options) throws RosetteAPIException, IOException {
         EntityRequest request = new EntityRequest(language, content, null, null, null, options);
-        return (EntityResponse) sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
+        return sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
     }
 
     /**
@@ -415,7 +415,7 @@ public class RosetteAPI {
      */
     public EntityResponse getEntity(String content, String language, InputUnit unit, EntityOptions options) throws RosetteAPIException, IOException {
         EntityRequest request = new EntityRequest(language, content, null, null, unit, options);
-        return (EntityResponse) sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
+        return sendRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntityResponse.class);
     }
 
     /**
@@ -433,7 +433,7 @@ public class RosetteAPI {
     public LinkedEntityResponse getLinkedEntity(InputStream inputStream, String language) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LinkedEntityRequest request = new LinkedEntityRequest(language, encodedStr, null, "text/html", null);
-        return (LinkedEntityResponse) sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
+        return sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
     }
 
     /**
@@ -450,7 +450,7 @@ public class RosetteAPI {
      */
     public LinkedEntityResponse getLinkedEntity(URL url, String language) throws RosetteAPIException, IOException {
         LinkedEntityRequest request = new LinkedEntityRequest(language, null, url.toString(), null, null);
-        return (LinkedEntityResponse) sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
+        return sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
     }
 
     /**
@@ -467,7 +467,7 @@ public class RosetteAPI {
      */
     public LinkedEntityResponse getLinkedEntity(String content, String language) throws RosetteAPIException, IOException {
         LinkedEntityRequest request = new LinkedEntityRequest(language, content, null, null, null);
-        return (LinkedEntityResponse) sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
+        return sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
     }
 
     /**
@@ -485,7 +485,7 @@ public class RosetteAPI {
      */
     public LinkedEntityResponse getLinkedEntity(String content, String language, InputUnit unit) throws RosetteAPIException, IOException {
         LinkedEntityRequest request = new LinkedEntityRequest(language, content, null, null, unit);
-        return (LinkedEntityResponse) sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
+        return sendRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntityResponse.class);
     }
 
     /**
@@ -503,7 +503,7 @@ public class RosetteAPI {
     public CategoryResponse getCategories(InputStream inputStream, String language, CategoryOptions options)  throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         CategoryRequest request = new CategoryRequest(language, encodedStr, null, "text/html", null, options);
-        return (CategoryResponse) sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
+        return sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
     }
 
     /**
@@ -520,7 +520,7 @@ public class RosetteAPI {
      */
     public CategoryResponse getCategories(URL url, String language, CategoryOptions options)  throws RosetteAPIException, IOException {
         CategoryRequest request = new CategoryRequest(language, null, url.toString(), null, null, options);
-        return (CategoryResponse) sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
+        return sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
     }
 
     /**
@@ -537,7 +537,7 @@ public class RosetteAPI {
      */
     public CategoryResponse getCategories(String content, String language, CategoryOptions options)  throws RosetteAPIException, IOException {
         CategoryRequest request = new CategoryRequest(language, content, null, null, null, options);
-        return (CategoryResponse) sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
+        return sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
     }
 
     /**
@@ -555,7 +555,7 @@ public class RosetteAPI {
      */
     public CategoryResponse getCategories(String content, String language, InputUnit unit, CategoryOptions options)  throws RosetteAPIException, IOException {
         CategoryRequest request = new CategoryRequest(language, content, null, null, unit, options);
-        return (CategoryResponse) sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
+        return sendRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoryResponse.class);
     }
 
     /**
@@ -573,7 +573,7 @@ public class RosetteAPI {
     public SentimentResponse getSentiment(InputStream inputStream, String language, SentimentOptions options) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         SentimentRequest request = new SentimentRequest(language, encodedStr, null, "text/html", null, options);
-        return (SentimentResponse) sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
+        return sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -590,7 +590,7 @@ public class RosetteAPI {
      */
     public SentimentResponse getSentiment(URL url, String language, SentimentOptions options) throws RosetteAPIException, IOException {
         SentimentRequest request = new SentimentRequest(language, null, url.toString(), null, null, options);
-        return (SentimentResponse) sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
+        return sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -607,7 +607,7 @@ public class RosetteAPI {
      */
     public SentimentResponse getSentiment(String content, String language, SentimentOptions options) throws RosetteAPIException, IOException {
         SentimentRequest request = new SentimentRequest(language, content, null, null, null, options);
-        return (SentimentResponse) sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
+        return sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -625,7 +625,7 @@ public class RosetteAPI {
      */
     public SentimentResponse getSentiment(String content, String language, InputUnit unit, SentimentOptions options) throws RosetteAPIException, IOException {
         SentimentRequest request = new SentimentRequest(language, content, null, null, unit, options);
-        return (SentimentResponse) sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
+        return sendRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -640,7 +640,7 @@ public class RosetteAPI {
     public TokenResponse getTokens(InputStream inputStream, String language) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LinguisticsRequest request = new LinguisticsRequest(language, encodedStr, null, "text/html", null, null);
-        return (TokenResponse) sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
+        return sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
     }
 
     /**
@@ -654,7 +654,7 @@ public class RosetteAPI {
      */
     public TokenResponse getTokens(URL url, String language) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, null, url.toString(), null, null, null);
-        return (TokenResponse) sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
+        return sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
     }
 
     /**
@@ -668,7 +668,7 @@ public class RosetteAPI {
      */
     public TokenResponse getTokens(String content, String language) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, null, null);
-        return (TokenResponse) sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
+        return sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
     }
 
     /**
@@ -683,7 +683,7 @@ public class RosetteAPI {
      */
     public TokenResponse getTokens(String content, String language, InputUnit unit) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, unit, null);
-        return (TokenResponse) sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
+        return sendRequest(request, urlBase + TOKENS_SERVICE_PATH, TokenResponse.class);
     }
 
     /**
@@ -698,7 +698,7 @@ public class RosetteAPI {
     public SentenceResponse getSentences(InputStream inputStream, String language) throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         LinguisticsRequest request = new LinguisticsRequest(language, encodedStr, null, "text/html", null, null);
-        return (SentenceResponse) sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
+        return sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
     }
 
     /**
@@ -712,7 +712,7 @@ public class RosetteAPI {
      */
     public SentenceResponse getSentences(URL url, String language) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, null, url.toString(), null, null, null);
-        return (SentenceResponse) sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
+        return sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
     }
 
     /**
@@ -726,7 +726,7 @@ public class RosetteAPI {
      */
     public SentenceResponse getSentences(String content, String language) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, null, null);
-        return (SentenceResponse) sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
+        return sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
     }
 
     /**
@@ -741,15 +741,15 @@ public class RosetteAPI {
      */
     public SentenceResponse getSentences(String content, String language, InputUnit unit) throws RosetteAPIException, IOException {
         LinguisticsRequest request = new LinguisticsRequest(language, content, null, null, unit, null);
-        return (SentenceResponse) sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
+        return sendRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentenceResponse.class);
     }
 
     public LanguageInfoResponse getLanguageInfo() throws RosetteAPIException, IOException {
-        return (LanguageInfoResponse) sendGetRequest(urlBase + LANGUAGE_SERVICE_PATH + "/" + INFO_SERVICE_PATH, LanguageInfoResponse.class);
+        return sendGetRequest(urlBase + LANGUAGE_SERVICE_PATH + INFO_SERVICE_PATH, LanguageInfoResponse.class);
     }
 
     public ConstantsResponse getInfo(EndpointInfo endpointInfo) throws RosetteAPIException, IOException {
-        return (ConstantsResponse) sendGetRequest(urlBase + endpointInfo.getServicePath() + "/" + INFO_SERVICE_PATH, ConstantsResponse.class);
+        return sendGetRequest(urlBase + endpointInfo.getServicePath() + INFO_SERVICE_PATH, ConstantsResponse.class);
     }
 
     /**
@@ -763,10 +763,10 @@ public class RosetteAPI {
      * @throws IOException
      * @throws RosetteAPIException
      */
-    private Response sendGetRequest(String urlStr, Class<? extends Response> clazz) throws IOException, RosetteAPIException {
+    private <T extends Response> T  sendGetRequest(String urlStr, Class<T> clazz) throws IOException, RosetteAPIException {
         HttpURLConnection httpUrlConnection = openHttpURLConnection(urlStr);
         httpUrlConnection.setRequestMethod("GET");
-        return getResponse(httpUrlConnection, clazz);
+        return clazz.cast(getResponse(httpUrlConnection, clazz));
     }
 
     /**
@@ -780,13 +780,13 @@ public class RosetteAPI {
      * @throws RosetteAPIException
      * @throws IOException
      */
-    private Response sendRequest(Object request, String urlStr, Class<? extends Response> clazz) throws RosetteAPIException, IOException {
+    private <T extends Response> T sendRequest(Object request, String urlStr, Class<T> clazz) throws RosetteAPIException, IOException {
         HttpURLConnection httpUrlConnection = openHttpURLConnection(urlStr);
         httpUrlConnection.setRequestMethod("POST");
         try (OutputStream os = httpUrlConnection.getOutputStream()) {
             mapper.writeValue(os, request);
         }
-        return getResponse(httpUrlConnection, clazz);
+        return clazz.cast(getResponse(httpUrlConnection, clazz));
     }
 
     /**
@@ -824,7 +824,7 @@ public class RosetteAPI {
         try (
             InputStream stream = status != HTTP_OK ? httpUrlConnection.getErrorStream() : httpUrlConnection.getInputStream();
             InputStream inputStream =
-                "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream;
+                "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream
         ) {
             if (HTTP_OK != status) {
                 ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);

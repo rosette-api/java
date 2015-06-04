@@ -21,7 +21,8 @@ import java.util.List;
 /**
  * model for categorization
  */
-public class Category {
+public final class Category {
+
     private final String label;
     private final double confidence;
     private final List<String> explanations;
@@ -29,7 +30,7 @@ public class Category {
     /**
      * Constructor for {@code Category}
      * @param label label for contextual category
-     * @param confidence confidence (0-1)
+     * @param confidence confidence score (0.0-1.0)
      * @param explanations list of input text elements
      */
     public Category(String label, double confidence, List<String> explanations) {
@@ -47,8 +48,8 @@ public class Category {
     }
 
     /**
-     * get the confidence (0-1)
-     * @return the confidence
+     * get the confidence score (0.0-1.0)
+     * @return the confidence score
      */
     public double getConfidence() {
         return confidence;
@@ -80,13 +81,13 @@ public class Category {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Category) {
-            Category that = (Category) o;
-            return label != null ? label.equals(that.label) : that.label == null
-                    && confidence == that.confidence
-                    && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;
-        } else {
+        if (!(o instanceof Category)) {
             return false;
         }
+
+        Category that = (Category) o;
+        return label != null ? label.equals(that.label) : that.label == null
+                && confidence == that.confidence
+                && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;
     }
 }

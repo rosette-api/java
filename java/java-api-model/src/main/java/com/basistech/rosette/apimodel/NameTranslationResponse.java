@@ -20,6 +20,7 @@ package com.basistech.rosette.apimodel;
  * Simple api response data model for name translation
  */
 public final class NameTranslationResponse extends Response {
+
     private final TranslatedNameResult result;
     
     /**
@@ -53,12 +54,12 @@ public final class NameTranslationResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof NameTranslationResponse) {
-            NameTranslationResponse that = (NameTranslationResponse) o;
-            return super.equals(o)
-                    && result != null ? result.equals(that.getResult()) : that.result == null;
-        } else {
+        if (!(o instanceof NameTranslationResponse)) {
             return false;
         }
+
+        NameTranslationResponse that = (NameTranslationResponse) o;
+        return super.equals(o)
+                && result != null ? result.equals(that.getResult()) : that.result == null;
     }
 }

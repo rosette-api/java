@@ -19,7 +19,8 @@ package com.basistech.rosette.apimodel;
 /**
  * lemma (canonical form) of the word
  */
-public class Lemma {
+public final class Lemma {
+
     private final String text;
     private final String lemma;
 
@@ -66,12 +67,12 @@ public class Lemma {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Lemma) {
-            Lemma that = (Lemma) o;
-            return text != null ? text.equals(that.getText()) : that.text == null
-                    && lemma != null ? lemma.equals(that.getLemma()) : that.lemma == null;
-        } else {
+        if (!(o instanceof Lemma)) {
             return false;
         }
+
+        Lemma that = (Lemma) o;
+        return text != null ? text.equals(that.getText()) : that.text == null
+                && lemma != null ? lemma.equals(that.getLemma()) : that.lemma == null;
     }
 }

@@ -17,9 +17,10 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * entity extractor (REX) entity
+ * Entity extracted by the entity extractor
  */
-public class ExtractedEntity {
+public final class ExtractedEntity {
+
     private final int indocChainId;
     private final String type;
     private final String mention;
@@ -121,16 +122,16 @@ public class ExtractedEntity {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof ExtractedEntity) {
-            ExtractedEntity that = (ExtractedEntity) o;
-            return indocChainId == that.getIndocChainId()
-                    && type != null ? type.equals(that.getType()) : that.type == null
-                    && mention != null ? mention.equals(that.getMention()) : that.mention == null
-                    && normalized != null ? normalized.equals(that.getNormalized()) : that.normalized == null
-                    && count == that.getCount()
-                    && confidence == that.getConfidence();
-        } else {
+        if (!(o instanceof ExtractedEntity)) {
             return false;
         }
+
+        ExtractedEntity that = (ExtractedEntity) o;
+        return indocChainId == that.getIndocChainId()
+                && type != null ? type.equals(that.getType()) : that.type == null
+                && mention != null ? mention.equals(that.getMention()) : that.mention == null
+                && normalized != null ? normalized.equals(that.getNormalized()) : that.normalized == null
+                && count == that.getCount()
+                && confidence == that.getConfidence();
     }
 }

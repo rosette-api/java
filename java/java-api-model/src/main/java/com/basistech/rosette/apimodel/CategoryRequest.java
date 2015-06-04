@@ -17,10 +17,11 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Class that represents the data from a RaaS categorization request
+ * Class that represents the data from a categorization request
  */
-public class CategoryRequest extends Request {
-    private final CategoryOptions options;
+public final class CategoryRequest extends Request {
+
+    private CategoryOptions options;
 
     /**
      * Constructor for {@code CategoryRequest}
@@ -51,6 +52,14 @@ public class CategoryRequest extends Request {
         return options;
     }
 
+    /**
+     * set the categorization options
+     * @param options
+     */
+    public void setOptions(CategoryOptions options) {
+        this.options = options;
+    }
+
     @Override
     public int hashCode() {
         int result = super.hashCode();
@@ -65,12 +74,12 @@ public class CategoryRequest extends Request {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof CategoryRequest) {
-            CategoryRequest that = (CategoryRequest) o;
-            return super.equals(o)
-                    && options != null ? options.equals(that.getOptions()) : that.options == null;
-        } else {
+        if (!(o instanceof CategoryRequest)) {
             return false;
         }
+
+        CategoryRequest that = (CategoryRequest) o;
+        return super.equals(o)
+                && options != null ? options.equals(that.getOptions()) : that.options == null;
     }
 }

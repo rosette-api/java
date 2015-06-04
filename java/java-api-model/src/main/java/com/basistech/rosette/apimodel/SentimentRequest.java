@@ -17,11 +17,11 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Class that represents the data from a RaaS sentiment analysis request
+ * Class that represents the data from a sentiment analysis request
  */
-public class SentimentRequest extends Request {
+public final class SentimentRequest extends Request {
 
-    private final SentimentOptions options;
+    private SentimentOptions options;
     
     /**
      * constructor for {@code SentimentRequest}
@@ -52,6 +52,14 @@ public class SentimentRequest extends Request {
         return options;
     }
 
+    /**
+     * set the sentiment options
+     * @param options the sentiment options
+     */
+    public void setOptions(SentimentOptions options) {
+        this.options = options;
+    }
+
     @Override
     public int hashCode() {
         int result = super.hashCode();
@@ -66,12 +74,12 @@ public class SentimentRequest extends Request {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof SentimentRequest) {
-            SentimentRequest that = (SentimentRequest) o;
-            return super.equals(o)
-                    && options != null ? options.equals(that.getOptions()) : that.options == null;
-        } else {
+        if (!(o instanceof SentimentRequest)) {
             return false;
         }
+
+        SentimentRequest that = (SentimentRequest) o;
+        return super.equals(o)
+                && options != null ? options.equals(that.getOptions()) : that.options == null;
     }
 }

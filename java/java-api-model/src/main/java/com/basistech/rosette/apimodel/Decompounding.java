@@ -21,7 +21,8 @@ import java.util.List;
 /**
  * Decompounded components of a compound word
  */
-public class Decompounding {
+public final class Decompounding {
+
     private final String text;
     private final List<String> compoundComponents;
     
@@ -68,12 +69,12 @@ public class Decompounding {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Decompounding) {
-            Decompounding that = (Decompounding) o;
-            return text != null ? text.equals(that.getText()) : that.text == null
-                    && compoundComponents != null ? compoundComponents.equals(that.getCompoundComponents()) : that.compoundComponents == null;
-        } else {
+        if (!(o instanceof Decompounding)) {
             return false;
         }
+
+        Decompounding that = (Decompounding) o;
+        return text != null ? text.equals(that.getText()) : that.text == null
+                && compoundComponents != null ? compoundComponents.equals(that.getCompoundComponents()) : that.compoundComponents == null;
     }
 }

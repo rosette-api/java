@@ -16,6 +16,19 @@
 
 package com.basistech.rosette.apimodel;
 
+/**
+ * <code>LanguageCodes</code> are based on the Feb 10, 2009 version of ISO 639-3.  A <code>LanguageCode</code> is either
+ * standard, meaning that it is based on an ISO 639-3 language code, or nonstandard, meaning that it is a Basis extension.
+ * The nonstandard <code>LanguageCodes</code> are:
+ *
+ * <ul>
+ * <li>UNKNOWN</li>
+ * <li>SIMPLIFIED_CHINESE</li>
+ * <li>TRADITIONAL_CHINESE</li>
+ * <li>ENGLISH_UPPERCASE</li>
+ * </ul>
+ *
+ */
 public final class LanguageCode {
 
     public static final String UNKNOWN = "xxx";

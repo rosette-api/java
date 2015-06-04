@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 import java.util.Arrays;
 
 /**
- * Class containing data common to RaaS client requests
+ * Class containing data common to Rosette API client requests
  */
 public abstract class Request {
 
@@ -174,16 +174,16 @@ public abstract class Request {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Request) {
-            Request that = (Request) o;
-            return language != null ? language.equals(that.getLanguage()) : that.language == null
-                    && content != null ? content.equals(that.getContent()) : that.content == null
-                    && contentUri != null ? contentUri.equals(that.getContentUri()) : that.contentUri == null
-                    && contentType != null ? contentType.equals(that.getContentType()) : that.contentType == null
-                    && unit != null ? unit.equals(that.getUnit()) : that.unit == null
-                    && contentBytes != null ? Arrays.equals(contentBytes, that.getContentBytes()) : that.contentBytes == null;
-        } else {
+        if (!(o instanceof Request)) {
             return false;
         }
+
+        Request that = (Request) o;
+        return language != null ? language.equals(that.getLanguage()) : that.language == null
+                && content != null ? content.equals(that.getContent()) : that.content == null
+                && contentUri != null ? contentUri.equals(that.getContentUri()) : that.contentUri == null
+                && contentType != null ? contentType.equals(that.getContentType()) : that.contentType == null
+                && unit != null ? unit.equals(that.getUnit()) : that.unit == null
+                && contentBytes != null ? Arrays.equals(contentBytes, that.getContentBytes()) : that.contentBytes == null;
     }
 }

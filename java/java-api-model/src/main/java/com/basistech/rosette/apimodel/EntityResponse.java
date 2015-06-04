@@ -60,12 +60,12 @@ public final class EntityResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof EntityResponse) {
-            EntityResponse that = (EntityResponse) o;
-            return super.equals(o)
-                    && entities != null ? entities.equals(that.getEntities()) : that.entities == null;
-        } else {
+        if (!(o instanceof EntityResponse)) {
             return false;
         }
+
+        EntityResponse that = (EntityResponse) o;
+        return super.equals(o)
+                && entities != null ? entities.equals(that.getEntities()) : that.entities == null;
     }
 }

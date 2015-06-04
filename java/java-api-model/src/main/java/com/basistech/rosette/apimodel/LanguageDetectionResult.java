@@ -20,7 +20,8 @@ package com.basistech.rosette.apimodel;
 /**
  * Language detection result
  */
-public class LanguageDetectionResult {
+public final class LanguageDetectionResult {
+
     private final String language;
     private final double confidence;
     
@@ -70,12 +71,12 @@ public class LanguageDetectionResult {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof LanguageDetectionResult) {
-            LanguageDetectionResult that = (LanguageDetectionResult) o;
-            return language != null ? language.equals(that.getLanguage()) : that.language == null
-                    && confidence == that.getConfidence();
-        } else {
+        if (!(o instanceof LanguageDetectionResult)) {
             return false;
         }
+
+        LanguageDetectionResult that = (LanguageDetectionResult) o;
+        return language != null ? language.equals(that.getLanguage()) : that.language == null
+                && confidence == that.getConfidence();
     }
 }

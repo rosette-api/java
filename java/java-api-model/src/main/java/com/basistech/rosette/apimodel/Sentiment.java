@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Sentiment analyzer sentiment
  */
-public class Sentiment {
+public final class Sentiment {
 
     private final String label;
     private final double confidence;
@@ -84,13 +84,13 @@ public class Sentiment {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Sentiment) {
-            Sentiment that = (Sentiment) o;
-            return label != null ? label.equals(that.getLabel()) : that.label == null
-                    && confidence == that.getConfidence()
-                    && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;
-        } else {
+        if (!(o instanceof Sentiment)) {
             return false;
         }
+
+        Sentiment that = (Sentiment) o;
+        return label != null ? label.equals(that.getLabel()) : that.label == null
+                && confidence == that.getConfidence()
+                && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;
     }
 }

@@ -58,12 +58,12 @@ public final class ScriptResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof ScriptResponse) {
-            ScriptResponse that = (ScriptResponse) o;
-            return super.equals(o)
-                    && scripts != null ? scripts.equals(that.getScripts()) : that.scripts == null;
-        } else {
+        if (!(o instanceof ScriptResponse)) {
             return false;
         }
+
+        ScriptResponse that = (ScriptResponse) o;
+        return super.equals(o)
+                && scripts != null ? scripts.equals(that.getScripts()) : that.scripts == null;
     }
 }

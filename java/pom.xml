@@ -6,10 +6,13 @@
     <parent>
         <artifactId>ws-client-bindings</artifactId>
         <groupId>com.basistech.ws</groupId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.5-SNAPSHOT</version>
     </parent>
 
+    <groupId>com.basistech.rosette</groupId>
     <artifactId>java</artifactId>
+    <version>0.5-SNAPSHOT</version>
+
     <packaging>pom</packaging>
 
     <properties>

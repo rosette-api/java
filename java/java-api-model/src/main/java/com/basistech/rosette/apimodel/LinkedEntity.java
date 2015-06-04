@@ -17,9 +17,10 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Entity Resolver entity
+ * Entity linked against a knowledge base (default is Wikipedia)
  */
-public class LinkedEntity {
+public final class LinkedEntity {
+
     private final String entityId;
     private final int indocChainId;
     private final String mention;
@@ -94,14 +95,14 @@ public class LinkedEntity {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof LinkedEntity) {
-            LinkedEntity that = (LinkedEntity) o;
-            return entityId != null ? entityId.equals(that.getEntityId()) : that.entityId == null
-                    && indocChainId == that.getIndocChainId()
-                    && mention != null ? mention.equals(that.getMention()) : that.mention == null
-                    && confidence == that.getConfidence();
-        } else {
+        if (!(o instanceof LinkedEntity)) {
             return false;
         }
+
+        LinkedEntity that = (LinkedEntity) o;
+        return entityId != null ? entityId.equals(that.getEntityId()) : that.entityId == null
+                && indocChainId == that.getIndocChainId()
+                && mention != null ? mention.equals(that.getMention()) : that.mention == null
+                && confidence == that.getConfidence();
     }
 }
