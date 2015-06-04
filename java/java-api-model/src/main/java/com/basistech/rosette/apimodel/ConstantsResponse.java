@@ -40,16 +40,16 @@ public final class ConstantsResponse extends Response {
     }
 
     /**
-     * get the component version 
-     * @return the component version
+     * get the Rosette API endpoint version
+     * @return the Rosette API endpoint version
      */
     public String getVersion() {
         return version;
     }
 
     /**
-     * get the component build 
-     * @return the component build
+     * get the Rosette API endpoint build
+     * @return the Rosette API endpoint build
      */
     public String getBuild() {
         return build;
@@ -57,7 +57,7 @@ public final class ConstantsResponse extends Response {
 
     /**
      * get support 
-     * @return support
+     * @return support (reserved for future feature)
      */
     public Object getSupport() {
         return support;
