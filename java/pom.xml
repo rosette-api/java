@@ -17,7 +17,7 @@
         <bt-jackson-version>2.5.3</bt-jackson-version>
         <junit-version>4.12</junit-version>
         <maven-shade-plugin-version>2.3</maven-shade-plugin-version>
-        <mockserver-netty-version>3.9.15</mockserver-netty-version>
+        <mockserver-netty-version>3.9.1</mockserver-netty-version>
     </properties>
     <build>
         <defaultGoal>install</defaultGoal>

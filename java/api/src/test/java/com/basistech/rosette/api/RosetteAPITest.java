@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.ServerSocket;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.DirectoryStream;
@@ -30,14 +29,13 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockserver.integration.ClientAndServer;
+import org.mockserver.client.server.MockServerClient;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
@@ -66,27 +64,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(Parameterized.class)
 public class RosetteAPITest extends Assert {
 
-    private static int serverPort;
+    private int serverPort;
     private static ObjectMapper mapper;
     private final String testFilename;
     private RosetteAPI api;
     private String responseStr;
-    private ClientAndServer mockServer;
     private String language;
 
-    public RosetteAPITest(String filename) {
+    public RosetteAPITest(int serverPort, String filename) {
+        this.serverPort = serverPort;
         testFilename = filename;
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() throws URISyntaxException, IOException {
+        int serverPort;
+        try (
+            InputStream is = RosetteAPITest.class.getClassLoader().getResourceAsStream("MockServerClientPort.property");
+        ) {
+            String s = getStringFromInputStream(is);
+            serverPort = Integer.parseInt(s);
+        }
         URL url = RosetteAPITest.class.getClassLoader().getResource("response");
         File dir = new File(url.toURI());
         Collection<Object[]> params = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
             for (Path file : paths) {
                 if (file.toString().endsWith(".json")) {
-                    params.add(new Object[]{file.getFileName().toString()});
+                    params.add(new Object[]{serverPort, file.getFileName().toString()});
                 }
             }
         }
@@ -112,21 +117,14 @@ public class RosetteAPITest extends Assert {
             statusCode = Integer.parseInt(statusStr);
         }
 
-        try (ServerSocket s = new ServerSocket(0)) {
-            serverPort = s.getLocalPort();
-        }
-        mockServer = ClientAndServer.startClientAndServer(serverPort);
-        mockServer.when(HttpRequest.request().withPath("/.*"))
+        new MockServerClient("localhost", serverPort)
+                .reset()
+                .when(HttpRequest.request().withPath("/.*"))
                 .respond(HttpResponse.response().withStatusCode(statusCode).withBody(responseStr));
 
         String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
         api = new RosetteAPI();
         api.setUrlBase(mockServiceUrl);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        mockServer.stop();
     }
 
     @Test
