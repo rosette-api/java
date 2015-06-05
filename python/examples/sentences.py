@@ -4,30 +4,36 @@
 Example code to call Rosette API to get sentences in a piece of text.
 '''
 
-import sys
-import pprint
 import argparse
+import pprint
+import sys
+
 # enable imports from rosette.api
 sys.path += '../../'
 
 from rosette.api import API, RosetteParameters
 
-# Get the user's access key
 parser = argparse.ArgumentParser(description='Accept Rosette API key')
-parser.add_argument('--key')
-
-# Optional user service URL
-parser.add_argument('--service_url', nargs='?')
+parser.add_argument('--key', required=True, help='Rosette API key')
+parser.add_argument('--service_url', nargs='?', help='Optional user service URL')
 args = parser.parse_args()
 
-# Create an API
+# Create an API instance
 if args.service_url:
-    api = API(service_url=args.service_url,user_key=args.key)
+    api = API(service_url=args.service_url, user_key=args.key)
 else:
     api = API(user_key=args.key)
 
 params = RosetteParameters()
-params["content"] = u"The Olympic Games are an important international event featuring summer and winter sports. Olympic Games are held every two years, with Summer and Winter Olympic Games taking turns. Each seasonal games happens every four years. Originally, the ancient Olympic Games were held in Olympia, Greece, from the 8th century BC to the 5th century AD."
+params["content"] = u"This land is your land This land is my land\n"
+params["content"] += u"From California to the New York island;\n"
+params["content"] += u"From the red wood forest to the Gulf Stream waters\n\n"
+params["content"] += u"This land was made for you and Me.\n\n"
+params["content"] += u"As I was walking that ribbon of highway,\n"
+params["content"] += u"I saw above me that endless skyway:\n"
+params["content"] += u"I saw below me that golden valley:\n"
+params["content"] += u"This land was made for you and me.\n"
+
 op = api.sentences()
 result = op.operate(params)
 
