@@ -1,6 +1,6 @@
 <?php
 /**
- * class RosetteParameters
+ * class DocumentParameters
  *
  * Parameter class for the standard Rosette API endpoints.  Does not include Name Translation
  * @copyright 2014-2015 Basis Technology Corporation.
@@ -17,10 +17,10 @@
 namespace rosette\api;
 
 /**
- * Class RosetteParameters
+ * Class DocumentParameters
  * @package rosette\api
  */
-class RosetteParameters extends RosetteParamsSetBase
+class DocumentParameters extends RosetteParamsSetBase
 {
     /**
      * Constructor

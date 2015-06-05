@@ -106,31 +106,31 @@ EOD;
         $this->setUpHttpMock();
 
         $this->testUrl = 'http://'.APITest::$IP.':'.APITest::$port;
-        $rp = new RosetteParameters();
+        $rp = new DocumentParameters();
         $rp->params['content'] = $this->HAM_SENTENCE;
         $this->hamParams = $rp;
 
-        $rp = new RosetteParameters();
+        $rp = new DocumentParameters();
         $rp->params['content'] = $this->HAM_SENTENCE;
         $rp->params['contentType'] = RosetteConstants::$DataFormat['UNSPECIFIED'];
         $this->hamParamsU = $rp;
 
-        $rp = new RosetteParameters();
+        $rp = new DocumentParameters();
         $rp->params['content'] = $this->HAM_SENTENCE;
         $rp->params['contentType'] = RosetteConstants::$DataFormat['HTML'];
         $this->dtHtmlParams = $rp;
 
-        $rp = new RosetteParameters();
+        $rp = new DocumentParameters();
         $rp->params['content'] = $this->XHTML;
         $rp->params['contentType'] = RosetteConstants::$DataFormat['XHTML'];
         $this->dtXHtmlParams = $rp;
 
-        $rp = new RosetteParameters();
+        $rp = new DocumentParameters();
         $rp->params['content'] = "In the short story 'নষ্টনীড়', Rabindranath Tagore wrote,"
             ."\"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\".";
         $this->tagParams = $rp;
 
-        $rp = new RosetteParameters();
+        $rp = new DocumentParameters();
         $rp->params['contentUri'] = 'http://www.basistech.com';
         $this->uriParams = $rp;
 
@@ -705,7 +705,7 @@ EOD;
         // not exist.
         $api->setVersionChecked(true);
 
-        $params = new RosetteParameters();
+        $params = new DocumentParameters();
         $textPath = dirname(__DIR__).'/api/chinese-example.html';
         $params->LoadDocumentFile($textPath, RosetteConstants::$DataFormat['HTML']);
         $result = $api->morphology($params, RosetteConstants::$MorphologyOutput['PARTS_OF_SPEECH']);
