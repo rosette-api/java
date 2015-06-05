@@ -4,20 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.basistech.ws</groupId>
-        <artifactId>rosette-api</artifactId>
-        <version>0.5-SNAPSHOT</version>
+        <groupId>com.basistech</groupId>
+        <artifactId>open-source-parent</artifactId>
+        <version>0.0.5</version>
     </parent>
-
     <groupId>com.basistech.rosette</groupId>
-    <artifactId>java</artifactId>
-    <version>0.5-SNAPSHOT</version>
-
+    <artifactId>java-api-parent</artifactId>
+    <version>0.5.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-        <bt-jackson-version>2.4.3</bt-jackson-version>
+        <bt-jackson-version>2.5.3</bt-jackson-version>
+        <junit-version>4.12</junit-version>
         <maven-shade-plugin-version>2.3</maven-shade-plugin-version>
+        <mockserver-netty-version>3.9.15</mockserver-netty-version>
     </properties>
     <build>
         <defaultGoal>install</defaultGoal>
@@ -32,7 +32,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
                 <reportSets>
                     <reportSet>
                         <id>default</id>

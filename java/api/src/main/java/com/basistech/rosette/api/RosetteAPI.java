@@ -64,7 +64,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
  * You can use the RosetteAPI to access Rosette API endpoints.
  * RosetteAPI is thread-safe and immutable.
  */
-public class RosetteAPI {
+public final class RosetteAPI {
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
 
     private static final String LANGUAGE_SERVICE_PATH = "/language";

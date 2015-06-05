@@ -26,7 +26,7 @@ import java.util.Set;
 
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
-import com.basistech.rosette.apimodel.CategorizationModel;
+import com.basistech.rosette.apimodel.CategoryTaxonomy;
 import com.basistech.rosette.apimodel.Category;
 import com.basistech.rosette.apimodel.CategoryOptions;
 import com.basistech.rosette.apimodel.CategoryResponse;
@@ -126,9 +126,9 @@ public class APIExample {
         doLinkedEntity(cl.getResourceAsStream("English.txt"));
 
         doCategories(url);
-        doCategories(url, new CategoryOptions(CategorizationModel.QAG, false, 1));
-        doCategories(url, new CategoryOptions(CategorizationModel.QAG, true, 1));
-        doCategories(url, new CategoryOptions(CategorizationModel.QAG, true, 10));
+        doCategories(url, new CategoryOptions(CategoryTaxonomy.QAG, false, 1));
+        doCategories(url, new CategoryOptions(CategoryTaxonomy.QAG, true, 1));
+        doCategories(url, new CategoryOptions(CategoryTaxonomy.QAG, true, 10));
         doCategories(text);
         doCategories(cl.getResourceAsStream("English.txt"));
 

@@ -17,7 +17,7 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Data from constant tickets
+ * Data from informational request such as version, build, and support info
  */
 public final class ConstantsResponse extends Response {
 

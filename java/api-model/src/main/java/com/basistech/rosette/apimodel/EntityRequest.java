@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 /**
  * Class that represents the data from an entity extraction request
  */
-public class EntityRequest extends Request {
+public final class EntityRequest extends Request {
 
     private EntityOptions options;
     
