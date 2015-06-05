@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-Example code to call Rosette API to get match score (similarity) of two names.
+Example code to call Rosette API to get information such as version and build
 '''
 
 import argparse
@@ -11,7 +11,7 @@ import sys
 # enable imports from rosette.api
 sys.path += '../../'
 
-from rosette.api import API, RniParameters
+from rosette.api import API, Operator
 
 parser = argparse.ArgumentParser(description='Accept Rosette API key')
 parser.add_argument('--key', required=True, help='Rosette API key')
@@ -24,10 +24,7 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-params = RniParameters()
-params["name1"] = { "text":"Michael Jackson", "language": "eng", "entityType":"PERSON" }
-params["name2"] = { "text":"迈克尔·杰克逊", "entityType":"PERSON" }
-op = api.matched_name()
-result = op.operate(params)
+op = Operator(api, None)
+result = op.info()
 
 pprint.pprint(result)

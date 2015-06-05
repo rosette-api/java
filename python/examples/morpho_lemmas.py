@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-Example code to call Rosette API to get linked (against Wikipedia) entities from a piece of text.
+Example code to call Rosette API to get Chinese readings fo words in a piece of text.
 '''
 
 import argparse
@@ -11,7 +11,7 @@ import sys
 # enable imports from rosette.api
 sys.path += '../../'
 
-from rosette.api import API, RosetteParameters
+from rosette.api import API, RosetteParameters, MorphologyOutput
 
 parser = argparse.ArgumentParser(description='Accept Rosette API key')
 parser.add_argument('--key', required=True, help='Rosette API key')
@@ -25,10 +25,8 @@ else:
     api = API(user_key=args.key)
 
 params = RosetteParameters()
-params["content"] = u"""President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill
-        based on Christian faith by July 1st or Washington will become totally dysfunctional,
-        a terrible outcome for American people."""
-op = api.entities(True) # entity linking is turned on
+params["content"] = u"The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
+op = api.morphology(MorphologyOutput.LEMMAS)
 result = op.operate(params)
 
 pprint.pprint(result)

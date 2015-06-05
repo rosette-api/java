@@ -25,10 +25,9 @@ else:
     api = API(user_key=args.key)
 
 params = RosetteParameters()
-
-params["content"] = u"President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill"
-params["content"] += u"based on Christian faith by July 1st or Washington will become totally dysfunctional,"
-params["content"] += u"a terrible outcome for American people."
+params["content"] = u"""President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill
+        based on Christian faith by July 1st or Washington will become totally dysfunctional,
+        a terrible outcome for American people."""
 op = api.entities(False) # entity linking is turned off
 result = op.operate(params)
 

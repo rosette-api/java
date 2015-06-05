@@ -25,14 +25,17 @@ else:
     api = API(user_key=args.key)
 
 params = RosetteParameters()
-params["content"] = u"This land is your land This land is my land\n"
-params["content"] += u"From California to the New York island;\n"
-params["content"] += u"From the red wood forest to the Gulf Stream waters\n\n"
-params["content"] += u"This land was made for you and Me.\n\n"
-params["content"] += u"As I was walking that ribbon of highway,\n"
-params["content"] += u"I saw above me that endless skyway:\n"
-params["content"] += u"I saw below me that golden valley:\n"
-params["content"] += u"This land was made for you and me.\n"
+params["content"] = u"""
+This land is your land This land is my land
+From California to the New York island;
+From the red wood forest to the Gulf Stream waters
+
+This land was made for you and Me.
+
+As I was walking that ribbon of highway,
+I saw above me that endless skyway:
+I saw below me that golden valley:
+This land was made for you and me."""
 
 op = api.sentences()
 result = op.operate(params)
