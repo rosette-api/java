@@ -1,21 +1,17 @@
 # -*- coding: utf-8 -*-
 
-'''
-Example code to call Rosette API to get Chinese readings fo words in a piece of text.
-'''
+"""
+Example code to call Rosette API to get de-compounded words from a piece of text.
+"""
 
 import argparse
 import pprint
-import sys
-
-# enable imports from rosette.api
-sys.path += '../../'
 
 from rosette.api import API, RosetteParameters, MorphologyOutput
 
-parser = argparse.ArgumentParser(description='Accept Rosette API key')
-parser.add_argument('--key', required=True, help='Rosette API key')
-parser.add_argument('--service_url', nargs='?', help='Optional user service URL')
+parser = argparse.ArgumentParser(description="Get de-compounded words from a piece of text")
+parser.add_argument("--key", required=True, help="Rosette API key")
+parser.add_argument("--service_url", nargs="?", help="Optional user service URL")
 args = parser.parse_args()
 
 # Create an API instance

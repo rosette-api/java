@@ -1,22 +1,18 @@
 # -*- coding: utf-8 -*-
 
-'''
-Example code to call Rosette API to get the category of a piece of text.
-'''
+"""
+Example code to call Rosette API to get the category of a document (at a given URL).
+"""
 
 import argparse
 import pprint
-import sys
-
-# enable imports from rosette.api
-sys.path += '../../'
 
 from rosette.api import API, RosetteParameters
 
-parser = argparse.ArgumentParser(description='Accept Rosette API key')
-parser.add_argument('--key', required=True, help='Rosette API key')
-parser.add_argument('--service_url', nargs='?', help='Optional user service URL')
-parser.add_argument('--url', nargs='?', default='http://www.basistech.com/about/', help='Optional URL for data')
+parser = argparse.ArgumentParser(description="Get the category of a piece of a document at a URL")
+parser.add_argument("--key", required=True, help="Rosette API key")
+parser.add_argument("--service_url", nargs="?", help="Optional user service URL")
+parser.add_argument("--url", nargs="?", default="http://www.basistech.com/about/", help="Optional URL for data")
 args = parser.parse_args()
 
 # Create an API instance
