@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.basistech.ws</groupId>
-    <artifactId>ws-client-bindings</artifactId>
-    <version>0.5-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <groupId>com.basistech.rosette.api</groupId>
+    <artifactId>bindings</artifactId>
+    <version>0.5.0-SNAPSHOT</version>
     <parent>
         <groupId>com.basistech</groupId>
-        <artifactId>textanalytics</artifactId>
-        <version>56.1.0</version>
+        <artifactId>basis-parent</artifactId>
+        <version>55.3</version>
     </parent>
+    <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
     <url>http://git.basistech.net/pages/textanalytics/ws-client-bindings</url>
     <scm>
@@ -25,5 +25,6 @@
     <modules>
         <module>php</module>
         <module>python</module>
+        <module>java</module>
     </modules>
 </project>

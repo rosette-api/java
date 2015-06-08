@@ -66,9 +66,12 @@ if resp.status_code != 200:
     print "info call failed - abord"
     sys.exit(1)
 else:
-    with io.open("response/info.json", "w", encoding="utf8") as resp_file:
+    with io.open("response/info.json", "w", encoding="utf8") as resp_file,\
+        io.open("response/info.status", "w", encoding="utf8") as resp_status_file:
         resp_file.write(json.dumps(resp.json(), ensure_ascii=False, indent=2, sort_keys=True, encoding="utf8"))
+        resp_status_file.write(unicode(resp.status_code))
         resp_file.close()
+        resp_status_file.clse()
 
 # deal with local docs
 with open("source/doc-strings.tsv", "r") as tsvfile:
