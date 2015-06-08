@@ -5,20 +5,15 @@ Example code to call Rosette API to get the sentiment of a local file.
 """
 
 import argparse
-import os
 import pprint
+import tempfile
 
 from rosette.api import API, RosetteParameters
 
-parser = argparse.ArgumentParser(description="Get the sentiment of the text in a local file")
-parser.add_argument("--key", required=True, help="Rosette API key")
-parser.add_argument("--service_url", nargs="?", help="Optional user service URL")
-parser.add_argument("--file", nargs="?", default="simple.html", help="Optional input file for data")
-args = parser.parse_args()
-
-# Create a file to read from
-f = open("simple.html","w+b")
-message = """<!DOCTYPE html>
+# Create default file to read from
+f = tempfile.NamedTemporaryFile(suffix=".html")
+message = """
+<!DOCTYPE html>
 <html>
     <body>
 
@@ -29,7 +24,14 @@ message = """<!DOCTYPE html>
     </body>
 </html>"""
 f.write(message)
-f.close()
+f.seek(0)
+
+# Collect arguments
+parser = argparse.ArgumentParser(description="Get the sentiment of the text in a local file")
+parser.add_argument("--key", required=True, help="Rosette API key")
+parser.add_argument("--service_url", nargs="?", help="Optional user service URL")
+parser.add_argument("--file", nargs="?", default=f.name, help="Optional input file for data")
+args = parser.parse_args()
 
 # Create an API instance
 if args.service_url:
@@ -45,6 +47,6 @@ op = api.sentiment()
 result = op.operate(params)
 
 # Clean up the file
-os.remove("simple.html")
+f.close()
 
 pprint.pprint(result)
