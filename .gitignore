@@ -9,3 +9,4 @@ release.properties
 *~
 *.pyc
 mockserver*log
+**/.DS_Store
