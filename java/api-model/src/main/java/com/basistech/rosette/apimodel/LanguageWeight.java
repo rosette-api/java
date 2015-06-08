@@ -21,8 +21,8 @@ package com.basistech.rosette.apimodel;
  */
 public final class LanguageWeight {
 
-    private final String language;
-    private final String script;
+    private final LanguageCode language;
+    private final ISO15924 script;
     private final Integer weight;
 
     /**
@@ -32,8 +32,8 @@ public final class LanguageWeight {
      * @param weight weight used to resolve ambiguous results
      */
     public LanguageWeight(
-            String language,
-            String script,
+            LanguageCode language,
+            ISO15924 script,
             Integer weight
     ) {
         this.language = language;
@@ -47,7 +47,7 @@ public final class LanguageWeight {
      * @param weight weight used to resolve ambiguous results
      */
     public LanguageWeight(
-            String language,
+            LanguageCode language,
             Integer weight
     ) {
         this.language = language;
@@ -59,7 +59,7 @@ public final class LanguageWeight {
      * get the language 
      * @return the language
      */
-    public String getLanguage() {
+    public LanguageCode getLanguage() {
         return language;
     }
 
@@ -67,7 +67,7 @@ public final class LanguageWeight {
      * get the script 
      * @return the script
      */
-    public String getScript() {
+    public ISO15924 getScript() {
         return script;
     }
 

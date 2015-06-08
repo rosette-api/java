@@ -16,13 +16,14 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.rosette.apimodel.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LanguageDetectionResultMixin {
     @JsonCreator
     public LanguageDetectionResultMixin(
-            @JsonProperty("language") String language,
+            @JsonProperty("language") LanguageCode language,
             @JsonProperty("confidence") double confidence
     ) {
         //

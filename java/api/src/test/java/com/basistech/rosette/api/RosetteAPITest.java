@@ -45,6 +45,7 @@ import com.basistech.rosette.apimodel.EntityRequest;
 import com.basistech.rosette.apimodel.EntityResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InputUnit;
+import com.basistech.rosette.apimodel.LanguageCode;
 import com.basistech.rosette.apimodel.LanguageRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.LinguisticsRequest;
@@ -69,7 +70,7 @@ public class RosetteAPITest extends Assert {
     private final String testFilename;
     private RosetteAPI api;
     private String responseStr;
-    private String language;
+    private LanguageCode language;
 
     public RosetteAPITest(int serverPort, String filename) {
         this.serverPort = serverPort;
@@ -105,7 +106,11 @@ public class RosetteAPITest extends Assert {
 
     @Before
     public void setUp() throws IOException, InterruptedException {
-        language = testFilename.substring(0, 3);
+        try {
+            language = LanguageCode.valueOf(testFilename.substring(0, 3));
+        } catch (IllegalArgumentException e) {
+            language = LanguageCode.xxx;
+        }
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("response/" + testFilename);
         responseStr = getStringFromInputStream(inputStream);
 

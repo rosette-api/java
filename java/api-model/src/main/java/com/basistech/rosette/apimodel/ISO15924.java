@@ -1,367 +1,442 @@
-/******************************************************************************
- ** Copyright (c) 2014-2015 Basis Technology Corporation.
- **
- ** Licensed under the Apache License, Version 2.0 (the "License");
- ** you may not use this file except in compliance with the License.
- ** You may obtain a copy of the License at
- **
- **     http://www.apache.org/licenses/LICENSE-2.0
- **
- ** Unless required by applicable law or agreed to in writing, software
- ** distributed under the License is distributed on an "AS IS" BASIS,
- ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- ** See the License for the specific language governing permissions and
- ** limitations under the License.
- ******************************************************************************/
+/**
+ * ***************************************************************************
+ * * Copyright (c) 2014-2015 Basis Technology Corporation.
+ * *
+ * * Licensed under the Apache License, Version 2.0 (the "License");
+ * * you may not use this file except in compliance with the License.
+ * * You may obtain a copy of the License at
+ * *
+ * *     http://www.apache.org/licenses/LICENSE-2.0
+ * *
+ * * Unless required by applicable law or agreed to in writing, software
+ * * distributed under the License is distributed on an "AS IS" BASIS,
+ * * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * * See the License for the specific language governing permissions and
+ * * limitations under the License.
+ * ****************************************************************************
+ */
 
 package com.basistech.rosette.apimodel;
 
 /**
- * The ISO15924 system of script codes. There is one string item for each defined code,
- * named after its CODE4 value.
+ * Java enumeration for the ISO15924 system of script codes. There is one enumerated item for each defined code,
+ * named after its CODE4 value. Accessors deliver the numeric and English-name properties of each script.
  */
-public final class ISO15924 {
-    // CHECKSTYLE:OFF
+public enum ISO15924 {
 
     /** for "Afaka" */
-    public static final String Afak = "Afak";
+    Afak(439, "Afaka"),
     /** for "Caucasian Albanian" */
-    public static final String Aghb = "Aghb";
+    Aghb(239, "Caucasian Albanian"),
     /** for "Ahom, Tai Ahom" */
-    public static final String Ahom = "Ahom";
+    Ahom(338, "Ahom, Tai Ahom"),
     /** for "Arabic" */
-    public static final String Arab = "Arab";
+    Arab(160, "Arabic"),
     /** for "Imperial Aramaic" */
-    public static final String Armi = "Armi";
+    Armi(124, "Imperial Aramaic"),
     /** for "Armenian" */
-    public static final String Armn = "Armn";
+    Armn(230, "Armenian"),
     /** for "Avestan" */
-    public static final String Avst = "Avst";
+    Avst(134, "Avestan"),
     /** for "Balinese" */
-    public static final String Bali = "Bali";
+    Bali(360, "Balinese"),
     /** for "Bamum" */
-    public static final String Bamu = "Bamu";
+    Bamu(435, "Bamum"),
     /** for "Bassa Vah" */
-    public static final String Bass = "Bass";
+    Bass(259, "Bassa Vah"),
     /** for "Batak" */
-    public static final String Batk = "Batk";
+    Batk(365, "Batak"),
     /** for "Bengali" */
-    public static final String Beng = "Beng";
+    Beng(325, "Bengali"),
     /** for "Blissymbols" */
-    public static final String Blis = "Blis";
+    Blis(550, "Blissymbols"),
     /** for "Bopomofo" */
-    public static final String Bopo = "Bopo";
+    Bopo(285, "Bopomofo"),
     /** for "Brahmi" */
-    public static final String Brah = "Brah";
+    Brah(300, "Brahmi"),
     /** for "Braille" */
-    public static final String Brai = "Brai";
+    Brai(570, "Braille"),
     /** for "Buginese" */
-    public static final String Bugi = "Bugi";
+    Bugi(367, "Buginese"),
     /** for "Buhid" */
-    public static final String Buhd = "Buhd";
+    Buhd(372, "Buhid"),
     /** for "Chakma" */
-    public static final String Cakm = "Cakm";
+    Cakm(349, "Chakma"),
     /** for "Unified Canadian Aboriginal Syllabics" */
-    public static final String Cans = "Cans";
+    Cans(440, "Unified Canadian Aboriginal Syllabics"),
     /** for "Carian" */
-    public static final String Cari = "Cari";
+    Cari(201, "Carian"),
     /** for "Cham" */
-    public static final String Cham = "Cham";
+    Cham(358, "Cham"),
     /** for "Cherokee" */
-    public static final String Cher = "Cher";
+    Cher(445, "Cherokee"),
     /** for "Cirth" */
-    public static final String Cirt = "Cirt";
+    Cirt(291, "Cirth"),
     /** for "Coptic" */
-    public static final String Copt = "Copt";
+    Copt(204, "Coptic"),
     /** for "Cypriot" */
-    public static final String Cprt = "Cprt";
+    Cprt(403, "Cypriot"),
     /** for "Cyrillic" */
-    public static final String Cyrl = "Cyrl";
+    Cyrl(220, "Cyrillic"),
     /** for "Cyrillic (Old Church Slavonic variant)" */
-    public static final String Cyrs = "Cyrs";
+    Cyrs(221, "Cyrillic (Old Church Slavonic variant)"),
     /** for "Devanagari (Nagari)" */
-    public static final String Deva = "Deva";
+    Deva(315, "Devanagari (Nagari)"),
     /** for "Deseret (Mormon)" */
-    public static final String Dsrt = "Dsrt";
+    Dsrt(250, "Deseret (Mormon)"),
     /** for "Duployan shorthand, Duployan stenography" */
-    public static final String Dupl = "Dupl";
+    Dupl(755, "Duployan shorthand, Duployan stenography"),
     /** for "Egyptian demotic" */
-    public static final String Egyd = "Egyd";
+    Egyd(70, "Egyptian demotic"),
     /** for "Egyptian hieratic" */
-    public static final String Egyh = "Egyh";
+    Egyh(60, "Egyptian hieratic"),
     /** for "Egyptian hieroglyphs" */
-    public static final String Egyp = "Egyp";
+    Egyp(50, "Egyptian hieroglyphs"),
     /** for "Elbasan" */
-    public static final String Elba = "Elba";
+    Elba(226, "Elbasan"),
     /** for "Ethiopic (Geʻez)" */
-    public static final String Ethi = "Ethi";
+    Ethi(430, "Ethiopic (Geʻez)"),
     /** for "Georgian (Mkhedruli)" */
-    public static final String Geor = "Geor";
+    Geor(240, "Georgian (Mkhedruli)"),
     /** for "Khutsuri (Asomtavruli and Nuskhuri)" */
-    public static final String Geok = "Geok";
+    Geok(241, "Khutsuri (Asomtavruli and Nuskhuri)"),
     /** for "Glagolitic" */
-    public static final String Glag = "Glag";
+    Glag(225, "Glagolitic"),
     /** for "Gothic" */
-    public static final String Goth = "Goth";
+    Goth(206, "Gothic"),
     /** for "Grantha" */
-    public static final String Gran = "Gran";
+    Gran(343, "Grantha"),
     /** for "Greek" */
-    public static final String Grek = "Grek";
+    Grek(200, "Greek"),
     /** for "Gujarati" */
-    public static final String Gujr = "Gujr";
+    Gujr(320, "Gujarati"),
     /** for "Gurmukhi" */
-    public static final String Guru = "Guru";
+    Guru(310, "Gurmukhi"),
     /** for "Hangul (Hangŭl, Hangeul)" */
-    public static final String Hang = "Hang";
+    Hang(286, "Hangul (Hangŭl, Hangeul)"),
     /** for "Han (Hanzi, Kanji, Hanja)" */
-    public static final String Hani = "Hani";
+    Hani(500, "Han (Hanzi, Kanji, Hanja)"),
     /** for "Hanunoo (Hanunóo)" */
-    public static final String Hano = "Hano";
+    Hano(371, "Hanunoo (Hanunóo)"),
     /** for "Han (Simplified variant)" */
-    public static final String Hans = "Hans";
+    Hans(501, "Han (Simplified variant)"),
     /** for "Han (Traditional variant)" */
-    public static final String Hant = "Hant";
+    Hant(502, "Han (Traditional variant)"),
     /** for "Hatran" */
-    public static final String Hatr = "Hatr";
+    Hatr(127, "Hatran"),
     /** for "Hebrew" */
-    public static final String Hebr = "Hebr";
+    Hebr(125, "Hebrew"),
     /** for "Hiragana" */
-    public static final String Hira = "Hira";
+    Hira(410, "Hiragana"),
     /** for "Anatolian Hieroglyphs (Luwian Hieroglyphs, Hittite Hieroglyphs)" */
-    public static final String Hluw = "Hluw";
+    Hluw(80, "Anatolian Hieroglyphs (Luwian Hieroglyphs, Hittite Hieroglyphs)"),
     /** for "Pahawh Hmong" */
-    public static final String Hmng = "Hmng";
+    Hmng(450, "Pahawh Hmong"),
     /** for "Japanese syllabaries (alias for Hiragana + Katakana)" */
-    public static final String Hrkt = "Hrkt";
+    Hrkt(412, "Japanese syllabaries (alias for Hiragana + Katakana)"),
     /** for "Old Hungarian (Hungarian Runic)" */
-    public static final String Hung = "Hung";
+    Hung(176, "Old Hungarian (Hungarian Runic)"),
     /** for "Indus (Harappan)" */
-    public static final String Inds = "Inds";
+    Inds(610, "Indus (Harappan)"),
     /** for "Old Italic (Etruscan, Oscan, etc.)" */
-    public static final String Ital = "Ital";
+    Ital(210, "Old Italic (Etruscan, Oscan, etc.)"),
     /** for "Javanese" */
-    public static final String Java = "Java";
+    Java(361, "Javanese"),
     /** for "Japanese (alias for Han + Hiragana + Katakana)" */
-    public static final String Jpan = "Jpan";
+    Jpan(413, "Japanese (alias for Han + Hiragana + Katakana)"),
     /** for "Jurchen" */
-    public static final String Jurc = "Jurc";
+    Jurc(510, "Jurchen"),
     /** for "Kayah Li" */
-    public static final String Kali = "Kali";
+    Kali(357, "Kayah Li"),
     /** for "Katakana" */
-    public static final String Kana = "Kana";
+    Kana(411, "Katakana"),
     /** for "Kharoshthi" */
-    public static final String Khar = "Khar";
+    Khar(305, "Kharoshthi"),
     /** for "Khmer" */
-    public static final String Khmr = "Khmr";
+    Khmr(355, "Khmer"),
     /** for "Khojki" */
-    public static final String Khoj = "Khoj";
+    Khoj(322, "Khojki"),
     /** for "Kannada" */
-    public static final String Knda = "Knda";
+    Knda(345, "Kannada"),
     /** for "Korean (alias for Hangul + Han)" */
-    public static final String Kore = "Kore";
+    Kore(287, "Korean (alias for Hangul + Han)"),
     /** for "Kpelle" */
-    public static final String Kpel = "Kpel";
+    Kpel(436, "Kpelle"),
     /** for "Kaithi" */
-    public static final String Kthi = "Kthi";
+    Kthi(317, "Kaithi"),
     /** for "Tai Tham (Lanna)" */
-    public static final String Lana = "Lana";
+    Lana(351, "Tai Tham (Lanna)"),
     /** for "Lao" */
-    public static final String Laoo = "Laoo";
+    Laoo(356, "Lao"),
     /** for "Latin (Fraktur variant)" */
-    public static final String Latf = "Latf";
+    Latf(217, "Latin (Fraktur variant)"),
     /** for "Latin (Gaelic variant)" */
-    public static final String Latg = "Latg";
+    Latg(216, "Latin (Gaelic variant)"),
     /** for "Latin" */
-    public static final String Latn = "Latn";
+    Latn(215, "Latin"),
     /** for "Lepcha (Róng)" */
-    public static final String Lepc = "Lepc";
+    Lepc(335, "Lepcha (Róng)"),
     /** for "Limbu" */
-    public static final String Limb = "Limb";
+    Limb(336, "Limbu"),
     /** for "Linear A" */
-    public static final String Lina = "Lina";
+    Lina(400, "Linear A"),
     /** for "Linear B" */
-    public static final String Linb = "Linb";
+    Linb(401, "Linear B"),
     /** for "Lisu (Fraser)" */
-    public static final String Lisu = "Lisu";
+    Lisu(399, "Lisu (Fraser)"),
     /** for "Loma" */
-    public static final String Loma = "Loma";
+    Loma(437, "Loma"),
     /** for "Lycian" */
-    public static final String Lyci = "Lyci";
+    Lyci(202, "Lycian"),
     /** for "Lydian" */
-    public static final String Lydi = "Lydi";
+    Lydi(116, "Lydian"),
     /** for "Mahajani" */
-    public static final String Mahj = "Mahj";
+    Mahj(314, "Mahajani"),
     /** for "Mandaic, Mandaean" */
-    public static final String Mand = "Mand";
+    Mand(140, "Mandaic, Mandaean"),
     /** for "Manichaean" */
-    public static final String Mani = "Mani";
+    Mani(139, "Manichaean"),
     /** for "Mayan hieroglyphs" */
-    public static final String Maya = "Maya";
+    Maya(90, "Mayan hieroglyphs"),
     /** for "Mende Kikakui" */
-    public static final String Mend = "Mend";
+    Mend(438, "Mende Kikakui"),
     /** for "Meroitic Cursive" */
-    public static final String Merc = "Merc";
+    Merc(101, "Meroitic Cursive"),
     /** for "Meroitic Hieroglyphs" */
-    public static final String Mero = "Mero";
+    Mero(100, "Meroitic Hieroglyphs"),
     /** for "Malayalam" */
-    public static final String Mlym = "Mlym";
+    Mlym(347, "Malayalam"),
     /** for "Modi, Moḍī" */
-    public static final String Modi = "Modi";
+    Modi(323, "Modi, Moḍī"),
     /** for "Moon (Moon code, Moon script, Moon type)" */
-    public static final String Moon = "Moon";
+    Moon(218, "Moon (Moon code, Moon script, Moon type)"),
     /** for "Mongolian" */
-    public static final String Mong = "Mong";
+    Mong(145, "Mongolian"),
     /** for "Mro, Mru" */
-    public static final String Mroo = "Mroo";
+    Mroo(199, "Mro, Mru"),
     /** for "Meitei Mayek (Meithei, Meetei)" */
-    public static final String Mtei = "Mtei";
+    Mtei(337, "Meitei Mayek (Meithei, Meetei)"),
     /** for " Multani" */
-    public static final String Mult = "Mult";
+    Mult(323, " Multani"),
     /** for "Myanmar (Burmese)" */
-    public static final String Mymr = "Mymr";
+    Mymr(350, "Myanmar (Burmese)"),
     /** for "Old North Arabian (Ancient North Arabian)" */
-    public static final String Narb = "Narb";
+    Narb(106, "Old North Arabian (Ancient North Arabian)"),
     /** for "Nabataean" */
-    public static final String Nbat = "Nbat";
+    Nbat(159, "Nabataean"),
     /** for "Nakhi Geba ('Na-'Khi ²Ggŏ-¹baw, Naxi Geba)" */
-    public static final String Nkgb = "Nkgb";
+    Nkgb(420, "Nakhi Geba ('Na-'Khi ²Ggŏ-¹baw, Naxi Geba)"),
     /** for "N’Ko" */
-    public static final String Nkoo = "Nkoo";
+    Nkoo(165, "N’Ko"),
     /** for "Nüshu" */
-    public static final String Nshu = "Nshu";
+    Nshu(499, "Nüshu"),
     /** for "Ogham" */
-    public static final String Ogam = "Ogam";
+    Ogam(212, "Ogham"),
     /** for "Ol Chiki (Ol Cemet’, Ol, Santali)" */
-    public static final String Olck = "Olck";
+    Olck(261, "Ol Chiki (Ol Cemet’, Ol, Santali)"),
     /** for "Old Turkic, Orkhon Runic" */
-    public static final String Orkh = "Orkh";
+    Orkh(175, "Old Turkic, Orkhon Runic"),
     /** for "Oriya" */
-    public static final String Orya = "Orya";
+    Orya(327, "Oriya"),
     /** for "Osmanya" */
-    public static final String Osma = "Osma";
+    Osma(260, "Osmanya"),
     /** for "Palmyrene" */
-    public static final String Palm = "Palm";
+    Palm(126, "Palmyrene"),
     /** for "Pau Cin Hau" */
-    public static final String Pauc = "Pauc";
+    Pauc(263, "Pau Cin Hau"),
     /** for "Old Permic" */
-    public static final String Perm = "Perm";
+    Perm(227, "Old Permic"),
     /** for "Phags-pa" */
-    public static final String Phag = "Phag";
+    Phag(331, "Phags-pa"),
     /** for "Inscriptional Pahlavi" */
-    public static final String Phli = "Phli";
+    Phli(131, "Inscriptional Pahlavi"),
     /** for "Psalter Pahlavi" */
-    public static final String Phlp = "Phlp";
+    Phlp(132, "Psalter Pahlavi"),
     /** for "Book Pahlavi" */
-    public static final String Phlv = "Phlv";
+    Phlv(133, "Book Pahlavi"),
     /** for "Phoenician" */
-    public static final String Phnx = "Phnx";
+    Phnx(115, "Phoenician"),
     /** for "Miao (Pollard)" */
-    public static final String Plrd = "Plrd";
+    Plrd(282, "Miao (Pollard)"),
     /** for "Inscriptional Parthian" */
-    public static final String Prti = "Prti";
+    Prti(130, "Inscriptional Parthian"),
     /** for "Reserved for private use (start)" */
-    public static final String Qaaa = "Qaaa";
+    Qaaa(900, "Reserved for private use (start)"),
     /** for "Reserved for private use (end)" */
-    public static final String Qabx = "Qabx";
+    Qabx(949, "Reserved for private use (end)"),
     /** for "Rejang (Redjang, Kaganga)" */
-    public static final String Rjng = "Rjng";
+    Rjng(363, "Rejang (Redjang, Kaganga)"),
     /** for "Rongorongo" */
-    public static final String Roro = "Roro";
+    Roro(620, "Rongorongo"),
     /** for "Runic" */
-    public static final String Runr = "Runr";
+    Runr(211, "Runic"),
     /** for "Samaritan" */
-    public static final String Samr = "Samr";
+    Samr(123, "Samaritan"),
     /** for "Sarati" */
-    public static final String Sara = "Sara";
+    Sara(292, "Sarati"),
     /** for "Old South Arabian" */
-    public static final String Sarb = "Sarb";
+    Sarb(105, "Old South Arabian"),
     /** for "Saurashtra" */
-    public static final String Saur = "Saur";
+    Saur(344, "Saurashtra"),
     /** for "SignWriting" */
-    public static final String Sgnw = "Sgnw";
+    Sgnw(95, "SignWriting"),
     /** for "Shavian (Shaw)" */
-    public static final String Shaw = "Shaw";
+    Shaw(281, "Shavian (Shaw)"),
     /** for "Sharada, Śāradā" */
-    public static final String Shrd = "Shrd";
+    Shrd(319, "Sharada, Śāradā"),
     /** for "Siddham, Siddhaṃ, Siddhamātṛkā" */
-    public static final String Sidd = "Sidd";
+    Sidd(302, "Siddham, Siddhaṃ, Siddhamātṛkā"),
     /** for "Khudawadi, Sindhi" */
-    public static final String Sind = "Sind";
+    Sind(318, "Khudawadi, Sindhi"),
     /** for "Sinhala" */
-    public static final String Sinh = "Sinh";
+    Sinh(348, "Sinhala"),
     /** for "Sora Sompeng" */
-    public static final String Sora = "Sora";
+    Sora(398, "Sora Sompeng"),
     /** for "Sundanese" */
-    public static final String Sund = "Sund";
+    Sund(362, "Sundanese"),
     /** for "Syloti Nagri" */
-    public static final String Sylo = "Sylo";
+    Sylo(316, "Syloti Nagri"),
     /** for "Syriac" */
-    public static final String Syrc = "Syrc";
+    Syrc(135, "Syriac"),
     /** for "Syriac (Estrangelo variant)" */
-    public static final String Syre = "Syre";
+    Syre(138, "Syriac (Estrangelo variant)"),
     /** for "Syriac (Western variant)" */
-    public static final String Syrj = "Syrj";
+    Syrj(137, "Syriac (Western variant)"),
     /** for "Syriac (Eastern variant)" */
-    public static final String Syrn = "Syrn";
+    Syrn(136, "Syriac (Eastern variant)"),
     /** for "Tagbanwa" */
-    public static final String Tagb = "Tagb";
+    Tagb(373, "Tagbanwa"),
     /** for "Takri, Ṭākrī, Ṭāṅkrī" */
-    public static final String Takr = "Takr";
+    Takr(321, "Takri, Ṭākrī, Ṭāṅkrī"),
     /** for "Tai Le" */
-    public static final String Tale = "Tale";
+    Tale(353, "Tai Le"),
     /** for "New Tai Lue" */
-    public static final String Talu = "Talu";
+    Talu(354, "New Tai Lue"),
     /** for "Tamil" */
-    public static final String Taml = "Taml";
+    Taml(346, "Tamil"),
     /** for "Tangut" */
-    public static final String Tang = "Tang";
+    Tang(520, "Tangut"),
     /** for "Tai Viet" */
-    public static final String Tavt = "Tavt";
+    Tavt(359, "Tai Viet"),
     /** for "Telugu" */
-    public static final String Telu = "Telu";
+    Telu(340, "Telugu"),
     /** for "Tengwar" */
-    public static final String Teng = "Teng";
+    Teng(290, "Tengwar"),
     /** for "Tifinagh (Berber)" */
-    public static final String Tfng = "Tfng";
+    Tfng(120, "Tifinagh (Berber)"),
     /** for "Tagalog (Baybayin, Alibata)" */
-    public static final String Tglg = "Tglg";
+    Tglg(370, "Tagalog (Baybayin, Alibata)"),
     /** for "Thaana" */
-    public static final String Thaa = "Thaa";
+    Thaa(170, "Thaana"),
     /** for "Thai" */
-    public static final String Thai = "Thai";
+    Thai(352, "Thai"),
     /** for "Tibetan" */
-    public static final String Tibt = "Tibt";
+    Tibt(330, "Tibetan"),
     /** for "Tirhuta" */
-    public static final String Tirh = "Tirh";
+    Tirh(326, "Tirhuta"),
     /** for "Ugaritic" */
-    public static final String Ugar = "Ugar";
+    Ugar(40, "Ugaritic"),
     /** for "Vai" */
-    public static final String Vaii = "Vaii";
+    Vaii(470, "Vai"),
     /** for "Visible Speech" */
-    public static final String Visp = "Visp";
+    Visp(280, "Visible Speech"),
     /** for "Warang Citi (Varang Kshiti)" */
-    public static final String Wara = "Wara";
+    Wara(262, "Warang Citi (Varang Kshiti)"),
     /** for "Woleai" */
-    public static final String Wole = "Wole";
+    Wole(480, "Woleai"),
     /** for "Old Persian" */
-    public static final String Xpeo = "Xpeo";
+    Xpeo(30, "Old Persian"),
     /** for "Cuneiform, Sumero-Akkadian" */
-    public static final String Xsux = "Xsux";
+    Xsux(20, "Cuneiform, Sumero-Akkadian"),
     /** for "Yi" */
-    public static final String Yiii = "Yiii";
+    Yiii(460, "Yi"),
     /** for "Code for inherited script" */
-    public static final String Zinh = "Zinh";
+    Zinh(994, "Code for inherited script"),
     /** for "Mathematical notation" */
-    public static final String Zmth = "Zmth";
+    Zmth(995, "Mathematical notation"),
     /** for "Symbols" */
-    public static final String Zsym = "Zsym";
+    Zsym(996, "Symbols"),
     /** for "Code for unwritten documents" */
-    public static final String Zxxx = "Zxxx";
+    Zxxx(997, "Code for unwritten documents"),
     /** for "Code for undetermined script" */
-    public static final String Zyyy = "Zyyy";
+    Zyyy(998, "Code for undetermined script"),
     /** for "Code for uncoded script" */
-    public static final String Zzzz = "Zzzz";
+    Zzzz(999, "Code for uncoded script");
 
-    // CHECKSTYLE:ON
+    private final int numeric;
+    private final String english;
 
+    ISO15924(int numeric, String english) {
+        this.numeric = numeric;
+        this.english = english;
+    }
+
+    /**
+     * Get the 4-character code for this script. This returns the same value as {@link #name()}.
+     * @return the 4-character code for this script.
+     */
+    public String code4() {
+        return name();
+    }
+
+    /**
+     * Get the numeric code for this script.
+     * @return the numeric code for this script.
+     */
+    public int numeric() {
+        return this.numeric;
+    }
+
+    /**
+     * Get the English name for this script.
+     * @return the English name for this script.
+     */
+    public String englishName() {
+        return english;
+    }
+
+    /**
+     * Get the numeric code for this script.
+     * @return the numeric code for this script.
+     */
+    int getNativeCode() {
+        return numeric;
+    }
+
+    private static ISO15924[] staticValues = values();
+
+    /**
+     * Locate a script by native code.
+     * @param nativeCode
+     * @return
+     */
+    static ISO15924 lookupByNativeCode(int nativeCode) {
+        for (ISO15924 v : staticValues) {
+            if (v.getNativeCode() == nativeCode)
+                return v;
+        }
+        throw new RuntimeException("Invalid ISO15924 native code " + nativeCode);
+    }
+
+    /**
+     * Locate a script by numeric code value.
+     * @param numeric the numeric value.
+     * @return the enumerated value.
+     */
+    public static ISO15924 lookupByNumeric(int numeric) {
+        return lookupByNativeCode(numeric);
+    }
+
+    /**
+     * Locate a script by 4-character code value.
+     * @param code4 the 4-character code value.
+     * @return the enumerated value.
+     */
+    public static ISO15924 lookupByCode4(String code4) {
+        for (ISO15924 v : staticValues) {
+            if (code4.equals(v.toString()))
+                return v;
+        }
+        return null;
+    }
 }

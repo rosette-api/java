@@ -23,7 +23,7 @@ import java.util.Arrays;
  */
 public abstract class Request {
 
-    private String language;
+    private LanguageCode language;
     private String content;
     private String contentUri;
     private byte[] contentBytes;
@@ -43,7 +43,7 @@ public abstract class Request {
      * @param unit input unit code
      */
     protected Request(
-            String language,
+            LanguageCode language,
             String content,
             String contentUri,
             String contentType,
@@ -64,7 +64,7 @@ public abstract class Request {
      * get the language code
      * @return the language code
      */
-    public String getLanguage() {
+    public LanguageCode getLanguage() {
         return language;
     }
 
@@ -111,7 +111,7 @@ public abstract class Request {
      * set the language code 
      * @param language the language code
      */
-    public void setLanguage(String language) {
+    public void setLanguage(LanguageCode language) {
         this.language = language;
     }
 

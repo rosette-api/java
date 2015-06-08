@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.EnumSet;
+
 /**
  * <code>LanguageCodes</code> are based on the Feb 10, 2009 version of ISO 639-3.  A <code>LanguageCode</code> is either
  * standard, meaning that it is based on an ISO 639-3 language code, or nonstandard, meaning that it is a Basis extension.
@@ -29,90 +31,137 @@ package com.basistech.rosette.apimodel;
  * </ul>
  *
  */
-public final class LanguageCode {
+public enum LanguageCode {
 
-    public static final String UNKNOWN = "xxx";
-    public static final String AFRIKAANS = "afr";
-    public static final String ALBANIAN = "sqi";
-    public static final String AMHARIC = "amh";
-    public static final String ARABIC = "ara";
-    public static final String BENGALI = "ben";
-    public static final String BULGARIAN = "bul";
-    public static final String CATALAN = "cat";
-    public static final String CHINESE = "zho";
-    public static final String CROATIAN = "hrv";
-    public static final String CZECH = "ces";
-    public static final String DANISH = "dan";
-    public static final String DARI = "prs";
-    public static final String DUTCH = "nld";
-    public static final String ENGLISH = "eng";
-    public static final String ENGLISH_UPPERCASE = "uen";
-    public static final String ESTONIAN = "est";
-    public static final String FINNISH = "fin";
-    public static final String FRENCH = "fra";
-    public static final String GERMAN = "deu";
-    public static final String GREEK = "ell";
-    public static final String GUJARATI = "guj";
-    public static final String HEBREW = "heb";
-    public static final String HINDI = "hin";
-    public static final String HUNGARIAN = "hun";
-    public static final String ICELANDIC = "isl";
-    public static final String INDONESIAN = "ind";
-    public static final String ITALIAN = "ita";
-    public static final String JAPANESE = "jpn";
-    public static final String KANNADA = "kan";
-    public static final String KINYARWANDA = "kin";
-    public static final String KOREAN = "kor";
-    public static final String KURDISH = "kur";
-    public static final String LATVIAN = "lav";
-    public static final String LITHUANIAN = "lit";
-    public static final String MACEDONIAN = "mkd";
-    public static final String MALAGASY = "mlg";
-    public static final String MALAY = "msa";
-    public static final String MALAYALAM = "mal";
-    public static final String NORWEGIAN = "nor";
-    public static final String NORWEGIAN_BOKMAL = "nob";
-    public static final String NORWEGIAN_NYNORSK = "nno";
-    public static final String NYANJA = "nya";
-    public static final String PEDI = "nso";
-    public static final String PERSIAN = "fas";
-    public static final String PLATEAU_MALAGASY = "plt";
-    public static final String POLISH = "pol";
-    public static final String PORTUGUESE = "por";
-    public static final String PUSHTO = "pus";
-    public static final String ROMANIAN = "ron";
-    public static final String RUNDI = "run";
-    public static final String RUSSIAN = "rus";
-    public static final String SANGO = "sag";
-    public static final String SERBIAN = "srp";
-    public static final String SESELWA_CREOLE_FRENCH = "crs";
-    public static final String SHONA = "sna";
-    public static final String SIMPLIFIED_CHINESE = "zhs";
-    public static final String SLOVAK = "slk";
-    public static final String SLOVENIAN = "slv";
-    public static final String SOMALI = "som";
-    public static final String SOUTHERN_SOTHO = "sot";
-    public static final String SOUTH_NDEBELE = "nbl";
-    public static final String SPANISH = "spa";
-    public static final String SWAHILI = "swa";
-    public static final String SWATI = "ssw";
-    public static final String SWEDISH = "swe";
-    public static final String TAGALOG = "tgl";
-    public static final String TAMIL = "tam";
-    public static final String TELUGU = "tel";
-    public static final String THAI = "tha";
-    public static final String TIGRINYA = "tir";
-    public static final String TRADITIONAL_CHINESE = "zht";
-    public static final String TSONGA = "tso";
-    public static final String TSWANA = "tsn";
-    public static final String TURKISH = "tur";
-    public static final String UKRAINIAN = "ukr";
-    public static final String URDU = "urd";
-    public static final String UZBEK = "uzb";
-    public static final String VENDA = "ven";
-    public static final String VIETNAMESE = "vie";
-    public static final String WESTERN_FARSI = "pes";
-    public static final String XHOSA = "xho";
-    public static final String ZULU = "zul";
+    xxx("UNKNOWN"),
+    afr("AFRIKAANS"),
+    sqi("ALBANIAN"),
+    amh("AMHARIC"),
+    ara("ARABIC"),
+    ben("BENGALI"),
+    bul("BULGARIAN"),
+    cat("CATALAN"),
+    zho("CHINESE"),
+    hrv("CROATIAN"),
+    ces("CZECH"),
+    dan("DANISH"),
+    prs("DARI"),
+    nld("DUTCH"),
+    eng("ENGLISH"),
+    uen("ENGLISH_UPPERCASE"),
+    est("ESTONIAN"),
+    fin("FINNISH"),
+    fra("FRENCH"),
+    deu("GERMAN"),
+    ell("GREEK"),
+    guj("GUJARATI"),
+    heb("HEBREW"),
+    hin("HINDI"),
+    hun("HUNGARIAN"),
+    isl("ICELANDIC"),
+    ind("INDONESIAN"),
+    ita("ITALIAN"),
+    jpn("JAPANESE"),
+    kan("KANNADA"),
+    kin("KINYARWANDA"),
+    kor("KOREAN"),
+    kur("KURDISH"),
+    lav("LATVIAN"),
+    lit("LITHUANIAN"),
+    mkd("MACEDONIAN"),
+    mlg("MALAGASY"),
+    msa("MALAY"),
+    mal("MALAYALAM"),
+    nor("NORWEGIAN"),
+    nob("NORWEGIAN_BOKMAL"),
+    nno("NORWEGIAN_NYNORSK"),
+    nya("NYANJA"),
+    nso("PEDI"),
+    fas("PERSIAN"),
+    plt("PLATEAU_MALAGASY"),
+    pol("POLISH"),
+    por("PORTUGUESE"),
+    pus("PUSHTO"),
+    ron("ROMANIAN"),
+    run("RUNDI"),
+    rus("RUSSIAN"),
+    sag("SANGO"),
+    srp("SERBIAN"),
+    crs("SESELWA_CREOLE_FRENCH"),
+    sna("SHONA"),
+    zhs("SIMPLIFIED_CHINESE"),
+    slk("SLOVAK"),
+    slv("SLOVENIAN"),
+    som("SOMALI"),
+    sot("SOUTHERN_SOTHO"),
+    nbl("SOUTH_NDEBELE"),
+    spa("SPANISH"),
+    swa("SWAHILI"),
+    ssw("SWATI"),
+    swe("SWEDISH"),
+    tgl("TAGALOG"),
+    tam("TAMIL"),
+    tel("TELUGU"),
+    tha("THAI"),
+    tir("TIGRINYA"),
+    zht("TRADITIONAL_CHINESE"),
+    tso("TSONGA"),
+    tsn("TSWANA"),
+    tur("TURKISH"),
+    ukr("UKRAINIAN"),
+    urd("URDU"),
+    uzb("UZBEK"),
+    ven("VENDA"),
+    vie("VIETNAMESE"),
+    pes("WESTERN_FARSI"),
+    xho("XHOSA"),
+    zul("ZULU");
 
+    private String label;
+
+    /**
+     * constructor for {@code LanguageCode} which sets a label for reference
+     */
+    LanguageCode(String label) {
+        this.label = label;
+    }
+
+    /**
+     * get the label
+     * @return the label
+     */
+    public String getLabel() {
+        return label;
+    }
+
+    /**
+     * set the label
+     * @param label the label
+     */
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    /**
+     * checks if value is a valid {@code LanguageCode} enum
+     * @param value input value
+     * @return {@code LanguageCode corresponding to input value}
+     * @throws IllegalArgumentException
+     */
+    public static LanguageCode forValue(String value) throws IllegalArgumentException {
+        for (LanguageCode model : EnumSet.allOf(LanguageCode.class)) {
+            if (model.getLabel().equalsIgnoreCase(value)) {
+                return model;
+            }
+        }
+        throw new IllegalArgumentException("invalid language code: " + value);
+    }
+
+    /**
+     * get the label
+     * @return the label
+     */
+    public String toValue() {
+        return label;
+    }
 }

@@ -33,7 +33,7 @@ public final class EntityRequest extends Request {
      * @param options entity extraction options
      */
     public EntityRequest(
-            String language,
+            LanguageCode language,
             String content,
             String contentUri,
             String contentType,

@@ -23,8 +23,8 @@ public final class Name {
 
     private String text;
     private String entityType;
-    private String script;
-    private String language;
+    private ISO15924 script;
+    private LanguageCode language;
 
     /**
      * Constructor for {@code Name}
@@ -35,8 +35,8 @@ public final class Name {
      */
     public Name(String name,
                 String entityType,
-                String script,
-                String language) {
+                ISO15924 script,
+                LanguageCode language) {
         this.text = name;
         this.entityType = entityType;
         this.script = script;
@@ -51,7 +51,7 @@ public final class Name {
         this.text = name;
         this.entityType = "PERSON";
         this.script = ISO15924.Zyyy;
-        this.language = LanguageCode.UNKNOWN;
+        this.language = LanguageCode.xxx;
     }
 
     /**
@@ -74,7 +74,7 @@ public final class Name {
      * Gets the script of the name, {@see ISO15924}
      * @return script of the name
      */
-    public String getScript() {
+    public ISO15924 getScript() {
         return script;
     }
 
@@ -82,7 +82,7 @@ public final class Name {
      * Gets the language of the name, {@see LanguageCode}
      * @return language of the name
      */
-    public String getLanguage() {
+    public LanguageCode getLanguage() {
         return language;
     }
 
@@ -106,7 +106,7 @@ public final class Name {
      * Sets the script of a name
      * @param script script of a name
      */
-    public void setScript(String script) {
+    public void setScript(ISO15924 script) {
         this.script = script;
     }
 
@@ -114,7 +114,7 @@ public final class Name {
      * Sets the language of a name
      * @param language language of a name
      */
-    public void setLanguage(String language) {
+    public void setLanguage(LanguageCode language) {
         this.language = language;
     }
 

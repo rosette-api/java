@@ -33,7 +33,7 @@ public final class SentimentRequest extends Request {
      * @param options sentiment options
      */
     public SentimentRequest(
-            String language,
+            LanguageCode language,
             String content,
             String contentUri,
             String contentType,

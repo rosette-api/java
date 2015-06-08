@@ -22,7 +22,7 @@ package com.basistech.rosette.apimodel;
  */
 public final class LanguageDetectionResult {
 
-    private final String language;
+    private final LanguageCode language;
     private final double confidence;
     
     /**
@@ -31,7 +31,7 @@ public final class LanguageDetectionResult {
      * @param confidence detection confidence
      */
     public LanguageDetectionResult(
-            String language,
+            LanguageCode language,
             double confidence
     ) {
         this.language = language;
@@ -42,7 +42,7 @@ public final class LanguageDetectionResult {
      * get the detected language 
      * @return the language
      */
-    public String getLanguage() {
+    public LanguageCode getLanguage() {
         return language;
     }
 

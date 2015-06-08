@@ -33,7 +33,7 @@ public final class LinguisticsRequest extends Request {
      * @param options base linguistics options
      */
     public LinguisticsRequest(
-            String language,
+            LanguageCode language,
             String content,
             String contentUri,
             String contentType,

@@ -33,7 +33,7 @@ public final class CategoryRequest extends Request {
      * @param options categorization options
      */
     public CategoryRequest(
-            String language,
+            LanguageCode language,
             String content,
             String contentUri,
             String contentType,

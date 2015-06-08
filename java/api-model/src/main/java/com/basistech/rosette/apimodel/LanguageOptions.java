@@ -27,7 +27,7 @@ public final class LanguageOptions {
     private Integer profileDepth;
     private Double ambiguityThreshold;
     private Double invalidityThreshold;
-    private String languageHint;
+    private LanguageCode languageHint;
     private Double languageHintWeight;
     private String encodingHint;
     private Double encodingHintWeight;
@@ -50,7 +50,7 @@ public final class LanguageOptions {
             Integer profileDepth,
             Double ambiguityThreshold,
             Double invalidityThreshold,
-            String languageHint,
+            LanguageCode languageHint,
             Double languageHintWeight,
             String encodingHint,
             Double encodingHintWeight,
@@ -106,7 +106,7 @@ public final class LanguageOptions {
      * get the language hint 
      * @return language hint
      */
-    public String getLanguageHint() {
+    public LanguageCode getLanguageHint() {
         return languageHint;
     }
 
@@ -194,7 +194,7 @@ public final class LanguageOptions {
      * set the language hint 
      * @param languageHint the language hint
      */
-    public void setLanguageHint(String languageHint) {
+    public void setLanguageHint(LanguageCode languageHint) {
         this.languageHint = languageHint;
     }
 

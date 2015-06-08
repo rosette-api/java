@@ -16,14 +16,16 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.rosette.apimodel.ISO15924;
+import com.basistech.rosette.apimodel.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LanguageWeightMixin {
     @JsonCreator
     protected LanguageWeightMixin(
-            @JsonProperty("language") String language,
-            @JsonProperty("script") String script,
+            @JsonProperty("language") LanguageCode language,
+            @JsonProperty("script") ISO15924 script,
             @JsonProperty("weight") Integer weight
     ) {
         //

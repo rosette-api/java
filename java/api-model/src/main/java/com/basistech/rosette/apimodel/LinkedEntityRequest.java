@@ -30,7 +30,7 @@ public final class LinkedEntityRequest extends Request {
      * @param unit input unit code
      */
     public LinkedEntityRequest(
-            String language,
+            LanguageCode language,
             String content,
             String contentUri,
             String contentType,

@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.rosette.apimodel.ISO15924;
+import com.basistech.rosette.apimodel.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,8 +26,8 @@ public class NameMixin {
     protected NameMixin(
             @JsonProperty("text") String name,
             @JsonProperty("entityType") String entityType,
-            @JsonProperty("script") String script,
-            @JsonProperty("language") String language
+            @JsonProperty("script") ISO15924 script,
+            @JsonProperty("language") LanguageCode language
     ) {
         //
     }

@@ -106,8 +106,8 @@ public class APIExample {
         doNameMatcher("John Doe", "Jon Doe");
         doNameMatcher("习近平", "Xi Jinping");
 
-        doNameTranslation("John Doe", LanguageCode.KOREAN);
-        doNameTranslation("习近平", LanguageCode.ENGLISH);
+        doNameTranslation("John Doe", LanguageCode.kor);
+        doNameTranslation("习近平", LanguageCode.eng);
 
         doLanguage(url);
         doLanguage(text);
@@ -138,7 +138,7 @@ public class APIExample {
         doSentiment(text);
         doSentiment(text, new SentimentOptions(SentimentModel.SHORT_STRING, true));
         doSentiment(cl.getResourceAsStream("English.txt"));
-        doSentiment(cl.getResourceAsStream("English.txt"), LanguageCode.ENGLISH, new SentimentOptions(SentimentModel.REVIEW, true));
+        doSentiment(cl.getResourceAsStream("English.txt"), LanguageCode.eng, new SentimentOptions(SentimentModel.REVIEW, true));
         doSentiment(cl.getResourceAsStream("Chinese.txt"));
         rosetteAPI.setDebugOutput(true);
         doSentiment(cl.getResourceAsStream("Chinese.txt"));
@@ -147,11 +147,11 @@ public class APIExample {
         doTokens(url);
         doTokens(text);
         doTokens(cl.getResourceAsStream("English.txt"));
-        doTokens(cl.getResourceAsStream("Chinese.txt"), LanguageCode.CHINESE);
+        doTokens(cl.getResourceAsStream("Chinese.txt"), LanguageCode.zho);
 
         doSentences(url);
         doSentences(text);
-        doSentences(text, LanguageCode.ENGLISH, InputUnit.sentence);
+        doSentences(text, LanguageCode.eng, InputUnit.sentence);
         doSentences(cl.getResourceAsStream("English.txt"));
         doSentences(cl.getResourceAsStream("Chinese.txt"));
     }
@@ -386,7 +386,7 @@ public class APIExample {
      * @param file
      * @param language
      */
-    private static void doSentiment(InputStream file, String language) {
+    private static void doSentiment(InputStream file, LanguageCode language) {
         doSentiment(file, language, null);
     }
 
@@ -396,7 +396,7 @@ public class APIExample {
      * @param language
      * @param options
      */
-    private static void doSentiment(InputStream file, String language, SentimentOptions options) {
+    private static void doSentiment(InputStream file, LanguageCode language, SentimentOptions options) {
         try {
             SentimentResponse sentimentResponse = rosetteAPI.getSentiment(file, language, options);
             print(sentimentResponse);
@@ -736,7 +736,7 @@ public class APIExample {
      * @param name
      * @param targetLanguage
      */
-    private static void doNameTranslation(String name, String targetLanguage) {
+    private static void doNameTranslation(String name, LanguageCode targetLanguage) {
         try {
             NameTranslationRequest nameTranslationRequest = new NameTranslationRequest(name, null, null, null, null, targetLanguage, null, null);
             NameTranslationResponse response = rosetteAPI.translateName(nameTranslationRequest);
@@ -787,7 +787,7 @@ public class APIExample {
      * Sends file token request.
      * @param file
      */
-    private static void doTokens(InputStream file, String languageCode) {
+    private static void doTokens(InputStream file, LanguageCode languageCode) {
         try {
             TokenResponse response = rosetteAPI.getTokens(file, languageCode);
             print(response);
@@ -859,7 +859,7 @@ public class APIExample {
      * Sends file sentences request.
      * @param file
      */
-    private static void doSentences(InputStream file, String languageCode) {
+    private static void doSentences(InputStream file, LanguageCode languageCode) {
         try {
             SentenceResponse response = rosetteAPI.getSentences(file, languageCode);
             print(response);
@@ -901,7 +901,7 @@ public class APIExample {
      * Sends file sentences request.
      * @param text
      */
-    private static void doSentences(String text, String languageCode, InputUnit unit) {
+    private static void doSentences(String text, LanguageCode languageCode, InputUnit unit) {
         try {
             SentenceResponse response = rosetteAPI.getSentences(text, languageCode, unit);
             print(response);

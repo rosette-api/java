@@ -24,9 +24,9 @@ public final class NameTranslationRequest {
     private String name;
     private String entityType;
     private String sourceScript;
-    private String sourceLanguageOfOrigin;
-    private String sourceLanguageOfUse;
-    private String targetLanguage;
+    private LanguageCode sourceLanguageOfOrigin;
+    private LanguageCode sourceLanguageOfUse;
+    private LanguageCode targetLanguage;
     private String targetScript;
     private String targetScheme;
 
@@ -44,9 +44,9 @@ public final class NameTranslationRequest {
     public NameTranslationRequest(String name,
                                   String entityType,
                                   String sourceScript,
-                                  String sourceLanguageOfOrigin,
-                                  String sourceLanguageOfUse,
-                                  String targetLanguage,
+                                  LanguageCode sourceLanguageOfOrigin,
+                                  LanguageCode sourceLanguageOfUse,
+                                  LanguageCode targetLanguage,
                                   String targetScript,
                                   String targetScheme) {
         this.name = name;
@@ -87,7 +87,7 @@ public final class NameTranslationRequest {
      * get the code for the name's language of origin 
      * @return code for the name's language of origin
      */
-    public String getSourceLanguageOfOrigin() {
+    public LanguageCode getSourceLanguageOfOrigin() {
         return sourceLanguageOfOrigin;
     }
 
@@ -95,13 +95,13 @@ public final class NameTranslationRequest {
      * get the code for the name's language of use 
      * @return code for the name's language of use
      */
-    public String getSourceLanguageOfUse() { return sourceLanguageOfUse; }
+    public LanguageCode getSourceLanguageOfUse() { return sourceLanguageOfUse; }
 
     /**
      * get code for the translation language
      * @return code for the translation language
      */
-    public String getTargetLanguage() { return targetLanguage; }
+    public LanguageCode getTargetLanguage() { return targetLanguage; }
 
     /**
      * get the code for the target script 
@@ -147,7 +147,7 @@ public final class NameTranslationRequest {
      * set the code for the name's language of origin
      * @param sourceLanguageOfOrigin the name's language of origin
      */
-    public void setSourceLanguageOfOrigin(String sourceLanguageOfOrigin) {
+    public void setSourceLanguageOfOrigin(LanguageCode sourceLanguageOfOrigin) {
         this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
     }
 
@@ -155,7 +155,7 @@ public final class NameTranslationRequest {
      * set the code for the name's language of use
      * @param sourceLanguageOfUse code for the name's language of use
      */
-    public void setSourceLanguageOfUse(String sourceLanguageOfUse) {
+    public void setSourceLanguageOfUse(LanguageCode sourceLanguageOfUse) {
         this.sourceLanguageOfUse = sourceLanguageOfUse;
     }
 
@@ -163,7 +163,7 @@ public final class NameTranslationRequest {
      * set code for the translation language
      * @param targetLanguage code for the translation language
      */
-    public void setTargetLanguage(String targetLanguage) {
+    public void setTargetLanguage(LanguageCode targetLanguage) {
         this.targetLanguage = targetLanguage;
     }
 
