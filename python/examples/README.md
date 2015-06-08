@@ -1,15 +1,12 @@
 Python Examples
 ==================
 
-To start with, examples contains python examples that are also embedded in the markdown
-end-user documentation for the Rosette API.
+These examples are scripts that can be run independently to demonstrate the Rosette API functionality.
 
-The examples are in the python/examples/ directory.
+Prerequisite: Either run `pip install rosette_api` or run `python setup.py install` in the python top level folder.
 
-Run `python setup.py install` in the `virtualenv` directory.
-
-Assuming you have installed requests and enum34, you can now run your desired endpoint.py file to see it in action.
-For example, run python/examples/categories.py if you want to see the categories
+You can now run your desired _endpoint_.py file to see it in action.
+For example, run `python/examples/categories.py` if you want to see the categories
 functionality demonstrated.
 
 All files require you to input your Rosette API User Key after --key to run.  
@@ -20,23 +17,22 @@ Some (specified below) allow an additional input of either a file (.html or .txt
 
 Each example, when run, prints its output to the console.
 
-####Endpoint Descriptions
+| File Name                     | What it does                                          | 
+| -------------                 |-------------                                        | 
+| categories.py                    | Gets the category of a document at a URL              | 
+| entities.py                      | Gets the entities from a piece of text                | 
+| entities_linked.py               | Gets the linked (to Wikipedia) entities from a piece of text |
+| info.py                          | Gets information about Rosette API                    | 
+| language.py                      | Gets the language of a piece of text                  | 
+| matched-name.py                  | Gets the similarity score of two names                | 
+| morphology_complete.py               | Gets the complete morphological analysis of a piece of text| 
+| morphology_compound-components.py    | Gets the de-compounded words from a piece of text     | 
+| morphology_han-readings.py           | Gets the Chinese words from a piece of text           | 
+| morphology_lemmas.py                 | Gets the lemmas of words from a piece of text         | 
+| morphology_parts-of-speech.py        | Gets the part-of-speech tags for words in a piece of text | 
+| ping.py                          | Pings the Rosette API to check for reachability       | 
+| sentences.py                     | Gets the sentences from a piece of text               |
+| sentiment.py                     | Gets the sentiment of a local file                    | 
+| tokens.py                        | Gets the tokens (words) from a piece of text          | 
+| translated-name.py               | Translates a name from one language to another        |
 
-| Endpoint                      | What it does                              | Additional Input Allowed?  |
-| -------------                 |:-------------:                            | -----:    |
-| categories                    | Gets the category of a document at a URL   | yes, URL  |
-| entities                      | Gets the entities from a piece of text     | no        |
-| entities/linked               | Gets the linked (to Wikipedia) entities from a piece of text | no|
-| info                          | Gets information about Rosette API        | no|
-| language                      | Gets the language of a piece of text      | no|
-| matched-name                  | Gets the similarity score of two names    | no|
-| morpho/complete               | Gets the complete morphological analysis of a piece of text| no|
-| morpho/compound-components    | Gets the de-compounded words from a piece of text | no|
-| morpho/han-readings           | Gets the Chinese words from a piece of text| no|
-| morpho/lemmas                 | Gets the lemmas of words from a piece of text| no|
-| morpho/parts-of-speech        | Gets the part-of-speech tags for words in a piece of text | no|
-| ping                          | Pings the Rosette API to check for reachability| no|
-| sentences                     | Gets the sentences from a piece of text | no|
-| sentiment                     | Gets the sentiment of a local file | yes, .html or .txt file |
-| tokens                        | Gets the tokens (words) from a piece of text | no|
-| tranlsated-name               | Translates a name from one language to another | no|
