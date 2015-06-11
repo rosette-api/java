@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+# To run tests, run `py.test python/tests/mocked_tes_api.py` from the ws-client-bindings directory
+# Must be run from this level in order to access the correct file paths for test files
+
 import httpretty
 import json
 import logging
