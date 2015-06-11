@@ -244,7 +244,7 @@ class RosetteParameters(_RosetteParamSetBase):
     def __init__(self):
         """Create a L{RosetteParameters} object.  Default data format
     is L{DataFormat.SIMPLE}, unit is L{InputUnit.DOC}."""
-        _RosetteParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
+        _RosetteParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit", "language"))
         self["unit"] = InputUnit.DOC  # default
 
     def serializable(self):
