@@ -16,6 +16,7 @@
 
 # To run tests, run `py.test mocked_test_api.py`
 
+import codecs
 import httpretty
 import json
 import logging
@@ -23,6 +24,10 @@ import os
 import pytest
 import re
 from rosette.api import API, Operator, RosetteParameters, RntParameters, RniParameters, RosetteException
+
+import sys
+_IsPy3 = sys.version_info[0] == 3
+print (_IsPy3)
 
 
 # Set up mocking
@@ -79,8 +84,8 @@ class App:
         # Filename is only "" if it is a ping or info test -- they do not have request files
         if filename != "":
             # Find and load contents of request file into parameters
-            with open(os.path.dirname(__file__) + "/../../mock-data/request/" + filename + ".json", "r") as inp_file:
-                params_dict = json.loads(inp_file.read())
+            with open(os.path.dirname(__file__) + "/../../mock-data/request/" + filename + ".json", "r", errors='ignore') as inp_file:
+                params_dict = json.loads(inp_file.read(), 'utf-8')
             for key in params_dict:
                 self.params[key] = params_dict[key]
 
@@ -92,12 +97,14 @@ def categorize_reqs():
     pattern = re.compile('(\w+-\w+-([a-z_-]+))[.]json')
     files = []
     # Loop through all file names in the mock-data/request directory
-    for filename in os.listdir(os.path.dirname(__file__) + "/../../mock-data/request"):
-        # Extract the endpoint (the part after the first two "-" but before .json
-        endpt = pattern.match(filename).group(2)
-        # Add (input, output, endpoint) to files list
-        files.append((pattern.match(filename).group(1), os.path.dirname(__file__) + "/../../mock-data/response/" +
-                      filename, endpt))
+    for filename in ["eng-doc-morphology_complete.json"]: # Comment this and uncomment below to run on all morphology_complete files
+    #for filename in os.listdir(os.path.dirname(__file__) + "/../../mock-data/request"):
+        if filename != ".DS_Store" and "morphology_complete":
+            # Extract the endpoint (the part after the first two "-" but before .json
+            endpt = pattern.match(filename).group(2)
+            # Add (input, output, endpoint) to files list
+            files.append((pattern.match(filename).group(1), os.path.dirname(__file__) + "/../../mock-data/response/" +
+                        filename, endpt))
     return files
 
 # Setup for tests - register urls with HTTPretty and compile a list of all necessary information about each file
@@ -138,8 +145,8 @@ def test_all(inp, expected, endpt):
     # Create an instance of the app, feeding the filename to be stored as the user key so the response will be correct
     app = App(inp)
     # Open the expected response file and store the data
-    with open(expected, "r") as expected_file:
-        res = json.loads(expected_file.read())
+    with open(expected, "r", errors='ignore') as expected_file:
+        res = json.loads(expected_file.read(), 'utf-8')
     # Check to see if this particular request should throw an exception for an unsupported language
     if "code" in res:
         if res["code"] == "unsupportedLanguage":

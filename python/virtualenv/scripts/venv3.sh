@@ -16,3 +16,4 @@ fi
 #x$vroot/bin/pip install epydoc
 #$vroot/bin/pip install sphinx
 $vroot/bin/pip install pytest
+$vroot/bin/pip install HTTPretty
