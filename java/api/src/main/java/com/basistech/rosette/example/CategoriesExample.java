@@ -1,0 +1,68 @@
+package com.basistech.rosette.example;
+
+import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.apimodel.Category;
+import com.basistech.rosette.apimodel.CategoryOptions;
+import com.basistech.rosette.apimodel.CategoryResponse;
+import com.basistech.rosette.apimodel.CategoryTaxonomy;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+/**
+ * example of calling the category endpoint
+ */
+public class CategoriesExample extends AbstractExample {
+
+    /**
+     * Main program.
+     * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
+     * Calls {@code getCategories} as a demonstration of usage.
+     *
+     * @param args not used 
+     * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
+     */
+    public static void main(String[] args) throws URISyntaxException, IOException {
+        init();
+        URL url = new URL(website);
+
+        doCategories(url, new CategoryOptions(CategoryTaxonomy.QAG, false, 1));
+    }
+
+    /**
+     * Sends URL category request with options.
+     *
+     * @param url
+     * @param options
+     */
+    private static void doCategories(URL url, CategoryOptions options) {
+        try {
+            CategoryResponse categoryResponse = rosetteAPI.getCategories(url, null, options);
+            print(categoryResponse);
+        } catch (RosetteAPIException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
+
+    /**
+     * Prints CategoryResponse.
+     *
+     * @param categoryResponse
+     */
+    private static void print(CategoryResponse categoryResponse) {
+        System.out.println(categoryResponse.getRequestId());
+        for (Category category : categoryResponse.getCategories()) {
+            System.out.printf("%s\t%f\t%s\n",
+                    category.getLabel(),
+                    category.getConfidence(),
+                    category.getExplanations() == null ? "" : category.getExplanations());
+        }
+        System.out.println();
+    }
+}
+
+
