@@ -3,7 +3,7 @@
 # this is the py3 script
 # add additional required packages in the pip commands below.
 
-vroot=$1
+vroot=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../target/vroot3
 expyv=3.
 
 rm -rf $vroot
@@ -17,3 +17,5 @@ fi
 #$vroot/bin/pip install sphinx
 $vroot/bin/pip install pytest
 $vroot/bin/pip install HTTPretty
+(cd ..; $vroot/bin/python setup.py install)
+$vroot/bin/python ../tests/mocked_test_api.py

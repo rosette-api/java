@@ -27,7 +27,6 @@
                             <executable>bash</executable>
                             <arguments>
                                 <argument>scripts/venv.sh</argument>
-                                <argument>../${virtualenv}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -41,7 +40,6 @@
                             <executable>bash</executable>
                             <arguments>
                                 <argument>scripts/venv3.sh</argument>
-                                <argument>../${virtualenv3}</argument>
                             </arguments>
                         </configuration>
                     </execution>
