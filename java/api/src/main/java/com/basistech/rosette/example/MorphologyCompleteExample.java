@@ -11,7 +11,7 @@ import com.basistech.rosette.apimodel.PartOfSpeech;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public final class MorphologyExample extends AbstractExample {
+public final class MorphologyCompleteExample extends AbstractExample {
 
     /**
      * Main program.

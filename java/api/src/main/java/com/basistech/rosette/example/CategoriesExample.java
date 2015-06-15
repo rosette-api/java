@@ -3,8 +3,10 @@ package com.basistech.rosette.example;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Category;
 import com.basistech.rosette.apimodel.CategoryResponse;
+import org.kohsuke.args4j.CmdLineException;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
 /**
@@ -22,8 +24,24 @@ public final class CategoriesExample extends AbstractExample {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
+        //new CategoriesExample.start(args);
         init();
         doCategories(text);
+    }
+    
+    private void start(String[] args){
+        try {
+            init();
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+        
+        try {
+           parser.parseArgument(args); 
+        } catch (CmdLineException e) {
+            System.err.println(e.toString());
+        }
+        
     }
 
     /**

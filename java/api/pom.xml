@@ -45,6 +45,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>${bt-jackson-version}</version>
         </dependency>
+        <dependency>
+            <groupId>args4j</groupId>
+            <artifactId>args4j</artifactId>
+            <version>2.0.26</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -69,7 +74,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.basistech.rosette.example.MorphologyExample</mainClass>
+                            <mainClass>com.basistech.rosette.example.MorphologyCompleteExample</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
