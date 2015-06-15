@@ -69,7 +69,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.basistech.rosette.example.CategoriesExample</mainClass>
+                            <mainClass>com.basistech.rosette.example.MorphologyExample</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

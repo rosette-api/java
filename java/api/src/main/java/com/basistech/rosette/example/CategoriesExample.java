@@ -2,23 +2,20 @@ package com.basistech.rosette.example;
 
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Category;
-import com.basistech.rosette.apimodel.CategoryOptions;
 import com.basistech.rosette.apimodel.CategoryResponse;
-import com.basistech.rosette.apimodel.CategoryTaxonomy;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 /**
  * example of calling the category endpoint
  */
-public class CategoriesExample extends AbstractExample {
+public final class CategoriesExample extends AbstractExample {
 
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
-     * Calls {@code getCategories} as a demonstration of usage.
+     * Gets categories as a demonstration of usage.
      *
      * @param args not used 
      * @throws java.net.URISyntaxException
@@ -26,20 +23,17 @@ public class CategoriesExample extends AbstractExample {
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
         init();
-        URL url = new URL(website);
-
-        doCategories(url, new CategoryOptions(CategoryTaxonomy.QAG, false, 1));
+        doCategories(text);
     }
 
     /**
      * Sends URL category request with options.
      *
-     * @param url
-     * @param options
+     * @param text
      */
-    private static void doCategories(URL url, CategoryOptions options) {
+    private static void doCategories(String text) {
         try {
-            CategoryResponse categoryResponse = rosetteAPI.getCategories(url, null, options);
+            CategoryResponse categoryResponse = rosetteAPI.getCategories(text, null, null);
             print(categoryResponse);
         } catch (RosetteAPIException e) {
             System.err.println(e.toString());

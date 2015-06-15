@@ -11,6 +11,9 @@ public abstract class AbstractExample {
 
     protected static RosetteAPI rosetteAPI;
     protected static String website = "http://www.basistech.com";
+    protected static String text = "The first men to reach the moon – Mr. Armstrong and his co-pilot, " +
+            "Col. Edwin E. Aldrin, Jr. of the Air Force – brought their ship to rest on a level, rock-strewn plain " +
+            "near the southwestern shore of the arid Sea of Tranquility.";
     /**
      * Usage
      */
@@ -27,7 +30,6 @@ public abstract class AbstractExample {
         }
 
         rosetteAPI = new RosetteAPI(apiKey);
-        ClassLoader cl = APIExample.class.getClassLoader();
     }
 }
 
