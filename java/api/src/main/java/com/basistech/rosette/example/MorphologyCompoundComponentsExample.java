@@ -23,7 +23,15 @@ public class MorphologyCompoundComponentsExample extends AbstractExample {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        init();
+        String key = "";
+        if (args.length == 2) {
+            if (args[0].equals("--key")) {
+                key = args[1];
+            }
+        } else {
+            usage();
+        }
+        init(key, null);
         doMorphology(text);
     }
 
@@ -48,7 +56,7 @@ public class MorphologyCompoundComponentsExample extends AbstractExample {
      */
     private static void print(MorphologyResponse response) {
         System.out.println(response.getRequestId());
-        String result = "===== compounds =====\n";
+        String result = "\n";
         if (response.getCompounds() != null) {
             for (Decompounding compound : response.getCompounds()) {
                 result += compound.getText() + "\t" + compound.getCompoundComponents() + "\n";

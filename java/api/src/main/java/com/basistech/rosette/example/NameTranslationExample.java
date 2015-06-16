@@ -21,7 +21,15 @@ public final class NameTranslationExample extends AbstractExample {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        init();
+        String key = "";
+        if (args.length == 2) {
+            if (args[0].equals("--key")) {
+                key = args[1];
+            }
+        } else {
+            usage();
+        }
+        init(key, null);
         doNameTranslation("John Doe", LanguageCode.kor);
     }
 

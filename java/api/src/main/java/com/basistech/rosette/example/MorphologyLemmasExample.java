@@ -19,7 +19,15 @@ public class MorphologyLemmasExample extends AbstractExample {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        init();
+        String key = "";
+        if (args.length == 2) {
+            if (args[0].equals("--key")) {
+                key = args[1];
+            }
+        } else {
+            usage();
+        }
+        init(key, null);
         doMorphology(text);
     }
 
@@ -44,7 +52,7 @@ public class MorphologyLemmasExample extends AbstractExample {
      */
     private static void print(MorphologyResponse response) {
         System.out.println(response.getRequestId());
-        String result = "===== lemmas =====\n";
+        String result = "\n";
         if (response.getLemmas() != null) {
             for (Lemma lemma : response.getLemmas()) {
                 result += lemma.getText() + "\t" + lemma.getLemma() + "\n";

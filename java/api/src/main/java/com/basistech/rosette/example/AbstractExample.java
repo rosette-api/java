@@ -1,7 +1,6 @@
 package com.basistech.rosette.example;
 
 import com.basistech.rosette.api.RosetteAPI;
-import org.kohsuke.args4j.CmdLineParser;
 
 import java.net.MalformedURLException;
 
@@ -11,29 +10,26 @@ import java.net.MalformedURLException;
 public abstract class AbstractExample {
 
     protected static RosetteAPI rosetteAPI;
-    protected static CmdLineParser parser;
-    protected static String website = "http://www.basistech.com";
+    protected static String website = "http://www.basistech.com"; // default url
     protected static String text = "The first men to reach the moon – Mr. Armstrong and his co-pilot, " +
             "Col. Edwin E. Aldrin, Jr. of the Air Force – brought their ship to rest on a level, rock-strewn plain " +
-            "near the southwestern shore of the arid Sea of Tranquility.";
+            "near the southwestern shore of the arid Sea of Tranquility."; // default text
     
     /**
      * Usage
      */
     protected static void usage() {
-        System.out.println("Usage: java -Drosette.api.key=your-api-key -jar rosette-api-example-jar-with-dependencies.jar");
+        System.out.println("Usage: --key your-api-key");
     }
 
-    protected static void init() throws MalformedURLException {
-        String apiKey = System.getProperty("rosette.api.key");
-
-        if (apiKey == null) {
+    protected static void init(String key, String serviceUrl) throws MalformedURLException {
+        
+       if (key == null) {
             usage();
             return;
         }
 
-        rosetteAPI = new RosetteAPI(apiKey);
-        // parser = new CmdLineParser(this);
+        rosetteAPI = new RosetteAPI(key);
     }
 }
 
