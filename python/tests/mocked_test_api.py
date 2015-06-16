@@ -26,9 +26,6 @@ import pytest
 import re
 from rosette.api import API, Operator, RosetteParameters, RntParameters, RniParameters, RosetteException
 
-import sys
-_IsPy3 = sys.version_info[0] == 3
-
 
 request_file_dir = os.path.dirname(__file__) + "/../../mock-data/request/"
 response_file_dir = os.path.dirname(__file__) + "/../../mock-data/response/"
@@ -47,11 +44,11 @@ def get_file_content(filename):
 def categorize_reqs():
     files = []
     # Loop through all file names in the mock-data/request directory
-    for full_filename in glob.glob(os.path.dirname(__file__) + "/../../mock-data/request/*.json"):
+    for full_filename in glob.glob(request_file_dir + "*.json"):
         filename = os.path.basename(full_filename)
-        # Extract the endpoint (the part after the first two "-" but before .json
+        # Extract the endpoint (the part after the first two "-" but before .json)
         endpoint = "/" + filename_pattern.match(filename).group(2).replace("_", "/")
-        # Add (input, output, endpoint) to files list
+        # Add (input, output status, output json, endpoint) to files list
         files.append((filename_pattern.match(filename).group(1),
                       response_file_dir + filename.replace("json", "status"),
                       response_file_dir + filename,
@@ -118,7 +115,6 @@ def test_info():
 @httpretty.activate
 def call_endpoint(input_filename, expected_status_filename, expected_output_filename, rest_endpoint):
     httpretty.register_uri(httpretty.POST, "https://api.rosette.com/rest/v1" + rest_endpoint,
-                           # body=request_callback,
                            status=get_file_content(expected_status_filename),
                            body=get_file_content(expected_output_filename),
                            content_type="application/json")
@@ -155,11 +151,12 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
             assert False
         except RosetteException:
             assert True
-        return
+            return
 
     # Otherwise, actually complete the operation and check that it got the correct result
     result = op.operate(test.params)
     assert result == expected_result
+
 
 # Test all other endpoints
 # docs_list is the list of information from documents in the mock-data/request directory above
