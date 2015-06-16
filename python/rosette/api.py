@@ -540,27 +540,27 @@ class API:
         Create a ping L{Operator} for the server.
         @return: An L{Operator} object which can ping the server to which this L{API} object is bound.
         """
-        return Operator(self, None)
+        return Operator(self, None).ping()
 
-    def language(self):
+    def language(self, params):
         """
         Create an L{Operator} for language identification.
          @return: An L{Operator} object which can perform language identification upon texts to which it is applied."""
-        return Operator(self, "language")
+        return Operator(self, "language").operate(params)
 
-    def sentences(self):
+    def sentences(self, params):
         """Create an L{Operator} to break a text into sentences.
          @return: An L{Operator} object which will break into sentences the
          texts to which it is applied."""
-        return Operator(self, "sentences")
+        return Operator(self, "sentences").operate(params)
 
-    def tokens(self):
+    def tokens(self, params):
         """Create an L{Operator} to break a text into tokens.
          @return: An L{Operator} object which will tokenize the
          texts to which it is applied."""
-        return Operator(self, "tokens")
+        return Operator(self, "tokens").operate(params)
 
-    def morphology(self, facet=MorphologyOutput.COMPLETE):
+    def morphology(self, params, facet=MorphologyOutput.COMPLETE):
         """Create an L{Operator} to morphologically analyze a text.
         Produce an operator which returns a specific facet
         of the morphological analyses of texts to which it is applied.
@@ -568,9 +568,9 @@ class API:
         @param facet: The facet desired, to be returned by the created L{Operator}.
         @type facet: An element of L{MorphologyOutput}.
         """
-        return Operator(self, "morphology/" + facet)
+        return Operator(self, "morphology/" + facet).operate(params)
 
-    def entities(self, linked):
+    def entities(self, linked, params):
         """Create an L{Operator} to identify named entities found in the texts
         to which it is applied.  Linked entity information is optional, and
         its need must be specified at the time the operator is created.
@@ -579,25 +579,25 @@ class API:
         @type linked: Boolean
         """
         if linked:
-            return Operator(self, "entities/linked")
+            return Operator(self, "entities/linked").operate(params)
         else:
-            return Operator(self, "entities")
+            return Operator(self, "entities").operate(params)
 
-    def categories(self):
+    def categories(self, params):
         """Create an L{Operator} to identify categories of the texts
         to which is applied.
         @return: An L{Operator} object which can return category tags
         of texts to which it is applied."""
-        return Operator(self, "categories")
+        return Operator(self, "categories").operate(params)
 
-    def sentiment(self):
+    def sentiment(self, params):
         """Create an L{Operator} to identify sentiments of the texts
         to which is applied.
         @return: An L{Operator} object which can return sentiments
         of texts to which it is applied."""
-        return Operator(self, "sentiment")
+        return Operator(self, "sentiment").operate(params)
 
-    def translated_name(self):
+    def translated_name(self, params):
         """Create an L{Operator} to perform name analysis and translation
         upon the names to which it is applied.
         Note that that L{Operator}'s L{Operator.operate} method requires an L{NameTranslationParameters} argument,
@@ -605,13 +605,13 @@ class API:
         other instance methods.
         @return: An L{Operator} which can perform name analysis and translation.
         """
-        return Operator(self, "translated-name")
+        return Operator(self, "translated-name").operate(params)
 
-    def matched_name(self):
+    def matched_name(self, params):
         """Create an L{Operator} to perform name matching.
         Note that that L{Operator}'s L{Operator.operate} method requires an L{NameMatchingParameters} argument,
         not the L{DocumentParameters} required by L{Operator}s created by
         other instance methods.
         @return: An L{Operator} which can perform name matching.
         """
-        return Operator(self, "matched-name")
+        return Operator(self, "matched-name").operate(params)
