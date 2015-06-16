@@ -39,19 +39,6 @@ def get_file_content(filename):
         return f.read()
 
 
-def request_callback(request, uri, headers):
-    # Filename is in the user_key field as a workaround as the mocked tests don't require a user key
-    filename = request.headers["user_key"]
-    # Construct the base name for the response file from the filename
-    # Example filename: eng-doc-categories
-    resp_file = response_file_dir + filename
-    with open(resp_file + ".json", "r") as resp_json_file, open(resp_file + ".status", "r") as status_file:
-        status = status_file.read()
-        resp = resp_json_file.read()
-        headers = {"Content-Length": len(resp)}
-        return int(status), headers, resp
-
-
 # Run through all files in the mock-data directory, extract endpoint, and create a list of tuples of the form
 # (input filename, output status filename, output data filename, endpoint) as the elements
 def categorize_reqs():
@@ -133,7 +120,8 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
     httpretty.register_uri(httpretty.POST, "https://api.rosette.com/rest/v1" + rest_endpoint,
                            # body=request_callback,
                            status=get_file_content(expected_status_filename),
-                           body=get_file_content(expected_output_filename))
+                           body=get_file_content(expected_output_filename),
+                           content_type="application/json")
     with open(response_file_dir + "info.json", "r") as info_file:
         body = info_file.read()
     httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
