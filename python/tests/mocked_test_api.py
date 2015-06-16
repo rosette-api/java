@@ -33,6 +33,9 @@ _IsPy3 = sys.version_info[0] == 3
 request_file_dir = os.path.dirname(__file__) + "/../../mock-data/request/"
 response_file_dir = os.path.dirname(__file__) + "/../../mock-data/response/"
 
+# Define the regex pattern of file names. Example: eng-doc-categories.json
+filename_pattern = re.compile("(\w+-\w+-([a-z_-]+))[.]json")
+
 
 def get_file_content(filename):
     with open(filename, "r") as f:
@@ -42,16 +45,14 @@ def get_file_content(filename):
 # Run through all files in the mock-data directory, extract endpoint, and create a list of tuples of the form
 # (input filename, output status filename, output data filename, endpoint) as the elements
 def categorize_reqs():
-    # Define the regex pattern of file names. Example: eng-doc-categories.json
-    pattern = re.compile("(\w+-\w+-([a-z_-]+))[.]json")
     files = []
     # Loop through all file names in the mock-data/request directory
     for full_filename in glob.glob(os.path.dirname(__file__) + "/../../mock-data/request/*.json"):
         filename = os.path.basename(full_filename)
         # Extract the endpoint (the part after the first two "-" but before .json
-        endpoint = "/" + pattern.match(filename).group(2).replace("_", "/")
+        endpoint = "/" + filename_pattern.match(filename).group(2).replace("_", "/")
         # Add (input, output, endpoint) to files list
-        files.append((pattern.match(filename).group(1),
+        files.append((filename_pattern.match(filename).group(1),
                       response_file_dir + filename.replace("json", "status"),
                       response_file_dir + filename,
                       endpoint))
@@ -63,11 +64,10 @@ class RosetteTest:
         self.url = "https://api.rosette.com/rest/v1"
         # Set user key as filename as a workaround - tests don"t require user key
         # Filename is necessary to get the correct response in the mocked test
-        key = filename
-        self.api = API(service_url=self.url, user_key=key)
+        self.api = API(service_url=self.url, user_key=filename)
         # Default to RosetteParameters as self.params
         self.params = RosetteParameters()
-        if key is not None:
+        if filename is not None:
             # Name matching endpoint requires RniParameters
             if "matched-name" in filename:
                 self.params = RniParameters()
@@ -91,8 +91,8 @@ docs_list = categorize_reqs()
 def test_ping():
     with open(response_file_dir + "ping.json", "r") as ping_file:
         body = ping_file.read()
-    httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/ping",
-                           body=body, status=200, content_type="application/json")
+        httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/ping",
+                               body=body, status=200, content_type="application/json")
 
     test = RosetteTest(None)
     op = test.api.ping()
@@ -105,8 +105,8 @@ def test_ping():
 def test_info():
     with open(response_file_dir + "info.json", "r") as info_file:
         body = info_file.read()
-    httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
-                           body=body, status=200, content_type="application/json")
+        httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
+                               body=body, status=200, content_type="application/json")
 
     test = RosetteTest(None)
     op = Operator(test.api, None)
@@ -122,10 +122,11 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
                            status=get_file_content(expected_status_filename),
                            body=get_file_content(expected_output_filename),
                            content_type="application/json")
+    # need to mock /info call too because the api will call it implicitly
     with open(response_file_dir + "info.json", "r") as info_file:
         body = info_file.read()
-    httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
-                           body=body, status=200, content_type="application/json")
+        httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
+                               body=body, status=200, content_type="application/json")
 
     error_expected = False
     # Create an instance of the app, feeding the filename to be stored as the user key so the response will be correct
@@ -158,11 +159,7 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
 
     # Otherwise, actually complete the operation and check that it got the correct result
     result = op.operate(test.params)
-    if result == expected_result:
-        assert True
-    else:
-        assert False
-
+    assert result == expected_result
 
 # Test all other endpoints
 # docs_list is the list of information from documents in the mock-data/request directory above
