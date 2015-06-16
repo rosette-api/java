@@ -22,7 +22,6 @@ else:
 
 params = DocumentParameters()
 params["content"] = u"The quick brown fox jumped over the lazy dog. Yes he did."
-op = api.morphology()
-result = op.operate(params)
+result = api.morphology(params)
 
 pprint.pprint(result)

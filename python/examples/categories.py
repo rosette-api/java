@@ -26,7 +26,6 @@ params = DocumentParameters()
 # Use a URL to input data instead of a string
 params["contentUri"] = args.url
 
-op = api.categories()
-result = op.operate(params)
+result = api.categories(params)
 
 pprint.pprint(result)

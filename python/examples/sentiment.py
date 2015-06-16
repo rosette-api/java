@@ -43,8 +43,7 @@ params = DocumentParameters()
 
 # Use an HTML file to load data instead of a string
 params.load_document_file(args.file)
-op = api.sentiment()
-result = op.operate(params)
+result = api.sentiment(params)
 
 # Clean up the file
 f.close()

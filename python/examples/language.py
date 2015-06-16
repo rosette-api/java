@@ -24,7 +24,6 @@ params = DocumentParameters()
 
 # Use an HTML file to load data instead of a string
 params["content"] = u"Por favor Señorita, says the man."
-op = api.language()
-result = op.operate(params)
+result = api.language(params)
 
 pprint.pprint(result)

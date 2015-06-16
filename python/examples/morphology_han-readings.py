@@ -22,7 +22,6 @@ else:
 
 params = DocumentParameters()
 params["content"] = u"北京大学生物系主任办公室内部会议"
-op = api.morphology(MorphologyOutput.HAN_READINGS)
-result = op.operate(params)
+result = api.morphology(params, MorphologyOutput.HAN_READINGS)
 
 pprint.pprint(result)

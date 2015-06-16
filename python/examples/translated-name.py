@@ -24,7 +24,6 @@ params = NameTranslationParameters()
 params["name"] = u"معمر محمد أبو منيار القذافي‎"
 params["entityType"] = "PERSON"
 params["targetLanguage"] = "eng"
-op = api.translated_name()
-result = op.operate(params)
+result = api.translated_name(params)
 
 pprint.pprint(result)

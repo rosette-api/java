@@ -20,7 +20,6 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-op = Operator(api, None)
-result = op.info()
+result = Operator(api, None).info()
 
 pprint.pprint(result)

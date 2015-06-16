@@ -20,7 +20,6 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-op = api.ping()
-result = op.ping()
+result = api.ping()
 
 pprint.pprint(result)

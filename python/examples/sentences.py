@@ -33,7 +33,6 @@ I saw above me that endless skyway:
 I saw below me that golden valley:
 This land was made for you and me."""
 
-op = api.sentences()
-result = op.operate(params)
+result = api.sentences(params)
 
 pprint.pprint(result)
