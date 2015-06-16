@@ -18,4 +18,4 @@ fi
 $vroot/bin/pip install pytest
 $vroot/bin/pip install HTTPretty
 (cd ..; $vroot/bin/python setup.py install)
-$vroot/bin/python ../tests/mocked_test_api.py
+$vroot/bin/py.test ../tests/mocked_test_api.py
