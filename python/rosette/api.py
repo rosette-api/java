@@ -3,20 +3,20 @@
 """
 Python client for the Rosette API.
 
-  Copyright (c) 2014-2015 Basis Technology Corporation.
+Copyright (c) 2014-2015 Basis Technology Corporation.
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
 
-     http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 """
+
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
 N_RETRIES = 3
@@ -61,10 +61,11 @@ def _my_loads(obj):
     else:
         return json.loads(obj)
 
+
 def _retrying_request(op, url, data, headers):
     parsed = urlparse(url)
     loc = parsed.netloc
-    if (parsed.scheme == "https"):
+    if parsed.scheme == "https":
         conn = httplib.HTTPSConnection(loc)
     else:
         conn = httplib.HTTPConnection(loc)
@@ -100,9 +101,11 @@ def _retrying_request(op, url, data, headers):
 
     raise RosetteException(code, message, url)
 
+
 def _get_http(url, headers):
     (rdata, status) = _retrying_request("GET", url, None, headers)
     return _ReturnObject(_my_loads(rdata), status)
+
 
 def _post_http(url, data, headers):
     if data is None:
@@ -110,7 +113,7 @@ def _post_http(url, data, headers):
     else:
         json_data = json.dumps(data)
 
-    (rdata,status) = _retrying_request("POST", url, json_data, headers)
+    (rdata, status) = _retrying_request("POST", url, json_data, headers)
 
     if len(rdata) > 3 and rdata[0:3] == _GZIP_SIGNATURE:
         buf = BytesIO(rdata)
@@ -172,6 +175,7 @@ class DataFormat(_PseudoEnum):
     """The data is of unknown format, it may be a binary data type (the contents of a binary file),
     or may not.  It will be sent as is and identified and analyzed by the server."""
 
+
 class InputUnit(_PseudoEnum):
     """Elements are used in the L{RosetteParameters} class to specify whether textual data
     is to be treated as one sentence or possibly many."""
@@ -179,6 +183,7 @@ class InputUnit(_PseudoEnum):
     """The data is a whole document; it may or may not contain multiple sentences."""
     SENTENCE = "sentence"
     """The data is a single sentence."""
+
 
 class MorphologyOutput(_PseudoEnum):
     LEMMAS = "lemmas"
@@ -256,7 +261,6 @@ class RosetteParameters(_RosetteParamSetBase):
         else:  # self["content"] not None
             if self["contentUri"] is not None:
                 raise RosetteException("badArgument", "Cannot supply both Content and ContentUri", "bad arguments")
-
 
         slz = self._for_serialize()
         if self["contentType"] is None and self["contentUri"] is None:
@@ -418,11 +422,11 @@ class Operator:
                 complaint_url = ename + " " + self.suburl
 
             if "code" in the_json:
-                serverCode = the_json["code"]
+                server_code = the_json["code"]
             else:
-                serverCode = "unknownError"
+                server_code = "unknownError"
 
-            raise RosetteException(serverCode,
+            raise RosetteException(server_code,
                                    complaint_url + " : failed to communicate with Rosette",
                                    msg)
 
