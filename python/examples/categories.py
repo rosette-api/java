@@ -7,7 +7,7 @@ Example code to call Rosette API to get the category of a document (at a given U
 import argparse
 import pprint
 
-from rosette.api import API, RosetteParameters
+from rosette.api import API, DocumentParameters
 
 parser = argparse.ArgumentParser(description="Get the category of a piece of a document at a URL")
 parser.add_argument("--key", required=True, help="Rosette API key")
@@ -21,7 +21,7 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-params = RosetteParameters()
+params = DocumentParameters()
 
 # Use a URL to input data instead of a string
 params["contentUri"] = args.url

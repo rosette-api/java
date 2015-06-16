@@ -24,7 +24,7 @@ import json
 import os
 import pytest
 import re
-from rosette.api import API, Operator, RosetteParameters, RntParameters, RniParameters, RosetteException
+from rosette.api import API, Operator, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
 
 
 request_file_dir = os.path.dirname(__file__) + "/../../mock-data/request/"
@@ -62,15 +62,15 @@ class RosetteTest:
         # Set user key as filename as a workaround - tests don"t require user key
         # Filename is necessary to get the correct response in the mocked test
         self.api = API(service_url=self.url, user_key=filename)
-        # Default to RosetteParameters as self.params
-        self.params = RosetteParameters()
+        # Default to DocumentParameters as self.params
+        self.params = DocumentParameters()
         if filename is not None:
-            # Name matching endpoint requires RniParameters
+            # Name matching endpoint requires NameMatchingParameters
             if "matched-name" in filename:
-                self.params = RniParameters()
-            # Name translation requires RntParameters
+                self.params = NameMatchingParameters()
+            # Name translation requires NameTranslationParameters
             elif "translated-name" in filename:
-                self.params = RntParameters()
+                self.params = NameTranslationParameters()
             # Find and load contents of request file into parameters
             with open(request_file_dir + filename + ".json", "r") as inp_file:
                 params_dict = json.loads(inp_file.read())

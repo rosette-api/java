@@ -2,7 +2,7 @@
 
 rosette.api interim documentation.
 
-From rosette.api, import API, InputUnit, RosetteParameters, RntParameters, DataFormat, MorphologyOutput, RniParameters
+From rosette.api, import API, InputUnit, DocumentParameters, NameTranslationParameters, DataFormat, MorphologyOutput, NameMatchingParameters
 
 You must create an API (symbol above) with the "service_url" parameter providing the
 base URL for Rosette services and the optional user key, e.g.,
@@ -22,7 +22,7 @@ To ping,
     op.ping() # if there is no trouble, it has pinged successfully, or else an error was signalled.
 
 To operate any other function, e.g., a "parameters" dictionary must be set up.  This is
-the class rosette.api.RosetteParameters.  You must set "content" (a Unicode string to be
+the class rosette.api.DocumentParameters.  You must set "content" (a Unicode string to be
 processed or JSON TBD). "contentType" must be one of the four elements of
 rosette.api.DataFormat (see below); SIMPLE is the default.  "unit" must be one of the Enum
 rosette.api.InputUnit, DOC or SENTENCE; DOC is default.
@@ -33,7 +33,7 @@ or ftps.  The content on that page, with the type declared in its header, will b
 in the latter case. 
 
 Example:
-        TagParams = RosetteParameters()
+        TagParams = DocumentParameters()
         TagParams.content =  u"In the short story 'নষ্টনীড়', Rabindranath Tagore wrote, \"Charu, have you read 'The Poison Tree' by Bankim Chandra Chatterjee?\"."
  
 To operate the functions other than ping(), call "operate" upon the
@@ -64,7 +64,7 @@ The known operators which can be requested (other than ping, whose call is descr
 
 DataFormat values
 
-The "contentType" of RosetteParameters must be set to one of these five values:
+The "contentType" of DocumentParameters must be set to one of these five values:
   DataFormat.SIMPLE -- "content" is any unicode string at all, which will be interpreted 
                        as text.
   DataFormat.JSON -- "content" is a JSON input string as specified in the Rosette Web
@@ -82,7 +82,7 @@ Internally, the latter three transmit in Base64, but you have no need to know th
 
 Convenience operations
 
-   There are two methods on RosetteParameters supplied for convenience:
+   There are two methods on DocumentParameters supplied for convenience:
       load_document_string(s, dtype)
          s is a unicode or non-unicode string as required by the DataFormat
 	 dtype is an element of DataFormat
@@ -99,18 +99,18 @@ Convenience operations
 translated_name is unlike all the other entries.  The operate function
 requires as its parameter object a dictionary with two required entries,
 "name", the name to be translated, and "targetLanguageCode”, an ISO639 string for the target language.
-These are elements of  rosette.api.RntParameters. The return
+These are elements of  rosette.api.NameTranslationParameters. The return
 return result (as of this writing) has to be retrieved from the "result" entry of the actual return result.  Hence,
 
  def test_translated_name():
         op = api.translated_name();
-        params = RntParameters()
+        params = NameTranslationParameters()
         params["name"] = "كريم عبد الجبار"
         params["targetLanguageCode"] = "eng";
         result = op.operate(params)
         result = result["result"]
         print result["translation"]
 
-Note that RntParameters and RosetteParameters are not simple Python dictionaries; their "setitem" operators (params["key"]) validate their arguments.
+Note that NameTranslationParameters and DocumentParameters are not simple Python dictionaries; their "setitem" operators (params["key"]) validate their arguments.
 
 

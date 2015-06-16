@@ -7,7 +7,7 @@ Example code to call Rosette API to determine the language of a piece of text.
 import argparse
 import pprint
 
-from rosette.api import API, RosetteParameters
+from rosette.api import API, DocumentParameters
 
 parser = argparse.ArgumentParser(description="Determine the language of a piece of text")
 parser.add_argument("--key", required=True, help="Rosette API key")
@@ -20,7 +20,7 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-params = RosetteParameters()
+params = DocumentParameters()
 
 # Use an HTML file to load data instead of a string
 params["content"] = u"Por favor Señorita, says the man."

@@ -7,7 +7,7 @@ Example code to call Rosette API to get the complete morphological analysis of a
 import argparse
 import pprint
 
-from rosette.api import API, RosetteParameters
+from rosette.api import API, DocumentParameters
 
 parser = argparse.ArgumentParser(description="Get the complete morphological analysis of a piece of text")
 parser.add_argument("--key", required=True, help="Rosette API key")
@@ -20,7 +20,7 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-params = RosetteParameters()
+params = DocumentParameters()
 params["content"] = u"The quick brown fox jumped over the lazy dog. Yes he did."
 op = api.morphology()
 result = op.operate(params)

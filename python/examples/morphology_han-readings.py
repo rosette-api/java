@@ -7,7 +7,7 @@ Example code to call Rosette API to get Chinese readings of words in a piece of 
 import argparse
 import pprint
 
-from rosette.api import API, RosetteParameters, MorphologyOutput
+from rosette.api import API, DocumentParameters, MorphologyOutput
 
 parser = argparse.ArgumentParser(description="Get Chinese readings of words in a piece of text")
 parser.add_argument("--key", required=True, help="Rosette API key")
@@ -20,7 +20,7 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-params = RosetteParameters()
+params = DocumentParameters()
 params["content"] = u"北京大学生物系主任办公室内部会议"
 op = api.morphology(MorphologyOutput.HAN_READINGS)
 result = op.operate(params)

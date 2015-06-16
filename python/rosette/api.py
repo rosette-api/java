@@ -177,7 +177,7 @@ class DataFormat(_PseudoEnum):
 
 
 class InputUnit(_PseudoEnum):
-    """Elements are used in the L{RosetteParameters} class to specify whether textual data
+    """Elements are used in the L{DocumentParameters} class to specify whether textual data
     is to be treated as one sentence or possibly many."""
     DOC = "doc"
     """The data is a whole document; it may or may not contain multiple sentences."""
@@ -193,7 +193,7 @@ class MorphologyOutput(_PseudoEnum):
     COMPLETE = "complete"
 
 
-class _RosetteParamSetBase:
+class _DocumentParamSetBase:
     def __init__(self, repertoire):
         self.__params = {}
         for k in repertoire:
@@ -229,13 +229,13 @@ def _byteify(s):  # py 3 only
     return b
 
 
-class RosetteParameters(_RosetteParamSetBase):
+class DocumentParameters(_DocumentParamSetBase):
     """Parameter object for all operations requiring input other than
     translated_name.
     Four fields, C{content}, C{contentType}, C{unit}, and C{inputUri}, are set via
     the subscript operator, e.g., C{params["content"]}, or the
-    convenience instance methods L{RosetteParameters.load_document_file}
-    and L{RosetteParameters.load_document_string}. The unit size and
+    convenience instance methods L{DocumentParameters.load_document_file}
+    and L{DocumentParameters.load_document_string}. The unit size and
     data format are defaulted to L{InputUnit.DOC} and L{DataFormat.SIMPLE}.
 
     Using subscripts instead of instance variables facilitates diagnosis.
@@ -247,9 +247,9 @@ class RosetteParameters(_RosetteParamSetBase):
     """
     
     def __init__(self):
-        """Create a L{RosetteParameters} object.  Default data format
+        """Create a L{DocumentParameters} object.  Default data format
     is L{DataFormat.SIMPLE}, unit is L{InputUnit.DOC}."""
-        _RosetteParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit", "language"))
+        _DocumentParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit", "language"))
         self["unit"] = InputUnit.DOC  # default
 
     def serializable(self):
@@ -309,12 +309,12 @@ class RosetteParameters(_RosetteParamSetBase):
         self["unit"] = InputUnit.DOC
         
 
-class RntParameters(_RosetteParamSetBase):
+class NameTranslationParameters(_DocumentParamSetBase):
     """Parameter object for C{translated_name} endpoint.
     The following values may be set by the indexing (i.e.,C{ parms["name"]}) operator.  The values are all
     strings (when not C{None}).
     All are optional except C{name} and C{targetLanguage}.  Scripts are in
-    ISO15924 codes, and languages in ISO639 (two- or three-letter) codes.  See the RNT documentation for more
+    ISO15924 codes, and languages in ISO639 (two- or three-letter) codes.  See the Name Translation documentation for more
     description of these terms, as well as the content of the return result.
 
     C{name} The name to be translated.
@@ -335,7 +335,7 @@ class RntParameters(_RosetteParamSetBase):
     """
 
     def __init__(self):
-        _RosetteParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin",
+        _DocumentParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin",
                                              "sourceLanguageOfUse", "sourceScript", "targetScript", "targetScheme"))
 
     def serializable(self):
@@ -343,11 +343,11 @@ class RntParameters(_RosetteParamSetBase):
         """Internal. Do not use."""
         for n in ("name", "targetLanguage"):  # required
             if self[n] is None:
-                raise RosetteException("missingParameter", "Required RNT parameter not supplied", repr(n))
+                raise RosetteException("missingParameter", "Required Name Translation parameter not supplied", repr(n))
         return self._for_serialize()
 
 
-class RniParameters(_RosetteParamSetBase):
+class NameMatchingParameters(_DocumentParamSetBase):
     """Parameter object for C{matched_name} endpoint.
     All are required.
 
@@ -367,14 +367,14 @@ class RniParameters(_RosetteParamSetBase):
     """
 
     def __init__(self):
-        _RosetteParamSetBase.__init__(self, ("name1", "name2"))
+        _DocumentParamSetBase.__init__(self, ("name1", "name2"))
 
     def serializable(self):
 
         """Internal. Do not use."""
         for n in ("name1", "name2"):  # required
             if self[n] is None:
-                raise RosetteException("missingParameter", "Required RNI parameter not supplied", repr(n))
+                raise RosetteException("missingParameter", "Required Name Matching parameter not supplied", repr(n))
         return self._for_serialize()
 
 
@@ -467,9 +467,9 @@ class Operator:
         """Invokes the endpoint to which this L{Operator} is bound.
         Passes data and metadata specified by C{parameters} to the server
         endpoint to which this L{Operator} object is bound.  For all
-        endpoints except C{translated_name} and C{matched_name}, it must be a L{RosetteParameters}
-        object; for C{translated_name}, it must be an L{RntParameters} object;
-        for C{matched_name}, it must be an L{RniParameters} object.
+        endpoints except C{translated_name} and C{matched_name}, it must be a L{DocumentParameters}
+        object; for C{translated_name}, it must be an L{NameTranslationParameters} object;
+        for C{matched_name}, it must be an L{NameMatchingParameters} object.
 
         In all cases, the result is returned as a python dictionary
         conforming to the JSON object described in the endpoint's entry
@@ -478,7 +478,7 @@ class Operator:
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the endpoint.  See the
         details for those object types.
-        @type parameters: For C{translated_name}, L{RntParameters}, otherwise L{RosetteParameters}
+        @type parameters: For C{translated_name}, L{NameTranslationParameters}, otherwise L{DocumentParameters}
         @return: A python dictionary expressing the result of the invocation.
         """
 
@@ -600,8 +600,8 @@ class API:
     def translated_name(self):
         """Create an L{Operator} to perform name analysis and translation
         upon the names to which it is applied.
-        Note that that L{Operator}'s L{Operator.operate} method requires an L{RntParameters} argument,
-        not the L{RosetteParameters} required by L{Operator}s created by
+        Note that that L{Operator}'s L{Operator.operate} method requires an L{NameTranslationParameters} argument,
+        not the L{DocumentParameters} required by L{Operator}s created by
         other instance methods.
         @return: An L{Operator} which can perform name analysis and translation.
         """
@@ -609,8 +609,8 @@ class API:
 
     def matched_name(self):
         """Create an L{Operator} to perform name matching.
-        Note that that L{Operator}'s L{Operator.operate} method requires an L{RniParameters} argument,
-        not the L{RosetteParameters} required by L{Operator}s created by
+        Note that that L{Operator}'s L{Operator.operate} method requires an L{NameMatchingParameters} argument,
+        not the L{DocumentParameters} required by L{Operator}s created by
         other instance methods.
         @return: An L{Operator} which can perform name matching.
         """

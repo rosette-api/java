@@ -7,7 +7,7 @@ Example code to send Rosette API a ping to check its reachability.
 import argparse
 import pprint
 
-from rosette.api import API, RosetteParameters
+from rosette.api import API, DocumentParameters
 
 parser = argparse.ArgumentParser(description="Send ping to check for reachability of Rosette API")
 parser.add_argument("--key", required=True, help="Rosette API key")

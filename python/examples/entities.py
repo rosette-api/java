@@ -7,7 +7,7 @@ Example code to call Rosette API to get entities from a piece of text.
 import argparse
 import pprint
 
-from rosette.api import API, RosetteParameters
+from rosette.api import API, DocumentParameters
 
 parser = argparse.ArgumentParser(description="Get the entities from a piece of text")
 parser.add_argument("--key", required=True, help="Rosette API key")
@@ -20,7 +20,7 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-params = RosetteParameters()
+params = DocumentParameters()
 params["content"] = u"""President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill
 based on Christian faith by July 1st or Washington will become totally dysfunctional,
 a terrible outcome for American people."""

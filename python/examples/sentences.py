@@ -7,7 +7,7 @@ Example code to call Rosette API to get sentences in a piece of text.
 import argparse
 import pprint
 
-from rosette.api import API, RosetteParameters
+from rosette.api import API, DocumentParameters
 
 parser = argparse.ArgumentParser(description="Get sentences from a piece of text")
 parser.add_argument("--key", required=True, help="Rosette API key")
@@ -20,7 +20,7 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-params = RosetteParameters()
+params = DocumentParameters()
 params["content"] = u"""
 This land is your land This land is my land
 From California to the New York island;
