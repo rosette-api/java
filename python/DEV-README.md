@@ -82,25 +82,7 @@ Contact lxu for pypi credentials.
     python setup.py register   # only needed for the very first time
     python setup.py sdist upload
 
-
-To run the tests again
-==================
-
-With the file tree in the above state (from mvn, not an install), cd to the
-"setup" subdirectory.  To test in python 2,
-
-    ./test_from_shell.sh
-
-To test from Python 3
-
-    ./test_from_shell_py3.sh
-
-These tests will hit jugmaster.basistech.net; if you don't like that, change or rewrite
-either or both of these one-line scripts to use some other URL.  If a user key is needed,
-bind the shell variable `RAAS_USER_KEY` to its value (this is part of the test api, not
-the binding api).
-
 To clean up
 ============
 Run `mvn clean` in this directory.  Temporary output including the epydoc will
-be expunged.  The virtual envirnoments used to test will be expunged.  
+be expunged.  The virtual environments used to test will be expunged.  

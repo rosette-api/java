@@ -52,6 +52,9 @@
                                 <include>**/*.pyc</include>
                             </includes>
                         </fileset>
+                        <fileset>
+                            <directory>build</directory>
+                        </fileset>
                     </filesets>
                 </configuration>
             </plugin>

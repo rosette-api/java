@@ -7,7 +7,7 @@ Example code to call Rosette API to get lemmas for words in a piece of text.
 import argparse
 import pprint
 
-from rosette.api import API, RosetteParameters, MorphologyOutput
+from rosette.api import API, DocumentParameters, MorphologyOutput
 
 parser = argparse.ArgumentParser(description="Get lemmas for words in a piece of text")
 parser.add_argument("--key", required=True, help="Rosette API key")
@@ -20,9 +20,8 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-params = RosetteParameters()
+params = DocumentParameters()
 params["content"] = u"The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
-op = api.morphology(MorphologyOutput.LEMMAS)
-result = op.operate(params)
+result = api.morphology(params, MorphologyOutput.LEMMAS)
 
 pprint.pprint(result)

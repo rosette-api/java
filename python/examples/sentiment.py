@@ -8,7 +8,7 @@ import argparse
 import pprint
 import tempfile
 
-from rosette.api import API, RosetteParameters
+from rosette.api import API, DocumentParameters
 
 # Create default file to read from
 f = tempfile.NamedTemporaryFile(suffix=".html")
@@ -39,12 +39,11 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-params = RosetteParameters()
+params = DocumentParameters()
 
 # Use an HTML file to load data instead of a string
 params.load_document_file(args.file)
-op = api.sentiment()
-result = op.operate(params)
+result = api.sentiment(params)
 
 # Clean up the file
 f.close()

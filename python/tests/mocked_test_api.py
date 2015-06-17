@@ -24,7 +24,7 @@ import json
 import os
 import pytest
 import re
-from rosette.api import API, Operator, RosetteParameters, RntParameters, RniParameters, RosetteException
+from rosette.api import API, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
 
 
 request_file_dir = os.path.dirname(__file__) + "/../../mock-data/request/"
@@ -48,7 +48,7 @@ def categorize_reqs():
         filename = os.path.basename(full_filename)
         # Extract the endpoint (the part after the first two "-" but before .json)
         endpoint = "/" + filename_pattern.match(filename).group(2).replace("_", "/")
-        # Add (input, output status, output json, endpoint) to files list
+        # Add (input, output status, output json, endpoint) to list of files
         files.append((filename_pattern.match(filename).group(1),
                       response_file_dir + filename.replace("json", "status"),
                       response_file_dir + filename,
@@ -62,15 +62,15 @@ class RosetteTest:
         # Set user key as filename as a workaround - tests don"t require user key
         # Filename is necessary to get the correct response in the mocked test
         self.api = API(service_url=self.url, user_key=filename)
-        # Default to RosetteParameters as self.params
-        self.params = RosetteParameters()
+        # Default to DocumentParameters as self.params
+        self.params = DocumentParameters()
         if filename is not None:
-            # Name matching endpoint requires RniParameters
+            # Name matching endpoint requires NameMatchingParameters
             if "matched-name" in filename:
-                self.params = RniParameters()
-            # Name translation requires RntParameters
+                self.params = NameMatchingParameters()
+            # Name translation requires NameTranslationParameters
             elif "translated-name" in filename:
-                self.params = RntParameters()
+                self.params = NameTranslationParameters()
             # Find and load contents of request file into parameters
             with open(request_file_dir + filename + ".json", "r") as inp_file:
                 params_dict = json.loads(inp_file.read())
@@ -92,8 +92,7 @@ def test_ping():
                                body=body, status=200, content_type="application/json")
 
     test = RosetteTest(None)
-    op = test.api.ping()
-    result = op.ping()
+    result = test.api.ping()
     assert result["message"] == "Rosette API at your service"
 
 
@@ -106,8 +105,7 @@ def test_info():
                                body=body, status=200, content_type="application/json")
 
     test = RosetteTest(None)
-    op = Operator(test.api, None)
-    result = op.info()
+    result = test.api.info()
     assert result["buildNumber"] == "6bafb29d"
     assert result["name"] == "Rosette API"
 
@@ -134,27 +132,30 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
     if "code" in expected_result:
         if expected_result["code"] == "unsupportedLanguage":
             error_expected = True
-    functions = {"/categories":          test.api.categories(),
-                 "/entities":            test.api.entities(None),
-                 "/entities/linked":     test.api.entities(True),
-                 "/language":            test.api.language(),
-                 "/matched-name":        test.api.matched_name(),
-                 "/morphology/complete": test.api.morphology(),
-                 "/sentiment":           test.api.sentiment(),
-                 "/translated-name":     test.api.translated_name()}
-    # Find the correct function based on the endpoint and create an operator
-    op = functions[rest_endpoint]
+    functions = {"/categories":          test.api.categories,
+                 "/entities":            test.api.entities,
+                 "/entities/linked":     test.api.entities,  # (test.params, True)
+                 "/language":            test.api.language,
+                 "/matched-name":        test.api.matched_name,
+                 "/morphology/complete": test.api.morphology,
+                 "/sentiment":           test.api.sentiment,
+                 "/translated-name":     test.api.translated_name}
+
     # If the request is expected to throw an exception, try complete the operation and pass the test only if it fails
     if error_expected:
         try:
-            op.operate(test.params)
+            functions[rest_endpoint](test.params)
             assert False
         except RosetteException:
             assert True
             return
 
     # Otherwise, actually complete the operation and check that it got the correct result
-    result = op.operate(test.params)
+    # entities/linked must be handled separately because they require two arguments
+    if "entities/linked" not in rest_endpoint:
+        result = functions[rest_endpoint](test.params)
+    else:
+        result = functions[rest_endpoint](test.params, True)
     assert result == expected_result
 
 
