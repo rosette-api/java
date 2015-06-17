@@ -336,7 +336,7 @@ class NameTranslationParameters(_DocumentParamSetBase):
 
     def __init__(self):
         _DocumentParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin",
-                                             "sourceLanguageOfUse", "sourceScript", "targetScript", "targetScheme"))
+                                              "sourceLanguageOfUse", "sourceScript", "targetScript", "targetScheme"))
 
     def serializable(self):
 
@@ -537,81 +537,113 @@ class API:
 
     def ping(self):
         """
-        Create a ping L{Operator} for the server.
-        @return: An L{Operator} object which can ping the server to which this L{API} object is bound.
+        Create a ping L{Operator} for the server and ping it.
+        @return: A python dictionary including the ping message of the L{API}
         """
         return Operator(self, None).ping()
 
-    def language(self, params):
+    def language(self, parameters):
         """
-        Create an L{Operator} for language identification.
-         @return: An L{Operator} object which can perform language identification upon texts to which it is applied."""
-        return Operator(self, "language").operate(params)
+        Create an L{Operator} for language identification and operate on it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the language identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of language
+        identification."""
+        return Operator(self, "language").operate(parameters)
 
-    def sentences(self, params):
-        """Create an L{Operator} to break a text into sentences.
-         @return: An L{Operator} object which will break into sentences the
-         texts to which it is applied."""
-        return Operator(self, "sentences").operate(params)
+    def sentences(self, parameters):
+        """
+        Create an L{Operator} to break a text into sentences and operate on it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the sentence identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of sentence identification."""
+        return Operator(self, "sentences").operate(parameters)
 
-    def tokens(self, params):
-        """Create an L{Operator} to break a text into tokens.
-         @return: An L{Operator} object which will tokenize the
-         texts to which it is applied."""
-        return Operator(self, "tokens").operate(params)
+    def tokens(self, parameters):
+        """
+        Create an L{Operator} to break a text into tokens and operate on it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the tokens identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of tokenization."""
+        return Operator(self, "tokens").operate(parameters)
 
-    def morphology(self, params, facet=MorphologyOutput.COMPLETE):
-        """Create an L{Operator} to morphologically analyze a text.
-        Produce an operator which returns a specific facet
-        of the morphological analyses of texts to which it is applied.
-        L{MorphologyOutput.COMPLETE} (the default) requests all available facets.
+    def morphology(self, parameters, facet=MorphologyOutput.COMPLETE):
+        """
+        Create an L{Operator} to returns a specific facet
+        of the morphological analyses of texts to which it is applied and operate on it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the morphology analyzer.
+        @type parameters: L{DocumentParameters}
         @param facet: The facet desired, to be returned by the created L{Operator}.
         @type facet: An element of L{MorphologyOutput}.
-        """
-        return Operator(self, "morphology/" + facet).operate(params)
+        @return: A python dictionary containing the results of morphological analysis."""
+        return Operator(self, "morphology/" + facet).operate(parameters)
 
-    def entities(self, linked, params):
-        """Create an L{Operator} to identify named entities found in the texts
-        to which it is applied.  Linked entity information is optional, and
+    def entities(self, linked, parameters):
+        """
+        Create an L{Operator}  to identify named entities found in the texts
+        to which it is applied and operate on it. Linked entity information is optional, and
         its need must be specified at the time the operator is created.
         @param linked: Specifies whether or not linked entity information will
         be wanted.
         @type linked: Boolean
-        """
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the entity identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of entity extraction."""
         if linked:
-            return Operator(self, "entities/linked").operate(params)
+            return Operator(self, "entities/linked").operate(parameters)
         else:
-            return Operator(self, "entities").operate(params)
+            return Operator(self, "entities").operate(parameters)
 
-    def categories(self, params):
-        """Create an L{Operator} to identify categories of the texts
-        to which is applied.
-        @return: An L{Operator} object which can return category tags
-        of texts to which it is applied."""
-        return Operator(self, "categories").operate(params)
+    def categories(self, parameters):
+        """
+        Create an L{Operator} to identify the category of the text to which
+        it is applied and operate on it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the category identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of categorization."""
+        return Operator(self, "categories").operate(parameters)
 
-    def sentiment(self, params):
+    def sentiment(self, parameters):
+        """
+        Create an L{Operator} to identify the sentiment of the text to
+        which it is applied and operate on it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the sentiment identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of sentiment identification."""
         """Create an L{Operator} to identify sentiments of the texts
         to which is applied.
         @return: An L{Operator} object which can return sentiments
         of texts to which it is applied."""
-        return Operator(self, "sentiment").operate(params)
+        return Operator(self, "sentiment").operate(parameters)
 
-    def translated_name(self, params):
-        """Create an L{Operator} to perform name analysis and translation
-        upon the names to which it is applied.
-        Note that that L{Operator}'s L{Operator.operate} method requires an L{NameTranslationParameters} argument,
-        not the L{DocumentParameters} required by L{Operator}s created by
-        other instance methods.
-        @return: An L{Operator} which can perform name analysis and translation.
+    def translated_name(self, parameters):
         """
-        return Operator(self, "translated-name").operate(params)
+        Create an L{Operator} to perform name analysis and translation
+        upon the name to which it is applied and operate on it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the name translator.
+        @type parameters: L{NameTranslationParameters}
+        @return: A python dictionary containing the results of name translation."""
+        return Operator(self, "translated-name").operate(parameters)
 
-    def matched_name(self, params):
+    def matched_name(self, parameters):
+        """
+        Create an L{Operator} to perform name matching and operate on it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the name matcher.
+        @type parameters: L{NameMatchingParameters}
+        @return: A python dictionary containing the results of name matching."""
         """Create an L{Operator} to perform name matching.
         Note that that L{Operator}'s L{Operator.operate} method requires an L{NameMatchingParameters} argument,
         not the L{DocumentParameters} required by L{Operator}s created by
         other instance methods.
         @return: An L{Operator} which can perform name matching.
         """
-        return Operator(self, "matched-name").operate(params)
+        return Operator(self, "matched-name").operate(parameters)
