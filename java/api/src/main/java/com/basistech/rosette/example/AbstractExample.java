@@ -19,16 +19,16 @@ public abstract class AbstractExample {
      * Usage
      */
     protected static void usage() {
-        System.out.println("Usage: --key your-api-key");
+        System.out.println("Usage: java -cp -java-rosette-api.jar com/basistech/rosette/example/<example>" +
+                " -Drosette.api.key=<api-key>");
     }
 
-    protected static void init(String key, String serviceUrl) throws MalformedURLException {
-        
-       if (key == null) {
+    protected static void init() throws MalformedURLException {
+        String key = System.getProperty("rosette.api.key");
+        if (key == null) {
             usage();
             return;
         }
-
         rosetteAPI = new RosetteAPI(key);
     }
 }
