@@ -23,7 +23,7 @@
         <pip3>virtualenv/target/vroot3/bin/pip</pip3>
     </properties>
     <modules>
-        <module>virtualenv</module>
+        <!--<module>virtualenv</module>-->
         <module>setup</module>
     </modules>
     <build>
@@ -57,6 +57,22 @@
                         </fileset>
                     </filesets>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>virtualenv-setup</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>tox</executable>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
