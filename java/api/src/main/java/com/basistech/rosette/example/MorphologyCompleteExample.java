@@ -28,7 +28,7 @@ public final class MorphologyCompleteExample extends AbstractExample {
     }
     
     /**
-     * Sends string Morphology request.
+     * Sends complete morphology request from text.
      * @param text
      */
     private static void doMorphology(String text) {
@@ -43,7 +43,7 @@ public final class MorphologyCompleteExample extends AbstractExample {
     }
     
     /**
-     * Prints MorphologyResponse.
+     * Prints complete morphology response.
      * @param response
      */
     private static void print(MorphologyResponse response) {
