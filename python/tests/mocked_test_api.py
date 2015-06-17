@@ -24,7 +24,7 @@ import json
 import os
 import pytest
 import re
-from rosette.api import API, EndpointCaller, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
+from rosette.api import API, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
 
 
 request_file_dir = os.path.dirname(__file__) + "/../../mock-data/request/"
@@ -105,8 +105,7 @@ def test_info():
                                body=body, status=200, content_type="application/json")
 
     test = RosetteTest(None)
-    op = EndpointCaller(test.api, None)
-    result = op.info()
+    result = test.api.info()
     assert result["buildNumber"] == "6bafb29d"
     assert result["name"] == "Rosette API"
 
@@ -135,7 +134,7 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
             error_expected = True
     functions = {"/categories":          test.api.categories,
                  "/entities":            test.api.entities,
-                 "/entities/linked":     test.api.entities, # (test.params, True)
+                 "/entities/linked":     test.api.entities,  # (test.params, True)
                  "/language":            test.api.language,
                  "/matched-name":        test.api.matched_name,
                  "/morphology/complete": test.api.morphology,
