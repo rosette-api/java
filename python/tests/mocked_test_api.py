@@ -24,7 +24,7 @@ import json
 import os
 import pytest
 import re
-from rosette.api import API, Operator, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
+from rosette.api import API, EndpointCaller, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
 
 
 request_file_dir = os.path.dirname(__file__) + "/../../mock-data/request/"
@@ -106,7 +106,7 @@ def test_info():
                                body=body, status=200, content_type="application/json")
 
     test = RosetteTest(None)
-    op = Operator(test.api, None)
+    op = EndpointCaller(test.api, None)
     result = op.info()
     assert result["buildNumber"] == "6bafb29d"
     assert result["name"] == "Rosette API"
@@ -142,8 +142,7 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
                  "/morphology/complete": test.api.morphology,
                  "/sentiment":           test.api.sentiment,
                  "/translated-name":     test.api.translated_name}
-    # Find the correct function based on the endpoint and create an operator
-    #op = functions[rest_endpoint]()
+
     # If the request is expected to throw an exception, try complete the operation and pass the test only if it fails
     if error_expected:
         try:
@@ -154,13 +153,11 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
             return
 
     # Otherwise, actually complete the operation and check that it got the correct result
-    # Entities and any morphology except complete must be handled separately because they require two arguments
-    if "entities" not in rest_endpoint:
+    # entities/linked and any morphology except complete must be handled separately because they require two arguments
+    if "entities/linked" not in rest_endpoint:
         result = functions[rest_endpoint](test.params)
-    elif "linked" not in rest_endpoint:
-        result = functions[rest_endpoint](None, test.params)
     else:
-        result = functions[rest_endpoint](True, test.params)
+        result = functions[rest_endpoint](test.params, True)
     assert result == expected_result
 
 

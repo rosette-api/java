@@ -378,16 +378,16 @@ class NameMatchingParameters(_DocumentParamSetBase):
         return self._for_serialize()
 
 
-class Operator:
-    """L{Operator} objects are invoked via their instance methods to obtain results
+class EndpointCaller:
+    """L{EndpointCaller} objects are invoked via their instance methods to obtain results
     from the Rosette server described by the L{API} object from which they
-    are created.  Each L{Operator} object communicates with a specific endpoint
+    are created.  Each L{EndpointCaller} object communicates with a specific endpoint
     of the Rosette server, specified at its creation.  Use the specific
-    instance methods of the L{API} object to create L{Operator} objects bound to
+    instance methods of the L{API} object to create L{EndpointCaller} objects bound to
     corresponding endpoints.
 
-    Use L{Operator.ping} to ping, and L{Operator.info} to retrieve server info.
-    For all other types of requests, use L{Operator.operate}, which accepts
+    Use L{EndpointCaller.ping} to ping, and L{EndpointCaller.info} to retrieve server info.
+    For all other types of requests, use L{EndpointCaller.operate}, which accepts
     an argument specifying the data to be processed and certain metadata.
 
     The results of all operations are returned as python dictionaries, whose
@@ -434,7 +434,7 @@ class Operator:
         self.useMultipart = value
 
     def info(self):
-        """Issues an "info" request to the L{Operator}'s specific endpoint.
+        """Issues an "info" request to the L{EndpointCaller}'s specific endpoint.
         @return: A dictionary telling server version and other
         identifying data."""
         if self.suburl is not None:
@@ -450,7 +450,7 @@ class Operator:
         return self.__finish_result(r, "info")
 
     def ping(self):
-        """Issues a "ping" request to the L{Operator}'s (server-wide) endpoint.
+        """Issues a "ping" request to the L{EndpointCaller}'s (server-wide) endpoint.
         @return: A dictionary if OK.  If the server cannot be reached,
         or is not the right server or some other error occurs, it will be
         signalled."""
@@ -463,10 +463,10 @@ class Operator:
         r = _get_http(url, headers=headers)
         return self.__finish_result(r, "ping")
 
-    def operate(self, parameters):
-        """Invokes the endpoint to which this L{Operator} is bound.
+    def call(self, parameters):
+        """Invokes the endpoint to which this L{EndpointCaller} is bound.
         Passes data and metadata specified by C{parameters} to the server
-        endpoint to which this L{Operator} object is bound.  For all
+        endpoint to which this L{EndpointCaller} object is bound.  For all
         endpoints except C{translated_name} and C{matched_name}, it must be a L{DocumentParameters}
         object; for C{translated_name}, it must be an L{NameTranslationParameters} object;
         for C{matched_name}, it must be an L{NameMatchingParameters} object.
@@ -501,7 +501,7 @@ class Operator:
 class API:
     """
     Rosette Python Client Binding API; representation of a Rosette server.
-    Call instance methods upon this object to obtain L{Operator} objects
+    Call instance methods upon this object to obtain L{EndpointCaller} objects
     which can communicate with particular Rosette server endpoints.
     """
     def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1'):
@@ -523,7 +523,7 @@ class API:
     def check_version(self):
         if self.version_checked:
             return True
-        op = Operator(self, None)
+        op = EndpointCaller(self, None)
         result = op.info()
         version = ".".join(result["version"].split(".")[0:2])
         if version != _ACCEPTABLE_SERVER_VERSION:
@@ -537,55 +537,62 @@ class API:
 
     def ping(self):
         """
-        Create a ping L{Operator} for the server and ping it.
+        Create a ping L{EndpointCaller} for the server and ping it.
         @return: A python dictionary including the ping message of the L{API}
         """
-        return Operator(self, None).ping()
+        return EndpointCaller(self, None).ping()
+
+    def info(self):
+        """
+        Create a ping L{EndpointCaller} for the server and ping it.
+        @return: A python dictionary including the ping message of the L{API}
+        """
+        return EndpointCaller(self, None).info()
 
     def language(self, parameters):
         """
-        Create an L{Operator} for language identification and operate on it.
+        Create an L{EndpointCaller} for language identification and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the language identifier.
         @type parameters: L{DocumentParameters}
         @return: A python dictionary containing the results of language
         identification."""
-        return Operator(self, "language").operate(parameters)
+        return EndpointCaller(self, "language").call(parameters)
 
     def sentences(self, parameters):
         """
-        Create an L{Operator} to break a text into sentences and operate on it.
+        Create an L{EndpointCaller} to break a text into sentences and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the sentence identifier.
         @type parameters: L{DocumentParameters}
         @return: A python dictionary containing the results of sentence identification."""
-        return Operator(self, "sentences").operate(parameters)
+        return EndpointCaller(self, "sentences").call(parameters)
 
     def tokens(self, parameters):
         """
-        Create an L{Operator} to break a text into tokens and operate on it.
+        Create an L{EndpointCaller} to break a text into tokens and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the tokens identifier.
         @type parameters: L{DocumentParameters}
         @return: A python dictionary containing the results of tokenization."""
-        return Operator(self, "tokens").operate(parameters)
+        return EndpointCaller(self, "tokens").call(parameters)
 
     def morphology(self, parameters, facet=MorphologyOutput.COMPLETE):
         """
-        Create an L{Operator} to returns a specific facet
-        of the morphological analyses of texts to which it is applied and operate on it.
+        Create an L{EndpointCaller} to returns a specific facet
+        of the morphological analyses of texts to which it is applied and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the morphology analyzer.
         @type parameters: L{DocumentParameters}
-        @param facet: The facet desired, to be returned by the created L{Operator}.
+        @param facet: The facet desired, to be returned by the created L{EndpointCaller}.
         @type facet: An element of L{MorphologyOutput}.
         @return: A python dictionary containing the results of morphological analysis."""
-        return Operator(self, "morphology/" + facet).operate(parameters)
+        return EndpointCaller(self, "morphology/" + facet).call(parameters)
 
-    def entities(self, linked, parameters):
+    def entities(self, parameters, linked=False):
         """
-        Create an L{Operator}  to identify named entities found in the texts
-        to which it is applied and operate on it. Linked entity information is optional, and
+        Create an L{EndpointCaller}  to identify named entities found in the texts
+        to which it is applied and call it. Linked entity information is optional, and
         its need must be specified at the time the operator is created.
         @param linked: Specifies whether or not linked entity information will
         be wanted.
@@ -595,55 +602,55 @@ class API:
         @type parameters: L{DocumentParameters}
         @return: A python dictionary containing the results of entity extraction."""
         if linked:
-            return Operator(self, "entities/linked").operate(parameters)
+            return EndpointCaller(self, "entities/linked").call(parameters)
         else:
-            return Operator(self, "entities").operate(parameters)
+            return EndpointCaller(self, "entities").call(parameters)
 
     def categories(self, parameters):
         """
-        Create an L{Operator} to identify the category of the text to which
-        it is applied and operate on it.
+        Create an L{EndpointCaller} to identify the category of the text to which
+        it is applied and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the category identifier.
         @type parameters: L{DocumentParameters}
         @return: A python dictionary containing the results of categorization."""
-        return Operator(self, "categories").operate(parameters)
+        return EndpointCaller(self, "categories").call(parameters)
 
     def sentiment(self, parameters):
         """
-        Create an L{Operator} to identify the sentiment of the text to
-        which it is applied and operate on it.
+        Create an L{EndpointCaller} to identify the sentiment of the text to
+        which it is applied and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the sentiment identifier.
         @type parameters: L{DocumentParameters}
         @return: A python dictionary containing the results of sentiment identification."""
-        """Create an L{Operator} to identify sentiments of the texts
+        """Create an L{EndpointCaller} to identify sentiments of the texts
         to which is applied.
-        @return: An L{Operator} object which can return sentiments
+        @return: An L{EndpointCaller} object which can return sentiments
         of texts to which it is applied."""
-        return Operator(self, "sentiment").operate(parameters)
+        return EndpointCaller(self, "sentiment").call(parameters)
 
     def translated_name(self, parameters):
         """
-        Create an L{Operator} to perform name analysis and translation
-        upon the name to which it is applied and operate on it.
+        Create an L{EndpointCaller} to perform name analysis and translation
+        upon the name to which it is applied and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the name translator.
         @type parameters: L{NameTranslationParameters}
         @return: A python dictionary containing the results of name translation."""
-        return Operator(self, "translated-name").operate(parameters)
+        return EndpointCaller(self, "translated-name").call(parameters)
 
     def matched_name(self, parameters):
         """
-        Create an L{Operator} to perform name matching and operate on it.
+        Create an L{EndpointCaller} to perform name matching and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the name matcher.
         @type parameters: L{NameMatchingParameters}
         @return: A python dictionary containing the results of name matching."""
-        """Create an L{Operator} to perform name matching.
-        Note that that L{Operator}'s L{Operator.operate} method requires an L{NameMatchingParameters} argument,
-        not the L{DocumentParameters} required by L{Operator}s created by
+        """Create an L{EndpointCaller} to perform name matching.
+        Note that that L{EndpointCaller}'s L{EndpointCaller.operate} method requires an L{NameMatchingParameters} argument,
+        not the L{DocumentParameters} required by L{EndpointCaller}s created by
         other instance methods.
-        @return: An L{Operator} which can perform name matching.
+        @return: An L{EndpointCaller} which can perform name matching.
         """
-        return Operator(self, "matched-name").operate(parameters)
+        return EndpointCaller(self, "matched-name").call(parameters)

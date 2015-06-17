@@ -7,7 +7,7 @@ Example code to call Rosette API to get information such as version and build
 import argparse
 import pprint
 
-from rosette.api import API, Operator
+from rosette.api import API, EndpointCaller
 
 parser = argparse.ArgumentParser(description="Get information about Rosette API")
 parser.add_argument("--key", required=True, help="Rosette API key")
@@ -20,6 +20,6 @@ if args.service_url:
 else:
     api = API(user_key=args.key)
 
-result = Operator(api, None).info()
+result = api.info()
 
 pprint.pprint(result)
