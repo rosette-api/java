@@ -48,8 +48,7 @@ def categorize_reqs():
         filename = os.path.basename(full_filename)
         # Extract the endpoint (the part after the first two "-" but before .json)
         endpoint = "/" + filename_pattern.match(filename).group(2).replace("_", "/")
-        # Add (input, output status, output json, endpoint) to files list
-        #if "entities" not in filename:
+        # Add (input, output status, output json, endpoint) to list of files
         files.append((filename_pattern.match(filename).group(1),
                       response_file_dir + filename.replace("json", "status"),
                       response_file_dir + filename,
@@ -135,8 +134,8 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
         if expected_result["code"] == "unsupportedLanguage":
             error_expected = True
     functions = {"/categories":          test.api.categories,
-                 "/entities":            test.api.entities, #(None, test.params),
-                 "/entities/linked":     test.api.entities, #(True, test.params),
+                 "/entities":            test.api.entities,
+                 "/entities/linked":     test.api.entities, # (test.params, True)
                  "/language":            test.api.language,
                  "/matched-name":        test.api.matched_name,
                  "/morphology/complete": test.api.morphology,
@@ -153,7 +152,7 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
             return
 
     # Otherwise, actually complete the operation and check that it got the correct result
-    # entities/linked and any morphology except complete must be handled separately because they require two arguments
+    # entities/linked must be handled separately because they require two arguments
     if "entities/linked" not in rest_endpoint:
         result = functions[rest_endpoint](test.params)
     else:
