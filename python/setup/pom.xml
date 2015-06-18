@@ -25,6 +25,17 @@
                     <workingDirectory>..</workingDirectory>
                 </configuration>
                 <executions>
+                    <!-- added -->
+                    <execution>
+                        <id>virtualenv-setup</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>tox</executable>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>setup build</id>
                         <phase>compile</phase>
@@ -33,6 +44,7 @@
                         </goals>
                         <configuration>
                             <arguments>
+                                <!-- [DEBUG] Executing command line: bash setup/run_in_venv.sh virtualenv/target/vroot virtualenv/target/vroot/bin/python setup.py build -b setup/target/build2 -->
                                 <argument>${run}</argument>
                                 <argument>${virtualenv}</argument>
                                 <argument>${python}</argument>
