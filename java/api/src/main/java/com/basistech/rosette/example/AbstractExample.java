@@ -18,7 +18,6 @@ package com.basistech.rosette.example;
 
 import com.basistech.rosette.api.RosetteAPI;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,12 +27,13 @@ import java.util.regex.Pattern;
  */
 public abstract class AbstractExample {
 
-    protected static RosetteAPI rosetteAPI;
-    protected static String argsToValidate;
-    //protected static Map<String,String> argsToValidate = new HashMap<>();
+    protected RosetteAPI rosetteAPI;
+    protected String argsToValidate;
+    protected String usage = "Usage: java -cp <path-to-java-rosette-api-jar> -Drosette.api.key=<api-key> " + 
+            "com.basistech.rosette.example.<example> -service-url <optional-service-url>";
     // default values
-    protected static URL url;
-    protected static String text = "The first men to reach the moon – Mr. Armstrong and his co-pilot, " +
+    protected URL url;
+    protected String text = "The first men to reach the moon – Mr. Armstrong and his co-pilot, " +
             "Col. Edwin E. Aldrin, Jr. of the Air Force – brought their ship to rest on a level, rock-strewn plain " +
             "near the southwestern shore of the arid Sea of Tranquility.";
 
@@ -41,7 +41,7 @@ public abstract class AbstractExample {
      * helper method for validate in subclasses
      * @param args
      */
-    protected static void prepareOptions(String[] args) {
+    protected void prepareOptions(String[] args) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < args.length; i++) {
             sb.append(args[i]);
@@ -51,14 +51,23 @@ public abstract class AbstractExample {
     }
 
     /**
-     * Usage
+     * runs the example 
+     * @param args
      */
-    protected static void usage() {
-        System.out.println("Usage: java -cp <path-to-java-rosette-api-jar> -Drosette.api.key=<api-key> " +
-                "com.basistech.rosette.example.<example>");
+    protected void run(String[] args) {
+        setKey();
+        prepareOptions(args);
+        setServiceUrl();
     }
 
-    protected static void setKey() {
+    /**
+     * Usage
+     */
+    protected void usage() {
+        System.out.println(usage);
+    }
+
+    protected void setKey() {
         String key = System.getProperty("rosette.api.key");
         if (key == null) {
             usage();
@@ -67,8 +76,8 @@ public abstract class AbstractExample {
         rosetteAPI = new RosetteAPI(key);
     }
     
-    protected static void setServiceUrl() {
-        Pattern p = Pattern.compile("-service-url\\s([^\\s])++");
+    protected void setServiceUrl() {
+        Pattern p = Pattern.compile("-service-url\\s([^\\s])+");
         Matcher m = p.matcher(argsToValidate);
         if (m.find()) {
             System.out.println(m.group());
@@ -78,13 +87,8 @@ public abstract class AbstractExample {
         }
     }
     
-    protected static void setUrl(String address) {
-        try {
-            url = new URL(address);
-        } catch (MalformedURLException e) {
-            System.err.println(e.toString());
-        }
-    } 
+    // examples each return different type of response, don't use this
+    // protected abstract void print();
 }
 
 

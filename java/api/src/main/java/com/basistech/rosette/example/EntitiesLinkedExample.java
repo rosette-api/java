@@ -21,31 +21,44 @@ import com.basistech.rosette.apimodel.LinkedEntity;
 import com.basistech.rosette.apimodel.LinkedEntityResponse;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public final class EntitiesLinkedExample extends AbstractExample {
 
+    public EntitiesLinkedExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets linked entities as a demonstration of usage.
      *
-     * @param args not used 
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
-        doLinkedEntity(text);
+    public void main(String[] args) throws URISyntaxException, IOException {
+        new EntitiesLinkedExample().run(args);
     }
 
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
+        doLinkedEntity(text);
+    }
+    
     /**
      * Sends linked entity request from text.
      * @param text
      */
-    private static void doLinkedEntity(String text) {
+    private void doLinkedEntity(String text) {
         try {
             LinkedEntityResponse entityResponse = rosetteAPI.getLinkedEntity(text, null, null);
             print(entityResponse);

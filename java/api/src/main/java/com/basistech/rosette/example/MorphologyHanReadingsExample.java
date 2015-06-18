@@ -22,23 +22,36 @@ import com.basistech.rosette.apimodel.HanReadings;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public class MorphologyHanReadingsExample extends AbstractExample {
 
+    public MorphologyHanReadingsExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets han readings as a demonstration of usage.
      *
-     * @param args not used
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new MorphologyHanReadingsExample().run(args);
+    }
+
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doMorphology(text);
     }
 
@@ -46,7 +59,7 @@ public class MorphologyHanReadingsExample extends AbstractExample {
      * Sends morphology han readings request from text.
      * @param text
      */
-    private static void doMorphology(String text) {
+    private void doMorphology(String text) {
         try {
             MorphologyResponse response = rosetteAPI.getMorphology(RosetteAPI.MorphologicalFeature.HAN_READINGS, text, null, null);
             print(response);

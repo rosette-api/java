@@ -20,23 +20,36 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.TokenResponse;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public class TokenExample extends AbstractExample {
 
+    public TokenExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets tokens (words) as a demonstration of usage.
      *
-     * @param args not used 
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new TokenExample().run(args);
+    }
+
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doTokens(text);
     }
     
@@ -44,7 +57,7 @@ public class TokenExample extends AbstractExample {
      * Sends token request from text.
      * @param text
      */
-    private static void doTokens(String text) {
+    private void doTokens(String text) {
         try {
             TokenResponse response = rosetteAPI.getTokens(text, null);
             print(response);

@@ -20,23 +20,36 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.SentenceResponse;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public final class SentenceExample extends AbstractExample {
-
+    
+    public SentenceExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets sentences as a demonstration of usage.
      *
-     * @param args not used 
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new SentenceExample().run(args);
+    }
+
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doSentences(text);
     }
 
@@ -44,7 +57,7 @@ public final class SentenceExample extends AbstractExample {
      * Sends sentences request from text.
      * @param text
      */
-    private static void doSentences(String text) {
+    private void doSentences(String text) {
         try {
             SentenceResponse response = rosetteAPI.getSentences(text, null);
             print(response);

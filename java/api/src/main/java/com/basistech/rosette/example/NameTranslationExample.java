@@ -23,23 +23,36 @@ import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.TranslatedNameResult;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public final class NameTranslationExample extends AbstractExample {
 
+    public NameTranslationExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets translated names as a demonstration of usage.
      *
-     * @param args not used 
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new NameTranslationExample().run(args);
+    }
+
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doNameTranslation("John Doe", LanguageCode.kor);
     }
 
@@ -48,7 +61,7 @@ public final class NameTranslationExample extends AbstractExample {
      * @param name
      * @param targetLanguage
      */
-    private static void doNameTranslation(String name, LanguageCode targetLanguage) {
+    private void doNameTranslation(String name, LanguageCode targetLanguage) {
         try {
             NameTranslationRequest nameTranslationRequest = new NameTranslationRequest(name, null, null, null, null, targetLanguage, null, null);
             NameTranslationResponse response = rosetteAPI.translateName(nameTranslationRequest);

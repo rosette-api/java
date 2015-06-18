@@ -21,23 +21,36 @@ import com.basistech.rosette.apimodel.Sentiment;
 import com.basistech.rosette.apimodel.SentimentResponse;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public final class SentimentExample extends AbstractExample {
 
+    public SentimentExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets sentiment as a demonstration of usage.
      *
-     * @param args not used 
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new SentimentExample().run(args);
+    }
+
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doSentiment(text);
     }
     
@@ -45,7 +58,7 @@ public final class SentimentExample extends AbstractExample {
      * Sends sentiment request from text.
      * @param text
      */
-    private static void doSentiment(String text) {
+    private void doSentiment(String text) {
         try {
             SentimentResponse sentimentResponse = rosetteAPI.getSentiment(text, null, null);
             print(sentimentResponse);

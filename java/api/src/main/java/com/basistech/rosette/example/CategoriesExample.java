@@ -31,54 +31,55 @@ import java.util.regex.Pattern;
  * example of calling the category endpoint
  */
 public final class CategoriesExample extends AbstractExample {
+    
+    public CategoriesExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+        usage = usage + " -url <optional-url>";
+    }
 
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets categories as a demonstration of usage.
      *
-     * @param args not used 
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new CategoriesExample().run(args);
+    }
+    
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         setUrl();
     }
     
-    private static void setUrl() {
+    private void setUrl() {
         Pattern p = Pattern.compile("-url\\s[^\\s]+");
         Matcher m = p.matcher(argsToValidate);
         if (m.find()) {
             System.out.println(m.group());
-            setUrl(m.group().substring(5));
-        } else {
-            System.out.println("No url provided, using default");
             try {
-                url = new URL("http://www.basistech.com/about/");
+                url = new URL(m.group().substring(5));
             } catch (MalformedURLException e) {
                 System.err.println(e.toString());
             }
         }
         doCategories(url);
     }
-
-    /**
-     * Usage
-     */
-    protected static void usage() {
-        System.out.println("Usage: java -cp <path-to-java-rosette-api-jar> -Drosette.api.key=<api-key> " +
-                "com.basistech.rosette.example.CategoriesExample -service-url <optional-service-url> -url <optional-url>");
-    }
-
+    
     /**
      * Sends category request from text.
      *
      * @param text
      */
-    private static void doCategories(String text) {
+    private void doCategories(String text) {
         try {
             CategoryResponse categoryResponse = rosetteAPI.getCategories(text, null, null);
             print(categoryResponse);
@@ -94,7 +95,7 @@ public final class CategoriesExample extends AbstractExample {
      *
      * @param url
      */
-    private static void doCategories(URL url) {
+    private void doCategories(URL url) {
         try {
             CategoryResponse categoryResponse = rosetteAPI.getCategories(url, null, null);
             print(categoryResponse);

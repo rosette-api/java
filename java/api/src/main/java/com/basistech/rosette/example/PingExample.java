@@ -24,27 +24,32 @@ import java.net.URISyntaxException;
 import java.util.Date;
 
 public final class PingExample extends AbstractExample {
-
+    
+    public PingExample() {}
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets categories as a demonstration of usage.
      *
-     * @param args not used
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
-        doPing();
+        new PingExample().run(args);
     }
 
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
+        doPing();
+    }
+    
     /**
      * Pings Rosette API.
      */
-    private static void doPing() {
+    private void doPing() {
         try {
             PingResponse pingResponse = rosetteAPI.ping();
             print(pingResponse);

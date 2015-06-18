@@ -21,23 +21,36 @@ import com.basistech.rosette.apimodel.LanguageDetectionResult;
 import com.basistech.rosette.apimodel.LanguageResponse;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public final class LanguageExample extends AbstractExample {
 
+    public LanguageExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets language as a demonstration of usage.
      *
-     * @param args not used 
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new LanguageExample().run(args);
+    }
+
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doLanguage(text);
     }
     
@@ -45,7 +58,7 @@ public final class LanguageExample extends AbstractExample {
      * Sends language request from text.
      * @param text
      */
-    private static void doLanguage(String text) {
+    private void doLanguage(String text) {
         try {
             LanguageResponse response = rosetteAPI.getLanguage(text, null);
             print(response);

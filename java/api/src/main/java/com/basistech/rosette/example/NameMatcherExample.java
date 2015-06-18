@@ -23,23 +23,36 @@ import com.basistech.rosette.apimodel.NameMatcherResponse;
 import com.basistech.rosette.apimodel.NameMatcherResult;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public final class NameMatcherExample extends AbstractExample {
-
+    
+    public NameMatcherExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets name matching as a demonstration of usage.
      *
-     * @param args not used 
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new NameMatcherExample().run(args);
+    }
+
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doNameMatcher("John Doe", "Jon Doe");
     }
     
@@ -48,7 +61,7 @@ public final class NameMatcherExample extends AbstractExample {
      * @param name1
      * @param name2
      */
-    private static void doNameMatcher(String name1, String name2) {
+    private void doNameMatcher(String name1, String name2) {
         try {
             NameMatcherRequest request = new NameMatcherRequest(new Name(name1), new Name(name2));
             NameMatcherResponse response = rosetteAPI.matchName(request);

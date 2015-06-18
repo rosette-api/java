@@ -22,23 +22,36 @@ import com.basistech.rosette.apimodel.Decompounding;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public class MorphologyCompoundComponentsExample extends AbstractExample {
 
+    public MorphologyCompoundComponentsExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets compound components as a demonstration of usage.
      *
-     * @param args not used
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new MorphologyCompoundComponentsExample().run(args);
+    }
+
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doMorphology(text);
     }
 
@@ -46,7 +59,7 @@ public class MorphologyCompoundComponentsExample extends AbstractExample {
      * Sends morphology compound components request from text.
      * @param text
      */
-    private static void doMorphology(String text) {
+    private void doMorphology(String text) {
         try {
             MorphologyResponse response = rosetteAPI.getMorphology(RosetteAPI.MorphologicalFeature.COMPOUND_COMPONENTS, text, null, null);
             print(response);

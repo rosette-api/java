@@ -22,22 +22,36 @@ import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.PartOfSpeech;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public class MorphologyPartOfSpeechExample extends AbstractExample {
+
+    public MorphologyPartOfSpeechExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
+    
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets complete morphology analysis as a demonstration of usage.
      *
-     * @param args not used
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new MorphologyPartOfSpeechExample().run(args);
+    }
+
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doMorphology(text);
     }
 
@@ -45,7 +59,7 @@ public class MorphologyPartOfSpeechExample extends AbstractExample {
      * Sends morphology part of speech request.
      * @param text
      */
-    private static void doMorphology(String text) {
+    private void doMorphology(String text) {
         try {
             MorphologyResponse response = rosetteAPI.getMorphology(RosetteAPI.MorphologicalFeature.PARTS_OF_SPEECH, text, null, null);
             print(response);

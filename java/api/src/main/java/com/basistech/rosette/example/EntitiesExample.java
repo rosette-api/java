@@ -21,23 +21,35 @@ import com.basistech.rosette.apimodel.EntityResponse;
 import com.basistech.rosette.apimodel.ExtractedEntity;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public final class EntitiesExample extends AbstractExample {
 
+    public EntitiesExample() {
+        try {
+            url = new URL("http://www.basistech.com/about/");
+        } catch (MalformedURLException e) {
+            System.err.println(e.toString());
+        }
+    }
     /**
      * Main program.
      * Creates a RosetteAPI instance with the API key defined in rosette.api.key property.
      * Gets entities as a demonstration of usage.
      *
-     * @param args not used 
+     * @param args
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        setKey();
-        prepareOptions(args);
-        setServiceUrl();
+        new EntitiesExample().run(args);
+    }
+    
+    @Override
+    protected void run(String[] args) {
+        super.run(args);
         doEntity(text);
     }
 
@@ -45,7 +57,7 @@ public final class EntitiesExample extends AbstractExample {
          * Sends entity request from text.
          * @param text
          */
-    private static void doEntity(String text) {
+    private void doEntity(String text) {
         try {
             EntityResponse entityResponse = rosetteAPI.getEntity(text, null, null);
             print(entityResponse);
