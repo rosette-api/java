@@ -23,6 +23,7 @@ import com.basistech.rosette.apimodel.CategoryResponse;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.regex.Pattern;
 
 /**
  * example of calling the category endpoint
@@ -39,15 +40,21 @@ public final class CategoriesExample extends AbstractExample {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        if (args.length == 2) {
-            if (args[0].equals("--url")) {
+        if (validate(args)) {
+            System.out.println("url = " + args[1]);
                 init(args[1]);
                 doCategories(url);
-            }
         } else {
+            System.out.println("no url");
             init();
             doCategories(text);
         }
+    }
+    
+    private static boolean validate(String[] args) {
+        prepareToValidate(args);
+        // URL validation occurs in Rosette API, do we need this step?
+        return Pattern.matches("(--url .+)?+", argsToValidate);
     }
 
     /**

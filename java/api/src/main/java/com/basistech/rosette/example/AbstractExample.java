@@ -27,21 +27,32 @@ import java.net.URL;
 public abstract class AbstractExample {
 
     protected static RosetteAPI rosetteAPI;
+    protected static String argsToValidate;
     // default values
+    protected static URL serviceUrl;
     protected static URL url;
     protected static String text = "The first men to reach the moon – Mr. Armstrong and his co-pilot, " +
             "Col. Edwin E. Aldrin, Jr. of the Air Force – brought their ship to rest on a level, rock-strewn plain " +
             "near the southwestern shore of the arid Sea of Tranquility.";
     
+    protected static void prepareToValidate(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < args.length; i++) {
+            sb.append(args[i]);
+            sb.append(" "); // space delimiter
+        }
+        argsToValidate = sb.toString();
+    }
+
     /**
      * Usage
      */
     public static void usage() {
-        System.out.println("Usage: java -cp -java-rosette-api.jar com/basistech/rosette/example/<example>" +
-                " -Drosette.api.key=<api-key>");
+        System.out.println("Usage: java -cp -java-rosette-api.jar -Drosette.api.key=<api-key> " +
+                "com/basistech/rosette/example/<example>");
     }
 
-    public static void init() {
+    protected static void init() {
         String key = System.getProperty("rosette.api.key");
         if (key == null) {
             usage();
@@ -50,7 +61,7 @@ public abstract class AbstractExample {
         rosetteAPI = new RosetteAPI(key);
     }
     
-    public static void init(String address) {
+    protected static void init(String address) {
         try {
             url = new URL(address);
         } catch (MalformedURLException e) {
