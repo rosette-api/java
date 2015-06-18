@@ -36,7 +36,9 @@
                             <executable>tox</executable>
                         </configuration>
                     </execution>
-                    <execution>
+                    <!-- Commenting the below had minimal effect-->
+                    <!-- immediately below does this [DEBUG] Executing command line: bash setup/run_in_venv.sh virtualenv/target/vroot virtualenv/target/vroot/bin/python setup.py build -b setup/target/build2-->
+                    <!--<execution>
                         <id>setup build</id>
                         <phase>compile</phase>
                         <goals>
@@ -44,7 +46,6 @@
                         </goals>
                         <configuration>
                             <arguments>
-                                <!-- [DEBUG] Executing command line: bash setup/run_in_venv.sh virtualenv/target/vroot virtualenv/target/vroot/bin/python setup.py build -b setup/target/build2 -->
                                 <argument>${run}</argument>
                                 <argument>${virtualenv}</argument>
                                 <argument>${python}</argument>
@@ -54,8 +55,8 @@
                                 <argument>setup/target/build2</argument>
                             </arguments>
                         </configuration>
-                    </execution>
-                    <execution>
+                    </execution>-->
+                    <!--<execution>
                         <id>setup build py3</id>
                         <phase>compile</phase>
                         <goals>
@@ -72,7 +73,7 @@
                                 <argument>setup/target/build3</argument>
                             </arguments>
                         </configuration>
-                    </execution>
+                    </execution>-->
                     <execution>
                         <id>epydoc</id>
                         <phase>compile</phase>
@@ -95,24 +96,6 @@
                             </arguments>
                         </configuration>
                     </execution>
-                    <!--
-                    <execution>
-                        <id>sphinx</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>
-                                <argument>${run}</argument>
-                                <argument>${virtualenv}</argument>
-                                <argument>${python}</argument>
-                                <argument>setup.py</argument>
-                                <argument>build_sphinx</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    -->
                     <execution>
                         <id>build dist</id>
                         <phase>compile</phase>

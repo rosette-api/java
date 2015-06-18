@@ -387,7 +387,7 @@ class EndpointCaller:
     corresponding endpoints.
 
     Use L{EndpointCaller.ping} to ping, and L{EndpointCaller.info} to retrieve server info.
-    For all other types of requests, use L{EndpointCaller.operate}, which accepts
+    For all other types of requests, use L{EndpointCaller.call}, which accepts
     an argument specifying the data to be processed and certain metadata.
 
     The results of all operations are returned as python dictionaries, whose
@@ -647,10 +647,4 @@ class API:
         and possible metadata, to be processed by the name matcher.
         @type parameters: L{NameMatchingParameters}
         @return: A python dictionary containing the results of name matching."""
-        """Create an L{EndpointCaller} to perform name matching.
-        Note that that L{EndpointCaller}'s L{EndpointCaller.operate} method requires an L{NameMatchingParameters} argument,
-        not the L{DocumentParameters} required by L{EndpointCaller}s created by
-        other instance methods.
-        @return: An L{EndpointCaller} which can perform name matching.
-        """
         return EndpointCaller(self, "matched-name").call(parameters)
