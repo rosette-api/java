@@ -11,11 +11,15 @@ excluding the angle brackets:
 `javac -cp <path-to-java-rosette-api-jar> /com/basistech/rosette/example/*.java`
 
 To run a single example, run the following command. Each example requires a Rosette API key and prints its output to the console.
-`javac -cp .:..<path-to-java-rosette-api-jar> -Drosette.api.key=<api-key> com/basistech/rosette/example/<example>`
+`java -cp .:..<path-to-java-rosette-api-jar> -Drosette.api.key=<your-api-key> com/basistech/rosette/example/<your-example>`
 
-| File Name                                   | Description                                     |
-| -------------                               |-------------                                    |
-| CategoriesExample.java                      | Gets the category of a document at a URL        |
+Each example may also take a following optional service url parameter:
+`java -cp .:..<path-to-java-rosette-api-jar> -Drosette.api.key=<your-api-key> com/basistech/rosette/example/<your-example> 
+-service-url <your-service-url>`
+
+| File Name                                   | Description                                     | Optional Parameters
+| -------------                               |-------------                                    |--------------------
+| CategoriesExample.java                      | Gets the category of a document at a URL        |-url <your-url>
 | EntitiesExample.java                        | Gets the entities                               |
 | EntitiesLinkedExample.java                  | Gets the linked (to Wikipedia) entities         |
 | InfoExample.java                            | Gets information about Rosette API              |

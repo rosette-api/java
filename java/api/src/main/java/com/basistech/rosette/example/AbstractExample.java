@@ -20,6 +20,8 @@ import com.basistech.rosette.api.RosetteAPI;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Provides examples on how to use the {@link com.basistech.rosette.api RosetteAPI} endpoints.
@@ -28,14 +30,18 @@ public abstract class AbstractExample {
 
     protected static RosetteAPI rosetteAPI;
     protected static String argsToValidate;
+    //protected static Map<String,String> argsToValidate = new HashMap<>();
     // default values
-    protected static URL serviceUrl;
     protected static URL url;
     protected static String text = "The first men to reach the moon – Mr. Armstrong and his co-pilot, " +
             "Col. Edwin E. Aldrin, Jr. of the Air Force – brought their ship to rest on a level, rock-strewn plain " +
             "near the southwestern shore of the arid Sea of Tranquility.";
-    
-    protected static void prepareToValidate(String[] args) {
+
+    /**
+     * helper method for validate in subclasses
+     * @param args
+     */
+    protected static void prepareOptions(String[] args) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < args.length; i++) {
             sb.append(args[i]);
@@ -47,12 +53,12 @@ public abstract class AbstractExample {
     /**
      * Usage
      */
-    public static void usage() {
-        System.out.println("Usage: java -cp -java-rosette-api.jar -Drosette.api.key=<api-key> " +
-                "com/basistech/rosette/example/<example>");
+    protected static void usage() {
+        System.out.println("Usage: java -cp <path-to-java-rosette-api-jar> -Drosette.api.key=<api-key> " +
+                "com.basistech.rosette.example.<example>");
     }
 
-    protected static void init() {
+    protected static void setKey() {
         String key = System.getProperty("rosette.api.key");
         if (key == null) {
             usage();
@@ -61,13 +67,23 @@ public abstract class AbstractExample {
         rosetteAPI = new RosetteAPI(key);
     }
     
-    protected static void init(String address) {
+    protected static void setServiceUrl() {
+        Pattern p = Pattern.compile("-service-url\\s([^\\s])++");
+        Matcher m = p.matcher(argsToValidate);
+        if (m.find()) {
+            System.out.println(m.group());
+            rosetteAPI.setUrlBase(m.group().substring(13));
+        } else {
+            System.out.println("No service url provided, using default");
+        }
+    }
+    
+    protected static void setUrl(String address) {
         try {
             url = new URL(address);
         } catch (MalformedURLException e) {
             System.err.println(e.toString());
         }
-        init();
     } 
 }
 

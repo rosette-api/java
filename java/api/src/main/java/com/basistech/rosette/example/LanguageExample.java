@@ -35,7 +35,9 @@ public final class LanguageExample extends AbstractExample {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        init();
+        setKey();
+        prepareOptions(args);
+        setServiceUrl();
         doLanguage(text);
     }
     

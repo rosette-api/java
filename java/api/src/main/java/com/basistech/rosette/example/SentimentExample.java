@@ -35,7 +35,9 @@ public final class SentimentExample extends AbstractExample {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        init();
+        setKey();
+        prepareOptions(args);
+        setServiceUrl();
         doSentiment(text);
     }
     

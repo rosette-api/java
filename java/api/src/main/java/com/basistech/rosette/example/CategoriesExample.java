@@ -21,8 +21,10 @@ import com.basistech.rosette.apimodel.Category;
 import com.basistech.rosette.apimodel.CategoryResponse;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -40,21 +42,35 @@ public final class CategoriesExample extends AbstractExample {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws URISyntaxException, IOException {
-        if (validate(args)) {
-            System.out.println("url = " + args[1]);
-                init(args[1]);
-                doCategories(url);
-        } else {
-            System.out.println("no url");
-            init();
-            doCategories(text);
-        }
+        setKey();
+        prepareOptions(args);
+        setServiceUrl();
+        setUrl();
     }
     
-    private static boolean validate(String[] args) {
-        prepareToValidate(args);
-        // URL validation occurs in Rosette API, do we need this step?
-        return Pattern.matches("(--url .+)?+", argsToValidate);
+    private static void setUrl() {
+        Pattern p = Pattern.compile("-url\\s[^\\s]+");
+        Matcher m = p.matcher(argsToValidate);
+        if (m.find()) {
+            System.out.println(m.group());
+            setUrl(m.group().substring(5));
+        } else {
+            System.out.println("No url provided, using default");
+            try {
+                url = new URL("http://www.basistech.com/about/");
+            } catch (MalformedURLException e) {
+                System.err.println(e.toString());
+            }
+        }
+        doCategories(url);
+    }
+
+    /**
+     * Usage
+     */
+    protected static void usage() {
+        System.out.println("Usage: java -cp <path-to-java-rosette-api-jar> -Drosette.api.key=<api-key> " +
+                "com.basistech.rosette.example.CategoriesExample -service-url <optional-service-url> -url <optional-url>");
     }
 
     /**
