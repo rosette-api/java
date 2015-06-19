@@ -47,7 +47,7 @@ public final class EntitiesLinkedExample extends AbstractExample {
      * @throws java.net.URISyntaxException
      * @throws java.io.IOException
      */
-    public void main(String[] args) throws URISyntaxException, IOException {
+    public static void main(String[] args) throws URISyntaxException, IOException {
         new EntitiesLinkedExample().run(args);
     }
 
