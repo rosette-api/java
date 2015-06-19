@@ -8,11 +8,12 @@ named 'python'.
 Acquire prerequisites.
 =================
 - versions of python
--- 2.6 & 2.7 come with OS X
--- 3.4 can use [homebrew](http://brew.sh) to install
--- 3.3 install with `brew install --debug src/misc/python33.rb`, you will get a brew link error, just do `(cd /usr/local/bin; ln -s ../Cellar/python33/3.3.6_1/bin/python3.3)
-- pip is available on your $PATH
-- tox is available on your $PATH
+  - 2.6 & 2.7 come with OS X
+  - 3.4 can use [homebrew](http://brew.sh) to install
+  - 3.3 install with `brew install --debug src/misc/python33.rb`, you will get a brew link error,
+    just do `(cd /usr/local/bin; ln -s ../Cellar/python33/3.3.6_1/bin/python3.3)`
+- pip is available on your `$PATH`
+- tox is available on your `$PATH`
 
 Run mvn
 ==============

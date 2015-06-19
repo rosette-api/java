@@ -1,7 +1,7 @@
 **/*.egg
 **/*.egg-info
-**/build
-**/dist
+build
+dist
 .tox
 .cache
 **/*.pyc
