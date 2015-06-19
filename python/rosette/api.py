@@ -3,33 +3,34 @@
 """
 Python client for the Rosette API.
 
-  Copyright (c) 2014-2015 Basis Technology Corporation.
+Copyright (c) 2014-2015 Basis Technology Corporation.
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
 
-     http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 """
+
+from io import BytesIO
+import base64
+import gzip
+import json
+import logging
+import sys
+
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
 N_RETRIES = 3
 
 
-import sys
 _IsPy3 = sys.version_info[0] == 3
 
-import logging
-import json
-import base64
-import gzip
-from io import BytesIO
 
 try:
     from urlparse import urlparse
@@ -61,10 +62,11 @@ def _my_loads(obj):
     else:
         return json.loads(obj)
 
+
 def _retrying_request(op, url, data, headers):
     parsed = urlparse(url)
     loc = parsed.netloc
-    if (parsed.scheme == "https"):
+    if parsed.scheme == "https":
         conn = httplib.HTTPSConnection(loc)
     else:
         conn = httplib.HTTPConnection(loc)
@@ -100,9 +102,11 @@ def _retrying_request(op, url, data, headers):
 
     raise RosetteException(code, message, url)
 
+
 def _get_http(url, headers):
     (rdata, status) = _retrying_request("GET", url, None, headers)
     return _ReturnObject(_my_loads(rdata), status)
+
 
 def _post_http(url, data, headers):
     if data is None:
@@ -110,7 +114,7 @@ def _post_http(url, data, headers):
     else:
         json_data = json.dumps(data)
 
-    (rdata,status) = _retrying_request("POST", url, json_data, headers)
+    (rdata, status) = _retrying_request("POST", url, json_data, headers)
 
     if len(rdata) > 3 and rdata[0:3] == _GZIP_SIGNATURE:
         buf = BytesIO(rdata)
@@ -172,13 +176,15 @@ class DataFormat(_PseudoEnum):
     """The data is of unknown format, it may be a binary data type (the contents of a binary file),
     or may not.  It will be sent as is and identified and analyzed by the server."""
 
+
 class InputUnit(_PseudoEnum):
-    """Elements are used in the L{RosetteParameters} class to specify whether textual data
+    """Elements are used in the L{DocumentParameters} class to specify whether textual data
     is to be treated as one sentence or possibly many."""
     DOC = "doc"
     """The data is a whole document; it may or may not contain multiple sentences."""
     SENTENCE = "sentence"
     """The data is a single sentence."""
+
 
 class MorphologyOutput(_PseudoEnum):
     LEMMAS = "lemmas"
@@ -188,7 +194,7 @@ class MorphologyOutput(_PseudoEnum):
     COMPLETE = "complete"
 
 
-class _RosetteParamSetBase:
+class _DocumentParamSetBase:
     def __init__(self, repertoire):
         self.__params = {}
         for k in repertoire:
@@ -224,13 +230,13 @@ def _byteify(s):  # py 3 only
     return b
 
 
-class RosetteParameters(_RosetteParamSetBase):
+class DocumentParameters(_DocumentParamSetBase):
     """Parameter object for all operations requiring input other than
     translated_name.
     Four fields, C{content}, C{contentType}, C{unit}, and C{inputUri}, are set via
     the subscript operator, e.g., C{params["content"]}, or the
-    convenience instance methods L{RosetteParameters.load_document_file}
-    and L{RosetteParameters.load_document_string}. The unit size and
+    convenience instance methods L{DocumentParameters.load_document_file}
+    and L{DocumentParameters.load_document_string}. The unit size and
     data format are defaulted to L{InputUnit.DOC} and L{DataFormat.SIMPLE}.
 
     Using subscripts instead of instance variables facilitates diagnosis.
@@ -240,11 +246,11 @@ class RosetteParameters(_RosetteParamSetBase):
     fetch the content from that web page.  In this case, neither C{content}
     nor C{contentType} may be set.
     """
-    
+
     def __init__(self):
-        """Create a L{RosetteParameters} object.  Default data format
+        """Create a L{DocumentParameters} object.  Default data format
     is L{DataFormat.SIMPLE}, unit is L{InputUnit.DOC}."""
-        _RosetteParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit"))
+        _DocumentParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit", "language"))
         self["unit"] = InputUnit.DOC  # default
 
     def serializable(self):
@@ -256,7 +262,6 @@ class RosetteParameters(_RosetteParamSetBase):
         else:  # self["content"] not None
             if self["contentUri"] is not None:
                 raise RosetteException("badArgument", "Cannot supply both Content and ContentUri", "bad arguments")
-
 
         slz = self._for_serialize()
         if self["contentType"] is None and self["contentUri"] is None:
@@ -303,15 +308,15 @@ class RosetteParameters(_RosetteParamSetBase):
         self["content"] = s
         self["contentType"] = data_type
         self["unit"] = InputUnit.DOC
-        
 
-class RntParameters(_RosetteParamSetBase):
+
+class NameTranslationParameters(_DocumentParamSetBase):
     """Parameter object for C{translated_name} endpoint.
     The following values may be set by the indexing (i.e.,C{ parms["name"]}) operator.  The values are all
     strings (when not C{None}).
     All are optional except C{name} and C{targetLanguage}.  Scripts are in
-    ISO15924 codes, and languages in ISO639 (two- or three-letter) codes.  See the RNT documentation for more
-    description of these terms, as well as the content of the return result.
+    ISO15924 codes, and languages in ISO639 (two- or three-letter) codes.  See the Name Translation documentation for
+    more description of these terms, as well as the content of the return result.
 
     C{name} The name to be translated.
 
@@ -331,19 +336,19 @@ class RntParameters(_RosetteParamSetBase):
     """
 
     def __init__(self):
-        _RosetteParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin",
-                                             "sourceLanguageOfUse", "sourceScript", "targetScript", "targetScheme"))
+        _DocumentParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin",
+                                              "sourceLanguageOfUse", "sourceScript", "targetScript", "targetScheme"))
 
     def serializable(self):
 
         """Internal. Do not use."""
         for n in ("name", "targetLanguage"):  # required
             if self[n] is None:
-                raise RosetteException("missingParameter", "Required RNT parameter not supplied", repr(n))
+                raise RosetteException("missingParameter", "Required Name Translation parameter not supplied", repr(n))
         return self._for_serialize()
 
 
-class RniParameters(_RosetteParamSetBase):
+class NameMatchingParameters(_DocumentParamSetBase):
     """Parameter object for C{matched_name} endpoint.
     All are required.
 
@@ -363,27 +368,27 @@ class RniParameters(_RosetteParamSetBase):
     """
 
     def __init__(self):
-        _RosetteParamSetBase.__init__(self, ("name1", "name2"))
+        _DocumentParamSetBase.__init__(self, ("name1", "name2"))
 
     def serializable(self):
 
         """Internal. Do not use."""
         for n in ("name1", "name2"):  # required
             if self[n] is None:
-                raise RosetteException("missingParameter", "Required RNI parameter not supplied", repr(n))
+                raise RosetteException("missingParameter", "Required Name Matching parameter not supplied", repr(n))
         return self._for_serialize()
 
 
-class Operator:
-    """L{Operator} objects are invoked via their instance methods to obtain results
+class EndpointCaller:
+    """L{EndpointCaller} objects are invoked via their instance methods to obtain results
     from the Rosette server described by the L{API} object from which they
-    are created.  Each L{Operator} object communicates with a specific endpoint
+    are created.  Each L{EndpointCaller} object communicates with a specific endpoint
     of the Rosette server, specified at its creation.  Use the specific
-    instance methods of the L{API} object to create L{Operator} objects bound to
+    instance methods of the L{API} object to create L{EndpointCaller} objects bound to
     corresponding endpoints.
 
-    Use L{Operator.ping} to ping, and L{Operator.info} to retrieve server info.
-    For all other types of requests, use L{Operator.operate}, which accepts
+    Use L{EndpointCaller.ping} to ping, and L{EndpointCaller.info} to retrieve server info.
+    For all other types of requests, use L{EndpointCaller.call}, which accepts
     an argument specifying the data to be processed and certain metadata.
 
     The results of all operations are returned as python dictionaries, whose
@@ -418,11 +423,11 @@ class Operator:
                 complaint_url = ename + " " + self.suburl
 
             if "code" in the_json:
-                serverCode = the_json["code"]
+                server_code = the_json["code"]
             else:
-                serverCode = "unknownError"
+                server_code = "unknownError"
 
-            raise RosetteException(serverCode,
+            raise RosetteException(server_code,
                                    complaint_url + " : failed to communicate with Rosette",
                                    msg)
 
@@ -430,7 +435,7 @@ class Operator:
         self.useMultipart = value
 
     def info(self):
-        """Issues an "info" request to the L{Operator}'s specific endpoint.
+        """Issues an "info" request to the L{EndpointCaller}'s specific endpoint.
         @return: A dictionary telling server version and other
         identifying data."""
         if self.suburl is not None:
@@ -446,7 +451,7 @@ class Operator:
         return self.__finish_result(r, "info")
 
     def ping(self):
-        """Issues a "ping" request to the L{Operator}'s (server-wide) endpoint.
+        """Issues a "ping" request to the L{EndpointCaller}'s (server-wide) endpoint.
         @return: A dictionary if OK.  If the server cannot be reached,
         or is not the right server or some other error occurs, it will be
         signalled."""
@@ -459,13 +464,13 @@ class Operator:
         r = _get_http(url, headers=headers)
         return self.__finish_result(r, "ping")
 
-    def operate(self, parameters):
-        """Invokes the endpoint to which this L{Operator} is bound.
+    def call(self, parameters):
+        """Invokes the endpoint to which this L{EndpointCaller} is bound.
         Passes data and metadata specified by C{parameters} to the server
-        endpoint to which this L{Operator} object is bound.  For all
-        endpoints except C{translated_name} and C{matched_name}, it must be a L{RosetteParameters}
-        object; for C{translated_name}, it must be an L{RntParameters} object;
-        for C{matched_name}, it must be an L{RniParameters} object.
+        endpoint to which this L{EndpointCaller} object is bound.  For all
+        endpoints except C{translated_name} and C{matched_name}, it must be a L{DocumentParameters}
+        object; for C{translated_name}, it must be an L{NameTranslationParameters} object;
+        for C{matched_name}, it must be an L{NameMatchingParameters} object.
 
         In all cases, the result is returned as a python dictionary
         conforming to the JSON object described in the endpoint's entry
@@ -474,7 +479,7 @@ class Operator:
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the endpoint.  See the
         details for those object types.
-        @type parameters: For C{translated_name}, L{RntParameters}, otherwise L{RosetteParameters}
+        @type parameters: For C{translated_name}, L{NameTranslationParameters}, otherwise L{DocumentParameters}
         @return: A python dictionary expressing the result of the invocation.
         """
 
@@ -497,7 +502,7 @@ class Operator:
 class API:
     """
     Rosette Python Client Binding API; representation of a Rosette server.
-    Call instance methods upon this object to obtain L{Operator} objects
+    Call instance methods upon this object to obtain L{EndpointCaller} objects
     which can communicate with particular Rosette server endpoints.
     """
     def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1'):
@@ -515,11 +520,11 @@ class API:
         self.debug = False
         self.useMultipart = False
         self.version_checked = False
-        
+
     def check_version(self):
         if self.version_checked:
             return True
-        op = Operator(self, None)
+        op = EndpointCaller(self, None)
         result = op.info()
         version = ".".join(result["version"].split(".")[0:2])
         if version != _ACCEPTABLE_SERVER_VERSION:
@@ -533,81 +538,114 @@ class API:
 
     def ping(self):
         """
-        Create a ping L{Operator} for the server.
-        @return: An L{Operator} object which can ping the server to which this L{API} object is bound.
+        Create a ping L{EndpointCaller} for the server and ping it.
+        @return: A python dictionary including the ping message of the L{API}
         """
-        return Operator(self, None)
+        return EndpointCaller(self, None).ping()
 
-    def language(self):
+    def info(self):
         """
-        Create an L{Operator} for language identification.
-         @return: An L{Operator} object which can perform language identification upon texts to which it is applied."""
-        return Operator(self, "language")
+        Create a ping L{EndpointCaller} for the server and ping it.
+        @return: A python dictionary including the ping message of the L{API}
+        """
+        return EndpointCaller(self, None).info()
 
-    def sentences(self):
-        """Create an L{Operator} to break a text into sentences.
-         @return: An L{Operator} object which will break into sentences the
-         texts to which it is applied."""
-        return Operator(self, "sentences")
+    def language(self, parameters):
+        """
+        Create an L{EndpointCaller} for language identification and call it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the language identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of language
+        identification."""
+        return EndpointCaller(self, "language").call(parameters)
 
-    def tokens(self):
-        """Create an L{Operator} to break a text into tokens.
-         @return: An L{Operator} object which will tokenize the
-         texts to which it is applied."""
-        return Operator(self, "tokens")
+    def sentences(self, parameters):
+        """
+        Create an L{EndpointCaller} to break a text into sentences and call it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the sentence identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of sentence identification."""
+        return EndpointCaller(self, "sentences").call(parameters)
 
-    def morphology(self, facet=MorphologyOutput.COMPLETE):
-        """Create an L{Operator} to morphologically analyze a text.
-        Produce an operator which returns a specific facet
-        of the morphological analyses of texts to which it is applied.
-        L{MorphologyOutput.COMPLETE} (the default) requests all available facets.
-        @param facet: The facet desired, to be returned by the created L{Operator}.
+    def tokens(self, parameters):
+        """
+        Create an L{EndpointCaller} to break a text into tokens and call it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the tokens identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of tokenization."""
+        return EndpointCaller(self, "tokens").call(parameters)
+
+    def morphology(self, parameters, facet=MorphologyOutput.COMPLETE):
+        """
+        Create an L{EndpointCaller} to returns a specific facet
+        of the morphological analyses of texts to which it is applied and call it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the morphology analyzer.
+        @type parameters: L{DocumentParameters}
+        @param facet: The facet desired, to be returned by the created L{EndpointCaller}.
         @type facet: An element of L{MorphologyOutput}.
-        """
-        return Operator(self, "morphology/" + facet)
+        @return: A python dictionary containing the results of morphological analysis."""
+        return EndpointCaller(self, "morphology/" + facet).call(parameters)
 
-    def entities(self, linked):
-        """Create an L{Operator} to identify named entities found in the texts
-        to which it is applied.  Linked entity information is optional, and
+    def entities(self, parameters, linked=False):
+        """
+        Create an L{EndpointCaller}  to identify named entities found in the texts
+        to which it is applied and call it. Linked entity information is optional, and
         its need must be specified at the time the operator is created.
         @param linked: Specifies whether or not linked entity information will
         be wanted.
         @type linked: Boolean
-        """
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the entity identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of entity extraction."""
         if linked:
-            return Operator(self, "entities/linked")
+            return EndpointCaller(self, "entities/linked").call(parameters)
         else:
-            return Operator(self, "entities")
+            return EndpointCaller(self, "entities").call(parameters)
 
-    def categories(self):
-        """Create an L{Operator} to identify categories of the texts
-        to which is applied.
-        @return: An L{Operator} object which can return category tags
-        of texts to which it is applied."""
-        return Operator(self, "categories")
-
-    def sentiment(self):
-        """Create an L{Operator} to identify sentiments of the texts
-        to which is applied.
-        @return: An L{Operator} object which can return sentiments
-        of texts to which it is applied."""
-        return Operator(self, "sentiment")
-
-    def translated_name(self):
-        """Create an L{Operator} to perform name analysis and translation
-        upon the names to which it is applied.
-        Note that that L{Operator}'s L{Operator.operate} method requires an L{RntParameters} argument,
-        not the L{RosetteParameters} required by L{Operator}s created by
-        other instance methods.
-        @return: An L{Operator} which can perform name analysis and translation.
+    def categories(self, parameters):
         """
-        return Operator(self, "translated-name")
+        Create an L{EndpointCaller} to identify the category of the text to which
+        it is applied and call it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the category identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of categorization."""
+        return EndpointCaller(self, "categories").call(parameters)
 
-    def matched_name(self):
-        """Create an L{Operator} to perform name matching.
-        Note that that L{Operator}'s L{Operator.operate} method requires an L{RniParameters} argument,
-        not the L{RosetteParameters} required by L{Operator}s created by
-        other instance methods.
-        @return: An L{Operator} which can perform name matching.
+    def sentiment(self, parameters):
         """
-        return Operator(self, "matched-name")
+        Create an L{EndpointCaller} to identify the sentiment of the text to
+        which it is applied and call it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the sentiment identifier.
+        @type parameters: L{DocumentParameters}
+        @return: A python dictionary containing the results of sentiment identification."""
+        """Create an L{EndpointCaller} to identify sentiments of the texts
+        to which is applied.
+        @return: An L{EndpointCaller} object which can return sentiments
+        of texts to which it is applied."""
+        return EndpointCaller(self, "sentiment").call(parameters)
+
+    def translated_name(self, parameters):
+        """
+        Create an L{EndpointCaller} to perform name analysis and translation
+        upon the name to which it is applied and call it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the name translator.
+        @type parameters: L{NameTranslationParameters}
+        @return: A python dictionary containing the results of name translation."""
+        return EndpointCaller(self, "translated-name").call(parameters)
+
+    def matched_name(self, parameters):
+        """
+        Create an L{EndpointCaller} to perform name matching and call it.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the name matcher.
+        @type parameters: L{NameMatchingParameters}
+        @return: A python dictionary containing the results of name matching."""
+        return EndpointCaller(self, "matched-name").call(parameters)
