@@ -16,16 +16,16 @@
 
 package com.basistech.rosette.example;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameMatcherRequest;
 import com.basistech.rosette.apimodel.NameMatcherResponse;
 import com.basistech.rosette.apimodel.NameMatcherResult;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 public final class NameMatcherExample extends AbstractExample {
     

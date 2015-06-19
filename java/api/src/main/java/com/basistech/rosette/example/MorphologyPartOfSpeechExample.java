@@ -16,15 +16,15 @@
 
 package com.basistech.rosette.example;
 
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
-import com.basistech.rosette.apimodel.MorphologyResponse;
-import com.basistech.rosette.apimodel.PartOfSpeech;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import com.basistech.rosette.api.RosetteAPI;
+import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.apimodel.MorphologyResponse;
+import com.basistech.rosette.apimodel.PartOfSpeech;
 
 public class MorphologyPartOfSpeechExample extends AbstractExample {
 

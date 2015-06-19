@@ -16,12 +16,12 @@
 
 package com.basistech.rosette.example;
 
-import com.basistech.rosette.api.RosetteAPIException;
-import com.basistech.rosette.apimodel.PingResponse;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Date;
+
+import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.apimodel.PingResponse;
 
 public final class PingExample extends AbstractExample {
     

@@ -16,11 +16,12 @@
 
 package com.basistech.rosette.example;
 
-import com.basistech.rosette.api.RosetteAPI;
-
+import java.io.InputStream;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.basistech.rosette.api.RosetteAPI;
 
 /**
  * Provides examples on how to use the {@link com.basistech.rosette.api RosetteAPI} endpoints.
@@ -32,20 +33,23 @@ public abstract class AbstractExample {
     protected String usage = "Usage: java -cp <path-to-java-rosette-api-jar> -Drosette.api.key=<api-key> " + 
             "com.basistech.rosette.example.<example> -service-url <optional-service-url>";
     // default values
+    protected InputStream file;
     protected URL url;
     protected String text = "The first men to reach the moon – Mr. Armstrong and his co-pilot, " +
             "Col. Edwin E. Aldrin, Jr. of the Air Force – brought their ship to rest on a level, rock-strewn plain " +
             "near the southwestern shore of the arid Sea of Tranquility.";
 
     /**
-     * helper method for validate in subclasses
+     * helper method for setting options in examples
      * @param args
      */
     protected void prepareOptions(String[] args) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < args.length; i++) {
             sb.append(args[i]);
-            sb.append(" "); // space delimiter
+            if (i != args.length - 1) {
+                sb.append(" "); // space delimiter
+            }
         }
         argsToValidate = sb.toString();
     }

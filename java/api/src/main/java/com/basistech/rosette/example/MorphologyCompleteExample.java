@@ -1,5 +1,10 @@
 package com.basistech.rosette.example;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Decompounding;
@@ -7,11 +12,6 @@ import com.basistech.rosette.apimodel.HanReadings;
 import com.basistech.rosette.apimodel.Lemma;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.PartOfSpeech;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 public final class MorphologyCompleteExample extends AbstractExample {
 

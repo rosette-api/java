@@ -13,7 +13,7 @@ excluding the angle brackets:
 To run a single example, run the following command. Each example requires a Rosette API key and prints its output to the console.
 `java -cp .:..<path-to-java-rosette-api-jar> -Drosette.api.key=<your-api-key> com/basistech/rosette/example/<your-example>`
 
-Each example may also take a following optional service url parameter:
+Each example may also take a following optional service url parameter, or other optional parameters as specified in the table below:
 `java -cp .:..<path-to-java-rosette-api-jar> -Drosette.api.key=<your-api-key> com/basistech/rosette/example/<your-example> 
 -service-url <your-service-url>`
 
@@ -32,5 +32,5 @@ Each example may also take a following optional service url parameter:
 | NameMatcherExample.java                     | Gets the comparison of two names                |
 | PingExample.java                            | Pings the Rosette API to check for availability |
 | SentenceExample.java                        | Gets the sentences                              |
-| SentimentExample.java                       | Gets the sentiment                              |
+| SentimentExample.java                       | Gets the sentiment                              |-file <your-file>
 | TokenExample.java                           | Gets the tokens/words                           |

@@ -16,23 +16,31 @@
 
 package com.basistech.rosette.example;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Sentiment;
 import com.basistech.rosette.apimodel.SentimentResponse;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-
 public final class SentimentExample extends AbstractExample {
 
+    private ClassLoader cl;
+    
     public SentimentExample() {
         try {
             url = new URL("http://www.basistech.com/about/");
         } catch (MalformedURLException e) {
             System.err.println(e.toString());
         }
+        cl = SentimentExample.class.getClassLoader();
+        file = cl.getResourceAsStream("English.txt");
+        usage = usage + " -file <optional-file>";
     }
     
     /**
@@ -51,14 +59,30 @@ public final class SentimentExample extends AbstractExample {
     @Override
     protected void run(String[] args) {
         super.run(args);
-        doSentiment(text);
+        setFile();
+    }
+
+    /**
+     * sets the file to get sentiment from 
+     */
+    private void setFile() {
+        Pattern p = Pattern.compile("-file\\s[^\\s]+");
+        Matcher m = p.matcher(argsToValidate);
+        if (m.find()) {
+            String result = m.group().substring(6);
+            System.out.println("file: " + result);
+            file = cl.getResourceAsStream(result);
+        } else {
+            System.out.println("No file provided, using default: " + "English.txt");
+        }
+        doSentiment(file);
     }
     
     /**
-     * Sends sentiment request from text.
-     * @param text
+     * Sends sentiment request from a file.
+     * @param file
      */
-    private void doSentiment(String text) {
+    private void doSentiment(InputStream file) {
         try {
             SentimentResponse sentimentResponse = rosetteAPI.getSentiment(text, null, null);
             print(sentimentResponse);

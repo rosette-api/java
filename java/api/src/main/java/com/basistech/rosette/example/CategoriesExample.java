@@ -16,16 +16,16 @@
 
 package com.basistech.rosette.example;
 
-import com.basistech.rosette.api.RosetteAPIException;
-import com.basistech.rosette.apimodel.Category;
-import com.basistech.rosette.apimodel.CategoryResponse;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.apimodel.Category;
+import com.basistech.rosette.apimodel.CategoryResponse;
 
 /**
  * example of calling the category endpoint
@@ -59,35 +59,25 @@ public final class CategoriesExample extends AbstractExample {
         super.run(args);
         setUrl();
     }
-    
+
+    /**
+     * sets the target URL to get categories from
+     */
     private void setUrl() {
         Pattern p = Pattern.compile("-url\\s[^\\s]+");
         Matcher m = p.matcher(argsToValidate);
         if (m.find()) {
-            System.out.println(m.group());
+            String result = m.group().substring(5);
+            System.out.println("url: " + result);
             try {
-                url = new URL(m.group().substring(5));
+                url = new URL(result);
             } catch (MalformedURLException e) {
                 System.err.println(e.toString());
             }
+        } else {
+            System.out.println("No url provided, using default: " + url.toString());
         }
         doCategories(url);
-    }
-    
-    /**
-     * Sends category request from text.
-     *
-     * @param text
-     */
-    private void doCategories(String text) {
-        try {
-            CategoryResponse categoryResponse = rosetteAPI.getCategories(text, null, null);
-            print(categoryResponse);
-        } catch (RosetteAPIException e) {
-            System.err.println(e.toString());
-        } catch (IOException e) {
-            System.err.println(e.toString());
-        }
     }
 
     /**

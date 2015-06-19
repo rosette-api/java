@@ -16,16 +16,16 @@
 
 package com.basistech.rosette.example;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.LanguageCode;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.TranslatedNameResult;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 public final class NameTranslationExample extends AbstractExample {
 

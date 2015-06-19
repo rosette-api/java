@@ -16,13 +16,13 @@
 
 package com.basistech.rosette.example;
 
-import com.basistech.rosette.api.RosetteAPIException;
-import com.basistech.rosette.apimodel.SentenceResponse;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.apimodel.SentenceResponse;
 
 public final class SentenceExample extends AbstractExample {
     
