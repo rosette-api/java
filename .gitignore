@@ -7,6 +7,5 @@ pom.xml.releaseBackup
 pom.xml.next
 release.properties
 *~
-*.pyc
 mockserver*log
 **/.DS_Store

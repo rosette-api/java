@@ -17,19 +17,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+from io import BytesIO
+import base64
+import gzip
+import json
+import logging
+import sys
+
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
 N_RETRIES = 3
 
 
-import sys
 _IsPy3 = sys.version_info[0] == 3
 
-import logging
-import json
-import base64
-import gzip
-from io import BytesIO
 
 try:
     from urlparse import urlparse
@@ -245,7 +246,7 @@ class DocumentParameters(_DocumentParamSetBase):
     fetch the content from that web page.  In this case, neither C{content}
     nor C{contentType} may be set.
     """
-    
+
     def __init__(self):
         """Create a L{DocumentParameters} object.  Default data format
     is L{DataFormat.SIMPLE}, unit is L{InputUnit.DOC}."""
@@ -307,15 +308,15 @@ class DocumentParameters(_DocumentParamSetBase):
         self["content"] = s
         self["contentType"] = data_type
         self["unit"] = InputUnit.DOC
-        
+
 
 class NameTranslationParameters(_DocumentParamSetBase):
     """Parameter object for C{translated_name} endpoint.
     The following values may be set by the indexing (i.e.,C{ parms["name"]}) operator.  The values are all
     strings (when not C{None}).
     All are optional except C{name} and C{targetLanguage}.  Scripts are in
-    ISO15924 codes, and languages in ISO639 (two- or three-letter) codes.  See the Name Translation documentation for more
-    description of these terms, as well as the content of the return result.
+    ISO15924 codes, and languages in ISO639 (two- or three-letter) codes.  See the Name Translation documentation for
+    more description of these terms, as well as the content of the return result.
 
     C{name} The name to be translated.
 
@@ -519,7 +520,7 @@ class API:
         self.debug = False
         self.useMultipart = False
         self.version_checked = False
-        
+
     def check_version(self):
         if self.version_checked:
             return True

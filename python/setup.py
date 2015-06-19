@@ -6,12 +6,13 @@ import io
 
 NAME = "rosette_api"
 DESCRIPTION = "Rosette API Python client SDK"
-AUTHOR = "Basis Techology Corp."
+AUTHOR = "Basis Technology Corp."
 AUTHOR_EMAIL = "rosette_api@basistech.com"
 HOMEPAGE = "https://developer.rosette.com"
 VERSION = rosette.__version__
 
 here = os.path.abspath(os.path.dirname(__file__))
+
 
 def read(*filenames, **kwargs):
     encoding = kwargs.get('encoding', 'utf-8')
@@ -34,14 +35,13 @@ setup(name=NAME,
       platforms='any',
       url=HOMEPAGE,
       version=VERSION,
-      classifiers = [
-        'Programming Language :: Python',
-        'Development Status :: 4 - Beta',
-        'Natural Language :: English',
-        'Environment :: Web Environment',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache Software License',
-        'Operating System :: OS Independent',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        ],
-     )
+      classifiers=[
+          'Programming Language :: Python',
+          'Development Status :: 4 - Beta',
+          'Natural Language :: English',
+          'Environment :: Web Environment',
+          'Intended Audience :: Developers',
+          'License :: OSI Approved :: Apache Software License',
+          'Operating System :: OS Independent',
+          'Topic :: Software Development :: Libraries :: Python Modules']
+      )

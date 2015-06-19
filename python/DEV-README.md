@@ -1,4 +1,4 @@
-Meaning and use of this repository (python web client)
+Meaning and use of this repository (python binding)
 =============================
 
 Without loading the Git repo into your file system, you can't start.  If you haven't
@@ -7,15 +7,12 @@ named 'python'.
 
 Acquire prerequisites.
 =================
-You will need python 2.7 and python 3.4; the latter should be findable as "python3" in
-the default search path, or none of this will work.   This is due to the vexing need
-to test all pytha on any platform.  Means for acquiring python 3 will differ by
-OS platform.
-
-You must acquire and install the python "virtualenv" package in your
-python 2.7; the building and testing will use to protect you from
-having to install yet more, and test the availability of those latter
-packages.
+- versions of python
+-- 2.6 & 2.7 come with OS X
+-- 3.4 can use [homebrew](http://brew.sh) to install
+-- 3.3 install with `brew install --debug src/misc/python33.rb`, you will get a brew link error, just do `(cd /usr/local/bin; ln -s ../Cellar/python33/3.3.6_1/bin/python3.3)
+- pip is available on your $PATH
+- tox is available on your $PATH
 
 Run mvn
 ==============

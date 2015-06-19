@@ -10,30 +10,62 @@
     <artifactId>python</artifactId>
     <version>0.5.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <properties>
-        <virtualenv>virtualenv/target/vroot</virtualenv>
-        <python>virtualenv/target/vroot/bin/python</python>
-        <pip>virtualenv/target/vroot/bin/pip</pip>
-        <virtualenv3>virtualenv/target/vroot3</virtualenv3>
-	    <epydoc>virtualenv/target/vroot/bin/epydoc</epydoc>
-        <epydoc.css>epydoc.css</epydoc.css>
-	    <doctarget>target/html</doctarget>
-	    <documentables>rosette/*.py</documentables>
-        <python3>virtualenv/target/vroot3/bin/python</python3>
-        <pip3>virtualenv/target/vroot3/bin/pip</pip3>
-    </properties>
-    <modules>
-        <!--<module>virtualenv</module>-->
-        <module>setup</module>
-    </modules>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>run-tests</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>tox</executable>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>epydoc</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>.tox/py27/bin/epydoc</executable>
+                            <arguments>
+                                <argument>-v</argument>
+                                <argument>--no-private</argument>
+                                <argument>--no-frames</argument>
+                                <argument>--css</argument>
+                                <argument>src/styles/epydoc.css</argument>
+                                <argument>-o</argument>
+                                <argument>target/html</argument>
+                                <argument>rosette/*.py</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <configuration>
                     <filesets>
                         <fileset>
+                            <directory>.cache</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>.tox</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>build</directory>
+                        </fileset>
+                        <fileset>
                             <directory>dist</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>target</directory>
                         </fileset>
                         <fileset>
                             <directory>rosette_api.egg-info</directory>
@@ -52,10 +84,25 @@
                                 <include>**/*.pyc</include>
                             </includes>
                         </fileset>
-                        <fileset>
-                            <directory>build</directory>
-                        </fileset>
                     </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>github</finalName>
+                    <descriptors>
+                        <descriptor>src/assembly/publish.xml</descriptor>
+                    </descriptors>
                 </configuration>
             </plugin>
         </plugins>
