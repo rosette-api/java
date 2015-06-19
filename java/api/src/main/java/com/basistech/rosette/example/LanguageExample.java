@@ -25,7 +25,9 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.LanguageDetectionResult;
 import com.basistech.rosette.apimodel.LanguageResponse;
 
-
+/**
+ * Example which demonstrates the language endpoint
+ */
 public final class LanguageExample extends AbstractExample {
 
     public LanguageExample() {

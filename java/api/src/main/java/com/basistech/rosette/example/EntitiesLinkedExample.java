@@ -25,6 +25,9 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.LinkedEntity;
 import com.basistech.rosette.apimodel.LinkedEntityResponse;
 
+/**
+ * Example which demonstrates the linked entities endpoint
+ */
 public final class EntitiesLinkedExample extends AbstractExample {
 
     public EntitiesLinkedExample() {

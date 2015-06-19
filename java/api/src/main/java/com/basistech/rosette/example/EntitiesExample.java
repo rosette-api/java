@@ -25,6 +25,9 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.EntityResponse;
 import com.basistech.rosette.apimodel.ExtractedEntity;
 
+/**
+ * Example which demonstrates the entities endpoint
+ */
 public final class EntitiesExample extends AbstractExample {
 
     public EntitiesExample() {

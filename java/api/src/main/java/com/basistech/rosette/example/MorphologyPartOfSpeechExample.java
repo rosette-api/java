@@ -26,6 +26,9 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.PartOfSpeech;
 
+/**
+ * Example which demonstrates the morphology part of speec endpoint
+ */
 public class MorphologyPartOfSpeechExample extends AbstractExample {
 
     public MorphologyPartOfSpeechExample() {

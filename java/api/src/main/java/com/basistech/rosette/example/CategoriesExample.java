@@ -28,7 +28,7 @@ import com.basistech.rosette.apimodel.Category;
 import com.basistech.rosette.apimodel.CategoryResponse;
 
 /**
- * example of calling the category endpoint
+ * Example which demonstrates the category endpoint
  */
 public final class CategoriesExample extends AbstractExample {
     

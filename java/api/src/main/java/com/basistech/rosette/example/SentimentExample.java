@@ -28,6 +28,9 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Sentiment;
 import com.basistech.rosette.apimodel.SentimentResponse;
 
+/**
+ * Example which demonstrates the sentiment endpoint
+ */
 public final class SentimentExample extends AbstractExample {
 
     private ClassLoader cl;
@@ -70,7 +73,7 @@ public final class SentimentExample extends AbstractExample {
         Matcher m = p.matcher(argsToValidate);
         if (m.find()) {
             String result = m.group().substring(6);
-            System.out.println("file: " + result);
+            System.out.println("file: " + result.toString());
             file = cl.getResourceAsStream(result);
         } else {
             System.out.println("No file provided, using default: " + "English.txt");

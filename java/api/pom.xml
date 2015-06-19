@@ -11,6 +11,10 @@
     <groupId>com.basistech.rosette</groupId>
     <artifactId>java-api</artifactId>
     <version>0.5.0-SNAPSHOT</version>
+    <properties>
+        <assembly.final.name>rosette-api-example</assembly.final.name>
+        <assembly.skip>false</assembly.skip>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
@@ -56,6 +60,8 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <encoding>UTF-8</encoding>
+                    <skipAssembly>${assembly.skip}</skipAssembly>
+                    <finalName>${assembly.final.name}</finalName>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>

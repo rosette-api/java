@@ -24,6 +24,9 @@ import java.net.URL;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.InfoResponse;
 
+/**
+ * Example which demonstrates the info endpoint
+ */
 public final class InfoExample extends AbstractExample {
     
     public InfoExample() {

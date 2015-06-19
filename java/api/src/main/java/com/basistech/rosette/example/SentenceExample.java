@@ -24,6 +24,9 @@ import java.net.URL;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.SentenceResponse;
 
+/**
+ * Example which demonstrates the sentence endpoint
+ */
 public final class SentenceExample extends AbstractExample {
     
     public SentenceExample() {

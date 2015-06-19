@@ -27,6 +27,9 @@ import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.TranslatedNameResult;
 
+/**
+ * Example which demonstrates the name translation endpoint
+ */
 public final class NameTranslationExample extends AbstractExample {
 
     public NameTranslationExample() {

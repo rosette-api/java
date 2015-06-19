@@ -26,6 +26,9 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Lemma;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 
+/**
+ * Example which demonstrates the morphology lemmas endpoint
+ */
 public class MorphologyLemmasExample extends AbstractExample {
     
     public MorphologyLemmasExample() {

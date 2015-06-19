@@ -24,6 +24,9 @@ import java.net.URL;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.TokenResponse;
 
+/**
+ * Example which demonstrates the tokens endpoint
+ */
 public class TokenExample extends AbstractExample {
 
     public TokenExample() {

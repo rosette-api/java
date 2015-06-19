@@ -13,6 +13,9 @@ import com.basistech.rosette.apimodel.Lemma;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.PartOfSpeech;
 
+/**
+ * Example which demonstrates the category endpoint
+ */
 public final class MorphologyCompleteExample extends AbstractExample {
 
     public MorphologyCompleteExample() {

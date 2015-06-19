@@ -30,7 +30,7 @@ public abstract class AbstractExample {
 
     protected RosetteAPI rosetteAPI;
     protected String argsToValidate;
-    protected String usage = "Usage: java -cp <path-to-java-rosette-api-jar> -Drosette.api.key=<api-key> " + 
+    protected String usage = "Usage: java -cp .:<path-to-java-rosette-api-jar> -Drosette.api.key=<api-key> " +
             "com.basistech.rosette.example.<example> -service-url <optional-service-url>";
     // default values
     protected InputStream file;
@@ -40,7 +40,7 @@ public abstract class AbstractExample {
             "near the southwestern shore of the arid Sea of Tranquility.";
 
     /**
-     * helper method for setting options in examples
+     * Helper which sets up options in examples
      * @param args
      */
     protected void prepareOptions(String[] args) {
@@ -55,7 +55,7 @@ public abstract class AbstractExample {
     }
 
     /**
-     * runs the example 
+     * Runs the example
      * @param args
      */
     protected void run(String[] args) {
@@ -71,6 +71,9 @@ public abstract class AbstractExample {
         System.out.println(usage);
     }
 
+    /**
+     * Sets the Rosette API key 
+     */
     protected void setKey() {
         String key = System.getProperty("rosette.api.key");
         if (key == null) {
@@ -79,7 +82,10 @@ public abstract class AbstractExample {
         }
         rosetteAPI = new RosetteAPI(key);
     }
-    
+
+    /**
+     * Sets a specified service url
+     */
     protected void setServiceUrl() {
         Pattern p = Pattern.compile("-service-url\\s([^\\s])+");
         Matcher m = p.matcher(argsToValidate);
@@ -90,9 +96,6 @@ public abstract class AbstractExample {
             System.out.println("No service url provided, using default");
         }
     }
-    
-    // examples each return different type of response, don't use this
-    // protected abstract void print();
 }
 
 

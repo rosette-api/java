@@ -26,6 +26,9 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Decompounding;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 
+/**
+ * Example which demonstrates the morphology compound components endpoint
+ */
 public class MorphologyCompoundComponentsExample extends AbstractExample {
 
     public MorphologyCompoundComponentsExample() {

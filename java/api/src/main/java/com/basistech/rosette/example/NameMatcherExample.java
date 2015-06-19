@@ -27,6 +27,9 @@ import com.basistech.rosette.apimodel.NameMatcherRequest;
 import com.basistech.rosette.apimodel.NameMatcherResponse;
 import com.basistech.rosette.apimodel.NameMatcherResult;
 
+/**
+ * Example which demonstrates the name matcher endpoint
+ */
 public final class NameMatcherExample extends AbstractExample {
     
     public NameMatcherExample() {

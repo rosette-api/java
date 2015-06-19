@@ -23,6 +23,9 @@ import java.util.Date;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.PingResponse;
 
+/**
+ * Example which demonstrates the ping endpoint
+ */
 public final class PingExample extends AbstractExample {
     
     public PingExample() {}

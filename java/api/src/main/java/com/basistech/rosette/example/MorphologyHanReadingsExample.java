@@ -26,6 +26,9 @@ import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.HanReadings;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 
+/**
+ * Example which demonstrates the morphology han readings endpoint
+ */
 public class MorphologyHanReadingsExample extends AbstractExample {
 
     public MorphologyHanReadingsExample() {
