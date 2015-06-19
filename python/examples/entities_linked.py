@@ -24,6 +24,6 @@ params = DocumentParameters()
 params["content"] = u"""President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill
         based on Christian faith by July 1st or Washington will become totally dysfunctional,
         a terrible outcome for American people."""
-result = api.entities(params, True) # entity linking is turned on
+result = api.entities(params, True)  # entity linking is turned on
 
 pprint.pprint(result)

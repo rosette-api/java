@@ -132,14 +132,14 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
     if "code" in expected_result:
         if expected_result["code"] == "unsupportedLanguage":
             error_expected = True
-    functions = {"/categories":          test.api.categories,
-                 "/entities":            test.api.entities,
-                 "/entities/linked":     test.api.entities,  # (test.params, True)
-                 "/language":            test.api.language,
-                 "/matched-name":        test.api.matched_name,
+    functions = {"/categories": test.api.categories,
+                 "/entities": test.api.entities,
+                 "/entities/linked": test.api.entities,  # (test.params, True)
+                 "/language": test.api.language,
+                 "/matched-name": test.api.matched_name,
                  "/morphology/complete": test.api.morphology,
-                 "/sentiment":           test.api.sentiment,
-                 "/translated-name":     test.api.translated_name}
+                 "/sentiment": test.api.sentiment,
+                 "/translated-name": test.api.translated_name}
 
     # If the request is expected to throw an exception, try complete the operation and pass the test only if it fails
     if error_expected:

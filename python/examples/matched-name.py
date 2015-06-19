@@ -21,8 +21,8 @@ else:
     api = API(user_key=args.key)
 
 params = NameMatchingParameters()
-params["name1"] = { "text":"Michael Jackson", "language": "eng", "entityType":"PERSON" }
-params["name2"] = { "text":"迈克尔·杰克逊", "entityType":"PERSON" }
+params["name1"] = {"text": "Michael Jackson", "language": "eng", "entityType": "PERSON"}
+params["name2"] = {"text": "迈克尔·杰克逊", "entityType": "PERSON"}
 result = api.matched_name(params)
 
 pprint.pprint(result)

@@ -7,22 +7,29 @@
   <includeBaseDirectory>false</includeBaseDirectory>
   <files>
     <file>
-      <source>../README.txt</source>
-      <destName>README.txt</destName>
+      <source>README.txt</source>
       <lineEnding>unix</lineEnding>
     </file>
     <file>
-      <source>../CHANGES.txt</source>
+      <source>CHANGES.txt</source>
       <lineEnding>unix</lineEnding>
     </file>
     <file>
-      <source>../setup.py</source>
+      <source>setup.py</source>
+      <lineEnding>unix</lineEnding>
+    </file>
+    <file>
+      <source>tox.ini</source>
+      <lineEnding>unix</lineEnding>
+    </file>
+    <file>
+      <source>pytest.ini</source>
       <lineEnding>unix</lineEnding>
     </file>
   </files>
   <fileSets>
     <fileSet>
-      <directory>../rosette</directory>
+      <directory>rosette</directory>
       <outputDirectory>rosette</outputDirectory>
       <excludes>
         <exclude>DEV-README.md</exclude>
@@ -30,6 +37,21 @@
         <exclude>**/__pycache__</exclude>
       </excludes>
     </fileSet>
-    <!-- TODO: add samples when presentable, maybe -->
+    <fileSet>
+      <directory>tests</directory>
+      <outputDirectory>tests</outputDirectory>
+      <excludes>
+        <exclude>**/*.pyc</exclude>
+        <exclude>**/__pycache__</exclude>
+      </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>examples</directory>
+      <outputDirectory>examples</outputDirectory>
+      <excludes>
+        <exclude>**/*.pyc</exclude>
+        <exclude>**/__pycache__</exclude>
+      </excludes>
+    </fileSet>
   </fileSets>
 </assembly>
