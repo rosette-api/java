@@ -554,7 +554,7 @@ class Api
      * @param $url
      * @param $headers
      * @param $options
-     * @return ReturnObject
+     * @return JSON string
      * @throws RosetteException
      * @internal param $url : target URL
      * @internal param $headers : header data
@@ -578,7 +578,7 @@ class Api
      * @param $headers
      * @param $data
      * @param $options
-     * @return ReturnObject
+     * @return JSON string
      * @throws RosetteException
      * @internal param $url : target URL
      * @internal param $headers : header data
