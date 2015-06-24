@@ -540,9 +540,7 @@ class Api
         $opts['http']['header'] = $this->headersAsString($headers);
         $opts['http'] = array_merge($opts['http'], $options);
         $context = stream_context_create($opts);
-        //$response = file_get_contents($url, false, $context);
 
-        //$responseCode = $this->parseHeaders($http_response_header)['response_code'];
         $response = $this->retryingRequest($url, $context);
         return $response;
     }
@@ -570,7 +568,7 @@ class Api
         $context = stream_context_create($opts);
 
         $response =$this->retryingRequest($url, $context);
-        return new ReturnObject($response);
+        return $response;
     }
 
 }
