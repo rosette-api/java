@@ -87,6 +87,7 @@ EOD;
 
     public static function setUpBeforeClass()
     {
+        return;
         // retrieve an available socket
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         socket_bind($socket, APITest::$IP, 0);
@@ -98,11 +99,13 @@ EOD;
 
     public static function tearDownAfterClass()
     {
+        return;
         static::tearDownHttpMockAfterClass();
     }
 
     public function setUp()
     {
+        return;
         $this->setUpHttpMock();
 
         $this->testUrl = 'http://'.APITest::$IP.':'.APITest::$port;
@@ -139,6 +142,7 @@ EOD;
 
     public function tearDown()
     {
+        return;
         $this->tearDownHttpMock();
     }
 
@@ -197,6 +201,50 @@ EOD;
         $result = $api->checkVersion();
         $this->assertTrue($result);
     }
+
+    public function testGet()
+    {
+        $opts = ['http' => ['method'=>"GET", 'header'=>"Accept-language: en\r\n".'user_key: foobar']];
+        $context = stream_context_create($opts);
+        $file = file_get_contents('http://jugmaster.basistech.net:80/rest/v1/info', false, $context);
+    }
+
+    public function testPost()
+    {
+        $rp = new DocumentParameters();
+        $rp->params['content'] = $this->HAM_SENTENCE;
+        $this->hamParams = $rp;
+//        $postData = http_build_query($this->hamParams->serializable());
+//        $opts['http']['method'] = 'POST';
+//        $opts['http']['header'] = "Accept: application/json\r\n"."Accept-Encoding: gzip\r\n"."Content-type: application/json\r\n"."user_key: foo-bar";
+//        $opts['http']['content'] = $this->hamParams->asString();
+//        //$opts['http']['content'] = '{"language": "eng", "content": "The quick brown fox jumped over the lazy dog. Yes he did."}';
+//        $context = stream_context_create($opts);
+//        $result = file_get_contents('http://jugmaster.basistech.net:80/rest/v1/tokens/', false, $context);
+
+        $url = 'http://jugmaster.basistech.net:80/rest/v1/tokens/';
+        $header['Accept'] = "application/json";
+        $header['Accept-Encoding'] = "gzip";
+        $header['Content-type'] = "application/json";
+        $header['user_key'] = "test";
+
+        $options['timeout'] = '300';
+
+        $this->tryPost($url, $header, $this->hamParams->serializable(), $options);
+    }
+
+    private function tryPost($url, $headers, $data, $options)
+    {
+        $opts['http']['method'] = 'POST';
+        $opts['http']['header'] = $this->headersAsString($headers); //"Accept: application/json\r\n"."Accept-Encoding: gzip\r\n"."Content-type: application/json\r\n"."user_key: foo-bar";
+        $opts['http']['content'] = $data->asString();
+        $opts['http'] = array_merge($opts['http'], $options);
+        //$opts['http']['content'] = '{"language": "eng", "content": "The quick brown fox jumped over the lazy dog. Yes he did."}';
+        $context = stream_context_create($opts);
+        $result = file_get_contents($url, false, $context);
+    }
+
+
 
     public function testInfo()
     {

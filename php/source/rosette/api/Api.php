@@ -171,7 +171,7 @@ class Api
         if ($this->user_key) {
             $headers['user_key'] = $this->user_key;
         }
-        $resultObject = GetHttp($url, $headers, $this->getOptions());
+        $resultObject = $this->getHttp($url, $headers, $this->getOptions());
         return $this->finishResult($resultObject, 'ping');
     }
 
@@ -225,7 +225,7 @@ class Api
         if ($this->user_key) {
             $headers['user_key'] = $this->user_key;
         }
-        $resultObject = GetHttp($url, $headers, $this->getOptions());
+        $resultObject = $this->getHttp($url, $headers, $this->getOptions());
         return $this->finishResult($resultObject, 'language-info');
     }
 
@@ -266,7 +266,7 @@ class Api
         }
         $headers['Content-Type'] = 'application/json';
 
-        $resultObject = PostHttp($url, $headers, $paramsToSerialize, $this->getOptions());
+        $resultObject = $this->postHttp($url, $headers, $paramsToSerialize, $this->getOptions());
 
         return $this->finishResult($resultObject, "operate");
     }
@@ -310,7 +310,7 @@ class Api
         if ($this->user_key) {
             $headers['user_key'] = $this->user_key;
         }
-        $resultObject = GetHttp($url, $headers, $this->getOptions());
+        $resultObject = $this->getHttp($url, $headers, $this->getOptions());
 
         return $this->FinishResult($resultObject, 'info');
     }
@@ -407,98 +407,124 @@ class Api
     {
         return $this->operate($nameMatchingParams, "matched-name");
     }
-}
 
-/**
- * function RetryingRequest
- *
- * Encapsulates the GET/POST and retries N_RETRIES
- *
- * @param $op
- * @param $url
- * @param $headers
- * @param $options
- * @param string $data
- * @return null|\Requests_Response object or RosetteException
- * @throws RosetteException
- * @internal param $op : operation
- * @internal param $url : target URL
- * @internal param $headers : header data
- * @internal param data $optional : submission data
- */
-function RetryingRequest($op, $url, $headers, $options, $data = "")
-{
-    $numberRetries = 3;
-    $response = null;
-    for ($range = 0; $range < $numberRetries; $range++) {
-        if ($op == "GET") {
-            $response = \Requests::get($url, $headers, $options);
-        } else {
-            $response = \Requests::post($url, $headers, $data, $options);
-        }
-        if ($response->status_code < 500) {
-            return $response;
-        }
-    }
-    $message = null;
-    $code = 'unknown error';
-    if ($response != null) {
-        try {
-            $json = json_decode($response->body, true);
-            if (array_key_exists('message', $json)) {
-                $message = $json["message"];
+    /**
+     * function retryingRequest
+     *
+     * Encapsulates the GET/POST and retries N_RETRIES
+     *
+     * @param $url
+     * @param $context
+     * @return null|\Requests_Response object or RosetteException
+     * @throws RosetteException
+     * @internal param $op : operation
+     * @internal param $url : target URL
+     * @internal param $headers : header data
+     * @internal param data $optional : submission data
+     */
+    private function retryingRequest($url, $context)
+    {
+        $numberRetries = 3;
+        $response = null;
+        for ($range = 0; $range < $numberRetries; $range++) {
+            $response = file_get_contents($url, false, $context);
+            if ($response->status_code < 500) {
+                return $response;
             }
-            if (array_key_exists('code', $json)) {
-                $code = $json["code"];
-            }
-        } catch (\Exception $e) {
-            // pass
         }
+        $message = null;
+        $code = 'unknown error';
+        if ($response != null) {
+            try {
+                $json = json_decode($response->body, true);
+                if (array_key_exists('message', $json)) {
+                    $message = $json["message"];
+                }
+                if (array_key_exists('code', $json)) {
+                    $code = $json["code"];
+                }
+            } catch (\Exception $e) {
+                // pass
+            }
+        }
+        if ($message == null) {
+            $message = sprintf("A retryable network operation has not succeeded after %d attempts", $numberRetries);
+        }
+        throw new RosetteException($message . ' [' . $url . ']', $code);
     }
-    if ($message == null) {
-        $message = sprintf("A retryable network operation has not succeeded after %d attempts", $numberRetries);
+
+    /**
+     * @param $headers
+     * @return string
+     */
+    private function headersAsString($headers)
+    {
+        $s = "";
+        $first = true;
+        foreach ($headers as $key => $value) {
+            if (!$first) {
+                $s = $s . "\r\n";
+            }
+            $s = $s . $key . ': ' . $value;
+            $first = false;
+        }
+
+        return $s;
     }
-    throw new RosetteException($message.' ['.$url.']', $code);
+
+    
+
+
+    /**
+     * Standard GET helper
+     *
+     * @param $url
+     * @param $headers
+     * @param $options
+     * @return ReturnObject
+     * @throws RosetteException
+     * @internal param $url : target URL
+     * @internal param $headers : header data
+     *
+     */
+    private function getHttp($url, $headers, $options)
+    {
+        $opts = ['http' => ['method'=>"GET", 'header'=>"Accept-language: en\r\n".'user_key: foobar']];
+        $opts['http']['method'] = 'GET';
+        $opts['http']['header'] = $this->headersAsString($headers);
+        $opts['http'] = array_merge($opts['http'], $options);
+        $context = stream_context_create($opts);
+        $response = $this->retryingRequest($url, $context);
+        return new ReturnObject($response);
+    }
+
+    /**
+     * Standard POST helper
+     *
+     * @param $url
+     * @param $headers
+     * @param $data
+     * @param $options
+     * @return ReturnObject
+     * @throws RosetteException
+     * @internal param $url : target URL
+     * @internal param $headers : header data
+     * @internal param $data : submission data
+     *
+     */
+    private function postHttp($url, $headers, $data, $options)
+    {
+        $opts['http']['method'] = 'POST';
+        $opts['http']['header'] = $this->headersAsString($headers);
+        $opts['http']['content'] = $data->asString();
+        $opts['http'] = array_merge($opts['http'], $options);
+        $context = stream_context_create($opts);
+
+        $response =$this->retryingRequest($url, $context);
+
+        return new ReturnObject($response);
+    }
+
 }
 
-/**
- * Standard GET helper
- *
- * @param $url
- * @param $headers
- * @param $options
- * @return ReturnObject
- * @throws RosetteException
- * @internal param $url : target URL
- * @internal param $headers : header data
- *
- */
-function GetHttp($url, $headers, $options)
-{
-    $response = RetryingRequest("GET", $url, $headers, $options);
-    return new ReturnObject($response);
-}
 
-/**
- * Standard POST helper
- *
- * @param $url
- * @param $headers
- * @param $data
- * @param $options
- * @return ReturnObject
- * @throws RosetteException
- * @internal param $url : target URL
- * @internal param $headers : header data
- * @internal param $data : submission data
- *
- */
-function PostHttp($url, $headers, $data, $options)
-{
-    //echo $url."\n";
-    $data = $data == null ? "" : json_encode($data);
-
-    $response = RetryingRequest("POST", $url, $headers, $options, $data);
-
-    return new ReturnObject($response);
-}
