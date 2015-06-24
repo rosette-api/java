@@ -472,7 +472,7 @@ class Api
         return $s;
     }
 
-    
+
 
 
     /**
