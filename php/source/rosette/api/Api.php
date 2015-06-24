@@ -67,6 +67,28 @@ class Api
     private $timeout;
 
     /**
+     * Last response code
+     * @var
+     */
+    private $response_code;
+
+    /**
+     * @return mixed
+     */
+    public function getResponseCode()
+    {
+        return $this->response_code;
+    }
+
+    /**
+     * @param mixed $response_code
+     */
+    private function setResponseCode($response_code)
+    {
+        $this->response_code = $response_code;
+    }
+
+    /**
      * Returns the max timeout value (seconds)
      * @return mixed
      */
@@ -186,7 +208,7 @@ class Api
     {
         $msg = null;
 
-        if ($resultObject['response_code'] == 200) {
+        if ($this->getResponseCode() == 200) {
             return $resultObject;
         } else {
             if (array_key_exists('message', $resultObject)) {
@@ -424,16 +446,20 @@ class Api
      * @internal param $headers : header data
      * @internal param data $optional : submission data
      */
-    private function retryingRequest($url, $context)
+    public function retryingRequest($url, $context)
     {
         $numberRetries = 3;
         $response = null;
         for ($range = 0; $range < $numberRetries; $range++) {
             $response = file_get_contents($url, false, $context);
             $responseHeader = $this->parseHeaders($http_response_header);
-            if ($responseHeader['response_code'] < 500) {
-                $response = json_decode($response, true);
-                $response['response_code'] = $responseHeader['response_code'];
+            $this->setResponseCode($responseHeader['response_code']);
+            if ($this->getResponseCode() < 500) {
+                if (strlen($response) > 3
+                    && mb_strpos($response, "\x1f" . "\x8b" . "\x08", 0, "US-ASCII") === 0) {
+                    $responseData = zlib_decode($response, ZLIB_ENCODING_DEFLATE);
+                    $response = $responseData;
+                }
                 return $response;
             }
         }
