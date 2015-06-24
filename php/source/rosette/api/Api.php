@@ -186,15 +186,17 @@ class Api
     {
         $msg = null;
 
-        if ($resultObject->statusCode == 200) {
-            return $resultObject->jsonDecoded;
+        if ($resultObject['response_code'] == 200) {
+            return $resultObject;
         } else {
-            if (strpos($resultObject, 'message') !== false) {
-                $msg = $resultObject->jsonDecoded['message'];
+            if (array_key_exists('message', $resultObject)) {
+            //if (strpos($resultObject, 'message') !== false) {
+                $msg = $resultObject['message'];
             }
             $complaint_url = $this->subUrl == null ? "Top level info" : $action . ' ' . $this->subUrl;
-            if (strpos($resultObject, 'code') !== false) {
-                $serverCode = $resultObject->jsonDecoded['code'];
+            if (array_key_exists('code', $resultObject)) {
+            //if (strpos($resultObject, 'code') !== false) {
+                $serverCode = $resultObject['code'];
                 if ($msg == null) {
                     $msg = $serverCode;
                 }
@@ -428,7 +430,10 @@ class Api
         $response = null;
         for ($range = 0; $range < $numberRetries; $range++) {
             $response = file_get_contents($url, false, $context);
-            if ($response->status_code < 500) {
+            $responseHeader = $this->parseHeaders($http_response_header);
+            if ($responseHeader['response_code'] < 500) {
+                $response = json_decode($response, true);
+                $response['response_code'] = $responseHeader['response_code'];
                 return $response;
             }
         }
@@ -436,7 +441,7 @@ class Api
         $code = 'unknown error';
         if ($response != null) {
             try {
-                $json = json_decode($response->body, true);
+                $json = json_decode($response, true);
                 if (array_key_exists('message', $json)) {
                     $message = $json["message"];
                 }
@@ -451,6 +456,28 @@ class Api
             $message = sprintf("A retryable network operation has not succeeded after %d attempts", $numberRetries);
         }
         throw new RosetteException($message . ' [' . $url . ']', $code);
+    }
+
+    /**
+     * Parses the header response and adds a response code
+     * @param $headers
+     * @return array
+     */
+    private function parseHeaders($headers)
+    {
+        $head = [];
+        foreach ($headers as $k => $v) {
+            $t = explode(':', $v, 2);
+            if (isset($t[1])) {
+                $head[trim($t[0])] = trim($t[1]);
+            } else {
+                $head[] = $v;
+                if (preg_match("#HTTP/[0-9\.]+\s+([0-9]+)#", $v, $out)) {
+                    $head['response_code'] = intval($out[1]);
+                }
+            }
+        }
+        return $head;
     }
 
     /**
@@ -472,7 +499,27 @@ class Api
         return $s;
     }
 
-
+    /**
+     * Formats an array according to the required format
+     * @param $data
+     * @return string
+     */
+    private function arrayAsContent($data)
+    {
+        $s = "{";
+        $first = true;
+        foreach ($data as $key => $value) {
+            if ($value != null) {
+                if (!$first) {
+                    $s = $s.',';
+                }
+                $s = $s.'"'.$key.'":"'.$value.'"';
+                $first = false;
+            }
+        }
+        $s = $s.'}';
+        return $s;
+    }
 
 
     /**
@@ -489,13 +536,15 @@ class Api
      */
     private function getHttp($url, $headers, $options)
     {
-        $opts = ['http' => ['method'=>"GET", 'header'=>"Accept-language: en\r\n".'user_key: foobar']];
         $opts['http']['method'] = 'GET';
         $opts['http']['header'] = $this->headersAsString($headers);
         $opts['http'] = array_merge($opts['http'], $options);
         $context = stream_context_create($opts);
+        //$response = file_get_contents($url, false, $context);
+
+        //$responseCode = $this->parseHeaders($http_response_header)['response_code'];
         $response = $this->retryingRequest($url, $context);
-        return new ReturnObject($response);
+        return $response;
     }
 
     /**
@@ -516,12 +565,11 @@ class Api
     {
         $opts['http']['method'] = 'POST';
         $opts['http']['header'] = $this->headersAsString($headers);
-        $opts['http']['content'] = $data->asString();
+        $opts['http']['content'] = $this->arrayAsContent($data);
         $opts['http'] = array_merge($opts['http'], $options);
         $context = stream_context_create($opts);
 
         $response =$this->retryingRequest($url, $context);
-
         return new ReturnObject($response);
     }
 
