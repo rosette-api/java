@@ -52,7 +52,7 @@ class Name
      * @param $script
      * @throws RosetteException
      */
-    public function __construct($text, $entityType=null, $language=null, $script=null)
+    public function __construct($text, $entityType = null, $language = null, $script = null)
     {
         if ($text === null) {
             throw new RosetteException(
@@ -72,6 +72,21 @@ class Name
      */
     public function __toString()
     {
-        return $this->json;
+        $s = '{';
+        $first = true;
+        $ref = new \ReflectionClass($this);
+        foreach ($ref->getProperties() as $property) {
+            $name = $property->name;
+            $value = $property->getValue($this);
+            if (!is_null($value)) {
+                if (!$first) {
+                    $s = $s.',';
+                }
+                $s = $s.'"'.$name.'":"'.$value.'"';
+                $first = false;
+            }
+        }
+        $s = $s.'}';
+        return $s;
     }
 }

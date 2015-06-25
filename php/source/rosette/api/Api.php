@@ -83,7 +83,7 @@ class Api
     /**
      * @param mixed $response_code
      */
-    private function setResponseCode($response_code)
+    public function setResponseCode($response_code)
     {
         $this->response_code = $response_code;
     }
@@ -539,7 +539,12 @@ class Api
                 if (!$first) {
                     $s = $s.',';
                 }
-                $s = $s.'"'.$key.'":"'.$value.'"';
+                $v = strval($value);
+                if ($v[0] == '{') {
+                    $s = $s.'"'.$key.'":'.$v.'';
+                } else {
+                    $s = $s.'"'.$key.'":"'.$v.'"';
+                }
                 $first = false;
             }
         }
@@ -554,7 +559,7 @@ class Api
      * @param $url
      * @param $headers
      * @param $options
-     * @return JSON string
+     * @return string : JSON string
      * @throws RosetteException
      * @internal param $url : target URL
      * @internal param $headers : header data
@@ -578,7 +583,7 @@ class Api
      * @param $headers
      * @param $data
      * @param $options
-     * @return JSON string
+     * @return string : JSON string
      * @throws RosetteException
      * @internal param $url : target URL
      * @internal param $headers : header data
@@ -593,10 +598,7 @@ class Api
         $opts['http'] = array_merge($opts['http'], $options);
         $context = stream_context_create($opts);
 
-        $response =$this->retryingRequest($url, $context);
+        $response = $this->retryingRequest($url, $context);
         return $response;
     }
-
 }
-
-
