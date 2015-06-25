@@ -532,24 +532,13 @@ class Api
      */
     private function arrayAsContent($data)
     {
-        $s = "{";
-        $first = true;
+        $a = [];
         foreach ($data as $key => $value) {
             if ($value != null) {
-                if (!$first) {
-                    $s = $s.',';
-                }
-                $v = strval($value);
-                if ($v[0] == '{') {
-                    $s = $s.'"'.$key.'":'.$v.'';
-                } else {
-                    $s = $s.'"'.$key.'":"'.$v.'"';
-                }
-                $first = false;
+                $a[$key] = $value;
             }
         }
-        $s = $s.'}';
-        return $s;
+        return json_encode($a);
     }
 
 

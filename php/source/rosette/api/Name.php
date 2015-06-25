@@ -72,21 +72,15 @@ class Name
      */
     public function __toString()
     {
-        $s = '{';
-        $first = true;
+        $a = [];
         $ref = new \ReflectionClass($this);
         foreach ($ref->getProperties() as $property) {
             $name = $property->name;
             $value = $property->getValue($this);
             if (!is_null($value)) {
-                if (!$first) {
-                    $s = $s.',';
-                }
-                $s = $s.'"'.$name.'":"'.$value.'"';
-                $first = false;
+                $a[$name] = $value;
             }
         }
-        $s = $s.'}';
-        return $s;
+        return json_encode($a);
     }
 }
