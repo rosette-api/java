@@ -83,7 +83,7 @@ class Api
     /**
      * @param mixed $response_code
      */
-    private function setResponseCode($response_code)
+    public function setResponseCode($response_code)
     {
         $this->response_code = $response_code;
     }
