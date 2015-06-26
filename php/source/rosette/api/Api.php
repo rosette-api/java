@@ -284,7 +284,7 @@ class Api
         $url = $this->service_url.'/'.$this->subUrl;
         $paramsToSerialize = $parameters->serializable();
 
-        $headers = ['Accept' => 'application/json', 'Accept-Encoding' => 'gzip'];
+        $headers = ['Accept' => 'application/json', 'Accept-Encoding' => ''];
         if ($this->user_key) {
             $headers['user_key'] = $this->user_key;
         }
@@ -457,7 +457,7 @@ class Api
             if ($this->getResponseCode() < 500) {
                 if (strlen($response) > 3
                     && mb_strpos($response, "\x1f" . "\x8b" . "\x08", 0, "US-ASCII") === 0) {
-                    $responseData = zlib_decode($response, ZLIB_ENCODING_DEFLATE);
+                    $responseData = gzinflate($response);
                     $response = $responseData;
                 }
                 return $response;
