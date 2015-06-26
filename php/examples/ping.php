@@ -3,7 +3,7 @@
  * Example code to send Rosette API a ping to check its reachability
  **/
 
-require_once("vendor/autoload.php");    // assuming composer.json is properly configured with Rosette API
+require_once(dirname(__FILE__) . "/../vendor/autoload.php");    // assuming composer.json is properly configured with Rosette API
 use rosette\api\Api;
 use rosette\api\RosetteException;
 
