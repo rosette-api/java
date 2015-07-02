@@ -530,23 +530,6 @@ class Api
     }
 
     /**
-     * Returns a json string based on the provided named array, first removing the null values
-     * @param $data
-     * @return string
-     */
-    private function arrayAsContent($data)
-    {
-        $a = [];
-        foreach ($data as $key => $value) {
-            if ($value != null) {
-                $a[$key] = $value;
-            }
-        }
-        return json_encode($a);
-    }
-
-
-    /**
      * Standard GET helper
      *
      * @param $url
@@ -587,7 +570,7 @@ class Api
     {
         $opts['http']['method'] = 'POST';
         $opts['http']['header'] = $this->headersAsString($headers);
-        $opts['http']['content'] = $this->arrayAsContent($data);
+        $opts['http']['content'] = json_encode(array_filter($data));
         $opts['http'] = array_merge($opts['http'], $options);
         $context = stream_context_create($opts);
 
