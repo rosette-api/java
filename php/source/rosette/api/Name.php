@@ -76,10 +76,10 @@ class Name
         $a = [];
         $ref = new \ReflectionClass($this);
         foreach ($ref->getProperties() as $property) {
-            $name = $property->name;
+            $name = $property->names;
             $value = $property->getValue($this);
             // do not include any properties in which the value is null
-            if (!is_null($value)) {
+            if (!empty($value)) {
                 $a[$name] = $value;
             }
         }
