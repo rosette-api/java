@@ -8,10 +8,8 @@ fi
 
 branch=$1
 username=$2
-#repo=rosette-api
-#owner=basis-technology-corp
-repo=testRepo
-owner=guruxu
+repo=rosette-api
+owner=basis-technology-corp
 
 echo -n $username@github.com password: 
 read -s password
