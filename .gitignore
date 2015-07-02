@@ -9,5 +9,3 @@ release.properties
 *~
 mockserver*log
 **/.DS_Store
-ISO15924.py
-LanguageCode.py
