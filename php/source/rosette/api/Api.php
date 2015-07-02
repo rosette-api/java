@@ -509,24 +509,22 @@ class Api
     }
 
     /**
-     * Creates the header string that is acceptable to file_get_contents.  Considered implode(), but it doesn't work
-     * with named arrays and the combination of needing the \r\n between the pairs is addressed with this simplistic,
-     * but readable helper method.
+     * Creates the header string that is acceptable to file_get_contents.
      * @param $headers
      * @return string
      */
     private function headersAsString($headers)
     {
-        $s = "";
-        $first = true;
-        foreach ($headers as $key => $value) {
-            if (!$first) {
-                $s = $s . "\r\n";
-            }
-            $s = $s . $key . ': ' . $value;
-            $first = false;
-        }
-        return $s;
+        return implode(
+            "\r\n",
+            array_map(
+                function ($k, $v) {
+                    return "$k: $v";
+                },
+                array_keys($headers),
+                array_values($headers)
+            )
+        );
     }
 
     /**
