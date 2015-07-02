@@ -87,20 +87,12 @@ abstract class RosetteParamsSetBase
     public function forSerialize()
     {
         $result = [];
-        $s = "{";
-        $first = true;
         foreach ($this->params as $key => $value) {
             if ($value != null) {
                 $result[$key] = $value;
-                if (!$first) {
-                    $s = $s.',';
-                }
-                $s = $s.'"'.$key.'":"'.$value.'"';
-                $first = false;
             }
         }
-        $s = $s.'}';
-        $this->paramsAsString = $s;
+        $this->paramsAsString = json_encode($result);
         return $result;
     }
 

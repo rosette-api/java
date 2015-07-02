@@ -28,9 +28,11 @@ class APITest extends \PHPUnit_Framework_TestCase
     static public $port = '8082';
     static public $IP = '127.0.0.1';
 
-    /*
+    /**
      * Find the correct response file from the mock-data directory
      * Used to replace the retryingRequest function for mocking
+     * @param $filename
+     * @return mixed|string
      */
     private function getMockedRetReq($filename)
     {
@@ -40,8 +42,10 @@ class APITest extends \PHPUnit_Framework_TestCase
         return $response;
     }
 
-    /*
+    /**
      * Replace the getResponseCode method in the API class for mocking purposes
+     * @param $filename
+     * @return int
      */
     private function getStatusCode($filename)
     {
@@ -49,16 +53,17 @@ class APITest extends \PHPUnit_Framework_TestCase
         return intval(file_get_contents($responseDir . $filename . '.status'));
     }
 
-    /*
+    /**
      * Mock the api so that everything still works except the retryingRequest and getResponseCode methods are overridden
      * setResponseCode and checkVersion are stubbed so they just return null
-     * private function setUpApi($userKey)
+     * @param $userKey
+     * @return mixed
      */
     private function setUpApi($userKey)
     {
         $api = $this->getMockBuilder('rosette\api\Api')
-            ->setConstructorArgs(array($userKey))
-            ->setMethods(array('retryingRequest', 'setResponseCode', 'getResponseCode', 'checkVersion'))
+            ->setConstructorArgs([$userKey])
+            ->setMethods(['retryingRequest', 'setResponseCode', 'getResponseCode', 'checkVersion'])
             ->getMock();
         $api->expects($this->any())
             ->method('retryingRequest')
@@ -86,8 +91,10 @@ class APITest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Rosette API at your service', $result['message']);
     }
 
-    /*
+    /**
      * Get the file body for a request given a partial file name
+     * @param $filename
+     * @return mixed
      */
     private function getRequest($filename)
     {
@@ -96,19 +103,19 @@ class APITest extends \PHPUnit_Framework_TestCase
         return json_decode($request, true);
     }
 
-    /*
+    /**
      * Return an array of arrays to be passed to testLanguages
      * Each sub array is of the form [file name (after request/ and before .json), endpoint]
+     * @return array
      */
     public function findFiles()
     {
         $requestDir = dirname(__FILE__) . '/../../../../mock-data/request/';
         $pattern = "/.*\/request\/([\w\d]*-[\w\d]*-(.*))\.json/";
-        $files = array();
+        $files = [];
         foreach (glob("$requestDir*.json") as $filename) {
-        //foreach (array($requestDir . 'rni-1-matched-name.json') as $filename) {
             preg_match($pattern, $filename, $output_array);
-            $files[] = array($output_array[1], $output_array[2]);
+            $files[] = [$output_array[1], $output_array[2]];
         }
         return $files;
     }
@@ -117,6 +124,8 @@ class APITest extends \PHPUnit_Framework_TestCase
     /**
      * Test all endpoints (other than ping and info)
      * @dataProvider findFiles
+     * @param $filename
+     * @param $endpoint
      */
     public function testEndpoints($filename, $endpoint)
     {
@@ -126,16 +135,25 @@ class APITest extends \PHPUnit_Framework_TestCase
         $api = $this->setUpApi($this->userKey);
         $input = $this->getRequest($this->userKey);
         $expected = $this->getMockedRetReq($this->userKey);
+        $params = '';
         // All endpoints except the name ones take DocumentParameters objects as input
-        if (strpos($endpoint,'name') === false) {
+        if (strpos($endpoint, 'name') === false) {
             $params = new DocumentParameters();
-        } else if (strpos($endpoint, 'translated') !== false) {
+        } elseif (strpos($endpoint, 'translated') !== false) {
             $params = new NameTranslationParameters();
-        } else if (strpos($endpoint, 'matched') !== false) {
-            $name1 = new Name($input["name1"]["text"], $input["name1"]["entityType"],
-                $input["name1"]["language"], $input["name1"]["script"]);
-            $name2 = new Name($input["name2"]["text"], $input["name2"]["entityType"],
-                $input["name2"]["language"], $input["name2"]["script"]);
+        } elseif (strpos($endpoint, 'matched') !== false) {
+            $name1 = new Name(
+                $input["name1"]["text"],
+                $input["name1"]["entityType"],
+                $input["name1"]["language"],
+                $input["name1"]["script"]
+            );
+            $name2 = new Name(
+                $input["name2"]["text"],
+                $input["name2"]["entityType"],
+                $input["name2"]["language"],
+                $input["name2"]["script"]
+            );
             $params = new NameMatchingParameters($name1, $name2);
         }
         // Fill in parameters object with data if it is not matched-name (because those parameters are formatted
@@ -150,21 +168,41 @@ class APITest extends \PHPUnit_Framework_TestCase
         // returns the correct thing.
         // If it throws an exception, check that it was supposed to and if so pass otherwise fail test.
         try {
-            if ($endpoint === "categories") $result = $api->categories($params);
-            if ($endpoint === "entities") $result = $api->entities($params);
-            if ($endpoint === "entities_linked") $result = $api->entities($params, true);
-            if ($endpoint === "language") $result = $api->language($params);
-            if ($endpoint === "matched-name") $result = $api->matchedName($params);
-            if ($endpoint === "morphology_complete") $result = $api->morphology($params);
-            if ($endpoint === "sentiment") $result = $api->sentiment($params);
-            if ($endpoint === "translated-name") $result = $api->translatedName($params);
+            $result = '';
+            if ($endpoint === "categories") {
+                $result = $api->categories($params);
+            }
+            if ($endpoint === "entities") {
+                $result = $api->entities($params);
+            }
+            if ($endpoint === "entities_linked") {
+                $result = $api->entities($params, true);
+            }
+            if ($endpoint === "language") {
+                $result = $api->language($params);
+            }
+            if ($endpoint === "matched-name") {
+                $result = $api->matchedName($params);
+            }
+            if ($endpoint === "morphology_complete") {
+                $result = $api->morphology($params);
+            }
+            if ($endpoint === "sentiment") {
+                $result = $api->sentiment($params);
+            }
+            if ($endpoint === "translated-name") {
+                $result = $api->translatedName($params);
+            }
             // If there is a "code" key, it means an exception should be thrown
             if (!array_key_exists("code", $expected)) {
                 $this->assertEquals($expected, $result);
             }
         } catch (RosetteException $exception) {
-            if ($expected["code"] === "unsupportedLanguage") $this->assertTrue(true);
-            else $this->assertFalse(true);
+            if ($expected["code"] === "unsupportedLanguage") {
+                $this->assertTrue(true);
+            } else {
+                $this->assertFalse(true);
+            }
         }
     }
 }

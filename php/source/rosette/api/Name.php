@@ -67,7 +67,8 @@ class Name
     }
 
     /**
-     * Magic method to return the stringized form of NameObject
+     * Magic method to return the stringized form of NameObject.  It uses reflection to automatically handle
+     * added/removed properties
      * @return mixed
      */
     public function __toString()
@@ -77,6 +78,7 @@ class Name
         foreach ($ref->getProperties() as $property) {
             $name = $property->name;
             $value = $property->getValue($this);
+            // do not include any properties in which the value is null
             if (!is_null($value)) {
                 $a[$name] = $value;
             }

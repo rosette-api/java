@@ -212,12 +212,10 @@ class Api
             return $resultObject;
         } else {
             if (array_key_exists('message', $resultObject)) {
-            //if (strpos($resultObject, 'message') !== false) {
                 $msg = $resultObject['message'];
             }
             $complaint_url = $this->subUrl == null ? "Top level info" : $action . ' ' . $this->subUrl;
             if (array_key_exists('code', $resultObject)) {
-            //if (strpos($resultObject, 'code') !== false) {
                 $serverCode = $resultObject['code'];
                 if ($msg == null) {
                     $msg = $serverCode;
@@ -284,6 +282,8 @@ class Api
         $url = $this->service_url.'/'.$this->subUrl;
         $paramsToSerialize = $parameters->serializable();
 
+        // An exception occurs when Accept-Encoding is set explicitly to gzip and the recommended solution is to set
+        // Accept-Encoding to '', in which gzip is implicitly included.
         $headers = ['Accept' => 'application/json', 'Accept-Encoding' => ''];
         if ($this->user_key) {
             $headers['user_key'] = $this->user_key;
@@ -439,7 +439,7 @@ class Api
      *
      * @param $url
      * @param $context
-     * @return null|\Requests_Response object or RosetteException
+     * @return string
      * @throws RosetteException
      * @internal param $op : operation
      * @internal param $url : target URL
@@ -456,15 +456,14 @@ class Api
             $this->setResponseCode($responseHeader['response_code']);
             if ($this->getResponseCode() < 500) {
                 if (strlen($response) > 3
-                    && mb_strpos($response, "\x1f" . "\x8b" . "\x08", 0, "US-ASCII") === 0) {
-                    $responseData = gzinflate($response);
-                    $response = $responseData;
+                    && mb_strpos($response, "\x1f" . "\x8b" . "\x08", 0) === 0) {
+                    $response = gzinflate($response);
                 }
                 return $response;
             }
         }
         $message = null;
-        $code = 'unknown error';
+        $code = 'unknownError';
         if ($response != null) {
             try {
                 $json = json_decode($response, true);
@@ -485,7 +484,9 @@ class Api
     }
 
     /**
-     * Parses the header response and adds a response code
+     * The response header that is returned by $http_response_header does not contain an explicit return code; it is
+     * embedded in one of the array elements.  This method parses the $http_response_header and adds a response_code
+     * element to the named array.
      * @param $headers
      * @return array
      */
@@ -498,6 +499,7 @@ class Api
                 $head[trim($t[0])] = trim($t[1]);
             } else {
                 $head[] = $v;
+                // parse out the response code
                 if (preg_match("#HTTP/[0-9\.]+\s+([0-9]+)#", $v, $out)) {
                     $head['response_code'] = intval($out[1]);
                 }
@@ -507,6 +509,9 @@ class Api
     }
 
     /**
+     * Creates the header string that is acceptable to file_get_contents.  Considered implode(), but it doesn't work
+     * with named arrays and the combination of needing the \r\n between the pairs is addressed with this simplistic,
+     * but readable helper method.
      * @param $headers
      * @return string
      */
@@ -521,12 +526,11 @@ class Api
             $s = $s . $key . ': ' . $value;
             $first = false;
         }
-
         return $s;
     }
 
     /**
-     * Formats an array according to the required format
+     * Returns a json string based on the provided named array, first removing the null values
      * @param $data
      * @return string
      */
