@@ -13,12 +13,12 @@ fi
 binding=$1
 branch=$2
 script_dir=$(dirname "${BASH_SOURCE[0]}")
-tmp=$(dirname "$script_dir")/target/github
+tmp=$(dirname "$script_dir")/target/github-src
 clone=$tmp/rosette-api
 rm -rf "$tmp"
 mkdir -p "$tmp"
 (cd "$tmp"; git clone $public)
 (cd "$clone"; git checkout -b $branch)
-(cd "$clone"; git rm -rf $binding)
-(cd $binding/target/github-publish; find . -type f -print | cpio -pdmv "$clone/$binding")
-(cd "$clone"; git add $binding; git commit; git push -u)
+(cd "$clone"; git rm -rf $binding; mkdir $binding)
+tar cf - $binding/target/github-publish | tar xf - -C "$clone/$binding" --strip-components 3
+(cd "$clone"; git add $binding; git commit -m "publish $branch"; git push -u)
