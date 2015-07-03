@@ -4,10 +4,10 @@ PHP Examples
 These examples are scripts that can be run independently to demonstrate the Rosette API functionality.
 
 You can now run your desired _endpoint_.php file to see it in action.
-For example, run `php examples/categories.py` if you want to see the categories
+For example, run `php examples/categories.php` if you want to see the categories
 functionality demonstrated.
 
-All files require you to input your Rosette API User Key after --key to run.
+All files require you to input your Rosette API User Key after `--key` to run.
 For example: `php ping.php --key 1234567890`  
 All also allow you to input your own service URL if applicable.  
 For example: `php ping.php --key 1234567890 --url http://www.myurl.com`
