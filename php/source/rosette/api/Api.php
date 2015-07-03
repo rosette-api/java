@@ -36,6 +36,11 @@ namespace rosette\api;
 class Api
 {
     /**
+     * Compatible server version
+     * @var string
+     */
+    private static $compatible_version = '0.5';
+    /**
      * User key (required for Rosette API)
      * @var null|string
      */
@@ -45,6 +50,11 @@ class Api
      * @var string
      */
     private $service_url;
+    /**
+     * HTTP headers for Rosette API
+     * @var array
+     */
+    private $headers;
     /**
      * MultiPart status
      * @var bool
@@ -125,6 +135,11 @@ class Api
         $this->version_checked = false;
         $this->subUrl = null;
         $this->timeout = 300;
+
+        $this->headers = ['user_key' => $user_key,
+                          'Content-Type' => 'application/json',
+                          'Accept' => 'application/json',
+                          'Accept-Encoding' => ''];  # workaround for gzip encoding
     }
 
     /**
@@ -189,11 +204,7 @@ class Api
     public function ping()
     {
         $url = $this->service_url.'/ping';
-        $headers = ['Accept' => 'application/json', 'Content-Type' => 'application/json'];
-        if ($this->user_key) {
-            $headers['user_key'] = $this->user_key;
-        }
-        $resultObject = $this->getHttp($url, $headers, $this->getOptions());
+        $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
         return $this->finishResult($resultObject, 'ping');
     }
 
@@ -226,7 +237,6 @@ class Api
                     $msg = 'unknown error';
                 }
             }
-            //echo "FinishResult\n";
 
             throw new RosetteException(
                 $complaint_url.'
@@ -243,11 +253,7 @@ class Api
     public function languageInfo()
     {
         $url = $this->service_url.'/language/info';
-        $headers = ['Accept' => 'application/json', 'Content-Type' => 'application/json'];
-        if ($this->user_key) {
-            $headers['user_key'] = $this->user_key;
-        }
-        $resultObject = $this->getHttp($url, $headers, $this->getOptions());
+        $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
         return $this->finishResult($resultObject, 'language-info');
     }
 
@@ -259,7 +265,7 @@ class Api
      */
     public function language($params)
     {
-        return $this->operate($params, 'language');
+        return $this->callEndpoint($params, 'language');
     }
 
     /**
@@ -269,7 +275,7 @@ class Api
      * @return mixed
      * @throws RosetteException
      */
-    private function operate(RosetteParamsSetBase $parameters, $subUrl)
+    private function callEndpoint(RosetteParamsSetBase $parameters, $subUrl)
     {
         $this->subUrl = $subUrl;
         $this->checkVersion();
@@ -282,17 +288,9 @@ class Api
         $url = $this->service_url.'/'.$this->subUrl;
         $paramsToSerialize = $parameters->serializable();
 
-        // An exception occurs when Accept-Encoding is set explicitly to gzip and the recommended solution is to set
-        // Accept-Encoding to '', in which gzip is implicitly included.
-        $headers = ['Accept' => 'application/json', 'Accept-Encoding' => ''];
-        if ($this->user_key) {
-            $headers['user_key'] = $this->user_key;
-        }
-        $headers['Content-Type'] = 'application/json';
+        $resultObject = $this->postHttp($url, $this->headers, $paramsToSerialize, $this->getOptions());
 
-        $resultObject = $this->postHttp($url, $headers, $paramsToSerialize, $this->getOptions());
-
-        return $this->finishResult($resultObject, "operate");
+        return $this->finishResult($resultObject, "callEndpoint");
     }
 
     /**
@@ -305,7 +303,7 @@ class Api
     {
         if (!$this->version_checked) {
             if (!$versionToCheck) {
-                $versionToCheck = '0.5';
+                $versionToCheck = self::$compatible_version;
             }
             $result = $this->info();
             $version = substr($result['version'], 0, 3);
@@ -329,13 +327,7 @@ class Api
     public function info()
     {
         $url = $this->service_url.'/info';
-
-        $headers = ['Accept' => 'application/json', 'Content-Type' => 'application/json'];
-        if ($this->user_key) {
-            $headers['user_key'] = $this->user_key;
-        }
-        $resultObject = $this->getHttp($url, $headers, $this->getOptions());
-
+        $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
         return $this->FinishResult($resultObject, 'info');
     }
 
@@ -347,7 +339,7 @@ class Api
      */
     public function sentences($params)
     {
-        return $this->operate($params, "sentences");
+        return $this->callEndpoint($params, "sentences");
     }
 
     /**
@@ -358,7 +350,7 @@ class Api
      */
     public function tokens($params)
     {
-        return $this->operate($params, "tokens");
+        return $this->callEndpoint($params, "tokens");
     }
 
     /**
@@ -373,7 +365,7 @@ class Api
         if (!$facet) {
             $facet = RosetteConstants::$MorphologyOutput['COMPLETE'];
         }
-        return $this->operate($params, "morphology/".$facet);
+        return $this->callEndpoint($params, "morphology/".$facet);
     }
 
     /**
@@ -383,9 +375,9 @@ class Api
      * @return mixed
      * @throws RosetteException
      */
-    public function entities($params, $linked = null)
+    public function entities($params, $linked = false)
     {
-        return $linked ? $this->operate($params, "entities/linked") : $this->operate($params, "entities");
+        return $linked ? $this->callEndpoint($params, "entities/linked") : $this->callEndpoint($params, "entities");
     }
 
     /**
@@ -396,7 +388,7 @@ class Api
      */
     public function categories($params)
     {
-        return $this->operate($params, "categories");
+        return $this->callEndpoint($params, "categories");
     }
 
     /**
@@ -407,7 +399,7 @@ class Api
      */
     public function sentiment($params)
     {
-        return $this->operate($params, "sentiment");
+        return $this->callEndpoint($params, "sentiment");
     }
 
     /**
@@ -418,7 +410,7 @@ class Api
      */
     public function translatedName($nameTranslationParams)
     {
-        return $this->operate($nameTranslationParams, "translated-name");
+        return $this->callEndpoint($nameTranslationParams, "translated-name");
     }
 
     /**
@@ -429,7 +421,7 @@ class Api
      */
     public function matchedName($nameMatchingParams)
     {
-        return $this->operate($nameMatchingParams, "matched-name");
+        return $this->callEndpoint($nameMatchingParams, "matched-name");
     }
 
     /**
@@ -452,8 +444,8 @@ class Api
         $response = null;
         for ($range = 0; $range < $numberRetries; $range++) {
             $response = file_get_contents($url, false, $context);
-            $responseHeader = $this->parseHeaders($http_response_header);
-            $this->setResponseCode($responseHeader['response_code']);
+            $response_status = $this->getResponseStatusCode($http_response_header);
+            $this->setResponseCode($response_status);
             if ($this->getResponseCode() < 500) {
                 if (strlen($response) > 3
                     && mb_strpos($response, "\x1f" . "\x8b" . "\x08", 0) === 0) {
@@ -477,35 +469,30 @@ class Api
                 // pass
             }
         }
-        if ($message == null) {
+        if ($code === 'unknownError') {
             $message = sprintf("A retryable network operation has not succeeded after %d attempts", $numberRetries);
         }
         throw new RosetteException($message . ' [' . $url . ']', $code);
     }
 
     /**
-     * The response header that is returned by $http_response_header does not contain an explicit return code; it is
-     * embedded in one of the array elements.  This method parses the $http_response_header and adds a response_code
-     * element to the named array.
-     * @param $headers
-     * @return array
+     * The response header that is returned by $http_response_header does not contain an explicit return code;
+     * it is in the first array element. This method extracts that code.
+     * @param $header_str
+     * @return int
+     * @throws RosetteException
      */
-    private function parseHeaders($headers)
+    private function getResponseStatusCode($header_str)
     {
-        $head = [];
-        foreach ($headers as $k => $v) {
-            $t = explode(':', $v, 2);
-            if (isset($t[1])) {
-                $head[trim($t[0])] = trim($t[1]);
-            } else {
-                $head[] = $v;
-                // parse out the response code
-                if (preg_match("#HTTP/[0-9\.]+\s+([0-9]+)#", $v, $out)) {
-                    $head['response_code'] = intval($out[1]);
-                }
-            }
+        // the first line of a HTTP response by spec is the status line that looks like:
+        //     HTTP/1.1 200 OK
+        // just need to regex out the status code
+        $status_line = array_shift($header_str);
+        if (preg_match("#^HTTP/1\.[0-9]+\s+([1-5][0-9][0-9])\s+#", $status_line, $out) === 1) {
+            return intval($out[1]);
+        } else {
+            throw new RosetteException('Invalid HTTP response status line: ' . $status_line);
         }
-        return $head;
     }
 
     /**

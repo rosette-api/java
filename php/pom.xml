@@ -60,7 +60,7 @@
                                 <argument>-v</argument>
                                 <argument>--bootstrap</argument>
                                 <argument>./vendor/autoload.php</argument>
-                                <argument>./tests/rosette/api/APITest.php</argument>
+                                <argument>./tests/rosette/api/ApiTest.php</argument>
                             </arguments>
                         </configuration>
                     </execution>

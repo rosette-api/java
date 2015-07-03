@@ -73,16 +73,7 @@ class Name
      */
     public function __toString()
     {
-        $a = [];
         $ref = new \ReflectionClass($this);
-        foreach ($ref->getProperties() as $property) {
-            $name = $property->names;
-            $value = $property->getValue($this);
-            // do not include any properties in which the value is null
-            if (!empty($value)) {
-                $a[$name] = $value;
-            }
-        }
-        return json_encode($a);
+        return json_decode(array_filter($ref->getProperties()));
     }
 }
