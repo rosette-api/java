@@ -52,7 +52,7 @@ class Name
      * @param $script
      * @throws RosetteException
      */
-    public function __construct($text, $entityType=null, $language=null, $script=null)
+    public function __construct($text, $entityType = null, $language = null, $script = null)
     {
         if ($text === null) {
             throw new RosetteException(
@@ -67,11 +67,13 @@ class Name
     }
 
     /**
-     * Magic method to return the stringized form of NameObject
+     * Magic method to return the stringized form of NameObject.  It uses reflection to automatically handle
+     * added/removed properties
      * @return mixed
      */
     public function __toString()
     {
-        return $this->json;
+        $ref = new \ReflectionClass($this);
+        return json_decode(array_filter($ref->getProperties()));
     }
 }

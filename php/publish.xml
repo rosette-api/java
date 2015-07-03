@@ -7,7 +7,7 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <files>
         <file>
-            <source>README.md</source>
+            <source>README.txt</source>
             <lineEnding>unix</lineEnding>
         </file>
         <file>
@@ -21,6 +21,9 @@
         </fileSet>
         <fileSet>
             <directory>tests</directory>
+        </fileSet>
+        <fileSet>
+            <directory>examples</directory>
         </fileSet>
     </fileSets>
 </assembly>
