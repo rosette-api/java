@@ -161,6 +161,15 @@ class Api
     }
 
     /**
+     * Enables debug (more verbose output)
+     * @param boolean $debug
+     */
+    public function setDebug($debug)
+    {
+        $this->debug = $debug;
+    }
+
+    /**
      * Getter for the user_key
      * @return null|string
      */
@@ -286,6 +295,9 @@ class Api
             );
         }
         $url = $this->service_url.'/'.$this->subUrl;
+        if ($this->debug) {
+            $url .= '?debug=true';
+        }
         $paramsToSerialize = $parameters->serializable();
 
         $resultObject = $this->postHttp($url, $this->headers, $paramsToSerialize, $this->getOptions());
