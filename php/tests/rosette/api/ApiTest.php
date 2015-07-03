@@ -24,8 +24,18 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 class ApiTest extends \PHPUnit_Framework_TestCase
 {
     private $userKey = null;
-    private static $requestDir = __DIR__ . '/../../../../mock-data/request/';
-    private static $responseDir = __DIR__ . '/../../../../mock-data/response/';
+    private static $mockDir = '/../../../../mock-data';
+    private static $requestDir;
+    private static $responseDir;
+
+    /**
+     * setup mock data paths
+     */
+    public static function setupBeforeClass()
+    {
+        self::$requestDir = __DIR__ . self::$mockDir . '/request/';
+        self::$responseDir = __DIR__ . self::$mockDir . '/response/';
+    }
 
     /**
      * Find the correct response file from the mock-data directory
@@ -107,9 +117,15 @@ class ApiTest extends \PHPUnit_Framework_TestCase
      */
     public function findFiles()
     {
+        // can't use global $requestDir due to a dataProvider issue where it's called before
+        // everything else, include static functions:
+        //    https://github.com/sebastianbergmann/phpunit/issues/1206
+        // so workaround until that improvement is implemented
+        $requestDir = __DIR__ . self::$mockDir . '/request/';
+
         $pattern = "/.*\/request\/([\w\d]*-[\w\d]*-(.*))\.json/";
         $files = [];
-        foreach (glob(self::$requestDir . "*.json") as $filename) {
+        foreach (glob($requestDir . "*.json") as $filename) {
             preg_match($pattern, $filename, $output_array);
             $files[] = [$output_array[1], $output_array[2]];
         }
