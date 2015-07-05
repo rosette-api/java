@@ -119,7 +119,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>phpdoc</executable>
+                            <executable>${basedir}/vendor/bin/phpdoc</executable>
                             <arguments>
                                 <argument>-d</argument>
                                 <argument>./source</argument>
