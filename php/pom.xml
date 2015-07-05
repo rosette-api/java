@@ -49,13 +49,45 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>php-cs-fixer-source</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/vendor/bin/php-cs-fixer</executable>
+                            <arguments>
+                                <argument>fix</argument>
+                                <argument>./source</argument>
+                                <argument>--dry-run</argument>
+                                <argument>--diff</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>php-cs-fixer-tests</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/vendor/bin/php-cs-fixer</executable>
+                            <arguments>
+                                <argument>fix</argument>
+                                <argument>./tests</argument>
+                                <argument>--dry-run</argument>
+                                <argument>--diff</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>phpunit</id>
                         <phase>test</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>phpunit</executable>
+                            <executable>${basedir}/vendor/bin/phpunit</executable>
                             <arguments>
                                 <argument>-v</argument>
                                 <argument>--bootstrap</argument>

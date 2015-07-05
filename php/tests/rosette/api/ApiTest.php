@@ -1,26 +1,28 @@
 <?php
+
 /**
  * @copyright 2014-2015 Basis Technology Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * @license http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  **/
+
 namespace rosette\api;
 
 /**
- * Mock the global function for this test
+ * Mock the global function for this test.
  *
  * @param $filename
  * @param null $flags
  * @param null $context
  * @param null $offset
  * @param null $maxlen
+ *
  * @return string mocked response
  */
 function file_get_contents($filename, $flags = null, $context = null, $offset = null, $maxlen = null)
@@ -31,7 +33,7 @@ function file_get_contents($filename, $flags = null, $context = null, $offset = 
     $test_file = $out[1];
 
     // prepare mocked response content
-    $response_data = \file_get_contents(ApiTest::$responseDir . $test_file . '.json');
+    $response_data = \file_get_contents(ApiTest::$responseDir.$test_file.'.json');
     $response_data = json_encode(json_decode($response_data, true));  // necessary to get a valid json string
     if (strlen($response_data) > 200) {  // test gzip encoding for longer response
         $response_data = gzencode($response_data);
@@ -42,53 +44,59 @@ function file_get_contents($filename, $flags = null, $context = null, $offset = 
 
 // It is better to use phpunit --bootstrap ./vendor/autoload.php than to play with
 // the pathing.
-require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once __DIR__.'/../../../vendor/autoload.php';
 
 /**
- * Class ApiTest
- * @package rosette\api
+ * Class ApiTest.
  */
 class ApiTest extends \PHPUnit_Framework_TestCase
 {
     private $userKey = null;
     private static $mockDir = '/../../../../mock-data';
-    static $requestDir;
-    static $responseDir;
+    public static $requestDir;
+    public static $responseDir;
 
     /**
-     * setup mock data paths
+     * setup mock data paths.
      */
     public static function setupBeforeClass()
     {
-        self::$requestDir = __DIR__ . self::$mockDir . '/request/';
-        self::$responseDir = __DIR__ . self::$mockDir . '/response/';
+        self::$requestDir = __DIR__.self::$mockDir.'/request/';
+        self::$responseDir = __DIR__.self::$mockDir.'/response/';
     }
 
     /**
      * Find the correct response file from the mock-data directory
-     * Used to replace the retryingRequest function for mocking
+     * Used to replace the retryingRequest function for mocking.
+     *
      * @param $filename
+     *
      * @return mixed|string
      */
     private function getMockedResponse($filename)
     {
-        $response = json_decode(\file_get_contents(self::$responseDir . $filename . '.json'), true);
+        $response = json_decode(\file_get_contents(self::$responseDir.$filename.'.json'), true);
+
         return $response;
     }
 
     /**
-     * Replace the getResponseCode method in the API class for mocking purposes
+     * Replace the getResponseCode method in the API class for mocking purposes.
+     *
      * @param $filename
+     *
      * @return int
      */
     private function getMockedResponseCode($filename)
     {
-        return intval(\file_get_contents(self::$responseDir . $filename . '.status'));
+        return intval(\file_get_contents(self::$responseDir.$filename.'.status'));
     }
 
     /**
-     * Mock the api so that getResponseCode can return the code from the test file
+     * Mock the api so that getResponseCode can return the code from the test file.
+     *
      * @param $userKey
+     *
      * @return mixed
      */
     private function setUpApi($userKey)
@@ -99,6 +107,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
                     ->getMock();
         $api->method('getResponseStatusCode')
             ->willReturn($this->getMockedResponseCode($userKey));
+
         return $api;
     }
 
@@ -142,19 +151,23 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Get the file body for a request given a partial file name
+     * Get the file body for a request given a partial file name.
+     *
      * @param $filename
+     *
      * @return mixed
      */
     private function getRequestData($filename)
     {
-        $request = \file_get_contents(self::$requestDir . $filename . '.json');
+        $request = \file_get_contents(self::$requestDir.$filename.'.json');
+
         return json_decode($request, true);
     }
 
     /**
      * Return an array of arrays to be passed to testLanguages
-     * Each sub array is of the form [file name (after request/ and before .json), endpoint]
+     * Each sub array is of the form [file name (after request/ and before .json), endpoint].
+     *
      * @return array
      */
     public function findFiles()
@@ -163,22 +176,24 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         // everything else, include static functions:
         //    https://github.com/sebastianbergmann/phpunit/issues/1206
         // so workaround until that improvement is implemented
-        $requestDir = __DIR__ . self::$mockDir . '/request/';
+        $requestDir = __DIR__.self::$mockDir.'/request/';
 
         $pattern = '/.*\/request\/([\w\d]*-[\w\d]*-(.*))\.json/';
         $files = [];
-        foreach (glob($requestDir . "*.json") as $filename) {
+        foreach (glob($requestDir.'*.json') as $filename) {
             preg_match($pattern, $filename, $output_array);
             $files[] = [$output_array[1], $output_array[2]];
         }
+
         return $files;
     }
 
-
     /**
-     * Test all endpoints (other than ping and info)
+     * Test all endpoints (other than ping and info).
+     *
      * @group posts
      * @dataProvider findFiles
+     *
      * @param $filename
      * @param $endpoint
      */
@@ -188,21 +203,21 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $this->userKey = $filename;  // ex 'eng-sentence-language';
         $api = $this->setUpApi($this->userKey);
         $api->skipVersionCheck();  // need to set it so it doesn't call the mocked info()
-        $api->setDebug(TRUE);
+        $api->setDebug(true);
         $input = $this->getRequestData($this->userKey);
         $expected = $this->getMockedResponse($this->userKey);
         if ($endpoint == 'matched-name') {
             $name1 = new Name(
-                $input["name1"]["text"],
-                $input["name1"]["entityType"],
-                $input["name1"]["language"],
-                $input["name1"]["script"]
+                $input['name1']['text'],
+                $input['name1']['entityType'],
+                $input['name1']['language'],
+                $input['name1']['script']
             );
             $name2 = new Name(
-                $input["name2"]["text"],
-                $input["name2"]["entityType"],
-                $input["name2"]["language"],
-                $input["name2"]["script"]
+                $input['name2']['text'],
+                $input['name2']['entityType'],
+                $input['name2']['language'],
+                $input['name2']['script']
             );
             $params = new NameMatchingParameters($name1, $name2);
         } else {
@@ -224,36 +239,36 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         // If it throws an exception, check that it was supposed to and if so pass otherwise fail test.
         try {
             $result = '';
-            if ($endpoint === "categories") {
+            if ($endpoint === 'categories') {
                 $result = $api->categories($params);
             }
-            if ($endpoint === "entities") {
+            if ($endpoint === 'entities') {
                 $result = $api->entities($params);
             }
-            if ($endpoint === "entities_linked") {
+            if ($endpoint === 'entities_linked') {
                 $result = $api->entities($params, true);
             }
-            if ($endpoint === "language") {
+            if ($endpoint === 'language') {
                 $result = $api->language($params);
             }
-            if ($endpoint === "matched-name") {
+            if ($endpoint === 'matched-name') {
                 $result = $api->matchedName($params);
             }
-            if ($endpoint === "morphology_complete") {
+            if ($endpoint === 'morphology_complete') {
                 $result = $api->morphology($params);
             }
-            if ($endpoint === "sentiment") {
+            if ($endpoint === 'sentiment') {
                 $result = $api->sentiment($params);
             }
-            if ($endpoint === "translated-name") {
+            if ($endpoint === 'translated-name') {
                 $result = $api->translatedName($params);
             }
             // If there is a "code" key, it means an exception should be thrown
-            if (!array_key_exists("code", $expected)) {
+            if (!array_key_exists('code', $expected)) {
                 $this->assertSame(json_encode($expected), json_encode($result));
             }
         } catch (RosetteException $exception) {
-            $this->assertSame("unsupportedLanguage", $expected["code"]);
+            $this->assertSame('unsupportedLanguage', $expected['code']);
         }
     }
 }

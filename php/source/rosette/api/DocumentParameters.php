@@ -1,54 +1,57 @@
 <?php
+
 /**
- * class DocumentParameters
+ * class DocumentParameters.
  *
  * Parameter class for the standard Rosette API endpoints.  Does not include Name Translation
+ *
  * @copyright 2014-2015 Basis Technology Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * @license http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  **/
+
 namespace rosette\api;
 
 /**
- * Class DocumentParameters
- * @package rosette\api
+ * Class DocumentParameters.
  */
 class DocumentParameters extends RosetteParamsSetBase
 {
     /**
-     * Constructor
+     * Constructor.
+     *
      * @throws RosetteException
      */
     public function __construct()
     {
-        parent::__construct(["content", "contentUri", "contentType", "unit", "language"]);
-        $this->set("unit", RosetteConstants::$InputUnit['DOC']);
+        parent::__construct(['content', 'contentUri', 'contentType', 'unit', 'language']);
+        $this->set('unit', RosetteConstants::$InputUnit['DOC']);
     }
 
     /**
-     * Validates parameters
+     * Validates parameters.
+     *
      * @throws RosetteException
      */
     public function validate()
     {
-        if (empty(trim($this->get("content")))) {
-            if (empty(trim($this->get("contentUri")))) {
+        if (empty(trim($this->get('content')))) {
+            if (empty(trim($this->get('contentUri')))) {
                 throw new RosetteException(
-                    "Must supply one of Content or ContentUri",
+                    'Must supply one of Content or ContentUri',
                     RosetteException::$INVALID_DATATYPE
                 );
             }
         } else {
-            if (!empty(trim($this->get("contentUri")))) {
+            if (!empty(trim($this->get('contentUri')))) {
                 throw new RosetteException(
-                    "Cannot supply both Content and ContentUri",
+                    'Cannot supply both Content and ContentUri',
                     RosetteException::$INVALID_DATATYPE
                 );
             }
@@ -65,6 +68,7 @@ class DocumentParameters extends RosetteParamsSetBase
      * @param $path : Pathname of a file acceptable to the C{open}
      * function.
      * @param null $dataType
+     *
      * @throws RosetteException
      */
     public function loadDocumentFile($path, $dataType = null)
@@ -84,11 +88,12 @@ class DocumentParameters extends RosetteParamsSetBase
      *
      * @param $stringData
      * @param $dataType
+     *
      * @throws RosetteException
      */
     public function loadDocumentString($stringData, $dataType)
     {
-        $this->set("content", $stringData);
+        $this->set('content', $stringData);
         $this->set('contentType', $dataType);
         $this->set('unit', RosetteConstants::$InputUnit['DOC']);
     }

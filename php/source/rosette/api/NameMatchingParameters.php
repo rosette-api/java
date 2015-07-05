@@ -1,6 +1,7 @@
 <?php
+
 /**
- * class NameMatchingParameters
+ * class NameMatchingParameters.
  *
  * Parameters that are necessary for name translation operations.
  *
@@ -8,23 +9,23 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * @license http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  **/
+
 namespace rosette\api;
 
 /**
- * Class NameMatchingParameters
- * @package rosette\api
+ * Class NameMatchingParameters.
  */
 class NameMatchingParameters extends RosetteParamsSetBase
 {
     /**
-     * constructor
+     * constructor.
+     *
      * @param Name - name1 source name to be matched
      * @param Name - name2 target name to be matched
      */
@@ -36,7 +37,8 @@ class NameMatchingParameters extends RosetteParamsSetBase
     }
 
     /**
-     * Validates parameters
+     * Validates parameters.
+     *
      * @throws RosetteException
      */
     public function validate()
@@ -44,7 +46,7 @@ class NameMatchingParameters extends RosetteParamsSetBase
         foreach (['name1', 'name2'] as $key) {
             if (empty($this->get($key))) {
                 throw new RosetteException(
-                    sprintf("Required name matching parameter not supplied: %s", $key),
+                    sprintf('Required name matching parameter not supplied: %s', $key),
                     RosetteException::$BAD_REQUEST_FORMAT
                 );
             }
