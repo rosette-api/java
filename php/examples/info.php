@@ -13,7 +13,6 @@ if (!isset($options["key"])) {
 }
 
 $api = isset($options["url"]) ? new Api($options["key"], $options["url"]) : new Api($options["key"]);
-$api->setVersionChecked(true);
 
 try {
     $result = $api->info();

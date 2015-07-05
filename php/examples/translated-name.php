@@ -15,10 +15,9 @@ if (!isset($options["key"])) {
 }
 
 $api = isset($options["url"]) ? new Api($options["key"], $options["url"]) : new Api($options["key"]);
-$api->setVersionChecked(true);
 $params = new NameTranslationParameters();
-$params->params["name"] = "معمر محمد أبو منيار القذافي‎";
-$params->params["targetLanguage"] = "eng";
+$params->set("name", "معمر محمد أبو منيار القذافي‎");
+$params->set("targetLanguage", "eng");
 
 try {
     $result = $api->translatedName($params);

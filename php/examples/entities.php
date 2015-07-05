@@ -15,13 +15,13 @@ if (!isset($options["key"])) {
 }
 
 $api = isset($options["url"]) ? new Api($options["key"], $options["url"]) : new Api($options["key"]);
-$api->setVersionChecked(true);
 $params = new DocumentParameters();
-$params->params["content"] = <<<EOF
+$content = <<<EOF
 President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill
 based on Christian faith by July 1st or Washington will become totally dysfunctional,
 a terrible outcome for American people.
 EOF;
+$params->set("content", $content);
 
 try {
     $result = $api->entities($params);

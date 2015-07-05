@@ -33,21 +33,18 @@ class NameTranslationParameters extends RosetteParamsSetBase
     }
 
     /**
-     * Returns the serialized form of the parameters.
-     * @return array
+     * Validates parameters
      * @throws RosetteException
      */
-    public function serializable()
+    public function validate()
     {
         foreach (['name', 'targetLanguage'] as $key) {
-            if ($this->Get($key) == null) {
+            if (empty(trim($this->get($key)))) {
                 throw new RosetteException(
                     sprintf("Required name translation parameter not supplied: %s", $key),
                     RosetteException::$BAD_REQUEST_FORMAT
                 );
             }
         }
-
-        return $this->forSerialize();
     }
 }

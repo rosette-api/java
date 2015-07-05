@@ -16,10 +16,9 @@ if (!isset($options["key"])) {
 }
 
 $api = isset($options["url"]) ? new Api($options["key"], $options["url"]) : new Api($options["key"]);
-$api->setVersionChecked(true);
 $params = new DocumentParameters();
-$params->params["content"] = "北京大学生物系主任办公室内部会议";
-$params->params["unit"] = RosetteConstants::$InputUnit["SENTENCE"];
+$params->set("content", "北京大学生物系主任办公室内部会议");
+$params->set("unit", RosetteConstants::$InputUnit["SENTENCE"]);
 
 try {
     $result = $api->tokens($params);

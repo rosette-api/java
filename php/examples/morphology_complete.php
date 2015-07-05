@@ -17,9 +17,8 @@ if (!isset($options["key"])) {
 }
 
 $api = isset($options["url"]) ? new Api($options["key"], $options["url"]) : new Api($options["key"]);
-$api->setVersionChecked(true);
 $params = new DocumentParameters();
-$params->params["content"] = "The quick brown fox jumped over the lazy dog. Yes he did.";
+$params->set("content", "The quick brown fox jumped over the lazy dog. Yes he did.");
 
 try {
     $result = $api->morphology($params, RosetteConstants::$MorphologyOutput["COMPLETE"]);

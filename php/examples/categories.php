@@ -15,9 +15,8 @@ if (!isset($options["key"])) {
 }
 
 $api = isset($options["url"]) ? new Api($options["key"], $options["url"]) : new Api($options["key"]);
-$api->setVersionChecked(true);
 $params = new DocumentParameters();
-$params->params["contentUri"] = "http://www.basistech.com/about";
+$params->set("contentUri", "http://www.basistech.com/about");
 
 try {
     $result = $api->categories($params);

@@ -36,21 +36,18 @@ class NameMatchingParameters extends RosetteParamsSetBase
     }
 
     /**
-     * Returns the serialized form of the parameters.
-     * @return mixed
+     * Validates parameters
      * @throws RosetteException
      */
-    public function serializable()
+    public function validate()
     {
         foreach (['name1', 'name2'] as $key) {
-            if ($this->Get($key) == null) {
+            if (empty($this->get($key))) {
                 throw new RosetteException(
                     sprintf("Required name matching parameter not supplied: %s", $key),
                     RosetteException::$BAD_REQUEST_FORMAT
                 );
             }
         }
-
-        return $this->ForSerialize();
     }
 }

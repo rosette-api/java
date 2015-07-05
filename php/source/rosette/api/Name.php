@@ -65,15 +65,4 @@ class Name
         $this->language = $language;
         $this->script = $script;
     }
-
-    /**
-     * Magic method to return the stringized form of NameObject.  It uses reflection to automatically handle
-     * added/removed properties
-     * @return mixed
-     */
-    public function __toString()
-    {
-        $ref = new \ReflectionClass($this);
-        return json_decode(array_filter($ref->getProperties()));
-    }
 }

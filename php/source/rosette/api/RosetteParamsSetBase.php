@@ -27,19 +27,13 @@ abstract class RosetteParamsSetBase
      * Internal params array
      * @var array
      */
-    public $params = [];
-
-    /**
-     * Internal params as string
-     * @var string
-     */
-    private $paramsAsString = "";
+    protected $params = [];
 
     /**
      * Constructor
      * @param $repertoire
      */
-    public function __construct($repertoire)
+    protected function __construct($repertoire)
     {
         foreach ($repertoire as $key) {
             $this->params[$key] = '';
@@ -81,28 +75,19 @@ abstract class RosetteParamsSetBase
     }
 
     /**
-     * Serializes the non-null parameters
-     * @return array
-     */
-    public function forSerialize()
-    {
-        $result = array_filter($this->params);
-        $this->paramsAsString = json_encode($result);
-        return $result;
-    }
-
-    /**
-     * Returns in string format, e.g. "{key: value...}"
-     */
-    public function asString()
-    {
-        $this->forSerialize();
-        return $this->paramsAsString;
-    }
-
-    /**
-     * Abstract declaration of serializable to be defined in child classes
+     * Validates parameters before serializing them
      * @return mixed
+     * @throws RosetteException
      */
-    abstract public function serializable();
+    public abstract function validate();
+
+    /**
+     * Serialize into a json string
+     * @param boolean $skip_null if null values should be skipped
+     * @return string
+     */
+    public function serialize($skip_null = TRUE) {
+        $this->validate();
+        return json_encode($skip_null ? array_filter($this->params) : $this->params);
+    }
 }

@@ -15,9 +15,8 @@ if (!isset($options["key"])) {
 }
 
 $api = isset($options["url"]) ? new Api($options["key"], $options["url"]) : new Api($options["key"]);
-$api->setVersionChecked(true);
 $params = new DocumentParameters();
-$params->params["content"] = <<<EOF
+$content = <<<EOF
 This land is your land This land is my land
 From California to the New York island;
 From the red wood forest to the Gulf Stream waters
@@ -29,7 +28,7 @@ I saw above me that endless skyway:
 I saw below me that golden valley:
 This land was made for you and me.
 EOF;
-
+$params->set("content", $content);
 
 try {
     $result = $api->sentences($params);

@@ -15,7 +15,6 @@ if (!isset($options["key"])) {
 }
 
 $api = isset($options["url"]) ? new Api($options["key"], $options["url"]) : new Api($options["key"]);
-$api->setVersionChecked(true);
 $params = new DocumentParameters();
 $content = <<<EOF
 <html><head><title>Performance Report</title></head>
