@@ -113,6 +113,19 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>phar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/vendor/bin/box</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>phpdoc</id>
                         <phase>compile</phase>
                         <goals>
