@@ -3,7 +3,7 @@
 /**
  * Example code to call Rosette API to get information such as version and build.
  **/
-require_once dirname(__FILE__).'/../vendor/autoload.php'; // assuming composer.json is properly configured with Rosette API
+require_once dirname(__FILE__).'/../source/rosette/api/Api.php';
 use rosette\api\Api;
 
 $options = getopt(null, array('key:', 'url::'));

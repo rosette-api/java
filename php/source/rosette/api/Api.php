@@ -18,6 +18,13 @@
 
 namespace rosette\api;
 
+// autoload classes in the package
+set_include_path(get_include_path().PATH_SEPARATOR.dirname(__DIR__));
+spl_autoload_register(function ($class) {
+    $class = preg_replace('/.+\\\\/', '', $class);
+    require_once $class.'.php';
+});
+
 /**
  * Class API.
  *
@@ -143,9 +150,6 @@ class Api
      */
     public function __construct($user_key, $service_url = 'https://api.rosette.com/rest/v1')
     {
-        spl_autoload_extensions('.php');
-        spl_autoload_register();
-
         $this->user_key = $user_key;
         $this->service_url = $service_url;
         $this->debug = false;
