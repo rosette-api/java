@@ -19,10 +19,10 @@
 namespace rosette\api;
 
 // autoload classes in the package
-set_include_path(get_include_path().PATH_SEPARATOR.dirname(__DIR__));
+set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__DIR__));
 spl_autoload_register(function ($class) {
     $class = preg_replace('/.+\\\\/', '', $class);
-    require_once $class.'.php';
+    require_once $class . '.php';
 });
 
 /**
@@ -158,10 +158,10 @@ class Api
         $this->subUrl = null;
         $this->timeout = 300;
 
-        $this->headers = ['user_key' => $user_key,
+        $this->headers = array('user_key' => $user_key,
                           'Content-Type' => 'application/json',
                           'Accept' => 'application/json',
-                          'Accept-Encoding' => 'gzip', ];
+                          'Accept-Encoding' => 'gzip', );
     }
 
     /**
@@ -169,7 +169,7 @@ class Api
      */
     private function getOptions()
     {
-        $options = ['timeout' => $this->timeout];
+        $options = array('timeout' => $this->timeout);
 
         return $options;
     }
@@ -248,28 +248,28 @@ class Api
     {
         $msg = null;
 
-        if ($this->getResponseCode() == 200) {
+        if ($this->getResponseCode() === 200) {
             return $resultObject;
         } else {
             if (array_key_exists('message', $resultObject)) {
                 $msg = $resultObject['message'];
             }
-            $complaint_url = $this->subUrl == null ? 'Top level info' : $action.' '.$this->subUrl;
+            $complaint_url = $this->subUrl === null ? 'Top level info' : $action . ' ' . $this->subUrl;
             if (array_key_exists('code', $resultObject)) {
                 $serverCode = $resultObject['code'];
-                if ($msg == null) {
+                if ($msg === null) {
                     $msg = $serverCode;
                 }
             } else {
                 $serverCode = RosetteException::$BAD_REQUEST_FORMAT;
-                if ($msg == null) {
+                if ($msg === null) {
                     $msg = 'unknown error';
                 }
             }
 
             throw new RosetteException(
-                $complaint_url.'
-                : failed to communicate with Api: '.$msg,
+                $complaint_url . '
+                : failed to communicate with Api: ' . $msg,
                 is_numeric($serverCode) ? $serverCode : RosetteException::$BAD_REQUEST_FORMAT
             );
         }
@@ -289,13 +289,13 @@ class Api
     {
         $this->subUrl = $subUrl;
         $this->checkVersion();
-        if ($this->useMultiPart && $parameters['contentType'] != RosetteConstants::$DataFormat['SIMPLE']) {
+        if ($this->useMultiPart && $parameters['contentType'] !== RosetteConstants::$DataFormat['SIMPLE']) {
             throw new RosetteException(
                 sprintf('MultiPart requires contentType SIMPLE: %s', $parameters['contentType']),
                 RosetteException::$BAD_REQUEST_FORMAT
             );
         }
-        $url = $this->service_url.'/'.$this->subUrl;
+        $url = $this->service_url . '/' . $this->subUrl;
         if ($this->debug) {
             $url .= '?debug=true';
         }
@@ -323,9 +323,9 @@ class Api
             // compatibility with server side is at minor version level of semver
             preg_match('/(^[0-9]+\.[0-9]+)/', $result['version'], $matches);
             $version = $matches[1];
-            if ($version != $versionToCheck) {
+            if ($version !== $versionToCheck) {
                 throw new RosetteException(
-                    'The server version is not '.strval($versionToCheck),
+                    'The server version is not ' . strval($versionToCheck),
                     RosetteException::$BAD_SERVER_VERSION
                 );
             } else {
@@ -362,7 +362,7 @@ class Api
             $response = file_get_contents($url, false, $context);
             $response_status = $this->getResponseStatusCode($http_response_header);
             $this->setResponseCode($response_status);
-            if (strlen($response) > 3 && mb_strpos($response, "\x1f"."\x8b"."\x08", 0) === 0) {
+            if (strlen($response) > 3 && mb_strpos($response, "\x1f" . "\x8b" . "\x08", 0) === 0) {
                 // a gzipped string starts with ID1(\x1f) ID2(\x8b) CM(\x08)
                 // http://www.gzip.org/zlib/rfc-gzip.html#member-format
                 $response = gzinflate(substr($response, 10, -8));
@@ -373,7 +373,7 @@ class Api
         }
         $message = null;
         $code = 'unknownError';
-        if ($response != null) {
+        if ($response !== null) {
             try {
                 $json = json_decode($response, true);
                 if (array_key_exists('message', $json)) {
@@ -389,7 +389,7 @@ class Api
         if ($code === 'unknownError') {
             $message = sprintf('A retryable network operation has not succeeded after %d attempts', $numberRetries);
         }
-        throw new RosetteException($message.' ['.$url.']', $code);
+        throw new RosetteException($message . ' [' . $url . ']', $code);
     }
 
     /**
@@ -411,7 +411,7 @@ class Api
         if (preg_match('#^HTTP/1\.[0-9]+\s+([1-5][0-9][0-9])\s+#', $status_line, $out) === 1) {
             return intval($out[1]);
         } else {
-            throw new RosetteException('Invalid HTTP response status line: '.$status_line);
+            throw new RosetteException('Invalid HTTP response status line: ' . $status_line);
         }
     }
 
@@ -501,7 +501,7 @@ class Api
     public function ping()
     {
         $this->skipVersionCheck();
-        $url = $this->service_url.'/ping';
+        $url = $this->service_url . '/ping';
         $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
 
         return $this->finishResult($resultObject, 'ping');
@@ -517,7 +517,7 @@ class Api
     public function info()
     {
         $this->skipVersionCheck();
-        $url = $this->service_url.'/info';
+        $url = $this->service_url . '/info';
         $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
 
         return $this->finishResult($resultObject, 'info');
@@ -531,7 +531,7 @@ class Api
     public function languageInfo()
     {
         $this->skipVersionCheck();
-        $url = $this->service_url.'/language/info';
+        $url = $this->service_url . '/language/info';
         $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
 
         return $this->finishResult($resultObject, 'language-info');
@@ -595,7 +595,7 @@ class Api
             $facet = RosetteConstants::$MorphologyOutput['COMPLETE'];
         }
 
-        return $this->callEndpoint($params, 'morphology/'.$facet);
+        return $this->callEndpoint($params, 'morphology/' . $facet);
     }
 
     /**

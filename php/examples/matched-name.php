@@ -3,7 +3,7 @@
 /**
  * Example code to call Rosette API to get match score (similarity) for two names.
  **/
-require_once dirname(__FILE__).'/../source/rosette/api/Api.php';
+require_once dirname(__FILE__) . '/../source/rosette/api/Api.php';
 use rosette\api\Api;
 use rosette\api\Name;
 use rosette\api\NameMatchingParameters;
@@ -11,7 +11,7 @@ use rosette\api\RosetteException;
 
 $options = getopt(null, array('key:', 'url::'));
 if (!isset($options['key'])) {
-    echo 'Usage: php '.__FILE__." --key <api_key> --url=<alternate_url>\n";
+    echo 'Usage: php ' . __FILE__ . " --key <api_key> --url=<alternate_url>\n";
     exit();
 }
 
