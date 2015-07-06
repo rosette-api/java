@@ -36,6 +36,11 @@ namespace rosette\api;
 class Api
 {
     /**
+     * Compatible server version
+     * @var string
+     */
+    private static $compatible_version = '0.5';
+    /**
      * User key (required for Rosette API)
      * @var null|string
      */
@@ -45,6 +50,11 @@ class Api
      * @var string
      */
     private $service_url;
+    /**
+     * HTTP headers for Rosette API
+     * @var array
+     */
+    private $headers;
     /**
      * MultiPart status
      * @var bool
@@ -65,6 +75,28 @@ class Api
      * @var
      */
     private $timeout;
+
+    /**
+     * Last response code
+     * @var
+     */
+    private $response_code;
+
+    /**
+     * @return mixed
+     */
+    public function getResponseCode()
+    {
+        return $this->response_code;
+    }
+
+    /**
+     * @param mixed $response_code
+     */
+    public function setResponseCode($response_code)
+    {
+        $this->response_code = $response_code;
+    }
 
     /**
      * Returns the max timeout value (seconds)
@@ -103,6 +135,11 @@ class Api
         $this->version_checked = false;
         $this->subUrl = null;
         $this->timeout = 300;
+
+        $this->headers = ['user_key' => $user_key,
+                          'Content-Type' => 'application/json',
+                          'Accept' => 'application/json',
+                          'Accept-Encoding' => ''];  # workaround for gzip encoding
     }
 
     /**
@@ -121,6 +158,15 @@ class Api
     public function setVersionChecked($version_checked)
     {
         $this->version_checked = $version_checked;
+    }
+
+    /**
+     * Enables debug (more verbose output)
+     * @param boolean $debug
+     */
+    public function setDebug($debug)
+    {
+        $this->debug = $debug;
     }
 
     /**
@@ -167,11 +213,7 @@ class Api
     public function ping()
     {
         $url = $this->service_url.'/ping';
-        $headers = ['Accept' => 'application/json', 'Content-Type' => 'application/json'];
-        if ($this->user_key) {
-            $headers['user_key'] = $this->user_key;
-        }
-        $resultObject = GetHttp($url, $headers, $this->getOptions());
+        $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
         return $this->finishResult($resultObject, 'ping');
     }
 
@@ -186,15 +228,15 @@ class Api
     {
         $msg = null;
 
-        if ($resultObject->statusCode == 200) {
-            return $resultObject->jsonDecoded;
+        if ($this->getResponseCode() == 200) {
+            return $resultObject;
         } else {
-            if (strpos($resultObject, 'message') !== false) {
-                $msg = $resultObject->jsonDecoded['message'];
+            if (array_key_exists('message', $resultObject)) {
+                $msg = $resultObject['message'];
             }
             $complaint_url = $this->subUrl == null ? "Top level info" : $action . ' ' . $this->subUrl;
-            if (strpos($resultObject, 'code') !== false) {
-                $serverCode = $resultObject->jsonDecoded['code'];
+            if (array_key_exists('code', $resultObject)) {
+                $serverCode = $resultObject['code'];
                 if ($msg == null) {
                     $msg = $serverCode;
                 }
@@ -204,7 +246,6 @@ class Api
                     $msg = 'unknown error';
                 }
             }
-            //echo "FinishResult\n";
 
             throw new RosetteException(
                 $complaint_url.'
@@ -221,11 +262,7 @@ class Api
     public function languageInfo()
     {
         $url = $this->service_url.'/language/info';
-        $headers = ['Accept' => 'application/json', 'Content-Type' => 'application/json'];
-        if ($this->user_key) {
-            $headers['user_key'] = $this->user_key;
-        }
-        $resultObject = GetHttp($url, $headers, $this->getOptions());
+        $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
         return $this->finishResult($resultObject, 'language-info');
     }
 
@@ -237,7 +274,7 @@ class Api
      */
     public function language($params)
     {
-        return $this->operate($params, 'language');
+        return $this->callEndpoint($params, 'language');
     }
 
     /**
@@ -247,7 +284,7 @@ class Api
      * @return mixed
      * @throws RosetteException
      */
-    private function operate(RosetteParamsSetBase $parameters, $subUrl)
+    private function callEndpoint(RosetteParamsSetBase $parameters, $subUrl)
     {
         $this->subUrl = $subUrl;
         $this->checkVersion();
@@ -258,17 +295,14 @@ class Api
             );
         }
         $url = $this->service_url.'/'.$this->subUrl;
+        if ($this->debug) {
+            $url .= '?debug=true';
+        }
         $paramsToSerialize = $parameters->serializable();
 
-        $headers = ['Accept' => 'application/json', 'Accept-Encoding' => 'gzip'];
-        if ($this->user_key) {
-            $headers['user_key'] = $this->user_key;
-        }
-        $headers['Content-Type'] = 'application/json';
+        $resultObject = $this->postHttp($url, $this->headers, $paramsToSerialize, $this->getOptions());
 
-        $resultObject = PostHttp($url, $headers, $paramsToSerialize, $this->getOptions());
-
-        return $this->finishResult($resultObject, "operate");
+        return $this->finishResult($resultObject, "callEndpoint");
     }
 
     /**
@@ -281,7 +315,7 @@ class Api
     {
         if (!$this->version_checked) {
             if (!$versionToCheck) {
-                $versionToCheck = '0.5';
+                $versionToCheck = self::$compatible_version;
             }
             $result = $this->info();
             $version = substr($result['version'], 0, 3);
@@ -305,13 +339,7 @@ class Api
     public function info()
     {
         $url = $this->service_url.'/info';
-
-        $headers = ['Accept' => 'application/json', 'Content-Type' => 'application/json'];
-        if ($this->user_key) {
-            $headers['user_key'] = $this->user_key;
-        }
-        $resultObject = GetHttp($url, $headers, $this->getOptions());
-
+        $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
         return $this->FinishResult($resultObject, 'info');
     }
 
@@ -323,7 +351,7 @@ class Api
      */
     public function sentences($params)
     {
-        return $this->operate($params, "sentences");
+        return $this->callEndpoint($params, "sentences");
     }
 
     /**
@@ -334,7 +362,7 @@ class Api
      */
     public function tokens($params)
     {
-        return $this->operate($params, "tokens");
+        return $this->callEndpoint($params, "tokens");
     }
 
     /**
@@ -349,7 +377,7 @@ class Api
         if (!$facet) {
             $facet = RosetteConstants::$MorphologyOutput['COMPLETE'];
         }
-        return $this->operate($params, "morphology/".$facet);
+        return $this->callEndpoint($params, "morphology/".$facet);
     }
 
     /**
@@ -359,9 +387,9 @@ class Api
      * @return mixed
      * @throws RosetteException
      */
-    public function entities($params, $linked = null)
+    public function entities($params, $linked = false)
     {
-        return $linked ? $this->operate($params, "entities/linked") : $this->operate($params, "entities");
+        return $linked ? $this->callEndpoint($params, "entities/linked") : $this->callEndpoint($params, "entities");
     }
 
     /**
@@ -372,7 +400,7 @@ class Api
      */
     public function categories($params)
     {
-        return $this->operate($params, "categories");
+        return $this->callEndpoint($params, "categories");
     }
 
     /**
@@ -383,7 +411,7 @@ class Api
      */
     public function sentiment($params)
     {
-        return $this->operate($params, "sentiment");
+        return $this->callEndpoint($params, "sentiment");
     }
 
     /**
@@ -394,7 +422,7 @@ class Api
      */
     public function translatedName($nameTranslationParams)
     {
-        return $this->operate($nameTranslationParams, "translated-name");
+        return $this->callEndpoint($nameTranslationParams, "translated-name");
     }
 
     /**
@@ -405,100 +433,145 @@ class Api
      */
     public function matchedName($nameMatchingParams)
     {
-        return $this->operate($nameMatchingParams, "matched-name");
+        return $this->callEndpoint($nameMatchingParams, "matched-name");
     }
-}
 
-/**
- * function RetryingRequest
- *
- * Encapsulates the GET/POST and retries N_RETRIES
- *
- * @param $op
- * @param $url
- * @param $headers
- * @param $options
- * @param string $data
- * @return null|\Requests_Response object or RosetteException
- * @throws RosetteException
- * @internal param $op : operation
- * @internal param $url : target URL
- * @internal param $headers : header data
- * @internal param data $optional : submission data
- */
-function RetryingRequest($op, $url, $headers, $options, $data = "")
-{
-    $numberRetries = 3;
-    $response = null;
-    for ($range = 0; $range < $numberRetries; $range++) {
-        if ($op == "GET") {
-            $response = \Requests::get($url, $headers, $options);
+    /**
+     * function retryingRequest
+     *
+     * Encapsulates the GET/POST and retries N_RETRIES
+     *
+     * @param $url
+     * @param $context
+     * @return string
+     * @throws RosetteException
+     * @internal param $op : operation
+     * @internal param $url : target URL
+     * @internal param $headers : header data
+     * @internal param data $optional : submission data
+     */
+    public function retryingRequest($url, $context)
+    {
+        $numberRetries = 3;
+        $response = null;
+        for ($range = 0; $range < $numberRetries; $range++) {
+            $response = file_get_contents($url, false, $context);
+            $response_status = $this->getResponseStatusCode($http_response_header);
+            $this->setResponseCode($response_status);
+            if ($this->getResponseCode() < 500) {
+                if (strlen($response) > 3
+                    && mb_strpos($response, "\x1f" . "\x8b" . "\x08", 0) === 0) {
+                    $response = gzinflate($response);
+                }
+                return $response;
+            }
+        }
+        $message = null;
+        $code = 'unknownError';
+        if ($response != null) {
+            try {
+                $json = json_decode($response, true);
+                if (array_key_exists('message', $json)) {
+                    $message = $json["message"];
+                }
+                if (array_key_exists('code', $json)) {
+                    $code = $json["code"];
+                }
+            } catch (\Exception $e) {
+                // pass
+            }
+        }
+        if ($code === 'unknownError') {
+            $message = sprintf("A retryable network operation has not succeeded after %d attempts", $numberRetries);
+        }
+        throw new RosetteException($message . ' [' . $url . ']', $code);
+    }
+
+    /**
+     * The response header that is returned by $http_response_header does not contain an explicit return code;
+     * it is in the first array element. This method extracts that code.
+     * @param $header_str
+     * @return int
+     * @throws RosetteException
+     */
+    private function getResponseStatusCode($header_str)
+    {
+        // the first line of a HTTP response by spec is the status line that looks like:
+        //     HTTP/1.1 200 OK
+        // just need to regex out the status code
+        $status_line = array_shift($header_str);
+        if (preg_match("#^HTTP/1\.[0-9]+\s+([1-5][0-9][0-9])\s+#", $status_line, $out) === 1) {
+            return intval($out[1]);
         } else {
-            $response = \Requests::post($url, $headers, $data, $options);
-        }
-        if ($response->status_code < 500) {
-            return $response;
+            throw new RosetteException('Invalid HTTP response status line: ' . $status_line);
         }
     }
-    $message = null;
-    $code = 'unknown error';
-    if ($response != null) {
-        try {
-            $json = json_decode($response->body, true);
-            if (array_key_exists('message', $json)) {
-                $message = $json["message"];
-            }
-            if (array_key_exists('code', $json)) {
-                $code = $json["code"];
-            }
-        } catch (\Exception $e) {
-            // pass
-        }
+
+    /**
+     * Creates the header string that is acceptable to file_get_contents.
+     * @param $headers
+     * @return string
+     */
+    private function headersAsString($headers)
+    {
+        return implode(
+            "\r\n",
+            array_map(
+                function ($k, $v) {
+                    return "$k: $v";
+                },
+                array_keys($headers),
+                array_values($headers)
+            )
+        );
     }
-    if ($message == null) {
-        $message = sprintf("A retryable network operation has not succeeded after %d attempts", $numberRetries);
+
+    /**
+     * Standard GET helper
+     *
+     * @param $url
+     * @param $headers
+     * @param $options
+     * @return string : JSON string
+     * @throws RosetteException
+     * @internal param $url : target URL
+     * @internal param $headers : header data
+     *
+     */
+    private function getHttp($url, $headers, $options)
+    {
+        $opts['http']['method'] = 'GET';
+        $opts['http']['header'] = $this->headersAsString($headers);
+        $opts['http'] = array_merge($opts['http'], $options);
+        $context = stream_context_create($opts);
+
+        $response = $this->retryingRequest($url, $context);
+        return $response;
     }
-    throw new RosetteException($message.' ['.$url.']', $code);
-}
 
-/**
- * Standard GET helper
- *
- * @param $url
- * @param $headers
- * @param $options
- * @return ReturnObject
- * @throws RosetteException
- * @internal param $url : target URL
- * @internal param $headers : header data
- *
- */
-function GetHttp($url, $headers, $options)
-{
-    $response = RetryingRequest("GET", $url, $headers, $options);
-    return new ReturnObject($response);
-}
+    /**
+     * Standard POST helper
+     *
+     * @param $url
+     * @param $headers
+     * @param $data
+     * @param $options
+     * @return string : JSON string
+     * @throws RosetteException
+     * @internal param $url : target URL
+     * @internal param $headers : header data
+     * @internal param $data : submission data
+     *
+     */
+    private function postHttp($url, $headers, $data, $options)
+    {
+        $opts['http']['method'] = 'POST';
+        $opts['http']['header'] = $this->headersAsString($headers);
+        $opts['http']['content'] = json_encode(array_filter($data));
+        $opts['http'] = array_merge($opts['http'], $options);
+        $context = stream_context_create($opts);
 
-/**
- * Standard POST helper
- *
- * @param $url
- * @param $headers
- * @param $data
- * @param $options
- * @return ReturnObject
- * @throws RosetteException
- * @internal param $url : target URL
- * @internal param $headers : header data
- * @internal param $data : submission data
- *
- */
-function PostHttp($url, $headers, $data, $options)
-{
-    //echo $url."\n";
-    $data = $data == null ? "" : json_encode($data);
-
-    $response = RetryingRequest("POST", $url, $headers, $options, $data);
-
-    return new ReturnObject($response);
+        $response = $this->retryingRequest($url, $context);
+        return $response;
+    }
 }

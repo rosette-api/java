@@ -30,6 +30,12 @@ abstract class RosetteParamsSetBase
     public $params = [];
 
     /**
+     * Internal params as string
+     * @var string
+     */
+    private $paramsAsString = "";
+
+    /**
      * Constructor
      * @param $repertoire
      */
@@ -80,13 +86,18 @@ abstract class RosetteParamsSetBase
      */
     public function forSerialize()
     {
-        $result = [];
-        foreach ($this->params as $key => $value) {
-            if ($value != null) {
-                $result[$key] = $value;
-            }
-        }
+        $result = array_filter($this->params);
+        $this->paramsAsString = json_encode($result);
         return $result;
+    }
+
+    /**
+     * Returns in string format, e.g. "{key: value...}"
+     */
+    public function asString()
+    {
+        $this->forSerialize();
+        return $this->paramsAsString;
     }
 
     /**

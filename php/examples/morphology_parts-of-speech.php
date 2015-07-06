@@ -3,7 +3,7 @@
  * Example code to call Rosette API to get part-of-speech tags for words a piece of text
  **/
 
-require_once("vendor/autoload.php");    // assuming composer.json is properly configured with Rosette API
+require_once(dirname(__FILE__) . "/../vendor/autoload.php");    // assuming composer.json is properly configured with Rosette API
 use rosette\api\Api;
 use rosette\api\DocumentParameters;
 use rosette\api\RosetteConstants;

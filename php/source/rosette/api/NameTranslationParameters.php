@@ -48,6 +48,6 @@ class NameTranslationParameters extends RosetteParamsSetBase
             }
         }
 
-        return $this->ForSerialize();
+        return $this->forSerialize();
     }
 }
