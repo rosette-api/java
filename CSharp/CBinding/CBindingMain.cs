@@ -16,18 +16,6 @@ namespace CBinding
         static void Main()
         {
 
-
-
-
-
-            
-
-            
-
-            
-
-            
-
         }
     }
         /*[STAThread]
