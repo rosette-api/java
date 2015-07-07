@@ -56,7 +56,7 @@ class CustomException extends \Exception implements IException
     public function __construct($message = null, $code = 0)
     {
         if (!$message) {
-            throw new $this('Unknown '.get_class($this));
+            throw new $this('Unknown ' . get_class($this));
         }
         $code = is_numeric($code) ? $code : 0;
         parent::__construct($message, $code);
@@ -69,7 +69,7 @@ class CustomException extends \Exception implements IException
      */
     public function __toString()
     {
-        return get_class($this)." '{$this->message}' in {$this->file}({$this->line})\n"
-        ."{$this->getTraceAsString()}";
+        return get_class($this) . " '{$this->message}' in {$this->file}({$this->line})\n"
+        . "{$this->getTraceAsString()}";
     }
 }

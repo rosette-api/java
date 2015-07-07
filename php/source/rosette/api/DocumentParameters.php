@@ -30,7 +30,7 @@ class DocumentParameters extends RosetteParamsSetBase
      */
     public function __construct()
     {
-        parent::__construct(['content', 'contentUri', 'contentType', 'unit', 'language']);
+        parent::__construct(array('content', 'contentUri', 'contentType', 'unit', 'language'));
         $this->set('unit', RosetteConstants::$InputUnit['DOC']);
     }
 

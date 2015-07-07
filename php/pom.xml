@@ -36,7 +36,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>composer update</id>
+                        <id>composer-update</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>exec</goal>
@@ -49,7 +49,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>php-cs-fixer-source</id>
+                        <id>php-cs-fixer</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>exec</goal>
@@ -58,39 +58,7 @@
                             <executable>${basedir}/vendor/bin/php-cs-fixer</executable>
                             <arguments>
                                 <argument>fix</argument>
-                                <argument>./source</argument>
-                                <argument>--dry-run</argument>
-                                <argument>--diff</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>php-cs-fixer-tests</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>${basedir}/vendor/bin/php-cs-fixer</executable>
-                            <arguments>
-                                <argument>fix</argument>
-                                <argument>./tests</argument>
-                                <argument>--dry-run</argument>
-                                <argument>--diff</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>php-cs-fixer-examples</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>${basedir}/vendor/bin/php-cs-fixer</executable>
-                            <arguments>
-                                <argument>fix</argument>
-                                <argument>./examples</argument>
+                                <argument>.</argument>
                                 <argument>--dry-run</argument>
                                 <argument>--diff</argument>
                             </arguments>
@@ -109,6 +77,19 @@
                                 <argument>--bootstrap</argument>
                                 <argument>./vendor/autoload.php</argument>
                                 <argument>./tests/rosette/api/ApiTest.php</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>phar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/vendor/bin/box</executable>
+                            <arguments>
+                                <argument>build</argument>
                             </arguments>
                         </configuration>
                     </execution>
