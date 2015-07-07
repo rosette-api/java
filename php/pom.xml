@@ -45,8 +45,7 @@
                             <executable>bash</executable>
                             <arguments>
                                 <argument>-c</argument>
-                                <argument>composer</argument>
-                                <argument>update</argument>
+                                <argument>"composer update"</argument>
                             </arguments>
                         </configuration>
                     </execution>
