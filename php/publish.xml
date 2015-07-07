@@ -26,6 +26,14 @@
             <source>box.json</source>
             <lineEnding>unix</lineEnding>
         </file>
+        <file>
+            <source>.gitignore</source>
+            <lineEnding>unix</lineEnding>
+        </file>
+        <file>
+            <source>.php_cs</source>
+            <lineEnding>unix</lineEnding>
+        </file>
     </files>
     <fileSets>
         <fileSet>
