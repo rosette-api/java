@@ -11,18 +11,32 @@ using System.Web.Script.Serialization;
 
 namespace CBinding
 {
+    /**
+     * Api.
+     *
+     * Primary class for interfacing with the Rosette API
+     *
+     * @copyright 2014-2015 Basis Technology Corporation.
+     *
+     * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
+     * with the License. You may obtain a copy of the License at
+     * @license http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software distributed under the License is
+     * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and limitations under the License.
+     **/
+
     public class CAPI
     {
         private string _uri = null;
         private List<string> Morphofeatures = null;
         public CAPI(string user_key, string service_url = null)
         {
-            //APIkey = user_key;
-            APIkey = "88afd6b4b18a11d1248639ecf399903c";
+            APIkey = user_key;
             if (service_url == null)
             {
                 URIstring = "https://api.rosette.com/rest/v1/";
-                //URIstring = "http://jugmaster.basistech.net:80/rest/v1/";
             }
             else
             {
