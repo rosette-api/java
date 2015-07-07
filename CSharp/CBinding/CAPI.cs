@@ -31,7 +31,7 @@ namespace CBinding
     {
         private string _uri = null;
         private List<string> Morphofeatures = null;
-        public CAPI(string user_key, string service_url = null)
+        public CAPI(string user_key, string service_url = null, int maxRetry = 3)
         {
             APIkey = user_key;
             if (service_url == null)
@@ -43,10 +43,20 @@ namespace CBinding
                 URIstring = service_url;
             }
             Morphofeatures = new List<string> { "complete", "lemmas", "parts-of-speech", "compound-components", "han-readings" };
+            MaxRetry = maxRetry;
+            Debug = false;
+            Multipart = false;
+            Version_checked = false;
+            Timeout = 300;
         }
 
         public string APIkey { get; set; }
         public string URIstring { get; set; }
+        public int MaxRetry { get; set; }
+        public bool Debug { get; set; }
+        public bool Multipart { get; set; }
+        public bool Version_checked { get; set; }
+        public int Timeout { get; set; }
 
         public Dictionary<string, object> Categories(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
         {
@@ -208,15 +218,31 @@ namespace CBinding
             return new JavaScriptSerializer().Serialize(dict);
         }
 
-        private Dictionary<string, Object> getResponse(HttpClient client, string jsonRequest)
+        private Dictionary<string, Object> getResponse(HttpClient client, string jsonRequest = null)
         {
             if (client != null)
             {
-                HttpContent content = new StringContent(jsonRequest);
-                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                HttpResponseMessage responseMsg = null;
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Add("user_key", APIkey);
-                var responseMsg = client.PostAsync(_uri, content).Result;
+                client.DefaultRequestHeaders.Add("timeout", Timeout.ToString());
+                int retry = 0;
+                string wholeURI = Debug ? _uri + "?debug=true" : _uri;
+
+                while (responseMsg == null ||( !responseMsg.IsSuccessStatusCode && retry <= MaxRetry))
+                {
+                    if (jsonRequest != null)
+                    {
+                        HttpContent content = new StringContent(jsonRequest);
+                        content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                        responseMsg = client.PostAsync(wholeURI, content).Result;
+                    }
+                    else
+                    {
+                        responseMsg = client.GetAsync(wholeURI).Result;
+                    }
+                    retry = retry + 1;
+                }
                 try
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
@@ -225,6 +251,7 @@ namespace CBinding
                 {
                     client = new HttpClient();
                 }
+
                 if (responseMsg.IsSuccessStatusCode)
                 {
                     byte[] byteArray = Encoding.UTF8.GetBytes(responseMsg.Content.ReadAsStringAsync().Result);
@@ -240,43 +267,11 @@ namespace CBinding
                         {((int)responseMsg.StatusCode).ToString(), responseMsg.ReasonPhrase}
                     };
                 }
+
             }
             return null;
         }
 
-        private Dictionary<string, Object> getResponse(HttpClient client)
-        {
-            if (client != null)
-            {
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Add("user_key", APIkey);
-                var responseMsg = client.GetAsync(_uri).Result;
-                try
-                {
-                    client.DefaultRequestHeaders.Accept.Clear();
-                }
-                catch (NullReferenceException)
-                {
-                    client = new HttpClient();
-                }
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    byte[] byteArray = Encoding.UTF8.GetBytes(responseMsg.Content.ReadAsStringAsync().Result);
-                    MemoryStream stream = new MemoryStream(byteArray);
-                    StreamReader reader = new StreamReader(stream);
-                    string text = reader.ReadToEnd();
-
-                    return new JavaScriptSerializer().Deserialize<dynamic>(text);
-                }
-                else
-                {
-                    return new Dictionary<string,object>(){
-                        {((int)responseMsg.StatusCode).ToString(), responseMsg.ReasonPhrase}
-                    };
-                }
-            }
-            return null;
-        }
         public Dictionary<string, Object> Process(string name, string sourceLanguageOfUse = null, string sourceScript = null, string targetLanguage = null, string targetScript = null, string targetScheme = null, string sourceLanguageOfOrigin = null, string entityType = null)
         {
             HttpClient client = new HttpClient();
