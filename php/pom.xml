@@ -42,8 +42,10 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>composer</executable>
+                            <executable>bash</executable>
                             <arguments>
+                                <argument>-c</argument>
+                                <argument>composer</argument>
                                 <argument>update</argument>
                             </arguments>
                         </configuration>
