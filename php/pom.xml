@@ -36,15 +36,32 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>composer update</id>
+                        <id>composer-update</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>composer</executable>
+                            <executable>bash</executable>
                             <arguments>
-                                <argument>update</argument>
+                                <argument>-c</argument>
+                                <argument>"composer update"</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>php-cs-fixer</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/vendor/bin/php-cs-fixer</executable>
+                            <arguments>
+                                <argument>fix</argument>
+                                <argument>.</argument>
+                                <argument>--dry-run</argument>
+                                <argument>--diff</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -55,12 +72,25 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>phpunit</executable>
+                            <executable>${basedir}/vendor/bin/phpunit</executable>
                             <arguments>
                                 <argument>-v</argument>
                                 <argument>--bootstrap</argument>
                                 <argument>./vendor/autoload.php</argument>
                                 <argument>./tests/rosette/api/ApiTest.php</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>phar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/vendor/bin/box</executable>
+                            <arguments>
+                                <argument>build</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -71,7 +101,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>phpdoc</executable>
+                            <executable>${basedir}/vendor/bin/phpdoc</executable>
                             <arguments>
                                 <argument>-d</argument>
                                 <argument>./source</argument>

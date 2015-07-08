@@ -1,0 +1,14 @@
+{
+    "directories": "source/rosette/api",
+    "files": [
+        "CHANGES.txt",
+        "LICENSE.txt",
+        "README.txt"
+    ],
+    "map": [
+        {"source": ""}
+    ],
+    "output": "target/rosette_api.phar",
+    "stub": true,
+    "web": false
+}

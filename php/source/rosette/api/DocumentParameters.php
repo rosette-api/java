@@ -1,73 +1,61 @@
 <?php
+
 /**
- * class DocumentParameters
+ * class DocumentParameters.
  *
  * Parameter class for the standard Rosette API endpoints.  Does not include Name Translation
+ *
  * @copyright 2014-2015 Basis Technology Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * @license http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  **/
+
 namespace rosette\api;
 
 /**
- * Class DocumentParameters
- * @package rosette\api
+ * Class DocumentParameters.
  */
 class DocumentParameters extends RosetteParamsSetBase
 {
     /**
-     * Constructor
+     * Constructor.
+     *
      * @throws RosetteException
      */
     public function __construct()
     {
-        parent::__construct(["content", "contentUri", "contentType", "unit", "language"]);
-        $this->Set("unit", RosetteConstants::$InputUnit['DOC']);
+        parent::__construct(array('content', 'contentUri', 'contentType', 'unit', 'language'));
+        $this->set('unit', RosetteConstants::$InputUnit['DOC']);
     }
 
     /**
-     * Internal method to provide the serialized representation of the parameters
+     * Validates parameters.
+     *
      * @throws RosetteException
      */
-    public function serializable()
+    public function validate()
     {
-        if ($this->Get("content") == null) {
-            if ($this->Get("contentUri") == null) {
+        if (empty(trim($this->get('content')))) {
+            if (empty(trim($this->get('contentUri')))) {
                 throw new RosetteException(
-                    "Must supply one of Content or ContentUri",
+                    'Must supply one of Content or ContentUri',
                     RosetteException::$INVALID_DATATYPE
                 );
             }
         } else {
-            if ($this->Get("contentUri") != null) {
+            if (!empty(trim($this->get('contentUri')))) {
                 throw new RosetteException(
-                    "Cannot supply both Content and ContentUri",
+                    'Cannot supply both Content and ContentUri',
                     RosetteException::$INVALID_DATATYPE
                 );
             }
         }
-        $serialized = $this->ForSerialize();
-        if (empty($this->Get("contentType")) && empty($this->Get("contentUri"))) {
-            $serialized['contentType'] = RosetteConstants::$DataFormat['SIMPLE'];
-        } elseif (in_array(
-            $this->Get('contentType'),
-            [RosetteConstants::$DataFormat['HTML'],
-                RosetteConstants::$DataFormat['XHTML'],
-                RosetteConstants::$DataFormat['UNSPECIFIED']]
-        )
-        ) {
-            $content = $serialized['content'];
-            $encoded = base64_encode($content);
-            $serialized['content'] = $encoded;
-        }
-        return $serialized;
     }
 
     /**
@@ -80,6 +68,7 @@ class DocumentParameters extends RosetteParamsSetBase
      * @param $path : Pathname of a file acceptable to the C{open}
      * function.
      * @param null $dataType
+     *
      * @throws RosetteException
      */
     public function loadDocumentFile($path, $dataType = null)
@@ -87,19 +76,7 @@ class DocumentParameters extends RosetteParamsSetBase
         if (!$dataType) {
             $dataType = RosetteConstants::$DataFormat['UNSPECIFIED'];
         }
-        if (!in_array(
-            $dataType,
-            [RosetteConstants::$DataFormat['HTML'],
-                RosetteConstants::$DataFormat['XHTML'],
-                RosetteConstants::$DataFormat['UNSPECIFIED']]
-        )
-        ) {
-            throw new RosetteException(
-                sprintf("Must supply one of HTML, XHTML, or UNSPECIFIED: %s", $dataType),
-                RosetteException::$INVALID_DATATYPE
-            );
-        }
-        $this->loadDocumentString(file_get_contents($path), $dataType);
+        $this->loadDocumentString(base64_encode(file_get_contents($path)), $dataType);
     }
 
     /**
@@ -111,12 +88,13 @@ class DocumentParameters extends RosetteParamsSetBase
      *
      * @param $stringData
      * @param $dataType
+     *
      * @throws RosetteException
      */
     public function loadDocumentString($stringData, $dataType)
     {
-        $this->Set("content", $stringData);
-        $this->Set('contentType', $dataType);
-        $this->Set('unit', RosetteConstants::$InputUnit['DOC']);
+        $this->set('content', $stringData);
+        $this->set('contentType', $dataType);
+        $this->set('unit', RosetteConstants::$InputUnit['DOC']);
     }
 }
