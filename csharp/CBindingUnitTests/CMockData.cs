@@ -9,7 +9,6 @@ namespace CBindingUnitTests
 {
     class CMockData
     {    
-        private string userKey = null;
         private static string mockDir = "../../../../mock-data";
         public static string requestDir = mockDir + "/request/";
         public static string responseDir = mockDir + "/response/";
@@ -24,6 +23,12 @@ namespace CBindingUnitTests
         public string RequestDir { get; set; }
         public string ResponseDir { get; set; }
 
+
+        /* Gets all the Request file names
+         * 
+         * @returns List<string> of file names in the request directory
+         * 
+         */
         public List<string> getAllRequests()
         {
             List<string> req = new List<string>();
@@ -34,16 +39,13 @@ namespace CBindingUnitTests
             return req;
         }
 
-        public List<string> getAllResponses()
-        {
-            List<string> resp = new List<string>();
-            foreach (string s in Directory.EnumerateFiles(responseDir))
-            {
-                resp.Add(s);
-            }
-            return resp;
-        }
-
+        /* Gets file data in string form from the file
+         * 
+         * @params filename: string path to the file data
+         * 
+         * @returns string form of the file data or null if file does not exist
+         * 
+         */
         public string getFileData(string filename)
         {
             if (File.Exists(filename))

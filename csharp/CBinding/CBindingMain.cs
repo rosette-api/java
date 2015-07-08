@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 namespace CBinding
 {
+
+    /* Simple main function to test the Unit Test Suite
+     * 
+     */
     static class CBindingMain
     {
         /// <summary>

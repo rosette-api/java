@@ -14,7 +14,11 @@ using System.Web.Script.Serialization;
 
 namespace CBindingUnitTests
 {
-
+    /* Mock HTTP Handler to simulate the HTTP requests and responses
+     * 
+     * Checks the user_key and if it matches the correct filename, sends back the response 
+     * 
+     */
     public class FakeHttpMessageHandler : HttpMessageHandler
     {
         private HttpResponseMessage response;
@@ -43,6 +47,14 @@ namespace CBindingUnitTests
         }
     }
 
+    /* Data Structure for the Mock Data input in accordance with other language bindings
+     * 
+     * @param inpFilename: string request filename
+     * @param outputStatusFilename: string response status filename
+     * @param outputDataFilename: string response data filename
+     * @param endpoint: string API endpoint
+     * 
+     */
     public class TestDataStructure{
         public TestDataStructure()
         {
@@ -57,7 +69,11 @@ namespace CBindingUnitTests
     [TestClass]
     public class CBindingUnitTests
     {
-
+        /* Setup the List of Test data 
+         * 
+         * Adds Info and Ping as the first two API endpoints to be tested
+         * 
+         */
         public List<TestDataStructure> Setup()
         {
             CMockData c = new CMockData();
@@ -67,9 +83,7 @@ namespace CBindingUnitTests
                 {new TestDataStructure {inpFilename = null, outputStatusFilename = c.ResponseDir + "/ping.status", outputDataFilename = c.ResponseDir + "/ping.json", endpoint = "ping"}}
             };
             List<string> cRequests = new List<string>();
-            List<string> cResponses = new List<string>();
             cRequests = c.getAllRequests();
-            cResponses = c.getAllResponses();
             foreach (string s in cRequests)
             {
                 var filename = s.Remove(0, c.RequestDir.Length);
@@ -83,7 +97,13 @@ namespace CBindingUnitTests
             return allData;
         }
 
-
+        /* Test Method: Runs through all files in Requests and checks them against Responses
+         * 
+         * We are effectively sending the request through the API using the MOCK HTTPclient that has the response
+         * 
+         * and checking whether or not the API correctly receives the response.
+         * 
+         */
         [TestMethod]
         public void TestMethod1()
         {
