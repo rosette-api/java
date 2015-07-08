@@ -13,7 +13,6 @@ namespace CBindingUnitTests
         private static string mockDir = "../../../../mock-data";
         public static string requestDir = mockDir + "/request/";
         public static string responseDir = mockDir + "/response/";
-        public string docDir = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Basis Technology\Docs\";
         public string dd = Environment.CurrentDirectory;
         public string ddd = null;
         public CMockData(){

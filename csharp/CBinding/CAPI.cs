@@ -31,7 +31,9 @@ namespace CBinding
     public class CAPI
     {
         private string _uri = null;
+        private string _compatibleVersion = "0.5";
         private List<string> Morphofeatures = null;
+
         public CAPI(string user_key, string service_url = null, int maxRetry = 3)
         {
             APIkey = user_key;
@@ -66,6 +68,28 @@ namespace CBinding
             _uri = "categories/";
             return Process(language, content, contentType, unit, contentUri);
         }
+
+        /*public Dictionary<string, object> Categories(string filename, string options = null, bool hasOptions = false)
+        {
+            _uri = "categories/";
+            string file = "";
+            string opt = "";
+
+            try
+            {
+                using (StreamReader ff = File.OpenText(filename))
+                {
+                    file = ff.ReadToEnd();
+                }
+                if (options != null)
+                {
+                    using (StreamReader ff = File.OpenText(options))
+                    {
+                        opt = ff.ReadToEnd();
+                    }
+                }
+            }
+        }*/
 
         public Dictionary<string, object> Categories(Dictionary<object, object> dict)
         {
@@ -295,7 +319,7 @@ namespace CBinding
 
         private Dictionary<string, Object> getResponse(HttpClient client, string jsonRequest = null)
         {
-            if (client != null)
+            if (client != null && checkVersion())
             {
                 HttpResponseMessage responseMsg = null;
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -421,6 +445,24 @@ namespace CBinding
             client.BaseAddress = new Uri(URIstring);
 
             return getResponse(client);
+        }
+
+        public bool checkVersion(string versionToCheck = null)
+        {
+            if (!Version_checked) {
+                if (versionToCheck != null) {
+                    versionToCheck = _compatibleVersion;
+                }
+                var result = this.Info();
+                // compatibility with server side is at minor version level of semver
+                string serverVersion = result["version"].ToString();
+                if (!serverVersion.Contains(versionToCheck)) {
+                    throw new RosetteException("The server version is not " + versionToCheck, -6);
+                } else {
+                    Version_checked = true;
+                }
+            }
+            return Version_checked;
         }
     }
 
