@@ -8,7 +8,7 @@ using System.Web.Script.Serialization;
 
 namespace CAPIExamples
 {
-    class MatchedName
+    class matched_name
     {
         static void Main()
         {

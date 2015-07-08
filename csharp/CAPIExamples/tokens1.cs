@@ -8,7 +8,7 @@ using System.Web.Script.Serialization;
 
 namespace CAPIExamples
 {
-    class Tokens
+    class tokens1
     {
         static void Main()
         {

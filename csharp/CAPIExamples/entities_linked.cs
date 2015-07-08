@@ -8,7 +8,7 @@ using System.Web.Script.Serialization;
 
 namespace CAPIExamples
 {
-    class EntitiesLinked
+    class entities_linked
     {
         static void Main()
         {
