@@ -8,16 +8,16 @@ using System.Web.Script.Serialization;
 
 namespace CAPIExamples
 {
-    class sentiment1
+    class categories
     {
         static void Main()
         {
-            //Example code to call Rosette API to get a document's sentiment
-            CAPI SentimentCAPI = new CAPI("your API key");
+            //Example code to call Rosette API to get a document's (located at given URL) category.
+            CAPI CategoriesCAPI = new CAPI("your API key");
             try
             {
-                Dictionary<string, Object> SentimentResult = SentimentCAPI.Sentiment("We are looking forward to the upcoming release.");
-                Console.WriteLine(new JavaScriptSerializer().Serialize(SentimentResult));
+                Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories(null, null, null, null, "http://www.basistech.com/about");
+                Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
             }
             catch (RosetteException e)
             {

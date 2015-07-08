@@ -8,7 +8,7 @@ using System.Web.Script.Serialization;
 
 namespace CAPIExamples
 {
-    class sentences1
+    class sentences
     {
         static void Main()
         {

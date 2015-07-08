@@ -8,16 +8,16 @@ using System.Web.Script.Serialization;
 
 namespace CAPIExamples
 {
-    class language1
+    class tokens
     {
         static void Main()
         {
-            //Example code to call Rosette API to detect possible languages for a piece of text.
-            CAPI LanguageCAPI = new CAPI("your API key");
+            //Example code to call Rosette API to get tokens (words) in a piece of text.
+            CAPI TokensCAPI = new CAPI("your API key");
             try
             {
-                Dictionary<string, Object> LanguageResult = LanguageCAPI.Language("Por favor Señorita, says the man.");
-                Console.WriteLine(new JavaScriptSerializer().Serialize(LanguageResult));
+                Dictionary<string, Object> TokensResult = TokensCAPI.Tokens("北京大学生物系主任办公室内部会议", null, null, "sentence", null);
+                Console.WriteLine(new JavaScriptSerializer().Serialize(TokensResult));
             }
             catch (RosetteException e)
             {
