@@ -12,11 +12,11 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Categorization
+            //Example code to call Rosette API to get a document's (located at given URL) category.
             CAPI CategoriesCAPI = new CAPI("your API key");
             try
             {
-                Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories("We need to spend several weeks fixing up our family tennis court.");
+                Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories(null, null, null, null, "http://www.basistech.com/about");
                 Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
             }
             catch (RosetteException e)

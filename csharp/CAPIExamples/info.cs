@@ -12,7 +12,7 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Get Rosette Version info
+            //Example code to call Rosette API to get information such as version and build.
             CAPI InfoCAPI = new CAPI("your API key");
             try
             {

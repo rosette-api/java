@@ -12,7 +12,7 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Name Translation
+            //Example code to call Rosette API to translate a name from language to another.
             CAPI TranslatedNameCAPI = new CAPI("your API key");
             try
             {

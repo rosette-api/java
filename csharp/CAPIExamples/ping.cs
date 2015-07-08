@@ -12,7 +12,7 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Create an API instance with key
+            //Example code to send Rosette API a ping to check its reachability.
             CAPI NewCAPI = new CAPI("your API key");
             try
             {

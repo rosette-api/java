@@ -12,7 +12,7 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Sentiment Analysis
+            //Example code to call Rosette API to get a document's sentiment
             CAPI SentimentCAPI = new CAPI("your API key");
             try
             {

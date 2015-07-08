@@ -12,7 +12,7 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Name Matching
+            //Example code to call Rosette API to get match score (similarity) for two names.
             CAPI MatchedNameCAPI = new CAPI("your API key");
             Name name1 = new Name();
             Name name2 = new Name();

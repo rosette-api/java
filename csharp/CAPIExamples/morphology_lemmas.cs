@@ -12,7 +12,7 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Morphology lemmas
+            //Example code to call Rosette API to get lemmas for words in a piece of text.
             CAPI MorphologyCAPI = new CAPI("your API key");
             try
             {

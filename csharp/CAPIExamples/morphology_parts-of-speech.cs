@@ -12,7 +12,7 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Morphology parts_of_speech
+            //Example code to call Rosette API to get part-of-speech tags for words a piece of text.
             CAPI MorphologyCAPI = new CAPI("your API key");
             try
             {

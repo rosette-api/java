@@ -12,11 +12,11 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Tokens
+            //Example code to call Rosette API to get tokens (words) in a piece of text.
             CAPI TokensCAPI = new CAPI("your API key");
             try
             {
-                Dictionary<string, Object> TokensResult = TokensCAPI.Tokens("The brown fox's mother jumped over 3 lazy dogs. Yes she did.");
+                Dictionary<string, Object> TokensResult = TokensCAPI.Tokens("北京大学生物系主任办公室内部会议", null, null, "sentence", null);
                 Console.WriteLine(new JavaScriptSerializer().Serialize(TokensResult));
             }
             catch (RosetteException e)

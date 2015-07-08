@@ -12,7 +12,7 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Morphology complete
+            //Example code to call Rosette API to get the complete set of morphological analysis results for a piece of text.
             CAPI MorphologyCAPI = new CAPI("your API key");
             try
             {

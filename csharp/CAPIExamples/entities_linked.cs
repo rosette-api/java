@@ -12,11 +12,11 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Entity Linking
+            //Example code to call Rosette API to get linked (against Wikipedia) entities from a piece of text.
             CAPI EntitiesLinkedCAPI = new CAPI("your API key");
             try
             {
-                Dictionary<string, Object> EntitiesLinkedResult = EntitiesLinkedCAPI.EntitiesLinked("The first men to reach the moon -- Mr. Armstrong and his co-pilot, Col. Edwin E. Aldrin, Jr. of the Air Force -- brought their ship to rest on a level, rock-strewn plain near the southwestern shore of the arid Sea of Tranquility.");
+                Dictionary<string, Object> EntitiesLinkedResult = EntitiesLinkedCAPI.EntitiesLinked("President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill based on Christian faith by July 1st or Washington will become totally dysfunctional, a terrible outcome for American people.");
                 Console.WriteLine(new JavaScriptSerializer().Serialize(EntitiesLinkedResult));
             }
             catch (RosetteException e)

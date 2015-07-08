@@ -12,7 +12,7 @@ namespace CAPIExamples
     {
         static void Main()
         {
-            //Morphology compound-components
+            //Example code to call Rosette API to get de-compounded words from a piece of text.
             CAPI MorphologyCAPI = new CAPI("your API key");
             try
             {
