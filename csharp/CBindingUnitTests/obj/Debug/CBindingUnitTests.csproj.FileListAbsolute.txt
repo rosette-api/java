@@ -4,6 +4,6 @@ C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\obj\Debug\CBinding
 C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\obj\Debug\CBindingUnitTests.dll
 C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\obj\Debug\CBindingUnitTests.pdb
 C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\Moq.dll
-C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\System.Net.Http.dll
 C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\Moq.xml
-C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\System.Net.Http.xml
+C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\CBinding.exe
+C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\CBinding.pdb

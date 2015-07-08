@@ -28,9 +28,11 @@ namespace CBindingUnitTests
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            IEnumerable<string> headerValues = request.Headers.GetValues("user_key");
+            string user_key = headerValues.FirstOrDefault();
             var responseTask = new TaskCompletionSource<HttpResponseMessage>();
             responseTask.SetResult(response);
-            if (request.RequestUri.ToString() == filename || filename == null)
+            if (user_key == filename || filename == null)
             {
                 return responseTask.Task;
             }
@@ -58,28 +60,24 @@ namespace CBindingUnitTests
 
         public List<TestDataStructure> Setup()
         {
-            List<TestDataStructure> allData = new List<TestDataStructure>();
             CMockData c = new CMockData();
+            List<TestDataStructure> allData = new List<TestDataStructure>()
+            {
+                {new TestDataStructure {inpFilename = null, outputStatusFilename = c.ResponseDir + "/info.status", outputDataFilename = c.ResponseDir + "/info.json", endpoint = "info"}},
+                {new TestDataStructure {inpFilename = null, outputStatusFilename = c.ResponseDir + "/ping.status", outputDataFilename = c.ResponseDir + "/ping.json", endpoint = "ping"}}
+            };
             List<string> cRequests = new List<string>();
             List<string> cResponses = new List<string>();
             cRequests = c.getAllRequests();
             cResponses = c.getAllResponses();
             foreach (string s in cRequests)
             {
-                Console.WriteLine(s);
-                Console.WriteLine(c.RequestDir);
                 var filename = s.Remove(0, c.RequestDir.Length);
                 TestDataStructure testD = new TestDataStructure();
                 testD.inpFilename = s;
                 testD.outputStatusFilename = c.ResponseDir + filename.Remove(filename.Length - 4, 4) + "status";
                 testD.outputDataFilename = c.ResponseDir + filename;
                 testD.endpoint = filename.Substring(filename.LastIndexOf("-") + 1, filename.Length - filename.LastIndexOf("-") - 6).Replace("_", "/");
-
-                Console.WriteLine(testD.inpFilename);
-                Console.WriteLine(testD.outputStatusFilename);
-                Console.WriteLine(testD.outputDataFilename);
-                Console.WriteLine(testD.endpoint);
-
                 allData.Add(testD);
             }
             return allData;
@@ -96,9 +94,13 @@ namespace CBindingUnitTests
             {
                 CAPI c = new CAPI(td.inpFilename);
 
-
-                string tdInput = cmd.getFileData(td.inpFilename);
-                Dictionary<object, object> tdInputData = new JavaScriptSerializer().Deserialize<Dictionary<object, object>>(tdInput);
+                Dictionary<object, object> tdInputData = null;
+                if (td.inpFilename != null)
+                {
+                    string tdInput = cmd.getFileData(td.inpFilename);
+                    tdInputData = new JavaScriptSerializer().Deserialize<Dictionary<object, object>>(tdInput);
+                }
+                
                 Dictionary<string, object> result = new Dictionary<string,object>();
 
                 var fakeResponse = new HttpResponseMessage();
@@ -110,10 +112,12 @@ namespace CBindingUnitTests
                 var fakeHandler = new FakeHttpMessageHandler(fakeResponse, td.inpFilename);
                 var httpClient = new HttpClient(fakeHandler);
                 c.Client = httpClient;
-                string morphofeature; 
+
+                string morphofeature = null; 
                 if (td.endpoint.IndexOf("morphology") != -1)
                 {
-                    td.endpoint.    
+                    morphofeature = td.endpoint.Remove(0, td.endpoint.IndexOf("/"));
+                    td.endpoint = td.endpoint.Remove(td.endpoint.IndexOf("/"));
                 }
 
                 switch (td.endpoint){
@@ -127,20 +131,47 @@ namespace CBindingUnitTests
                         result = c.EntitiesLinked(tdInputData);
                         break;
                     case "info":
-                        result = c.Categories(tdInputData);
+                        result = c.Info();
                         break;
                     case "language":
                         result = c.Entity(tdInputData);
                         break;
-                    case "entities/linked":
-                        result = c.EntitiesLinked(tdInputData);
+                    case "morphology":
+                        result = c.Morphology(tdInputData, morphofeature);
                         break;
-
+                    case "name":
+                        if (td.inpFilename.Contains("matched"))
+                        {
+                            result = c.MatchedName(tdInputData);
+                        }
+                        else
+                        {
+                            result = c.TranslatedName(tdInputData);
+                        }
+                        break;
+                    case "ping":
+                        result = c.Ping();
+                        break;
+                    case "sentences":
+                        result = c.Sentences(tdInputData);
+                        break;
+                    case "sentiment":
+                        result = c.Sentiment(tdInputData);
+                        break;
+                    case "tokens":
+                        result = c.Tokens(tdInputData);
+                        break;
                 }
-                    
-            }
+                Console.WriteLine(tdOutput);
+                Console.WriteLine(new JavaScriptSerializer().Serialize(result));
+                Dictionary<string, object> outputDict = new JavaScriptSerializer().Deserialize<Dictionary<string,object>>(tdOutput);
 
-            Assert.IsTrue(false);
+                foreach (string key in outputDict.Keys){
+                    Console.WriteLine(key);
+                    Assert.IsTrue(result.Keys.Contains(key));
+                    Assert.AreEqual(outputDict[key], result[key]);
+                }
+            }
         }
     }
 }

@@ -16,37 +16,37 @@ namespace CAPIExamples
         static void Main()
         {
 
-            CategoriesExample cExample = new CategoriesExample();
+            Categories cExample = new Categories();
             cExample.CategoriesEx();
 
-            EntitiesLinkedExample elExample = new EntitiesLinkedExample();
+            EntitiesLinked elExample = new EntitiesLinked();
             elExample.EntitiesLinkedEx();
 
             EntityExample eExample = new EntityExample();
             eExample.EntityEx();
 
-            LanguageExample lExample = new LanguageExample();
+            Language lExample = new Language();
             lExample.LanguageEx();
 
-            MatchedNameExample mnExample = new MatchedNameExample();
+            MatchedName mnExample = new MatchedName();
             mnExample.MatchedNameEx();
 
-            MorphologyExample mExample = new MorphologyExample();
+            Morphology mExample = new Morphology();
             mExample.MorphologyEx();
 
-            NewAPIExample nAPIExample = new NewAPIExample();
+            NewAPI nAPIExample = new NewAPI();
             nAPIExample.NewAPIEx();
 
-            SentencesExample sExample = new SentencesExample();
+            Sentences sExample = new Sentences();
             sExample.SentencesEx();
 
-            SentimentExample sExample2 = new SentimentExample();
+            Sentiment sExample2 = new Sentiment();
             sExample2.SentimentEx();
 
-            TokensExample tExample = new TokensExample();
+            Tokens tExample = new Tokens();
             tExample.TokensEx();
 
-            TranslatedNameExample tnExample = new TranslatedNameExample();
+            TranslatedName tnExample = new TranslatedName();
             tnExample.TranslatedNameEx();
         }
     }
