@@ -17,49 +17,44 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Simple api response data model for name translation
+ * Class that represents the data from an entity resolution request
  */
-public final class NameTranslationResponse extends Response {
-
-    private final NameTranslationResult result;
-    
-    /**
-     * constructor for {@code NameTranslationResponse}
-     * @param requestId request id
-     * @param result name translation result
-     */
-    public NameTranslationResponse(String requestId,
-                                   NameTranslationResult result) {
-        super(requestId);
-        this.result = result;
-    }
+public final class LinkedEntitiesRequest extends Request {
 
     /**
-     * get the name translation result
-     * @return the name translation result
+     * constructor for {@code LinkedEntityRequest}
+     * @param language language code
+     * @param content raw data
+     * @param contentUri uri pointing to the data
+     * @param contentType byte array of data
+     * @param unit input unit code
      */
-    public NameTranslationResult getResult() {
-        return result;
+    public LinkedEntitiesRequest(
+            LanguageCode language,
+            String content,
+            String contentUri,
+            String contentType,
+            InputUnit unit
+    ) {
+        super(language, content, contentUri, contentType, unit);
     }
 
     @Override
     public int hashCode() {
-        return result != null ? result.hashCode() : 0;
+        return super.hashCode();
     }
 
     /**
-     * if the param is a {@code NameTranslationResponse}, compare contents for equality
+     * if the param is a {@code MorphologyRequest}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof NameTranslationResponse)) {
+        if (!(o instanceof LinkedEntitiesRequest)) {
             return false;
         }
 
-        NameTranslationResponse that = (NameTranslationResponse) o;
-        return super.equals(o)
-                && result != null ? result.equals(that.getResult()) : that.result == null;
+        return super.equals(o);
     }
 }

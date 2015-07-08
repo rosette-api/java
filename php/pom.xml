@@ -42,10 +42,9 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>bash</executable>
+                            <executable>composer</executable>
                             <arguments>
-                                <argument>-c</argument>
-                                <argument>"composer update"</argument>
+                                <argument>update</argument>
                             </arguments>
                         </configuration>
                     </execution>

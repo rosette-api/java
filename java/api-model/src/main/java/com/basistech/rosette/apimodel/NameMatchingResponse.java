@@ -16,52 +16,50 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.List;
-
 /**
- * Simple api response data model for Rli 
+ * Response data model for name matcher
  */
-public final class LanguageResponse extends Response {
+public final class NameMatchingResponse extends Response {
 
-    private final List<LanguageDetectionResult> languageDetections;
+    private final NameMatchingResult result;
 
     /**
-     * constructor for {@code LanguageResponse}
+     * Constructor for {@code NameMatchingResponse}
      * @param requestId request id
-     * @param languageDetections list of detected languages
+     * @param result name matcher result
      */
-    public LanguageResponse(String requestId,
-                            List<LanguageDetectionResult> languageDetections) {
+    public NameMatchingResponse(String requestId,
+                                NameMatchingResult result
+    ) {
         super(requestId);
-        this.languageDetections = languageDetections;
+        this.result = result;
     }
 
     /**
-     * get the list of detected languages
-     * @return the list of detected languages
+     * Gets the name matcher result
+     * @return name matcher result
      */
-    public List<LanguageDetectionResult> getLanguageDetections() {
-        return languageDetections;
+    public NameMatchingResult getResult() {
+        return result;
     }
 
     @Override
     public int hashCode() {
-        return languageDetections != null ? languageDetections.hashCode() : 0;
+        return result != null ? result.hashCode() : 0;
     }
 
     /**
-     * if the param is a {@code CategoriesResponse}, compare contents for equality
+     * if the param is a {@code NameMatchingResponse}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof LanguageResponse)) {
+        if (!(o instanceof NameMatchingResponse)) {
             return false;
         }
 
-        LanguageResponse that = (LanguageResponse) o;
-        return super.equals(o)
-                && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
+        NameMatchingResponse that = (NameMatchingResponse) o;
+        return result != null ? result.equals(that.getResult()) : that.result == null;
     }
 }

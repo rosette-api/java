@@ -18,50 +18,53 @@ package com.basistech.rosette.apimodel;
 
 import java.util.List;
 
-/**
- * Simple api response data model for Rli 
+/** 
+ * Simple api response data model for sentence determination requests 
  */
-public final class LanguageResponse extends Response {
+public final class SentencesResponse extends Response {
 
-    private final List<LanguageDetectionResult> languageDetections;
+    private final List<String> sentences;
 
     /**
-     * constructor for {@code LanguageResponse}
+     * constructor for {@code SentencesResponse}
      * @param requestId request id
-     * @param languageDetections list of detected languages
+     * @param sentences list of sentences
      */
-    public LanguageResponse(String requestId,
-                            List<LanguageDetectionResult> languageDetections) {
+    public SentencesResponse(
+            String requestId,
+            List<String> sentences) {
         super(requestId);
-        this.languageDetections = languageDetections;
+        this.sentences = sentences;
     }
 
     /**
-     * get the list of detected languages
-     * @return the list of detected languages
+     * get the list of sentences
+     * @return the list of sentences
      */
-    public List<LanguageDetectionResult> getLanguageDetections() {
-        return languageDetections;
+    public List<String> getSentences() {
+        return sentences;
     }
 
     @Override
     public int hashCode() {
-        return languageDetections != null ? languageDetections.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (sentences != null ? sentences.hashCode() : 0);
+        return result;
     }
 
     /**
-     * if the param is a {@code CategoriesResponse}, compare contents for equality
+     * if the param is a {@code SentencesResponse}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof LanguageResponse)) {
+        if (!(o instanceof SentencesResponse)) {
             return false;
         }
 
-        LanguageResponse that = (LanguageResponse) o;
+        SentencesResponse that = (SentencesResponse) o;
         return super.equals(o)
-                && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
+                && sentences != null ? sentences.equals(that.getSentences()) : that.sentences == null;
     }
 }

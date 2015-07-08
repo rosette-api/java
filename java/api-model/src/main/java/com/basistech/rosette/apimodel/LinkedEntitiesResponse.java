@@ -19,49 +19,50 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 
 /**
- * Simple api response data model for Rli 
+ * Simple api response data model for entity resolver 
  */
-public final class LanguageResponse extends Response {
+public final class LinkedEntitiesResponse extends Response {
 
-    private final List<LanguageDetectionResult> languageDetections;
+    private final List<LinkedEntity> entities;
 
     /**
-     * constructor for {@code LanguageResponse}
+     * constructor for {@code LinkedEntityResponse}
      * @param requestId request id
-     * @param languageDetections list of detected languages
+     * @param entities list of resolved entities
      */
-    public LanguageResponse(String requestId,
-                            List<LanguageDetectionResult> languageDetections) {
+    public LinkedEntitiesResponse(
+            String requestId,
+            List<LinkedEntity> entities) {
         super(requestId);
-        this.languageDetections = languageDetections;
+        this.entities = entities;
     }
 
     /**
-     * get the list of detected languages
-     * @return the list of detected languages
+     * get the list of resolved (against the knowledgebase) entites
+     * @return the list of resolved entities
      */
-    public List<LanguageDetectionResult> getLanguageDetections() {
-        return languageDetections;
+    public List<LinkedEntity> getEntities() {
+        return entities;
     }
 
     @Override
     public int hashCode() {
-        return languageDetections != null ? languageDetections.hashCode() : 0;
+        return entities != null ? entities.hashCode() : 0;
     }
 
     /**
-     * if the param is a {@code CategoriesResponse}, compare contents for equality
+     * if the param is a {@code LinkedEntityResponse}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof LanguageResponse)) {
+        if (!(o instanceof LinkedEntitiesResponse)) {
             return false;
         }
 
-        LanguageResponse that = (LanguageResponse) o;
+        LinkedEntitiesResponse that = (LinkedEntitiesResponse) o;
         return super.equals(o)
-                && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
+                && entities != null ? entities.equals(that.getEntities()) : entities == that.getEntities();
     }
 }

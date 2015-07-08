@@ -16,50 +16,50 @@
 
 package com.basistech.rosette.apimodel;
 
-/**
- * Simple api response data model for name translation
- */
-public final class NameTranslationResponse extends Response {
+import java.util.Objects;
 
-    private final NameTranslationResult result;
-    
+/**
+ * Name matcher result
+ */
+public final class NameMatchingResult {
+
+    private final Double score;
+
     /**
-     * constructor for {@code NameTranslationResponse}
-     * @param requestId request id
-     * @param result name translation result
+     * Constructor for {@code NameMatchingResult}
+     * @param score score of matching 2 names
      */
-    public NameTranslationResponse(String requestId,
-                                   NameTranslationResult result) {
-        super(requestId);
-        this.result = result;
+    public NameMatchingResult(
+            Double score) {
+        this.score = score;
     }
 
     /**
-     * get the name translation result
-     * @return the name translation result
+     * Gets the score of matching 2 names
+     * @return score
      */
-    public NameTranslationResult getResult() {
-        return result;
+    public Double getScore() {
+        return score;
     }
 
     @Override
     public int hashCode() {
-        return result != null ? result.hashCode() : 0;
+        long temp = Double.doubleToLongBits(score);
+        return (int) (temp ^ (temp >>> 32));
     }
 
     /**
-     * if the param is a {@code NameTranslationResponse}, compare contents for equality
+     * if the param is a {@code NameMatchingResult}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof NameTranslationResponse)) {
+        if (!(o instanceof NameMatchingResult)) {
             return false;
         }
 
-        NameTranslationResponse that = (NameTranslationResponse) o;
-        return super.equals(o)
-                && result != null ? result.equals(that.getResult()) : that.result == null;
+        NameMatchingResult that = (NameMatchingResult) o;
+        return Objects.equals(score, that.getScore());
     }
 }

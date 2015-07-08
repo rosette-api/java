@@ -18,50 +18,54 @@ package com.basistech.rosette.apimodel;
 
 import java.util.List;
 
+
 /**
- * Simple api response data model for Rli 
+ * Simple api response data model for tokenization requests 
  */
-public final class LanguageResponse extends Response {
+public final class TokensResponse extends Response {
 
-    private final List<LanguageDetectionResult> languageDetections;
-
+    private final List<String> tokens;
+    
     /**
-     * constructor for {@code LanguageResponse}
+     * constructor for {@code TokensResponse}
      * @param requestId request id
-     * @param languageDetections list of detected languages
+     * @param tokens list of tokens
      */
-    public LanguageResponse(String requestId,
-                            List<LanguageDetectionResult> languageDetections) {
+    public TokensResponse(
+            String requestId,
+            List<String> tokens) {
         super(requestId);
-        this.languageDetections = languageDetections;
+        this.tokens = tokens;
     }
 
     /**
-     * get the list of detected languages
-     * @return the list of detected languages
+     * get the list of tokens
+     * @return the list of tokens
      */
-    public List<LanguageDetectionResult> getLanguageDetections() {
-        return languageDetections;
+    public List<String> getTokens() {
+        return tokens;
     }
 
     @Override
     public int hashCode() {
-        return languageDetections != null ? languageDetections.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (tokens != null ? tokens.hashCode() : 0);
+        return result;
     }
 
     /**
-     * if the param is a {@code CategoriesResponse}, compare contents for equality
+     * if the param is a {@code TokensResponse}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof LanguageResponse)) {
+        if (!(o instanceof TokensResponse)) {
             return false;
         }
 
-        LanguageResponse that = (LanguageResponse) o;
+        TokensResponse that = (TokensResponse) o;
         return super.equals(o)
-                && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
+                && tokens != null ? tokens.equals(that.getTokens()) : that.tokens == null;
     }
 }

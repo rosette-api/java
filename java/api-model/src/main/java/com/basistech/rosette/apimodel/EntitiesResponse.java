@@ -18,50 +18,54 @@ package com.basistech.rosette.apimodel;
 
 import java.util.List;
 
-/**
- * Simple api response data model for Rli 
+/** 
+ * Simple api response data model for entity extraction 
  */
-public final class LanguageResponse extends Response {
+public final class EntitiesResponse extends Response {
 
-    private final List<LanguageDetectionResult> languageDetections;
-
+    private final List<Entity> entities;
+    
     /**
-     * constructor for {@code LanguageResponse}
+     * Constructor for {@code EntitiesResponse}
      * @param requestId request id
-     * @param languageDetections list of detected languages
+     * @param entities list of extracted entities
      */
-    public LanguageResponse(String requestId,
-                            List<LanguageDetectionResult> languageDetections) {
+    public EntitiesResponse(
+            String requestId,
+            List<Entity> entities
+    ) {
         super(requestId);
-        this.languageDetections = languageDetections;
+        this.entities = entities;
     }
 
     /**
-     * get the list of detected languages
-     * @return the list of detected languages
+     * get the list of extracted entities
+     * @return the list of extracted entities
      */
-    public List<LanguageDetectionResult> getLanguageDetections() {
-        return languageDetections;
+    public List<Entity> getEntities() {
+        return entities;
     }
 
     @Override
     public int hashCode() {
-        return languageDetections != null ? languageDetections.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (entities != null ? entities.hashCode() : 0);
+        return result;
     }
 
     /**
-     * if the param is a {@code CategoriesResponse}, compare contents for equality
+     * if the param is a {@code EntitiesResponse}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof LanguageResponse)) {
+        if (!(o instanceof EntitiesResponse)) {
             return false;
         }
 
-        LanguageResponse that = (LanguageResponse) o;
+        EntitiesResponse that = (EntitiesResponse) o;
         return super.equals(o)
-                && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
+                && entities != null ? entities.equals(that.getEntities()) : that.entities == null;
     }
 }

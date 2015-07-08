@@ -19,34 +19,36 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 
 /**
- * Simple api response data model for Rli 
- */
-public final class LanguageResponse extends Response {
+ *  Simple api response data model for categorization
+ **/
+public final class CategoriesResponse extends Response {
 
-    private final List<LanguageDetectionResult> languageDetections;
-
+    private final List<Category> categories;
+    
     /**
-     * constructor for {@code LanguageResponse}
+     * Constructor for {@code CategoriesResponse}
      * @param requestId request id
-     * @param languageDetections list of detected languages
+     * @param categories list of categories
      */
-    public LanguageResponse(String requestId,
-                            List<LanguageDetectionResult> languageDetections) {
+    public CategoriesResponse(String requestId,
+                              List<Category> categories) {
         super(requestId);
-        this.languageDetections = languageDetections;
+        this.categories = categories;
     }
 
     /**
-     * get the list of detected languages
-     * @return the list of detected languages
+     * get the list of categories
+     * @return the list of categories
      */
-    public List<LanguageDetectionResult> getLanguageDetections() {
-        return languageDetections;
+    public List<Category> getCategories() {
+        return categories;
     }
 
     @Override
     public int hashCode() {
-        return languageDetections != null ? languageDetections.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (categories != null ? categories.hashCode() : 0);
+        return result;
     }
 
     /**
@@ -56,12 +58,12 @@ public final class LanguageResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof LanguageResponse)) {
+        if (!(o instanceof CategoriesResponse)) {
             return false;
         }
 
-        LanguageResponse that = (LanguageResponse) o;
+        CategoriesResponse that = (CategoriesResponse) o;
         return super.equals(o)
-                && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
+                && categories != null ? categories.equals(that.getCategories()) : that.categories == null;
     }
 }

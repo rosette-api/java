@@ -26,6 +26,7 @@
         <module>api</module>
         <module>api-model</module>
         <module>json</module>
+        <module>examples</module>
     </modules>
     <reporting>
         <plugins>

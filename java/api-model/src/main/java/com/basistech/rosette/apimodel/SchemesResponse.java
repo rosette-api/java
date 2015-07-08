@@ -19,49 +19,51 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 
 /**
- * Simple api response data model for Rli 
+ * Response data for schemes
  */
-public final class LanguageResponse extends Response {
+public final class SchemesResponse extends Response {
 
-    private final List<LanguageDetectionResult> languageDetections;
+    private final List<String> schemes;
 
     /**
-     * constructor for {@code LanguageResponse}
+     * constructor for {@code SchemesResponse}
      * @param requestId request id
-     * @param languageDetections list of detected languages
+     * @param schemes list of schemes
      */
-    public LanguageResponse(String requestId,
-                            List<LanguageDetectionResult> languageDetections) {
+    public SchemesResponse(String requestId,
+                           List<String> schemes) {
         super(requestId);
-        this.languageDetections = languageDetections;
+        this.schemes = schemes;
     }
 
     /**
-     * get the list of detected languages
-     * @return the list of detected languages
+     * get the list of schemes
+     * @return the list of schemes
      */
-    public List<LanguageDetectionResult> getLanguageDetections() {
-        return languageDetections;
+    public List<String> getSchemes() {
+        return schemes;
     }
 
     @Override
     public int hashCode() {
-        return languageDetections != null ? languageDetections.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (schemes != null ? schemes.hashCode() : 0);
+        return result;
     }
 
     /**
-     * if the param is a {@code CategoriesResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
+    * if the param is a {@code SchemesResponse}, compare contents for equality
+    * @param o the object
+    * @return whether or not the param object is equal to this object
+    */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof LanguageResponse)) {
+        if (!(o instanceof SchemesResponse)) {
             return false;
         }
 
-        LanguageResponse that = (LanguageResponse) o;
+        SchemesResponse that = (SchemesResponse) o;
         return super.equals(o)
-                && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
+                && schemes != null ? schemes.equals(that.getSchemes()) : that.schemes == null;
     }
 }
