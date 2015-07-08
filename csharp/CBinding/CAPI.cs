@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using System.IO;
 using System.Net.Http;
+using System.Net;
 using System.Web.Script.Serialization;
 
 namespace CBinding
@@ -299,7 +300,7 @@ namespace CBinding
                 HttpResponseMessage responseMsg = null;
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Add("user_key", APIkey);
-                client.DefaultRequestHeaders.Add("timeout", Timeout.ToString());
+                //client.DefaultRequestHeaders.Add("timeout", Timeout.ToString());
                 int retry = 0;
                 string wholeURI = Debug ? _uri + "?debug=true" : _uri;
 
@@ -337,9 +338,7 @@ namespace CBinding
                 }
                 else
                 {
-                    return new Dictionary<string, object>(){
-                        {((int)responseMsg.StatusCode).ToString(), responseMsg.ReasonPhrase}
-                    };
+                    throw new RosetteException(responseMsg.ReasonPhrase, (int)responseMsg.StatusCode);
                 }
 
             }
@@ -423,6 +422,24 @@ namespace CBinding
 
             return getResponse(client);
         }
+    }
+
+    public class RosetteException : Exception
+    {
+        public RosetteException(string message = null, int code = 0, string requestid = null, string file = null, string line = null)
+        {
+            Message = message;
+            Code = code;
+            RequestID = requestid;
+            File = file;
+            Line = line;
+        }
+
+        public string Message { get; set; }
+        public int Code { get; set; }
+        public string File { get; set; }
+        public string Line { get; set; }
+        public string RequestID { get; set; }
     }
 
     [DataContract]

@@ -8,16 +8,16 @@ using System.Web.Script.Serialization;
 
 namespace CAPIExamples
 {
-    class Sentiment
+    class ping
     {
         static void Main()
         {
-            //Sentiment Analysis
-            CAPI SentimentCAPI = new CAPI("your API key");
+            //Create an API instance with key
+            CAPI NewCAPI = new CAPI("your API key");
             try
             {
-                Dictionary<string, Object> SentimentResult = SentimentCAPI.Sentiment("We are looking forward to the upcoming release.");
-                Console.WriteLine(new JavaScriptSerializer().Serialize(SentimentResult));
+                Dictionary<string, Object> pingResult = NewCAPI.Ping();
+                Console.WriteLine(new JavaScriptSerializer().Serialize(pingResult));
             }
             catch (RosetteException e)
             {

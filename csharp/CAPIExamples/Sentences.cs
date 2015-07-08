@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CBinding;
 using System.Web.Script.Serialization;
-
+/*
 namespace CAPIExamples
 {
     class Sentences
     {
-        public void SentencesEx()
+        static void Main()
         {
             //Sentences
             CAPI SentencesCAPI = new CAPI("your API key");
@@ -19,3 +19,4 @@ namespace CAPIExamples
         }
     }
 }
+*/

@@ -8,16 +8,16 @@ using System.Web.Script.Serialization;
 
 namespace CAPIExamples
 {
-    class Sentiment
+    class morphology_complete
     {
         static void Main()
         {
-            //Sentiment Analysis
-            CAPI SentimentCAPI = new CAPI("your API key");
+            //Morphology complete
+            CAPI MorphologyCAPI = new CAPI("your API key");
             try
             {
-                Dictionary<string, Object> SentimentResult = SentimentCAPI.Sentiment("We are looking forward to the upcoming release.");
-                Console.WriteLine(new JavaScriptSerializer().Serialize(SentimentResult));
+                Dictionary<string, Object> MorphologyResult = MorphologyCAPI.Morphology("The quick brown fox jumped over the lazy dog. Yes he did.");
+                Console.WriteLine(new JavaScriptSerializer().Serialize(MorphologyResult));
             }
             catch (RosetteException e)
             {

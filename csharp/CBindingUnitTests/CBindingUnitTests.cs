@@ -119,57 +119,86 @@ namespace CBindingUnitTests
                     morphofeature = td.endpoint.Remove(0, td.endpoint.IndexOf("/"));
                     td.endpoint = td.endpoint.Remove(td.endpoint.IndexOf("/"));
                 }
-
-                switch (td.endpoint){
-                    case "categories":
-                        result = c.Categories(tdInputData);
-                        break;
-                    case "entities":
-                        result = c.Entity(tdInputData);
-                        break;
-                    case "entities/linked":
-                        result = c.EntitiesLinked(tdInputData);
-                        break;
-                    case "info":
-                        result = c.Info();
-                        break;
-                    case "language":
-                        result = c.Entity(tdInputData);
-                        break;
-                    case "morphology":
-                        result = c.Morphology(tdInputData, morphofeature);
-                        break;
-                    case "name":
-                        if (td.inpFilename.Contains("matched"))
-                        {
-                            result = c.MatchedName(tdInputData);
-                        }
-                        else
-                        {
-                            result = c.TranslatedName(tdInputData);
-                        }
-                        break;
-                    case "ping":
-                        result = c.Ping();
-                        break;
-                    case "sentences":
-                        result = c.Sentences(tdInputData);
-                        break;
-                    case "sentiment":
-                        result = c.Sentiment(tdInputData);
-                        break;
-                    case "tokens":
-                        result = c.Tokens(tdInputData);
-                        break;
+                try
+                {
+                    switch (td.endpoint)
+                    {
+                        case "categories":
+                            result = c.Categories(tdInputData);
+                            break;
+                        case "entities":
+                            result = c.Entity(tdInputData);
+                            break;
+                        case "entities/linked":
+                            result = c.EntitiesLinked(tdInputData);
+                            break;
+                        case "info":
+                            result = c.Info();
+                            break;
+                        case "language":
+                            result = c.Entity(tdInputData);
+                            break;
+                        case "morphology":
+                            result = c.Morphology(tdInputData, morphofeature);
+                            break;
+                        case "name":
+                            if (td.inpFilename.Contains("matched"))
+                            {
+                                result = c.MatchedName(tdInputData);
+                            }
+                            else
+                            {
+                                result = c.TranslatedName(tdInputData);
+                            }
+                            break;
+                        case "ping":
+                            result = c.Ping();
+                            break;
+                        case "sentences":
+                            result = c.Sentences(tdInputData);
+                            break;
+                        case "sentiment":
+                            result = c.Sentiment(tdInputData);
+                            break;
+                        case "tokens":
+                            result = c.Tokens(tdInputData);
+                            break;
+                    }
                 }
-                Console.WriteLine(tdOutput);
-                Console.WriteLine(new JavaScriptSerializer().Serialize(result));
+                catch(RosetteException e)
+                {
+                    result = new Dictionary<string, object>(){
+                        {"message", e.Message}, 
+                        {"code", e.Code}, 
+                        {"requestId", e.RequestID},
+                        {"file", e.File}, 
+                        {"line", e.Line}
+                    };
+                }
                 Dictionary<string, object> outputDict = new JavaScriptSerializer().Deserialize<Dictionary<string,object>>(tdOutput);
 
-                foreach (string key in outputDict.Keys){
-                    Console.WriteLine(key);
-                    Assert.IsTrue(result.Keys.Contains(key));
-                    Assert.AreEqual(outputDict[key], result[key]);
+                if (result.Keys.Contains("file"))
+                {
+                    Assert.AreEqual(result["code"], Convert.ToInt32(tdStatus));
+                }
+                else
+                {
+                    foreach (string key in outputDict.Keys)
+                    {
+                        if (key != "requestId")
+                        {
+                            Assert.IsTrue(result.Keys.Contains(key));
+                            if (result[key] is Object)
+                            {
+                                Assert.AreEqual(new JavaScriptSerializer().Serialize(result[key]), new JavaScriptSerializer().Serialize(outputDict[key]));
+                            }
+                            else
+                            {
+                                Assert.AreEqual(outputDict[key], result[key]);
+                            }
+
+                        }
+                    }
                 }
             }
         }

@@ -8,14 +8,21 @@ using System.Web.Script.Serialization;
 
 namespace CAPIExamples
 {
-    class Categories
+    class categories
     {
-        public void CategoriesEx()
+        static void Main()
         {
             //Categorization
             CAPI CategoriesCAPI = new CAPI("your API key");
-            Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories("We need to spend several weeks fixing up our family tennis court.");
-            Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
+            try
+            {
+                Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories("We need to spend several weeks fixing up our family tennis court.");
+                Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
+            }
+            catch (RosetteException e)
+            {
+                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+            }
         }
     }
 }
