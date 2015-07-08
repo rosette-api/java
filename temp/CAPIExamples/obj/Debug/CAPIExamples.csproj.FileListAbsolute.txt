@@ -1,0 +1,10 @@
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\obj\Debug\CAPIExamples.csprojResolveAssemblyReference.cache
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\obj\Debug\CAPIExamples.Properties.Resources.resources
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\obj\Debug\CAPIExamples.csproj.GenerateResource.Cache
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\bin\Debug\CAPIExamples.exe.config
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\bin\Debug\CAPIExamples.exe
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\bin\Debug\CAPIExamples.pdb
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\bin\Debug\CBinding.exe
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\bin\Debug\CBinding.pdb
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\obj\Debug\CAPIExamples.exe
+C:\Users\wspitzer\ws-client-bindings\CSharp\CAPIExamples\obj\Debug\CAPIExamples.pdb
