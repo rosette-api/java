@@ -14,7 +14,7 @@ Otherwise you can compile and run these examples by hand:
  
 | File Name                                   | Description
 | -------------                               |------------- 
-| CategoriesExample.java                      | Gets the category of a document at a URL (also shows how to use content from a web page)
+| CategoriesExample.java                      | Gets the category of a document at a URL
 | EntitiesExample.java                        | Extracts entities
 | EntitiesLinkedExample.java                  | Gets linked (to Wikidata) entities
 | InfoExample.java                            | Gets information about Rosette API
@@ -27,6 +27,6 @@ Otherwise you can compile and run these examples by hand:
 | MorphologyPartsOfSpeechExample.java         | Gets the part-of-speech tags
 | PingExample.java                            | Pings the Rosette API to check for availability
 | SentencesExample.java                       | Gets the sentences
-| SentimentExample.java                       | Gets the sentiment (also shows how to use content from a local file)
+| SentimentExample.java                       | Gets the sentiment of a local file
 | TokenExample.java                           | Gets the tokens
 | TranslatedNameExample.java                  | Transliterates a name
