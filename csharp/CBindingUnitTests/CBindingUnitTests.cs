@@ -14,6 +14,64 @@ using System.Web.Script.Serialization;
 
 namespace CBindingUnitTests
 {
+    /* Mock Data Handler
+     * 
+     * Provides support for getting data from the request/response directories of the mockdata folder
+     * 
+     */
+    class CMockData
+    {
+        private static string mockDir = "../../../../mock-data";
+        public static string requestDir = mockDir + "/request/";
+        public static string responseDir = mockDir + "/response/";
+        public CMockData()
+        {
+            RequestDir = requestDir;
+            ResponseDir = responseDir;
+        }
+
+        public string RequestDir { get; set; }
+        public string ResponseDir { get; set; }
+
+
+        /* Gets all the Request file names
+         * 
+         * @returns List<string> of file names in the request directory
+         * 
+         */
+        public List<string> getAllRequests()
+        {
+            List<string> req = new List<string>();
+            foreach (string s in Directory.EnumerateFiles(requestDir))
+            {
+                req.Add(s);
+            }
+            return req;
+        }
+
+        /* Gets file data in string form from the file
+         * 
+         * @params filename: string path to the file data
+         * 
+         * @returns string form of the file data or null if file does not exist
+         * 
+         */
+        public string getFileData(string filename)
+        {
+            if (File.Exists(filename))
+            {
+                using (StreamReader file = File.OpenText(filename))
+                {
+                    return file.ReadToEnd();
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+
     /* Mock HTTP Handler to simulate the HTTP requests and responses
      * 
      * Checks the user_key and if it matches the correct filename, sends back the response 
@@ -24,12 +82,27 @@ namespace CBindingUnitTests
         private HttpResponseMessage response;
         private string filename;
 
+        /* Sets the response and filename if there are any
+         * 
+         * @params response: HttpResponseMessage sent back when an acceptable HTTP request comes in
+         * @params filename: string name of file to be checked against the user_key sent by the api request
+         * 
+         */
         public FakeHttpMessageHandler(HttpResponseMessage response, string filename = null)
         {
             this.response = response;
             this.filename = filename;
         }
 
+        /* Handles the Async Get Post requests
+         * 
+         * @params request: HttpRequestMessage sent by the API. Contains a user_key (filename for testing) and content
+         * @params cancellationToken: Sent by Async caller. Not handled manually.
+         * 
+         * @return Task<HttpResponseMessage>: Sends back a response message with the set response if the filename matches 
+         *                                    the user_key sent by the request header.
+         * 
+         */
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             IEnumerable<string> headerValues = request.Headers.GetValues("user_key");
