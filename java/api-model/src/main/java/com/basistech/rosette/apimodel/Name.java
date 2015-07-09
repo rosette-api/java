@@ -71,7 +71,7 @@ public final class Name {
     }
 
     /**
-     * Gets the script of the name, {@see ISO15924}
+     * Gets the script of the name, {@link ISO15924}
      * @return script of the name
      */
     public ISO15924 getScript() {
@@ -79,7 +79,7 @@ public final class Name {
     }
 
     /**
-     * Gets the language of the name, {@see LanguageCode}
+     * Gets the language of the name, {@link LanguageCode}
      * @return language of the name
      */
     public LanguageCode getLanguage() {

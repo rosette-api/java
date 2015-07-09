@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.EntityOptions;
+import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.InputUnit;
 import com.basistech.rosette.apimodel.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -30,7 +30,7 @@ public class EntityRequestMixin {
             @JsonProperty("contentUri") String contentUri,
             @JsonProperty("contentType") String contentType,
             @JsonProperty("unit") InputUnit unit,
-            @JsonProperty("options") EntityOptions options
+            @JsonProperty("options") EntitiesOptions options
     ) {
         //
     }
