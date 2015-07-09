@@ -26,6 +26,10 @@
       <source>pytest.ini</source>
       <lineEnding>unix</lineEnding>
     </file>
+    <file>
+      <source>.gitignore</source>
+      <lineEnding>unix</lineEnding>
+    </file>
   </files>
   <fileSets>
     <fileSet>

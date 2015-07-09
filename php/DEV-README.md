@@ -58,16 +58,7 @@ this `phpunit` is on your `$PATH`.
 The code is documented such that documentation may be generated using one of the common documentation
 tools, e.g. phpDocumentor, dOxygen .  
 
-[phpDocumentor Installation Instructions](https://phpunit.de/manual/current/en/installation.html).
-Make sure after this `phpdoc` is on your `$PATH`.
-
-[dOxygen Installation Instructions](http://www.stack.nl/~dimitri/doxygen/download.html#gitrepos)
-
-Example - To document the source using phpDocumentor:
-```
-phpdoc -d ./source -t ./target/html
-```
-The output will be placed in `./target/html`.
+phpDocumentor is the current method and the output will be placed in `./target/html` when run with maven.
 
 If it gives your warnings like this:
 
