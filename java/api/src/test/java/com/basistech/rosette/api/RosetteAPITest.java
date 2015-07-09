@@ -17,6 +17,7 @@
 package com.basistech.rosette.api;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,6 +30,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.zip.GZIPOutputStream;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -123,12 +125,22 @@ public class RosetteAPITest extends Assert {
                 String statusStr = getStringFromInputStream(statusStream);
                 statusCode = Integer.parseInt(statusStr);
             }
-            new MockServerClient("localhost", serverPort)
-                    .reset()
-                    .when(HttpRequest.request().withPath("/.*"))
-                    .respond(HttpResponse.response()
-                            .withHeader("Content-Type", "application/json")
-                            .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
+            if (responseStr.length() > 200) {  // test gzip if response is somewhat big
+                new MockServerClient("localhost", serverPort)
+                        .reset()
+                        .when(HttpRequest.request().withPath("/.*"))
+                        .respond(HttpResponse.response()
+                                .withHeader("Content-Type", "application/json")
+                                .withHeader("Content-Encoding", "gzip")
+                                .withStatusCode(statusCode).withBody(gzip(responseStr)));
+            } else {
+                new MockServerClient("localhost", serverPort)
+                        .reset()
+                        .when(HttpRequest.request().withPath("/.*"))
+                        .respond(HttpResponse.response()
+                                .withHeader("Content-Type", "application/json")
+                                .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
+            }
 
             String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
             api = new RosetteAPI();
@@ -487,5 +499,13 @@ public class RosetteAPITest extends Assert {
             }
         }
         return sb.toString();
+    }
+
+    private static byte[] gzip(String text) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try (GZIPOutputStream out = new GZIPOutputStream(baos)) {
+            out.write(text.getBytes(StandardCharsets.UTF_8));
+        }
+        return baos.toByteArray();
     }
 }
