@@ -18,19 +18,38 @@
         <file>
             <source>pom.xml</source>
         </file>
+        <file>
+            <source>publish.xml</source>
+        </file>
     </files>
     <fileSets>
         <fileSet>
-            <directory>api/src</directory>
+            <directory>api</directory>
+            <includes>
+                <include>src/**</include>
+                <include>pom.xml</include>
+            </includes>
         </fileSet>
         <fileSet>
-            <directory>api-model/src</directory>
+            <directory>api-model</directory>
+            <includes>
+                <include>src/**</include>
+                <include>pom.xml</include>
+            </includes>
         </fileSet>
         <fileSet>
-            <directory>json/src</directory>
+            <directory>json</directory>
+            <includes>
+                <include>src/**</include>
+                <include>pom.xml</include>
+            </includes>
         </fileSet>
         <fileSet>
-            <directory>examples/src</directory>
+            <directory>examples</directory>
+            <includes>
+                <include>src/**</include>
+                <include>pom.xml</include>
+            </includes>
         </fileSet>
     </fileSets>
 </assembly>
