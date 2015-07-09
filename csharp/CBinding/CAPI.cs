@@ -58,7 +58,7 @@ namespace CBinding
         public int MaxRetry { get; set; }
         public bool Debug { get; set; }
         public bool Multipart { get; set; }
-        public bool Version_checked { get; set; }
+        private bool Version_checked { get; set; }
         public int Timeout { get; set; }
         public HttpClient Client { get; set; }
 
@@ -78,7 +78,7 @@ namespace CBinding
         {
             _uri = "categories/";
             Multipart = true;
-            return getResponse(SetupClient(), null, file);
+            return Process(file);
         }
 
         public Dictionary<string, object> CategoriesInfo()
@@ -103,7 +103,7 @@ namespace CBinding
         {
             _uri = "entities/linked/";
             Multipart = true;
-            return getResponse(SetupClient(), null, file);
+            return Process(file);
         }
 
         public Dictionary<string, object> EntitiesLinkedInfo()
@@ -128,7 +128,7 @@ namespace CBinding
         {
             _uri = "entities/";
             Multipart = true;
-            return getResponse(SetupClient(), null, file);
+            return Process(file);
         }
 
         public Dictionary<string, object> EntityInfo()
@@ -159,7 +159,7 @@ namespace CBinding
         {
             _uri = "language/";
             Multipart = true;
-            return getResponse(SetupClient(), null, file);
+            return Process(file);
         }
 
         public Dictionary<string, object> LanguageInfo()
@@ -184,7 +184,7 @@ namespace CBinding
         {
             _uri = Morphofeatures.Contains(feature) ? "morphology/" + feature : "morphology/complete";
             Multipart = true;
-            return getResponse(SetupClient(), null, file);
+            return Process(file);
         }
 
         public Dictionary<string, object> MatchedName(Name n1, Name n2)
@@ -231,7 +231,7 @@ namespace CBinding
         {
             _uri = "sentences/";
             Multipart = true;
-            return getResponse(SetupClient(), null, file);
+            return Process(file);
         }
 
         public Dictionary<string, object> Sentiment(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -250,7 +250,7 @@ namespace CBinding
         {
             _uri = "sentiment/";
             Multipart = true;
-            return getResponse(SetupClient(), null, file);
+            return Process(file);
         }
 
         public Dictionary<string, object> SentimentInfo()
@@ -275,7 +275,7 @@ namespace CBinding
         {
             _uri = "tokens/";
             Multipart = true;
-            return getResponse(SetupClient(), null, file);
+            return Process(file);
         }
 
         public Dictionary<string, object> TranslatedName(string name, string sourceLanguageOfUse = null, string sourceScript = null, string targetLanguage = null, string targetScript = null, string targetScheme = null, string sourceLanguageOfOrigin = null, string entityType = null)
@@ -306,7 +306,7 @@ namespace CBinding
             return getResponse(SetupClient());
         }
 
-        private Dictionary<string, Object> getResponse(HttpClient client, string jsonRequest = null, RosetteFile file = null)
+        private Dictionary<string, Object> getResponse(HttpClient client, string jsonRequest = null)
         {
             if (client != null && checkVersion())
             {     
@@ -322,20 +322,7 @@ namespace CBinding
                         content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
                         responseMsg = client.PostAsync(wholeURI, content).Result;
                     }
-                    else if (file != null)
-                    {
-                        byte[] bytes = file.getFileData();
-                        MultipartFormDataContent content = new MultipartFormDataContent();
-                        MemoryStream str = new MemoryStream(bytes);
-                        content.Add(new StreamContent(str), "file", file.getFilename());
-                        if (file.getOptions() != null)
-                        {
-                            byte[] bytes1 = file.getFileOptions();
-                            MemoryStream str1 = new MemoryStream(bytes1);
-                            content.Add(new StreamContent(str1), "file", file.getOptions());
-                        }
-                        responseMsg = client.PostAsync(wholeURI, content).Result;
-                    }else
+                    else
                     {
                         responseMsg = client.GetAsync(wholeURI).Result;
                     }
@@ -360,8 +347,43 @@ namespace CBinding
             return null;
         }
 
+        private Dictionary<string, Object> Process(RosetteFile file)
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>(){
+                { "content", file.getFileDataString()},
+                { "contentType", file.getDataType()},
+                { "unit", "doc"},
+            };
+
+            if(file.getOptions() != null){
+                Dictionary<string, string> opts = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(file.getOptions());
+                foreach (string key in opts.Keys){
+                    if (!dict.Keys.Contains(key)){
+                        dict.Add(key, opts[key]);
+                    }
+                }
+            }
+
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
         private Dictionary<string, Object> Process(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
         {
+            if (content == null){
+                if(contentUri == null){
+                    throw new RosetteException("Must supply one of Content or ContentUri", -3);
+                } 
+            }else{
+                if (contentUri != null){
+                    throw new RosetteException("Cannot supply both Content and ContentUri", -3);
+                }
+            }
+
+            if (unit == null)
+            {
+                unit = "doc";
+            }
+            
             Dictionary<string, string> dict = new Dictionary<string, string>(){
                 { "language", language},
                 { "content", content},
@@ -386,8 +408,10 @@ namespace CBinding
             }
             client.BaseAddress = new Uri(URIstring);
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("text/javascript"));
             client.DefaultRequestHeaders.Add("user_key", APIkey);
-
+            client.DefaultRequestHeaders.AcceptEncoding.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue("gzip"));
+            client.DefaultRequestHeaders.AcceptEncoding.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue("deflate"));
             return client;
         }
 
@@ -453,13 +477,13 @@ namespace CBinding
     public class RosetteFile
     {
         private string _file;
+        private string _dataType;
         private string _options;
-
-        public RosetteFile(string file, string options = null)
+        public RosetteFile(string file, string dataType = "application/octet-stream", string options = null)
         {
             _file = file;
+            _dataType = dataType;
             _options = options;
-
         }
 
         public string getFilename()
@@ -467,9 +491,9 @@ namespace CBinding
             return _file;
         }
 
-        public string getOptions()
+        public string getDataType()
         {
-            return _options;
+            return _dataType;
         }
 
         public byte[] getFileData()
@@ -486,21 +510,33 @@ namespace CBinding
             return bytes;
         }
 
-        public byte[] getFileOptions()
-        {
-            byte[] bytes = null;
+        public string getFileDataString(){
+
             try
             {
-                if (_options != null)
+                using (StreamReader ff = File.OpenText(_file))
                 {
-                    bytes = File.ReadAllBytes(_file);
+                    return System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(ff.ReadToEnd()));
                 }
             }
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine(e.ToString());
             }
-            return bytes;
+            return null;
+        }
+
+        public string getOptions(){
+            try{
+                using (StreamReader ff = File.OpenText(_options))
+                {
+                    return ff.ReadToEnd();
+                }
+            }catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+            }
+            return null;
         }
     }
 

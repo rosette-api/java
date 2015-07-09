@@ -109,23 +109,13 @@ namespace CBindingUnitTests
         }
     }
 
-    /* 
-     * 
-     * @param inpFilename: 
-     * @param outputStatusFilename: 
-     * @param outputDataFilename: 
-     * @param endpoint: 
-     * 
-     */
-
     /// <summary>TestDataStructure
     /// <para>Data Structure for the Mock Data input in accordance with other language bindings</para>
     /// </summary>
     /// <param name="inpFilename">Getter Setter: string request filename</param>
     /// <param name="outputStatusFilename">Getter Setter: string response status filename</param>
     /// <param name="outputDataFilename">Getter Setter: string response data filename</param>
-    /// <param name="endpoint">Getter Setter: string API endpoint</param>
-        
+    /// <param name="endpoint">Getter Setter: string API endpoint</param>   
     public class TestDataStructure{
         public TestDataStructure()
         {
@@ -140,12 +130,6 @@ namespace CBindingUnitTests
     [TestClass]
     public class CBindingUnitTests
     {
-        /* 
-         * 
-         * 
-         * 
-         */
-
         /// <summary>Setup
         /// <para>Setup the List of Test data. Adds Info and Ping as the first two API endpoints to be tested</para>
         /// </summary>
