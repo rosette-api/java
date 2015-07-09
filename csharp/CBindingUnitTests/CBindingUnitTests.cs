@@ -14,11 +14,9 @@ using System.Web.Script.Serialization;
 
 namespace CBindingUnitTests
 {
-    /* Mock Data Handler
-     * 
-     * Provides support for getting data from the request/response directories of the mockdata folder
-     * 
-     */
+    /// <summary>Mock Data Handler
+    /// <para>Provides support for getting data from the request/response directories of the mockdata folder</para>
+    /// </summary>
     class CMockData
     {
         private static string mockDir = "../../../../mock-data";
@@ -33,12 +31,10 @@ namespace CBindingUnitTests
         public string RequestDir { get; set; }
         public string ResponseDir { get; set; }
 
-
-        /* Gets all the Request file names
-         * 
-         * @returns List<string> of file names in the request directory
-         * 
-         */
+        /// <summary>getAllRequests
+        /// <para>Gets all the Request file names</para>
+        /// </summary>
+        /// <returns>List<string> of file names in the request directory</returns>
         public List<string> getAllRequests()
         {
             List<string> req = new List<string>();
@@ -49,13 +45,11 @@ namespace CBindingUnitTests
             return req;
         }
 
-        /* Gets file data in string form from the file
-         * 
-         * @params filename: string path to the file data
-         * 
-         * @returns string form of the file data or null if file does not exist
-         * 
-         */
+        /// <summary>getFileData
+        /// <para>Gets file data in string form from the file</para>
+        /// </summary>
+        /// <param name="filename">string path to the file data</param>
+        /// <returns>string form of the file data or null if file does not exist</returns>
         public string getFileData(string filename)
         {
             if (File.Exists(filename))
@@ -72,37 +66,32 @@ namespace CBindingUnitTests
         }
     }
 
-    /* Mock HTTP Handler to simulate the HTTP requests and responses
-     * 
-     * Checks the user_key and if it matches the correct filename, sends back the response 
-     * 
-     */
+    /// <summary>Mock HTTP Handler to simulate the HTTP requests and responses
+    /// <para>Checks the user_key and if it matches the correct filename, sends back the response</para>
+    /// </summary>
     public class FakeHttpMessageHandler : HttpMessageHandler
     {
         private HttpResponseMessage response;
         private string filename;
 
-        /* Sets the response and filename if there are any
-         * 
-         * @params response: HttpResponseMessage sent back when an acceptable HTTP request comes in
-         * @params filename: string name of file to be checked against the user_key sent by the api request
-         * 
-         */
+        /// <summary>FakeHttpMessageHandler
+        /// <para>Sets the response and filename if there are any</para>
+        /// </summary>
+        /// <param name="response">HttpResponseMessage sent back when an acceptable HTTP request comes in</param>
+        /// <param name="filename">string name of file to be checked against the user_key sent by the api request</param>
         public FakeHttpMessageHandler(HttpResponseMessage response, string filename = null)
         {
             this.response = response;
             this.filename = filename;
         }
 
-        /* Handles the Async Get Post requests
-         * 
-         * @params request: HttpRequestMessage sent by the API. Contains a user_key (filename for testing) and content
-         * @params cancellationToken: Sent by Async caller. Not handled manually.
-         * 
-         * @return Task<HttpResponseMessage>: Sends back a response message with the set response if the filename matches 
-         *                                    the user_key sent by the request header.
-         * 
-         */
+        /// <summary>SendAsync
+        /// <para>Handles the Async Get Post requests</para>
+        /// </summary>
+        /// <param name="request">HttpRequestMessage sent by the API. Contains a user_key (filename for testing) and content</param>
+        /// <param name="cancellationToken">Sent by Async caller. Not handled manually.</param>
+        /// <returns>Sends back a response message with the set response if the filename matches 
+        /// the user_key sent by the request header.</returns>
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             IEnumerable<string> headerValues = request.Headers.GetValues("user_key");
@@ -120,14 +109,23 @@ namespace CBindingUnitTests
         }
     }
 
-    /* Data Structure for the Mock Data input in accordance with other language bindings
+    /* 
      * 
-     * @param inpFilename: string request filename
-     * @param outputStatusFilename: string response status filename
-     * @param outputDataFilename: string response data filename
-     * @param endpoint: string API endpoint
+     * @param inpFilename: 
+     * @param outputStatusFilename: 
+     * @param outputDataFilename: 
+     * @param endpoint: 
      * 
      */
+
+    /// <summary>TestDataStructure
+    /// <para>Data Structure for the Mock Data input in accordance with other language bindings</para>
+    /// </summary>
+    /// <param name="inpFilename">Getter Setter: string request filename</param>
+    /// <param name="outputStatusFilename">Getter Setter: string response status filename</param>
+    /// <param name="outputDataFilename">Getter Setter: string response data filename</param>
+    /// <param name="endpoint">Getter Setter: string API endpoint</param>
+        
     public class TestDataStructure{
         public TestDataStructure()
         {
@@ -142,11 +140,16 @@ namespace CBindingUnitTests
     [TestClass]
     public class CBindingUnitTests
     {
-        /* Setup the List of Test data 
+        /* 
          * 
-         * Adds Info and Ping as the first two API endpoints to be tested
+         * 
          * 
          */
+
+        /// <summary>Setup
+        /// <para>Setup the List of Test data. Adds Info and Ping as the first two API endpoints to be tested</para>
+        /// </summary>
+        /// <returns>List of Test Data</returns>
         public List<TestDataStructure> Setup()
         {
             CMockData c = new CMockData();
@@ -170,15 +173,13 @@ namespace CBindingUnitTests
             return allData;
         }
 
-        /* Test Method: Runs through all files in Requests and checks them against Responses
-         * 
-         * We are effectively sending the request through the API using the MOCK HTTPclient that has the response
-         * 
-         * and checking whether or not the API correctly receives the response.
-         * 
-         */
+        /// <summary>Test Method: Runs through all files in Requests and checks them against Responses
+        /// <para>We are effectively sending the request through the API using the MOCK HTTPclient that has the response
+        /// and checking whether or not the API correctly receives the response.
+        /// </para>
+        /// </summary>
         [TestMethod]
-        public void TestMethod1()
+        public void CAPITest()
         {
             List<TestDataStructure> mockData = Setup();
             CMockData cmd = new CMockData();

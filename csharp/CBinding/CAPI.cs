@@ -12,21 +12,18 @@ using System.Web.Script.Serialization;
 
 namespace CBinding
 {
-    /**
-     * Api.
-     *
-     * Primary class for interfacing with the Rosette API
-     *
-     * @copyright 2014-2015 Basis Technology Corporation.
-     *
-     * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
-     * with the License. You may obtain a copy of the License at
-     * @license http://www.apache.org/licenses/LICENSE-2.0
-     *
-     * Unless required by applicable law or agreed to in writing, software distributed under the License is
-     * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     * See the License for the specific language governing permissions and limitations under the License.
-     **/
+    /// <summary>C# Rosette API.
+    /// <para>
+    /// Primary class for interfacing with the Rosette API
+    /// @copyright 2014-2015 Basis Technology Corporation.
+    /// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
+    /// with the License. You may obtain a copy of the License at @license http://www.apache.org/licenses/LICENSE-2.0
+    /// Unless required by applicable law or agreed to in writing, software distributed under the License is
+    /// distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    /// See the License for the specific language governing permissions and limitations under the License.
+    /// </para>
+    /// </summary>
+
 
     public class CAPI
     {
@@ -52,8 +49,10 @@ namespace CBinding
             Version_checked = false;
             Timeout = 300;
             Client = null;
+            IsFirstTime = true;
         }
 
+        public bool IsFirstTime { get; set; }
         public string APIkey { get; set; }
         public string URIstring { get; set; }
         public int MaxRetry { get; set; }
@@ -69,38 +68,23 @@ namespace CBinding
             return Process(language, content, contentType, unit, contentUri);
         }
 
-        /*public Dictionary<string, object> Categories(string filename, string options = null, bool hasOptions = false)
-        {
-            _uri = "categories/";
-            string file = "";
-            string opt = "";
-
-            try
-            {
-                using (StreamReader ff = File.OpenText(filename))
-                {
-                    file = ff.ReadToEnd();
-                }
-                if (options != null)
-                {
-                    using (StreamReader ff = File.OpenText(options))
-                    {
-                        opt = ff.ReadToEnd();
-                    }
-                }
-            }
-        }*/
-
         public Dictionary<string, object> Categories(Dictionary<object, object> dict)
         {
             _uri = "categories/";
-            return Process(dict);
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
+        public Dictionary<string, object> Categories(RosetteFile file)
+        {
+            _uri = "categories/";
+            Multipart = true;
+            return getResponse(SetupClient(), null, file);
         }
 
         public Dictionary<string, object> CategoriesInfo()
         {
             _uri = "categories/info";
-            return Process();
+            return getResponse(SetupClient());
         }
 
         public Dictionary<string, object> EntitiesLinked(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -112,13 +96,20 @@ namespace CBinding
         public Dictionary<string, object> EntitiesLinked(Dictionary<object, object> dict)
         {
             _uri = "entities/linked/";
-            return Process(dict);
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
+        public Dictionary<string, object> EntitiesLinked(RosetteFile file)
+        {
+            _uri = "entities/linked/";
+            Multipart = true;
+            return getResponse(SetupClient(), null, file);
         }
 
         public Dictionary<string, object> EntitiesLinkedInfo()
         {
             _uri = "entities/linked/info";
-            return Process();
+            return getResponse(SetupClient());
         }
 
         public Dictionary<string, object> Entity(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -130,19 +121,26 @@ namespace CBinding
         public Dictionary<string, object> Entity(Dictionary<object, object> dict)
         {
             _uri = "entities/";
-            return Process(dict);
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
+        public Dictionary<string, object> Entity(RosetteFile file)
+        {
+            _uri = "entities/";
+            Multipart = true;
+            return getResponse(SetupClient(), null, file);
         }
 
         public Dictionary<string, object> EntityInfo()
         {
             _uri = "entities/info";
-            return Process();
+            return getResponse(SetupClient());
         }
 
         public Dictionary<string, object> Info()
         {
             _uri = "info/";
-            return Process();
+            return getResponse(SetupClient());
         }
 
         public Dictionary<string, object> Language(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -154,63 +152,67 @@ namespace CBinding
         public Dictionary<string, object> Language(Dictionary<object, object> dict)
         {
             _uri = "language/";
-            return Process(dict);
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
+        public Dictionary<string, object> Language(RosetteFile file)
+        {
+            _uri = "language/";
+            Multipart = true;
+            return getResponse(SetupClient(), null, file);
         }
 
         public Dictionary<string, object> LanguageInfo()
         {
             _uri = "language/info";
-            return Process();
+            return getResponse(SetupClient());
         }
 
         public Dictionary<string, object> Morphology(string content, string language = null, string contentType = null, string unit = null, string contentUri = null, string feature = "complete")
         {
-            if (Morphofeatures.Contains(feature))
-            {
-                _uri = "morphology/" + feature;
-            }
-            else
-            {
-                _uri = "morphology/complete";
-            }
+            _uri = Morphofeatures.Contains(feature) ? "morphology/" + feature : "morphology/complete";
             return Process(language, content, contentType, unit, contentUri);
         }
 
         public Dictionary<string, object> Morphology(Dictionary<object, object> dict, string feature = "complete")
         {
-            if (Morphofeatures.Contains(feature))
-            {
-                _uri = "morphology/" + feature;
-            }
-            else
-            {
-                _uri = "morphology/complete";
-            } 
-            return Process(dict);
+            _uri = Morphofeatures.Contains(feature) ? "morphology/" + feature : "morphology/complete";
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
+        public Dictionary<string, object> Morphology(RosetteFile file, string feature = "complete")
+        {
+            _uri = Morphofeatures.Contains(feature) ? "morphology/" + feature : "morphology/complete";
+            Multipart = true;
+            return getResponse(SetupClient(), null, file);
         }
 
         public Dictionary<string, object> MatchedName(Name n1, Name n2)
         {
             _uri = "matched-name/";
-            return Process(n1, n2);
+
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(new Dictionary<string, Name>(){
+                { "name1", n1},
+                { "name2", n2}
+            }));
         }
 
         public Dictionary<string, object> MatchedName(Dictionary<object, object> dict)
         {
             _uri = "matched-name/";
-            return Process(dict);
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
         }
 
         public Dictionary<string, object> MatchedNameInfo()
         {
             _uri = "matched-name/info";
-            return Process();
+            return getResponse(SetupClient());
         }
 
         public Dictionary<string, object> Ping()
         {
             _uri = "ping";
-            return Process();
+            return getResponse(SetupClient());
         }
 
         public Dictionary<string, object> Sentences(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -222,7 +224,14 @@ namespace CBinding
         public Dictionary<string, object> Sentences(Dictionary<object, object> dict)
         {
             _uri = "sentences/";
-            return Process(dict);
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
+        public Dictionary<string, object> Sentences(RosetteFile file)
+        {
+            _uri = "sentences/";
+            Multipart = true;
+            return getResponse(SetupClient(), null, file);
         }
 
         public Dictionary<string, object> Sentiment(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -234,13 +243,20 @@ namespace CBinding
         public Dictionary<string, object> Sentiment(Dictionary<object, object> dict)
         {
             _uri = "sentiment/";
-            return Process(dict);
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
+        public Dictionary<string, object> Sentiment(RosetteFile file)
+        {
+            _uri = "sentiment/";
+            Multipart = true;
+            return getResponse(SetupClient(), null, file);
         }
 
         public Dictionary<string, object> SentimentInfo()
         {
             _uri = "sentiment/info";
-            return Process();
+            return getResponse(SetupClient());
         }
 
         public Dictionary<string, object> Tokens(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -252,30 +268,21 @@ namespace CBinding
         public Dictionary<string, object> Tokens(Dictionary<object, object> dict)
         {
             _uri = "tokens/";
-            return Process(dict);
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
+        public Dictionary<string, object> Tokens(RosetteFile file)
+        {
+            _uri = "tokens/";
+            Multipart = true;
+            return getResponse(SetupClient(), null, file);
         }
 
         public Dictionary<string, object> TranslatedName(string name, string sourceLanguageOfUse = null, string sourceScript = null, string targetLanguage = null, string targetScript = null, string targetScheme = null, string sourceLanguageOfOrigin = null, string entityType = null)
         {
             _uri = "translated-name/";
-            return Process(name, sourceLanguageOfUse, sourceScript, targetLanguage, targetScript, targetScheme, sourceLanguageOfOrigin, entityType);
-        }
 
-        public Dictionary<string, object> TranslatedName(Dictionary<object, object> dict)
-        {
-            _uri = "translated-name/";
-            return Process(dict);
-        }
-
-        public Dictionary<string, object> TranslatedNameInfo()
-        {
-            _uri = "translated-name/info";
-            return Process();
-        }
-
-        private string buildRequest(string name, string sourceLanguageOfUse = null, string sourceScript = null, string targetLanguage = null, string targetScript = null, string targetScheme = null, string sourceLanguageOfOrigin = null, string entityType = null)
-        {
-            Dictionary<string, string> dict = new Dictionary<string, string>(){
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(new Dictionary<string, string>(){
                 { "name", name},
                 { "sourceLanguageOfUse", sourceLanguageOfUse},
                 { "sourceScript", sourceScript},
@@ -284,51 +291,30 @@ namespace CBinding
                 { "targetScheme", targetScheme},
                 { "sourceLanguageOfOrigin", sourceLanguageOfOrigin},
                 { "entityType", entityType}
-            };
-
-            return new JavaScriptSerializer().Serialize(dict);
+            }));
         }
 
-        private string buildRequest(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
+        public Dictionary<string, object> TranslatedName(Dictionary<object, object> dict)
         {
-            Dictionary<string, string> dict = new Dictionary<string, string>(){
-                { "language", language},
-                { "content", content},
-                { "contentType", contentType},
-                { "unit", unit},
-                { "contentUri", contentUri}
-            };
-
-            return new JavaScriptSerializer().Serialize(dict);
+            _uri = "translated-name/";
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
         }
 
-        private string buildRequest(Name n1, Name n2)
+        public Dictionary<string, object> TranslatedNameInfo()
         {
-            Dictionary<string, Name> dict = new Dictionary<string, Name>(){
-                { "name1", n1},
-                { "name2", n2}
-            };
-
-            return new JavaScriptSerializer().Serialize(dict);
+            _uri = "translated-name/info";
+            return getResponse(SetupClient());
         }
 
-        private string buildRequest(Dictionary<object, object> dict)
-        {
-            return new JavaScriptSerializer().Serialize(dict);
-        }
-
-        private Dictionary<string, Object> getResponse(HttpClient client, string jsonRequest = null)
+        private Dictionary<string, Object> getResponse(HttpClient client, string jsonRequest = null, RosetteFile file = null)
         {
             if (client != null && checkVersion())
-            {
+            {     
                 HttpResponseMessage responseMsg = null;
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Add("user_key", APIkey);
-                //client.DefaultRequestHeaders.Add("timeout", Timeout.ToString());
                 int retry = 0;
                 string wholeURI = Debug ? _uri + "?debug=true" : _uri;
 
-                while (responseMsg == null ||( !responseMsg.IsSuccessStatusCode && retry <= MaxRetry))
+                while (responseMsg == null || (!responseMsg.IsSuccessStatusCode && retry <= MaxRetry))
                 {
                     if (jsonRequest != null)
                     {
@@ -336,19 +322,24 @@ namespace CBinding
                         content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
                         responseMsg = client.PostAsync(wholeURI, content).Result;
                     }
-                    else
+                    else if (file != null)
+                    {
+                        byte[] bytes = file.getFileData();
+                        MultipartFormDataContent content = new MultipartFormDataContent();
+                        MemoryStream str = new MemoryStream(bytes);
+                        content.Add(new StreamContent(str), "file", file.getFilename());
+                        if (file.getOptions() != null)
+                        {
+                            byte[] bytes1 = file.getFileOptions();
+                            MemoryStream str1 = new MemoryStream(bytes1);
+                            content.Add(new StreamContent(str1), "file", file.getOptions());
+                        }
+                        responseMsg = client.PostAsync(wholeURI, content).Result;
+                    }else
                     {
                         responseMsg = client.GetAsync(wholeURI).Result;
                     }
                     retry = retry + 1;
-                }
-                try
-                {
-                    client.DefaultRequestHeaders.Accept.Clear();
-                }
-                catch (NullReferenceException)
-                {
-                    client = new HttpClient();
                 }
 
                 if (responseMsg.IsSuccessStatusCode)
@@ -364,42 +355,25 @@ namespace CBinding
                 {
                     throw new RosetteException(responseMsg.ReasonPhrase, (int)responseMsg.StatusCode);
                 }
-
+                
             }
             return null;
         }
 
-        private Dictionary<string, Object> Process(string name, string sourceLanguageOfUse = null, string sourceScript = null, string targetLanguage = null, string targetScript = null, string targetScheme = null, string sourceLanguageOfOrigin = null, string entityType = null)
-        {
-            HttpClient client;
-            if (Client == null)
-            {
-                client = new HttpClient();
-            }else{
-                client = Client;
-            }
-            client.BaseAddress = new Uri(URIstring);
-
-            return getResponse(client, buildRequest(name, sourceLanguageOfUse, sourceScript, targetLanguage, targetScript, targetScheme, sourceLanguageOfOrigin, entityType));
-        }
-
         private Dictionary<string, Object> Process(string content, string language = null, string contentType = null, string unit = null, string contentUri = null)
         {
-            HttpClient client;
-            if (Client == null)
-            {
-                client = new HttpClient();
-            }
-            else
-            {
-                client = Client;
-            }
-            client.BaseAddress = new Uri(URIstring);
+            Dictionary<string, string> dict = new Dictionary<string, string>(){
+                { "language", language},
+                { "content", content},
+                { "contentType", contentType},
+                { "unit", unit},
+                { "contentUri", contentUri}
+            };
 
-            return getResponse(client, buildRequest(language, content, contentType, unit, contentUri));
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
         }
 
-        private Dictionary<string, Object> Process(Name n1 = null, Name n2 = null)
+        private HttpClient SetupClient()
         {
             HttpClient client;
             if (Client == null)
@@ -411,54 +385,46 @@ namespace CBinding
                 client = Client;
             }
             client.BaseAddress = new Uri(URIstring);
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("user_key", APIkey);
 
-            return getResponse(client, buildRequest(n1, n2));
-        }
-
-        private Dictionary<string, Object> Process(Dictionary<object, object> dict)
-        {
-            HttpClient client;
-            if (Client == null)
-            {
-                client = new HttpClient();
-            }
-            else
-            {
-                client = Client;
-            }
-            client.BaseAddress = new Uri(URIstring);
-
-            return getResponse(client, buildRequest(dict));
-        }
-
-        private Dictionary<string, Object> Process()
-        {
-            HttpClient client;
-            if (Client == null)
-            {
-                client = new HttpClient();
-            }
-            else
-            {
-                client = Client;
-            }
-            client.BaseAddress = new Uri(URIstring);
-
-            return getResponse(client);
+            return client;
         }
 
         public bool checkVersion(string versionToCheck = null)
         {
-            if (!Version_checked) {
-                if (versionToCheck != null) {
+            if (!Version_checked)
+            {
+                if (versionToCheck == null)
+                {
                     versionToCheck = _compatibleVersion;
                 }
-                var result = this.Info();
+                HttpClient client = SetupClient();
+                HttpResponseMessage responseMsg = null;
+                int retry = 0;
+
+                while (responseMsg == null || (!responseMsg.IsSuccessStatusCode && retry <= MaxRetry))
+                {
+                    responseMsg = client.GetAsync("info/").Result;
+                    retry = retry + 1;
+                }
+                string text = null; 
+                if (responseMsg.IsSuccessStatusCode)
+                {
+                    byte[] byteArray = Encoding.UTF8.GetBytes(responseMsg.Content.ReadAsStringAsync().Result);
+                    MemoryStream stream = new MemoryStream(byteArray);
+                    StreamReader reader = new StreamReader(stream);
+                    text = reader.ReadToEnd();
+                }
+                var result = new JavaScriptSerializer().Deserialize<dynamic>(text);
                 // compatibility with server side is at minor version level of semver
                 string serverVersion = result["version"].ToString();
-                if (!serverVersion.Contains(versionToCheck)) {
+                if (!serverVersion.Contains(versionToCheck))
+                {
                     throw new RosetteException("The server version is not " + versionToCheck, -6);
-                } else {
+                }
+                else
+                {
                     Version_checked = true;
                 }
             }
@@ -482,6 +448,60 @@ namespace CBinding
         public string File { get; set; }
         public string Line { get; set; }
         public string RequestID { get; set; }
+    }
+
+    public class RosetteFile
+    {
+        private string _file;
+        private string _options;
+
+        public RosetteFile(string file, string options = null)
+        {
+            _file = file;
+            _options = options;
+
+        }
+
+        public string getFilename()
+        {
+            return _file;
+        }
+
+        public string getOptions()
+        {
+            return _options;
+        }
+
+        public byte[] getFileData()
+        {
+            byte[] bytes = null;
+            try
+            {
+                bytes = File.ReadAllBytes(_file);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+            }
+            return bytes;
+        }
+
+        public byte[] getFileOptions()
+        {
+            byte[] bytes = null;
+            try
+            {
+                if (_options != null)
+                {
+                    bytes = File.ReadAllBytes(_file);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+            }
+            return bytes;
+        }
     }
 
     [DataContract]
