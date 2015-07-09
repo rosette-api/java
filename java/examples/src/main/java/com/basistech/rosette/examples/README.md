@@ -9,8 +9,8 @@ Otherwise you can compile and run these examples by hand:
 - make sure you have JRE 1.7, verify by `java -version`
 - download <TODO: nexus url>
 - `cd src/main/java/com/basistech/rosette/examples`
-- `javac -cp .:<path-to-rosette-java-api-jar-file> *.java`
-- `java -cp .:<path-to-rosette-java-api-jar-file> -Drosette.api.key=<your-api-key> com.basistech.rosette.examples.<XyzExample>`
+- `javac -cp .:<path-to-rosette-api-jar-file> *.java`
+- `java -cp .:<path-to-rosette-api-jar-file> -Drosette.api.key=<your-api-key> com.basistech.rosette.examples.<XyzExample>`
  
 | File Name                                   | Description
 | -------------                               |------------- 

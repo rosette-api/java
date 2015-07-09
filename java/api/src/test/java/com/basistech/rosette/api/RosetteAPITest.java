@@ -23,17 +23,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.basistech.rosette.apimodel.CategoriesRequest;
-import com.basistech.rosette.apimodel.CategoriesResponse;
-import com.basistech.rosette.apimodel.EntitiesRequest;
-import com.basistech.rosette.apimodel.EntitiesResponse;
-import com.basistech.rosette.apimodel.NameMatchingRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -44,6 +40,12 @@ import org.mockserver.client.server.MockServerClient;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.basistech.rosette.apimodel.CategoriesRequest;
+import com.basistech.rosette.apimodel.CategoriesResponse;
+import com.basistech.rosette.apimodel.EntitiesRequest;
+import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InputUnit;
 import com.basistech.rosette.apimodel.LanguageCode;
@@ -53,6 +55,7 @@ import com.basistech.rosette.apimodel.MorphologyRequest;
 import com.basistech.rosette.apimodel.LinkedEntitiesRequest;
 import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
 import com.basistech.rosette.apimodel.MorphologyResponse;
+import com.basistech.rosette.apimodel.NameMatchingRequest;
 import com.basistech.rosette.apimodel.NameMatchingResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
@@ -60,7 +63,6 @@ import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(Parameterized.class)
 public class RosetteAPITest extends Assert {
@@ -81,7 +83,7 @@ public class RosetteAPITest extends Assert {
     public static Collection<Object[]> data() throws URISyntaxException, IOException {
         int serverPort;
         try (
-            InputStream is = RosetteAPITest.class.getClassLoader().getResourceAsStream("MockServerClientPort.property");
+            InputStream is = RosetteAPITest.class.getClassLoader().getResourceAsStream("MockServerClientPort.property")
         ) {
             String s = getStringFromInputStream(is);
             serverPort = Integer.parseInt(s);
@@ -111,25 +113,27 @@ public class RosetteAPITest extends Assert {
         } catch (IllegalArgumentException e) {
             language = LanguageCode.xxx;
         }
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("response/" + testFilename);
-        responseStr = getStringFromInputStream(inputStream);
 
         String statusFilename = testFilename.replace(".json", ".status");
-        inputStream = RosetteAPITest.class.getClassLoader().getResourceAsStream("response/" + statusFilename);
-        int statusCode = 200;
-        if (inputStream != null) {
-            String statusStr = getStringFromInputStream(inputStream);
-            statusCode = Integer.parseInt(statusStr);
+        try (InputStream bodyStream = getClass().getClassLoader().getResourceAsStream("response/" + testFilename);
+             InputStream statusStream = getClass().getClassLoader().getResourceAsStream("response/" + statusFilename)) {
+            responseStr = getStringFromInputStream(bodyStream);
+            int statusCode = 200;
+            if (statusStream != null) {
+                String statusStr = getStringFromInputStream(statusStream);
+                statusCode = Integer.parseInt(statusStr);
+            }
+            new MockServerClient("localhost", serverPort)
+                    .reset()
+                    .when(HttpRequest.request().withPath("/.*"))
+                    .respond(HttpResponse.response()
+                            .withHeader("Content-Type", "application/json")
+                            .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
+
+            String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
+            api = new RosetteAPI();
+            api.setUrlBase(mockServiceUrl);
         }
-
-        new MockServerClient("localhost", serverPort)
-                .reset()
-                .when(HttpRequest.request().withPath("/.*"))
-                .respond(HttpResponse.response().withStatusCode(statusCode).withBody(responseStr));
-
-        String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
-        api = new RosetteAPI();
-        api.setUrlBase(mockServiceUrl);
     }
 
     @Test
@@ -477,7 +481,7 @@ public class RosetteAPITest extends Assert {
     private static String getStringFromInputStream(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
         String line;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8.name()))) {
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }

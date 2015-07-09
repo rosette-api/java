@@ -880,7 +880,8 @@ public final class RosetteAPI {
         int status = httpUrlConnection.getResponseCode();
         String encoding = httpUrlConnection.getContentEncoding();
         try (
-            InputStream stream = status != HTTP_OK ? httpUrlConnection.getErrorStream() : httpUrlConnection.getInputStream();
+            InputStream stream = status != HTTP_OK ?
+                    httpUrlConnection.getErrorStream() : httpUrlConnection.getInputStream();
             InputStream inputStream = "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream
         ) {
             if (HTTP_OK != status) {
@@ -904,12 +905,13 @@ public final class RosetteAPI {
         int size = 1024;
         byte[] buf;
 
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        buf = new byte[size];
-        while ((len = is.read(buf, 0, size)) != -1) {
-            bos.write(buf, 0, len);
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+            buf = new byte[size];
+            while ((len = is.read(buf, 0, size)) != -1) {
+                bos.write(buf, 0, len);
+            }
+            buf = bos.toByteArray();
+            return buf;
         }
-        buf = bos.toByteArray();
-        return buf;
     }
 }

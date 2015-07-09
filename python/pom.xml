@@ -101,7 +101,7 @@
                 <configuration>
                     <finalName>github</finalName>
                     <descriptors>
-                        <descriptor>src/assembly/publish.xml</descriptor>
+                        <descriptor>publish.xml</descriptor>
                     </descriptors>
                 </configuration>
             </plugin>
