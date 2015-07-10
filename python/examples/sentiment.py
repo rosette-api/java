@@ -13,16 +13,9 @@ from rosette.api import API, DocumentParameters
 # Create default file to read from
 f = tempfile.NamedTemporaryFile(suffix=".html")
 message = """
-<!DOCTYPE html>
-<html>
-    <body>
-
-        <h1>Sample File</h1>
-
-        <p>This is a simple sample HTML file to demonstrate the option of loading data from a file.</p>
-
-    </body>
-</html>"""
+<html><head><title>Performance Report</title></head>
+<body><p>This article is clean, concise, and very easy to read.</p></body></html>
+"""
 f.write(message)
 f.seek(0)
 

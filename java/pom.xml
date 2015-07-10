@@ -9,47 +9,75 @@
         <version>0.0.5</version>
     </parent>
     <groupId>com.basistech.rosette</groupId>
-    <artifactId>java-api-parent</artifactId>
+    <artifactId>rosette-api-parent</artifactId>
+    <name>rosette-api-parent</name>
     <version>0.5.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <description>Parent project for Rosette API</description>
 
     <properties>
-        <bt-jackson-version>2.5.3</bt-jackson-version>
+        <jackson-version>2.5.4</jackson-version>
         <junit-version>4.12</junit-version>
+        <assembly.skipAssembly>false</assembly.skipAssembly>
         <maven-shade-plugin-version>2.3</maven-shade-plugin-version>
-        <mockserver-netty-version>3.9.1</mockserver-netty-version>
+        <mockserver-version>3.9.17</mockserver-version>
     </properties>
-    <build>
-        <defaultGoal>install</defaultGoal>
-    </build>
     <modules>
         <module>api</module>
         <module>api-model</module>
         <module>json</module>
+        <module>examples</module>
     </modules>
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>github</finalName>
+                    <encoding>UTF-8</encoding>
+                    <descriptors>
+                        <descriptor>publish.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                        <compilerArgs>
+                            <arg>-Xlint:unchecked</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
     <reporting>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <reportSets>
-                    <reportSet>
-                        <id>default</id>
-                        <reports>
-                            <report>javadoc</report>
-                        </reports>
-                    </reportSet>
-                    <reportSet>
-                        <id>aggregate</id>
-                        <configuration>
-                        </configuration>
-                        <reports>
-                            <report>aggregate</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
+                <version>2.9.1</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <excludePackageNames>com.basistech.rosette.examples</excludePackageNames>
+                </configuration>
             </plugin>
         </plugins>
     </reporting>
-
 </project>

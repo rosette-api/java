@@ -5,27 +5,26 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.basistech.rosette</groupId>
-        <artifactId>java-api-parent</artifactId>
+        <artifactId>rosette-api-parent</artifactId>
         <version>0.5.0-SNAPSHOT</version>
     </parent>
     <groupId>com.basistech.rosette</groupId>
-    <artifactId>java-api</artifactId>
+    <artifactId>rosette-api</artifactId>
+    <name>rosette-api</name>
     <version>0.5.0-SNAPSHOT</version>
-
+    <description>Rosette API main module</description>
     <properties>
-        <assembly.final.name>rosette-api-example</assembly.final.name>
-        <assembly.skip>false</assembly.skip>
+        <assembly.skipAssembly>true</assembly.skipAssembly>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
-            <artifactId>java-api-model</artifactId>
+            <artifactId>rosette-api-model</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
-            <artifactId>java-json</artifactId>
+            <artifactId>rosette-api-json</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -37,41 +36,30 @@
         <dependency>
             <groupId>org.mock-server</groupId>
             <artifactId>mockserver-netty</artifactId>
-            <version>${mockserver-netty-version}</version>
+            <version>${mockserver-version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${bt-jackson-version}</version>
+            <version>${jackson-version}</version>
         </dependency>
     </dependencies>
-
     <build>
-        <defaultGoal>install</defaultGoal>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <skipAssembly>${assembly.skip}</skipAssembly>
-                    <finalName>${assembly.final.name}</finalName>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.basistech.rosette.example.APIExample</mainClass>
-                        </manifest>
-                    </archive>
                 </configuration>
                 <executions>
                     <execution>
@@ -127,7 +115,7 @@
             <plugin>
                 <groupId>org.mock-server</groupId>
                 <artifactId>mockserver-maven-plugin</artifactId>
-                <version>${mockserver-netty-version}</version>
+                <version>${mockserver-version}</version>
                 <configuration>
                     <serverPort>${mockServerClient.port}</serverPort>
                     <logLevel>OFF</logLevel>

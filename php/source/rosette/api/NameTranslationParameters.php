@@ -1,6 +1,7 @@
 <?php
+
 /**
- * class NameTranslationParameters
+ * class NameTranslationParameters.
  *
  * Parameters that are necessary for name translation operations.
  *
@@ -8,46 +9,43 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * @license http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  **/
+
 namespace rosette\api;
 
 /**
- * Class NameTranslationParameters
- * @package rosette\api
+ * Class NameTranslationParameters.
  */
 class NameTranslationParameters extends RosetteParamsSetBase
 {
     /**
-     * constructor
+     * constructor.
      */
     public function __construct()
     {
-        parent::__construct(['name', 'targetLanguage', 'entityType', 'sourceLanguageOfOrigin',
-            'sourceLanguageOfUse', 'sourceScript', 'targetScript', 'targetScheme']);
+        parent::__construct(array('name', 'targetLanguage', 'entityType', 'sourceLanguageOfOrigin',
+            'sourceLanguageOfUse', 'sourceScript', 'targetScript', 'targetScheme', ));
     }
 
     /**
-     * Returns the serialized form of the parameters.
-     * @return array
+     * Validates parameters.
+     *
      * @throws RosetteException
      */
-    public function serializable()
+    public function validate()
     {
-        foreach (['name', 'targetLanguage'] as $key) {
-            if ($this->Get($key) == null) {
+        foreach (array('name', 'targetLanguage') as $key) {
+            if (empty(trim($this->get($key)))) {
                 throw new RosetteException(
-                    sprintf("Required name translation parameter not supplied: %s", $key),
+                    sprintf('Required name translation parameter not supplied: %s', $key),
                     RosetteException::$BAD_REQUEST_FORMAT
                 );
             }
         }
-
-        return $this->ForSerialize();
     }
 }

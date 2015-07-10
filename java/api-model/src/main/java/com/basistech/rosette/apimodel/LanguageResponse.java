@@ -50,7 +50,7 @@ public final class LanguageResponse extends Response {
     }
 
     /**
-     * if the param is a {@code CategoryResponse}, compare contents for equality
+     * if the param is a {@code CategoriesResponse}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
