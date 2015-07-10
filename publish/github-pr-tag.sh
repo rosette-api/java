@@ -2,7 +2,7 @@
 # This merges a pushed branch via a pull req and tags it
 
 if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 [java|js|php|python|ruby|...] [BRANCH_NAME, eg python-0.5.1] [github.com_USERNAME]"
+    echo "Usage: $0 [java|js|php|python|ruby|...] [BRANCH_NAME, eg 0.5.1] [github.com_USERNAME]"
     exit 1
 fi
 
@@ -32,4 +32,3 @@ sha=$(echo "$merge_resp" | jq .sha | sed 's/"//g')
 
 # create a ref tag
 curl -u $username:$password https://api.github.com/repos/$owner/$repo/git/refs -d"{\"ref\": \"refs/tags/$branch\",\"sha\": \"$sha\"}"
-

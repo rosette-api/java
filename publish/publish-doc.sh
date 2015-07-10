@@ -6,7 +6,7 @@
 branch=gh-pages
 
 if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 [java|js|php|python|ruby|...] [BRANCH_NAME, eg python-0.5.1]"
+    echo "Usage: $0 [java|js|php|python|ruby|...] [BRANCH_NAME, eg 0.5.1]"
     exit 1
 fi
 

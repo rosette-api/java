@@ -28,14 +28,14 @@ Step 1: publish the code
 ------------------------
 
 ```
-./publish-api.sh [java|js|php|python|ruby|...] [NEW_BRANCH_NAME, eg python-0.5.1]
+./publish-api.sh [java|js|php|python|ruby|...] [NEW_BRANCH_NAME, eg 0.5.1]
 ```
 
 We are only going to publish one binding at a time, so you will need
 to supply the name of the binding as the first argument to the script.
 You will also need to specify the new remote github.com branch name.
-Please follow the naming convetion of <binding>-<version>, e.g.
-`python-0.5.1`. We want to keep the major and minor numbers in the
+Please follow the naming convention using semver, e.g. `0.5.1`.
+We want to keep the major and minor numbers in the
 semver same as the backend, leaving the patch number for binding
 updates themselves.
 
@@ -91,4 +91,3 @@ publish your page, you should ask for them first.
 - PHP/[Packagist](https://packagist.org)
   Nothing needs to be done after Step2, packagist will poll github changes
   automatically.
-

@@ -7,24 +7,28 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <files>
         <file>
+            <source>.gitignore</source>
+        </file>
+        <file>
             <source>CHANGES.txt</source>
-            <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>LICENSE.txt</source>
-            <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>README.txt</source>
-            <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>composer.json</source>
-            <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>box.json</source>
-            <lineEnding>unix</lineEnding>
+        </file>
+        <file>
+            <source>phpdoc.dist.xml</source>
+        </file>
+        <file>
+            <source>.php_cs</source>
         </file>
     </files>
     <fileSets>

@@ -52,7 +52,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 class ApiTest extends \PHPUnit_Framework_TestCase
 {
     private $userKey = null;
-    private static $mockDir = '/../../../../mock-data';
+    private static $mockDir = '/../../mock-data';
     public static $requestDir;
     public static $responseDir;
 
