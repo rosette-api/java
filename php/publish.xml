@@ -16,7 +16,7 @@
             <source>LICENSE.txt</source>
         </file>
         <file>
-            <source>README.txt</source>
+            <source>README.md</source>
         </file>
         <file>
             <source>composer.json</source>
