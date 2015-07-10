@@ -14,7 +14,7 @@ namespace CBinding
         static void Main()
         {
 
-            CAPI c = new CAPI("your api key");
+            CAPI c = new CAPI("88afd6b4b18a11d1248639ecf399903c");
 
             //CAPI c = new CAPI("your api key");
             Dictionary<string, Object> cr = null;
@@ -24,6 +24,7 @@ namespace CBinding
                 cr = c.Info();
                 foreach (string key in cr.Keys)
                 {
+                    System.Diagnostics.Debug.WriteLine(key);
                     System.Diagnostics.Debug.WriteLine(cr[key].ToString());
                 }
             }
@@ -35,6 +36,20 @@ namespace CBinding
             try
             {
                 cr = c.Sentences(new RosetteFile("C:/Users/wspitzer/Documents/test.txt"));
+                foreach (string key in cr.Keys)
+                {
+                    System.Diagnostics.Debug.WriteLine(cr[key].ToString());
+                }
+            }
+            catch (RosetteException e)
+            {
+                System.Diagnostics.Debug.WriteLine("Error Code " + e.Code.ToString() + ": " + e.Message);
+            }
+
+
+            try
+            {
+                cr = c.MatchedName(new Name("Bob"), new Name("Joe"));
                 foreach (string key in cr.Keys)
                 {
                     System.Diagnostics.Debug.WriteLine(cr[key].ToString());

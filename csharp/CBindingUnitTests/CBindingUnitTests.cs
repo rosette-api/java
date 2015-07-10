@@ -48,7 +48,7 @@ namespace CBindingUnitTests
         /// <summary>getFileData
         /// <para>Gets file data in string form from the file</para>
         /// </summary>
-        /// <param name="filename">string path to the file data</param>
+        /// <param name="filename">string: path to the file data</param>
         /// <returns>string form of the file data or null if file does not exist</returns>
         public string getFileData(string filename)
         {
@@ -72,58 +72,95 @@ namespace CBindingUnitTests
     public class FakeHttpMessageHandler : HttpMessageHandler
     {
         private HttpResponseMessage response;
+
+        private HttpResponseMessage responseInfo;
+
         private string filename;
 
         /// <summary>FakeHttpMessageHandler
         /// <para>Sets the response and filename if there are any</para>
         /// </summary>
-        /// <param name="response">HttpResponseMessage sent back when an acceptable HTTP request comes in</param>
-        /// <param name="filename">string name of file to be checked against the user_key sent by the api request</param>
+        /// <param name="response">HttpResponseMessage: ResponseMessage sent back when an acceptable HTTP request comes in</param>
+        /// <param name="filename">(string optional): Name of file to be checked against the user_key sent by the api request</param>
         public FakeHttpMessageHandler(HttpResponseMessage response, string filename = null)
         {
             this.response = response;
             this.filename = filename;
+            this.responseInfo = new HttpResponseMessage();
+            this.responseInfo.StatusCode = (HttpStatusCode)(Convert.ToInt32(200));
+            this.responseInfo.Content = new StringContent(new JavaScriptSerializer().Serialize(new Dictionary<string, string>(){
+                    {"buildNumber", "6bafb29d"}, 
+                    {"buildTime", "2015.05.08_12:31:26"}, 
+                    {"name", "Rosette API"}, 
+                    {"version", "0.5.0"}
+                })
+            );
         }
 
         /// <summary>SendAsync
         /// <para>Handles the Async Get Post requests</para>
         /// </summary>
-        /// <param name="request">HttpRequestMessage sent by the API. Contains a user_key (filename for testing) and content</param>
-        /// <param name="cancellationToken">Sent by Async caller. Not handled manually.</param>
+        /// <param name="request">HttpRequestMessage: RequestMessage sent by the API. Contains a user_key (filename for testing) and content</param>
+        /// <param name="cancellationToken">CancellationToken: Sent by Async caller. Not handled manually.</param>
         /// <returns>Sends back a response message with the set response if the filename matches 
         /// the user_key sent by the request header.</returns>
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             IEnumerable<string> headerValues = request.Headers.GetValues("user_key");
+            string uri = request.RequestUri.ToString();
             string user_key = headerValues.FirstOrDefault();
             var responseTask = new TaskCompletionSource<HttpResponseMessage>();
-            responseTask.SetResult(response);
-            if (user_key == filename || filename == null)
+            if (uri.Contains("v1/info"))
             {
-                return responseTask.Task;
+                responseTask.SetResult(responseInfo);
             }
             else
             {
-                return null;
+                responseTask.SetResult(response);
             }
+            return responseTask.Task;
         }
     }
 
     /// <summary>TestDataStructure
     /// <para>Data Structure for the Mock Data input in accordance with other language bindings</para>
     /// </summary>
-    /// <param name="inpFilename">Getter Setter: string request filename</param>
-    /// <param name="outputStatusFilename">Getter Setter: string response status filename</param>
-    /// <param name="outputDataFilename">Getter Setter: string response data filename</param>
-    /// <param name="endpoint">Getter Setter: string API endpoint</param>   
     public class TestDataStructure{
         public TestDataStructure()
         {
 
         }
+
+        /// <summary> inpFilename
+        /// <para>
+        /// Getter Setter for inpFilename
+        /// inpFilename: string path to input data file
+        /// </para>
+        /// </summary>
         public string inpFilename { get; set; }
+
+        /// <summary> outputStatusFilename
+        /// <para>
+        /// Getter Setter for outputStatusFilename
+        /// outputStatusFilename: string path to output status file
+        /// </para>
+        /// </summary>
         public string outputStatusFilename { get; set; }
+
+        /// <summary> outputDataFilename
+        /// <para>
+        /// Getter Setter for outputDataFilename
+        /// inpFilename: string path to output data file
+        /// </para>
+        /// </summary>
         public string outputDataFilename { get; set; }
+
+        /// <summary> endpoint
+        /// <para>
+        /// Getter Setter for endpoint
+        /// inpFilename: string describing endpoint
+        /// </para>
+        /// </summary>
         public string endpoint { get; set; }
     }
 
@@ -133,7 +170,7 @@ namespace CBindingUnitTests
         /// <summary>Setup
         /// <para>Setup the List of Test data. Adds Info and Ping as the first two API endpoints to be tested</para>
         /// </summary>
-        /// <returns>List of Test Data</returns>
+        /// <returns>List&ltTestDataStructure&gt: List of Test Data</returns>
         public List<TestDataStructure> Setup()
         {
             CMockData c = new CMockData();
@@ -170,13 +207,14 @@ namespace CBindingUnitTests
 
             foreach (TestDataStructure td in mockData)
             {
-                CAPI c = new CAPI(td.inpFilename);
-
                 Dictionary<object, object> tdInputData = null;
                 if (td.inpFilename != null)
                 {
                     string tdInput = cmd.getFileData(td.inpFilename);
-                    tdInputData = new JavaScriptSerializer().Deserialize<Dictionary<object, object>>(tdInput);
+                    if (tdInput != null)
+                    {
+                        tdInputData = new JavaScriptSerializer().Deserialize<Dictionary<object, object>>(tdInput);
+                    }
                 }
                 
                 Dictionary<string, object> result = new Dictionary<string,object>();
@@ -188,8 +226,8 @@ namespace CBindingUnitTests
                 string tdOutput = cmd.getFileData(td.outputDataFilename);
                 fakeResponse.Content = new StringContent(tdOutput);
                 var fakeHandler = new FakeHttpMessageHandler(fakeResponse, td.inpFilename);
-                var httpClient = new HttpClient(fakeHandler);
-                c.Client = httpClient;
+                HttpClient httpClient = new HttpClient(fakeHandler);
+                CAPI c = new CAPI(td.inpFilename, null, null, 3, httpClient);
 
                 string morphofeature = null; 
                 if (td.endpoint.IndexOf("morphology") != -1)
