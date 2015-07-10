@@ -16,6 +16,9 @@
             <source>CHANGES.txt</source>
         </file>
         <file>
+            <source>LICENSE.txt</source>
+        </file>
+        <file>
             <source>pom.xml</source>
         </file>
         <file>

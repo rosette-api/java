@@ -147,7 +147,7 @@
                 <filtering>true</filtering>
             </testResource>
             <testResource>
-                <directory>../../mock-data</directory>
+                <directory>src/test/resources</directory>
                 <includes>
                     <include>**/*.json</include>
                     <include>**/*.status</include>

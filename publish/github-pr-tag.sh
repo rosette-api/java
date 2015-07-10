@@ -30,5 +30,7 @@ sha=$(echo "$merge_resp" | jq .sha | sed 's/"//g')
 [[ ${#sha} != 40 ]] && echo "failed to merge pull request" && exit 1
 
 
-# create a ref tag
-curl -u $username:$password https://api.github.com/repos/$owner/$repo/git/refs -d"{\"ref\": \"refs/tags/$branch\",\"sha\": \"$sha\"}"
+# create a ref tag, java will be handled by mvn release plugin
+if [ "$binding" != "java" ] ; then
+    curl -u $username:$password https://api.github.com/repos/$owner/$repo/git/refs -d"{\"ref\": \"refs/tags/$branch\",\"sha\": \"$sha\"}"
+fi

@@ -21,7 +21,7 @@ contains the newly merged pull request, if not checkout that hasg/tag.
 This ensures the right files getting published to external github and
 installation repos.
 
-You **must** do a `mvn clean install site` in the top level directory.
+You **must** do a `mvn clean install; (cd java; mvn site)` in the top level directory.
 
 
 Step 1: publish the code
@@ -66,15 +66,23 @@ Step 3: publish api doc to gh-pages
 -----------------------------------
 
 ```
-./publish-doc.sh [java|js|php|python|ruby|...] [BRANCH_NAME]
+./publish-doc.sh [js|php|python|ruby|...] [BRANCH_NAME]
 ```
 
 `BRANCH_NAME` should be the same as what you specified in Step 1.
 
 Again, you will need to specify the binding. The script will go into
 the binding's `target/html` folder and grab files from there to push
-to `gh-pages` branch in the github.com repo. The resulting doc site will
-be externally visible at http://rosette-api.github.io/<binding>.
+to `gh-pages` branch in the github.com repo.
+
+Note: Java binding uses maven so release plugin needs to run first (see 
+Step 4 below) so that there's no SNAPSHOT in version string. After that:
+
+```
+./publish-java-doc.sh [git_tag/release_version, eg 0.5.0]
+```
+
+Resulting doc site will be externally visible at http://rosette-api.github.io/<binding>.
 
 
 Step 4: publish installable to language-specific repos
@@ -83,11 +91,14 @@ Unless you have credentials to the repository where you want to
 publish your page, you should ask for them first.
 
 - Python/[PyPI](https://pypi.python.org)
+
   `(cd python; python setup.py sdist upload)`
 
 - Java/[Maven Central](http://search.maven.org)
-  
+
+  `git clone git@github.com:rosette-api/java.git`
+  `cd java; mvn release:prepare; mvn release:perform`
 
 - PHP/[Packagist](https://packagist.org)
-  Nothing needs to be done after Step2, packagist will poll github changes
-  automatically.
+
+  Nothing needs to be done here, packagist will poll github changes automatically.
