@@ -108,6 +108,8 @@ class Api
     }
 
     /**
+     * Sets the response code.
+     * 
      * @param mixed $response_code
      */
     public function setResponseCode($response_code)
