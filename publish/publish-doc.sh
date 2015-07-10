@@ -27,4 +27,4 @@ mkdir -p "$tmp"
 (cd "$tmp"; git clone $repo)
 (cd "$clone"; git checkout -B $branch; git rm -rf .!(git|.))
 tar -cf - $binding/target/html | tar xf - -C "$clone" --strip-components 3
-(cd "$clone"; git add .; git commit -m "publish $binding apidocs $version"; git push)
+(cd "$clone"; git add .; git commit -m "publish $binding apidocs $version"; git push -f)
