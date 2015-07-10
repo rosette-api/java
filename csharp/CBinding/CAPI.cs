@@ -23,8 +23,6 @@ namespace CBinding
     /// See the License for the specific language governing permissions and limitations under the License.
     /// </para>
     /// </summary>
-
-
     public class CAPI
     {
         /// <summary>
@@ -42,7 +40,6 @@ namespace CBinding
         /// Internal check to see if the version matches. Defaults to false and set during initialization.
         /// </summary>
         private bool version_checked;
-        
 
         /// <summary>C# API class
         /// <para>Rosette Python Client Binding API; representation of a Rosette server.
