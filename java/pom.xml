@@ -9,12 +9,27 @@
         <version>0.0.5</version>
         <relativePath></relativePath>
     </parent>
+    <prerequisites>
+        <maven>3.0.4</maven>
+    </prerequisites>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-parent</artifactId>
     <name>rosette-api-parent</name>
     <version>0.5.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>Parent project for Rosette API</description>
+    <inceptionYear>2015</inceptionYear>
+    <url>https://developer.rosette.com</url>
+    <scm>
+        <connection>scm:git:git@github.com:rosette-api/java.git</connection>
+        <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
+    </scm>
+    <distributionManagement>
+        <site>
+            <id>site</id>
+            <url>scm:git:git@github.com:rosette-api/java.git</url>
+        </site>
+    </distributionManagement>
 
     <properties>
         <jackson-version>2.5.4</jackson-version>
