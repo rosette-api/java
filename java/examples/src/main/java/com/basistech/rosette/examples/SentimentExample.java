@@ -3,8 +3,10 @@ package com.basistech.rosette.examples;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.apimodel.SentimentResponse;
@@ -31,7 +33,9 @@ public final class SentimentExample extends ExampleBase {
 
     private static File createTempDataFile(String data) throws IOException {
         File file = File.createTempFile("rosette-", "-api");
-        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(file), StandardCharsets.UTF_8
+        ));
         bw.write(data);
         bw.close();
         return file;

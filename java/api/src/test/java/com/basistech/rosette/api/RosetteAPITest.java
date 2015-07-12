@@ -145,7 +145,7 @@ public class RosetteAPITest extends Assert {
             }
 
             String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
-            api = new RosetteAPI();
+            api = new RosetteAPI("my-key-123");
             api.setUrlBase(mockServiceUrl);
         }
     }
