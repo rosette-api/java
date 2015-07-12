@@ -102,3 +102,17 @@ publish your page, you should ask for them first.
 - PHP/[Packagist](https://packagist.org)
 
   Nothing needs to be done here, packagist will poll github changes automatically.
+
+
+Step 5: update features and functions slate source with new example code
+------------------------------------------------------------------------
+
+- `git clone git@git.basistech.net:raas/docs.git raasdocs`, if not previously cloned
+- `(cd raasdocs; git checkout -b [BRANCH_NAME])`
+- run `./publish/interpolate-slate.py <raasdocs>/slate/source/index.md`
+- `(cd raasdocs/slate; bundle exec middleman build)` # you may need to install some tools, see README.md there
+- test by loading `raasdocs/slate/build/index.html` in a browser
+- `(cd raasdocs; git commit -a)`
+- go to internal git site and create a pull request for James to merge
+- James should review/try/merge and publish final file to 3scale portal
+
