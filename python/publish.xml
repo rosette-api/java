@@ -7,24 +7,31 @@
   <includeBaseDirectory>false</includeBaseDirectory>
   <files>
     <file>
+      <source>.gitignore</source>
+    </file>
+    <file>
       <source>README.txt</source>
-      <lineEnding>unix</lineEnding>
     </file>
     <file>
       <source>CHANGES.txt</source>
-      <lineEnding>unix</lineEnding>
+    </file>
+    <file>
+      <source>LICENSE.txt</source>
+    </file>
+    <file>
+      <source>MANIFEST.in</source>
     </file>
     <file>
       <source>setup.py</source>
-      <lineEnding>unix</lineEnding>
     </file>
     <file>
       <source>tox.ini</source>
-      <lineEnding>unix</lineEnding>
     </file>
     <file>
       <source>pytest.ini</source>
-      <lineEnding>unix</lineEnding>
+    </file>
+    <file>
+      <source>epydoc.css</source>
     </file>
   </files>
   <fileSets>
@@ -32,7 +39,6 @@
       <directory>rosette</directory>
       <outputDirectory>rosette</outputDirectory>
       <excludes>
-        <exclude>DEV-README.md</exclude>
         <exclude>**/*.pyc</exclude>
         <exclude>**/__pycache__</exclude>
       </excludes>

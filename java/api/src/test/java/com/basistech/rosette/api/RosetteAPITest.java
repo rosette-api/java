@@ -90,7 +90,7 @@ public class RosetteAPITest extends Assert {
             String s = getStringFromInputStream(is);
             serverPort = Integer.parseInt(s);
         }
-        URL url = RosetteAPITest.class.getClassLoader().getResource("response");
+        URL url = RosetteAPITest.class.getClassLoader().getResource("mock-data/response");
         File dir = new File(url.toURI());
         Collection<Object[]> params = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
@@ -117,8 +117,10 @@ public class RosetteAPITest extends Assert {
         }
 
         String statusFilename = testFilename.replace(".json", ".status");
-        try (InputStream bodyStream = getClass().getClassLoader().getResourceAsStream("response/" + testFilename);
-             InputStream statusStream = getClass().getClassLoader().getResourceAsStream("response/" + statusFilename)) {
+        try (InputStream bodyStream = getClass().getClassLoader().getResourceAsStream(
+                     "mock-data/response/" + testFilename);
+             InputStream statusStream = getClass().getClassLoader().getResourceAsStream(
+                     "mock-data/response/" + statusFilename)) {
             responseStr = getStringFromInputStream(bodyStream);
             int statusCode = 200;
             if (statusStream != null) {
@@ -143,7 +145,7 @@ public class RosetteAPITest extends Assert {
             }
 
             String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
-            api = new RosetteAPI();
+            api = new RosetteAPI("my-key-123");
             api.setUrlBase(mockServiceUrl);
         }
     }
@@ -168,7 +170,7 @@ public class RosetteAPITest extends Assert {
     }
 
     private NameMatchingRequest readValueNameMatcher() throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("request/" + testFilename);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("mock-data/request/" + testFilename);
         return mapper.readValue(inputStream, NameMatchingRequest.class);
     }
 
@@ -192,7 +194,7 @@ public class RosetteAPITest extends Assert {
     }
 
     private NameTranslationRequest readValueNameTranslation() throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("request/" + testFilename);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("mock-data/request/" + testFilename);
         return mapper.readValue(inputStream, NameTranslationRequest.class);
     }
 
@@ -251,7 +253,8 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(MorphologyRequest.class);
         try {
-            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, request.getContent(), null, null);
+            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE,
+                    request.getContent(), null, null);
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -270,7 +273,8 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(MorphologyRequest.class);
         try {
-            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, new URL(request.getContentUri()), null, null);
+            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE,
+                    new URL(request.getContentUri()), null, null);
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -284,7 +288,8 @@ public class RosetteAPITest extends Assert {
         }
         Request request = readValue(MorphologyRequest.class);
         try {
-            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, request.getContent(), null, InputUnit.sentence, null);
+            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE,
+                    request.getContent(), null, InputUnit.sentence, null);
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -481,7 +486,7 @@ public class RosetteAPITest extends Assert {
     }
 
     private <T extends Request> T readValue(Class<T> clazz) throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("request/" + testFilename);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("mock-data/request/" + testFilename);
         return mapper.readValue(inputStream, clazz);
     }
 

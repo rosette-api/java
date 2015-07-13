@@ -10,10 +10,13 @@
             <source>.gitignore</source>
         </file>
         <file>
-            <source>README.txt</source>
+            <source>README.md</source>
         </file>
         <file>
             <source>CHANGES.txt</source>
+        </file>
+        <file>
+            <source>LICENSE.txt</source>
         </file>
         <file>
             <source>pom.xml</source>

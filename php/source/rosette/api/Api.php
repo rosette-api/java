@@ -98,6 +98,8 @@ class Api
     private $response_code;
 
     /**
+     * Returns response code.
+     *
      * @return mixed
      */
     public function getResponseCode()
@@ -106,6 +108,8 @@ class Api
     }
 
     /**
+     * Sets the response code.
+     *
      * @param mixed $response_code
      */
     public function setResponseCode($response_code)
