@@ -1,28 +1,28 @@
 "use strict";
 
-var rosApi = require("../lib/rosette_api.js");
+var rosApi = require("../lib/rosette_api");
 
 /*
   ======== A Handy Little Nodeunit Reference ========
   https://github.com/caolan/nodeunit
 
   Test methods:
-    test.expect(numAssertions)
-    test.done()
+    tests.expect(numAssertions)
+    tests.done()
   Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])           <---
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])            <---
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
+    tests.ok(value, [message])
+    tests.equal(actual, expected, [message])           <---
+    tests.notEqual(actual, expected, [message])
+    tests.deepEqual(actual, expected, [message])
+    tests.notDeepEqual(actual, expected, [message])
+    tests.strictEqual(actual, expected, [message])
+    tests.notStrictEqual(actual, expected, [message])
+    tests.throws(block, [error], [message])            <---
+    tests.doesNotThrow(block, [error], [message])
+    tests.ifError(value)
 */
 
-// Just an example test
+// Just an example tests
 exports.awesome = {
   setUp: function(done) {
     // setup here
@@ -38,7 +38,7 @@ exports.awesome = {
 
 
 /**
- * Simple ping test example.
+ * Simple ping tests example.
  * @param {string} foo - Not a real param but testing JSDoc.
  **/
 exports.ping = {
