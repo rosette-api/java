@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 #
 # This assumes that you have run a build and so the doc is sitting in java/target/site/apidocs
 #
@@ -20,7 +20,7 @@ tmp=$(mktemp -d $opt)
 
 shopt -s extglob
 (cd "$tmp"; git clone $repo)
-(cd "$tmp"; git checkout -B $branch; git rm -rf .!(git|.))
-tar -cf - java/target/site/apidocs | tar xf - -C "$tmp" --strip-components 4
-(cd "$clone"; git add .; git commit -m "publish java apidocs $version"; git push)
+(cd "$tmp/java"; git checkout -B $branch; git rm -rf .!(git|.))
+tar -cf - java/target/site/apidocs | tar xf - -C "$tmp/java" --strip-components 4
+(cd "$tmp/java"; git add .; git commit -m "publish java apidocs $version"; git push -f)
 rm -rf "$tmp"
