@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 #
 # This assumes that you have run a build and so the doc is sitting in java/target/site/apidocs
 #
