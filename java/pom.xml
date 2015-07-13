@@ -13,7 +13,7 @@
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-parent</artifactId>
     <name>rosette-api-parent</name>
-    <version>0.5.0</version>
+    <version>0.5.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>Parent project for Rosette API</description>
     <inceptionYear>2015</inceptionYear>
@@ -21,8 +21,8 @@
     <scm>
         <connection>scm:git:git@github.com:rosette-api/java.git</connection>
         <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
-      <tag>rosette-api-parent-0.5.0</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
     <distributionManagement>
         <site>
             <id>site</id>
