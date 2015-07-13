@@ -10,6 +10,8 @@ exports.awesome = function() {
 };
 
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var rosetteConstants = require("./rosetteConstants.js");
+var RosetteException = require("./RosetteException");
 
 /**
  * Simple ping.
@@ -23,6 +25,7 @@ exports.ping = function ping() {
   oReq.send();
   return JSON.parse(oReq.responseText);
 };
+
 
 //exports.ping();
 
@@ -45,7 +48,7 @@ var N_RETRIES = 3;
  * @param {string} op - operation
  * @param {string} url - target URL
  * @param {JSON} headers - header data
- * @param [data] - submission data
+ * @param {JSON} [data] - submission data
  */
 function retryingRequest(op, url, headers, data) {
   for (var i = 0; i < N_RETRIES; i++) {
@@ -58,9 +61,7 @@ function retryingRequest(op, url, headers, data) {
     if (!data) {
       xhr.send();
     } else {
-      //xhr.send(data);
-      console.log("here");
-      xhr.send(JSON.parse(data));
+      xhr.send(JSON.stringify(data));
     }
     var rdata = JSON.parse(xhr.responseText);
     var status = xhr.status;
@@ -73,22 +74,31 @@ function retryingRequest(op, url, headers, data) {
   if (rdata != null) {
     try {
       if ("message" in rdata) {
-        message = rdata["message"];
+        message = rdata.message;
       }
       if ("code" in rdata) {
-        code = rdata["code"];
+        code = rdata.code;
       }
     } catch (e) {
       console.log(e);
     }
   } else {
-    message = "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts";
-    throw RosetteException(code, message, url);
+    message = "A retryable network operation has not succeeded after " + N_RETRIES + " attempts";
+    throw new RosetteException(code, message, url);
   }
 }
 
-var data = JSON.stringify({"content": "Many children aren't signed up for the KidCare program because parents don't know it exists."});
-console.log(data);
-console.log(retryingRequest("POST", "https://api.rosette.com/rest/v1/categories",
-    {"user_key": "7eb3562318e5242b5a89ad80011f1e22"}, data));
+function getHttp(url, headers) {
+  return retryingRequest("GET", url, headers);
+}
 
+function postHttp(url, headers, data) {
+  return retryingRequest("POST", url, headers, data);
+}
+
+var data = {"content": "Many children aren't signed up for the KidCare program because parents don't know it exists."};
+var myKey = "7eb3562318e5242b5a89ad80011f1e22";
+
+console.log(getHttp("https://api.rosette.com/rest/v1/ping", {"user_key": myKey}));
+console.log(postHttp("https://api.rosette.com/rest/v1/categories", {"user_key": myKey}, data));
+console.log(getHttp("https://api.rosette.com/rest/v1/categories/info", {"user_key": myKey}));
