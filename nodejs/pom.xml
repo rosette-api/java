@@ -15,7 +15,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
                 <executions>
                     <execution>
                         <id>exec-npm-install</id>
@@ -41,8 +40,24 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.4</version>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <executable>grunt</executable>
+                    <finalName>github</finalName>
+                    <descriptors>
+                        <descriptor>publish.xml</descriptor>
+                    </descriptors>
                 </configuration>
             </plugin>
         </plugins>

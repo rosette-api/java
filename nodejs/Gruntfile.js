@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         src: ["lib/**/*.js"]
       },
       test: {
-        src: ["test/**/*.js"]
+        src: ["tests/**/*.js"]
       },
       options: {
         configFile: "conf/eslint.json"
@@ -23,15 +23,15 @@ module.exports = function(grunt) {
     },
     jsdoc: {
       dist: {
-        src: ["lib/*.js", "test/*.js"],
+        src: ["lib/*.js", "tests/*.js"],
         options: {
-          destination: "doc"
+          destination: "target/html"
         }
       }
     },
     watch: {
       gruntfile: {
-        files: "<%= eslint.gruntfile.src %>",
+        files: "<%= eslint.gruntfile.lib %>",
         tasks: ["jshint:gruntfile"]
       },
       lib: {
