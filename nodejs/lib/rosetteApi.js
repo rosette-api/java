@@ -1,6 +1,16 @@
 /**
- * Add copyright block here
- */
+ * Rosette API.
+ *
+ * @copyright 2014-2015 Basis Technology Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
+ * with the License. You may obtain a copy of the License at
+ * @license http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is
+ * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ **/
 
 "use strict";
 
@@ -12,6 +22,8 @@ exports.awesome = function() {
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var rosetteConstants = require("./rosetteConstants.js");
 var RosetteException = require("./RosetteException");
+var DocumentParamSetBase = require("./DocumentParamSetBase");
+var DocumentParameters = require("./DocumentParameters");
 
 /**
  * Simple ping.
@@ -96,9 +108,15 @@ function postHttp(url, headers, data) {
   return retryingRequest("POST", url, headers, data);
 }
 
-var data = {"content": "Many children aren't signed up for the KidCare program because parents don't know it exists."};
-var myKey = "7eb3562318e5242b5a89ad80011f1e22";
+var docParam = new DocumentParameters(["language", "unit"]);
+console.log(docParam.params);
+docParam.setItem("language", "eng");
+console.log(docParam.params);
+console.log(docParam.getItem("language"));
 
-console.log(getHttp("https://api.rosette.com/rest/v1/ping", {"user_key": myKey}));
-console.log(postHttp("https://api.rosette.com/rest/v1/categories", {"user_key": myKey}, data));
-console.log(getHttp("https://api.rosette.com/rest/v1/categories/info", {"user_key": myKey}));
+//var data = {"content": "Many children aren't signed up for the KidCare program because parents don't know it exists."};
+//var myKey = "7eb3562318e5242b5a89ad80011f1e22";
+//
+//console.log(getHttp("https://api.rosette.com/rest/v1/ping", {"user_key": myKey}));
+//console.log(postHttp("https://api.rosette.com/rest/v1/categories", {"user_key": myKey}, data));
+//console.log(getHttp("https://api.rosette.com/rest/v1/categories/info", {"user_key": myKey}));
