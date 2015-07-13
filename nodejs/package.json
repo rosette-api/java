@@ -1,7 +1,7 @@
 {
   "name": "rosette_api",
   "description": "Rosette API Node.JS client SDK",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "homepage": "https://developer.rosette.com",
   "author": {
     "name": "Basis Technology Corp.",
@@ -9,15 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://git.basistech.net/raas/ws-client-bindings.git"
+    "url": "git://github.com/rosette-api/nodejs.git"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/rosette-api/nodejs/issues"
   },
   "licenses": [
     {
-      "type": "Apache License",
-      "url": "/blob/master/LICENSE-MIT"
+      "type": "Apache License"
     }
   ],
   "main": "lib/rosette_api",

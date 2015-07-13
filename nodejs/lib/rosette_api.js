@@ -4,7 +4,7 @@
 
 "use strict";
 
-// For example test - delete later
+// For example tests - delete later
 exports.awesome = function() {
   return "awesome";
 };
