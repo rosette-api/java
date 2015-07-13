@@ -9,6 +9,7 @@ you need to do that now. IT or Seth can help you join the basis team.
 Both your internal git and github.com accounts **must be** configured
 with ssh access.
 
+You will also need to install [jq](http://stedolan.github.io/jq/).
 
 Step 0: prepare the source
 --------------------------
