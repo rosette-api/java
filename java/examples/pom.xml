@@ -16,6 +16,7 @@
         <assembly.skipAssembly>true</assembly.skipAssembly>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <maven.deploy.skip>true</maven.deploy.skip>
+        <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
     </properties>
     <dependencies>
         <dependency>
