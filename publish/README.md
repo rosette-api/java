@@ -28,7 +28,7 @@ Step 1: publish the code
 ------------------------
 
 ```
-./publish-api.sh [java|js|php|python|ruby|...] [NEW_BRANCH_NAME, eg 0.5.1]
+./publish/publish-api.sh [java|js|php|python|ruby|...] [NEW_BRANCH_NAME, eg 0.5.1]
 ```
 
 We are only going to publish one binding at a time, so you will need
@@ -49,7 +49,7 @@ Step 2: pull request, merge, tag
 --------------------------------
 
 ```
-./github-pr-tag.sh [java|js|php|python|ruby|...] [BRANCH_NAME] [github.com_USERNAME]
+./publish/github-pr-tag.sh [java|js|php|python|ruby|...] [BRANCH_NAME] [github.com_USERNAME]
 ```
 
 `BRANCH_NAME` should be the same as what you specified in Step 1.
@@ -66,7 +66,7 @@ Step 3: publish api doc to gh-pages
 -----------------------------------
 
 ```
-./publish-doc.sh [js|php|python|ruby|...] [BRANCH_NAME]
+./publish/publish-doc.sh [js|php|python|ruby|...] [BRANCH_NAME]
 ```
 
 `BRANCH_NAME` should be the same as what you specified in Step 1.
@@ -79,7 +79,7 @@ Note: Java binding uses maven so release plugin needs to run first (see
 Step 4 below) so that there's no SNAPSHOT in version string. After that:
 
 ```
-./publish-java-doc.sh [git_tag/release_version, eg 0.5.0]
+./publish/publish-java-doc.sh [git_tag/release_version, eg 0.5.0]
 ```
 
 Resulting doc site will be externally visible at http://rosette-api.github.io/<binding>.
