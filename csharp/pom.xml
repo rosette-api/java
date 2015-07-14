@@ -53,39 +53,6 @@
 				  </execution>
 				</executions>
 			</plugin>
-			<plugin>
-                <artifactId>nugetPackage</artifactId>
-				<configuration>
-				  <executable>nuget</executable>
-				</configuration>
-                <executions>
-                    <execution>
-					<id>create-spec</id>
-					<phase>spec</phase>
-					<goals>
-					  <goal>spec</goal>
-					</goals>
-					<configuration>
-					  <arguments>
-						<argument>spec</argument>
-					  </arguments>
-					</configuration>
-				  </execution>
-				  <execution>
-					<id>create-package</id>
-					<phase>package</phase>
-					<goals>
-					  <goal>package</goal>
-					</goals>
-					<configuration>
-					  <arguments>
-						<argument>pack</argument>
-						<argument>CBinding.csproj</argument>
-					  </arguments>
-					</configuration>
-				  </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.5.4</version>
