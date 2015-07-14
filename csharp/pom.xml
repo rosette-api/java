@@ -33,7 +33,6 @@
 					</goals>
 					<configuration>
 					  <arguments>
-						<argument>CBinding.sln</argument>
 						<argument>/t:Clean</argument>
 						<argument>/p:Configuration=${msbuild.configuration}</argument>
 					  </arguments>
@@ -47,7 +46,6 @@
 					</goals>
 					<configuration>
 					  <arguments>
-						<argument>CBinding.sln</argument>
 						<argument>/t:Rebuild</argument>
 						<argument>/p:Configuration=${msbuild.configuration}</argument>
 					  </arguments>
