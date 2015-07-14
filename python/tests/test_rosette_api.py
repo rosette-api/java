@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-# To run tests, run `py.test mocked_test_api.py`
+# To run tests, run `py.test test_rosette_api.py`
 
 import glob
 import httpretty
