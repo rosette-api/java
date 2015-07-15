@@ -1,1 +1,0 @@
-This is the PHP binding for Basis Technology's Rosette API.

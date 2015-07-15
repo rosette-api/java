@@ -18,7 +18,7 @@ package com.basistech.rosette.apimodel.jackson;
 
 import java.util.List;
 
-import com.basistech.rosette.apimodel.Decompounding;
+import com.basistech.rosette.apimodel.CompoundComponents;
 import com.basistech.rosette.apimodel.HanReadings;
 import com.basistech.rosette.apimodel.Lemma;
 import com.basistech.rosette.apimodel.PartOfSpeech;
@@ -31,7 +31,7 @@ public class MorphologyResponseMixin {
             @JsonProperty("requestId") String requestId,
             @JsonProperty("posTags") List<PartOfSpeech> posTags,
             @JsonProperty("lemmas") List<Lemma> lemmas,
-            @JsonProperty("compounds") List<Decompounding> compounds,
+            @JsonProperty("compounds") List<CompoundComponents> compounds,
             @JsonProperty("han-readings") List<HanReadings> hanReadings
     ) {
         //

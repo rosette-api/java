@@ -33,8 +33,9 @@ import org.junit.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
-import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 
 import static org.junit.Assert.assertEquals;
 
@@ -48,7 +49,8 @@ public class ModelTest {
     }
 
     @Test
-    public void packageTest() throws ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException {
+    public void packageTest() throws ClassNotFoundException, IllegalAccessException, InvocationTargetException,
+            InstantiationException, IOException {
         Reflections reflections = new Reflections(this.getClass().getPackage().getName(), new SubTypesScanner(false));
 
         Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf(Object.class);
@@ -75,18 +77,19 @@ public class ModelTest {
             Object o1;
             if (Modifier.isPublic(ctor.getModifiers())) {
                 System.out.println(className);
-                o1 = createObject(c, ctor);
+                o1 = createObject(ctor);
                 // serialize
                 byte[] bytes = mapper.writeValueAsBytes(o1);
                 // deserialize
-                Object o2 = mapper.readValue(bytes, (Class) clazz);
+                Object o2 = mapper.readValue(bytes, (Class<? extends Object>) clazz);
                 // verify
                 assertEquals(o1, o2);
             }
         }
     }
 
-    private Object createObject(Class c, Constructor ctor) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+    private Object createObject(Constructor ctor) throws IllegalAccessException, InvocationTargetException,
+            InstantiationException {
         Object o;
         int argSize = ctor.getParameterTypes().length;
         Class[] parameterTypes = ctor.getParameterTypes();
@@ -98,7 +101,8 @@ public class ModelTest {
         return o;
     }
 
-    private Object createObjectForType(Class type, Type genericParameterType) throws IllegalAccessException, InstantiationException, InvocationTargetException {
+    private Object createObjectForType(Class type, Type genericParameterType) throws IllegalAccessException,
+            InstantiationException, InvocationTargetException {
         Object o = null;
         Class firstComponentType = type.isArray() ? type.getComponentType() : type;
         String typeName = firstComponentType.getSimpleName();
@@ -188,16 +192,17 @@ public class ModelTest {
             default:
                 if (parameterArgClass != null) {
                     Constructor[] ctors = parameterArgClass.getDeclaredConstructors();
-                    o = createObject(parameterArgClass, ctors[0]);
+                    o = createObject(ctors[0]);
                 } else {
                     Constructor[] ctors = firstComponentType.getDeclaredConstructors();
-                    o = createObject(firstComponentType, ctors[0]);
+                    o = createObject(ctors[0]);
                 }
         }
         return o;
     }
 
-    private Object createObject(Class clazz) throws IllegalAccessException, InstantiationException, InvocationTargetException {
+    private Object createObject(Class clazz) throws IllegalAccessException, InstantiationException,
+            InvocationTargetException {
         Constructor<?>[] ctors = clazz.newInstance().getClass().getDeclaredConstructors();
         Object o = null;
         for (Constructor ctor : ctors) {

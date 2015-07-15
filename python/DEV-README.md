@@ -45,41 +45,6 @@ Then
 The rosette package should appear in further uses of whichever python you put
 this in.
 
-5. Copying to the Open Source rosette-api repository on github.com
-==============================================
-
-## Make a release branch
-
-Use the gitflow release branch convention.
-
-## Set the version in  `rosette/__init__.py` 
-
-Make sure that `rosette/__init__.py` has the version you want to
-publish, and it has to be > than the latest one exists in pypi or
-upload to pypi will fail.
-
-## Make a tag
-
-## Push the content to a branch in the rosette-api repo on github.com
-
-    (cd ..; sh scripts/publish-api.sh python new-branch-name)
-    
-And then you likely want to make a pull request on github for your
-version.
-
-## Publishing docs to github.com
-
-    (cd ..; sh scripts/publish-doc.sh python)
-
-## Merge and tag in the public repo
-
-## Push to the public package repo
-
-Contact lxu for pypi credentials.
-
-    python setup.py register   # only needed for the very first time
-    python setup.py sdist upload
-
 To clean up
 ============
 Run `mvn clean` in this directory.  Temporary output including the epydoc will

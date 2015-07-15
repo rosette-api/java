@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 
 /**
- * Simple API response data model returned by LinguisticsRequest
+ * Simple API response data model returned by MorphologyRequest
  *
  * See {@code LinguisticRequest} and {@code MorphologicalFeature} for details.
  */
@@ -27,7 +27,7 @@ public final class MorphologyResponse extends Response {
 
     private final List<PartOfSpeech> posTags;
     private final List<Lemma> lemmas;
-    private final List<Decompounding> compounds;
+    private final List<CompoundComponents> compounds;
     private final List<HanReadings> hanReadings;
     
     /**
@@ -42,7 +42,7 @@ public final class MorphologyResponse extends Response {
             String requestId,
             List<PartOfSpeech> posTags,
             List<Lemma> lemmas,
-            List<Decompounding> compounds,
+            List<CompoundComponents> compounds,
             List<HanReadings> hanReadings) {
         super(requestId);
         this.posTags = posTags;
@@ -71,7 +71,7 @@ public final class MorphologyResponse extends Response {
      * get the list of compounds 
      * @return the list of compounds
      */
-    public List<Decompounding> getCompounds() {
+    public List<CompoundComponents> getCompounds() {
         return compounds;
     }
 

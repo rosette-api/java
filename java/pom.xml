@@ -1,55 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.basistech</groupId>
         <artifactId>open-source-parent</artifactId>
         <version>0.0.5</version>
+        <relativePath />
     </parent>
+    <prerequisites>
+        <maven>3.0.4</maven>
+    </prerequisites>
     <groupId>com.basistech.rosette</groupId>
-    <artifactId>java-api-parent</artifactId>
-    <version>0.5.0-SNAPSHOT</version>
+    <artifactId>rosette-api-parent</artifactId>
+    <name>rosette-api-parent</name>
+    <version>0.5.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <description>Parent project for Rosette API</description>
+    <inceptionYear>2015</inceptionYear>
+    <url>https://developer.rosette.com</url>
+    <scm>
+        <connection>scm:git:git@github.com:rosette-api/java.git</connection>
+        <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <distributionManagement>
+        <site>
+            <id>site</id>
+            <url>scm:git:git@github.com:rosette-api/java.git</url>
+        </site>
+    </distributionManagement>
 
     <properties>
-        <bt-jackson-version>2.5.3</bt-jackson-version>
+        <jackson-version>2.5.4</jackson-version>
         <junit-version>4.12</junit-version>
+        <assembly.skipAssembly>false</assembly.skipAssembly>
         <maven-shade-plugin-version>2.3</maven-shade-plugin-version>
-        <mockserver-netty-version>3.9.1</mockserver-netty-version>
+        <mockserver-version>3.9.17</mockserver-version>
     </properties>
-    <build>
-        <defaultGoal>install</defaultGoal>
-    </build>
     <modules>
         <module>api</module>
         <module>api-model</module>
         <module>json</module>
     </modules>
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>github</finalName>
+                    <encoding>UTF-8</encoding>
+                    <descriptors>
+                        <descriptor>publish.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                        <compilerArgs>
+                            <arg>-Xlint:unchecked</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
     <reporting>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <reportSets>
-                    <reportSet>
-                        <id>default</id>
-                        <reports>
-                            <report>javadoc</report>
-                        </reports>
-                    </reportSet>
-                    <reportSet>
-                        <id>aggregate</id>
-                        <configuration>
-                        </configuration>
-                        <reports>
-                            <report>aggregate</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
+                <version>2.9.1</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <excludePackageNames>com.basistech.rosette.examples</excludePackageNames>
+                </configuration>
             </plugin>
         </plugins>
     </reporting>
-
 </project>

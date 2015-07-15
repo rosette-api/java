@@ -17,16 +17,63 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>vendor</directory>
-                        </fileset>
-                        <fileset>
                             <directory>.</directory>
                             <includes>
                                 <include>composer.lock</include>
                             </includes>
                         </fileset>
+                        <fileset>
+                            <directory>vendor</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>tests/mock-data</directory>
+                        </fileset>
                     </filesets>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources-request</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/request</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/request</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-response</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/response</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/response</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                        <include>**/*.status</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -101,12 +148,6 @@
                         </goals>
                         <configuration>
                             <executable>${basedir}/vendor/bin/phpdoc</executable>
-                            <arguments>
-                                <argument>-d</argument>
-                                <argument>./source</argument>
-                                <argument>-t</argument>
-                                <argument>./target/html</argument>
-                            </arguments>
                         </configuration>
                     </execution>
                 </executions>

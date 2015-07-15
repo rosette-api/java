@@ -21,7 +21,7 @@ package com.basistech.rosette.apimodel;
  */
 public final class NameTranslationResponse extends Response {
 
-    private final TranslatedNameResult result;
+    private final NameTranslationResult result;
     
     /**
      * constructor for {@code NameTranslationResponse}
@@ -29,7 +29,7 @@ public final class NameTranslationResponse extends Response {
      * @param result name translation result
      */
     public NameTranslationResponse(String requestId,
-                                   TranslatedNameResult result) {
+                                   NameTranslationResult result) {
         super(requestId);
         this.result = result;
     }
@@ -38,7 +38,7 @@ public final class NameTranslationResponse extends Response {
      * get the name translation result
      * @return the name translation result
      */
-    public TranslatedNameResult getResult() {
+    public NameTranslationResult getResult() {
         return result;
     }
 

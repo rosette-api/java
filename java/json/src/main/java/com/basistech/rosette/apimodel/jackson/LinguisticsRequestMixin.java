@@ -18,7 +18,7 @@ package com.basistech.rosette.apimodel.jackson;
 
 import com.basistech.rosette.apimodel.InputUnit;
 import com.basistech.rosette.apimodel.LanguageCode;
-import com.basistech.rosette.apimodel.LinguisticsOptions;
+import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,7 +30,7 @@ public class LinguisticsRequestMixin {
             @JsonProperty("contentUri") String contentUri,
             @JsonProperty("contentType") String contentType,
             @JsonProperty("unit") InputUnit unit,
-            @JsonProperty("options") LinguisticsOptions options
+            @JsonProperty("options") MorphologyOptions options
     ) {
         //
     }
