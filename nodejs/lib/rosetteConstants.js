@@ -15,7 +15,7 @@
 "use strict";
 
 var dataFormat = {
-    "SIMPLE": "",
+    "SIMPLE": "text/plain",
     "JSON": "application/json",
     "HTML": "text/html",
     "XHTML": "application/xhtml+xml",

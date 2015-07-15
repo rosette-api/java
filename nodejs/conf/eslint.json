@@ -128,7 +128,7 @@
     "curly": [2, "all"],
     "default-case": 0,
     "dot-location": 0,
-    "dot-notation": [2, { "allowKeywords": true }],
+    "dot-notation": [1, { "allowKeywords": true }],
     "eol-last": 2,
     "eqeqeq": 2,
     "func-names": 0,

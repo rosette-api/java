@@ -31,6 +31,8 @@
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-eslint": "^16.0.0",
+    "grunt-istanbul": "^0.6.1",
+    "grunt-istanbul-coverage": "^0.1.1",
     "grunt-jsdoc": "^0.6.7",
     "xmlhttprequest": "^1.7.0"
   },

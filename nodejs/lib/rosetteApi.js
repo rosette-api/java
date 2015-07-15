@@ -24,6 +24,8 @@ var rosetteConstants = require("./rosetteConstants.js");
 var RosetteException = require("./RosetteException");
 var DocumentParamSetBase = require("./DocumentParamSetBase");
 var DocumentParameters = require("./DocumentParameters");
+var NameTranslationParameters = require("./NameTranslationParameters");
+var NameMatchingParameters = require("./NameMatchingParameters");
 
 /**
  * Simple ping.
@@ -78,7 +80,7 @@ function retryingRequest(op, url, headers, data) {
     var rdata = JSON.parse(xhr.responseText);
     var status = xhr.status;
     if (status < 500) {
-      return [rdata, status];
+      return {json: rdata, statusCode: status};
     }
   }
   var message = null;
@@ -108,13 +110,115 @@ function postHttp(url, headers, data) {
   return retryingRequest("POST", url, headers, data);
 }
 
-var docParam = new DocumentParameters(["language", "unit"]);
-console.log(docParam.params);
-docParam.setItem("language", "eng");
-console.log(docParam.params);
-console.log(docParam.getItem("language"));
+// ----------------------------------------------- API Class --------------------------------------------
 
-//var data = {"content": "Many children aren't signed up for the KidCare program because parents don't know it exists."};
+function Api(userKey, serviceUrl) {
+  this.userKey = userKey;
+  if (serviceUrl) {
+    this.serviceUrl = serviceUrl;
+  }
+  else {
+    this.serviceUrl = "https://api.rosette.com/rest/v1";
+  }
+  this.versionChecked = false; // Not sure what this is...
+  this.useMultiPart = false; //or this...
+}
+
+Api.prototype.checkVersion = function() {
+  if (this.versionChecked) {
+    return true;
+  }
+  // Fill in the rest after endpoint caller
+};
+
+Api.prototype.callEndpoint = function(parameters, subUrl) {
+  this.checkVersion();
+  this.subUrl = subUrl;
+  if (this.useMultiPart && parameters.contentType !== rosetteConstants.dataFormat.SIMPLE) {
+    throw new RosetteException("incompatible", "Multipart requires contentType SIMPLE", parameters.contentType);
+  }
+  var url = this.serviceUrl + "/" + subUrl;
+  //var headers = {};
+  var headers = {"Accept": "application/json"/*, "Accept-Encoding": "gzip"*/};
+  if (this.userKey) {
+    headers["user_key"] = this.userKey;
+  }
+  parameters.validate();
+  var r = postHttp(url, headers, parameters.params); // should be parameters serialized ???
+  return this.finishResult(r, "callEndpoint");
+};
+
+Api.prototype.finishResult = function(result, action) {
+  var code = result.statusCode;
+  var json = result.json;
+  if (code === 200) {
+    return json;
+  }
+  var msg = "";
+  var complaintUrl = "";
+  var serverCode = "";
+  if ("message" in json) {
+    msg = json.message;
+  }
+  else {
+    msg = json.code; // punt if can't get real message
+  }
+  if (!this.subUrl) {
+    complaintUrl = "Top level info";
+  }
+  else {
+    complaintUrl = action + " " + this.subUrl;
+  }
+  if ("code" in json) {
+    serverCode = json.code;
+  }
+  else {
+    serverCode = "unknownError";
+  }
+  throw new RosetteException(serverCode, complaintUrl + " : failed to communicate with Rosette", msg);
+};
+
+Api.prototype.info = function() {
+  console.log(this);
+  console.log(this.subUrl);
+  var url = "";
+  //if (this.subUrl) { // What's this about??? --- nonexistant in php and breaks this code
+  //  this.checkVersion();
+  //  url = this.serviceUrl + "/" + this.subUrl + "/info";
+  //}
+  //else
+  url = this.serviceUrl + "/info";
+  var headers = {"Accept": "application/json"};
+  if (this.userKey) {
+    headers["user_key"] = this.userKey;
+  }
+  console.log("url " + url);
+  return this.finishResult(getHttp(url, headers), "info");
+};
+
+Api.prototype.ping = function() {
+  var url = this.serviceUrl + "/ping";
+  var headers = {"Accept": "application/json"};
+  if (this.userKey) {
+    headers["user_key"] = this.userKey;
+  }
+  return this.finishResult(getHttp(url, headers), "ping");
+};
+
+var api = new Api("7eb3562318e5242b5a89ad80011f1e22", "https://api.rosette.com/rest/v1");
+var docParams = new DocumentParameters();
+docParams.params.content = "Many children aren't signed up for the KidCare program because parents don't know it exists.";
+docParams.params.contentType = rosetteConstants.dataFormat.SIMPLE;
+docParams.loadDocumentFile("/Users/rhausmann/git/ws-client-bindings/nodejs/lib/test.html", rosetteConstants.dataFormat.HTML);
+//console.log(docParams.params.contentType);
+var cat = api.callEndpoint(docParams, "sentiment");
+console.log(cat);
+//console.log(cat.sentiment);
+console.log(api.info());
+console.log(api.ping());
+
+//var data = {"content": "Many children aren't signed up for the KidCare program because parents don't know it exists.",
+//  "contentType": 'application/json'};
 //var myKey = "7eb3562318e5242b5a89ad80011f1e22";
 //
 //console.log(getHttp("https://api.rosette.com/rest/v1/ping", {"user_key": myKey}));

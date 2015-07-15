@@ -8,19 +8,21 @@
     <files>
         <file>
             <source>CHANGES.txt</source>
-            <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>LICENSE.txt</source>
-            <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>README.md</source>
-            <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>.gitignore</source>
-            <lineEnding>unix</lineEnding>
+        </file>
+        <file>
+            <source>Gruntfile.js</source>
+        </file>
+        <file>
+            <source>package.json</source>
         </file>
     </files>
     <fileSets>

@@ -24,3 +24,5 @@ DocumentParamSetBase.prototype.getItem = function(key) {
 };
 
 module.exports = DocumentParamSetBase;
+
+// ------------------------------------    No serialize method yet    ----------------------------------

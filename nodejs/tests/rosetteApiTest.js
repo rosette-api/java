@@ -14,7 +14,7 @@
 
 "use strict";
 
-var rosApi = require("../lib/rosetteApi.js");
+var rosApi = require("../instrumented/lib/rosetteApi.js");
 
 /*
   ======== A Handy Little Nodeunit Reference ========
