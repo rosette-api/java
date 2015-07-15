@@ -59,6 +59,8 @@ namespace CBinding
             {
                 System.Diagnostics.Debug.WriteLine("Error Code " + e.Code.ToString() + ": " + e.Message);
             }
+            Console.WriteLine("Press enter to close...");
+            Console.ReadLine();
         }
     }
 }

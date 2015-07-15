@@ -20,18 +20,15 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.1</version>
-				<configuration>
-				  <executable>msbuild</executable>
-				</configuration>
 				<executions>
 				  <execution>
 					<id>clean-with-msbuild</id>
-					<phase>clean</phase>
+					<phase>prepare-package</phase>
 					<goals>
 					  <goal>exec</goal>
 					</goals>
 					<configuration>
+					  <executable>msbuild</executable>
 					  <arguments>
 						<argument>/t:Clean</argument>
 						<argument>/p:Configuration=${msbuild.configuration}</argument>
@@ -39,21 +36,32 @@
 					</configuration>
 				  </execution>
 				  <execution>
-					<id>package-with-msbuild</id>
-					<phase>package</phase>
+					<id>Build-with-msbuild</id>
+					<phase>compile</phase>
 					<goals>
 					  <goal>exec</goal>
 					</goals>
 					<configuration>
+					  <executable>msbuild</executable>
 					  <arguments>
 						<argument>/t:Rebuild</argument>
 						<argument>/p:Configuration=${msbuild.configuration}</argument>
 					  </arguments>
 					</configuration>
 				  </execution>
+				  <execution>
+					<id>RunUnitTests</id>
+					<phase>test</phase>
+					<goals>
+					  <goal>exec</goal>
+					</goals>
+					<configuration>
+					  <executable>${basedir}/CBindingUnitTests/bin/Release/CBindingUnitTests.exe</executable>
+					</configuration>
+				  </execution>
 				</executions>
-			</plugin>
-            <plugin>
+			</plugin>		
+			<plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.5.4</version>
                 <executions>
@@ -71,7 +79,7 @@
                         <descriptor>publish.xml</descriptor>
                     </descriptors>
                 </configuration>
-            </plugin>
+            </plugin>			
         </plugins>
     </build>
 </project>

@@ -19,11 +19,16 @@ namespace CBindingUnitTests
     /// </summary>
     class CMockData
     {
-        private static string mockDir = "../../../../mock-data";
-        public static string requestDir = mockDir + "/request/";
-        public static string responseDir = mockDir + "/response/";
+        private static string mockDir = null;
+        public static string requestDir = null;
+        public static string responseDir = null;
         public CMockData()
         {
+            string baseDirectory = Directory.GetCurrentDirectory();
+            baseDirectory = baseDirectory.Remove(baseDirectory.IndexOf("ws-client-bindings") + 19);
+            mockDir = baseDirectory + "mock-data";
+            requestDir = mockDir + "\\request\\";
+            responseDir = mockDir + "\\response\\";
             RequestDir = requestDir;
             ResponseDir = responseDir;
         }
@@ -176,8 +181,8 @@ namespace CBindingUnitTests
             CMockData c = new CMockData();
             List<TestDataStructure> allData = new List<TestDataStructure>()
             {
-                {new TestDataStructure {inpFilename = null, outputStatusFilename = c.ResponseDir + "/info.status", outputDataFilename = c.ResponseDir + "/info.json", endpoint = "info"}},
-                {new TestDataStructure {inpFilename = null, outputStatusFilename = c.ResponseDir + "/ping.status", outputDataFilename = c.ResponseDir + "/ping.json", endpoint = "ping"}}
+                {new TestDataStructure {inpFilename = null, outputStatusFilename = c.ResponseDir + "info.status", outputDataFilename = c.ResponseDir + "info.json", endpoint = "info"}},
+                {new TestDataStructure {inpFilename = null, outputStatusFilename = c.ResponseDir + "ping.status", outputDataFilename = c.ResponseDir + "ping.json", endpoint = "ping"}}
             };
             List<string> cRequests = new List<string>();
             cRequests = c.getAllRequests();
@@ -207,6 +212,8 @@ namespace CBindingUnitTests
 
             foreach (TestDataStructure td in mockData)
             {
+                System.Diagnostics.Debug.WriteLine("Evaluating " + td.outputDataFilename);
+                Console.WriteLine("Evaluating " + td.outputDataFilename);
                 Dictionary<object, object> tdInputData = null;
                 if (td.inpFilename != null)
                 {
@@ -296,25 +303,89 @@ namespace CBindingUnitTests
                 if (result.Keys.Contains("file"))
                 {
                     Assert.AreEqual(result["code"], Convert.ToInt32(tdStatus));
+                    System.Diagnostics.Debug.WriteLine("Status matched");
+                    Console.WriteLine("Status matched");
                 }
                 else
                 {
+                    bool allResultsMatched = true;
                     foreach (string key in outputDict.Keys)
                     {
                         if (key != "requestId")
                         {
                             Assert.IsTrue(result.Keys.Contains(key));
+                            if (result.Keys.Contains(key))
+                            {
+                                System.Diagnostics.Debug.WriteLine("Key found");
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine("Key NOT found");
+                                allResultsMatched = false;
+                            }
                             if (result[key] is Object)
                             {
                                 Assert.AreEqual(new JavaScriptSerializer().Serialize(result[key]), new JavaScriptSerializer().Serialize(outputDict[key]));
+                                if (new JavaScriptSerializer().Serialize(result[key]) == new JavaScriptSerializer().Serialize(outputDict[key]))
+                                {
+                                    System.Diagnostics.Debug.WriteLine("Results Matched");
+                                }
+                                else
+                                {
+                                    System.Diagnostics.Debug.WriteLine("Results NOT Matched");
+                                    allResultsMatched = false;
+                                }
                             }
                             else
                             {
                                 Assert.AreEqual(outputDict[key], result[key]);
+                                if (outputDict[key] == result[key])
+                                {
+                                   System.Diagnostics.Debug.WriteLine("Results Matched");
+                                }
+                                else
+                                {
+                                    System.Diagnostics.Debug.WriteLine("Results NOT Matched");
+                                    allResultsMatched = false;
+                                }
                             }
-
                         }
                     }
+                    if (allResultsMatched)
+                    {
+                        Console.WriteLine("All results matched");
+                    }
+                    else
+                    {
+                        throw new Exception("An Error occurred during the test.");
+                    }
+                }
+
+            }
+        }
+
+        
+    }
+    static class CTestsMain
+    {
+        [STAThread]
+        static void Main()
+        {
+            bool success = true;
+            Console.WriteLine("Beginning Tests");
+            try{
+                new CBindingUnitTests().CAPITest();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Uncaught Exception: " + e.Message);
+                success = false;
+            }
+            finally
+            {
+                if (success)
+                {
+                    Console.WriteLine("Tests passed successfully");
                 }
             }
         }
