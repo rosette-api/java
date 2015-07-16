@@ -19,8 +19,6 @@
                     <filesets>
                         <fileset>
                             <directory>node_modules</directory>
-                            <directory>instrumented</directory>
-                            <directory>reports</directory>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
                     </filesets>

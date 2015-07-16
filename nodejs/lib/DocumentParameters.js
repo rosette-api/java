@@ -11,7 +11,7 @@ function DocumentParameters() {
   this.setItem("unit", rosetteConstants.inputUnit.DOC);
 }
 
-// inherit from Error
+// inherit from DocumentParamSetBase
 util.inherits(DocumentParameters, DocumentParamSetBase);
 
 DocumentParameters.prototype.loadDocumentString = function(s, dataType) {

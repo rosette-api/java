@@ -9,7 +9,7 @@ function NameTranslationParameters() {
     "sourceLanguageOfUse", "sourceScript", "targetScript", "targetScheme"]); //super constructor
 }
 
-// inherit from Error
+// inherit from DocumentParamSetBase
 util.inherits(NameTranslationParameters, DocumentParamSetBase);
 
 NameTranslationParameters.prototype.validate = function() {

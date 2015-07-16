@@ -14,41 +14,35 @@
 
 "use strict";
 
-// For example test - delete later
-exports.awesome = function() {
-  return "awesome";
-};
-
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var rosetteConstants = require("./rosetteConstants.js");
 var RosetteException = require("./RosetteException");
-var DocumentParamSetBase = require("./DocumentParamSetBase");
-var DocumentParameters = require("./DocumentParameters");
-var NameTranslationParameters = require("./NameTranslationParameters");
-var NameMatchingParameters = require("./NameMatchingParameters");
+//var DocumentParamSetBase = require("./DocumentParamSetBase");
+//var DocumentParameters = require("./DocumentParameters");
+//var NameTranslationParameters = require("./NameTranslationParameters");
+//var NameMatchingParameters = require("./NameMatchingParameters");
+//var Name = require("./Name");
 
 /**
  * Simple ping.
  * @param {string} foo - Not a real param but testing JSDoc.
  * @return A python dictionary including the ping message of the API
  **/
-exports.ping = function ping() {
-  var oReq = new XMLHttpRequest();
-  oReq.open("GET", "https://api.rosette.com/rest/v1/ping", false);
-  oReq.setRequestHeader("user_key", "7eb3562318e5242b5a89ad80011f1e22");
-  oReq.send();
-  return JSON.parse(oReq.responseText);
-};
 
+// ----------------------------------------------- API Class --------------------------------------------
 
-//exports.ping();
-
-
-///
-/// ----------------------------------------     REAL CODE BELOW     -------------------------------------------
-///
-
-var N_RETRIES = 3;
+function Api(userKey, serviceUrl) {
+  this.userKey = userKey;
+  if (serviceUrl) {
+    this.serviceUrl = serviceUrl;
+  }
+  else {
+    this.serviceUrl = "https://api.rosette.com/rest/v1";
+  }
+  this.versionChecked = false; // Not sure what this is...
+  this.useMultiPart = false; //or this...
+  this.nRetries = 3;
+}
 
 /**
  * function retryingRequest.
@@ -64,8 +58,8 @@ var N_RETRIES = 3;
  * @param {JSON} headers - header data
  * @param {JSON} [data] - submission data
  */
-function retryingRequest(op, url, headers, data) {
-  for (var i = 0; i < N_RETRIES; i++) {
+Api.prototype.retryingRequest = function(op, url, headers, data) {
+  for (var i = 0; i < this.nRetries; i++) {
     var xhr = new XMLHttpRequest();
     xhr.open(op, url, false);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -79,10 +73,12 @@ function retryingRequest(op, url, headers, data) {
     }
     var rdata = JSON.parse(xhr.responseText);
     var status = xhr.status;
+    xhr.abort();
     if (status < 500) {
       return {json: rdata, statusCode: status};
     }
   }
+
   var message = null;
   var code = "unknownError";
   if (rdata != null) {
@@ -97,32 +93,18 @@ function retryingRequest(op, url, headers, data) {
       console.log(e);
     }
   } else {
-    message = "A retryable network operation has not succeeded after " + N_RETRIES + " attempts";
+    message = "A retryable network operation has not succeeded after " + this.nRetries + " attempts";
     throw new RosetteException(code, message, url);
   }
-}
+};
 
-function getHttp(url, headers) {
-  return retryingRequest("GET", url, headers);
-}
+Api.prototype.getHttp = function(url, headers) {
+  return this.retryingRequest("GET", url, headers);
+};
 
-function postHttp(url, headers, data) {
-  return retryingRequest("POST", url, headers, data);
-}
-
-// ----------------------------------------------- API Class --------------------------------------------
-
-function Api(userKey, serviceUrl) {
-  this.userKey = userKey;
-  if (serviceUrl) {
-    this.serviceUrl = serviceUrl;
-  }
-  else {
-    this.serviceUrl = "https://api.rosette.com/rest/v1";
-  }
-  this.versionChecked = false; // Not sure what this is...
-  this.useMultiPart = false; //or this...
-}
+Api.prototype.postHttp = function(url, headers, data) {
+  return this.retryingRequest("POST", url, headers, data);
+};
 
 Api.prototype.checkVersion = function() {
   if (this.versionChecked) {
@@ -138,13 +120,12 @@ Api.prototype.callEndpoint = function(parameters, subUrl) {
     throw new RosetteException("incompatible", "Multipart requires contentType SIMPLE", parameters.contentType);
   }
   var url = this.serviceUrl + "/" + subUrl;
-  //var headers = {};
   var headers = {"Accept": "application/json"/*, "Accept-Encoding": "gzip"*/};
   if (this.userKey) {
     headers["user_key"] = this.userKey;
   }
   parameters.validate();
-  var r = postHttp(url, headers, parameters.params); // should be parameters serialized ???
+  var r = this.postHttp(url, headers, parameters.params); // should be parameters serialized ???
   return this.finishResult(r, "callEndpoint");
 };
 
@@ -179,21 +160,12 @@ Api.prototype.finishResult = function(result, action) {
 };
 
 Api.prototype.info = function() {
-  console.log(this);
-  console.log(this.subUrl);
-  var url = "";
-  //if (this.subUrl) { // What's this about??? --- nonexistant in php and breaks this code
-  //  this.checkVersion();
-  //  url = this.serviceUrl + "/" + this.subUrl + "/info";
-  //}
-  //else
-  url = this.serviceUrl + "/info";
+  var url = this.serviceUrl + "/info";
   var headers = {"Accept": "application/json"};
   if (this.userKey) {
     headers["user_key"] = this.userKey;
   }
-  console.log("url " + url);
-  return this.finishResult(getHttp(url, headers), "info");
+  return this.finishResult(this.getHttp(url, headers), "info");
 };
 
 Api.prototype.ping = function() {
@@ -202,25 +174,65 @@ Api.prototype.ping = function() {
   if (this.userKey) {
     headers["user_key"] = this.userKey;
   }
-  return this.finishResult(getHttp(url, headers), "ping");
+  return this.finishResult(this.getHttp(url, headers), "ping");
 };
 
-var api = new Api("7eb3562318e5242b5a89ad80011f1e22", "https://api.rosette.com/rest/v1");
-var docParams = new DocumentParameters();
-docParams.params.content = "Many children aren't signed up for the KidCare program because parents don't know it exists.";
-docParams.params.contentType = rosetteConstants.dataFormat.SIMPLE;
-docParams.loadDocumentFile("/Users/rhausmann/git/ws-client-bindings/nodejs/lib/test.html", rosetteConstants.dataFormat.HTML);
-//console.log(docParams.params.contentType);
-var cat = api.callEndpoint(docParams, "sentiment");
-console.log(cat);
-//console.log(cat.sentiment);
-console.log(api.info());
-console.log(api.ping());
+Api.prototype.language = function(parameters) {
+  return this.callEndpoint(parameters, "language");
+};
 
-//var data = {"content": "Many children aren't signed up for the KidCare program because parents don't know it exists.",
-//  "contentType": 'application/json'};
-//var myKey = "7eb3562318e5242b5a89ad80011f1e22";
-//
-//console.log(getHttp("https://api.rosette.com/rest/v1/ping", {"user_key": myKey}));
-//console.log(postHttp("https://api.rosette.com/rest/v1/categories", {"user_key": myKey}, data));
-//console.log(getHttp("https://api.rosette.com/rest/v1/categories/info", {"user_key": myKey}));
+Api.prototype.languageInfo = function() {
+  var url = this.serviceUrl + "/language/info";
+  var headers = {"Accept": "application/json"};
+  if (this.userKey) {
+    headers["user_key"] = this.userKey;
+  }
+  var result = this.getHttp(url, headers);
+  return this.finishResult(result, "language-info");
+};
+
+Api.prototype.sentences = function(parameters) {
+  return this.callEndpoint(parameters, "sentences");
+};
+
+Api.prototype.tokens = function(parameters) {
+  return this.callEndpoint(parameters, "tokens");
+};
+
+Api.prototype.morphology = function(parameters, facet) {
+  if (!facet) {
+    facet = rosetteConstants.morpholoyOutput.COMPLETE;
+  }
+  return this.callEndpoint(parameters, "morphology/" + facet);
+};
+
+Api.prototype.entities = function(parameters, linked) {
+  if (!linked) {
+    return this.callEndpoint(parameters, "entities");
+  }
+  return this.callEndpoint(parameters, "entities/linked");
+};
+
+Api.prototype.categories = function(parameters) {
+  return this.callEndpoint(parameters, "categories");
+};
+
+Api.prototype.sentiment = function(parameters) {
+  return this.callEndpoint(parameters, "sentiment");
+};
+
+Api.prototype.translatedName = function(parameters) {
+  return this.callEndpoint(parameters, "translated-name");
+};
+
+Api.prototype.matchedName = function(parameters) {
+  return this.callEndpoint(parameters, "matched-name");
+};
+
+Api.prototype.translatedName = function(parameters) {
+  return this.callEndpoint(parameters, "translated-name");
+};
+
+//Export the constructor function as the export of this module file.
+module.exports = Api;
+

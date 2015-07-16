@@ -33,19 +33,19 @@ module.exports = function(grunt) {
       files: "lib/*.js",
       options: {
         lazy: true,
-        basePath: "instrumented"
+        basePath: "target/instrumented"
       }
     },
     storeCoverage: {
       options: {
-        dir: "instrumented"
+        dir: "target"
       }
     },
     makeReport: {
-      src: "instrumented/coverage.json",
+      src: "target/coverage.json",
       options: {
         type: "lcov",
-        dir: "reports",
+        dir: "target/reports",
         print: "detail"
       }
     },

@@ -2,13 +2,16 @@
 
 var util = require("util");
 var DocumentParamSetBase = require("./DocumentParamSetBase");
+var Name = require("./Name");
 var RosetteException = require("./RosetteException");
 
-function NameMatchingParameters() {
+function NameMatchingParameters(name1, name2) {
   DocumentParamSetBase.call(this, ["name1", "name2"]); //super constructor
+  this.params.name1 = name1;
+  this.params.name2 = name2;
 }
 
-// inherit from Error
+// inherit from DocumentParamSetBase
 util.inherits(NameMatchingParameters, DocumentParamSetBase);
 
 NameMatchingParameters.prototype.validate = function() {
