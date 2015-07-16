@@ -1,8 +1,9 @@
 "use strict";
 
 var Api = require("./../lib/rosetteApi");
-var ArgumentParser = require('../node_modules/argparse').ArgumentParser;
 var DocumentParameters = require("./../lib/DocumentParameters");
+var ArgumentParser = require('argparse').ArgumentParser;
+var fs = require("fs");
 
 var parser = new ArgumentParser({
   addHelp:true,
@@ -24,15 +25,37 @@ parser.addArgument(
 parser.addArgument(
   ["--file"],
   {
-    help: "Optional input file for data",
-    defaultValue: "http://www.basistech.com/about/"
+    help: "Optional input file for data"
   }
 );
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();
+
+var useTemp = false;
+// Create a temp example file if none provided
+if (!args.file) {
+  useTemp = true;
+  var dirname = "tmp";
+  var counter = 0;
+  while (fs.existsSync(dirname + counter)) {
+    counter++;
+  }
+  dirname = dirname + counter;
+  fs.mkdir(dirname);
+
+  var fileContents = "<html><head><title>Performance Report</title></head> \
+  <body><p>This article is clean, concise, and very easy to read.</p></body></html>";
+  fs.writeFileSync(dirname + "/example.html", fileContents);
+  args.file = dirname + "/example.html"
+}
+
 docParams.loadDocumentFile(args.file);
 
+if (useTemp) {
+  fs.unlinkSync(dirname + "/example.html");
+  fs.rmdirSync(dirname);
+}
 var api = new Api(args.key, args.service_url);
 var result = api.sentiment(docParams);
 
