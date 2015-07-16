@@ -956,23 +956,13 @@ namespace CBinding
         /// <param name="requestid">(string, optional): RequestID if there is one</param>
         /// <param name="file">(string, optional): Filename if in file</param>
         /// <param name="line">(string, optional): Line if in file</param>
-        public RosetteException(string message = null, int code = 0, string requestid = null, string file = null, string line = null)
+        public RosetteException(string message = null, int code = 0, string requestid = null, string file = null, string line = null) : base(message)
         {
-            Message = message;
             Code = code;
             RequestID = requestid;
             File = file;
             Line = line;
         }
-
-        /// <summary>Message
-        /// <para>
-        /// Getter, Setter for the Message
-        /// Message: Message describing exception details
-        /// Allows users to access the Exception Message
-        /// </para>
-        /// </summary>
-        public string Message { get; set; }
 
         /// <summary>Code
         /// <para>
