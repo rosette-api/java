@@ -1,7 +1,0 @@
-C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\CBindingUnitTests.pdb
-C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\obj\Debug\CBindingUnitTests.csprojResolveAssemblyReference.cache
-C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\obj\Debug\CBindingUnitTests.pdb
-C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\CBinding.pdb
-C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\CBindingUnitTests.exe
-C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\obj\Debug\CBindingUnitTests.exe
-C:\Users\wspitzer\ws-client-bindings\CSharp\CBindingUnitTests\bin\Debug\CBinding.dll
