@@ -9,6 +9,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net;
 using System.Web.Script.Serialization;
+using System.IO.Compression;
 
 namespace CBinding
 {
@@ -759,7 +760,11 @@ namespace CBinding
 
                 if (responseMsg.IsSuccessStatusCode)
                 {
-                    byte[] byteArray = Encoding.UTF8.GetBytes(responseMsg.Content.ReadAsStringAsync().Result);
+                    byte[] byteArray = responseMsg.Content.ReadAsByteArrayAsync().Result;
+                    if (responseMsg.Content.Headers.ContentEncoding.Contains("gzip") || (byteArray[0] == '\x1f' || byteArray[0] == '\x8b' || byteArray[0] == '\x08'))
+                    {
+                        byteArray = Decompress(byteArray);
+                    }
                     MemoryStream stream = new MemoryStream(byteArray);
                     StreamReader reader = new StreamReader(stream);
                     string text = reader.ReadToEnd();
@@ -853,7 +858,13 @@ namespace CBinding
             HttpClient client;
             if (Client == null)
             {
-                client = new HttpClient();
+                client =
+                    new HttpClient(
+                        new HttpClientHandler
+                        {
+                            AutomaticDecompression = DecompressionMethods.GZip
+                                                     | DecompressionMethods.Deflate
+                        });
                 client.BaseAddress = new Uri(URIstring);
                 client.Timeout = new TimeSpan(0, 0, Timeout);
             }
@@ -873,7 +884,7 @@ namespace CBinding
             {
                 client.DefaultRequestHeaders.Clear();
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -882,7 +893,6 @@ namespace CBinding
             client.DefaultRequestHeaders.Add("user_key", UserKey);
             client.DefaultRequestHeaders.AcceptEncoding.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue("gzip"));
             client.DefaultRequestHeaders.AcceptEncoding.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue("deflate"));
-
 
             return client;
         }
@@ -914,7 +924,11 @@ namespace CBinding
                 string text = null; 
                 if (responseMsg.IsSuccessStatusCode)
                 {
-                    byte[] byteArray = Encoding.UTF8.GetBytes(responseMsg.Content.ReadAsStringAsync().Result);
+                    byte[] byteArray = responseMsg.Content.ReadAsByteArrayAsync().Result;
+                    if (responseMsg.Content.Headers.ContentEncoding.Contains("gzip") || (byteArray[0] == '\x1f' || byteArray[0] == '\x8b' || byteArray[0] == '\x08'))
+                    {
+                        byteArray = Decompress(byteArray);
+                    }
                     MemoryStream stream = new MemoryStream(byteArray);
                     StreamReader reader = new StreamReader(stream);
                     text = reader.ReadToEnd();
@@ -937,7 +951,40 @@ namespace CBinding
             }
             return version_checked;
         }
+
+        /// <summary>Decompress
+        /// <para>Method to decompress GZIP files
+        /// </para>
+        /// </summary>
+        /// <param name="gzip">(byte[]): Data in byte form to decompress</param>
+        /// <returns>(byte[]) Decompressed data</returns>
+        private static byte[] Decompress(byte[] gzip)
+        {
+            // Create a GZIP stream with decompression mode.
+            // ... Then create a buffer and write into while reading from the GZIP stream.
+            using (GZipStream stream = new GZipStream(new MemoryStream(gzip), CompressionMode.Decompress))
+            {
+                const int size = 4096;
+                byte[] buffer = new byte[size];
+                using (MemoryStream memory = new MemoryStream())
+                {
+                    int count = 0;
+                    do
+                    {
+                        count = stream.Read(buffer, 0, size);
+                        if (count > 0)
+                        {
+                            memory.Write(buffer, 0, count);
+                        }
+                    }
+                    while (count > 0);
+                    return memory.ToArray();
+                }
+            }
+        }
     }
+
+
 
     /// <summary>RosetteException Class
     /// <para>

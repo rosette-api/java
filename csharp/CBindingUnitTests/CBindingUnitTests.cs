@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Web;
 using CBinding;
 using System.Web.Script.Serialization;
+using System.IO.Compression;
 
 namespace CBindingUnitTests
 {
@@ -232,6 +233,7 @@ namespace CBindingUnitTests
 
                 string tdOutput = cmd.getFileData(td.outputDataFilename);
                 fakeResponse.Content = new StringContent(tdOutput);
+
                 var fakeHandler = new FakeHttpMessageHandler(fakeResponse, td.inpFilename);
                 HttpClient httpClient = new HttpClient(fakeHandler);
                 CAPI c = new CAPI(td.inpFilename, null, null, 3, httpClient);
