@@ -31,7 +31,7 @@ class NameMatchingParameters extends RosetteParamsSetBase
      */
     public function __construct(Name $name1, Name $name2)
     {
-        parent::__construct(['name1', 'name2']);
+        parent::__construct(array('name1', 'name2'));
         $this->params['name1'] = $name1;
         $this->params['name2'] = $name2;
     }
@@ -43,7 +43,7 @@ class NameMatchingParameters extends RosetteParamsSetBase
      */
     public function validate()
     {
-        foreach (['name1', 'name2'] as $key) {
+        foreach (array('name1', 'name2') as $key) {
             if (empty($this->get($key))) {
                 throw new RosetteException(
                     sprintf('Required name matching parameter not supplied: %s', $key),

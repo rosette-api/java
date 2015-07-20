@@ -17,16 +17,63 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>vendor</directory>
-                        </fileset>
-                        <fileset>
                             <directory>.</directory>
                             <includes>
                                 <include>composer.lock</include>
                             </includes>
                         </fileset>
+                        <fileset>
+                            <directory>vendor</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>tests/mock-data</directory>
+                        </fileset>
                     </filesets>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources-request</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/request</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/request</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-response</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/response</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/response</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                        <include>**/*.status</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -36,7 +83,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>composer update</id>
+                        <id>composer-update</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>exec</goal>
@@ -49,7 +96,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>php-cs-fixer-source</id>
+                        <id>php-cs-fixer</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>exec</goal>
@@ -58,39 +105,7 @@
                             <executable>${basedir}/vendor/bin/php-cs-fixer</executable>
                             <arguments>
                                 <argument>fix</argument>
-                                <argument>./source</argument>
-                                <argument>--dry-run</argument>
-                                <argument>--diff</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>php-cs-fixer-tests</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>${basedir}/vendor/bin/php-cs-fixer</executable>
-                            <arguments>
-                                <argument>fix</argument>
-                                <argument>./tests</argument>
-                                <argument>--dry-run</argument>
-                                <argument>--diff</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>php-cs-fixer-examples</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>${basedir}/vendor/bin/php-cs-fixer</executable>
-                            <arguments>
-                                <argument>fix</argument>
-                                <argument>./examples</argument>
+                                <argument>.</argument>
                                 <argument>--dry-run</argument>
                                 <argument>--diff</argument>
                             </arguments>
@@ -113,6 +128,19 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>phar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/vendor/bin/box</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>phpdoc</id>
                         <phase>compile</phase>
                         <goals>
@@ -120,12 +148,6 @@
                         </goals>
                         <configuration>
                             <executable>${basedir}/vendor/bin/phpdoc</executable>
-                            <arguments>
-                                <argument>-d</argument>
-                                <argument>./source</argument>
-                                <argument>-t</argument>
-                                <argument>./target/html</argument>
-                            </arguments>
                         </configuration>
                     </execution>
                 </executions>

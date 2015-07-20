@@ -1,0 +1,8 @@
+CBinding/bin/
+CBinding/obj/
+CBindingUnitTests/bin/
+CBindingUnitTests/obj/
+TestResults/
+build.txt
+build.bat
+test.bat

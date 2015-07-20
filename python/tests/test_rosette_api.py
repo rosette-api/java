@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-# To run tests, run `py.test mocked_test_api.py`
+# To run tests, run `py.test test_rosette_api.py`
 
 import glob
 import httpretty
@@ -27,8 +27,8 @@ import re
 from rosette.api import API, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
 
 
-request_file_dir = os.path.dirname(__file__) + "/../../mock-data/request/"
-response_file_dir = os.path.dirname(__file__) + "/../../mock-data/response/"
+request_file_dir = os.path.dirname(__file__) + "/mock-data/request/"
+response_file_dir = os.path.dirname(__file__) + "/mock-data/response/"
 
 # Define the regex pattern of file names. Example: eng-doc-categories.json
 filename_pattern = re.compile("(\w+-\w+-([a-z_-]+))[.]json")

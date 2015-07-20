@@ -59,6 +59,7 @@ The code is documented such that documentation may be generated using one of the
 tools, e.g. phpDocumentor, dOxygen .  
 
 phpDocumentor is the current method and the output will be placed in `./target/html` when run with maven.
+You may want to install GraphViz since phpdoc uses it, `brew install graphviz`.
 
 If it gives your warnings like this:
 
@@ -70,4 +71,5 @@ You can mute these by editing your `php.ini` file and add a line like this:
 `date.timezone = America/New_York`. If you don't know where `php.ini` is, run `php -i | php.ini`.
 
 # Release to Packagist
-TBD - TODO: RCB-46
+Packagist is configured to automatically poll php binding's github repo, so nothing to do here
+other than following the code publishing procedure.

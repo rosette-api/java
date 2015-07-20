@@ -28,8 +28,8 @@ class NameTranslationParameters extends RosetteParamsSetBase
      */
     public function __construct()
     {
-        parent::__construct(['name', 'targetLanguage', 'entityType', 'sourceLanguageOfOrigin',
-            'sourceLanguageOfUse', 'sourceScript', 'targetScript', 'targetScheme', ]);
+        parent::__construct(array('name', 'targetLanguage', 'entityType', 'sourceLanguageOfOrigin',
+            'sourceLanguageOfUse', 'sourceScript', 'targetScript', 'targetScheme', ));
     }
 
     /**
@@ -39,7 +39,7 @@ class NameTranslationParameters extends RosetteParamsSetBase
      */
     public function validate()
     {
-        foreach (['name', 'targetLanguage'] as $key) {
+        foreach (array('name', 'targetLanguage') as $key) {
             if (empty(trim($this->get($key)))) {
                 throw new RosetteException(
                     sprintf('Required name translation parameter not supplied: %s', $key),

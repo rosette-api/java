@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using System.IO;
@@ -886,7 +885,7 @@ namespace CBinding
             }
             catch
             {
-
+                // exception can be ignored
             }
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("text/javascript"));

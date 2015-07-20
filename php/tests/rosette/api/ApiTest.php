@@ -33,7 +33,7 @@ function file_get_contents($filename, $flags = null, $context = null, $offset = 
     $test_file = $out[1];
 
     // prepare mocked response content
-    $response_data = \file_get_contents(ApiTest::$responseDir.$test_file.'.json');
+    $response_data = \file_get_contents(ApiTest::$responseDir . $test_file . '.json');
     $response_data = json_encode(json_decode($response_data, true));  // necessary to get a valid json string
     if (strlen($response_data) > 200) {  // test gzip encoding for longer response
         $response_data = gzencode($response_data);
@@ -44,7 +44,7 @@ function file_get_contents($filename, $flags = null, $context = null, $offset = 
 
 // It is better to use phpunit --bootstrap ./vendor/autoload.php than to play with
 // the pathing.
-require_once __DIR__.'/../../../vendor/autoload.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 /**
  * Class ApiTest.
@@ -52,7 +52,7 @@ require_once __DIR__.'/../../../vendor/autoload.php';
 class ApiTest extends \PHPUnit_Framework_TestCase
 {
     private $userKey = null;
-    private static $mockDir = '/../../../../mock-data';
+    private static $mockDir = '/../../mock-data';
     public static $requestDir;
     public static $responseDir;
 
@@ -61,8 +61,8 @@ class ApiTest extends \PHPUnit_Framework_TestCase
      */
     public static function setupBeforeClass()
     {
-        self::$requestDir = __DIR__.self::$mockDir.'/request/';
-        self::$responseDir = __DIR__.self::$mockDir.'/response/';
+        self::$requestDir = __DIR__ . self::$mockDir . '/request/';
+        self::$responseDir = __DIR__ . self::$mockDir . '/response/';
     }
 
     /**
@@ -75,7 +75,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
      */
     private function getMockedResponse($filename)
     {
-        $response = json_decode(\file_get_contents(self::$responseDir.$filename.'.json'), true);
+        $response = json_decode(\file_get_contents(self::$responseDir . $filename . '.json'), true);
 
         return $response;
     }
@@ -89,7 +89,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
      */
     private function getMockedResponseCode($filename)
     {
-        return intval(\file_get_contents(self::$responseDir.$filename.'.status'));
+        return intval(\file_get_contents(self::$responseDir . $filename . '.status'));
     }
 
     /**
@@ -102,8 +102,8 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     private function setUpApi($userKey)
     {
         $api = $this->getMockBuilder('rosette\api\Api')
-                    ->setConstructorArgs([$userKey])
-                    ->setMethods(['getResponseStatusCode'])
+                    ->setConstructorArgs(array($userKey))
+                    ->setMethods(array('getResponseStatusCode'))
                     ->getMock();
         $api->method('getResponseStatusCode')
             ->willReturn($this->getMockedResponseCode($userKey));
@@ -118,8 +118,8 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     public function testCheckVersion()
     {
         $api = $this->getMockBuilder('rosette\api\Api')
-                    ->setConstructorArgs([null])
-                    ->setMethods(['info'])
+                    ->setConstructorArgs(array(null))
+                    ->setMethods(array('info'))
                     ->getMock();
         $api->method('info')
             ->willReturn(array('version' => '10.100.100'));
@@ -159,7 +159,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
      */
     private function getRequestData($filename)
     {
-        $request = \file_get_contents(self::$requestDir.$filename.'.json');
+        $request = \file_get_contents(self::$requestDir . $filename . '.json');
 
         return json_decode($request, true);
     }
@@ -176,13 +176,13 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         // everything else, include static functions:
         //    https://github.com/sebastianbergmann/phpunit/issues/1206
         // so workaround until that improvement is implemented
-        $requestDir = __DIR__.self::$mockDir.'/request/';
+        $requestDir = __DIR__ . self::$mockDir . '/request/';
 
         $pattern = '/.*\/request\/([\w\d]*-[\w\d]*-(.*))\.json/';
-        $files = [];
-        foreach (glob($requestDir.'*.json') as $filename) {
+        $files = array();
+        foreach (glob($requestDir . '*.json') as $filename) {
             preg_match($pattern, $filename, $output_array);
-            $files[] = [$output_array[1], $output_array[2]];
+            $files[] = array($output_array[1], $output_array[2]);
         }
 
         return $files;
@@ -206,7 +206,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $api->setDebug(true);
         $input = $this->getRequestData($this->userKey);
         $expected = $this->getMockedResponse($this->userKey);
-        if ($endpoint == 'matched-name') {
+        if ($endpoint === 'matched-name') {
             $name1 = new Name(
                 $input['name1']['text'],
                 $input['name1']['entityType'],
@@ -221,7 +221,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
             );
             $params = new NameMatchingParameters($name1, $name2);
         } else {
-            if ($endpoint == 'translated-name') {
+            if ($endpoint === 'translated-name') {
                 $params = new NameTranslationParameters();
             } else {
                 $params = new DocumentParameters();

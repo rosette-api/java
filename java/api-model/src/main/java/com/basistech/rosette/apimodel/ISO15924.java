@@ -408,7 +408,7 @@ public enum ISO15924 {
     /**
      * Locate a script by native code.
      * @param nativeCode
-     * @return
+     * @return ISO15924 object
      */
     static ISO15924 lookupByNativeCode(int nativeCode) {
         for (ISO15924 v : staticValues) {

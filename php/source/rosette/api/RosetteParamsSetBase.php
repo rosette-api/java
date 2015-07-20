@@ -28,7 +28,7 @@ abstract class RosetteParamsSetBase
      *
      * @var array
      */
-    protected $params = [];
+    protected $params = array();
 
     /**
      * Constructor.

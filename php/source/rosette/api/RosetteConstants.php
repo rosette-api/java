@@ -26,34 +26,34 @@ class RosetteConstants
      *
      * @var array
      */
-    public static $DataFormat = [
+    public static $DataFormat = array(
         'SIMPLE' => '',
         'JSON' => 'application/json',
         'HTML' => 'text/html',
         'XHTML' => 'application/xhtml+xml',
         'UNSPECIFIED' => 'application/octet-stream',
-    ];
+    );
 
     /**
      * Accepted Input Units.
      *
      * @var array
      */
-    public static $InputUnit = [
+    public static $InputUnit = array(
         'DOC' => 'doc',
         'SENTENCE' => 'sentence',
-    ];
+    );
 
     /**
      * Accepted Morphology Output types.
      *
      * @var array
      */
-    public static $MorphologyOutput = [
+    public static $MorphologyOutput = array(
         'LEMMAS' => 'lemmas',
         'PARTS_OF_SPEECH' => 'parts-of-speech',
         'COMPOUND_COMPONENTS' => 'compound-components',
         'HAN_READINGS' => 'han-readings',
         'COMPLETE' => 'complete',
-    ];
+    );
 }
