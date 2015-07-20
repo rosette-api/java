@@ -1,17 +1,17 @@
-﻿using System;
+﻿using CBinding;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using CBinding;
 using System.Web.Script.Serialization;
-using System.IO.Compression;
 
 namespace CBindingUnitTests
 {
@@ -200,6 +200,57 @@ namespace CBindingUnitTests
             return allData;
         }
 
+        /// <summary>Compress
+        /// <para>
+        /// Takes in byte data and compresses it using gzip
+        /// </para>
+        /// </summary>
+        /// <param name="raw">(byte[]): Raw data to be compressed</param>
+        /// <returns>(byte[]): Compressed data</returns>
+        public static byte[] Compress(byte[] raw)
+        {
+            using (MemoryStream memory = new MemoryStream())
+            {
+                using (GZipStream gzip = new GZipStream(memory,
+                CompressionMode.Compress, true))
+                {
+                    gzip.Write(raw, 0, raw.Length);
+                }
+                return memory.ToArray();
+            }
+        }
+
+        /// <summary>Decompress
+        /// <para>Method to decompress GZIP files
+        /// </para>
+        /// </summary>
+        /// <param name="gzip">(byte[]): Data in byte form to decompress</param>
+        /// <returns>(byte[]) Decompressed data</returns>
+        private static byte[] Decompress(byte[] gzip)
+        {
+            // Create a GZIP stream with decompression mode.
+            // ... Then create a buffer and write into while reading from the GZIP stream.
+            using (GZipStream stream = new GZipStream(new MemoryStream(gzip), CompressionMode.Decompress))
+            {
+                const int size = 4096;
+                byte[] buffer = new byte[size];
+                using (MemoryStream memory = new MemoryStream())
+                {
+                    int count = 0;
+                    do
+                    {
+                        count = stream.Read(buffer, 0, size);
+                        if (count > 0)
+                        {
+                            memory.Write(buffer, 0, count);
+                        }
+                    }
+                    while (count > 0);
+                    return memory.ToArray();
+                }
+            }
+        }
+
         /// <summary>Test Method: Runs through all files in Requests and checks them against Responses
         /// <para>We are effectively sending the request through the API using the MOCK HTTPclient that has the response
         /// and checking whether or not the API correctly receives the response.
@@ -232,7 +283,20 @@ namespace CBindingUnitTests
                 fakeResponse.StatusCode = (HttpStatusCode)(Convert.ToInt32(tdStatus));
 
                 string tdOutput = cmd.getFileData(td.outputDataFilename);
-                fakeResponse.Content = new StringContent(tdOutput);
+                if (tdOutput.Length > 200)
+                {
+                    System.Diagnostics.Debug.WriteLine("GZipping");
+                    byte[] compress = Compress(Encoding.ASCII.GetBytes(tdOutput));
+                    fakeResponse.Content = new ByteArrayContent(compress);
+                    fakeResponse.Content.Headers.ContentEncoding.Add("gzip");
+                    MemoryStream stream = new MemoryStream(Decompress(compress));
+                    StreamReader reader = new StreamReader(stream);
+                    tdOutput = reader.ReadToEnd();
+                }
+                else
+                {
+                    fakeResponse.Content = new StringContent(tdOutput);
+                }
 
                 var fakeHandler = new FakeHttpMessageHandler(fakeResponse, td.inpFilename);
                 HttpClient httpClient = new HttpClient(fakeHandler);

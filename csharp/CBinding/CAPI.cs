@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.Serialization.Json;
-using System.Runtime.Serialization;
 using System.IO;
-using System.Net.Http;
-using System.Net;
-using System.Web.Script.Serialization;
 using System.IO.Compression;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using System.Web.Script.Serialization;
 
 namespace CBinding
 {
@@ -760,7 +760,7 @@ namespace CBinding
                 if (responseMsg.IsSuccessStatusCode)
                 {
                     byte[] byteArray = responseMsg.Content.ReadAsByteArrayAsync().Result;
-                    if (responseMsg.Content.Headers.ContentEncoding.Contains("gzip") || (byteArray[0] == '\x1f' || byteArray[0] == '\x8b' || byteArray[0] == '\x08'))
+                    if (responseMsg.Content.Headers.ContentEncoding.Contains("gzip") && (byteArray[0] == '\x1f' && byteArray[1] == '\x8b' && byteArray[2] == '\x08'))
                     {
                         byteArray = Decompress(byteArray);
                     }
