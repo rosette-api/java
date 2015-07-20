@@ -697,7 +697,7 @@ namespace CBinding
                 { "targetScheme", targetScheme},
                 { "sourceLanguageOfOrigin", sourceLanguageOfOrigin},
                 { "entityType", entityType}
-            }));
+            }.Where(f => String.IsNullOrEmpty(f.Value.ToString())).ToDictionary(x => x.Key, x => x.Value)));
         }
 
         /// <summary>TranslatedName
@@ -796,12 +796,9 @@ namespace CBinding
 
             if(file.getOptions() != null){
                 Dictionary<string, string> opts = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(file.getOptions());
-                foreach (string key in opts.Keys){
-                    if (!dict.Keys.Contains(key)){
-                        dict.Add(key, opts[key]);
-                    }
-                }
+                dict = (Dictionary<string, string>)dict.Concat(opts.Where(x=> !dict.Keys.Contains(x.Key)));
             }
+
 
             return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
         }
@@ -840,7 +837,7 @@ namespace CBinding
                 { "contentType", contentType},
                 { "unit", unit},
                 { "contentUri", contentUri}
-            };
+            }.Where(f => String.IsNullOrEmpty(f.Value.ToString())).ToDictionary(x => x.Key, x => x.Value);
 
             return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
         }
