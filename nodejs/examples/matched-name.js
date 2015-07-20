@@ -1,11 +1,11 @@
 "use strict";
 
-var Api = require("./../lib/rosetteApi");
-var ArgumentParser = require('../node_modules/argparse').ArgumentParser;
+var Api = require("./../lib/Api");
+var ArgumentParser = require("argparse").ArgumentParser;
 var NameMatchingParameters = require("./../lib/NameMatchingParameters");
 
 var parser = new ArgumentParser({
-  addHelp:true,
+  addHelp: true,
   description: "Get the similarity score of two names"
 });
 parser.addArgument(

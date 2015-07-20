@@ -1,12 +1,12 @@
 "use strict";
 
-var Api = require("./../lib/rosetteApi");
+var Api = require("./../lib/Api");
 var DocumentParameters = require("./../lib/DocumentParameters");
-var ArgumentParser = require('argparse').ArgumentParser;
+var ArgumentParser = require("argparse").ArgumentParser;
 var fs = require("fs");
 
 var parser = new ArgumentParser({
-  addHelp:true,
+  addHelp: true,
   description: "Get the sentiment of the text in a local file"
 });
 parser.addArgument(
@@ -44,10 +44,10 @@ if (!args.file) {
   dirname = dirname + counter;
   fs.mkdir(dirname);
 
-  var fileContents = "<html><head><title>Performance Report</title></head> \
-  <body><p>This article is clean, concise, and very easy to read.</p></body></html>";
+  var fileContents = "<html><head><title>Performance Report</title></head>";
+  fileContents += "<body><p>This article is clean, concise, and very easy to read.</p></body></html>";
   fs.writeFileSync(dirname + "/example.html", fileContents);
-  args.file = dirname + "/example.html"
+  args.file = dirname + "/example.html";
 }
 
 docParams.loadDocumentFile(args.file);

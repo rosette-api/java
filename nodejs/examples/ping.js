@@ -1,10 +1,10 @@
 "use strict";
 
-var Api = require("./../lib/rosetteApi");
-var ArgumentParser = require('../node_modules/argparse').ArgumentParser;
+var Api = require("./../lib/Api");
+var ArgumentParser = require("argparse").ArgumentParser;
 
 var parser = new ArgumentParser({
-  addHelp:true,
+  addHelp: true,
   description: "Send ping to check for reachability of Rosette API"
 });
 parser.addArgument(

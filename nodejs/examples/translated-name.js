@@ -1,11 +1,11 @@
 "use strict";
 
-var Api = require("./../lib/rosetteApi");
-var ArgumentParser = require('../node_modules/argparse').ArgumentParser;
+var Api = require("./../lib/Api");
+var ArgumentParser = require("argparse").ArgumentParser;
 var NameTranslationParameters = require("./../lib/NameTranslationParameters");
 
 var parser = new ArgumentParser({
-  addHelp:true,
+  addHelp: true,
   description: "Translate a name from one language to another"
 });
 parser.addArgument(

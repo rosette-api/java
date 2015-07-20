@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     },
     eslint: {
       lib: {
-        src: ["lib/**/*.js"]
+        src: ["lib/**/*.js", "examples/**/*.js"]
       },
       test: {
         src: ["tests/**/*.js"]
@@ -52,15 +52,15 @@ module.exports = function(grunt) {
     watch: {
       gruntfile: {
         files: "<%= eslint.gruntfile.lib %>",
-        tasks: ["jshint:gruntfile"]
+        tasks: ["eslint:gruntfile"]
       },
       lib: {
         files: "<%= eslint.lib.src %>",
-        tasks: ["jshint:lib", "nodeunit"]
+        tasks: ["eslint:lib", "nodeunit"]
       },
       test: {
         files: "<%= eslint.test.src %>",
-        tasks: ["jshint:test", "nodeunit"]
+        tasks: ["eslint:test", "nodeunit"]
       }
     }
   });
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
   // Task definititions.
   // run `grunt <task>` in command line and it will run the sequence in brackets
   grunt.registerTask("default", ["eslint", "test", "jsdoc"]);
-  grunt.registerTask("document", ["jsdoc"]);
+  grunt.registerTask("doc", ["jsdoc"]);
   grunt.registerTask("lint", ["eslint"]);
   grunt.registerTask("test", ["instrument", "nodeunit", "storeCoverage", "makeReport"]); // with coverage report
 

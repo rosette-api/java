@@ -14,25 +14,37 @@
 
 "use strict";
 
+/**
+ * @desc Accepted data formats
+ * @type {JSON}
+ */
 var dataFormat = {
-    "SIMPLE": "text/plain",
-    "JSON": "application/json",
-    "HTML": "text/html",
-    "XHTML": "application/xhtml+xml",
-    "UNSPECIFIED": "application/octet-stream"
+  "SIMPLE": "text/plain",
+  "JSON": "application/json",
+  "HTML": "text/html",
+  "XHTML": "application/xhtml+xml",
+  "UNSPECIFIED": "application/octet-stream"
 };
 
+/**
+ * @desc Accepted input units
+ * @type {JSON}
+ */
 var inputUnit = {
-    "DOC": "doc",
-    "SENTENCE": "sentence"
+  "DOC": "doc",
+  "SENTENCE": "sentence"
 };
 
+/**
+ * @desc Accepted morphology output types
+ * @type {JSON}
+ */
 var morphologyOutput = {
-    "LEMMAS": "lemmas",
-    "PARTS_OF_SPEECH": "parts-of-speech",
-    "COMPOUND_COMPONENTS": "compound-components",
-    "HAN_READINGS": "han-readings",
-    "COMPLETE": "complete"
+  "LEMMAS": "lemmas",
+  "PARTS_OF_SPEECH": "parts-of-speech",
+  "COMPOUND_COMPONENTS": "compound-components",
+  "HAN_READINGS": "han-readings",
+  "COMPLETE": "complete"
 };
 
 exports.dataFormat = dataFormat;

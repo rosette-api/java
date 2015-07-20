@@ -1,12 +1,12 @@
 "use strict";
 
-var Api = require("./../lib/rosetteApi");
-var ArgumentParser = require('../node_modules/argparse').ArgumentParser;
+var Api = require("./../lib/Api");
+var ArgumentParser = require("argparse").ArgumentParser;
 var DocumentParameters = require("./../lib/DocumentParameters");
 var rosetteConstants = require("./../lib/rosetteConstants.js");
 
 var parser = new ArgumentParser({
-  addHelp:true,
+  addHelp: true,
   description: "Get Chinese readings of words in a piece of text"
 });
 parser.addArgument(
