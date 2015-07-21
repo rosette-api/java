@@ -14,88 +14,38 @@
     <packaging>pom</packaging>
 	<properties>
 		<msbuild.configuration>Debug</msbuild.configuration>
-		<vcvars>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat</vcvars>
+		<vcvars>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC</vcvars>
     </properties>
 	<build>
         <plugins>
-			<plugin>
-			   <groupId>org.apache.maven.plugins</groupId>
-			   <artifactId>maven-antrun-plugin</artifactId>
-				<version>1.6</version>
-				<executions>
-					<execution>
-						<id>SetupVcvars</id>
-						<phase>initialize</phase>
-						<configuration>
-							<target>
-								<exec executable="cmd.exe"
-									  spawn="true">
-									<arg value="/c"/>
-									<arg value="{$vcvars}"/>
-								</exec>
-							</target>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-				   </execution>
-			   </executions>      
-			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<executions>
 				  <execution>
-					<id>Build-with-msbuild</id>
-					<phase>compile</phase>
-					<goals>
-					  <goal>exec</goal>
-					</goals>
-					<configuration>
-					  <executable>msbuild</executable>
-					  <arguments>
-						<argument>/t:Rebuild</argument>
-						<argument>/p:Configuration=${msbuild.configuration}</argument>
-					  </arguments>
-					</configuration>
-				  </execution>
-				  <execution>
-					<id>clean-with-msbuild</id>
+					<id>Clean</id>
 					<phase>prepare-package</phase>
 					<goals>
 					  <goal>exec</goal>
 					</goals>
 					<configuration>
-					  <executable>msbuild</executable>
+					  <executable>clean.bat</executable>
 					  <arguments>
-						<argument>/t:Clean</argument>
-						<argument>/p:Configuration=${msbuild.configuration}</argument>
+						<argument>${vcvars}</argument>
 					  </arguments>
 					</configuration>
 				  </execution>
 				  <execution>
-					<id>RunUnitTestsMsTest</id>
-					<phase>test</phase>
+					<id>BuildAndTest</id>
+					<phase>verify</phase>
 					<goals>
 					  <goal>exec</goal>
 					</goals>
 					<configuration>
-					  <executable>mstest</executable>
+					  <executable>build.bat</executable>
 					  <arguments>
-						<argument>/testcontainer:.\CBindingUnitTests\bin\${msbuild.configuration}\CBindingUnitTests.dll</argument>
+						<argument>${vcvars}</argument>
 					  </arguments>
-					  <failOnError>false</failOnError>
-					</configuration>
-				  </execution>
-				  <execution>
-					<id>RunUnitTestsNoMsTest</id>
-					<phase>test</phase>
-					<goals>
-					  <goal>exec</goal>
-					</goals>
-					<configuration>
-					  <executable>${basedir}/CBindingUnitTests/bin/${msbuild.configuration}/CBindingUnitTests.exe</executable>
-					  <failOnError>false</failOnError>
 					</configuration>
 				  </execution>
 				</executions>
