@@ -10,19 +10,19 @@
             <source>README.txt</source>
         </file>
         <file>
-            <source>CBinding.sln</source>
+            <source>rosette_api.sln</source>
         </file>
 
     </files>
     <fileSets>
         <fileSet>
-            <directory>CBinding</directory>
+            <directory>rosette_api</directory>
         </fileSet>
         <fileSet>
-            <directory>CBindingUnitTests</directory>
+            <directory>rosette_apiExamples</directory>
         </fileSet>
         <fileSet>
-            <directory>CAPIExamples</directory>
+            <directory>rosette_apiUnitTests</directory>
         </fileSet>
     </fileSets>
 </assembly>

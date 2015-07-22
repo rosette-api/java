@@ -66,7 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CBinding\rosette_api.csproj">
+    <ProjectReference Include="..\rosette_api\rosette_api.csproj">
       <Project>{d719a8a7-c5c7-49cf-bffc-523d605e5e37}</Project>
       <Name>rosette_api</Name>
     </ProjectReference>

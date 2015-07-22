@@ -22,7 +22,7 @@ if not exist "%ProjectPath%\%ProjectName%.csproj" goto noexist
 
 nuget pack "%ProjectPath%\%ProjectName%.csproj"
 nuget setApiKey %APIkey%
-nuget push "%ProjectPath%\%ProjectName%.%version%.nupkg"
+nuget push ".\%ProjectName%.%version%.nupkg"
 exit /b 0
 
 :usage1
