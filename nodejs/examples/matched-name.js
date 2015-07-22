@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("./../lib/AsyncApi");
 var ArgumentParser = require("argparse").ArgumentParser;
 var NameMatchingParameters = require("./../lib/NameMatchingParameters");
 
@@ -27,7 +27,11 @@ var name1 = {"text": "Michael Jackson", "language": "eng", "entityType": "PERSON
 var name2 = {"text": "迈克尔·杰克逊", "entityType": "PERSON"};
 var matchParams = new NameMatchingParameters(name1, name2);
 
-var api = new Api(args.key, args.service_url);
-var result = api.matchedName(matchParams);
+matchParams.params = {"name1": {"text": "Elizabeth Doe"}, "name2": {"text": "Liz Doe"} };
+console.log(matchParams);
 
-console.log(result);
+var api = new Api(args.key, args.service_url);
+api.matchedName(matchParams, function(res) {
+  console.log(res);
+});
+

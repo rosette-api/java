@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("./../lib/AsyncApi");
 var DocumentParameters = require("./../lib/DocumentParameters");
 var ArgumentParser = require("argparse").ArgumentParser;
 var fs = require("fs");
@@ -57,6 +57,7 @@ if (useTemp) {
   fs.rmdirSync(dirname);
 }
 var api = new Api(args.key, args.service_url);
-var result = api.sentiment(docParams);
+api.sentiment(docParams, function(res) {
+  console.log(res);
+});
 
-console.log(result);

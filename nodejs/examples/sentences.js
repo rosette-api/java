@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("./../lib/AsyncApi");
 var ArgumentParser = require("argparse").ArgumentParser;
 var DocumentParameters = require("./../lib/DocumentParameters");
 
@@ -38,6 +38,7 @@ content += "This land was made for you and me.";
 docParams.setItem("content", content);
 
 var api = new Api(args.key, args.service_url);
-var result = api.sentences(docParams);
+api.sentences(docParams, function(res) {
+  console.log(res);
+});
 
-console.log(result);

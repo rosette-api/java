@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("./../lib/AsyncApi");
 var ArgumentParser = require("argparse").ArgumentParser;
 
 var parser = new ArgumentParser({
@@ -23,6 +23,7 @@ parser.addArgument(
 var args = parser.parseArgs();
 
 var api = new Api(args.key, args.service_url);
-var result = api.ping();
+api.ping(function(res) {
+  console.log(res);
+});
 
-console.log(result);

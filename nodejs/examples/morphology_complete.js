@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("./../lib/AsyncApi");
 var ArgumentParser = require("argparse").ArgumentParser;
 var DocumentParameters = require("./../lib/DocumentParameters");
 
@@ -28,6 +28,7 @@ var content = "The quick brown fox jumped over the lazy dog. Yes he did.";
 docParams.setItem("content", content);
 
 var api = new Api(args.key, args.service_url);
-var result = api.morphology(docParams);
+api.morphology(docParams, null, function(res) {
+  console.log(res);
+});
 
-console.log(result);

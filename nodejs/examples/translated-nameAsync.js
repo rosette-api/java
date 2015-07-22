@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("./../lib/AsyncApi");
 var ArgumentParser = require("argparse").ArgumentParser;
 var NameTranslationParameters = require("./../lib/NameTranslationParameters");
 
@@ -12,7 +12,8 @@ parser.addArgument(
   ["--key"],
   {
     help: "Rosette API key",
-    required: true
+    defaultValue: "7eb3562318e5242b5a89ad80011f1e22",
+    //required: true
   }
 );
 parser.addArgument(
@@ -31,9 +32,8 @@ translationParams.setItem("targetLanguage", "eng");
 console.log(translationParams);
 
 var api = new Api(args.key, args.service_url);
-//api.translatedName(translationParams, function(res) {
-//  console.log(res);
-//});
-var result = api.translatedName(translationParams);
-console.log(result);
+api.translatedName(translationParams, function(res) {
+  console.log(res);
+});
+
 

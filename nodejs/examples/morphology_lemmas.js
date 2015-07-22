@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("./../lib/AsyncApi");
 var ArgumentParser = require("argparse").ArgumentParser;
 var DocumentParameters = require("./../lib/DocumentParameters");
 var rosetteConstants = require("./../lib/rosetteConstants.js");
@@ -29,6 +29,7 @@ var content = "The fact is that the geese just went back to get a rest and I'm n
 docParams.setItem("content", content);
 
 var api = new Api(args.key, args.service_url);
-var result = api.morphology(docParams, rosetteConstants.morpholoyOutput.LEMMAS);
+api.morphology(docParams, rosetteConstants.morpholoyOutput.LEMMAS, function(res) {
+  console.log(res);
+});
 
-console.log(result);

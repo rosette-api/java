@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("./../lib/AsyncApi");
 var ArgumentParser = require("argparse").ArgumentParser;
 var DocumentParameters = require("./../lib/DocumentParameters");
 var rosetteConstants = require("./../lib/rosetteConstants.js");
@@ -29,6 +29,7 @@ var content = "北京大学生物系主任办公室内部会议";
 docParams.setItem("content", content);
 
 var api = new Api(args.key, args.service_url);
-var result = api.morphology(docParams, rosetteConstants.morpholoyOutput.HAN_READINGS);
+api.morphology(docParams, rosetteConstants.morpholoyOutput.HAN_READINGS, function(res) {
+  console.log(res);
+});
 
-console.log(result);

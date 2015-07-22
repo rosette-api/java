@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("./../lib/AsyncApi");
 var ArgumentParser = require("argparse").ArgumentParser;
 var DocumentParameters = require("./../lib/DocumentParameters");
 
@@ -30,6 +30,6 @@ content += "a terrible outcome for American people.";
 docParams.setItem("content", content);
 
 var api = new Api(args.key, args.service_url);
-var result = api.entities(docParams, true);
-
-console.log(result);
+api.entities(docParams, true, function(res) {
+  console.log(res);
+});
