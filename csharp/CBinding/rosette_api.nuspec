@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Cbinding</id>
+    <id>rosette_api</id>
     <version>0.5.1</version>
     <authors>wspitzer</authors>
     <owners>wspitzer</owners>
