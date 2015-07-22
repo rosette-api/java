@@ -37,7 +37,7 @@
 				  </execution>
 				  <execution>
 					<id>BuildAndTest</id>
-					<phase>verify</phase>
+					<phase>integration-test</phase>
 					<goals>
 					  <goal>exec</goal>
 					</goals>
@@ -45,6 +45,21 @@
 					  <executable>build.bat</executable>
 					  <arguments>
 						<argument>${vcvars}</argument>
+					  </arguments>
+					</configuration>
+				  </execution>
+				  <execution>
+					<id>NugetPackageAndPublish</id>
+					<phase>verify</phase>
+					<goals>
+					  <goal>exec</goal>
+					</goals>
+					<configuration>
+					  <executable>nugetPackage.bat</executable>
+					  <arguments>
+						<argument>ddeb08dd-8093-406b-a3cd-b88be64b555c</argument>
+						<argument>.\CBinding\bin\Debug</argument>
+						<argument>CBinding</argument>
 					  </arguments>
 					</configuration>
 				  </execution>

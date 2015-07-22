@@ -8,11 +8,9 @@
     <files>
         <file>
             <source>README.txt</source>
-            <lineEnding>unix</lineEnding>
         </file>
         <file>
             <source>CBinding.sln</source>
-            <lineEnding>unix</lineEnding>
         </file>
 
     </files>

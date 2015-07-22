@@ -986,6 +986,7 @@ namespace CBinding
     /// RosetteException: Custom exception to describe an exception from the Rosette API.
     /// </para>
     /// </summary>
+    [Serializable]
     public class RosetteException : Exception
     {
         /// <summary>RosetteException
