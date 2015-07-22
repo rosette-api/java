@@ -58,8 +58,9 @@
 					  <executable>nugetPackage.bat</executable>
 					  <arguments>
 						<argument>ddeb08dd-8093-406b-a3cd-b88be64b555c</argument>
-						<argument>.\CBinding\bin\Debug</argument>
+						<argument>.\CBinding</argument>
 						<argument>CBinding</argument>
+						<argument>0.5.1</argument>
 					  </arguments>
 					</configuration>
 				  </execution>

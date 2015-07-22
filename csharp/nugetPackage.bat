@@ -6,21 +6,23 @@
 @echo off
 
 set APIkey=%~1
-set AssemblyPath=%~2
-set AssemblyName=%~3
+set ProjectPath=%~2
+set ProjectName=%~3
+set version=%~4
 echo API Key: %APIkey%
-echo Assembly Path: %AssemblyPath%
-echo Assembly Name: %AssemblyName%
+echo Project Path: %ProjectPath%
+echo Project Name: %ProjectName%
+echo Version: %version%
 if "%APIkey%"=="" goto usage1
-if "%AssemblyPath%"=="" goto usage2
-if "%AssemblyName%"=="" goto usage3
+if "%ProjectPath%"=="" goto usage2
+if "%ProjectName%"=="" goto usage3
+if "%version%"=="" goto usage4
 
-if not exist "%AssemblyPath%\%AssemblyName%.dll" goto noexist
+if not exist "%ProjectPath%\%ProjectName%.csproj" goto noexist
 
-nuget spec "%AssemblyPath%\%AssemblyName%.dll"
-nuget pack "%AssemblyPath%\%AssemblyName%.dll.nuspec"
+nuget pack "%ProjectPath%\%ProjectName%.csproj"
 nuget setApiKey %APIkey%
-nuget push "%AssemblyPath%\%AssemblyName%.dll.nupkg"
+nuget push "%ProjectPath%\%ProjectName%.%version%.nupkg"
 exit /b 0
 
 :usage1
@@ -28,13 +30,17 @@ echo usage: %0 missing API Key
 exit /b 1
 
 :usage2
-echo usage: %0 missing Assembly Path
+echo usage: %0 missing Project Path
 exit /b 2
 
 :usage3
-echo usage: %0 missing Assembly Name
+echo usage: %0 missing Project Name (e.g. CBinding)
 exit /b 3
 
-:noexist
-echo %AssemblyPath%\%AssemblyName%% is not a dll
+:usage4
+echo usage: %0 missing Version number
 exit /b 4
+
+:noexist
+echo "%ProjectPath%\%ProjectName%.csproj" is missing. Check to see if you have the right path and project name.
+exit /b 5

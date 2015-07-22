@@ -11,7 +11,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web.Script.Serialization;
 
-namespace CBinding
+namespace rosette_api
 {
     /// <summary>C# Rosette API.
     /// <para>

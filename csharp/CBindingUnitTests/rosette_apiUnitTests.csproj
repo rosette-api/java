@@ -6,8 +6,8 @@
     <ProjectGuid>{10EAD22C-041F-4436-A391-935897309C23}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CBindingUnitTests</RootNamespace>
-    <AssemblyName>CBindingUnitTests</AssemblyName>
+    <RootNamespace>rosette_apiUnitTests</RootNamespace>
+    <AssemblyName>rosette_apiUnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -62,13 +62,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CBindingUnitTests.cs" />
+    <Compile Include="rosette_apiUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CBinding\CBinding.csproj">
+    <ProjectReference Include="..\CBinding\rosette_api.csproj">
       <Project>{d719a8a7-c5c7-49cf-bffc-523d605e5e37}</Project>
-      <Name>CBinding</Name>
+      <Name>rosette_api</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

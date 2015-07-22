@@ -1,4 +1,4 @@
-﻿using CBinding;
+﻿using rosette_api;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Script.Serialization;
 
-namespace CBindingUnitTests
+namespace rosette_apiUnitTests
 {
     /// <summary>Mock Data Handler
     /// <para>Provides support for getting data from the request/response directories of the mockdata folder</para>
@@ -176,7 +176,7 @@ namespace CBindingUnitTests
     }
 
     [TestClass]
-    public class CBindingUnitTests
+    public class rosette_apiUnitTests
     {
         /// <summary>Setup
         /// <para>Setup the List of Test data. Adds Info and Ping as the first two API endpoints to be tested</para>
@@ -444,7 +444,7 @@ namespace CBindingUnitTests
             bool success = true;
             Console.WriteLine("Beginning Tests");
             try{
-                new CBindingUnitTests().CAPITest();
+                new rosette_apiUnitTests().CAPITest();
             }
             catch (Exception e)
             {

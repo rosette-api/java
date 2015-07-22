@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CBinding.Properties {
+namespace rosette_api.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
