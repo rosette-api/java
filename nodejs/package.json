@@ -35,8 +35,7 @@
     "grunt-eslint": "^16.0.0",
     "grunt-istanbul": "^0.6.1",
     "grunt-istanbul-coverage": "^0.1.1",
-    "grunt-jsdoc": "^0.6.7",
-    "xmlhttprequest": "^1.7.0"
+    "grunt-jsdoc": "^0.6.7"
   },
   "keywords": []
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-var Api = require("./../lib/AsyncApi");
+var Api = require("./../lib/Api");
 var DocumentParameters = require("./../lib/DocumentParameters");
 var ArgumentParser = require("argparse").ArgumentParser;
 var fs = require("fs");

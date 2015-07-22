@@ -14,14 +14,13 @@
 
 "use strict";
 
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var http = require("http");
 var https = require("https");
 var URL = require("url");
 var zlib = require("zlib");
 var rosetteConstants = require("./rosetteConstants");
 var RosetteException = require("./RosetteException");
-var DocumentParameters = require("./DocumentParameters");
+var DocumentParameters = require("./DocumentParameters"); // Take out when done testing
 
 /**
  * Compatible server version.
@@ -77,6 +76,27 @@ function Api(userKey, serviceUrl) {
 }
 
 /**
+ * Checks if the server version is compatible with the API version
+ *
+ * @throws RosetteException
+ * @returns {boolean}
+ */
+Api.prototype.checkVersion = function(api) {
+  if (this.versionChecked) {
+    return true;
+  }
+  this.info(function(res) {
+    console.log(res);
+    var version = res.version;
+    var strVersion = version.split(".", 2).join(".");
+    if (strVersion !== COMPATIBLE_VERSION) {
+      throw new RosetteException("badServerVersion", "The server version is not " + COMPATIBLE_VERSION, strVersion);
+    }
+    api.versionChecked = true;
+  });
+};
+
+/**
  * function retryingRequest.
  *
  * Encapsulates the GET/POST and retries N_RETRIES
@@ -85,115 +105,110 @@ function Api(userKey, serviceUrl) {
  *
  * @throws RosetteException
  *
+ * @param {function} callback - Function to be executed with final result (just passing until finishResult)
  * @param {string} op - operation
  * @param {string} url - target URL
  * @param {JSON} headers - header data
  * @param {JSON} [data] - submission data
+ * @param {string} action - Action to be passed to finishResult
+ * @param {Api} api - API this is acting on
  */
-Api.prototype.retryingRequest = function(op, url, headers, data) {
-  for (var i = 0; i < this.nRetries; i++) {
-    var xhr = new XMLHttpRequest();
-    xhr.setDisableHeaderCheck(true); // so that I can set accept-encoding to gzip
-    xhr.open(op, url, false);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    for (var key in headers) {
-      xhr.setRequestHeader(key, headers[key]);
-    }
-    if (!data) {
-      xhr.send();
-    } else {
-      xhr.send(JSON.stringify(data));
-    }
-    var rdata = "";
-    var status = xhr.status;
-    // If gzip encoded, decompress
-    if (xhr.getResponseHeader("Content-Encoding") === "gzip") {
-      rdata = zlib.inflateSync(rdata);
-    }
-    rdata = JSON.parse(xhr.responseText);
-    xhr.abort();
-    if (status < 500) {
-      return {"json": rdata, "statusCode": status};
-    }
+Api.prototype.retryingRequest = function(callback, op, url, headers, data, action, api) {
+  var urlParts = URL.parse(url);
+  var protocol = http;
+  if (urlParts.protocol === "https:") {
+    protocol = https;
   }
-  // If status >= 500 continue: Gather error information
-  var message = null;
-  var code = "unknownError";
-  if (rdata != null) {
-    try {
-      if ("message" in rdata) {
-        message = rdata.message;
+  var result = new Buffer("");
+
+  var options = {
+    hostname: urlParts.hostname,
+    path: urlParts.path,
+    method: op,
+    headers: headers,
+    agent: false
+  };
+  options.headers["Connection"] = "close";
+  options.headers["content-type"] = "application/json";
+  if (urlParts.port) {
+    options.port = urlParts.port;
+  }
+  console.log(options);
+
+  //console.log(options);
+  var req = protocol.request(options, function (res) {
+    //console.log("statusCode: ", res.statusCode);
+    console.log("headers: ", res.headers);
+
+    res.on("data", function (resp) {
+      result = Buffer.concat([result, resp]);
+      //result += resp;
+    });
+    res.on("end", function (err) {
+      if (err) {
+        console.log(err);
       }
-      if ("code" in rdata) {
-        code = rdata.code;
+      if(res.headers["content-encoding"] === "gzip") {
+        console.log("gzip");
+        result = zlib.gunzipSync(result);
+        console.log(result.toString());
+        //console.log(zlib.gunzipSync(result).toString());
       }
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  if (!message) {
-    message = "A retryable network operation has not succeeded after " + this.nRetries + " attempts";
-  }
-  throw new RosetteException(code, message, url);
-};
 
-/**
- * Standard get helper function
- *
- * @param {string} url
- * @param {JSON} headers
- * @returns {JSON}
- * @throws RosetteException
- */
-Api.prototype.getHttp = function(url, headers) {
-  return this.retryingRequest("GET", url, headers);
-};
+      if(res.statusCode < 500) {
+        //console.log("now finishResult");
+        //console.log({"json": JSON.parse(result.toString()), "statusCode": res.statusCode});
+        req.abort();
+        api.finishResult({"json": JSON.parse(result.toString()), "statusCode": res.statusCode}, action, callback);
+      }
+      else {
+        req.abort();
+        result = JSON.parse(result.toString());
+        var message = null;
+        var code = "unknownError";
+        if (result != null) {
+          try {
+            if ("message" in result) {
+              message = result.message;
+            }
+            if ("code" in result) {
+              code = result.code;
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        }
+        if (!message) {
+          message = "A retryable network operation has not succeeded";
+        }
+        throw new RosetteException(code, message, url);
+      }
+    });
+  });
 
-/**
- * Standard post helper function
- *
- * @param {string} url
- * @param {JSON} headers
- * @param {JSON} data
- * @returns {JSON}
- * @throws RosetteException
- */
-Api.prototype.postHttp = function(url, headers, data) {
-  var response = this.retryingRequest("POST", url, headers, data);
-  return response; // gzip stuff...
-};
+  if(data) {
+    req.write(JSON.stringify(data));
+  }
 
-/**
- * Checks if the server version is compatible with the API version
- *
- * @throws RosetteException
- * @returns {boolean}
- */
-Api.prototype.checkVersion = function() {
-  if (this.versionChecked) {
-    return true;
-  }
-  var info = this.info();
-  var version = info.version;
-  var strVersion = version.split(".", 2).join(".");
-  if (strVersion !== COMPATIBLE_VERSION) {
-    throw new RosetteException("badServerVersion", "The server version is not " + COMPATIBLE_VERSION, strVersion);
-  }
-  this.versionChecked = true;
-  return true;
+  req.on("error", function(e) {
+    console.log("error");
+    console.error(e);
+  });
+  req.end();
 };
 
 /**
  * Internal operations processor for most endpoints
  *
+ * @param {function} callback - Function to be executed with final result (just passing until finishResult)
  * @param {(DocumentParameters|NameMatchingParameters|NameTranslationParameters)} parameters
  * @param {string} subUrl
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.callEndpoint = function(parameters, subUrl) {
+Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
   // Check that version is compatible
-  this.checkVersion();
+  var api = this;
+  this.checkVersion(api);
   this.subUrl = subUrl;
   if (this.useMultiPart && parameters.contentType !== rosetteConstants.dataFormat.SIMPLE) {
     throw new RosetteException("incompatible", "Multipart requires contentType SIMPLE", parameters.contentType);
@@ -205,8 +220,7 @@ Api.prototype.callEndpoint = function(parameters, subUrl) {
   }
   // Check that parameters follow their guidelines
   parameters.validate();
-  var r = this.postHttp(url, headers, parameters.params); // should be parameters serialized ???
-  return this.finishResult(r, "callEndpoint");
+  this.retryingRequest(callback, "POST", url, headers, parameters.params, "callEndpoint", api); // should be parameters serialized ???
 };
 
 /**
@@ -215,117 +229,119 @@ Api.prototype.callEndpoint = function(parameters, subUrl) {
  * @param {JSON} result - Json of the form {json, statusCode}
  * @param {string} action - Description of goal to be used in error message if necessary
  * @throws RosetteException
- * @returns {JSON}
+ * @param {function} callback - Function to be executed with final result
  */
-Api.prototype.finishResult = function(result, action) {
+Api.prototype.finishResult = function(result, action, callback) {
+  console.log("finishResult");
   var code = result.statusCode;
   var json = result.json;
+  //console.log(code);
   // If all is well, return the json
   if (code === 200) {
-    return json;
+    callback(json);
   }
   // Otherwise collect information to construct error
-  var msg = "";
-  var complaintUrl = "";
-  var serverCode = "";
-  if ("message" in json) {
-    msg = json.message;
-  }
   else {
-    msg = json.code; // punt if can't get real message
+    var msg = "";
+    var complaintUrl = "";
+    var serverCode = "";
+    if ("message" in json) {
+      msg = json.message;
+    }
+    else {
+      msg = json.code; // punt if can't get real message
+    }
+    if (!this.subUrl) {
+      complaintUrl = "Top level info";
+    }
+    else {
+      complaintUrl = action + " " + this.subUrl;
+    }
+    if ("code" in json) {
+      serverCode = json.code;
+    }
+    else {
+      serverCode = "unknownError";
+    }
+    throw new RosetteException(serverCode, complaintUrl + " : failed to communicate with Rosette", msg);
   }
-  if (!this.subUrl) {
-    complaintUrl = "Top level info";
-  }
-  else {
-    complaintUrl = action + " " + this.subUrl;
-  }
-  if ("code" in json) {
-    serverCode = json.code;
-  }
-  else {
-    serverCode = "unknownError";
-  }
-  throw new RosetteException(serverCode, complaintUrl + " : failed to communicate with Rosette", msg);
 };
 
 /**
- * Calls the info endpoint
- *
- * @throws RosetteException
- * @returns {JSON}
- */
-Api.prototype.info = function() {
+  * Calls the info endpoint
+  *
+  * @throws RosetteException
+  * @param {function} callback
+  */
+Api.prototype.info = function(callback) {
   var url = this.serviceUrl + "/info";
   var headers = {"Accept": "application/json"};
   if (this.userKey) {
     headers["user_key"] = this.userKey;
   }
-  return this.finishResult(this.getHttp(url, headers), "info");
+  this.retryingRequest(callback, "GET", url, headers, null, "info", this);
 };
 
 /**
  * Calls the ping endpoint
  *
  * @throws RosetteException
- * @returns {JSON}
+ * @param {function} callback
  */
-Api.prototype.ping = function() {
+Api.prototype.ping = function(callback) {
   var url = this.serviceUrl + "/ping";
   var headers = {"Accept": "application/json"};
   if (this.userKey) {
     headers["user_key"] = this.userKey;
   }
-  return this.finishResult(this.getHttp(url, headers), "ping");
+  this.retryingRequest(callback, "GET", url, headers, null, "ping", this);
 };
 
 /**
  * Calls the language endpoint
  *
  * @param {DocumentParameters} parameters
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.language = function(parameters) {
-  return this.callEndpoint(parameters, "language");
+Api.prototype.language = function(parameters, callback) {
+  this.callEndpoint(callback, parameters, "language");
 };
 
 /**
  * Calls the languageInfo endpoint
- *
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.languageInfo = function() {
+Api.prototype.languageInfo = function(callback) {
   var url = this.serviceUrl + "/language/info";
   var headers = {"Accept": "application/json"};
   if (this.userKey) {
     headers["user_key"] = this.userKey;
   }
-  var result = this.getHttp(url, headers);
-  return this.finishResult(result, "language-info");
+  this.retryingRequest(callback, "GET", url, headers, null, "language-info", this);
 };
 
 /**
  * Calls the sentences endpoint
  *
  * @param {DocumentParameters} parameters
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.sentences = function(parameters) {
-  return this.callEndpoint(parameters, "sentences");
+Api.prototype.sentences = function(parameters, callback) {
+  this.callEndpoint(callback, parameters, "sentences");
 };
 
 /**
  * Calls the tokens endpoint
  *
  * @param {DocumentParameters} parameters
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.tokens = function(parameters) {
-  return this.callEndpoint(parameters, "tokens");
+Api.prototype.tokens = function(parameters, callback) {
+  this.callEndpoint(callback, parameters, "tokens");
 };
 
 /**
@@ -334,14 +350,14 @@ Api.prototype.tokens = function(parameters) {
  * @param {DocumentParameters} parameters
  * @param {string} [facet] - The type of morphological analysis requested. Must come from
  * RosetteConstants.morphologyOutput. Defaults to complete
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.morphology = function(parameters, facet) {
+Api.prototype.morphology = function(parameters, facet, callback) {
   if (!facet) {
     facet = rosetteConstants.morpholoyOutput.COMPLETE;
   }
-  return this.callEndpoint(parameters, "morphology/" + facet);
+  this.callEndpoint(callback, parameters, "morphology/" + facet);
 };
 
 /**
@@ -349,67 +365,61 @@ Api.prototype.morphology = function(parameters, facet) {
  *
  * @param {DocumentParameters} parameters
  * @param {boolean} linked - True if you want linked entities, false if you want no linking. Defaults to false.
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.entities = function(parameters, linked) {
+Api.prototype.entities = function(parameters, linked, callback) {
   if (!linked) {
-    return this.callEndpoint(parameters, "entities");
+    this.callEndpoint(callback, parameters, "entities");
   }
-  return this.callEndpoint(parameters, "entities/linked");
+  else {
+    this.callEndpoint(callback, parameters, "entities/linked");
+  }
 };
 
 /**
  * Calls the categories endpoint
  *
  * @param {DocumentParameters} parameters
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.categories = function(parameters) {
-  return this.callEndpoint(parameters, "categories");
+Api.prototype.categories = function(parameters, callback) {
+  this.callEndpoint(callback, parameters, "categories");
 };
 
 /**
  * Calls the sentiment endpoint
  *
  * @param {DocumentParameters} parameters
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.sentiment = function(parameters) {
-  return this.callEndpoint(parameters, "sentiment");
+Api.prototype.sentiment = function(parameters, callback) {
+  this.callEndpoint(callback, parameters, "sentiment");
 };
 
 /**
  * Calls the name translation endpoint
  *
  * @param {NameTranslationParameters} parameters
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.translatedName = function(parameters) {
-  return this.callEndpoint(parameters, "translated-name");
+Api.prototype.translatedName = function(parameters, callback) {
+  this.callEndpoint(callback, parameters, "translated-name");
 };
 
 /**
  * Calls the name matching endpoint
  *
  * @param {NameMatchingParameters} parameters
+ * @param {function} callback
  * @throws RosetteException
- * @returns {JSON}
  */
-Api.prototype.matchedName = function(parameters) {
-  return this.callEndpoint(parameters, "matched-name");
+Api.prototype.matchedName = function(parameters, callback) {
+  this.callEndpoint(callback, parameters, "matched-name");
 };
 
-//var api = new Api("7eb3562318e5242b5a89ad80011f1e22");
-//api.checkVersion();
-
-//Export the constructor function as the export of this module file.
 module.exports = Api;
 
-//var api = new Api("7eb3562318e5242b5a89ad80011f1e22");
-//var docParams = new DocumentParameters();
-//docParams.setItem("content", "testing this out.");
-//console.log(api.language(docParams));

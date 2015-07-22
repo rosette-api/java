@@ -31,9 +31,8 @@ translationParams.setItem("targetLanguage", "eng");
 console.log(translationParams);
 
 var api = new Api(args.key, args.service_url);
-//api.translatedName(translationParams, function(res) {
-//  console.log(res);
-//});
-var result = api.translatedName(translationParams);
-console.log(result);
+api.translatedName(translationParams, function(res) {
+  console.log(res);
+});
+
 

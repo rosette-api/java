@@ -36,8 +36,6 @@ docParams.setItem("contentUri", args.url);
 console.log(docParams.params);
 
 var API = new Api(args.key, args.service_url);
-//API.categories(docParams, function(res) {
-//  console.log(res);
-//});
-var result = API.categories(docParams);
-console.log(result);
+API.categories(docParams, function(res) {
+  console.log(res);
+});
