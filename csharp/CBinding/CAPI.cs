@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -41,6 +42,11 @@ namespace CBinding
         /// </summary>
         private bool version_checked;
 
+        /// <summary>
+        /// String to set version number. Must be updated on API update.
+        /// </summary>
+        private string compatible_version = "0.5";
+
         /// <summary>C# API class
         /// <para>Rosette Python Client Binding API; representation of a Rosette server.
         /// Instance methods of the C# API provide communication with specific Rosette server endpoints.
@@ -61,7 +67,7 @@ namespace CBinding
             MaxRetry = (maxRetry == 0) ? 3: maxRetry;
             Debug = false;
             Morphofeatures = new List<string> { "complete", "lemmas", "parts-of-speech", "compound-components", "han-readings" };
-            Version = "0.5";
+            Version = compatible_version;
             Timeout = 300;
             Client = client;
             version_checked = checkVersion();
@@ -931,7 +937,7 @@ namespace CBinding
                     byteArray = Decompress(byteArray);
                 }
                 MemoryStream stream = new MemoryStream(byteArray);
-                StreamReader reader = new StreamReader(stream);
+                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
                 return reader.ReadToEnd();
             }
             else

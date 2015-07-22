@@ -28,6 +28,11 @@ namespace CBindingUnitTests
             string baseDirectory = Directory.GetCurrentDirectory();
             baseDirectory = baseDirectory.Remove(baseDirectory.IndexOf("ws-client-bindings") + 19);
             mockDir = baseDirectory + "mock-data";
+            if (!Directory.Exists(mockDir))
+            {
+                mockDir = "\\..\\..\\mock-data";
+            }
+
             requestDir = mockDir + "\\request\\";
             responseDir = mockDir + "\\response\\";
             RequestDir = requestDir;
