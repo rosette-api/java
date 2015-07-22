@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CBinding", "CBinding\CBinding.csproj", "{D719A8A7-C5C7-49CF-BFFC-523D605E5E37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rosette_api", "CBinding\rosette_api.csproj", "{D719A8A7-C5C7-49CF-BFFC-523D605E5E37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CBindingUnitTests", "CBindingUnitTests\CBindingUnitTests.csproj", "{10EAD22C-041F-4436-A391-935897309C23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rosette_apiUnitTests", "CBindingUnitTests\rosette_apiUnitTests.csproj", "{10EAD22C-041F-4436-A391-935897309C23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
