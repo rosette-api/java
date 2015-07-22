@@ -54,14 +54,14 @@ namespace CBinding
         /// <param name="versionNumber">(string, optional): Version number. Must match the server's version number to proceed. If none is given, will use the default.</param>
         /// <param name="maxRetry">(int, optional): Maximum number of times to retry a request on HttpResponse error. Default is 3 times.</param> 
         /// <param name="client">(HttpClient, optional): Forces the API to use a custom HttpClient.</param> 
-        public CAPI(string user_key, string uristring = "https://api.rosette.com/rest/v1/", string versionNumber = "0.5", int maxRetry = 3, HttpClient client = null)
+        public CAPI(string user_key, string uristring = "https://api.rosette.com/rest/v1/", int maxRetry = 3, HttpClient client = null)
         {
             UserKey = user_key;
             URIstring = (uristring == null) ? "https://api.rosette.com/rest/v1/" : uristring;
             MaxRetry = (maxRetry == 0) ? 3: maxRetry;
             Debug = false;
             Morphofeatures = new List<string> { "complete", "lemmas", "parts-of-speech", "compound-components", "han-readings" };
-            Version = (versionNumber == null) ? "0.5": versionNumber;
+            Version = "0.5";
             Timeout = 300;
             Client = client;
             version_checked = checkVersion();
@@ -89,10 +89,9 @@ namespace CBinding
         /// <para>
         /// Getter, Setter for the Version
         /// Version: Internal Server Version number.
-        /// Allows users to change their Version later (e.g. if instantiated class incorrectly)
         /// </para>
         /// </summary>
-        public string Version { get; set; }
+        private string Version { get; set; }
 
         /// <summary>MaxRetry
         /// <para>
@@ -756,25 +755,8 @@ namespace CBinding
                     }
                     retry = retry + 1;
                 }
-
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    byte[] byteArray = responseMsg.Content.ReadAsByteArrayAsync().Result;
-                    if (responseMsg.Content.Headers.ContentEncoding.Contains("gzip") && (byteArray[0] == '\x1f' && byteArray[1] == '\x8b' && byteArray[2] == '\x08'))
-                    {
-                        byteArray = Decompress(byteArray);
-                    }
-                    MemoryStream stream = new MemoryStream(byteArray);
-                    StreamReader reader = new StreamReader(stream);
-                    string text = reader.ReadToEnd();
-
-                    return new JavaScriptSerializer().Deserialize<dynamic>(text);
-                }
-                else
-                {
-                    throw new RosetteException(responseMsg.ReasonPhrase, (int)responseMsg.StatusCode);
-                }
-                
+                string text = getMessage(responseMsg);
+                return new JavaScriptSerializer().Deserialize<dynamic>(text);                
             }
             return null;
         }
@@ -917,22 +899,8 @@ namespace CBinding
                     responseMsg = client.GetAsync("info/").Result;
                     retry = retry + 1;
                 }
-                string text = null; 
-                if (responseMsg.IsSuccessStatusCode)
-                {
-                    byte[] byteArray = responseMsg.Content.ReadAsByteArrayAsync().Result;
-                    if (responseMsg.Content.Headers.ContentEncoding.Contains("gzip") || (byteArray[0] == '\x1f' || byteArray[0] == '\x8b' || byteArray[0] == '\x08'))
-                    {
-                        byteArray = Decompress(byteArray);
-                    }
-                    MemoryStream stream = new MemoryStream(byteArray);
-                    StreamReader reader = new StreamReader(stream);
-                    text = reader.ReadToEnd();
-                }
-                else
-                {
-                    throw new RosetteException(responseMsg.ReasonPhrase, (int)responseMsg.StatusCode);
-                }
+                string text = getMessage(responseMsg); 
+
                 var result = new JavaScriptSerializer().Deserialize<dynamic>(text);
                 // compatibility with server side is at minor version level of semver
                 string serverVersion = result["version"].ToString();
@@ -948,8 +916,33 @@ namespace CBinding
             return version_checked;
         }
 
+        /// <summary>getMessage
+        /// <para>Helper function to parse out responseMsg based on gzip or not</para>
+        /// </summary>
+        /// <param name="responseMsg">(HttpResponseMessage): Response Message sent from the server</param>
+        /// <returns>(string): Content of the response message</returns>
+        private string getMessage(HttpResponseMessage responseMsg)
+        {
+            if (responseMsg.IsSuccessStatusCode)
+            {
+                byte[] byteArray = responseMsg.Content.ReadAsByteArrayAsync().Result;
+                if (responseMsg.Content.Headers.ContentEncoding.Contains("gzip") || (byteArray[0] == '\x1f' && byteArray[1] == '\x8b' && byteArray[2] == '\x08'))
+                {
+                    byteArray = Decompress(byteArray);
+                }
+                MemoryStream stream = new MemoryStream(byteArray);
+                StreamReader reader = new StreamReader(stream);
+                return reader.ReadToEnd();
+            }
+            else
+            {
+                throw new RosetteException(responseMsg.ReasonPhrase, (int)responseMsg.StatusCode);
+            }
+        }
+
         /// <summary>Decompress
         /// <para>Method to decompress GZIP files
+        /// Source: http://www.dotnetperls.com/decompress
         /// </para>
         /// </summary>
         /// <param name="gzip">(byte[]): Data in byte form to decompress</param>

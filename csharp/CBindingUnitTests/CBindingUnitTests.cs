@@ -202,7 +202,8 @@ namespace CBindingUnitTests
 
         /// <summary>Compress
         /// <para>
-        /// Takes in byte data and compresses it using gzip
+        /// Takes in byte data and compresses it using gzip.
+        /// Source: http://www.dotnetperls.com/compress
         /// </para>
         /// </summary>
         /// <param name="raw">(byte[]): Raw data to be compressed</param>
@@ -222,6 +223,7 @@ namespace CBindingUnitTests
 
         /// <summary>Decompress
         /// <para>Method to decompress GZIP files
+        /// Source: http://www.dotnetperls.com/decompress
         /// </para>
         /// </summary>
         /// <param name="gzip">(byte[]): Data in byte form to decompress</param>
@@ -300,7 +302,7 @@ namespace CBindingUnitTests
 
                 var fakeHandler = new FakeHttpMessageHandler(fakeResponse, td.inpFilename);
                 HttpClient httpClient = new HttpClient(fakeHandler);
-                CAPI c = new CAPI(td.inpFilename, null, null, 3, httpClient);
+                CAPI c = new CAPI(td.inpFilename, null, 3, httpClient);
 
                 string morphofeature = null; 
                 if (td.endpoint.IndexOf("morphology") != -1)
