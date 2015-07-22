@@ -761,8 +761,18 @@ namespace CBinding
                     }
                     retry = retry + 1;
                 }
-                string text = getMessage(responseMsg);
+                string text = "";
+                try
+                {
+                    text = getMessage(responseMsg);
+
+                }
+                catch (RosetteException e)
+                {
+                    throw e;
+                }
                 return new JavaScriptSerializer().Deserialize<dynamic>(text);                
+
             }
             return null;
         }
@@ -905,7 +915,15 @@ namespace CBinding
                     responseMsg = client.GetAsync("info/").Result;
                     retry = retry + 1;
                 }
-                string text = getMessage(responseMsg); 
+                string text = "";
+                try
+                {
+                    text = getMessage(responseMsg);
+                }
+                catch(RosetteException e)
+                {
+                    throw e;
+                }
 
                 var result = new JavaScriptSerializer().Deserialize<dynamic>(text);
                 // compatibility with server side is at minor version level of semver
