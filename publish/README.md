@@ -60,7 +60,7 @@ them before running the script. You also need to ensure that your
 ssh key is authorized to use with git@github.com:rosette-api.
 
 This step automates the creation of a pull request from the new branch
-to master, merges it, and tags with a name same as branch name. 
+to master, merges it, and tags with a name same as branch name.
 
 
 Step 3: publish api doc to gh-pages
@@ -76,7 +76,7 @@ Again, you will need to specify the binding. The script will go into
 the binding's `target/html` folder and grab files from there to push
 to `gh-pages` branch in the github.com repo.
 
-Note: Java binding uses maven so release plugin needs to run first (see 
+Note: Java binding uses maven so release plugin needs to run first (see
 Step 4 below) so that there's no SNAPSHOT in version string. After that:
 
 ```
@@ -104,6 +104,11 @@ publish your page, you should ask for them first.
 
   Nothing needs to be done here, packagist will poll github changes automatically.
 
+- .Net (C#)/Nuget (https://www.nuget.org/)
+  Simply update the versions in the csharp pom.xml file:
+  Change the oldversion and newversion to the respective updated versions.
+  In addition, update the compatible_version variable in CAPI.cs file to the first
+  two version values (e.g. 0.5.1 -> 0.5, 0.6.0 -> 0.6)
 
 Step 5: update features and functions slate source with new example code
 ------------------------------------------------------------------------
@@ -116,4 +121,3 @@ Step 5: update features and functions slate source with new example code
 - `(cd raasdocs; git commit -a)`
 - go to internal git site and create a pull request for James to merge
 - James should review/try/merge and publish final file to 3scale portal
-
