@@ -702,7 +702,7 @@ namespace rosette_api
                 { "targetScheme", targetScheme},
                 { "sourceLanguageOfOrigin", sourceLanguageOfOrigin},
                 { "entityType", entityType}
-            }.Where(f => String.IsNullOrEmpty(f.Value.ToString())).ToDictionary(x => x.Key, x => x.Value)));
+            }.Where(f => !String.IsNullOrEmpty(f.Value)).ToDictionary(x => x.Key, x => x.Value)));
         }
 
         /// <summary>TranslatedName
@@ -749,6 +749,10 @@ namespace rosette_api
 
                 while (responseMsg == null || (!responseMsg.IsSuccessStatusCode && retry <= MaxRetry))
                 {
+                    if (retry > 0)
+                    {
+                        System.Threading.Thread.Sleep(500);
+                    }
                     if (jsonRequest != null)
                     {
                         HttpContent content = new StringContent(jsonRequest);
@@ -829,13 +833,13 @@ namespace rosette_api
                 unit = "doc";
             }
 
-            Dictionary<string, object> dict = new Dictionary<string, object>(){
+            Dictionary<string, string> dict = new Dictionary<string, string>(){
                 { "language", language},
                 { "content", content},
                 { "contentType", contentType},
                 { "unit", unit},
                 { "contentUri", contentUri}
-            }.Where(f => String.IsNullOrEmpty(f.Value.ToString())).ToDictionary(x => x.Key, x => x.Value);
+            }.Where(f => !String.IsNullOrEmpty(f.Value)).ToDictionary(x => x.Key, x => x.Value);
 
             return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
         }
@@ -912,6 +916,10 @@ namespace rosette_api
 
                 while (responseMsg == null || (!responseMsg.IsSuccessStatusCode && retry <= MaxRetry))
                 {
+                    if (retry > 0)
+                    {
+                        System.Threading.Thread.Sleep(500);
+                    }
                     responseMsg = client.GetAsync("info/").Result;
                     retry = retry + 1;
                 }
