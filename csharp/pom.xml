@@ -15,6 +15,8 @@
 	<properties>
 		<msbuild.configuration>Debug</msbuild.configuration>
 		<vcvars>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC</vcvars>
+		<oldversion>0.5.1.1</oldversion>
+		<newversion>0.5.1.2</newversion>
     </properties>
 	<build>
         <plugins>
@@ -54,6 +56,21 @@
 					</configuration>
 				  </execution>
 				  <execution>
+					<id>UpdateVersion</id>
+					<phase>post-integration-test</phase>
+					<goals>
+					  <goal>exec</goal>
+					</goals>
+					<configuration>
+					  <executable>BatchSubstitute.bat</executable>
+					  <arguments>
+						<argument>${oldversion}</argument>
+						<argument>${newversion}</argument>
+						<argument>.\rosette_api\rosette_api.nuspec</argument>
+					  </arguments>
+					</configuration>
+				  </execution>
+				  <execution>
 					<id>NugetPackageAndPublish</id>
 					<phase>verify</phase>
 					<goals>
@@ -65,7 +82,7 @@
 						<argument>ddeb08dd-8093-406b-a3cd-b88be64b555c</argument>
 						<argument>.\rosette_api</argument>
 						<argument>rosette_api</argument>
-						<argument>0.5.1</argument>
+						<argument>${newversion}</argument>
 					  </arguments>
 					</configuration>
 				  </execution>
