@@ -13,16 +13,34 @@
             <source>rosette_api.sln</source>
         </file>
 
+
+
     </files>
     <fileSets>
         <fileSet>
             <directory>rosette_api</directory>
+	    <includes>
+		<include>Properties</include>
+		<include>CAPI.cs</include>
+		<include>rosette_api.csproj</include>
+	    </includes>
         </fileSet>
         <fileSet>
             <directory>rosette_apiExamples</directory>
+	    <includes>
+		<include>Properties</include>
+		<include>**.cs</include>
+		<include>rosette_apiExamples.csproj</include>
+		<include>rosette_apiExamples.sln</include>
+	    </includes>
         </fileSet>
         <fileSet>
             <directory>rosette_apiUnitTests</directory>
+	    <includes>
+		<include>Properties</include>
+		<include>**.cs</include>
+		<include>rosette_apiUnitTests.csproj</include>
+	    </includes>
         </fileSet>
     </fileSets>
 </assembly>
