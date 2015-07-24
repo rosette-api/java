@@ -18,7 +18,7 @@ namespace rosette_api
     /// Primary class for interfacing with the Rosette API
     /// @copyright 2014-2015 Basis Technology Corporation.
     /// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
-    /// with the License. You may obtain a copy of the License at @license http://www.apache.org/licenses/LICENSE-2.0
+    /// with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
     /// Unless required by applicable law or agreed to in writing, software distributed under the License is
     /// distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     /// See the License for the specific language governing permissions and limitations under the License.
@@ -57,7 +57,6 @@ namespace rosette_api
         /// </summary>
         /// <param name="user_key">string: API key required by the Rosette server to allow access to endpoints</param>
         /// <param name="uristring">(string, optional): Base URL for the HttpClient requests. If none is given, will use the default API URI</param>
-        /// <param name="versionNumber">(string, optional): Version number. Must match the server's version number to proceed. If none is given, will use the default.</param>
         /// <param name="maxRetry">(int, optional): Maximum number of times to retry a request on HttpResponse error. Default is 3 times.</param> 
         /// <param name="client">(HttpClient, optional): Forces the API to use a custom HttpClient.</param> 
         public CAPI(string user_key, string uristring = "https://api.rosette.com/rest/v1/", int maxRetry = 3, HttpClient client = null)
@@ -142,7 +141,7 @@ namespace rosette_api
         /// <param name="contentType">(string, optional): MIME type of the input (required for base64 content; if content type is unknown, set to "application/octet-stream")</param>
         /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
         /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request.
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request.
         /// The response is the contextual categories identified in the input.
         /// </returns>
         public Dictionary<string, object> Categories(string content = null, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -156,8 +155,8 @@ namespace rosette_api
         /// (POST)Categories Endpoint: Returns an ordered list of categories identified in the input. The categories are Tier 1 contextual categories defined in the QAG Taxonomy.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request.
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request.
         /// The response is the contextual categories identified in the input.
         /// </returns>
         public Dictionary<string, object> Categories(Dictionary<object, object> dict)
@@ -172,7 +171,7 @@ namespace rosette_api
         /// </para>
         /// </summary>
         /// <param name="file">RosetteFile: RosetteFile Object containing the file (and possibly options) to upload</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request.
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request.
         /// The response is the contextual categories identified in the input.
         /// </returns>
         public Dictionary<string, object> Categories(RosetteFile file)
@@ -186,7 +185,7 @@ namespace rosette_api
         /// (GETCategoriesInfo Endpoint: Response is a JSON string with request id, version, build info, and support (null for now).
         /// </para>
         /// </summary>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the info GET.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the info GET.</returns>
         public Dictionary<string, object> CategoriesInfo()
         {
             _uri = "categories/info";
@@ -203,7 +202,7 @@ namespace rosette_api
         /// <param name="contentType">(string, optional): MIME type of the input (required for base64 content; if content type is unknown, set to "application/octet-stream")</param>
         /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
         /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request.
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request.
         /// The response identifies the entities in the input that have been linked to entities in the knowledge base. 
         /// Each entity includes an entity id (from the knowledge base), a chain id (all instances of the same entity share a chain id), 
         /// the mention (entity text from the input), and confidence associated with the linking.
@@ -219,8 +218,8 @@ namespace rosette_api
         /// (POST)EntitiesLinked Endpoint: Links entities in the input to entities in the knowledge base.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request.
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request.
         /// The response identifies the entities in the input that have been linked to entities in the knowledge base. 
         /// Each entity includes an entity id (from the knowledge base), a chain id (all instances of the same entity share a chain id), 
         /// the mention (entity text from the input), and confidence associated with the linking.
@@ -237,7 +236,7 @@ namespace rosette_api
         /// </para>
         /// </summary>
         /// <param name="file">RosetteFile: RosetteFile Object containing the file (and possibly options) to upload</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request.
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request.
         /// The response identifies the entities in the input that have been linked to entities in the knowledge base. 
         /// Each entity includes an entity id (from the knowledge base), a chain id (all instances of the same entity share a chain id), 
         /// the mention (entity text from the input), and confidence associated with the linking.
@@ -253,7 +252,7 @@ namespace rosette_api
         /// (GET)EntitiesLinkedInfo Endpoint: Response is a JSON string with request id, version, build info, and support (null for now).
         /// </para>
         /// </summary>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the info GET.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the info GET.</returns>
         public Dictionary<string, object> EntitiesLinkedInfo()
         {
             _uri = "entities/linked/info";
@@ -270,7 +269,7 @@ namespace rosette_api
         /// <param name="contentType">(string, optional): MIME type of the input (required for base64 content; if content type is unknown, set to "application/octet-stream")</param>
         /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
         /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response is a list of extracted entities. 
         /// Each entity includes chain ID (all instances of the same entity share a chain id), mention (entity text in the input), 
         /// normalized text (the most complete form of this entity that appears in the input), count (how many times this entity appears in the input), 
@@ -287,8 +286,8 @@ namespace rosette_api
         /// (POST)Entity Endpoint: Returns each entity extracted from the input.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response is a list of extracted entities. 
         /// Each entity includes chain ID (all instances of the same entity share a chain id), mention (entity text in the input), 
         /// normalized text (the most complete form of this entity that appears in the input), count (how many times this entity appears in the input), 
@@ -306,7 +305,7 @@ namespace rosette_api
         /// </para>
         /// </summary>
         /// <param name="file">RosetteFile: RosetteFile Object containing the file (and possibly options) to upload</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response is a list of extracted entities. 
         /// Each entity includes chain ID (all instances of the same entity share a chain id), mention (entity text in the input), 
         /// normalized text (the most complete form of this entity that appears in the input), count (how many times this entity appears in the input), 
@@ -323,7 +322,7 @@ namespace rosette_api
         /// (GET)EntityInfo Endpoint: Response is a JSON string with request id, version, build info, and support (null for now).
         /// </para>
         /// </summary>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the info GET.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the info GET.</returns>
         public Dictionary<string, object> EntityInfo()
         {
             _uri = "entities/info";
@@ -335,7 +334,7 @@ namespace rosette_api
         /// (GET)Info Endpoint: Response is a JSON string with Rosette API information including buildNumber, name, version, and buildTime.
         /// </para>
         /// </summary>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the info GET.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the info GET.</returns>
         public Dictionary<string, object> Info()
         {
             _uri = "info/";
@@ -352,7 +351,7 @@ namespace rosette_api
         /// <param name="contentType">(string, optional): MIME type of the input (required for base64 content; if content type is unknown, set to "application/octet-stream")</param>
         /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
         /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response is an ordered list of detected languages, including language and detection confidence, sorted by descending confidence.
         /// </returns>
         public Dictionary<string, object> Language(string content = null, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -366,8 +365,8 @@ namespace rosette_api
         /// (POST)Language Endpoint: Returns list of candidate languages in order of descending confidence.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response is an ordered list of detected languages, including language and detection confidence, sorted by descending confidence.
         /// </returns>
         public Dictionary<string, object> Language(Dictionary<object, object> dict)
@@ -382,7 +381,7 @@ namespace rosette_api
         /// </para>
         /// </summary>
         /// <param name="file">RosetteFile: RosetteFile Object containing the file (and possibly options) to upload</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response is an ordered list of detected languages, including language and detection confidence, sorted by descending confidence.
         /// </returns>
         public Dictionary<string, object> Language(RosetteFile file)
@@ -396,7 +395,7 @@ namespace rosette_api
         /// (GET)LanguageInfo Endpoint: Response is a JSON string with request id and supported languages, each with a list of one or more supported scripts..
         /// </para>
         /// </summary>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the info GET.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the info GET.</returns>
         public Dictionary<string, object> LanguageInfo()
         {
             _uri = "language/info";
@@ -414,7 +413,7 @@ namespace rosette_api
         /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
         /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
         /// <param name="feature">(string, optional): Description of what morphology feature to request from the Rosette server</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response may include lemmas, part of speech tags, compound word components, and Han readings. 
         /// Support for specific return types depends on language.
         /// </returns>
@@ -429,9 +428,9 @@ namespace rosette_api
         /// (POST)Morphology Endpoint: Returns morphological analysis of input.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
         /// <param name="feature">(string, optional): Description of what morphology feature to request from the Rosette server</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response may include lemmas, part of speech tags, compound word components, and Han readings. 
         /// Support for specific return types depends on language.
         /// </returns>
@@ -448,7 +447,7 @@ namespace rosette_api
         /// </summary>
         /// <param name="file">RosetteFile: RosetteFile Object containing the file (and possibly options) to upload</param>
         /// <param name="feature">(string, optional): Description of what morphology feature to request from the Rosette server</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response may include lemmas, part of speech tags, compound word components, and Han readings. 
         /// Support for specific return types depends on language.
         /// </returns>
@@ -465,7 +464,7 @@ namespace rosette_api
         /// </summary>
         /// <param name="n1">Name: First name to be matched</param>
         /// <param name="n2">Name: Second name to be matched</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// </returns>
         public Dictionary<string, object> MatchedName(Name n1, Name n2)
         {
@@ -482,8 +481,8 @@ namespace rosette_api
         /// (POST)MatchedName Endpoint: Returns the result of matching 2 names.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// </returns>
         public Dictionary<string, object> MatchedName(Dictionary<object, object> dict)
         {
@@ -496,7 +495,7 @@ namespace rosette_api
         /// (GET)MatchedNameInfo Endpoint: Response is a JSON string with request id, version, build info, and support (null for now).
         /// </para>
         /// </summary>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the info GET.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the info GET.</returns>
         public Dictionary<string, object> MatchedNameInfo()
         {
             _uri = "matched-name/info";
@@ -506,7 +505,7 @@ namespace rosette_api
         /// <summary>Ping
         /// (GET)Ping Endpoint: Pings Rosette API for a response indicting that the service is available
         /// </summary>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the info GET.
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the info GET.
         /// The reponse contains a message and time.
         /// </returns>
         public Dictionary<string, object> Ping()
@@ -525,7 +524,7 @@ namespace rosette_api
         /// <param name="contentType">(string, optional): MIME type of the input (required for base64 content; if content type is unknown, set to "application/octet-stream")</param>
         /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
         /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response contains a list of sentences.
         /// </returns>
         public Dictionary<string, object> Sentences(string content = null, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -539,8 +538,8 @@ namespace rosette_api
         /// (POST)Sentences Endpoint: Divides the input into sentences.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response contains a list of sentences.
         /// </returns>
         public Dictionary<string, object> Sentences(Dictionary<object, object> dict)
@@ -555,7 +554,7 @@ namespace rosette_api
         /// </para>
         /// </summary>
         /// <param name="file">RosetteFile: RosetteFile Object containing the file (and possibly options) to upload</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response contains a list of sentences.
         /// </returns>
         public Dictionary<string, object> Sentences(RosetteFile file)
@@ -574,7 +573,7 @@ namespace rosette_api
         /// <param name="contentType">(string, optional): MIME type of the input (required for base64 content; if content type is unknown, set to "application/octet-stream")</param>
         /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
         /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response contains sentiment analysis results.
         /// </returns>
         public Dictionary<string, object> Sentiment(string content = null, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -588,8 +587,8 @@ namespace rosette_api
         /// (POST)Sentiment Endpoint: Analyzes the positive and negative sentiment expressed by the input.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response contains sentiment analysis results.
         /// </returns>
         public Dictionary<string, object> Sentiment(Dictionary<object, object> dict)
@@ -604,7 +603,7 @@ namespace rosette_api
         /// </para>
         /// </summary>
         /// <param name="file">RosetteFile: RosetteFile Object containing the file (and possibly options) to upload</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response contains sentiment analysis results.
         /// </returns>
         public Dictionary<string, object> Sentiment(RosetteFile file)
@@ -618,7 +617,7 @@ namespace rosette_api
         /// (GET)SentimentInfo Endpoint: Response is a JSON string with request id, version, build info, and support (null for now).
         /// </para>
         /// </summary>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the info GET.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the info GET.</returns>
         public Dictionary<string, object> SentimentInfo()
         {
             _uri = "sentiment/info";
@@ -635,7 +634,7 @@ namespace rosette_api
         /// <param name="contentType">(string, optional): MIME type of the input (required for base64 content; if content type is unknown, set to "application/octet-stream")</param>
         /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
         /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response contains a list of tokens.
         /// </returns>
         public Dictionary<string, object> Tokens(string content = null, string language = null, string contentType = null, string unit = null, string contentUri = null)
@@ -649,8 +648,8 @@ namespace rosette_api
         /// (POST)Tokens Endpoint: Divides the input into tokens.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response contains a list of tokens.
         /// </returns>
         public Dictionary<string, object> Tokens(Dictionary<object, object> dict)
@@ -665,7 +664,7 @@ namespace rosette_api
         /// </para>
         /// </summary>
         /// <param name="file">RosetteFile: RosetteFile Object containing the file (and possibly options) to upload</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// The response contains a list of tokens.
         /// </returns>
         public Dictionary<string, object> Tokens(RosetteFile file)
@@ -687,7 +686,7 @@ namespace rosette_api
         /// <param name="targetScheme">(string, optional): transliteration scheme for the translation</param>
         /// <param name="sourceLanguageOfOrigin">(string, optional): ISO 639-3 code for the name's language of origin</param>
         /// <param name="entityType">(string, optional): Entity type of the name: PERSON, LOCATION, or ORGANIZATION</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. 
         /// </returns>
         public Dictionary<string, object> TranslatedName(string name, string sourceLanguageOfUse = null, string sourceScript = null, string targetLanguage = null, string targetScript = null, string targetScheme = null, string sourceLanguageOfOrigin = null, string entityType = null)
         {
@@ -710,9 +709,8 @@ namespace rosette_api
         /// (POST)TranslatedName Endpoint: Returns the translation of a name. You must specify the name to translate and the target language for the translation.
         /// </para>
         /// </summary>
-        /// <param name="dict">Dictionary&ltobject, object&gt: Dictionary containing parameters as (key,value) pairs</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the request. 
-        /// </returns>
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the request. </returns>
         public Dictionary<string, object> TranslatedName(Dictionary<object, object> dict)
         {
             _uri = "translated-name/";
@@ -724,7 +722,7 @@ namespace rosette_api
         /// (GET)TranslatedNameInfo Endpoint: Response is a JSON string with request id, version, build info, and support (null for now).
         /// </para>
         /// </summary>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the info GET.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the info GET.</returns>
         public Dictionary<string, object> TranslatedNameInfo()
         {
             _uri = "translated-name/info";
@@ -738,7 +736,7 @@ namespace rosette_api
         /// </summary>
         /// <param name="client">HttpClient: Client to use to access the Rosette server.</param>
         /// <param name="jsonRequest">(string, optional): Content to use as the request to the server with POST. If none given, assume an Info endpoint and use GET</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the response from the server.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the response from the server.</returns>
         private Dictionary<string, Object> getResponse(HttpClient client, string jsonRequest = null)
         {
             if (client != null && checkVersion())
@@ -787,7 +785,7 @@ namespace rosette_api
         /// </para>
         /// </summary>
         /// <param name="file">RosetteFile: File being uploaded to use as a request to the Rosette server.</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the response from the server from the getResponse call.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the response from the server from the getResponse call.</returns>
         private Dictionary<string, Object> Process(RosetteFile file)
         {
             Dictionary<string, string> dict = new Dictionary<string, string>(){
@@ -815,7 +813,7 @@ namespace rosette_api
         /// <param name="contentType">(string, optional): MIME type of the input (required for base64 content; if content type is unknown, set to "application/octet-stream")</param>
         /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
         /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
-        /// <returns>Dictionary&ltstring, object&gt: Dictionary containing the results of the response from the server from the getResponse call.</returns>
+        /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the response from the server from the getResponse call.</returns>
         private Dictionary<string, Object> Process(string content = null, string language = null, string contentType = null, string unit = null, string contentUri = null)
         {
             if (content == null){
@@ -1203,10 +1201,10 @@ namespace rosette_api
         /// Name: Custom Datatype to use in Matched Name endpoint
         /// </para>
         /// </summary>
-        /// <param name="text">(string, optional): Text describing the name</param>
-        /// <param name="language">(string, optional): Language: ISO 639-3 code (ignored for the /language endpoint)</param>
-        /// <param name="script">(string, optional): ISO 15924 code for the name's script</param>
-        /// <param name="entityType">(string, optional): Entity type of the name: PERSON, LOCATION, or ORGANIZATION</param>
+        /// <param name="Text">(string, optional): Text describing the name</param>
+        /// <param name="Language">(string, optional): Language: ISO 639-3 code (ignored for the /language endpoint)</param>
+        /// <param name="Script">(string, optional): ISO 15924 code for the name's script</param>
+        /// <param name="EntityType">(string, optional): Entity type of the name: PERSON, LOCATION, or ORGANIZATION</param>
         public Name(string Text = null, string Language = null, string Script = null, string EntityType = null)
         {
             text = Text;
