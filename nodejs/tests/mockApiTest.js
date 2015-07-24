@@ -31,16 +31,16 @@ var zlib = require("zlib");
 
  Test methods:
  test.expect(numAssertions)
- test.done()                                       <---
+ test.done()
  Test assertions:
- test.ok(value, [message])                         <---
- test.equal(actual, expected, [message])           <---
+ test.ok(value, [message])
+ test.equal(actual, expected, [message])
  test.notEqual(actual, expected, [message])
  test.deepEqual(actual, expected, [message])
  test.notDeepEqual(actual, expected, [message])
  test.strictEqual(actual, expected, [message])
  test.notStrictEqual(actual, expected, [message])
- test.throws(block, [error], [message])            <---
+ test.throws(block, [error], [message])
  test.doesNotThrow(block, [error], [message])
  test.ifError(value)
  */
@@ -86,8 +86,7 @@ sinon.stub(Api.prototype, "retryingRequest", function(callback, op, url, headers
   }
 });
 
-// Maybe mock info call instead?
-sinon.stub(Api.prototype, "checkVersion", function(api) {
+sinon.stub(Api.prototype, "checkVersion", function() {
   return true;
 });
 
@@ -101,6 +100,7 @@ exports.testAllMocked = function(test){
   var result = "";
   // Make sure the right number of assertions happen
   test.expect(files.length);
+
   for (var i = 0; i < files.length; i++) {
     var parameters, endpt;
     // For all request files
@@ -229,36 +229,3 @@ exports.testPingMocked = function(test) {
   });
   test.done();
 };
-
-/**
- * Testing of all endpoints that use get requests.
- * No mocking.
- */
-//exports.getEndpointsMocked = {
-//  setUp: function (callback) {
-//    this.api = new Api(userKey);
-//    callback();
-//  },
-//  "info": function (test) {
-//    this.api.info(function(res) {
-//      test.equal("57179c38", res.buildNumber, "Comparing build number");
-//      test.done();
-//    });
-//  },
-//  "ping": function (test) {
-//    this.api.ping(function(res) {
-//      test.equal("Rosette API at your service", res.message, "Comparing ping message");
-//      test.done();
-//    });
-//  },
-//  "languageInfo": function (test) {
-//    this.api.languageInfo(function(res) {
-//      test.ok("supportedLanguages" in res, "supportedLanguages field in result");
-//      test.done();
-//    });
-//  }
-//};
-//
-
-// Put retryingRequest back
-//Api.prototype.retryingRequest.restore();

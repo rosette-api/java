@@ -27,8 +27,6 @@ var name1 = {"text": "Michael Jackson", "language": "eng", "entityType": "PERSON
 var name2 = {"text": "迈克尔·杰克逊", "entityType": "PERSON"};
 var matchParams = new NameMatchingParameters(name1, name2);
 
-console.log(matchParams);
-
 var api = new Api(args.key, args.service_url);
 api.matchedName(matchParams, function(res) {
   console.log(res);

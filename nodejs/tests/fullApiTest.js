@@ -30,13 +30,13 @@ var rosetteConstants = require("../target/instrumented/lib/rosetteConstants");
     test.done()
   Test assertions:
     test.ok(value, [message])
-    test.equal(actual, expected, [message])           <---
+    test.equal(actual, expected, [message])
     test.notEqual(actual, expected, [message])
     test.deepEqual(actual, expected, [message])
     test.notDeepEqual(actual, expected, [message])
     test.strictEqual(actual, expected, [message])
     test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])            <---
+    test.throws(block, [error], [message])
     test.doesNotThrow(block, [error], [message])
     test.ifError(value)
 */
@@ -299,7 +299,7 @@ exports.nameEndpointsFullErrors = {
     var name2 = {"text": "迈克尔·杰克逊", "entityType": "PERSON"};
     var matchParams = new NameMatchingParameters(null, name2);
     try {
-      this.api.matchedName(matchParams, function (res) {});
+      this.api.matchedName(matchParams, function () {});
       test.ok(false, "Should have thrown an error");
     } catch (e) {
       test.equal(e.name, "RosetteException", "Right type of error");
@@ -312,7 +312,7 @@ exports.nameEndpointsFullErrors = {
     var name1 = {"text": "Michael Jackson", "language": "eng", "entityType": "PERSON"};
     var matchParams = new NameMatchingParameters(name1, null);
     try {
-      this.api.matchedName(matchParams, function (res) {});
+      this.api.matchedName(matchParams, function () {});
       test.ok(false, "Should have thrown an error");
     } catch (e) {
       test.equal(e.name, "RosetteException", "Right type of error");
@@ -326,8 +326,7 @@ exports.nameEndpointsFullErrors = {
     translationParams.setItem("entityType", "PERSON");
     translationParams.setItem("targetLanguage", "eng");
     try {
-      this.api.translatedName(translationParams, function (res) {
-      });
+      this.api.translatedName(translationParams, function () {});
     } catch (e) {
       test.equal(e.name, "RosetteException", "Right type of error");
       test.equal(e.message, "missingParameter: Required Name Translation parameter not supplied: name", "Right message");
@@ -340,8 +339,7 @@ exports.nameEndpointsFullErrors = {
     translationParams.setItem("name", "معمر محمد أبو منيار القذافي‎");
     translationParams.setItem("entityType", "PERSON");
     try {
-      this.api.translatedName(translationParams, function (res) {
-      });
+      this.api.translatedName(translationParams, function () {});
     } catch (e) {
       test.equal(e.name, "RosetteException", "Right type of error");
       test.equal(e.message, "missingParameter: Required Name Translation parameter not supplied: targetLanguage", "Right message");
@@ -360,7 +358,7 @@ exports.documentParamErrors = {
     test.expect(2);
     this.docParams.setItem("language", "eng");
     try {
-      this.api.categories(this.docParams, function(res) {});
+      this.api.categories(this.docParams, function() {});
     } catch (e) {
       test.equal(e.name, "RosetteException", "Right type of error");
       test.equal(e.message, "badArgument: Must supply one of Content or ContentUri: bad arguments", "Right message");
@@ -372,7 +370,7 @@ exports.documentParamErrors = {
     this.docParams.setItem("content", "The quick brown fox jumped over the lazy dog");
     this.docParams.setItem("contentUri", "http://www.google.com");
     try {
-      this.api.categories(this.docParams, function(res) {});
+      this.api.categories(this.docParams, function() {});
     } catch (e) {
       test.equal(e.name, "RosetteException", "Right type of error");
       test.equal(e.message, "badArgument: Cannot supply both Content and ContentUri: bad arguments", "Right message");

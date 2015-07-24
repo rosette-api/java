@@ -20,7 +20,6 @@ var URL = require("url");
 var zlib = require("zlib");
 var rosetteConstants = require("./rosetteConstants");
 var RosetteException = require("./RosetteException");
-var DocumentParameters = require("./DocumentParameters"); // Take out when done testing
 
 /**
  * Compatible server version.
