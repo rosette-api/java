@@ -7,12 +7,14 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <files>
         <file>
-            <source>README.txt</source>
+            <source>README.md</source>
         </file>
         <file>
             <source>rosette_api.sln</source>
         </file>
-
+        <file>
+            <source>.gitignore</source>
+        </file>
 
 
     </files>
