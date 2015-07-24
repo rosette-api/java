@@ -105,10 +105,14 @@ publish your page, you should ask for them first.
   Nothing needs to be done here, packagist will poll github changes automatically.
 
 - .Net (C#)/Nuget (https://www.nuget.org/)
-  Simply update the versions in the csharp pom.xml file:
-  Change the oldversion and newversion to the respective updated versions.
-  In addition, update the compatible_version variable in CAPI.cs file to the first
-  two version values (e.g. 0.5.1 -> 0.5, 0.6.0 -> 0.6)
+
+  To publish, adjust the mvn call in the Bamboo job:
+  Change from:
+  `mvn clean install site -Dpublish=false 
+  to
+  `mvn clean install site -Dpublish=true -Doldversion=X -Dnewversion=Y  
+  where X is the old version number and Y is the new version number
+  The maven call automatically packages and delivers to Nuget.
 
 Step 5: update features and functions slate source with new example code
 ------------------------------------------------------------------------
