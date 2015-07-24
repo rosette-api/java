@@ -208,7 +208,8 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
   }
   // Check that parameters follow their guidelines
   parameters.validate();
-  this.retryingRequest(callback, "POST", url, headers, parameters.params, "callEndpoint", api); // should be parameters serialized ???
+  // Call with serialized parameters
+  this.retryingRequest(callback, "POST", url, headers, parameters.serialize(), "callEndpoint", api);
 };
 
 /**
