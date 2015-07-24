@@ -84,6 +84,7 @@
       <activation>
 	<property>
 	  <name>publish</name>
+	  <value>true</value>
 	</property>
       </activation>
       <build>
