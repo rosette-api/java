@@ -25,15 +25,13 @@ parser.addArgument(
   ["--url"],
   {
     help: "Optional URL for data",
-    defaultValue: "http://www.basistech.com/about"
+    defaultValue: "https://en.wikipedia.org/wiki/Basis_Technology_Corp."
   }
 );
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();
-console.log(args.url);
 docParams.setItem("contentUri", args.url);
-console.log(docParams.params);
 
 var API = new Api(args.key, args.service_url);
 API.categories(docParams, function(res) {

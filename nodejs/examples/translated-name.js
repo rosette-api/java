@@ -28,8 +28,6 @@ translationParams.setItem("name", "معمر محمد أبو منيار القذ�
 translationParams.setItem("entityType", "PERSON");
 translationParams.setItem("targetLanguage", "eng");
 
-console.log(translationParams);
-
 var api = new Api(args.key, args.service_url);
 api.translatedName(translationParams, function(res) {
   console.log(res);

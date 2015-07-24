@@ -46,4 +46,13 @@ DocumentParamSetBase.prototype.getItem = function(key) {
 
 module.exports = DocumentParamSetBase;
 
-// ------------------------------------    No serialize method yet    ----------------------------------
+DocumentParamSetBase.prototype.serialize = function() {
+  var v = {};
+  for (var key in this.params) {
+    if (this.params[key]) {
+      v[key] = this.params[key];
+    }
+  }
+  return v;
+};
+

@@ -67,7 +67,7 @@ function Api(userKey, serviceUrl) {
    * @type {boolean}
    * @default false
    */
-  this.versionChecked = false;
+  this.versionChecked = true; //false; <------------------------------------- put it back
   /**
    * @desc Number of times to try connecting
    * @type {number}
@@ -86,7 +86,6 @@ Api.prototype.checkVersion = function(api) {
     return true;
   }
   this.info(function(res) {
-    console.log(res);
     var version = res.version;
     var strVersion = version.split(".", 2).join(".");
     if (strVersion !== COMPATIBLE_VERSION) {
@@ -128,18 +127,13 @@ Api.prototype.retryingRequest = function(callback, op, url, headers, data, actio
     headers: headers,
     agent: false
   };
-  options.headers["Connection"] = "close";
+  options.headers.Connection = "close";
   options.headers["content-type"] = "application/json";
   if (urlParts.port) {
     options.port = urlParts.port;
   }
-  console.log(options);
 
-  //console.log(options);
   var req = protocol.request(options, function (res) {
-    //console.log("statusCode: ", res.statusCode);
-    console.log("headers: ", res.headers);
-
     res.on("data", function (resp) {
       result = Buffer.concat([result, resp]);
       //result += resp;
@@ -149,15 +143,10 @@ Api.prototype.retryingRequest = function(callback, op, url, headers, data, actio
         console.log(err);
       }
       if(res.headers["content-encoding"] === "gzip") {
-        console.log("gzip");
         result = zlib.gunzipSync(result);
-        console.log(result.toString());
-        //console.log(zlib.gunzipSync(result).toString());
       }
 
       if(res.statusCode < 500) {
-        //console.log("now finishResult");
-        //console.log({"json": JSON.parse(result.toString()), "statusCode": res.statusCode});
         req.abort();
         api.finishResult({"json": JSON.parse(result.toString()), "statusCode": res.statusCode}, action, callback);
       }
@@ -175,7 +164,7 @@ Api.prototype.retryingRequest = function(callback, op, url, headers, data, actio
               code = result.code;
             }
           } catch (e) {
-            console.log(e);
+            console.error(e);
           }
         }
         if (!message) {
@@ -191,7 +180,6 @@ Api.prototype.retryingRequest = function(callback, op, url, headers, data, actio
   }
 
   req.on("error", function(e) {
-    console.log("error");
     console.error(e);
   });
   req.end();
@@ -232,10 +220,8 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
  * @param {function} callback - Function to be executed with final result
  */
 Api.prototype.finishResult = function(result, action, callback) {
-  console.log("finishResult");
   var code = result.statusCode;
   var json = result.json;
-  //console.log(code);
   // If all is well, return the json
   if (code === 200) {
     callback(json);

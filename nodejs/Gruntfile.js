@@ -5,7 +5,8 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     nodeunit: {
-      files: ["tests/**/*Test.js"]
+      all: ["tests/**/*Test.js"],
+      mocked: ["tests/mockApiTest.js"]
     },
     eslint: {
       lib: {
@@ -72,11 +73,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-istanbul");
   grunt.loadNpmTasks("grunt-jsdoc");
 
-  // Task definititions.
+  // Task definitions.
   // run `grunt <task>` in command line and it will run the sequence in brackets
   grunt.registerTask("default", ["eslint", "test", "jsdoc"]);
   grunt.registerTask("doc", ["jsdoc"]);
   grunt.registerTask("lint", ["eslint"]);
   grunt.registerTask("test", ["instrument", "nodeunit", "storeCoverage", "makeReport"]); // with coverage report
+  grunt.registerTask("mockedTests", ["instrument", "nodeunit:mocked", "storeCoverage", "makeReport"]); // just mocked
 
 };
