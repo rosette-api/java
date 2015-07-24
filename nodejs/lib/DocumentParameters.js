@@ -73,9 +73,7 @@ DocumentParameters.prototype.loadDocumentFile = function(path, dataType) {
       rosetteConstants.dataFormat.UNSPECIFIED].indexOf(dataType) === -1) {
     throw new RosetteException("badArgument", "Must supply one of HTML, XHTML, or UNSPECIFIED", dataType);
   }
-  //var s = fs.readFileSync(path, "utf8");
   var s = fs.readFileSync(path, "base64");
-  console.log(s);
   this.loadDocumentString(s, dataType);
 };
 

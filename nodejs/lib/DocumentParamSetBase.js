@@ -44,8 +44,6 @@ DocumentParamSetBase.prototype.getItem = function(key) {
   return this.params[key];
 };
 
-module.exports = DocumentParamSetBase;
-
 DocumentParamSetBase.prototype.serialize = function() {
   var v = {};
   for (var key in this.params) {
@@ -56,3 +54,4 @@ DocumentParamSetBase.prototype.serialize = function() {
   return v;
 };
 
+module.exports = DocumentParamSetBase;

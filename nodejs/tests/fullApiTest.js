@@ -44,7 +44,7 @@ var rosetteConstants = require("../target/instrumented/lib/rosetteConstants");
 var userKey = "7eb3562318e5242b5a89ad80011f1e22";
 
 /**
- * Testing of all endpoints that use get requests.
+ * Testing of all endpoints that use get requests - should all work successfully.
  * No mocking.
  */
 exports.getEndpointsFull = {
@@ -83,7 +83,7 @@ function allFalse(arr) {
 }
 
 /**
- * Testing of all endpoints except morphology that take document parameters
+ * Testing of all endpoints except morphology that take document parameters - should all work successfully
  * No mocking.
  */
 exports.documentParamEndpointsFull = {
@@ -177,6 +177,14 @@ exports.documentParamEndpointsFull = {
       test.equal(6, res.tokens.length, "Testing if right number of tokens");
       test.done();
     });
+  },
+  "from-doc": function(test) {
+    this.docParams.setItem("content", null);
+    this.docParams.loadDocumentFile(__dirname + "/test.txt");
+    this.api.categories(this.docParams, function(res) {
+      test.equal("SCIENCE", res.categories[0].label, "Comparing category");
+      test.done();
+    });
   }
 };
 
@@ -241,7 +249,7 @@ exports.morphologyEndpointsFull = {
 };
 
 /**
- * Testing of all name-related endpoints.
+ * Testing of all name-related endpoints - should all work successfully.
  * No mocking.
  */
 exports.nameEndpointsFull = {
@@ -271,8 +279,124 @@ exports.nameEndpointsFull = {
     translationParams.setItem("entityType", "PERSON");
     translationParams.setItem("targetLanguage", "eng");
     this.api.translatedName(translationParams, function(res) {
-      test.equal("Mu\'ammar Muhammad Abu-Minyar al-Qadhafi", res.result.translation, "Test if translationis as expected");
+      test.equal("Mu\'ammar Muhammad Abu-Minyar al-Qadhafi", res.result.translation, "Test if translation is as expected");
       test.done();
     });
+  }
+};
+
+/**
+ * Testing of all name-related endpoints - should all throw errors.
+ * No mocking.
+ */
+exports.nameEndpointsFullErrors = {
+  setUp: function (callback) {
+    this.api = new Api(userKey);
+    callback();
+  },
+  "matched-no-name1": function (test) {
+    test.expect(2);
+    var name2 = {"text": "迈克尔·杰克逊", "entityType": "PERSON"};
+    var matchParams = new NameMatchingParameters(null, name2);
+    try {
+      this.api.matchedName(matchParams, function (res) {});
+      test.ok(false, "Should have thrown an error");
+    } catch (e) {
+      test.equal(e.name, "RosetteException", "Right type of error");
+      test.equal(e.message, "missingParameter: Required Name Translation parameter not supplied: name1", "Right message");
+    }
+    test.done();
+  },
+  "matched-no-name2": function (test) {
+    test.expect(2);
+    var name1 = {"text": "Michael Jackson", "language": "eng", "entityType": "PERSON"};
+    var matchParams = new NameMatchingParameters(name1, null);
+    try {
+      this.api.matchedName(matchParams, function (res) {});
+      test.ok(false, "Should have thrown an error");
+    } catch (e) {
+      test.equal(e.name, "RosetteException", "Right type of error");
+      test.equal(e.message, "missingParameter: Required Name Translation parameter not supplied: name2", "Right message");
+    }
+    test.done();
+  },
+  "translated-no-text": function (test) {
+    test.expect(2);
+    var translationParams = new NameTranslationParameters();
+    translationParams.setItem("entityType", "PERSON");
+    translationParams.setItem("targetLanguage", "eng");
+    try {
+      this.api.translatedName(translationParams, function (res) {
+      });
+    } catch (e) {
+      test.equal(e.name, "RosetteException", "Right type of error");
+      test.equal(e.message, "missingParameter: Required Name Translation parameter not supplied: name", "Right message");
+    }
+    test.done();
+  },
+  "translated-no-targetLanguage": function (test) {
+    test.expect(2);
+    var translationParams = new NameTranslationParameters();
+    translationParams.setItem("name", "معمر محمد أبو منيار القذافي‎");
+    translationParams.setItem("entityType", "PERSON");
+    try {
+      this.api.translatedName(translationParams, function (res) {
+      });
+    } catch (e) {
+      test.equal(e.name, "RosetteException", "Right type of error");
+      test.equal(e.message, "missingParameter: Required Name Translation parameter not supplied: targetLanguage", "Right message");
+    }
+    test.done();
+  }
+};
+
+exports.documentParamErrors = {
+  setUp: function (callback) {
+    this.api = new Api(userKey);
+    this.docParams = new DocumentParameters();
+    callback();
+  },
+  "no-content-or-uri": function(test) {
+    test.expect(2);
+    this.docParams.setItem("language", "eng");
+    try {
+      this.api.categories(this.docParams, function(res) {});
+    } catch (e) {
+      test.equal(e.name, "RosetteException", "Right type of error");
+      test.equal(e.message, "badArgument: Must supply one of Content or ContentUri: bad arguments", "Right message");
+    }
+    test.done();
+  },
+  "content-and-uri": function(test) {
+    test.expect(2);
+    this.docParams.setItem("content", "The quick brown fox jumped over the lazy dog");
+    this.docParams.setItem("contentUri", "http://www.google.com");
+    try {
+      this.api.categories(this.docParams, function(res) {});
+    } catch (e) {
+      test.equal(e.name, "RosetteException", "Right type of error");
+      test.equal(e.message, "badArgument: Cannot supply both Content and ContentUri: bad arguments", "Right message");
+    }
+    test.done();
+  },
+  "bad-key": function(test) {
+    test.expect(2);
+    try {
+      this.docParams.setItem("name", "Barack Obama");
+    } catch (e) {
+      test.equal(e.name, "RosetteException", "Right type of error");
+      test.equal(e.message, "badKey: Unknown Rosette parameter key: name", "Right message");
+    }
+    test.done();
+  },
+  "from-doc-bad-type": function(test) {
+    test.expect(2);
+    try {
+      this.docParams.loadDocumentFile(__dirname + "/test.txt", rosetteConstants.dataFormat.SIMPLE);
+    } catch (e) {
+      test.equal(e.name, "RosetteException", "Right type of error");
+      test.equal(e.message, "badArgument: Must supply one of HTML, XHTML, or UNSPECIFIED: text/plain", "Right message");
+    }
+    test.done();
   }
 };
