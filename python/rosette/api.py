@@ -23,6 +23,7 @@ import gzip
 import json
 import logging
 import sys
+import pprint
 
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
@@ -194,7 +195,7 @@ class MorphologyOutput(_PseudoEnum):
     COMPLETE = "complete"
 
 
-class _DocumentParamSetBase:
+class _DocumentParamSetBase(object):
     def __init__(self, repertoire):
         self.__params = {}
         for k in repertoire:
@@ -210,7 +211,11 @@ class _DocumentParamSetBase:
             raise RosetteException("badKey", "Unknown Rosette parameter key", repr(key))
         return self.__params[key]
 
-    def _for_serialize(self):
+    def validate(self):
+        pass
+
+    def serialize(self):
+        self.validate()
         v = {}
         for (key, val) in self.__params.items():
             if val is None:
@@ -253,9 +258,8 @@ class DocumentParameters(_DocumentParamSetBase):
         _DocumentParamSetBase.__init__(self, ("content", "contentUri", "contentType", "unit", "language"))
         self["unit"] = InputUnit.DOC  # default
 
-    def serializable(self):
+    def validate(self):
         """Internal. Do not use."""
-
         if self["content"] is None:
             if self["contentUri"] is None:
                 raise RosetteException("badArgument", "Must supply one of Content or ContentUri", "bad arguments")
@@ -263,7 +267,10 @@ class DocumentParameters(_DocumentParamSetBase):
             if self["contentUri"] is not None:
                 raise RosetteException("badArgument", "Cannot supply both Content and ContentUri", "bad arguments")
 
-        slz = self._for_serialize()
+    def serialize(self):
+        """Internal. Do not use."""
+        self.validate()
+        slz = super(DocumentParameters, self).serialize()
         if self["contentType"] is None and self["contentUri"] is None:
             slz["contentType"] = DataFormat.SIMPLE
         elif self["contentType"] in (DataFormat.HTML, DataFormat.XHTML, DataFormat.UNSPECIFIED):
@@ -339,13 +346,11 @@ class NameTranslationParameters(_DocumentParamSetBase):
         _DocumentParamSetBase.__init__(self, ("name", "targetLanguage", "entityType", "sourceLanguageOfOrigin",
                                               "sourceLanguageOfUse", "sourceScript", "targetScript", "targetScheme"))
 
-    def serializable(self):
-
+    def validate(self):
         """Internal. Do not use."""
         for n in ("name", "targetLanguage"):  # required
             if self[n] is None:
-                raise RosetteException("missingParameter", "Required Name Translation parameter not supplied", repr(n))
-        return self._for_serialize()
+                raise RosetteException("missingParameter", "Required Name Translation parameter not supplied", repr(n))        
 
 
 class NameMatchingParameters(_DocumentParamSetBase):
@@ -370,14 +375,11 @@ class NameMatchingParameters(_DocumentParamSetBase):
     def __init__(self):
         _DocumentParamSetBase.__init__(self, ("name1", "name2"))
 
-    def serializable(self):
-
+    def validate(self):
         """Internal. Do not use."""
         for n in ("name1", "name2"):  # required
             if self[n] is None:
                 raise RosetteException("missingParameter", "Required Name Matching parameter not supplied", repr(n))
-        return self._for_serialize()
-
 
 class EndpointCaller:
     """L{EndpointCaller} objects are invoked via their instance methods to obtain results
@@ -490,12 +492,16 @@ class EndpointCaller:
                                    repr(parameters['contentType']))
         url = self.service_url + '/' + self.suburl
         self.logger.info('operate: ' + url)
-        params_to_serialize = parameters.serializable()
+        params_to_serialize = parameters.serialize()
         headers = {'Accept': "application/json", 'Accept-Encoding': "gzip"}
         if self.user_key is not None:
             headers["user_key"] = self.user_key
         headers['Content-Type'] = "application/json"
         r = _post_http(url, params_to_serialize, headers)
+        pprint.pprint(headers)
+        pprint.pprint(url)
+        pprint.pprint(params_to_serialize)
+        
         return self.__finish_result(r, "operate")
 
 
