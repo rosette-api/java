@@ -24,6 +24,8 @@ import json
 import os
 import pytest
 import re
+import StringIO
+import gzip
 from rosette.api import API, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
 
 
@@ -36,7 +38,13 @@ filename_pattern = re.compile("(\w+-\w+-([a-z_-]+))[.]json")
 
 def get_file_content(filename):
     with open(filename, "r") as f:
-        return f.read()
+        s = f.read()
+        if len(s) > 200:
+            out = StringIO.StringIO()
+            with gzip.GzipFile(fileobj=out, mode="w") as f1:
+                f1.write(s)
+            s = out.getvalue()
+        return s
 
 
 # Run through all files in the mock-data directory, extract endpoint, and create a list of tuples of the form
