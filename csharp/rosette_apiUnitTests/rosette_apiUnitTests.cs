@@ -26,7 +26,7 @@ namespace rosette_apiUnitTests
         public CMockData()
         {
             string baseDirectory = Directory.GetCurrentDirectory();
-            baseDirectory = baseDirectory.Remove(baseDirectory.IndexOf("ws-client-bindings") + 19);
+            baseDirectory = baseDirectory.Remove(baseDirectory.IndexOf("ws1") + 4);
             mockDir = baseDirectory + "mock-data";
             if (!Directory.Exists(mockDir))
             {

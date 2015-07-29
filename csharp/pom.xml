@@ -8,6 +8,7 @@
     <artifactId>bindings</artifactId>
     <version>0.5.0-SNAPSHOT</version>
   </parent>
+  <artifactId>csharp</artifactId>
   <packaging>pom</packaging>
   <properties>
     <config>Debug</config>
@@ -43,12 +44,12 @@
 	      <goal>exec</goal>
 	    </goals>
 	    <configuration>
-	      <executable>build.bat</executable>
+	      <executable>buildandtest.bat</executable>
 	      <arguments>
-		<argument>${vcvars}</argument>
-		<argument>${config}</argument>
-		<argument>rosette_api</argument>
-		<argument>rosette_apiUnitTests</argument>
+			<argument>${vcvars}</argument>
+			<argument>${config}</argument>
+			<argument>rosette_api</argument>
+			<argument>rosette_apiUnitTests</argument>
 	      </arguments>
 	    </configuration>
 	  </execution>
