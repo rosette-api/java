@@ -1,26 +1,14 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("rosette-api").Api;
 var ArgumentParser = require("argparse").ArgumentParser;
-var NameTranslationParameters = require("./../lib/NameTranslationParameters");
+var NameTranslationParameters = require("rosette-api").NameTranslationParameters;
 
 var parser = new ArgumentParser({
   addHelp: true,
   description: "Translate a name from one language to another"
 });
-parser.addArgument(
-  ["--key"],
-  {
-    help: "Rosette API key",
-    required: true
-  }
-);
-parser.addArgument(
-  ["--service_url"],
-  {
-    help: "Optional user service URL"
-  }
-);
+parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
 var translationParams = new NameTranslationParameters();
@@ -28,9 +16,14 @@ translationParams.setItem("name", "معمر محمد أبو منيار القذ�
 translationParams.setItem("entityType", "PERSON");
 translationParams.setItem("targetLanguage", "eng");
 
-var api = new Api(args.key, args.service_url);
-api.translatedName(translationParams, function(res) {
-  console.log(res);
+var api = new Api(args.key);
+api.translatedName(translationParams, function(err, res) {
+  if (err) {
+    console.log("ERROR! " + err);
+  }
+  else {
+    console.log(res);
+  }
 });
 
 

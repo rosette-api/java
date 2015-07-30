@@ -30,13 +30,7 @@ function RosetteException(status, message, responseMessage) {
     this.name = this.constructor.name; //set our function’s name as error name.
 
     //Define error message
-    this.message = [
-        status,
-        ": ",
-        message,
-        ": ",
-        responseMessage
-    ].join(""); //Concat and make a string.
+    this.message = [status, ": ", message, ": ", responseMessage].join(""); //Concat and make a string.
 }
 
 // inherit from Error

@@ -1,6 +1,6 @@
 {
-  "name": "rosette_api",
-  "description": "Rosette API Node.JS client SDK",
+  "name": "rosette-api-examples",
+  "description": "Usage examples for Rosette API Node.JS client SDK",
   "version": "0.5.0",
   "homepage": "https://developer.rosette.com",
   "author": {
@@ -20,23 +20,17 @@
       "license": "Apache"
     }
   ],
-  "main": "lib/rosette_api",
+  "main": "index",
   "engines": {
     "node": ">= 0.8.0"
   },
   "scripts": {
     "test": "grunt nodeunit"
   },
-  "devDependencies": {
+  "dependencies": {
     "argparse": "^1.0.2",
-    "grunt": "^0.4.5",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-eslint": "^16.0.0",
-    "grunt-istanbul": "^0.6.1",
-    "grunt-istanbul-coverage": "^0.1.1",
-    "grunt-jsdoc": "^0.6.7",
-    "sinon": "^1.15.4"
+    "rosette-api": "file:../production_code/rosette-api-0.5.0.tgz",
+    "temporary": "0.0.8"
   },
   "keywords": []
 }

@@ -39,10 +39,10 @@ util.inherits(NameTranslationParameters, DocumentParamSetBase);
  * @throws RosetteException
  */
 NameTranslationParameters.prototype.validate = function() {
-  if (this.params.name == null) {
+  if (!this.okayString(this.params.name)) {
     throw new RosetteException("missingParameter", "Required Name Translation parameter not supplied", "name");
   }
-  if (this.params.targetLanguage == null) {
+  if (!this.okayString(this.params.targetLanguage)) {
     throw new RosetteException("missingParameter", "Required Name Translation parameter not supplied", "targetLanguage");
   }
 };

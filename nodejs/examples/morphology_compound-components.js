@@ -1,35 +1,28 @@
 "use strict";
 
-var Api = require("./../lib/Api");
+var Api = require("rosette-api").Api;
 var ArgumentParser = require("argparse").ArgumentParser;
-var DocumentParameters = require("./../lib/DocumentParameters");
-var rosetteConstants = require("./../lib/rosetteConstants.js");
+var DocumentParameters = require("rosette-api").DocumentParameters;
+var rosetteConstants = require("rosette-api").rosetteConstants;
 
 var parser = new ArgumentParser({
   addHelp: true,
   description: "Get de-compounded words from a piece of text"
 });
-parser.addArgument(
-  ["--key"],
-  {
-    help: "Rosette API key",
-    required: true
-  }
-);
-parser.addArgument(
-  ["--service_url"],
-  {
-    help: "Optional user service URL"
-  }
-);
+parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();
 var content = "Rechtsschutzversicherungsgesellschaften";
 docParams.setItem("content", content);
 
-var api = new Api(args.key, args.service_url);
-api.morphology(docParams, rosetteConstants.morpholoyOutput.COMPOUND_COMPONENTS, function(res) {
-  console.log(res);
+var api = new Api(args.key);
+api.morphology(docParams, rosetteConstants.morpholoyOutput.COMPOUND_COMPONENTS, function(err, res) {
+  if (err) {
+    console.log("ERROR! " + err);
+  }
+  else {
+    console.log(res);
+  }
 });
 

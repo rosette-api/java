@@ -50,6 +50,12 @@ NameMatchingParameters.prototype.validate = function() {
   if (this.params.name2 == null) {
     throw new RosetteException("missingParameter", "Required Name Translation parameter not supplied", "name2");
   }
+  if (!this.okayString(this.params.name1.text)) {
+    throw new RosetteException("missingParameter", "Required Name Translation parameter not supplied", "name1");
+  }
+  if (!this.okayString(this.params.name1.text)) {
+    throw new RosetteException("missingParameter", "Required Name Translation parameter not supplied", "name2");
+  }
 };
 
 //Export the constructor function as the export of this module file.

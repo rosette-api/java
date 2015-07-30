@@ -44,7 +44,7 @@ DocumentParamSetBase.prototype.getItem = function(key) {
   return this.params[key];
 };
 
-DocumentParamSetBase.prototype.serialize = function() {
+DocumentParamSetBase.prototype.filterNulls = function() {
   var v = {};
   for (var key in this.params) {
     if (this.params[key]) {
@@ -52,6 +52,10 @@ DocumentParamSetBase.prototype.serialize = function() {
     }
   }
   return v;
+};
+
+DocumentParamSetBase.prototype.okayString = function(string) {
+  return string != null && /\S/.test(string);
 };
 
 module.exports = DocumentParamSetBase;

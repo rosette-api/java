@@ -33,9 +33,6 @@
             <directory>tests</directory>
         </fileSet>
         <fileSet>
-            <directory>examples</directory>
-        </fileSet>
-        <fileSet>
             <directory>conf</directory>
         </fileSet>
     </fileSets>

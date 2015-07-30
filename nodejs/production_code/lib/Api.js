@@ -66,7 +66,7 @@ function Api(userKey, serviceUrl) {
    * @type {boolean}
    * @default false
    */
-  this.versionChecked = true; //false; <------------------------------------- put it back
+  this.versionChecked = false;
   /**
    * @desc Number of times to try connecting
    * @type {number}
@@ -84,11 +84,15 @@ Api.prototype.checkVersion = function(api) {
   if (this.versionChecked) {
     return true;
   }
-  this.info(function(res) {
+  this.info(function(err, res) {
+    if (err) {
+      console.log(err);
+      throw err;
+    }
     var version = res.version;
     var strVersion = version.split(".", 2).join(".");
     if (strVersion !== COMPATIBLE_VERSION) {
-      throw new RosetteException("badServerVersion", "The server version is not " + COMPATIBLE_VERSION, strVersion);
+      throw new RosetteException("incompatibleVersion", "The server version is not " + COMPATIBLE_VERSION, strVersion);
     }
     api.versionChecked = true;
   });
@@ -106,16 +110,26 @@ Api.prototype.checkVersion = function(api) {
  * @param {function} callback - Function to be executed with final result (just passing until finishResult)
  * @param {string} op - operation
  * @param {string} url - target URL
- * @param {JSON} headers - header data
  * @param {JSON} [data] - submission data
  * @param {string} action - Action to be passed to finishResult
  * @param {Api} api - API this is acting on
+ * @param {number} [tryNum] - number of times this has been called already
  */
-Api.prototype.retryingRequest = function(callback, op, url, headers, data, action, api) {
+Api.prototype.retryingRequest = function(err, callback, op, url, data, action, api, tryNum) {
+  if (err) {
+    callback(err);
+  }
+  if (!tryNum) {
+    tryNum = 0;
+  }
   var urlParts = URL.parse(url);
   var protocol = http;
   if (urlParts.protocol === "https:") {
     protocol = https;
+  }
+  var headers = {"Accept": "application/json"};
+  if (this.userKey) {
+    headers["user_key"] = this.userKey;
   }
   var result = new Buffer("");
 
@@ -126,7 +140,6 @@ Api.prototype.retryingRequest = function(callback, op, url, headers, data, actio
     headers: headers,
     agent: false
   };
-  options.headers.Connection = "close";
   options.headers["content-type"] = "application/json";
   if (urlParts.port) {
     options.port = urlParts.port;
@@ -135,22 +148,21 @@ Api.prototype.retryingRequest = function(callback, op, url, headers, data, actio
   var req = protocol.request(options, function (res) {
     res.on("data", function (resp) {
       result = Buffer.concat([result, resp]);
-      //result += resp;
     });
-    res.on("end", function (err) {
-      if (err) {
-        console.log(err);
+    res.on("end", function (error) {
+      if (error) {
+        callback(error);
       }
       if(res.headers["content-encoding"] === "gzip") {
         result = zlib.gunzipSync(result);
       }
+      // ensure that request closes to avoid tooManyRequests errors
+      req.abort();
 
       if(res.statusCode < 500) {
-        req.abort();
-        api.finishResult({"json": JSON.parse(result.toString()), "statusCode": res.statusCode}, action, callback);
+        api.finishResult(null, {"json": JSON.parse(result.toString()), "statusCode": res.statusCode}, action, callback);
       }
       else {
-        req.abort();
         result = JSON.parse(result.toString());
         var message = null;
         var code = "unknownError";
@@ -169,7 +181,13 @@ Api.prototype.retryingRequest = function(callback, op, url, headers, data, actio
         if (!message) {
           message = "A retryable network operation has not succeeded";
         }
-        throw new RosetteException(code, message, url);
+        if (tryNum >= this.nRetries) {
+          err = new RosetteException(code, message, url);
+          callback(err);
+        }
+        else {
+          this.retryingRequest(null, callback, op, url, data, action, api, tryNum++);
+        }
       }
     });
   });
@@ -179,7 +197,7 @@ Api.prototype.retryingRequest = function(callback, op, url, headers, data, actio
   }
 
   req.on("error", function(e) {
-    console.error(e);
+    callback(e);
   });
   req.end();
 };
@@ -193,22 +211,21 @@ Api.prototype.retryingRequest = function(callback, op, url, headers, data, actio
  * @throws RosetteException
  */
 Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
+  var err = null;
   // Check that version is compatible
   var api = this;
   this.checkVersion(api);
   this.subUrl = subUrl;
   if (this.useMultiPart && parameters.contentType !== rosetteConstants.dataFormat.SIMPLE) {
-    throw new RosetteException("incompatible", "Multipart requires contentType SIMPLE", parameters.contentType);
+    err = new RosetteException("incompatible", "Multipart requires contentType SIMPLE", parameters.contentType);
+    callback(err);
   }
   var url = this.serviceUrl + "/" + subUrl;
-  var headers = {"Accept": "application/json", "Accept-Encoding": "gzip"};
-  if (this.userKey) {
-    headers["user_key"] = this.userKey;
-  }
+
   // Check that parameters follow their guidelines
   parameters.validate();
   // Call with serialized parameters
-  this.retryingRequest(callback, "POST", url, headers, parameters.serialize(), "callEndpoint", api);
+  this.retryingRequest(err, callback, "POST", url, parameters.filterNulls(), "callEndpoint", api);
 };
 
 /**
@@ -219,12 +236,16 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
  * @throws RosetteException
  * @param {function} callback - Function to be executed with final result
  */
-Api.prototype.finishResult = function(result, action, callback) {
+Api.prototype.finishResult = function(err, result, action, callback) {
+  if (err) {
+    console.log(err);
+    callback(err);
+  }
   var code = result.statusCode;
   var json = result.json;
   // If all is well, return the json
   if (code === 200) {
-    callback(json);
+    callback(err, json);
   }
   // Otherwise collect information to construct error
   else {
@@ -249,7 +270,8 @@ Api.prototype.finishResult = function(result, action, callback) {
     else {
       serverCode = "unknownError";
     }
-    throw new RosetteException(serverCode, complaintUrl + " : failed to communicate with Rosette", msg);
+    err = new RosetteException(serverCode, complaintUrl + " : failed to communicate with Rosette", msg);
+    callback(err);
   }
 };
 
@@ -261,11 +283,7 @@ Api.prototype.finishResult = function(result, action, callback) {
   */
 Api.prototype.info = function(callback) {
   var url = this.serviceUrl + "/info";
-  var headers = {"Accept": "application/json"};
-  if (this.userKey) {
-    headers["user_key"] = this.userKey;
-  }
-  this.retryingRequest(callback, "GET", url, headers, null, "info", this);
+  this.retryingRequest(null, callback, "GET", url, null, "info", this);
 };
 
 /**
@@ -276,11 +294,7 @@ Api.prototype.info = function(callback) {
  */
 Api.prototype.ping = function(callback) {
   var url = this.serviceUrl + "/ping";
-  var headers = {"Accept": "application/json"};
-  if (this.userKey) {
-    headers["user_key"] = this.userKey;
-  }
-  this.retryingRequest(callback, "GET", url, headers, null, "ping", this);
+  this.retryingRequest(null, callback, "GET", url, null, "ping", this);
 };
 
 /**
@@ -301,11 +315,7 @@ Api.prototype.language = function(parameters, callback) {
  */
 Api.prototype.languageInfo = function(callback) {
   var url = this.serviceUrl + "/language/info";
-  var headers = {"Accept": "application/json"};
-  if (this.userKey) {
-    headers["user_key"] = this.userKey;
-  }
-  this.retryingRequest(callback, "GET", url, headers, null, "language-info", this);
+  this.retryingRequest(null, callback, "GET", url, null, "language-info", this);
 };
 
 /**

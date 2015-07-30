@@ -82,15 +82,11 @@ DocumentParameters.prototype.loadDocumentFile = function(path, dataType) {
  * @throws RosetteException
  */
 DocumentParameters.prototype.validate = function() {
-  if (this.params.content == null) {
-    if (this.params.contentUri == null) {
-      throw new RosetteException("badArgument", "Must supply one of Content or ContentUri", "bad arguments");
-    }
+  if (!this.okayString(this.params.content) && !this.okayString(this.params.contentUri)) {
+    throw new RosetteException("badArgument", "Must supply one of Content or ContentUri", "bad arguments");
   }
-  else { // Content is not null
-    if (this.params.contentUri != null) {
-      throw new RosetteException("badArgument", "Cannot supply both Content and ContentUri", "bad arguments");
-    }
+  if (this.okayString(this.params.content) && this.okayString(this.params.contentUri)) {
+    throw new RosetteException("badArgument", "Cannot supply both Content and ContentUri", "bad arguments");
   }
 };
 
