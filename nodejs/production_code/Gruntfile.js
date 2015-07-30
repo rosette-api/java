@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     nodeunit: {
-      files: ["tests/**/*_test.js"]
+      all: ["tests/**/*Test.js"]
     },
     eslint: {
       lib: {
@@ -29,18 +29,38 @@ module.exports = function(grunt) {
         }
       }
     },
+    instrument: {
+      files: "lib/*.js",
+      options: {
+        lazy: true,
+        basePath: "target/instrumented"
+      }
+    },
+    storeCoverage: {
+      options: {
+        dir: "target"
+      }
+    },
+    makeReport: {
+      src: "target/coverage.json",
+      options: {
+        type: "lcov",
+        dir: "target/reports",
+        print: "detail"
+      }
+    },
     watch: {
       gruntfile: {
         files: "<%= eslint.gruntfile.lib %>",
-        tasks: ["jshint:gruntfile"]
+        tasks: ["eslint:gruntfile"]
       },
       lib: {
         files: "<%= eslint.lib.src %>",
-        tasks: ["jshint:lib", "nodeunit"]
+        tasks: ["eslint:lib", "nodeunit"]
       },
       test: {
         files: "<%= eslint.test.src %>",
-        tasks: ["jshint:test", "nodeunit"]
+        tasks: ["eslint:test", "nodeunit"]
       }
     }
   });
@@ -49,13 +69,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-nodeunit");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-eslint");
+  grunt.loadNpmTasks("grunt-istanbul");
   grunt.loadNpmTasks("grunt-jsdoc");
 
-  // Task definititions.
+  // Task definitions.
   // run `grunt <task>` in command line and it will run the sequence in brackets
-  grunt.registerTask("default", ["eslint", "nodeunit", "jsdoc"]);
-  grunt.registerTask("test", ["nodeunit"]);
-  grunt.registerTask("document", ["jsdoc"]);
+  grunt.registerTask("default", ["jsdoc", "eslint", "test"]);
+  grunt.registerTask("doc", ["jsdoc"]);
   grunt.registerTask("lint", ["eslint"]);
-
+  grunt.registerTask("test", ["instrument", "nodeunit", "storeCoverage", "makeReport"]); // with coverage report
+  grunt.registerTask("nock", ["instrument", "nodeunit:nock", "storeCoverage", "makeReport"]);
 };
