@@ -25,6 +25,7 @@
             <source>publish.xml</source>
         </file>
     </files>
+
     <fileSets>
         <fileSet>
             <directory>api</directory>
