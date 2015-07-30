@@ -22,7 +22,7 @@ namespace rosette_apiExamples
         static void Main()
         {
             //To use the C# API, you must provide an API key
-            CAPI CategoriesCAPI = new CAPI("88afd6b4b18a11d1248639ecf399903c");
+            CAPI CategoriesCAPI = new CAPI("your API key");
             try
             {
                 //The results of the API call will come back in the form of a Dictionary
