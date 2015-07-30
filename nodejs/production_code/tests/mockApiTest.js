@@ -70,8 +70,8 @@ function setMock() {
         var file = request.file;
         var statusCode = parseInt(fs.readFileSync("../../mock-data/response/" + file + ".status"));
         // Because a call to the API returns a buffer
-        var result = new Buffer(fs.readFileSync("../../mock-data/response/" + file + ".json"));
-        return [statusCode, result];
+        var response = fs.readFileSync("../../mock-data/response/" + file + ".json");
+        return [statusCode, new Buffer(response)];
       });
   }
 }
@@ -351,5 +351,182 @@ exports.testRetryingRequest = {
       test.deepEqual(res, expected, "Test if info works as expected");
       test.done();
     });
+  }
+};
+
+function setGzipMock() {
+  nock.disableNetConnect();
+
+  nock("https://api.rosette.com/rest/v1")
+    .persist()
+    .get("/ping")
+    .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/ping.json")));
+
+  nock("https://api.rosette.com/rest/v1")
+    .persist()
+    .get("/info")
+    .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/info.json")));
+
+  var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
+    "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
+    "sentences", "sentiment", "tokens", "translated-name"];
+  for (var j = 0; j < endpoints.length; j++) {
+    nock("https://api.rosette.com/rest/v1")
+      .persist()
+      .defaultReplyHeaders({"content-encoding": "gzip"})
+      .post("/" + endpoints[j])
+      .reply(function (uri, request) {
+        request = JSON.parse(request);
+        var file = request.file;
+        var statusCode = parseInt(fs.readFileSync("../../mock-data/response/" + file + ".status"));
+        // Because a call to the API returns a buffer
+        var response = fs.readFileSync("../../mock-data/response/" + file + ".json");
+        return [statusCode, zlib.gzipSync(response)];
+      });
+  }
+}
+
+// Tests all endpoints other than ping and info with mocked data
+exports.testAllEndpointsGzipped = {
+  setUp: function(callback) {
+    setGzipMock();
+    callback();
+  },
+  tearDown: function(callback) {
+    nock.cleanAll();
+    nock.enableNetConnect();
+    callback();
+  },
+  "test endpoints": function(test) {
+    var files = fs.readdirSync("../../mock-data/request");
+
+    // All the regex necessary to extract info for the tests
+    var filenameRe = /(\w+).json/;
+    var endpointRe = /\w+-\w+-(\w+).json/;
+    var morphoRe = /morphology_(\w+)/;
+    // Make sure the right number of assertions happen
+    test.expect(files.length);
+    // So the checkResult function knows how many it's gone through
+    var counter = 0;
+
+    function checkResult(err, result) {
+      var expected = JSON.parse(fs.readFileSync("../../mock-data/response/" + files[counter]));
+      var errorExpected = false;
+
+      // Figure out if there should be an error
+      if ("code" in expected) {
+        if (expected.code === "unsupportedLanguage") {
+          errorExpected = true;
+        }
+      }
+
+      if (!err) {
+        if (!errorExpected) {
+          test.deepEqual(result, expected, "Testing if result matches");
+        }
+        else {
+          test.ok(false, "Should have been an error");
+        }
+      } else
+      {
+        if (errorExpected) {
+          test.ok(true, "Error was expected");
+        }
+        else {
+          test.ok(false, "Error was not expected, but was thrown");
+        }
+      }
+      if (++counter === files.length) {
+        test.done();
+      }
+    }
+
+    for (var i = 0; i < files.length; i++) {
+      var parameters, endpt;
+      // For all request files
+      if (files[i].indexOf(".json") > -1) {
+        // Set up API with the file name as the user key
+        var api = new Api("0123456789");
+        var input = JSON.parse(fs.readFileSync("../../mock-data/request/" + files[i]));
+
+        // Anything not matched-name or translated-name
+        if (files[i].indexOf("name") === -1) {
+          parameters = new DocumentParameters();
+          parameters.params = input;
+          // Add extra parameter so that the nock can respond correctly
+          parameters.params.file = files[i].replace(filenameRe, "$1");
+          endpt = files[i].replace(endpointRe, "$1");
+
+          if (endpt.indexOf("morphology") === -1) {
+            if (endpt === "categories") {
+              api.categories(parameters, function (err, res) {
+                checkResult(err, res);
+              });
+            }
+            if (endpt === "language") {
+              api.language(parameters, function (err, res) {
+                checkResult(err, res);
+              });
+            }
+            if (endpt === "sentences") {
+              api.sentences(parameters, function (err, res) {
+                checkResult(err, res);
+              });
+            }
+            if (endpt === "sentiment") {
+              api.sentiment(parameters, function (err, res) {
+                checkResult(err, res);
+              });
+            }
+            if (endpt === "tokens") {
+              api.tokens(parameters, function (err, res) {
+                checkResult(err, res);
+              });
+            }
+            if (endpt === "entities") {
+              api.entities(parameters, null, function (err, res) {
+                checkResult(err, res);
+              });
+            }
+            if (endpt === "entities_linked") {
+              api.entities(parameters, true, function (err, res) {
+                checkResult(err, res);
+              });
+            }
+          }
+          // morphology
+          else {
+            endpt = endpt.replace(morphoRe, "$1");
+            api.morphology(parameters, endpt, function (err, res) {
+              checkResult(err, res);
+            });
+          }
+        }
+        // name related endpoints
+        else {
+          if (files[i].indexOf("matched-name") > -1) {
+            parameters = new NameMatchingParameters();
+            parameters.params = input;
+            parameters.params.file = files[i].replace(filenameRe, "$1");
+            api.matchedName(parameters, function (err, res) {
+              checkResult(err, res);
+            });
+          }
+          // translated-name
+          else {
+            parameters = new NameTranslationParameters();
+            parameters.params = input;
+            parameters.params.file = files[i].replace(filenameRe, "$1");
+            api.matchedName(parameters, function (err, res) {
+              checkResult(err, res);
+            });
+          }
+        }
+      }
+      else {
+        counter++;
+        test.ok(true, "Make the expected number of assertions");
+      }
+    }
   }
 };
