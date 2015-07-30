@@ -28,8 +28,6 @@ var RosetteException = require("./RosetteException");
  */
 var COMPATIBLE_VERSION = "0.5";
 
-// ----------------------------------------------- API Class --------------------------------------------
-
 /**
  * @class
  *
@@ -73,6 +71,19 @@ function Api(userKey, serviceUrl) {
    */
   this.nRetries = 3;
 }
+
+/**
+ * Set the number of failed retries before giving up.
+ * @param {number} numRetries - Number of times to retry before failing a call
+ */
+Api.prototype.setNumRetries = function(numRetries) {
+  if (typeof numRetries === "number") {
+    this.nRetries = numRetries;
+  }
+  else {
+    console.log("Did nothing. Try again with a number");
+  }
+};
 
 /**
  * Checks if the server version is compatible with the API version
@@ -163,11 +174,11 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
         api.finishResult(null, {"json": JSON.parse(result.toString()), "statusCode": res.statusCode}, action, callback);
       }
       else {
-        result = JSON.parse(result.toString());
         var message = null;
         var code = "unknownError";
         if (result != null) {
           try {
+            result = JSON.parse(result.toString());
             if ("message" in result) {
               message = result.message;
             }
@@ -181,12 +192,12 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
         if (!message) {
           message = "A retryable network operation has not succeeded";
         }
-        if (tryNum >= this.nRetries) {
+        if (tryNum >= api.nRetries) {
           err = new RosetteException(code, message, url);
           callback(err);
         }
         else {
-          this.retryingRequest(null, callback, op, url, data, action, api, tryNum++);
+          api.retryingRequest(null, callback, op, url, data, action, api, ++tryNum);
         }
       }
     });
@@ -238,7 +249,6 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
  */
 Api.prototype.finishResult = function(err, result, action, callback) {
   if (err) {
-    console.log(err);
     callback(err);
   }
   var code = result.statusCode;

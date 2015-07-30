@@ -57,33 +57,27 @@ function setMock() {
     .persist()
     .get("/info")
     .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/info.json")));
-}
 
-function setMockWithBadInfo() {
-  nock("https://api.rosette.com/rest/v1")
-    .persist()
-    .get("/info")
-    .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/bad_info.json")));
-}
-var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
-  "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
-  "sentences", "sentiment", "tokens", "translated-name"];
-for (var j = 0; j < endpoints.length; j++) {
-  nock("https://api.rosette.com/rest/v1")
-    .persist()
-    .post("/" + endpoints[j])
-    .reply(function (uri, request) {
-      request = JSON.parse(request);
-      var file = request.file;
-      var statusCode = parseInt(fs.readFileSync("../../mock-data/response/" + file + ".status"));
-      // Because a call to the API returns a buffer
-      var result = new Buffer(fs.readFileSync("../../mock-data/response/" + file + ".json"));
-      return [statusCode, result];
-    });
+  var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
+    "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
+    "sentences", "sentiment", "tokens", "translated-name"];
+  for (var j = 0; j < endpoints.length; j++) {
+    nock("https://api.rosette.com/rest/v1")
+      .persist()
+      .post("/" + endpoints[j])
+      .reply(function (uri, request) {
+        request = JSON.parse(request);
+        var file = request.file;
+        var statusCode = parseInt(fs.readFileSync("../../mock-data/response/" + file + ".status"));
+        // Because a call to the API returns a buffer
+        var result = new Buffer(fs.readFileSync("../../mock-data/response/" + file + ".json"));
+        return [statusCode, result];
+      });
+  }
 }
 
 // Tests all endpoints other than ping and info with mocked data
-exports.testAllMocked = {
+exports.testAllEndpoints = {
   setUp: function(callback) {
     setMock();
     callback();
@@ -142,7 +136,7 @@ exports.testAllMocked = {
       // For all request files
       if (files[i].indexOf(".json") > -1) {
         // Set up API with the file name as the user key
-        var api = new Api(files[i].replace(filenameRe, "$1"));
+        var api = new Api("0123456789");
         var input = JSON.parse(fs.readFileSync("../../mock-data/request/" + files[i]));
 
         // Anything not matched-name or translated-name
@@ -227,31 +221,7 @@ exports.testAllMocked = {
   }
 };
 
-exports.testTest = {
-  setUp: function(callback) {
-    setMock();
-    callback();
-  },
-  tearDown: function(callback) {
-    nock.cleanAll();
-    nock.enableNetConnect();
-    callback();
-  },
-  "testTest": function(test) {
-    test.expect(4);
-    for (var i = 0; i < 4; i++) {
-      try {
-        test.ok(true);
-      } catch (e) {
-        console.log(e);
-        test.ok(false);
-      }
-    }
-    test.done();
-  }
-};
-
-exports.testInfoMocked = {
+exports.testInfo = {
   setUp: function(callback) {
     setMock();
     callback();
@@ -263,7 +233,7 @@ exports.testInfoMocked = {
   },
   "test info": function(test) {
     test.expect(1);
-    var api = new Api("info");
+    var api = new Api("0123456789");
     var expected = JSON.parse(fs.readFileSync("../../mock-data/response/info.json"));
     api.info(function (err, res) {
       if (err) {
@@ -276,7 +246,7 @@ exports.testInfoMocked = {
   }
 };
 
-exports.testPingMocked = {
+exports.testPing = {
   setUp: function(callback) {
     setMock();
     callback();
@@ -288,7 +258,7 @@ exports.testPingMocked = {
   },
   "test ping": function(test) {
     test.expect(1);
-    var api = new Api("ping");
+    var api = new Api("0123456789");
     var expected = JSON.parse(fs.readFileSync("../../mock-data/response/ping.json"));
     api.ping(function (err, res) {
       if (err) {
@@ -301,28 +271,85 @@ exports.testPingMocked = {
   }
 };
 
-//exports.testCheckVersionError = {
-//  setUp: function(callback) {
-//    setMockWithBadInfo();
-//    callback();
-//  },
-//  tearDown: function(callback) {
-//    nock.cleanAll();
-//    nock.enableNetConnect();
-//    callback();
-//  },
-//  "test checkVersion": function(test) {
-//    test.expect(1);
-//    var api = new Api("bad_info");
-//    //test.throws(api.checkVersion(api), "RosetteException", "check error");
-//    try {
-//      api.checkVersion(api);
-//    }
-//    catch (e) {
-//      console.log("here");
-//      test.ok(e.message.indexOf("incompatibleVersion") !== -1, "check error message");
-//      test.done();
-//    }
-//    //test.done();
-//  }
-//};
+function setFailMock() {
+  nock.disableNetConnect();
+
+  var resp = {
+    "code": "serviceUnavailable",
+    "message": "We’re temporarially offline for maintanance. Please try again later.",
+    "requestId": "de587a1c-a23a-4d4a-a52e-1fa96fe13f33"
+  };
+  nock("https://api.rosette.com/rest/v1")
+    .persist()
+    .get("/info")
+    .reply(503, resp);
+}
+
+exports.testRetryingRequestCorrectError = {
+  setUp: function(callback) {
+    setFailMock();
+    callback();
+  },
+  tearDown: function(callback) {
+    nock.cleanAll();
+    nock.enableNetConnect();
+    callback();
+  },
+  "test return correct error": function(test) {
+    test.expect(1);
+    var api = new Api("0123456789");
+    api.info(function (err, res) {
+      if (err) {
+        test.equal(err.message, "serviceUnavailable: We’re temporarially offline for maintanance. Please try again later.: https://api.rosette.com/rest/v1/info", "Check error message");
+        test.done();
+      }
+      else {
+        test.ok(false, "Should have been an error");
+        test.done();
+      }
+    });
+  }
+};
+
+function setPartialFailMock() {
+  nock.disableNetConnect();
+
+  var resp = {
+    "code": "serviceUnavailable",
+    "message": "We’re temporarially offline for maintanance. Please try again later.",
+    "requestId": "de587a1c-a23a-4d4a-a52e-1fa96fe13f33"
+  };
+  nock("https://api.rosette.com/rest/v1")
+    .get("/info")
+    .reply(503, resp);
+
+  nock("https://api.rosette.com/rest/v1")
+    .get("/info")
+    .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/info.json")));
+}
+
+// Test that it actually retries because the first response will return a 503 status code but the second will return 200
+exports.testRetryingRequest = {
+  setUp: function(callback) {
+    setPartialFailMock();
+    callback();
+  },
+  tearDown: function(callback) {
+    nock.cleanAll();
+    nock.enableNetConnect();
+    callback();
+  },
+  "test return correct error": function(test) {
+    test.expect(1);
+    var api = new Api("0123456789");
+    var expected = JSON.parse(fs.readFileSync("../../mock-data/response/info.json"));
+    api.info(function (err, res) {
+      if (err) {
+        test.ok(false, "Shouldn't have thrown an error");
+        test.done();
+      }
+      test.deepEqual(res, expected, "Test if info works as expected");
+      test.done();
+    });
+  }
+};
