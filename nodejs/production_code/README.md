@@ -3,24 +3,25 @@
 Rosette API binding for node.js
 
 ## Getting Started
-Install the module with: `npm install rosette_api`
+Install the module with: `npm install rosette-api`
 
 ```javascript
-var rosette_api = require('rosette_api');
-rosette_api.awesome(); // "awesome"
+var rosette-api = require('rosette-api');
 ```
 
-## Documentation
-_(Coming soon)_
-
 ## Examples
-_(Coming soon)_
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
+See example directory for more complete examples, but the simplest, an API ping, is below (all other endpoints follow similar patterns):
+```javascript
+var api = new Api(args.key);
+api.ping(function(err, res) {
+  if (err) {
+    console.log("ERROR! " + err);
+  }
+  else {
+    console.log(res);
+  }
+});
+```
 
 ## License
 Copyright (c) 2014-2015 Basis Technology Corporation.
