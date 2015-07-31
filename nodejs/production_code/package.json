@@ -22,7 +22,7 @@
   ],
   "main": "index",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "scripts": {
     "test": "grunt nodeunit"
@@ -33,13 +33,10 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-eslint": "^16.0.0",
     "grunt-istanbul": "^0.6.1",
-    "grunt-istanbul-coverage": "^0.1.1",
-    "grunt-jsdoc": "^0.6.7",
-    "nock": "^2.9.1",
-    "sinon": "^1.15.4"
+    "nock": "^2.9.1"
   },
   "keywords": [],
   "devDependencies": {
-    "argparse": "^1.0.2"
+    "grunt-jsdoc": "^0.6.7"
   }
 }

@@ -19,11 +19,9 @@ var Api = require("../target/instrumented/lib/Api");
 var DocumentParameters = require("../target/instrumented/lib/DocumentParameters");
 var NameMatchingParameters = require("../target/instrumented/lib/NameMatchingParameters");
 var NameTranslationParameters = require("../target/instrumented/lib/NameTranslationParameters");
-var RosetteException = require("../target/instrumented/lib/RosetteException");
 
 var fs = require("fs");
 var nock = require("nock");
-var sinon = require("sinon");
 var zlib = require("zlib");
 
 /*
@@ -298,7 +296,7 @@ exports.testRetryingRequestCorrectError = {
   "test return correct error": function(test) {
     test.expect(1);
     var api = new Api("0123456789");
-    api.info(function (err, res) {
+    api.info(function (err) {
       if (err) {
         test.equal(err.message, "serviceUnavailable: We’re temporarially offline for maintanance. Please try again later.: https://api.rosette.com/rest/v1/info", "Check error message");
         test.done();

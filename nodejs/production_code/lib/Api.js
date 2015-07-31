@@ -138,7 +138,7 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
   if (urlParts.protocol === "https:") {
     protocol = https;
   }
-  var headers = {"Accept": "application/json"};
+  var headers = {"accept": "application/json", "accept-encoding": "gzip", "content-type": "application/json"};
   if (this.userKey) {
     headers["user_key"] = this.userKey;
   }
@@ -151,7 +151,6 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
     headers: headers,
     agent: false
   };
-  options.headers["content-type"] = "application/json";
   if (urlParts.port) {
     options.port = urlParts.port;
   }
