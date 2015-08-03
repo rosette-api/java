@@ -144,9 +144,9 @@
           <haveGraph>true</haveGraph>
           <generateLatex>false</generateLatex>
           <generateHtml>true</generateHtml>
-	  <input>${basedir}/rosette_api</input>
+	  <input>.\rosette_api</input>
 	  <filePatterns>*.c *.cc *.cxx *.cpp *.c++ *.java *.ii *.ixx *.ipp *.i++ *.inl *.h *.hh *.hxx *.hpp *.h++ *.idl *.odl *.cs *.php *.php3 *.inc *.m *.mm *.py *.f90</filePatterns>
-	  <outputDirectory>${basedir}/target/html</outputDirectory>
+	  <outputDirectory>.\target\html</outputDirectory>
         </configuration>
       </plugin>
     </plugins>
