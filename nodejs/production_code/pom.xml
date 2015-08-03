@@ -96,25 +96,9 @@
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <executable>node updateVersion.js</executable>
+                                    <executable>${basedir}/publishNode.sh</executable>
                                 </configuration>
                             </execution>
-                            <!--<execution>-->
-                                <!--<id>NugetPackageAndPublish</id>-->
-                                <!--<phase>install</phase>-->
-                                <!--<goals>-->
-                                    <!--<goal>exec</goal>-->
-                                <!--</goals>-->
-                                <!--<configuration>-->
-                                    <!--<executable>nugetPackage.bat</executable>-->
-                                    <!--<arguments>-->
-                                        <!--<argument>ddeb08dd-8093-406b-a3cd-b88be64b555c</argument>-->
-                                        <!--<argument>.\rosette_api</argument>-->
-                                        <!--<argument>rosette_api</argument>-->
-                                        <!--<argument>${newversion}</argument>-->
-                                    <!--</arguments>-->
-                                <!--</configuration>-->
-                            <!--</execution>-->
                         </executions>
                     </plugin>
                 </plugins>

@@ -1,7 +1,5 @@
 "use strict";
 
-console.log("UPDATING");
-
 var fs = require("fs");
 
 var packageName = __dirname + "/package.json";
