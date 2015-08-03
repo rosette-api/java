@@ -26,11 +26,17 @@ namespace rosette_apiUnitTests
         public CMockData()
         {
             string baseDirectory = Directory.GetCurrentDirectory();
-            baseDirectory = baseDirectory.Remove(baseDirectory.IndexOf("ws1") + 4);
-            mockDir = baseDirectory + "mock-data";
+            int retry = 0;
+            while (!Directory.Exists(mockDir) && retry < 10)
+            {
+                baseDirectory = Directory.GetParent(baseDirectory).FullName;
+                mockDir = baseDirectory + "\\mock-data";
+                retry = retry + 1;
+            }
+                       
             if (!Directory.Exists(mockDir))
             {
-                mockDir = "\\..\\..\\mock-data";
+                mockDir = "\\..\\..\\..\\mock-data";
             }
 
             requestDir = mockDir + "\\request\\";
