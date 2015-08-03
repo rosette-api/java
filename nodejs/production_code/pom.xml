@@ -74,4 +74,51 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>Publish</id>
+            <activation>
+                <property>
+                    <name>publish</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>UpdateVersion</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>node updateVersion.js</executable>
+                                </configuration>
+                            </execution>
+                            <!--<execution>-->
+                                <!--<id>NugetPackageAndPublish</id>-->
+                                <!--<phase>install</phase>-->
+                                <!--<goals>-->
+                                    <!--<goal>exec</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<executable>nugetPackage.bat</executable>-->
+                                    <!--<arguments>-->
+                                        <!--<argument>ddeb08dd-8093-406b-a3cd-b88be64b555c</argument>-->
+                                        <!--<argument>.\rosette_api</argument>-->
+                                        <!--<argument>rosette_api</argument>-->
+                                        <!--<argument>${newversion}</argument>-->
+                                    <!--</arguments>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

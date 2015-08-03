@@ -22,3 +22,6 @@ api.ping(function(err, res) {
   }
 });
 ```
+
+## Additional Information
+See [Rosette API site](https://developer.rosette.com/)

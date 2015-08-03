@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "argparse": "^1.0.2",
-    "rosette-api": "^0.5.0",
+    "rosette-api": "latest",
     "temporary": "^0.0.8"
   },
   "keywords": [

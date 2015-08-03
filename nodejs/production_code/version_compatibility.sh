@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# Clean out node_modules in case it's there
+echo Throwing an error here is OKAY. If there is no node_modules directory, it will complain
+grunt clean
+
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
 . ~/.nvm/nvm.sh
 
