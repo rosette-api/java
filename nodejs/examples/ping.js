@@ -19,4 +19,3 @@ api.ping(function(err, res) {
     console.log(res);
   }
 });
-
