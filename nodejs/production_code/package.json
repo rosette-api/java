@@ -1,7 +1,7 @@
 {
   "name": "rosette-api",
   "description": "Rosette API Node.JS client SDK",
-  "version": "0.5.0",
+  "version": "0.5.0-1",
   "homepage": "https://developer.rosette.com",
   "author": {
     "name": "Basis Technology Corp.",
@@ -27,16 +27,20 @@
   "scripts": {
     "test": "grunt nodeunit"
   },
-  "dependencies": {
+  "keywords": [
+    "rosette",
+    "basis",
+    "nlp",
+    "text analytics"
+  ],
+  "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-nodeunit": "^0.2.0",
+    "grunt-contrib-watch": "^0.5.3",
     "grunt-eslint": "^16.0.0",
     "grunt-istanbul": "^0.6.1",
+    "grunt-jsdoc": "^0.6.7",
     "nock": "^2.9.1"
-  },
-  "keywords": [],
-  "devDependencies": {
-    "grunt-jsdoc": "^0.6.7"
   }
 }

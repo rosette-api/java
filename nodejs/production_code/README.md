@@ -1,4 +1,4 @@
-# rosette_api
+# rosette-api
 
 Rosette API binding for node.js
 
@@ -22,7 +22,3 @@ api.ping(function(err, res) {
   }
 });
 ```
-
-## License
-Copyright (c) 2014-2015 Basis Technology Corporation.
-Licensed under the Apache License, Version 2.0. See LICENSE.txt
