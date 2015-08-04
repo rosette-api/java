@@ -12,10 +12,6 @@ namespace rosette_apiExamples
     {
         /// <summary>
         /// Example code to call Rosette API to translate a name from language to another.
-        /// Requires Reference to:
-        /// System.Net.Http (CAPI)
-        /// System.Web.Extensions (JavascriptSerializer)
-        /// 
         /// Requires Nuget Package:
         /// rosette_api
         /// </summary>

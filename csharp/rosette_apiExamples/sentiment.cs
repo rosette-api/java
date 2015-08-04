@@ -13,11 +13,6 @@ namespace rosette_apiExamples
     {
         /// <summary>
         /// Example code to call Rosette API to get a document's sentiment
-        /// Requires Reference to:
-        /// System.IO (StreamWeriter)
-        /// System.Net.Http (CAPI)
-        /// System.Web.Extensions (JavascriptSerializer)
-        /// 
         /// Requires Nuget Package:
         /// rosette_api
         /// </summary>
