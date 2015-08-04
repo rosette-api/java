@@ -68,30 +68,30 @@ module.exports = function(grunt) {
       options: {
         mangle: false
       },
-      my_target: {
+      myTarget: {
         files: {
-          'target/dest.min.js': ['lib/*.js']
+          "target/dest.min.js": ["lib/*.js"]
         }
       }
     },
-    concat_sourcemap: {
+    "concat_sourcemap": {
       options: {
         // Task-specific options go here.
       },
       target: {
         files: {
-          'target/dest.js': ["lib/*.js"]
+          "target/dest.js": ["lib/*.js"]
         }
       }
     }
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-concat-sourcemap');
+  grunt.loadNpmTasks("grunt-concat-sourcemap");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-nodeunit");
   grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-eslint");
   grunt.loadNpmTasks("grunt-istanbul");
   grunt.loadNpmTasks("grunt-jsdoc");
