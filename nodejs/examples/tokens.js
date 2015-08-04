@@ -24,4 +24,3 @@ api.tokens(docParams, function(err, res) {
     console.log(res);
   }
 });
-

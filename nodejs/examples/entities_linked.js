@@ -26,4 +26,3 @@ api.entities(docParams, true, function(err, res) {
     console.log(res);
   }
 });
-

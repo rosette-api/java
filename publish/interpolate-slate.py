@@ -31,6 +31,8 @@ def get_example_file_map():
                                (language_dir, camel_case_endpoint)
             elif language == "nodejs":
                 example_file = "%s/examples/%s.js" % (language_dir, endpoint)
+            elif language == "csharp":
+                example_file = "%s/rosette_apiExamples/%s.cs" % (language_dir, endpoint)
             else:
                 # TODO: expand this as new bindings are added
                 example_file = None
@@ -53,6 +55,8 @@ def get_example_regex_map():
             pattern = re.compile("(.*)\n/\*.*\*/(.*)", re.DOTALL)
         elif language == "nodejs":
             pattern = re.compile("(\"use strict\".*)()", re.DOTALL)
+        elif language == "csharp":
+            pattern = re.compile("(.*)\n        /// <summary>.*/// </summary>(.*)", re.DOTALL)
         else:
             # TODO: expand this as new bindings are added
             pattern = None

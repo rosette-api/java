@@ -25,5 +25,3 @@ api.translatedName(translationParams, function(err, res) {
     console.log(res);
   }
 });
-
-

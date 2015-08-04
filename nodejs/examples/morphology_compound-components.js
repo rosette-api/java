@@ -25,4 +25,3 @@ api.morphology(docParams, rosetteConstants.morpholoyOutput.COMPOUND_COMPONENTS, 
     console.log(res);
   }
 });
-

@@ -34,4 +34,3 @@ api.sentences(docParams, function(err, res) {
     console.log(res);
   }
 });
-

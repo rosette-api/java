@@ -24,6 +24,3 @@ api.language(docParams, function(err, res) {
     console.log(res);
   }
 });
-
-
-

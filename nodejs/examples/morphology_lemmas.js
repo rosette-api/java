@@ -25,4 +25,3 @@ api.morphology(docParams, rosetteConstants.morpholoyOutput.LEMMAS, function(err,
     console.log(res);
   }
 });
-

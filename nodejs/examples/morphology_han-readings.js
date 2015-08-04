@@ -25,4 +25,3 @@ api.morphology(docParams, rosetteConstants.morpholoyOutput.HAN_READINGS, functio
     console.log(res);
   }
 });
-
