@@ -5,10 +5,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{88ED509D-8D32-4A4D-83F9-068D3B37F921}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAPIExamples</RootNamespace>
-    <AssemblyName>CAPIExamples</AssemblyName>
+    <RootNamespace>rosette_apiExamples</RootNamespace>
+    <AssemblyName>rosette_apiExamples</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -35,7 +35,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>rosette_apiExamples.categories</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="rosette_api, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,7 +61,7 @@
     <Compile Include="entities_linked.cs" />
     <Compile Include="info.cs" />
     <Compile Include="language.cs" />
-    <Compile Include="matched_name.cs" />
+    <Compile Include="matched-name.cs" />
     <Compile Include="morphology_complete.cs" />
     <Compile Include="morphology_compound-components.cs" />
     <Compile Include="morphology_han-readings.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="sentences.cs" />
     <Compile Include="sentiment.cs" />
     <Compile Include="tokens.cs" />
-    <Compile Include="translated_name.cs" />
+    <Compile Include="translated-name.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -94,12 +95,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Scripts\jquery-2.1.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CBinding\CBinding.csproj">
-      <Project>{d719a8a7-c5c7-49cf-bffc-523d605e5e37}</Project>
-      <Name>CBinding</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

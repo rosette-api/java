@@ -12,10 +12,6 @@ namespace rosette_apiExamples
     {
         /// <summary>
         /// Example code to send Rosette API a ping to check its reachability.
-        /// Requires Reference to:
-        /// System.Net.Http (CAPI)
-        /// System.Web.Extensions (JavascriptSerializer)
-        /// 
         /// Requires Nuget Package:
         /// rosette_api
         /// </summary>

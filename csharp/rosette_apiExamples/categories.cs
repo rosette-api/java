@@ -12,10 +12,6 @@ namespace rosette_apiExamples
     {
         /// <summary>
         /// Example code to call Rosette API to get a document's (located at given URL) category.
-        /// Requires Reference to:
-        /// System.Net.Http (CAPI)
-        /// System.Web.Extensions (JavascriptSerializer)
-        /// 
         /// Requires Nuget Package:
         /// rosette_api
         /// </summary>
