@@ -63,37 +63,13 @@ module.exports = function(grunt) {
         files: "<%= eslint.test.src %>",
         tasks: ["eslint:test", "nodeunit"]
       }
-    },
-    uglify: {
-      options: {
-        mangle: false,
-        beautify: true,
-        sourceMap: true
-      },
-      myTarget: {
-        files: {
-          "target/dest.min.js": ["lib/*.js"]
-        }
-      }
-    },
-    "concat_sourcemap": {
-      options: {
-        // Task-specific options go here.
-      },
-      target: {
-        files: {
-          "target/dest.js": ["lib/*.js"]
-        }
-      }
     }
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks("grunt-concat-sourcemap");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-nodeunit");
   grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-eslint");
   grunt.loadNpmTasks("grunt-istanbul");
   grunt.loadNpmTasks("grunt-jsdoc");
