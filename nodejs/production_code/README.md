@@ -10,18 +10,7 @@ var rosette-api = require('rosette-api');
 ```
 
 ## Examples
-See example directory for more complete examples, but the simplest, an API ping, is below (all other endpoints follow similar patterns):
-```javascript
-var api = new Api(args.key);
-api.ping(function(err, res) {
-  if (err) {
-    console.log("ERROR! " + err);
-  }
-  else {
-    console.log(res);
-  }
-});
-```
+See [examples](../examples). This link will only work on github, so if you are viewing this on npm, please go to the github site to see examples.
 
 ## Additional Information
 See [Rosette API site](https://developer.rosette.com/)
