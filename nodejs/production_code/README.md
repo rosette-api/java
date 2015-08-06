@@ -10,7 +10,7 @@ var rosette-api = require('rosette-api');
 ```
 
 ## Examples
-See [examples](../examples). This link will only work on github, so if you are viewing this on npm, please go to the github site to see examples.
+See [examples](../examples).
 
 ## Additional Information
 See [Rosette API site](https://developer.rosette.com/)
