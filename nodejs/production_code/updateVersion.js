@@ -3,6 +3,7 @@
 var fs = require("fs");
 
 var packageName = __dirname + "/package.json";
+var publishPackageName = __dirname + "/target/github-publish/package.json";
 
 var contents = fs.readFileSync(packageName).toString();
 
@@ -16,3 +17,8 @@ version = version.split(".", 2).join(".") + "." + patch.toString();
 var begin = contents.split("version")[0];
 var end = contents.split("homepage")[1];
 fs.writeFileSync(packageName, begin + "version\": \"" + version + "\",\n  \"homepage" + end);
+
+fs.writeFile(publishPackageName, begin + "version\": \"" + version + "\",\n  \"homepage" + end, function(err) {
+  console.log("You ran updateVersion.js at a time when " + publishPackageName + " doesn't exist. This is meant to be called" +
+    " from Maven.");
+});

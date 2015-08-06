@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       }
     },
     instrument: {
-      files: "lib/*.js",
+      files: ["lib/*.js", "index.js"],
       options: {
         lazy: true,
         basePath: "target/instrumented"
@@ -66,7 +66,9 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        mangle: false
+        mangle: false,
+        beautify: true,
+        sourceMap: true
       },
       myTarget: {
         files: {

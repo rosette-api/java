@@ -2,8 +2,9 @@
 
 node updateVersion.js
 
-grunt clean
+cd target/github-publish
 
+# Publish to npm
 npm publish
-
-npm install
+# Pack to be published to github
+npm pack
