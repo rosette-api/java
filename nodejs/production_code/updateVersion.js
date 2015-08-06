@@ -19,6 +19,8 @@ var end = contents.split("homepage")[1];
 fs.writeFileSync(packageName, begin + "version\": \"" + version + "\",\n  \"homepage" + end);
 
 fs.writeFile(publishPackageName, begin + "version\": \"" + version + "\",\n  \"homepage" + end, function(err) {
-  console.log("You ran updateVersion.js at a time when " + publishPackageName + " doesn't exist. This is meant to be called" +
-    " from Maven.");
+  if (err) {
+    console.log("You ran updateVersion.js at a time when " + publishPackageName + " doesn't exist. This is meant to be called" +
+      " from Maven.");
+  }
 });
