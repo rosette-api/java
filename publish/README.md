@@ -17,6 +17,9 @@ Before you publish a new binding or a new version of it, you should have
 already gone through internal dev/test with proper jira verification and
 PR review/merge in the internal git repo.
 
+For any bindings where the package manager requires a unique version, 
+update the version in the relevant place before continuing.
+
 When you are ready to publish, you should be on the master branch that
 contains the newly merged pull request, if not checkout that hasg/tag.
 This ensures the right files getting published to external github and
@@ -108,11 +111,20 @@ publish your page, you should ask for them first.
 
   To publish, adjust the mvn call in the Bamboo job:
   Change from:
-  `mvn clean install site -Dpublish=false 
+  `mvn clean install site -Dpublish=false` 
   to
-  `mvn clean install site -Dpublish=true -Doldversion=X -Dnewversion=Y  
+  `mvn clean install site -Dpublish=true -Doldversion=X -Dnewversion=Y`  
   where X is the old version number and Y is the new version number
   The maven call automatically packages and delivers to Nuget.
+  
+- Node.js/[npm](https://www.npmjs.com/)
+
+  To publish, run `mvn clean install` then navigate to the target/github-publish directory.
+  If you have never published to npm before, run `npm adduser` and put in the credentials when prompted.
+  Then run `npm publish` which will publish to npm. 
+  Then run `npm pack` which will create a `.tgz` file in the target/github-publish directory.
+  In the browser, go to the github site and click "releases" then "Draft a new release". Tag it with the version and any
+  notes, then at the bottom click "add binaries" and add the `.tgz` file then "Publish Release".
 
 Step 5: update features and functions slate source with new example code
 ------------------------------------------------------------------------

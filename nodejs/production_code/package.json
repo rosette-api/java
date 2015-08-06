@@ -1,7 +1,7 @@
 {
   "name": "rosette-api",
   "description": "Rosette API Node.JS client SDK",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "homepage": "https://developer.rosette.com",
   "author": {
     "name": "Basis Technology Corp.",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/rosette-api/nodejs/production_code.git"
+    "url": "git://github.com/rosette-api/nodejs.git"
   },
   "bugs": {
     "url": "https://github.com/rosette-api/nodejs/issues"
