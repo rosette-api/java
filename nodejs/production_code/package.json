@@ -1,7 +1,7 @@
 {
   "name": "rosette-api",
   "description": "Rosette API Node.JS client SDK",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "homepage": "https://developer.rosette.com",
   "author": {
     "name": "Basis Technology Corp.",
