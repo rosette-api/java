@@ -24,13 +24,15 @@ import json
 import os
 import pytest
 import re
+import sys
 try:
-    from StringIO import StringIO
+    from StringIO import StringIO as streamIO
 except ImportError:
-    from io import StringIO
+    from io import BytesIO as streamIO
 import gzip
 from rosette.api import API, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
 
+_IsPy3 = sys.version_info[0] == 3
 
 request_file_dir = os.path.dirname(__file__) + "/mock-data/request/"
 response_file_dir = os.path.dirname(__file__) + "/mock-data/response/"
@@ -43,7 +45,7 @@ def get_file_content(filename):
     with open(filename, "r") as f:
         s = f.read()
         if len(s) > 200:
-            out = StringIO()
+            out = streamIO()
             f1 = gzip.GzipFile(fileobj=out, mode="w")
             f1.write(s)
             f1.close()
