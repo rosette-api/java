@@ -43,7 +43,7 @@ def get_file_content(filename):
     with open(filename, "r") as f:
         s = f.read()
         if len(s) > 200:
-            out = StringIO.StringIO()
+            out = StringIO()
             with gzip.GzipFile(fileobj=out, mode="w") as f1:
                 f1.write(s)
             s = out.getvalue()
