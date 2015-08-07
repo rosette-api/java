@@ -9,7 +9,6 @@
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-model</artifactId>
     <name>rosette-api-model</name>
-    <version>0.5.1-SNAPSHOT</version>
     <description>Rosette API data models</description>
     <properties>
         <assembly.skipAssembly>true</assembly.skipAssembly>

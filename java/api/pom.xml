@@ -4,12 +4,11 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
         <artifactId>rosette-api-parent</artifactId>
-        <version>0.5.0</version>
+        <version>0.5.1-SNAPSHOT</version>
     </parent>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api</artifactId>
     <name>rosette-api</name>
-    <version>0.5.0</version>
     <description>Rosette API main module</description>
     <properties>
         <assembly.skipAssembly>true</assembly.skipAssembly>
