@@ -47,7 +47,10 @@ def get_file_content(filename):
         if len(s) > 200:
             out = streamIO()
             f1 = gzip.GzipFile(fileobj=out, mode="w")
-            f1.write(s)
+            if(_IsPy3 == 3)
+                f1.write(bytes(s, 'UTF-8'))
+            else
+                f1.write(s)
             f1.close()
             s = out.getvalue()
         return s
