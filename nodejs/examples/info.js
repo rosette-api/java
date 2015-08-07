@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to get information such as version and build.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;

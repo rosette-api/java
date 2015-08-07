@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to get tokens (words) in a piece of text.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;

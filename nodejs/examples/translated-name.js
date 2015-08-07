@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to translate a name from language to another.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;

@@ -107,7 +107,7 @@ publish your page, you should ask for them first.
 
   Nothing needs to be done here, packagist will poll github changes automatically.
 
-- .Net (C#)/Nuget (https://www.nuget.org/)
+- .Net (C#)/[Nuget](https://www.nuget.org/)
 
   To publish, adjust the mvn call in the Bamboo job:
   Change from:
@@ -122,9 +122,10 @@ publish your page, you should ask for them first.
   To publish, run `mvn clean install` then navigate to the target/github-publish directory.
   If you have never published to npm before, run `npm adduser` and put in the credentials when prompted.
   Then run `npm publish` which will publish to npm. 
-  Then run `npm pack` which will create a `.tgz` file in the target/github-publish directory.
-  In the browser, go to the github site and click "releases" then "Draft a new release". Tag it with the version and any
-  notes, then at the bottom click "add binaries" and add the `.tgz` file then "Publish Release".
+  Then run `npm install` to install the dependencies, then `npm pack` which will create a `.tgz` file in 
+  the target/github-publish directory.
+  Navigate back to the ws-client-bindings/publish directory and run `npm install` then `node github-release.js`
+  and enter the information at the prompts to create a release and publish the `.tgz` as an asset to github.
 
 Step 5: update features and functions slate source with new example code
 ------------------------------------------------------------------------

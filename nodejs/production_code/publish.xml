@@ -41,5 +41,8 @@
         <fileSet>
             <directory>conf</directory>
         </fileSet>
+        <fileSet>
+            <directory>../examples</directory>
+        </fileSet>
     </fileSets>
 </assembly>
