@@ -25,9 +25,9 @@ import os
 import pytest
 import re
 try:
-    from StringIO import StringIO as streamIO
+    from StringIO import StringIO
 except ImportError:
-    from io import BytesIO as streamIO
+    from io import StringIO
 import gzip
 from rosette.api import API, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
 
@@ -44,8 +44,9 @@ def get_file_content(filename):
         s = f.read()
         if len(s) > 200:
             out = streamIO()
-            with gzip.GzipFile(fileobj=out, mode="w") as f1:
-                f1.write(s)
+            f1 = gzip.GzipFile(fileobj=out, mode="w")
+            f1.write(s)
+            f1.close()
             s = out.getvalue()
         return s
 
