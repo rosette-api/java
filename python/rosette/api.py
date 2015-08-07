@@ -350,7 +350,7 @@ class NameTranslationParameters(_DocumentParamSetBase):
         """Internal. Do not use."""
         for n in ("name", "targetLanguage"):  # required
             if self[n] is None:
-                raise RosetteException("missingParameter", "Required Name Translation parameter not supplied", repr(n))        
+                raise RosetteException("missingParameter", "Required Name Translation parameter not supplied", repr(n))
 
 
 class NameMatchingParameters(_DocumentParamSetBase):
@@ -380,6 +380,7 @@ class NameMatchingParameters(_DocumentParamSetBase):
         for n in ("name1", "name2"):  # required
             if self[n] is None:
                 raise RosetteException("missingParameter", "Required Name Matching parameter not supplied", repr(n))
+
 
 class EndpointCaller:
     """L{EndpointCaller} objects are invoked via their instance methods to obtain results
@@ -500,8 +501,7 @@ class EndpointCaller:
         r = _post_http(url, params_to_serialize, headers)
         pprint.pprint(headers)
         pprint.pprint(url)
-        pprint.pprint(params_to_serialize)
-        
+        pprint.pprint(params_to_serialize)        
         return self.__finish_result(r, "operate")
 
 
