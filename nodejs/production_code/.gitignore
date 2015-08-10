@@ -1,10 +1,10 @@
 # Dependency directory
 node_modules
 
-target
+target/
 
 # Instrumented versions of lib/ files
-instrumented
+instrumented/
 
 # Istanbul generated reports
 reports

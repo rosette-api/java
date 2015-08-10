@@ -22,7 +22,6 @@ else:
 
 params = DocumentParameters()
 
-# Use an HTML file to load data instead of a string
 params["content"] = u"Por favor Señorita, says the man."
 result = api.language(params)
 

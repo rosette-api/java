@@ -1,3 +1,8 @@
+/*
+ * Example code to call Rosette API to get the complete set of morphological analysis
+ * results for a piece of text.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;
@@ -24,4 +29,3 @@ api.morphology(docParams, null, function(err, res) {
     console.log(res);
   }
 });
-

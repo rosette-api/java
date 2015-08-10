@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to get de-compounded words from a piece of text.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;
@@ -25,4 +29,3 @@ api.morphology(docParams, rosetteConstants.morpholoyOutput.COMPOUND_COMPONENTS, 
     console.log(res);
   }
 });
-

@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to get linked (against Wikipedia) entities from a piece of text.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;
@@ -26,4 +30,3 @@ api.entities(docParams, true, function(err, res) {
     console.log(res);
   }
 });
-

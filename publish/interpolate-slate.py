@@ -15,7 +15,7 @@ def get_example_file_map():
     for endpoint in ["info", "ping",
                      "language",
                      "tokens", "sentences", "morphology_complete", "morphology_lemmas",
-                     "morphology_compound-components", "morphology_han-readings", "morphology_han-parts-of-speech",
+                     "morphology_compound-components", "morphology_han-readings", "morphology_parts-of-speech",
                      "entities", "entities_linked",
                      "categories", "sentiment",
                      "translated-name", "matched-name"]:
@@ -29,6 +29,10 @@ def get_example_file_map():
                 camel_case_endpoint = re.sub(r"[-_]", " ", endpoint).title().replace(" ", "")
                 example_file = "%s/examples/src/main/java/com/basistech/rosette/examples/%sExample.java" % \
                                (language_dir, camel_case_endpoint)
+            elif language == "nodejs":
+                example_file = "%s/examples/%s.js" % (language_dir, endpoint)
+            elif language == "csharp":
+                example_file = "%s/rosette_apiExamples/%s.cs" % (language_dir, endpoint)
             else:
                 # TODO: expand this as new bindings are added
                 example_file = None
@@ -49,6 +53,10 @@ def get_example_regex_map():
         elif language == "java":
             # skip the class javadoc section
             pattern = re.compile("(.*)\n/\*.*\*/(.*)", re.DOTALL)
+        elif language == "nodejs":
+            pattern = re.compile("(\"use strict\".*)()", re.DOTALL)
+        elif language == "csharp":
+            pattern = re.compile("(.*)\n        /// <summary>.*/// </summary>(.*)", re.DOTALL)
         else:
             # TODO: expand this as new bindings are added
             pattern = None

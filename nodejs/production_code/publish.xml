@@ -24,6 +24,12 @@
         <file>
             <source>package.json</source>
         </file>
+        <file>
+            <source>index.js</source>
+        </file>
+        <file>
+            <source>version_compatibility.sh</source>
+        </file>
     </files>
     <fileSets>
         <fileSet>
@@ -34,6 +40,9 @@
         </fileSet>
         <fileSet>
             <directory>conf</directory>
+        </fileSet>
+        <fileSet>
+            <directory>../examples</directory>
         </fileSet>
     </fileSets>
 </assembly>

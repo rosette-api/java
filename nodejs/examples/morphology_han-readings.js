@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to get Chinese readings for words in a piece of text.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;
@@ -25,4 +29,3 @@ api.morphology(docParams, rosetteConstants.morpholoyOutput.HAN_READINGS, functio
     console.log(res);
   }
 });
-

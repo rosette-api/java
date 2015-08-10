@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to get a document's (located at given URL) category.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;
