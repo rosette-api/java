@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    clean: ["node_modules", "target"],
     nodeunit: {
       all: ["tests/**/*Test.js"]
     },
@@ -30,7 +31,7 @@ module.exports = function(grunt) {
       }
     },
     instrument: {
-      files: "lib/*.js",
+      files: ["lib/*.js", "index.js"],
       options: {
         lazy: true,
         basePath: "target/instrumented"
@@ -66,6 +67,7 @@ module.exports = function(grunt) {
   });
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-nodeunit");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-eslint");

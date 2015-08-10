@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to get match score (similarity) for two names.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;

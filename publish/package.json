@@ -1,0 +1,15 @@
+{
+  "name": "publish",
+  "version": "1.0.0",
+  "description": "How to publish binding artifacts ================================",
+  "main": "github-release.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "github": "^0.2.4",
+    "prompt": "^0.2.14"
+  }
+}

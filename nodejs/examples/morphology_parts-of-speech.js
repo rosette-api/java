@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to get part-of-speech tags for words a piece of text.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;

@@ -1,3 +1,7 @@
+/*
+ * Example code to call Rosette API to detect possible languages for a piece of text.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;
@@ -24,6 +28,3 @@ api.language(docParams, function(err, res) {
     console.log(res);
   }
 });
-
-
-

@@ -1,3 +1,7 @@
+/*
+ * Example code to send Rosette API a ping to check its reachability.
+ */
+
 "use strict";
 
 var Api = require("rosette-api").Api;
@@ -19,4 +23,3 @@ api.ping(function(err, res) {
     console.log(res);
   }
 });
-

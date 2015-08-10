@@ -29,8 +29,13 @@
   },
   "dependencies": {
     "argparse": "^1.0.2",
-    "rosette-api": "file:../production_code/rosette-api-0.5.0.tgz",
-    "temporary": "0.0.8"
+    "rosette-api": "latest",
+    "temporary": "^0.0.8"
   },
-  "keywords": []
+  "keywords": [
+    "rosette",
+    "basis",
+    "nlp",
+    "text analytics"
+  ]
 }
