@@ -50,6 +50,7 @@
         </fileSet>
         <fileSet>
             <directory>examples</directory>
+            <filtered>true</filtered>
             <includes>
                 <include>src/**</include>
                 <include>pom.xml</include>

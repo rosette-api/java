@@ -43,6 +43,7 @@
         </fileSet>
         <fileSet>
             <directory>../examples</directory>
+            <filtered>true</filtered>
         </fileSet>
     </fileSets>
 </assembly>

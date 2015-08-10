@@ -14,7 +14,7 @@ import com.basistech.rosette.apimodel.CategoriesResponse;
 public final class CategoriesExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            URL docUrl = new URL("http://www.basistech.com/about");
+            URL docUrl = new URL("${categories_data}");
 
             RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
             CategoriesResponse response = rosetteApi.getCategories(docUrl, null, null);

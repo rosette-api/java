@@ -9,7 +9,7 @@ import com.basistech.rosette.apimodel.MorphologyResponse;
 public final class MorphologyCompleteExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "The quick brown fox jumped over the lazy dog. Yes he did.";
+            String text = "${morphology_complete_data}";
 
             RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
             MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE,
