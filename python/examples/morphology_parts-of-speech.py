@@ -21,7 +21,7 @@ else:
     api = API(user_key=args.key)
 
 params = DocumentParameters()
-params["content"] = u"The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
+params["content"] = u"${morphology_parts_of_speech_data}"
 result = api.morphology(params, MorphologyOutput.PARTS_OF_SPEECH)
 
 pprint.pprint(result)

@@ -17,7 +17,7 @@ parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();
-var content = "${morphology_parts-of-speech_data}";
+var content = "${morphology_parts_of_speech_data}";
 docParams.setItem("content", content);
 
 var api = new Api(args.key);

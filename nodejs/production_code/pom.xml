@@ -80,7 +80,7 @@
                 <configuration>
                     <finalName>github</finalName>
                     <filters>
-                        <filter>../../filters.properties</filter>
+                        <filter>${basedir}/../../filters.properties</filter>
                     </filters>
                     <descriptors>
                         <descriptor>publish.xml</descriptor>

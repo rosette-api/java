@@ -21,9 +21,7 @@ else:
     api = API(user_key=args.key)
 
 params = DocumentParameters()
-params["content"] = u"""President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill
-based on Christian faith by July 1st or Washington will become totally dysfunctional,
-a terrible outcome for American people."""
+params["content"] = u"${entities_data}"
 result = api.entities(params)  # entity linking is turned off
 
 pprint.pprint(result)

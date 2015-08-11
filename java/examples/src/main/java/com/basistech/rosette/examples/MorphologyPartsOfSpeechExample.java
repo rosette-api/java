@@ -9,7 +9,7 @@ import com.basistech.rosette.apimodel.MorphologyResponse;
 public final class MorphologyPartsOfSpeechExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "${morphology_parts-of-speech_data}";
+            String text = "${morphology_parts_of_speech_data}";
 
             RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
             MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.PARTS_OF_SPEECH,

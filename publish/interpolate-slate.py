@@ -21,6 +21,10 @@ def get_example_file_map():
                      "translated-name", "matched-name"]:
         for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp"]:
             language_dir = bindings_base_dir + language
+            if language == "nodejs":
+                language_dir += "/production_code"
+            if language != "csharp":
+                language_dir += "/target/github-publish"
             if language == "python":
                 example_file = "%s/examples/%s.py" % (language_dir, endpoint)
             elif language == "php":

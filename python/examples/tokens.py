@@ -21,7 +21,7 @@ else:
     api = API(user_key=args.key)
 
 params = DocumentParameters()
-params["content"] = u"北京大学生物系主任办公室内部会议"
+params["content"] = u"${tokens_data}"
 result = api.tokens(params)
 
 pprint.pprint(result)

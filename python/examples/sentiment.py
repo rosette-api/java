@@ -12,10 +12,7 @@ from rosette.api import API, DocumentParameters
 
 # Create default file to read from
 f = tempfile.NamedTemporaryFile(suffix=".html")
-message = """
-<html><head><title>Performance Report</title></head>
-<body><p>This article is clean, concise, and very easy to read.</p></body></html>
-"""
+message = "${sentiment_data}"
 f.write(message)
 f.seek(0)
 
