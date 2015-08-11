@@ -106,6 +106,7 @@
                             <arguments>
                                 <argument>fix</argument>
                                 <argument>.</argument>
+								<argument>--dry-run</argument>
                                 <argument>--diff</argument>
                             </arguments>
                         </configuration>
