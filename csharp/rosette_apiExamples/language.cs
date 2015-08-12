@@ -22,7 +22,7 @@ namespace rosette_apiExamples
             try
             {
                 //The results of the API call will come back in the form of a Dictionary
-                Dictionary<string, Object> LanguageResult = LanguageCAPI.Language("Por favor Señorita, says the man.");
+                Dictionary<string, Object> LanguageResult = LanguageCAPI.Language("${language_data}");
                 Console.WriteLine(new JavaScriptSerializer().Serialize(LanguageResult));
             }
             catch (RosetteException e)

@@ -22,7 +22,7 @@ namespace rosette_apiExamples
             try
             {
                 //The results of the API call will come back in the form of a Dictionary
-                Dictionary<string, Object> EntitiesLinkedResult = EntitiesLinkedCAPI.EntitiesLinked("President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill based on Christian faith by July 1st or Washington will become totally dysfunctional, a terrible outcome for American people.");
+                Dictionary<string, Object> EntitiesLinkedResult = EntitiesLinkedCAPI.EntitiesLinked("${entities_linked_data}");
                 Console.WriteLine(new JavaScriptSerializer().Serialize(EntitiesLinkedResult));
             }
             catch (RosetteException e)

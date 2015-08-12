@@ -21,8 +21,8 @@ namespace rosette_apiExamples
             //To use the C# API, you must provide an API key
             CAPI SentimentCAPI = new CAPI("Your API key");
 
-            StreamWriter sw = new StreamWriter("C:\\Test.txt");
-            sw.WriteLine("We are looking forward to the upcoming release.");
+            StreamWriter sw = new StreamWriter("C:\\Test.html");
+            sw.WriteLine("${sentiment_data}");
             sw.Close();
 
             try
