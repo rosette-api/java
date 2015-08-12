@@ -20,7 +20,7 @@ def get_example_file_map():
                      "entities", "entities_linked",
                      "categories", "sentiment",
                      "translated-name", "matched-name"]:
-        for language in ["java", "ruby", "php", "python", "nodejs", "go"]:#, "csharp"]:
+        for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp"]:
             language_dir = bindings_base_dir + language
             if language == "nodejs":
                 language_dir += "/production_code"
@@ -43,7 +43,7 @@ def get_example_file_map():
             example_file_map[language + ":" + endpoint] = example_file
         # For example responses
         f = tempfile.NamedTemporaryFile(dir=os.path.dirname(os.path.realpath(__file__)), delete=False)
-        os.system("node " + example_file_map["nodejs:" + endpoint] + " --key " + sys.argv[2] + " > " + f.name)
+        os.system("python " + example_file_map["python:" + endpoint] + " --key " + sys.argv[2] + " > " + f.name)
         example_file_map["json:" + endpoint] = f.name
     print "built example file map"
     return example_file_map
