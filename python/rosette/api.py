@@ -534,7 +534,7 @@ class API:
         result = op.info()
         version = ".".join(result["version"].split(".")[0:2])
         if version != _ACCEPTABLE_SERVER_VERSION:
-            raise RosetteException("badServerVersion", "The server version is not " + _ACCEPTABLE_SERVER_VERSION,
+            raise RosetteException("incompatibleVersion", "The server version is not " + _ACCEPTABLE_SERVER_VERSION,
                                    version)
         self.version_checked = True
         return True
