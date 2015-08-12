@@ -29,17 +29,16 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
-                    <!-- Add back. Just makes it take a long time right now -->
-                    <!--<execution>-->
-                        <!--<id>exec-check-version-compatibility</id>-->
-                        <!--<phase>validate</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>exec</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<executable>${basedir}/version_compatibility.sh</executable>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
+                    <execution>
+                        <id>exec-check-version-compatibility</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/version_compatibility.sh</executable>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>exec-npm-install</id>
                         <phase>generate-sources</phase>
