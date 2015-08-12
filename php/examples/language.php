@@ -16,7 +16,7 @@ if (!isset($options['key'])) {
 
 $api = isset($options['url']) ? new Api($options['key'], $options['url']) : new Api($options['key']);
 $params = new DocumentParameters();
-$params->set('content', '${language_data}');
+$params->set('content', 'Por favor Señorita, says the man.');
 
 try {
     $result = $api->language($params);

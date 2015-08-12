@@ -21,7 +21,7 @@ else:
     api = API(user_key=args.key)
 
 params = DocumentParameters()
-params["content"] = u"${morphology_han_readings_data}"
+params["content"] = u"北京大学生物系主任办公室内部会议"
 result = api.morphology(params, MorphologyOutput.HAN_READINGS)
 
 pprint.pprint(result)

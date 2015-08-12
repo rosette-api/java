@@ -22,7 +22,7 @@ else:
 
 params = DocumentParameters()
 
-params["content"] = u"${language_data}"
+params["content"] = u"Por favor Señorita, says the man."
 result = api.language(params)
 
 pprint.pprint(result)
