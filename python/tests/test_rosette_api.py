@@ -127,6 +127,22 @@ def test_info():
     assert result["name"] == "Rosette API"
 
 
+# Test that retrying request throws the right error
+@httpretty.activate
+def test_retry():
+    with open(response_file_dir + "info.json", "r") as info_file:
+        body = info_file.read()
+        httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
+                               body=body, status=501, content_type="application/json")
+
+    test = RosetteTest(None)
+    try:
+        result = test.api.info()
+        assert False
+    except RosetteException:
+        assert True
+    
+
 @httpretty.activate
 def call_endpoint(input_filename, expected_status_filename, expected_output_filename, rest_endpoint):
     httpretty.register_uri(httpretty.POST, "https://api.rosette.com/rest/v1" + rest_endpoint,
