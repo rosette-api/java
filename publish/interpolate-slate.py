@@ -20,10 +20,11 @@ def get_example_file_map():
                      "entities", "entities_linked",
                      "categories", "sentiment",
                      "translated-name", "matched-name"]:
-        for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp"]:
-            language_dir = bindings_base_dir + language + "/target/github-publish"
+        for language in ["java", "ruby", "php", "python", "nodejs", "go"]:#, "csharp"]:
+            language_dir = bindings_base_dir + language
             if language == "nodejs":
                 language_dir += "/production_code"
+            language_dir += "/target/github-publish"
             if language == "python":
                 example_file = "%s/examples/%s.py" % (language_dir, endpoint)
             elif language == "php":
