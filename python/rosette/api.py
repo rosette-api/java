@@ -97,7 +97,7 @@ def _retrying_request(op, url, data, headers):
         # underlings will be called up, and maybe they'll do better.
         # This will not help with a persistent or impassible delay situation,
         # but the former case is thought to be more likely.
-        
+
     if message is None:
         message = "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts"
 
@@ -526,7 +526,10 @@ class API:
         self.debug = False
         self.useMultipart = False
         self.version_checked = False
-        global N_RETRIES = retries
+        global N_RETRIES
+        if (retries < 1):
+            retries = 1
+        N_RETRIES = retries
 
     def check_version(self):
         if self.version_checked:

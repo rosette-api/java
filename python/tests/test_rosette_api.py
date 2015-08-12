@@ -127,21 +127,37 @@ def test_info():
     assert result["name"] == "Rosette API"
 
 
-# Test that retrying request throws the right error
+# Test that retrying request retries the correct number of times
 @httpretty.activate
-def test_retry():
+def test_retryNum():
     with open(response_file_dir + "info.json", "r") as info_file:
         body = info_file.read()
         httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
-                               body=body, status=501, content_type="application/json")
+                               body=body, status=500, content_type="application/json")
+    test = API(service_url='https://api.rosette.com/rest/v1', user_key=None, retries = 5)
+    try:
+        result = test.info()
+        assert False
+    except RosetteException as e:
+        assert e.message == "A retryable network operation has not succeeded after 5 attempts"
+        assert e.status == "unknownError"
+        
 
+# Test that retrying request throws the right error
+@httpretty.activate
+def test_retry500():
+    with open(response_file_dir + "info.json", "r") as info_file:
+        body = {'message': 'We had a problem with our server. Try again later.', 'code': 'Internal Server Error'}
+        httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
+                               body=json.dumps(body), status=500, content_type="application/json")
     test = RosetteTest(None)
     try:
         result = test.api.info()
         assert False
-    except RosetteException:
-        assert True
-    
+    except RosetteException as e:
+        assert e.message == "We had a problem with our server. Try again later."
+        assert e.status == "Internal Server Error"         
+
 
 @httpretty.activate
 def call_endpoint(input_filename, expected_status_filename, expected_output_filename, rest_endpoint):
