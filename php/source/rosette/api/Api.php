@@ -329,7 +329,7 @@ class Api
             if ($version !== $versionToCheck) {
                 throw new RosetteException(
                     'The server version is not ' . strval($versionToCheck),
-                    RosetteException::$BAD_SERVER_VERSION
+                    RosetteException::$INCOMPATIBLE_VERSION
                 );
             } else {
                 $this->version_checked = true;
