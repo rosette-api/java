@@ -65,6 +65,8 @@ def _my_loads(obj):
 
 
 def _retrying_request(op, url, data, headers):
+    message = None
+    code = "unknownError"
     parsed = urlparse(url)
     loc = parsed.netloc
     if parsed.scheme == "https":
@@ -80,24 +82,22 @@ def _retrying_request(op, url, data, headers):
         if status < 500:
             conn.close()
             return rdata, status
+        if rdata is not None:
+            try:
+                the_json = _my_loads(rdata)
+                if "message" in the_json:
+                    message = the_json["message"]
+                if "code" in the_json:
+                    code = the_json["code"]
+            except:
+                pass
         conn.close()
         # Do not wait to retry -- the model is that a bunch of dynamically-routed
         # resources has failed -- Retry means some other set of servelets and their
         # underlings will be called up, and maybe they'll do better.
         # This will not help with a persistent or impassible delay situation,
         # but the former case is thought to be more likely.
-    message = None
-    code = "unknownError"
-    if rdata is not None:
-        try:
-            the_json = _my_loads(rdata)
-            if "message" in the_json:
-                message = the_json["message"]
-            if "code" in the_json:
-                code = the_json["code"]
-        except:
-            pass
-
+        
     if message is None:
         message = "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts"
 
@@ -511,7 +511,7 @@ class API:
     Call instance methods upon this object to obtain L{EndpointCaller} objects
     which can communicate with particular Rosette server endpoints.
     """
-    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1'):
+    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3):
         """ Create an L{API} object.
         @param user_key: (Optional; required for servers requiring authentication.) An authentication string to be sent
          as user_key with all requests.  The default Rosette server requires authentication.
@@ -526,6 +526,7 @@ class API:
         self.debug = False
         self.useMultipart = False
         self.version_checked = False
+        global N_RETRIES = retries
 
     def check_version(self):
         if self.version_checked:
