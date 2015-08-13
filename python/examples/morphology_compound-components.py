@@ -21,7 +21,7 @@ else:
     api = API(user_key=args.key)
 
 params = DocumentParameters()
-params["content"] = u"Rechtsschutzversicherungsgesellschaften"
+params["content"] = u"${morphology_compound_components_data}"
 result = api.morphology(params, MorphologyOutput.COMPOUND_COMPONENTS)
 
 pprint.pprint(result)

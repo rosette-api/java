@@ -17,7 +17,7 @@ parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();
-var content = "Rechtsschutzversicherungsgesellschaften";
+var content = "${morphology_compound_components_data}";
 docParams.setItem("content", content);
 
 var api = new Api(args.key);

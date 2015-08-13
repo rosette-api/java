@@ -16,16 +16,7 @@ parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();
-var content = "This land is your land This land is my land\n";
-content += "From California to the New York island;\n";
-content += "From the red wood forest to the Gulf Stream waters\n";
-content += "\n";
-content += "This land was made for you and Me.\n";
-content += "\n";
-content += "As I was walking that ribbon of highway,\n";
-content += "I saw above me that endless skyway:\n";
-content += "I saw below me that golden valley:\n";
-content += "This land was made for you and me.";
+var content = "${sentences_data}";
 
 docParams.setItem("content", content);
 

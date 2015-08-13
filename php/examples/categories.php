@@ -16,7 +16,7 @@ if (!isset($options['key'])) {
 
 $api = isset($options['url']) ? new Api($options['key'], $options['url']) : new Api($options['key']);
 $params = new DocumentParameters();
-$params->set('contentUri', 'http://www.basistech.com/about');
+$params->set('contentUri', '${categories_data}');
 
 try {
     $result = $api->categories($params);

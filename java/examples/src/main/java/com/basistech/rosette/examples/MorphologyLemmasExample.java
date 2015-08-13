@@ -9,8 +9,7 @@ import com.basistech.rosette.apimodel.MorphologyResponse;
 public final class MorphologyLemmasExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "The fact is that the geese just went back to get a rest and I'm not " +
-                    "banking on their return soon";
+            String text = "${morphology_lemmas_data}";
 
             RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
             MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.LEMMAS,

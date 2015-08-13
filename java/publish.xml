@@ -50,8 +50,15 @@
         </fileSet>
         <fileSet>
             <directory>examples</directory>
+            <filtered>true</filtered>
             <includes>
                 <include>src/**</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>examples</directory>
+            <filtered>false</filtered>
+            <includes>
                 <include>pom.xml</include>
             </includes>
         </fileSet>

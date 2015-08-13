@@ -14,7 +14,7 @@ var parser = new ArgumentParser({
 });
 parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 parser.addArgument(["--url"], {help: "Optional URL for data",
-    defaultValue: "https://en.wikipedia.org/wiki/Basis_Technology_Corp."});
+    defaultValue: "${categories_data}"});
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();

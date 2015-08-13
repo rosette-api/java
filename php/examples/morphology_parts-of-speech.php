@@ -17,7 +17,7 @@ if (!isset($options['key'])) {
 
 $api = isset($options['url']) ? new Api($options['key'], $options['url']) : new Api($options['key']);
 $params = new DocumentParameters();
-$params->set('content', "The fact is that the geese just went back to get a rest and I'm not banking on their return soon");
+$params->set('content', "${morphology_parts_of_speech_data}");
 
 try {
     $result = $api->morphology($params, RosetteConstants::$MorphologyOutput['PARTS_OF_SPEECH']);

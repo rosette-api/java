@@ -9,9 +9,7 @@ import com.basistech.rosette.apimodel.EntitiesResponse;
 public final class EntitiesExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "President Obama urges the Congress and Speaker Boehner to pass the $50 billion " +
-                    "spending bill based on Christian faith by July 1st or Washington will become totally " +
-                    "dysfunctional, a terrible outcome for American people.";
+            String text = "${entities_data}";
 
             RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
             EntitiesResponse response = rosetteApi.getEntities(text, null, null);

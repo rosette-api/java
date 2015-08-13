@@ -16,18 +16,7 @@ if (!isset($options['key'])) {
 
 $api = isset($options['url']) ? new Api($options['key'], $options['url']) : new Api($options['key']);
 $params = new DocumentParameters();
-$content = <<<EOF
-This land is your land This land is my land
-From California to the New York island;
-From the red wood forest to the Gulf Stream waters
-
-This land was made for you and Me.
-
-As I was walking that ribbon of highway,
-I saw above me that endless skyway:
-I saw below me that golden valley:
-This land was made for you and me.
-EOF;
+$content = "${sentences_data}";
 $params->set('content', $content);
 
 try {

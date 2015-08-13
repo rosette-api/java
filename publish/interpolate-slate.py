@@ -2,10 +2,11 @@
 import os
 import re
 import sys
+import tempfile
 
 
 def usage():
-    print sys.argv[0] + " <path_to_slate_index_md_file>"
+    print sys.argv[0] + " <path_to_slate_index_md_file> <api_key>"
     sys.exit(1)
 
 
@@ -37,13 +38,17 @@ def get_example_file_map():
                 # TODO: expand this as new bindings are added
                 example_file = None
             example_file_map[language + ":" + endpoint] = example_file
+        # For example responses
+        f = tempfile.NamedTemporaryFile(dir=os.path.dirname(os.path.realpath(__file__)), delete=False)
+        os.system("python " + bindings_base_dir + "python/target/github-publish/examples/" + endpoint + ".py --key " + sys.argv[2] + " > " + f.name)
+        example_file_map["json:" + endpoint] = f.name
     print "built example file map"
     return example_file_map
 
 
 def get_example_regex_map():
     example_regex_map = {}
-    for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp"]:
+    for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp", "json"]:
         if language == "python":
             # all content starting at first import
             pattern = re.compile("(import.*)()", re.DOTALL)
@@ -57,6 +62,8 @@ def get_example_regex_map():
             pattern = re.compile("(\"use strict\".*)()", re.DOTALL)
         elif language == "csharp":
             pattern = re.compile("(.*)\n        /// <summary>.*/// </summary>(.*)", re.DOTALL)
+        elif language == "json":
+            pattern = re.compile("(.*)()", re.DOTALL)
         else:
             # TODO: expand this as new bindings are added
             pattern = None
@@ -141,6 +148,7 @@ def get_example_content(tag):
         print "%s:%s\tno such file [%s]" % (language, endpoint, example_file)
         return ""
 
+    example_content = None
     with open(example_file, "r") as f:
         file_content = f.read()
 
@@ -148,14 +156,50 @@ def get_example_content(tag):
     if example_pattern:
         match = example_regex_map[language].search(file_content)
         if match:
-            return match.group(1) + match.group(2)
+            file_content = match.group(1) + match.group(2)
         else:
             raise ValueError("language-specific regex failed to extract content")
-    else:
-        return file_content
+
+    replace_pattern = "\${(.*)}"
+    file_content = re.sub(replace_pattern, replace, file_content)
+    return file_content
+
+def replace(match):
+    replace_pattern = "\${(.*)}"
+    matched = match.group(1)
+    check_match = re.match("(.*})(.*)(\${.*)", matched)
+    if check_match != None:
+        return re.sub(replace_pattern, replace, "${" + check_match.group(1)) + check_match.group(2) + \
+               re.sub(replace_pattern, replace, check_match.group(3) + "}")
+    while "}" in matched:
+        matched = matched[:-1]
+    return replacements[matched]
+
+# Turn the .properties file into a dictionary
+def load_properties(filepath, sep='=', comment_char='#'):
+    props = {}
+    with open(filepath, "rt") as f:
+        for line in f:
+            l = line.strip()
+            if l and not l.startswith(comment_char):
+                key_value = l.split(sep)
+                props[key_value[0].strip()] = key_value[1].strip('" \t')
+    return props
+
+# Clean up temp files
+def clean_temp_files():
+    for endpoint in ["info", "ping",
+                     "language",
+                     "tokens", "sentences", "morphology_complete", "morphology_lemmas",
+                     "morphology_compound-components", "morphology_han-readings", "morphology_parts-of-speech",
+                     "entities", "entities_linked",
+                     "categories", "sentiment",
+                     "translated-name", "matched-name"]:
+        file = example_file_map["json:" + endpoint]
+        os.remove(file)
 
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
     usage()
 
 slate_file = sys.argv[1]
@@ -166,6 +210,8 @@ if not os.access(slate_file, os.W_OK):
     print "slate file [%s] is not writable" % slate_file
     sys.exit(1)
 
+replacements = load_properties(os.path.dirname(os.path.realpath(__file__)) + "/../filters.properties")
 example_file_map = get_example_file_map()
 example_regex_map = get_example_regex_map()
 replace_file_content(slate_file)
+clean_temp_files()

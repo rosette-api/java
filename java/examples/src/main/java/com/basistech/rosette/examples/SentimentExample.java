@@ -17,8 +17,7 @@ import com.basistech.rosette.apimodel.SentimentResponse;
 public final class SentimentExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String html = "<html><head><title>Performance Report</title></head>" +
-                    "<body><p>This article is clean, concise, and very easy to read.</p></body></html>";
+            String html = "${sentiment_data}";
             File file = createTempDataFile(html);
             FileInputStream inputStream = new FileInputStream(file);
 

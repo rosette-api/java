@@ -54,6 +54,7 @@
     <fileSet>
       <directory>examples</directory>
       <outputDirectory>examples</outputDirectory>
+      <filtered>true</filtered>
       <excludes>
         <exclude>**/*.pyc</exclude>
         <exclude>**/__pycache__</exclude>

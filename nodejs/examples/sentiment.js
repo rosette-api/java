@@ -19,8 +19,7 @@ var args = parser.parseArgs();
 var docParams = new DocumentParameters();
 
 var file = new tmp.File();
-var fileContents = "<html><head><title>Performance Report</title></head>";
-fileContents += "<body><p>This article is clean, concise, and very easy to read.</p></body></html>";
+var fileContents = "${sentiment_data}";
 
 file.writeFileSync(fileContents);
 

@@ -17,7 +17,7 @@ parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();
-var content = "The quick brown fox jumped over the lazy dog. Yes he did.";
+var content = "${morphology_complete_data}";
 docParams.setItem("content", content);
 
 var api = new Api(args.key);

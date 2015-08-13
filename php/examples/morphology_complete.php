@@ -18,7 +18,7 @@ if (!isset($options['key'])) {
 
 $api = isset($options['url']) ? new Api($options['key'], $options['url']) : new Api($options['key']);
 $params = new DocumentParameters();
-$params->set('content', 'The quick brown fox jumped over the lazy dog. Yes he did.');
+$params->set('content', '${morphology_complete_data}');
 
 try {
     $result = $api->morphology($params, RosetteConstants::$MorphologyOutput['COMPLETE']);

@@ -16,10 +16,7 @@ if (!isset($options['key'])) {
 
 $api = isset($options['url']) ? new Api($options['key'], $options['url']) : new Api($options['key']);
 $params = new DocumentParameters();
-$content = <<<EOF
-<html><head><title>Performance Report</title></head>
-<body><p>This article is clean, concise, and very easy to read.</p></body></html>
-EOF;
+$content = "${sentiment_data}";
 $temp = tmpfile();  // write above html content to a temp file
 fwrite($temp, $content);
 $params->loadDocumentFile(stream_get_meta_data($temp)['uri']);

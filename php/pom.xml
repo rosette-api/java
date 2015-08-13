@@ -166,6 +166,9 @@
                 </executions>
                 <configuration>
                     <finalName>github</finalName>
+                    <filters>
+                        <filter>${basedir}/../filters.properties</filter>
+                    </filters>
                     <descriptors>
                         <descriptor>publish.xml</descriptor>
                     </descriptors>

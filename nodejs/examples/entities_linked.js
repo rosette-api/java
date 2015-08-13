@@ -16,9 +16,7 @@ parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();
-var content = "President Obama urges the Congress and Speaker Boehner to pass the $50 billion spending bill ";
-content += "based on Christian faith by July 1st or Washington will become totally dysfunctional, ";
-content += "a terrible outcome for American people.";
+var content = "${entities_linked_data}";
 docParams.setItem("content", content);
 
 var api = new Api(args.key);

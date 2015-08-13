@@ -17,7 +17,7 @@ if (!isset($options['key'])) {
 
 $api = isset($options['url']) ? new Api($options['key'], $options['url']) : new Api($options['key']);
 $params = new DocumentParameters();
-$params->set('content', 'Rechtsschutzversicherungsgesellschaften');
+$params->set('content', '${morphology_compound_components_data}');
 
 try {
     $result = $api->morphology($params, RosetteConstants::$MorphologyOutput['COMPOUND_COMPONENTS']);

@@ -59,6 +59,9 @@
                 <configuration>
                     <finalName>github</finalName>
                     <encoding>UTF-8</encoding>
+                    <filters>
+                        <filter>${basedir}/../filters.properties</filter>
+                    </filters>
                     <descriptors>
                         <descriptor>publish.xml</descriptor>
                     </descriptors>

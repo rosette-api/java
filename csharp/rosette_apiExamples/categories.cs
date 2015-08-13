@@ -22,7 +22,7 @@ namespace rosette_apiExamples
             try
             {
                 //The results of the API call will come back in the form of a Dictionary
-                Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories(null, null, null, null, "https://en.wikipedia.org/wiki/Basis_Technology_Corp.");
+                Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories(null, null, null, null, "${categories_data}");
                 Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
 
                 //Rosette API also supports Dictionary inputs

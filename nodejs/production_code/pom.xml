@@ -5,7 +5,7 @@
         <groupId>com.basistech.rosette.api</groupId>
         <artifactId>bindings</artifactId>
         <version>0.5.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <!--<relativePath>../../pom.xml</relativePath>-->
     </parent>
     <groupId>com.basistech.rosette.api</groupId>
     <artifactId>nodejs</artifactId>
@@ -78,6 +78,9 @@
                 </executions>
                 <configuration>
                     <finalName>github</finalName>
+                    <filters>
+                        <filter>${basedir}/../../filters.properties</filter>
+                    </filters>
                     <descriptors>
                         <descriptor>publish.xml</descriptor>
                     </descriptors>
