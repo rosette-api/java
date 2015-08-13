@@ -39,5 +39,5 @@ class RosetteException extends CustomException
      *
      * @var int
      */
-    public static $BAD_SERVER_VERSION = -6; // api error
+    public static $INCOMPATIBLE_VERSION = -6; // api error
 }
