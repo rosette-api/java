@@ -134,14 +134,14 @@ def test_retryNum():
         body = info_file.read()
         httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
                                body=body, status=500, content_type="application/json")
-    test = API(service_url='https://api.rosette.com/rest/v1', user_key=None, retries = 5)
+    test = API(service_url='https://api.rosette.com/rest/v1', user_key=None, retries=5)
     try:
         result = test.info()
         assert False
     except RosetteException as e:
         assert e.message == "A retryable network operation has not succeeded after 5 attempts"
         assert e.status == "unknownError"
-        
+
 
 # Test that retrying request throws the right error
 @httpretty.activate
@@ -156,7 +156,7 @@ def test_retry500():
         assert False
     except RosetteException as e:
         assert e.message == "We had a problem with our server. Try again later."
-        assert e.status == "Internal Server Error"         
+        assert e.status == "Internal Server Error"
 
 
 @httpretty.activate
