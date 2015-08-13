@@ -24,11 +24,16 @@ import json
 import logging
 import sys
 import pprint
+from datetime import datetime
 
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
 N_RETRIES = 3
-
+HTTP_CONNECTION = None
+REUSE_CONNECTION = True
+CONNECTION_TYPE = ""
+CONNECTION_START = datetime.now()
+CONNECTION_REFRESH_DURATION = 86400
 
 _IsPy3 = sys.version_info[0] == 3
 
@@ -65,22 +70,39 @@ def _my_loads(obj):
 
 
 def _retrying_request(op, url, data, headers):
+    global HTTP_CONNECTION
+    global REUSE_CONNECTION
+    global CONNECTION_TYPE
+    global CONNECTION_START
+    global CONNECTION_REFRESH_DURATION
+
+    timeDelta = datetime.now() - CONNECTION_START
+    totalTime = timeDelta.total_seconds()
+    parsed = urlparse(url)
+    if parsed.scheme != CONNECTION_TYPE:
+        totalTime = CONNECTION_REFRESH_DURATION
+
+    if not REUSE_CONNECTION or HTTP_CONNECTION == None or totalTime >= CONNECTION_REFRESH_DURATION:
+        parsed = urlparse(url)
+        loc = parsed.netloc
+        CONNECTION_TYPE = parsed.scheme
+        CONNECTION_START = datetime.now()
+        if parsed.scheme == "https":
+            HTTP_CONNECTION = httplib.HTTPSConnection(loc)
+        else:
+            HTTP_CONNECTION = httplib.HTTPConnection(loc)
+
     message = None
     code = "unknownError"
-    parsed = urlparse(url)
-    loc = parsed.netloc
-    if parsed.scheme == "https":
-        conn = httplib.HTTPSConnection(loc)
-    else:
-        conn = httplib.HTTPConnection(loc)
     rdata = None
     for i in range(N_RETRIES):
-        conn.request(op, url, data, headers)
-        response = conn.getresponse()
+        HTTP_CONNECTION.request(op, url, data, headers)
+        response = HTTP_CONNECTION.getresponse()
         status = response.status
         rdata = response.read()
         if status < 500:
-            conn.close()
+            if(not REUSE_CONNECTION):
+                HTTP_CONNECTION.close()
             return rdata, status
         if rdata is not None:
             try:
@@ -91,12 +113,15 @@ def _retrying_request(op, url, data, headers):
                     code = the_json["code"]
             except:
                 pass
-        conn.close()
+        
         # Do not wait to retry -- the model is that a bunch of dynamically-routed
         # resources has failed -- Retry means some other set of servelets and their
         # underlings will be called up, and maybe they'll do better.
         # This will not help with a persistent or impassible delay situation,
         # but the former case is thought to be more likely.
+
+    if(not REUSE_CONNECTION):
+        HTTP_CONNECTION.close()
 
     if message is None:
         message = "A retryable network operation has not succeeded after " + str(N_RETRIES) + " attempts"
@@ -499,9 +524,9 @@ class EndpointCaller:
             headers["user_key"] = self.user_key
         headers['Content-Type'] = "application/json"
         r = _post_http(url, params_to_serialize, headers)
-        pprint.pprint(headers)
-        pprint.pprint(url)
-        pprint.pprint(params_to_serialize)
+        #pprint.pprint(headers)
+        #pprint.pprint(url)
+        #pprint.pprint(params_to_serialize)
         return self.__finish_result(r, "operate")
 
 
@@ -511,7 +536,7 @@ class API:
     Call instance methods upon this object to obtain L{EndpointCaller} objects
     which can communicate with particular Rosette server endpoints.
     """
-    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3):
+    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3, reuse_connection=True, refresh_duration=86400):
         """ Create an L{API} object.
         @param user_key: (Optional; required for servers requiring authentication.) An authentication string to be sent
          as user_key with all requests.  The default Rosette server requires authentication.
@@ -526,10 +551,18 @@ class API:
         self.debug = False
         self.useMultipart = False
         self.version_checked = False
+
         global N_RETRIES
+        global REUSE_CONNECTION
+        global CONNECTION_REFRESH_DURATION
+        
         if (retries < 1):
             retries = 1
+        if (refresh_duration < 60):
+            refresh_duration = 60
         N_RETRIES = retries
+        REUSE_CONNECTION = reuse_connection
+        CONNECTION_REFRESH_DURATION = refresh_duration        
 
     def check_version(self):
         if self.version_checked:
