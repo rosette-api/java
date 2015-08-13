@@ -88,7 +88,12 @@ class Api
      * @var
      */
     private $timeout;
-
+    /**
+     * Max retries before failing.
+     *
+     * @var
+     */
+    private $numRetries;
     /**
      * Last response code.
      *
@@ -160,6 +165,7 @@ class Api
         $this->version_checked = false;
         $this->subUrl = null;
         $this->timeout = 300;
+        $this->numRetries = 3;
 
         $this->headers = array('user_key' => $user_key,
                           'Content-Type' => 'application/json',
@@ -235,6 +241,16 @@ class Api
     public function setUseMultiPart($useMultiPart)
     {
         $this->useMultiPart = $useMultiPart;
+    }
+
+    /**
+     * Setter for numRetries.
+     *
+     * @param int numRetries
+     */
+    public function setNumRetries($numRetries)
+    {
+        $this->numRetries = $numRetries;
     }
 
     /**
@@ -358,9 +374,10 @@ class Api
      */
     private function retryingRequest($url, $context)
     {
-        $numberRetries = 3;
         $response = null;
-        for ($range = 0; $range < $numberRetries; ++$range) {
+        $message = null;
+        $code = 'unknownError';
+        for ($range = 0; $range < $this->numRetries; ++$range) {
             $http_response_header = null;
             $response = file_get_contents($url, false, $context);
             $response_status = $this->getResponseStatusCode($http_response_header);
@@ -373,24 +390,22 @@ class Api
             if ($this->getResponseCode() < 500) {
                 return json_decode($response, true);
             }
-        }
-        $message = null;
-        $code = 'unknownError';
-        if ($response !== null) {
-            try {
-                $json = json_decode($response, true);
-                if (array_key_exists('message', $json)) {
-                    $message = $json['message'];
+            if ($response !== null) {
+                try {
+                    $json = json_decode($response, true);
+                    if (array_key_exists('message', $json)) {
+                        $message = $json['message'];
+                    }
+                    if (array_key_exists('code', $json)) {
+                        $code = $json['code'];
+                    }
+                } catch (\Exception $e) {
+                    // pass
                 }
-                if (array_key_exists('code', $json)) {
-                    $code = $json['code'];
-                }
-            } catch (\Exception $e) {
-                // pass
             }
         }
         if ($code === 'unknownError') {
-            $message = sprintf('A retryable network operation has not succeeded after %d attempts', $numberRetries);
+            $message = sprintf('A retryable network operation has not succeeded after %d attempts', $this->numRetries);
         }
         throw new RosetteException($message . ' [' . $url . ']', $code);
     }
