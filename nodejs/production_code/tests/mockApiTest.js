@@ -528,3 +528,71 @@ exports.testAllEndpointsGzipped = {
     }
   }
 };
+
+exports.testTextOnly = {
+  setUp: function(callback) {
+    // not using setMock() so because without a parameters object (using a string instead) we cannot access the file
+    // name through nock because we cannot access the request header in the way we want
+    nock.disableNetConnect();
+    this.api = new Api("0123456789");
+    this.content = "He also acknowledged the ongoing U.S. conflicts in Iraq and Afghanistan, noting that he is the \"commander in chief of a country that is responsible for ending a war and working in another theater to confront a ruthless adversary that directly threatens the American people\" and U.S. allies.";
+
+    nock("https://api.rosette.com/rest/v1")
+      .persist()
+      .get("/info")
+      .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/info.json")));
+
+    nock("https://api.rosette.com/rest/v1")
+      .persist()
+      .post("/entities")
+      .reply(function () {
+        var file = "eng-sentence-entities";
+        var statusCode = parseInt(fs.readFileSync("../../mock-data/response/" + file + ".status"));
+        // Because a call to the API returns a buffer
+        var response = fs.readFileSync("../../mock-data/response/" + file + ".json");
+        return [statusCode, new Buffer(response)];
+      });
+
+    callback();
+  },
+  tearDown: function(callback) {
+    nock.cleanAll();
+    nock.enableNetConnect();
+    callback();
+  },
+  "test entities": function(test) {
+    var expected = JSON.parse(fs.readFileSync("../../mock-data/response/eng-sentence-entities.json"));
+    this.api.entities(this.content, false, function(err, res) {
+      if (err) {
+        test.ok(false, "threw an error");
+        test.done();
+      }
+      test.deepEqual(res, expected, "Testing if result matches");
+      test.done();
+    });
+  },
+  "test matched-name": function(test) {
+    this.api.matchedName(this.content, function(err) {
+      if (err) {
+        test.deepEqual(err.message, "incompatible: Text-only input only works for DocumentParameter endpoints: matched-name", "Testing if result matches");
+        test.done();
+      }
+      else {
+        test.ok(false, "Should have thrown an error");
+        test.done();
+      }
+    });
+  },
+  "test translated-name": function(test) {
+    this.api.translatedName(this.content, function(err) {
+      if (err) {
+        test.deepEqual(err.message, "incompatible: Text-only input only works for DocumentParameter endpoints: translated-name", "Testing if result matches");
+        test.done();
+      }
+      else {
+        test.ok(false, "Should have thrown an error");
+        test.done();
+      }
+    });
+  }
+};

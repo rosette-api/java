@@ -232,7 +232,6 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
 
   // If parameters is a string (check both types of string)
   if (typeof parameters === "string" || parameters instanceof String) {
-    console.log("here");
     if (subUrl !== "matched-name" && subUrl !== "translated-name") {
       var text = parameters;
       parameters = new DocumentParameters();
