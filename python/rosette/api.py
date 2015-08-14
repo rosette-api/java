@@ -72,12 +72,6 @@ def _my_loads(obj):
 
 
 def _retrying_request(op, url, data, headers):
-    global HTTP_CONNECTION
-    global REUSE_CONNECTION
-    global CONNECTION_TYPE
-    global CONNECTION_START
-    global CONNECTION_REFRESH_DURATION
-
     timeDelta = datetime.now() - CONNECTION_START
     totalTime = timeDelta.days * 86400 + timeDelta.seconds
     parsed = urlparse(url)
@@ -98,6 +92,8 @@ def _retrying_request(op, url, data, headers):
     code = "unknownError"
     rdata = None
     for i in range(N_RETRIES):
+        # Try to connect with the Rosette API server
+        # 500 errors will store a message and code
         try:
             HTTP_CONNECTION.request(op, url, data, headers)
             response = HTTP_CONNECTION.getresponse()
@@ -116,6 +112,11 @@ def _retrying_request(op, url, data, headers):
                         code = the_json["code"]
                 except:
                     pass
+        # If there are issues connecting to the API server,
+        # try to regenerate the connection as long as there are
+        # still retries left.
+        # A short sleep delay occurs (similar to google reconnect)
+        # if the problem was a temporal one.
         except (httplib.BadStatusLine, gaierror) as e:
             totalTime = CONNECTION_REFRESH_DURATION
             if i == N_RETRIES - 1:
