@@ -222,7 +222,7 @@ def test_all(input_filename, expected_status_filename, expected_output_filename,
 # To call entities: should work
 # To call matched-name and translated-name: should throw errors
 @httpretty.activate
-def test_just_text_entities():
+def test_just_text():
     endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology-complete",
                  "sentiment", "translated-name"]
     expected_status_filename = response_file_dir + "eng-sentence-entities.status"
