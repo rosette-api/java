@@ -123,9 +123,9 @@ def _retrying_request(op, url, data, headers):
                 pprint.pprint("Maximum retries reached.")
                 raise RosetteException("ConnectionError", "Unable to establish connection to the Rosette API server", url)
             else:
-                if not REUSE_CONNECTION or HTTP_CONNECTION == None or totalTime >= CONNECTION_REFRESH_DURATION:
+                if not REUSE_CONNECTION or HTTP_CONNECTION is None or totalTime >= CONNECTION_REFRESH_DURATION:
                     pprint.pprint("Attempting to reestablish connection")
-                    time.sleep(min(5*(i+1)*(i+1), 300))
+                    time.sleep(min(5 * (i + 1) * (i + 1), 300))
                     parsed = urlparse(url)
                     loc = parsed.netloc
                     CONNECTION_TYPE = parsed.scheme
@@ -545,9 +545,9 @@ class EndpointCaller:
             headers["user_key"] = self.user_key
         headers['Content-Type'] = "application/json"
         r = _post_http(url, params_to_serialize, headers)
-        #pprint.pprint(headers)
-        #pprint.pprint(url)
-        #pprint.pprint(params_to_serialize)
+        # pprint.pprint(headers)
+        # pprint.pprint(url)
+        # pprint.pprint(params_to_serialize)
         return self.__finish_result(r, "operate")
 
 
@@ -576,14 +576,14 @@ class API:
         global N_RETRIES
         global REUSE_CONNECTION
         global CONNECTION_REFRESH_DURATION
-        
+
         if (retries < 1):
             retries = 1
         if (refresh_duration < 60):
             refresh_duration = 60
         N_RETRIES = retries
         REUSE_CONNECTION = reuse_connection
-        CONNECTION_REFRESH_DURATION = refresh_duration        
+        CONNECTION_REFRESH_DURATION = refresh_duration
 
     def check_version(self):
         if self.version_checked:
