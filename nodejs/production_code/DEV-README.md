@@ -62,7 +62,3 @@ The code is documented such that documentation may be generated using one of the
 tools, e.g. JSDoc .  
 
 JSDoc is the current method and the output will be placed in `./target/html` when run with maven.
-
-# Release to Packagist
-Packagist is configured to automatically poll php binding's github repo, so nothing to do here
-other than following the code publishing procedure.
