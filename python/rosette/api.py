@@ -118,12 +118,13 @@ def _retrying_request(op, url, data, headers):
                     pass
         except (httplib.BadStatusLine, gaierror) as e:
             pprint.pprint("Connection failed")
-            pprint.pprint("Attempting to reestablish connection")
             totalTime = CONNECTION_REFRESH_DURATION
             if i == N_RETRIES - 1:
+                pprint.pprint("Maximum retries reached.")
                 raise RosetteException("ConnectionError", "Unable to establish connection to the Rosette API server", url)
             else:
                 if not REUSE_CONNECTION or HTTP_CONNECTION == None or totalTime >= CONNECTION_REFRESH_DURATION:
+                    pprint.pprint("Attempting to reestablish connection")
                     time.sleep(min(5*(i+1)*(i+1), 300))
                     parsed = urlparse(url)
                     loc = parsed.netloc
