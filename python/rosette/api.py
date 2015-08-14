@@ -104,7 +104,7 @@ def _retrying_request(op, url, data, headers):
             status = response.status
             rdata = response.read()
             if status < 500:
-                if(not REUSE_CONNECTION):
+                if not REUSE_CONNECTION:
                     HTTP_CONNECTION.close()
                 return rdata, status
             if rdata is not None:
@@ -138,7 +138,7 @@ def _retrying_request(op, url, data, headers):
         # This will not help with a persistent or impassible delay situation,
         # but the former case is thought to be more likely.
 
-    if(not REUSE_CONNECTION):
+    if not REUSE_CONNECTION:
         HTTP_CONNECTION.close()
 
     if message is None:
