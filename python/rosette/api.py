@@ -23,7 +23,6 @@ import gzip
 import json
 import logging
 import sys
-import pprint
 
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
@@ -472,7 +471,7 @@ class EndpointCaller:
         Passes data and metadata specified by C{parameters} to the server
         endpoint to which this L{EndpointCaller} object is bound.  For all
         endpoints except C{translated_name} and C{matched_name}, it must be a L{DocumentParameters}
-        object; for C{translated_name}, it must be an L{NameTranslationParameters} object;
+        object or a string; for C{translated_name}, it must be an L{NameTranslationParameters} object;
         for C{matched_name}, it must be an L{NameMatchingParameters} object.
 
         In all cases, the result is returned as a python dictionary
@@ -482,9 +481,18 @@ class EndpointCaller:
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the endpoint.  See the
         details for those object types.
-        @type parameters: For C{translated_name}, L{NameTranslationParameters}, otherwise L{DocumentParameters}
+        @type parameters: For C{translated_name}, L{NameTranslationParameters}, otherwise L{DocumentParameters} or L{str}
         @return: A python dictionary expressing the result of the invocation.
         """
+
+        if not isinstance(parameters, _DocumentParamSetBase):
+            if self.suburl != "matched-name" and self.suburl != "translated-name":
+                text = parameters
+                parameters = DocumentParameters()
+                parameters['content'] = text
+            else:
+                raise RosetteException("incompatible", "Text-only input only works for DocumentParameter endpoints",
+                                       self.suburl)
 
         self.checker()
 
@@ -499,9 +507,6 @@ class EndpointCaller:
             headers["user_key"] = self.user_key
         headers['Content-Type'] = "application/json"
         r = _post_http(url, params_to_serialize, headers)
-        pprint.pprint(headers)
-        pprint.pprint(url)
-        pprint.pprint(params_to_serialize)
         return self.__finish_result(r, "operate")
 
 
@@ -561,7 +566,7 @@ class API:
         Create an L{EndpointCaller} for language identification and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the language identifier.
-        @type parameters: L{DocumentParameters}
+        @type parameters: L{DocumentParameters} or L{str}
         @return: A python dictionary containing the results of language
         identification."""
         return EndpointCaller(self, "language").call(parameters)
@@ -571,7 +576,7 @@ class API:
         Create an L{EndpointCaller} to break a text into sentences and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the sentence identifier.
-        @type parameters: L{DocumentParameters}
+        @type parameters: L{DocumentParameters} or L{str}
         @return: A python dictionary containing the results of sentence identification."""
         return EndpointCaller(self, "sentences").call(parameters)
 
@@ -580,7 +585,7 @@ class API:
         Create an L{EndpointCaller} to break a text into tokens and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the tokens identifier.
-        @type parameters: L{DocumentParameters}
+        @type parameters: L{DocumentParameters} or L{str}
         @return: A python dictionary containing the results of tokenization."""
         return EndpointCaller(self, "tokens").call(parameters)
 
@@ -590,7 +595,7 @@ class API:
         of the morphological analyses of texts to which it is applied and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the morphology analyzer.
-        @type parameters: L{DocumentParameters}
+        @type parameters: L{DocumentParameters} or L{str}
         @param facet: The facet desired, to be returned by the created L{EndpointCaller}.
         @type facet: An element of L{MorphologyOutput}.
         @return: A python dictionary containing the results of morphological analysis."""
@@ -601,12 +606,12 @@ class API:
         Create an L{EndpointCaller}  to identify named entities found in the texts
         to which it is applied and call it. Linked entity information is optional, and
         its need must be specified at the time the operator is created.
+        @param parameters: An object specifying the data,
+        and possible metadata, to be processed by the entity identifier.
+        @type parameters: L{DocumentParameters} or L{str}
         @param linked: Specifies whether or not linked entity information will
         be wanted.
         @type linked: Boolean
-        @param parameters: An object specifying the data,
-        and possible metadata, to be processed by the entity identifier.
-        @type parameters: L{DocumentParameters}
         @return: A python dictionary containing the results of entity extraction."""
         if linked:
             return EndpointCaller(self, "entities/linked").call(parameters)
@@ -619,7 +624,7 @@ class API:
         it is applied and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the category identifier.
-        @type parameters: L{DocumentParameters}
+        @type parameters: L{DocumentParameters} or L{str}
         @return: A python dictionary containing the results of categorization."""
         return EndpointCaller(self, "categories").call(parameters)
 
@@ -629,7 +634,7 @@ class API:
         which it is applied and call it.
         @param parameters: An object specifying the data,
         and possible metadata, to be processed by the sentiment identifier.
-        @type parameters: L{DocumentParameters}
+        @type parameters: L{DocumentParameters} or L{str}
         @return: A python dictionary containing the results of sentiment identification."""
         """Create an L{EndpointCaller} to identify sentiments of the texts
         to which is applied.
