@@ -72,6 +72,12 @@ def _my_loads(obj):
 
 
 def _retrying_request(op, url, data, headers):
+    global HTTP_CONNECTION
+    global REUSE_CONNECTION
+    global CONNECTION_TYPE
+    global CONNECTION_START
+    global CONNECTION_REFRESH_DURATION
+
     timeDelta = datetime.now() - CONNECTION_START
     totalTime = timeDelta.days * 86400 + timeDelta.seconds
     parsed = urlparse(url)
