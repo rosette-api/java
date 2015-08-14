@@ -24,6 +24,8 @@ import json
 import logging
 import sys
 import pprint
+import time
+from socket import gethostbyname, gaierror
 from datetime import datetime
 
 _ACCEPTABLE_SERVER_VERSION = "0.5"
@@ -91,29 +93,47 @@ def _retrying_request(op, url, data, headers):
             HTTP_CONNECTION = httplib.HTTPSConnection(loc)
         else:
             HTTP_CONNECTION = httplib.HTTPConnection(loc)
-
+    
     message = None
     code = "unknownError"
     rdata = None
     for i in range(N_RETRIES):
-        HTTP_CONNECTION.request(op, url, data, headers)
-        response = HTTP_CONNECTION.getresponse()
-        status = response.status
-        rdata = response.read()
-        if status < 500:
-            if(not REUSE_CONNECTION):
-                HTTP_CONNECTION.close()
-            return rdata, status
-        if rdata is not None:
-            try:
-                the_json = _my_loads(rdata)
-                if "message" in the_json:
-                    message = the_json["message"]
-                if "code" in the_json:
-                    code = the_json["code"]
-            except:
-                pass
-        
+        try:
+            HTTP_CONNECTION.request(op, url, data, headers)
+            response = HTTP_CONNECTION.getresponse()
+            status = response.status
+            rdata = response.read()
+            if status < 500:
+                if(not REUSE_CONNECTION):
+                    HTTP_CONNECTION.close()
+                return rdata, status
+            if rdata is not None:
+                try:
+                    the_json = _my_loads(rdata)
+                    if "message" in the_json:
+                        message = the_json["message"]
+                    if "code" in the_json:
+                        code = the_json["code"]
+                except:
+                    pass
+        except (httplib.BadStatusLine, gaierror) as e:
+            pprint.pprint("Connection failed")
+            pprint.pprint("Attempting to reestablish connection")
+            totalTime = CONNECTION_REFRESH_DURATION
+            if i == N_RETRIES - 1:
+                raise RosetteException("ConnectionError", "Unable to establish connection to the Rosette API server", url)
+            else:
+                if not REUSE_CONNECTION or HTTP_CONNECTION == None or totalTime >= CONNECTION_REFRESH_DURATION:
+                    time.sleep(min(5*(i+1)*(i+1), 300))
+                    parsed = urlparse(url)
+                    loc = parsed.netloc
+                    CONNECTION_TYPE = parsed.scheme
+                    CONNECTION_START = datetime.now()
+                    if parsed.scheme == "https":
+                        HTTP_CONNECTION = httplib.HTTPSConnection(loc)
+                    else:
+                        HTTP_CONNECTION = httplib.HTTPConnection(loc)
+
         # Do not wait to retry -- the model is that a bunch of dynamically-routed
         # resources has failed -- Retry means some other set of servelets and their
         # underlings will be called up, and maybe they'll do better.
