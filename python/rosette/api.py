@@ -34,9 +34,9 @@ _IsPy3 = sys.version_info[0] == 3
 
 
 try:
-    from urlparse import urlparse
+    import urlparse
 except ImportError:
-    from urllib.parse import urlparse
+    import urllib.parse as urlparse
 try:
     import httplib
 except ImportError:
@@ -67,7 +67,7 @@ def _my_loads(obj):
 def _retrying_request(op, url, data, headers):
     message = None
     code = "unknownError"
-    parsed = urlparse(url)
+    parsed = urlparse.urlparse(url)
     loc = parsed.netloc
     if parsed.scheme == "https":
         conn = httplib.HTTPSConnection(loc)
@@ -122,6 +122,22 @@ def _post_http(url, data, headers):
         rdata = gzip.GzipFile(fileobj=buf).read()
 
     return _ReturnObject(_my_loads(rdata), status)
+
+
+def add_query(orig_url, key, value):
+    parts = urlparse.urlsplit(orig_url)
+    queries = urlparse.parse_qsl(parts[3])
+    queries.append((key, value))
+    qs = ""
+    first = True
+    for query in queries:
+        if not first:
+            qs += "&"
+        else:
+            first = False
+        qs += query[0] + "=" + query[1]
+
+    return urlparse.urlunsplit((parts[0], parts[1], parts[2], qs, parts[4]))
 
 
 class RosetteException(Exception):
@@ -448,7 +464,7 @@ class EndpointCaller:
         else:
             url = self.service_url + "/info"
         if self.debug:
-            url += '?debug=true'
+            url = add_query(url, "debug", "true")
         self.logger.info('info: ' + url)
         headers = {'Accept': 'application/json'}
         if self.user_key is not None:
@@ -464,7 +480,7 @@ class EndpointCaller:
 
         url = self.service_url + '/ping'
         if self.debug:
-            url += '?debug=true'
+            url = add_query(url, "debug", "true")
         self.logger.info('Ping: ' + url)
         headers = {'Accept': 'application/json'}
         if self.user_key is not None:
@@ -498,7 +514,7 @@ class EndpointCaller:
                                    repr(parameters['contentType']))
         url = self.service_url + '/' + self.suburl
         if self.debug:
-            url += "?debug=true"
+            url = add_query(url, "debug", "true")
         self.logger.info('operate: ' + url)
         params_to_serialize = parameters.serialize()
         headers = {'Accept': "application/json", 'Accept-Encoding': "gzip"}
@@ -506,9 +522,6 @@ class EndpointCaller:
             headers["user_key"] = self.user_key
         headers['Content-Type'] = "application/json"
         r = _post_http(url, params_to_serialize, headers)
-        pprint.pprint(headers)
-        pprint.pprint(url)
-        pprint.pprint(params_to_serialize)
         return self.__finish_result(r, "operate")
 
 
