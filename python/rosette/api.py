@@ -409,6 +409,7 @@ class EndpointCaller:
         self.useMultipart = api.useMultipart
         self.checker = lambda: api.check_version()
         self.suburl = suburl
+        self.debug = api.debug
 
     def __finish_result(self, r, ename):
         code = r.status_code
@@ -492,6 +493,8 @@ class EndpointCaller:
             raise RosetteException("incompatible", "Multipart requires contentType SIMPLE",
                                    repr(parameters['contentType']))
         url = self.service_url + '/' + self.suburl
+        if self.debug:
+            url += "?debug=true"
         self.logger.info('operate: ' + url)
         params_to_serialize = parameters.serialize()
         headers = {'Accept': "application/json", 'Accept-Encoding': "gzip"}
@@ -511,7 +514,7 @@ class API:
     Call instance methods upon this object to obtain L{EndpointCaller} objects
     which can communicate with particular Rosette server endpoints.
     """
-    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3):
+    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3, debug=False):
         """ Create an L{API} object.
         @param user_key: (Optional; required for servers requiring authentication.) An authentication string to be sent
          as user_key with all requests.  The default Rosette server requires authentication.
@@ -523,7 +526,7 @@ class API:
         self.service_url = service_url
         self.logger = logging.getLogger('rosette.api')
         self.logger.info('Initialized on ' + self.service_url)
-        self.debug = False
+        self.debug = debug
         self.useMultipart = False
         self.version_checked = False
         global N_RETRIES
