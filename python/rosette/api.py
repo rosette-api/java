@@ -79,12 +79,12 @@ def _retrying_request(op, url, data, headers):
     global CONNECTION_REFRESH_DURATION
 
     timeDelta = datetime.now() - CONNECTION_START
-    totalTime = timeDelta.total_seconds()
+    totalTime = timeDelta.days * 86400 + timeDelta.seconds
     parsed = urlparse(url)
     if parsed.scheme != CONNECTION_TYPE:
         totalTime = CONNECTION_REFRESH_DURATION
 
-    if not REUSE_CONNECTION or HTTP_CONNECTION == None or totalTime >= CONNECTION_REFRESH_DURATION:
+    if not REUSE_CONNECTION or HTTP_CONNECTION is None or totalTime >= CONNECTION_REFRESH_DURATION:
         parsed = urlparse(url)
         loc = parsed.netloc
         CONNECTION_TYPE = parsed.scheme
@@ -93,7 +93,7 @@ def _retrying_request(op, url, data, headers):
             HTTP_CONNECTION = httplib.HTTPSConnection(loc)
         else:
             HTTP_CONNECTION = httplib.HTTPConnection(loc)
-    
+
     message = None
     code = "unknownError"
     rdata = None
