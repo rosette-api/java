@@ -20,6 +20,7 @@ var URL = require("url");
 var zlib = require("zlib");
 var rosetteConstants = require("./rosetteConstants");
 var RosetteException = require("./RosetteException");
+var DocumentParameters = require("./DocumentParameters");
 
 /**
  * Compatible server version.
@@ -129,6 +130,7 @@ Api.prototype.checkVersion = function(api) {
 Api.prototype.retryingRequest = function(err, callback, op, url, data, action, api, tryNum) {
   if (err) {
     callback(err);
+    return;
   }
   if (!tryNum) {
     tryNum = 0;
@@ -162,6 +164,7 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
     res.on("end", function (error) {
       if (error) {
         callback(error);
+        return;
       }
       if(res.headers["content-encoding"] === "gzip") {
         result = zlib.gunzipSync(result);
@@ -194,6 +197,7 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
         if (tryNum >= api.nRetries) {
           err = new RosetteException(code, message, url);
           callback(err);
+          return;
         }
         else {
           api.retryingRequest(null, callback, op, url, data, action, api, ++tryNum);
@@ -225,10 +229,26 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
   // Check that version is compatible
   var api = this;
   this.checkVersion(api);
-  this.subUrl = subUrl;
+
+  // If parameters is a string (check both types of string)
+  if (typeof parameters === "string" || parameters instanceof String) {
+    console.log("here");
+    if (subUrl !== "matched-name" && subUrl !== "translated-name") {
+      var text = parameters;
+      parameters = new DocumentParameters();
+      parameters.setItem("content", text);
+    }
+    else {
+      err = new RosetteException("incompatible", "Text-only input only works for DocumentParameter endpoints",
+        subUrl);
+      callback(err);
+      return;
+    }
+  }
   if (this.useMultiPart && parameters.contentType !== rosetteConstants.dataFormat.SIMPLE) {
     err = new RosetteException("incompatible", "Multipart requires contentType SIMPLE", parameters.contentType);
     callback(err);
+    return;
   }
   var url = this.serviceUrl + "/" + subUrl;
 
@@ -249,6 +269,7 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
 Api.prototype.finishResult = function(err, result, action, callback) {
   if (err) {
     callback(err);
+    return;
   }
   var code = result.statusCode;
   var json = result.json;
