@@ -447,6 +447,8 @@ class EndpointCaller:
             url = self.service_url + '/' + self.suburl + "/info"
         else:
             url = self.service_url + "/info"
+        if self.debug:
+            url += '?debug=true'
         self.logger.info('info: ' + url)
         headers = {'Accept': 'application/json'}
         if self.user_key is not None:
@@ -461,6 +463,8 @@ class EndpointCaller:
         signalled."""
 
         url = self.service_url + '/ping'
+        if self.debug:
+            url += '?debug=true'
         self.logger.info('Ping: ' + url)
         headers = {'Accept': 'application/json'}
         if self.user_key is not None:
