@@ -5,7 +5,7 @@ Example code to call Rosette API to get the category of a document (at a given U
 """
 
 import argparse
-import pprint
+import json
 
 from rosette.api import API, DocumentParameters
 
@@ -28,4 +28,4 @@ params["contentUri"] = args.url
 
 result = api.categories(params)
 
-pprint.pprint(result)
+print(json.dumps(result, indent=2))

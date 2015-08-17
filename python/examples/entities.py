@@ -5,7 +5,7 @@ Example code to call Rosette API to get entities from a piece of text.
 """
 
 import argparse
-import pprint
+import json
 
 from rosette.api import API, DocumentParameters
 
@@ -24,4 +24,4 @@ params = DocumentParameters()
 params["content"] = u"${entities_data}"
 result = api.entities(params)  # entity linking is turned off
 
-pprint.pprint(result)
+print(json.dumps(result, indent=2))

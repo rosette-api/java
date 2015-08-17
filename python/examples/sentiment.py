@@ -5,7 +5,7 @@ Example code to call Rosette API to get the sentiment of a local file.
 """
 
 import argparse
-import pprint
+import json
 import tempfile
 
 from rosette.api import API, DocumentParameters
@@ -38,4 +38,4 @@ result = api.sentiment(params)
 # Clean up the file
 f.close()
 
-pprint.pprint(result)
+print(json.dumps(result, indent=2))

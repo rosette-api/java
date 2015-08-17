@@ -5,7 +5,7 @@ Example code to call Rosette API to determine the language of a piece of text.
 """
 
 import argparse
-import pprint
+import json
 
 from rosette.api import API, DocumentParameters
 
@@ -25,4 +25,4 @@ params = DocumentParameters()
 params["content"] = u"Por favor Señorita, says the man."
 result = api.language(params)
 
-pprint.pprint(result)
+print(json.dumps(result, indent=2))

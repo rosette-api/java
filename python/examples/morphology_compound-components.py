@@ -5,7 +5,7 @@ Example code to call Rosette API to get de-compounded words from a piece of text
 """
 
 import argparse
-import pprint
+import json
 
 from rosette.api import API, DocumentParameters, MorphologyOutput
 
@@ -24,4 +24,4 @@ params = DocumentParameters()
 params["content"] = u"${morphology_compound_components_data}"
 result = api.morphology(params, MorphologyOutput.COMPOUND_COMPONENTS)
 
-pprint.pprint(result)
+print(json.dumps(result, indent=2))
