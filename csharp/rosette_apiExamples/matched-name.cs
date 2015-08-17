@@ -18,24 +18,25 @@ namespace rosette_apiExamples
         static void Main(string[] args)
         {
             //To use the C# API, you must provide an API key
+            string apikey = "Your API key";
+
+            //You may set the API key via command line argument:
+            //matched_name yourapikeyhere
             if (args.Length == 0)
             {
-                Console.WriteLine("This example requires an API key argument in the command line");
-            }
-            else
-            {
-                CAPI MatchedNameCAPI = new CAPI(args[0]);
-                try
-                {
-                    //The results of the API call will come back in the form of a Dictionary
-                    Dictionary<string, Object> MatchedNameResult = MatchedNameCAPI.MatchedName(new Name("Elizabeth Doe", "eng", null, "PERSON"), new Name("Liz Doe", null, null, "PERSON"));
-                    Console.WriteLine(new JavaScriptSerializer().Serialize(MatchedNameResult));
-                }
-                catch (RosetteException e)
-                {
-                    Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
-                }
+                apikey = args[0];
             } 
+            CAPI MatchedNameCAPI = new CAPI(apikey);
+            try
+            {
+                //The results of the API call will come back in the form of a Dictionary
+                Dictionary<string, Object> MatchedNameResult = MatchedNameCAPI.MatchedName(new Name("Elizabeth Doe", "eng", null, "PERSON"), new Name("Liz Doe", null, null, "PERSON"));
+                Console.WriteLine(new JavaScriptSerializer().Serialize(MatchedNameResult));
+            }
+            catch (RosetteException e)
+            {
+                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+            }
         }
     }
 }

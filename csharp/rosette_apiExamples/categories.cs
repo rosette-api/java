@@ -11,39 +11,40 @@ namespace rosette_apiExamples
     class categories
     {
         /// <summary>
-        /// Example code to call Rosette API to get a document's (located at given URL) category.
+        /// Example code to call Rosette API to get a document's (located at given URL) categories.
         /// Requires Nuget Package:
         /// rosette_api
         /// </summary>
         static void Main(string[] args)
         {
             //To use the C# API, you must provide an API key
+            string apikey = "Your API key";
+            
+            //You may set the API key via command line argument:
+            //categories yourapikeyhere
             if (args.Length == 0)
             {
-                Console.WriteLine("This example requires an API key argument in the command line");
+                apikey = args[0];
             }
-            else
+            CAPI CategoriesCAPI = new CAPI(apikey);
+            try
             {
-                CAPI CategoriesCAPI = new CAPI(args[0]);
-                try
-                {
-                    //The results of the API call will come back in the form of a Dictionary
-                    Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories(null, null, null, null, "${categories_data}");
-                    Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
+                //The results of the API call will come back in the form of a Dictionary
+                Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories(null, null, null, null, "${categories_data}");
+                Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
 
-                    //Rosette API also supports Dictionary inputs
-                    //Simply instantiate a new dictionary object with the fields options as keys and inputs as values
-                    Dictionary<string, Object> CategoriesResultDic = CategoriesCAPI.Categories(new Dictionary<object, object>()
-                {
-                    {"contentUri", "${categories_data}"}
+                //Rosette API also supports Dictionary inputs
+                //Simply instantiate a new dictionary object with the fields options as keys and inputs as values
+                Dictionary<string, Object> CategoriesResultDic = CategoriesCAPI.Categories(new Dictionary<object, object>()
+            {
+                {"contentUri", "${categories_data}"}
 
-                });
-                    Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResultDic));
-                }
-                catch (RosetteException e)
-                {
-                    Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
-                }
+            });
+                Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResultDic));
+            }
+            catch (RosetteException e)
+            {
+                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
             }
         }
     }

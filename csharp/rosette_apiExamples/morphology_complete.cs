@@ -18,24 +18,25 @@ namespace rosette_apiExamples
         static void Main(string[] args)
         {
             //To use the C# API, you must provide an API key
+            string apikey = "Your API key";
+
+            //You may set the API key via command line argument:
+            //morphology_complete yourapikeyhere
             if (args.Length == 0)
             {
-                Console.WriteLine("This example requires an API key argument in the command line");
-            }
-            else
-            {
-                CAPI MorphologyCAPI = new CAPI(args[0]);
-                try
-                {
-                    //The results of the API call will come back in the form of a Dictionary
-                    Dictionary<string, Object> MorphologyResult = MorphologyCAPI.Morphology("${morphology_complete_data}");
-                    Console.WriteLine(new JavaScriptSerializer().Serialize(MorphologyResult));
-                }
-                catch (RosetteException e)
-                {
-                    Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
-                }
+                apikey = args[0];
             } 
+            CAPI MorphologyCAPI = new CAPI(apikey);
+            try
+            {
+                //The results of the API call will come back in the form of a Dictionary
+                Dictionary<string, Object> MorphologyResult = MorphologyCAPI.Morphology("${morphology_complete_data}");
+                Console.WriteLine(new JavaScriptSerializer().Serialize(MorphologyResult));
+            }
+            catch (RosetteException e)
+            {
+                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+            }
         }
     }
 }

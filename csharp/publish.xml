@@ -15,6 +15,9 @@
         <file>
             <source>.gitignore</source>
         </file>
+        <file>
+            <source>DEV-README.md</source>
+        </file>
 
 
     </files>
@@ -31,6 +34,7 @@
             <directory>rosette_apiExamples</directory>
             <includes>
                 <include>**.cs</include>
+				<include>**.md</include>
             </includes>
             <filtered>true</filtered>
         </fileSet>
