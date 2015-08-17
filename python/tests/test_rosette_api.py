@@ -216,3 +216,38 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
 def test_all(input_filename, expected_status_filename, expected_output_filename, rest_endpoint):
     # @httpretty and @pytest cannot co-exist, so separate the function definition
     call_endpoint(input_filename, expected_status_filename, expected_output_filename, rest_endpoint)
+
+
+# Test that debug flag is working properly
+@httpretty.activate
+def test_debug():
+    # Doesn't really matter what it returns for this test, so just making sure it catches all of them
+    endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology-complete",
+                 "sentiment", "translated-name"]
+    expected_status_filename = response_file_dir + "eng-sentence-entities.status"
+    expected_output_filename = response_file_dir + "eng-sentence-entities.json"
+    for rest_endpoint in endpoints:
+        httpretty.register_uri(httpretty.POST, "https://api.rosette.com/rest/v1/" + rest_endpoint,
+                               status=get_file_content(expected_status_filename),
+                               body=get_file_content(expected_output_filename),
+                               content_type="application/json")
+
+    with open(expected_output_filename, "r") as expected_file:
+        expected_result = json.loads(expected_file.read())
+
+    # need to mock /info call too because the api will call it implicitly
+    with open(response_file_dir + "info.json", "r") as info_file:
+        body = info_file.read()
+        httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
+                               body=body, status=200, content_type="application/json")
+
+    api = API("0123456789", debug=True)
+
+    content = "He also acknowledged the ongoing U.S. conflicts in Iraq and Afghanistan, noting that he is the \"commander in chief of a country that is responsible for ending a war and working in another theater to confront a ruthless adversary that directly threatens the American people\" and U.S. allies."
+
+    params = DocumentParameters()
+    params.__setitem__("content", content)
+    api.entities(params)
+
+    # Check that the most recent querystring had debug=true
+    assert httpretty.last_request().querystring == {'debug': ['true']}
