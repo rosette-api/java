@@ -22,13 +22,13 @@ namespace rosette_apiExamples
             
             //You may set the API key via command line argument:
             //categories yourapikeyhere
-            if (args.Length == 0)
+            if (args.Length != 0)
             {
                 apikey = args[0];
             }
-            CAPI CategoriesCAPI = new CAPI(apikey);
             try
             {
+                CAPI CategoriesCAPI = new CAPI(apikey);
                 //The results of the API call will come back in the form of a Dictionary
                 Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories(null, null, null, null, "${categories_data}");
                 Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
@@ -42,9 +42,9 @@ namespace rosette_apiExamples
             });
                 Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResultDic));
             }
-            catch (RosetteException e)
+            catch (Exception e)
             {
-                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+                Console.WriteLine(e.Message);
             }
         }
     }

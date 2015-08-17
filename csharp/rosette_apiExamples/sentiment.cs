@@ -23,27 +23,27 @@ namespace rosette_apiExamples
 
             //You may set the API key via command line argument:
             //sentiment yourapikeyhere
-            if (args.Length == 0)
+            if (args.Length != 0)
             {
                 apikey = args[0];
             }
-            CAPI SentimentCAPI = new CAPI(apikey);
-
-            StreamWriter sw = new StreamWriter("C:\\Test.html");
-            sw.WriteLine("${sentiment_data}");
-            sw.Close();
 
             try
             {
+                CAPI SentimentCAPI = new CAPI(apikey);
+
+                StreamWriter sw = new StreamWriter("C:\\Test.html");
+                sw.WriteLine("${sentiment_data}");
+                sw.Close();
                 //Rosette API provides File upload options (shown here)
                 //Simply create a new RosetteFile using the path to a file
                 //The results of the API call will come back in the form of a Dictionary
                 Dictionary<string, Object> SentimentResult = SentimentCAPI.Sentiment(new RosetteFile("C:\\Test.txt"));
                 Console.WriteLine(new JavaScriptSerializer().Serialize(SentimentResult));
             }
-            catch (RosetteException e)
+            catch (Exception e)
             {
-                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+                Console.WriteLine("Exception: " + e.Message);
             }
         }
     }
