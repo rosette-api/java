@@ -255,11 +255,11 @@ def test_just_text():
         api.matched_name(content)
         assert False
     except RosetteException as e:
-        assert e.message == "Text-only input only works for DocumentParameter endpoints"
+        assert e.status == "incompatible"
 
     # Check that it throws the correct error for translated-name
     try:
         api.translated_name(content)
         assert False
     except RosetteException as e:
-        assert e.message == "Text-only input only works for DocumentParameter endpoints"
+        assert e.status == "incompatible"
