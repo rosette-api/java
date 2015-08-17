@@ -5,7 +5,7 @@ Example code to call Rosette API to get sentences in a piece of text.
 """
 
 import argparse
-import pprint
+import json
 
 from rosette.api import API, DocumentParameters
 
@@ -25,4 +25,4 @@ params["content"] = u"${sentences_data}"
 
 result = api.sentences(params)
 
-pprint.pprint(result)
+print(json.dumps(result, indent=2, ensure_ascii=False).encode("utf8"))
