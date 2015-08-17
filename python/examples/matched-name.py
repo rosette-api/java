@@ -25,4 +25,4 @@ params["name1"] = {"text": "Michael Jackson", "language": "eng", "entityType": "
 params["name2"] = {"text": "迈克尔·杰克逊", "entityType": "PERSON"}
 result = api.matched_name(params)
 
-print(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2, ensure_ascii=False))

@@ -38,4 +38,4 @@ result = api.sentiment(params)
 # Clean up the file
 f.close()
 
-print(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2, ensure_ascii=False))

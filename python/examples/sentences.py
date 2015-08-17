@@ -25,4 +25,4 @@ params["content"] = u"${sentences_data}"
 
 result = api.sentences(params)
 
-print(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2, ensure_ascii=False))

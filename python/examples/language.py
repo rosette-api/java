@@ -25,4 +25,4 @@ params = DocumentParameters()
 params["content"] = u"Por favor Señorita, says the man."
 result = api.language(params)
 
-print(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2, ensure_ascii=False))

@@ -24,4 +24,4 @@ params = DocumentParameters()
 params["content"] = u"${morphology_compound_components_data}"
 result = api.morphology(params, MorphologyOutput.COMPOUND_COMPONENTS)
 
-print(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2, ensure_ascii=False))

@@ -24,4 +24,4 @@ params = DocumentParameters()
 params["content"] = u"${morphology_complete_data}"
 result = api.morphology(params)
 
-print(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2, ensure_ascii=False))

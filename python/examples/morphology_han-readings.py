@@ -24,4 +24,4 @@ params = DocumentParameters()
 params["content"] = u"北京大学生物系主任办公室内部会议"
 result = api.morphology(params, MorphologyOutput.HAN_READINGS)
 
-print(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2, ensure_ascii=False))

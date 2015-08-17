@@ -24,4 +24,4 @@ params = DocumentParameters()
 params["content"] = u"${entities_data}"
 result = api.entities(params)  # entity linking is turned off
 
-print(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2, ensure_ascii=False))

@@ -24,4 +24,4 @@ params = DocumentParameters()
 params["content"] = u"${morphology_parts_of_speech_data}"
 result = api.morphology(params, MorphologyOutput.PARTS_OF_SPEECH)
 
-print(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2, ensure_ascii=False))
