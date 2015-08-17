@@ -27,6 +27,5 @@
         <module>python</module>
 		<module>nodejs/production_code</module>
         <module>java</module>
-        <module>csharp</module>
     </modules>
 </project>
