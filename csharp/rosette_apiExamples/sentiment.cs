@@ -31,14 +31,14 @@ namespace rosette_apiExamples
             try
             {
                 CAPI SentimentCAPI = new CAPI(apikey);
-
-                StreamWriter sw = new StreamWriter("C:\\Test.html");
+                var newFile = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Test.txt");
+                StreamWriter sw = new StreamWriter(newFile);
                 sw.WriteLine("${sentiment_data}");
                 sw.Close();
                 //Rosette API provides File upload options (shown here)
                 //Simply create a new RosetteFile using the path to a file
                 //The results of the API call will come back in the form of a Dictionary
-                Dictionary<string, Object> SentimentResult = SentimentCAPI.Sentiment(new RosetteFile("C:\\Test.txt"));
+                Dictionary<string, Object> SentimentResult = SentimentCAPI.Sentiment(new RosetteFile(newFile));
                 Console.WriteLine(new JavaScriptSerializer().Serialize(SentimentResult));
             }
             catch (Exception e)

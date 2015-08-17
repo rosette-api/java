@@ -57,7 +57,6 @@ for f in listdir(os.path.join(os.path.realpath('.'), 'test')):
             cmd = subprocess.Popen([os.path.join(os.path.realpath('.'), 'test/' + os.path.splitext(f)[0] + ".exe"), "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             cmd_out, cmd_err = cmd.communicate()
             print cmd_out
-            print cmd_err
             if "Exception" in cmd_out:
                 failures = failures + [f]
         except:
