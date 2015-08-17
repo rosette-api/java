@@ -15,19 +15,26 @@ namespace rosette_apiExamples
         /// Requires Nuget Package:
         /// rosette_api
         /// </summary>
-        static void Main()
+        static void Main(string[] args)
         {
             //To use the C# API, you must provide an API key
-            CAPI NewCAPI = new CAPI("your API key");
-            try
+            if (args.Length == 0)
             {
-                //The results of the API call will come back in the form of a Dictionary
-                Dictionary<string, Object> pingResult = NewCAPI.Ping();
-                Console.WriteLine(new JavaScriptSerializer().Serialize(pingResult));
+                Console.WriteLine("This example requires an API key argument in the command line");
             }
-            catch (RosetteException e)
+            else
             {
-                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+                CAPI NewCAPI = new CAPI(args[0]);
+                try
+                {
+                    //The results of the API call will come back in the form of a Dictionary
+                    Dictionary<string, Object> pingResult = NewCAPI.Ping();
+                    Console.WriteLine(new JavaScriptSerializer().Serialize(pingResult));
+                }
+                catch (RosetteException e)
+                {
+                    Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+                }
             }
         }
     }

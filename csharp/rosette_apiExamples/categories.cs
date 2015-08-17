@@ -15,28 +15,35 @@ namespace rosette_apiExamples
         /// Requires Nuget Package:
         /// rosette_api
         /// </summary>
-        static void Main()
+        static void Main(string[] args)
         {
             //To use the C# API, you must provide an API key
-            CAPI CategoriesCAPI = new CAPI("your API key");
-            try
+            if (args.Length == 0)
             {
-                //The results of the API call will come back in the form of a Dictionary
-                Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories(null, null, null, null, "${categories_data}");
-                Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
-
-                //Rosette API also supports Dictionary inputs
-                //Simply instantiate a new dictionary object with the fields options as keys and inputs as values
-                Dictionary<string, Object> CategoriesResultDic = CategoriesCAPI.Categories(new Dictionary<object, object>()
+                Console.WriteLine("This example requires an API key argument in the command line");
+            }
+            else
+            {
+                CAPI CategoriesCAPI = new CAPI(args[0]);
+                try
                 {
-                    {"contentUri", "https://en.wikipedia.org/wiki/Basis_Technology_Corp."}
+                    //The results of the API call will come back in the form of a Dictionary
+                    Dictionary<string, Object> CategoriesResult = CategoriesCAPI.Categories(null, null, null, null, "${categories_data}");
+                    Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResult));
+
+                    //Rosette API also supports Dictionary inputs
+                    //Simply instantiate a new dictionary object with the fields options as keys and inputs as values
+                    Dictionary<string, Object> CategoriesResultDic = CategoriesCAPI.Categories(new Dictionary<object, object>()
+                {
+                    {"contentUri", "${categories_data}"}
 
                 });
-                Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResultDic));
-            }
-            catch (RosetteException e)
-            {
-                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+                    Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResultDic));
+                }
+                catch (RosetteException e)
+                {
+                    Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+                }
             }
         }
     }
