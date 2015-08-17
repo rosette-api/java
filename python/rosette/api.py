@@ -35,8 +35,10 @@ _IsPy3 = sys.version_info[0] == 3
 
 try:
     import urlparse
+    import urllib
 except ImportError:
     import urllib.parse as urlparse
+    import urllib.parse as urllib
 try:
     import httplib
 except ImportError:
@@ -128,15 +130,7 @@ def add_query(orig_url, key, value):
     parts = urlparse.urlsplit(orig_url)
     queries = urlparse.parse_qsl(parts[3])
     queries.append((key, value))
-    qs = ""
-    first = True
-    for query in queries:
-        if not first:
-            qs += "&"
-        else:
-            first = False
-        qs += query[0] + "=" + query[1]
-
+    qs = urllib.urlencode(queries)
     return urlparse.urlunsplit((parts[0], parts[1], parts[2], qs, parts[4]))
 
 
