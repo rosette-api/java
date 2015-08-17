@@ -28,4 +28,4 @@ params["contentUri"] = args.url
 
 result = api.categories(params)
 
-print(json.dumps(result, indent=2, ensure_ascii=False))
+print(json.dumps(result, indent=2, ensure_ascii=False).encode("utf8"))

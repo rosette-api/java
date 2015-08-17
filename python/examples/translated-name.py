@@ -26,4 +26,4 @@ params["entityType"] = "PERSON"
 params["targetLanguage"] = "eng"
 result = api.translated_name(params)
 
-print(json.dumps(result, indent=2, ensure_ascii=False))
+print(json.dumps(result, indent=2, ensure_ascii=False).encode("utf8"))
