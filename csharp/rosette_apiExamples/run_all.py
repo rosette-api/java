@@ -101,6 +101,12 @@ for f in listdir(os.path.join(os.path.realpath('.'))):
         except:
             failures = failures + [f]
 
+# Exit test folder
+try:
+    os.chdir(os.path.realpath('..'))
+except:
+    print 'Failed to move back into rosette_apiExamples'
+    sys.exit('Failed to move back into rosette_apiExamples')
 if len(failures) != 0:
     cleanup()
     print 'Failed to pass these examples: ' + ', '.join(failures)
