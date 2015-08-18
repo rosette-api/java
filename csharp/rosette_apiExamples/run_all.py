@@ -45,9 +45,9 @@ def cleanup():
 # Start by cleaning up
 cleanup()
 
-# clone from git and get examples 
+# clone from git and get examples
 try:
-    subprocess.call(["git", "clone", "git@github.com:rosette-api/csharp.git", "gitclone"])
+    subprocess.call(["git", "clone", "-b", "0.5.2", "git@github.com:rosette-api/csharp.git", "gitclone"])
 except:
     sys.exit('Failed to clone examples from github: git@github.com:basis-technology-corp/rosette-api.git')
 
@@ -99,6 +99,7 @@ for f in listdir(os.path.join(os.path.realpath('.'))):
             if "Exception" in cmd_out or "{" not in cmd_out:
                 failures = failures + [f]
         except:
+            print f + " was unable to be compiled and run"
             failures = failures + [f]
 
 # Exit test folder
@@ -115,6 +116,7 @@ if len(failures) != 0:
 # at the end clean up the folder
 cleanup()
 
+print 'All tests passed successfully'
 sys.exit(0)
 
 
