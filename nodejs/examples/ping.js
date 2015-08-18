@@ -17,7 +17,7 @@ var args = parser.parseArgs();
 var api = new Api(args.key);
 api.ping(function(err, res) {
   if (err) {
-    console.log("ERROR! " + err);
+    throw err;
   }
   else {
     console.log(res);

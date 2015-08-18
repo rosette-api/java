@@ -23,7 +23,7 @@ docParams.setItem("contentUri", args.url);
 var api = new Api(args.key);
 api.categories(docParams, function(err, res) {
   if (err) {
-    console.log("ERROR! " + err);
+    throw err;
   }
   else {
     console.log(res);
