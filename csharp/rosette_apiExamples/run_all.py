@@ -47,7 +47,7 @@ cleanup()
 
 # clone from git and get examples
 try:
-    subprocess.call(["git", "clone", "-b", "0.5.2", "git@github.com:rosette-api/csharp.git", "gitclone"])
+    subprocess.call(["git", "clone", "-b", "master", "git@github.com:rosette-api/csharp.git", "gitclone"])
 except:
     sys.exit('Failed to clone examples from github: git@github.com:basis-technology-corp/rosette-api.git')
 
