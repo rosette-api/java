@@ -34,9 +34,11 @@ _IsPy3 = sys.version_info[0] == 3
 
 
 try:
-    from urlparse import urlparse
+    import urlparse
+    import urllib
 except ImportError:
-    from urllib.parse import urlparse
+    import urllib.parse as urlparse
+    import urllib.parse as urllib
 try:
     import httplib
 except ImportError:
@@ -67,7 +69,7 @@ def _my_loads(obj):
 def _retrying_request(op, url, data, headers):
     message = None
     code = "unknownError"
-    parsed = urlparse(url)
+    parsed = urlparse.urlparse(url)
     loc = parsed.netloc
     if parsed.scheme == "https":
         conn = httplib.HTTPSConnection(loc)
@@ -122,6 +124,14 @@ def _post_http(url, data, headers):
         rdata = gzip.GzipFile(fileobj=buf).read()
 
     return _ReturnObject(_my_loads(rdata), status)
+
+
+def add_query(orig_url, key, value):
+    parts = urlparse.urlsplit(orig_url)
+    queries = urlparse.parse_qsl(parts[3])
+    queries.append((key, value))
+    qs = urllib.urlencode(queries)
+    return urlparse.urlunsplit((parts[0], parts[1], parts[2], qs, parts[4]))
 
 
 class RosetteException(Exception):
@@ -409,6 +419,7 @@ class EndpointCaller:
         self.useMultipart = api.useMultipart
         self.checker = lambda: api.check_version()
         self.suburl = suburl
+        self.debug = api.debug
 
     def __finish_result(self, r, ename):
         code = r.status_code
@@ -446,6 +457,8 @@ class EndpointCaller:
             url = self.service_url + '/' + self.suburl + "/info"
         else:
             url = self.service_url + "/info"
+        if self.debug:
+            url = add_query(url, "debug", "true")
         self.logger.info('info: ' + url)
         headers = {'Accept': 'application/json'}
         if self.user_key is not None:
@@ -460,6 +473,8 @@ class EndpointCaller:
         signalled."""
 
         url = self.service_url + '/ping'
+        if self.debug:
+            url = add_query(url, "debug", "true")
         self.logger.info('Ping: ' + url)
         headers = {'Accept': 'application/json'}
         if self.user_key is not None:
@@ -492,6 +507,8 @@ class EndpointCaller:
             raise RosetteException("incompatible", "Multipart requires contentType SIMPLE",
                                    repr(parameters['contentType']))
         url = self.service_url + '/' + self.suburl
+        if self.debug:
+            url = add_query(url, "debug", "true")
         self.logger.info('operate: ' + url)
         params_to_serialize = parameters.serialize()
         headers = {'Accept': "application/json", 'Accept-Encoding': "gzip"}
@@ -499,9 +516,6 @@ class EndpointCaller:
             headers["user_key"] = self.user_key
         headers['Content-Type'] = "application/json"
         r = _post_http(url, params_to_serialize, headers)
-        pprint.pprint(headers)
-        pprint.pprint(url)
-        pprint.pprint(params_to_serialize)
         return self.__finish_result(r, "operate")
 
 
@@ -511,7 +525,7 @@ class API:
     Call instance methods upon this object to obtain L{EndpointCaller} objects
     which can communicate with particular Rosette server endpoints.
     """
-    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3):
+    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3, debug=False):
         """ Create an L{API} object.
         @param user_key: (Optional; required for servers requiring authentication.) An authentication string to be sent
          as user_key with all requests.  The default Rosette server requires authentication.
@@ -523,7 +537,7 @@ class API:
         self.service_url = service_url
         self.logger = logging.getLogger('rosette.api')
         self.logger.info('Initialized on ' + self.service_url)
-        self.debug = False
+        self.debug = debug
         self.useMultipart = False
         self.version_checked = False
         global N_RETRIES

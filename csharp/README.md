@@ -4,9 +4,11 @@
 Installation
 ------------
 
-If you use Nuget, search for the rosette_api package in Nuget(https://www.nuget.org/packages/rosette_api/) and follow the installation instructions.
+If you use Nuget, you may either use Visual Studios Nuget package manager or command line to install Rosette API.
 
-%TODO: If you don't use Nuget ???
+In Visual Studios: search for the rosette_api package in Nuget(https://www.nuget.org/packages/rosette_api/) and follow the installation instructions.
+
+Using Nuget Command Line: `nuget install rosette_api`
 
 Basic Usage
 -----------

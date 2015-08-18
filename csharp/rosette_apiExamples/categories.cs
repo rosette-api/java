@@ -11,14 +11,22 @@ namespace rosette_apiExamples
     class categories
     {
         /// <summary>
-        /// Example code to call Rosette API to get a document's (located at given URL) category.
+        /// Example code to call Rosette API to get a document's (located at given URL) categories.
         /// Requires Nuget Package:
         /// rosette_api
         /// </summary>
-        static void Main()
+        static void Main(string[] args)
         {
             //To use the C# API, you must provide an API key
-            CAPI CategoriesCAPI = new CAPI("your API key");
+            string apikey = "Your API key";
+            
+            //You may set the API key via command line argument:
+            //categories yourapikeyhere
+            if (args.Length == 0)
+            {
+                apikey = args[0];
+            }
+            CAPI CategoriesCAPI = new CAPI(apikey);
             try
             {
                 //The results of the API call will come back in the form of a Dictionary
@@ -28,10 +36,10 @@ namespace rosette_apiExamples
                 //Rosette API also supports Dictionary inputs
                 //Simply instantiate a new dictionary object with the fields options as keys and inputs as values
                 Dictionary<string, Object> CategoriesResultDic = CategoriesCAPI.Categories(new Dictionary<object, object>()
-                {
-                    {"contentUri", "https://en.wikipedia.org/wiki/Basis_Technology_Corp."}
+            {
+                {"contentUri", "${categories_data}"}
 
-                });
+            });
                 Console.WriteLine(new JavaScriptSerializer().Serialize(CategoriesResultDic));
             }
             catch (RosetteException e)
