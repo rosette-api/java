@@ -22,20 +22,20 @@ namespace rosette_apiExamples
 
             //You may set the API key via command line argument:
             //ping yourapikeyhere
-            if (args.Length == 0)
+            if (args.Length != 0)
             {
                 apikey = args[0];
             }
-            CAPI NewCAPI = new CAPI(apikey);
             try
             {
+                CAPI NewCAPI = new CAPI(apikey);
                 //The results of the API call will come back in the form of a Dictionary
                 Dictionary<string, Object> pingResult = NewCAPI.Ping();
                 Console.WriteLine(new JavaScriptSerializer().Serialize(pingResult));
             }
-            catch (RosetteException e)
+            catch (Exception e)
             {
-                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+                Console.WriteLine("Exception: " + e.Message);
             }
         }
     }

@@ -63,7 +63,7 @@ function Name(text, entityType, language, script) {
   }
 }
 
-// inherit from Error
+// inherit from Object
 util.inherits(Name, Object);
 
 //Export the constructor function as the export of this module file.

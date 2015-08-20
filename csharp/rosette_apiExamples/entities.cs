@@ -22,20 +22,20 @@ namespace rosette_apiExamples
 
             //You may set the API key via command line argument:
             //entities yourapikeyhere
-            if (args.Length == 0)
+            if (args.Length != 0)
             {
                 apikey = args[0];
             }
-            CAPI EntitiesCAPI = new CAPI(apikey);
             try
             {
+                CAPI EntitiesCAPI = new CAPI(apikey);
                 //The results of the API call will come back in the form of a Dictionary
                 Dictionary<string, Object> EntitiesResult = EntitiesCAPI.Entity("${entities_data}");
                 Console.WriteLine(new JavaScriptSerializer().Serialize(EntitiesResult));
             }
-            catch (RosetteException e)
+            catch (Exception e)
             {
-                Console.WriteLine("Error Code " + e.Code.ToString() + ":" + e.Message);
+                Console.WriteLine("Exception: " + e.Message);
             }
         }
     }

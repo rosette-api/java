@@ -15,10 +15,6 @@
         <file>
             <source>.gitignore</source>
         </file>
-        <file>
-            <source>DEV-README.md</source>
-        </file>
-
 
     </files>
     <fileSets>
