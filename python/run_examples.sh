@@ -1,6 +1,5 @@
 #!/bin/bash -e
 
-mvn clean install
 cd target/github-publish/examples
 echo "Enter your password to allow sudo to pip install rosette_api"
 sudo pip install rosette_api
