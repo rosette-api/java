@@ -69,7 +69,7 @@ function Api(userKey, serviceUrl) {
    * @desc Number of times to try connecting
    * @type {number}
    */
-  this.nRetries = 3;
+  this.nRetries = 1;
 }
 
 /**

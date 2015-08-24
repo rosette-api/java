@@ -27,7 +27,7 @@ import pprint
 
 _ACCEPTABLE_SERVER_VERSION = "0.5"
 _GZIP_BYTEARRAY = bytearray([0x1F, 0x8b, 0x08])
-N_RETRIES = 3
+N_RETRIES = 1
 
 
 _IsPy3 = sys.version_info[0] == 3
@@ -76,7 +76,7 @@ def _retrying_request(op, url, data, headers):
     else:
         conn = httplib.HTTPConnection(loc)
     rdata = None
-    for i in range(N_RETRIES):
+    for i in range(N_RETRIES+1):
         conn.request(op, url, data, headers)
         response = conn.getresponse()
         status = response.status
@@ -525,7 +525,7 @@ class API:
     Call instance methods upon this object to obtain L{EndpointCaller} objects
     which can communicate with particular Rosette server endpoints.
     """
-    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3, debug=False):
+    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=1, debug=False):
         """ Create an L{API} object.
         @param user_key: (Optional; required for servers requiring authentication.) An authentication string to be sent
          as user_key with all requests.  The default Rosette server requires authentication.

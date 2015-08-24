@@ -59,11 +59,11 @@ namespace rosette_api
         /// <param name="uristring">(string, optional): Base URL for the HttpClient requests. If none is given, will use the default API URI</param>
         /// <param name="maxRetry">(int, optional): Maximum number of times to retry a request on HttpResponse error. Default is 3 times.</param> 
         /// <param name="client">(HttpClient, optional): Forces the API to use a custom HttpClient.</param> 
-        public CAPI(string user_key, string uristring = "https://api.rosette.com/rest/v1/", int maxRetry = 3, HttpClient client = null)
+        public CAPI(string user_key, string uristring = "https://api.rosette.com/rest/v1/", int maxRetry = 1, HttpClient client = null)
         {
             UserKey = user_key;
             URIstring = (uristring == null) ? "https://api.rosette.com/rest/v1/" : uristring;
-            MaxRetry = (maxRetry == 0) ? 3: maxRetry;
+            MaxRetry = (maxRetry == 0) ? 1: maxRetry;
             Debug = false;
             Morphofeatures = new List<string> { "complete", "lemmas", "parts-of-speech", "compound-components", "han-readings" };
             Version = compatible_version;

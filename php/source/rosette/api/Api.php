@@ -165,7 +165,7 @@ class Api
         $this->version_checked = false;
         $this->subUrl = null;
         $this->timeout = 300;
-        $this->numRetries = 3;
+        $this->numRetries = 1;
 
         $this->headers = array('user_key' => $user_key,
                           'Content-Type' => 'application/json',
@@ -377,7 +377,7 @@ class Api
         $response = null;
         $message = null;
         $code = 'unknownError';
-        for ($range = 0; $range < $this->numRetries; ++$range) {
+        for ($range = 0; $range <= $this->numRetries; ++$range) {
             $http_response_header = null;
             $response = file_get_contents($url, false, $context);
             $response_status = $this->getResponseStatusCode($http_response_header);
