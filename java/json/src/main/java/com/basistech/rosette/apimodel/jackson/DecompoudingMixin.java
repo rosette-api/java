@@ -21,7 +21,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DecompoudingMixin {
+public class DecompoudingMixin extends BaseMixin {
     @JsonCreator
     public DecompoudingMixin(
             @JsonProperty("text") String text,
@@ -29,5 +29,4 @@ public class DecompoudingMixin {
     ) {
         //
     }
-
 }

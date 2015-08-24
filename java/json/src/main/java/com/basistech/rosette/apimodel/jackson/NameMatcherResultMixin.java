@@ -19,12 +19,11 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class NameMatcherResultMixin {
+public class NameMatcherResultMixin extends BaseMixin {
     @JsonCreator
     protected NameMatcherResultMixin(
             @JsonProperty("score") Double score
     ) {
         //
     }
-
 }

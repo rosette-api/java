@@ -20,8 +20,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class InfoResponseMixin {
+public class InfoResponseMixin extends BaseMixin {
     @JsonCreator
     public InfoResponseMixin(
             @JsonProperty("name") String name,
@@ -31,5 +30,4 @@ public class InfoResponseMixin {
     ) {
         //
     }
-
 }

@@ -20,7 +20,7 @@ import com.basistech.rosette.apimodel.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LanguageDetectionResultMixin {
+public class LanguageDetectionResultMixin extends BaseMixin {
     @JsonCreator
     public LanguageDetectionResultMixin(
             @JsonProperty("language") LanguageCode language,
@@ -28,5 +28,4 @@ public class LanguageDetectionResultMixin {
     ) {
         //
     }
-
 }

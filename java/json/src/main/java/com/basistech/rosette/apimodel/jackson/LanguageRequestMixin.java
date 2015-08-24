@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class LanguageRequestMixin {
+public class LanguageRequestMixin extends BaseMixin {
     @JsonCreator
     public LanguageRequestMixin(
             @JsonProperty("content") String content,
@@ -33,5 +33,4 @@ public class LanguageRequestMixin {
     ) {
         //
     }
-
 }

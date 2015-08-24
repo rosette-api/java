@@ -59,6 +59,9 @@ public class ModelTest {
             if (className.endsWith(".ModelTest")) {
                 continue;
             }
+            if (className.endsWith(".NonNullTest")) {
+                continue;
+            }
             if (className.endsWith("Mixin")) {
                 continue;
             }
@@ -76,7 +79,6 @@ public class ModelTest {
             }
             Object o1;
             if (Modifier.isPublic(ctor.getModifiers())) {
-                System.out.println(className);
                 o1 = createObject(ctor);
                 // serialize
                 byte[] bytes = mapper.writeValueAsBytes(o1);

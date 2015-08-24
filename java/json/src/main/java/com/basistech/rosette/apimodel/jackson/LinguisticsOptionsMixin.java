@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LinguisticsOptionsMixin {
+public class LinguisticsOptionsMixin extends BaseMixin {
     @JsonCreator
     protected LinguisticsOptionsMixin(
             @JsonProperty("disambiguate") Boolean disambiguate,
@@ -33,5 +33,4 @@ public class LinguisticsOptionsMixin {
     ) {
         //
     }
-
 }

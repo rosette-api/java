@@ -22,7 +22,7 @@ import com.basistech.rosette.apimodel.Sentiment;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SentimentResponseMixin {
+public class SentimentResponseMixin  extends BaseMixin {
     @JsonCreator
     protected SentimentResponseMixin(
             @JsonProperty("requestId") String requestId,
@@ -30,5 +30,4 @@ public class SentimentResponseMixin {
     ) {
         //
     }
-
 }

@@ -21,7 +21,7 @@ import com.basistech.rosette.apimodel.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LanguageWeightMixin {
+public class LanguageWeightMixin extends BaseMixin {
     @JsonCreator
     protected LanguageWeightMixin(
             @JsonProperty("language") LanguageCode language,
@@ -30,5 +30,4 @@ public class LanguageWeightMixin {
     ) {
         //
     }
-
 }

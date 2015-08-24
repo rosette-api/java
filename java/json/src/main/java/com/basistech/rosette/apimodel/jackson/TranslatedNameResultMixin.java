@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TranslatedNameResultMixin {
+public class TranslatedNameResultMixin  extends BaseMixin {
     @JsonCreator
     protected TranslatedNameResultMixin(
             @JsonProperty("sourceScript") String sourceScript,
@@ -33,5 +33,4 @@ public class TranslatedNameResultMixin {
     ) {
         //
     }
-
 }

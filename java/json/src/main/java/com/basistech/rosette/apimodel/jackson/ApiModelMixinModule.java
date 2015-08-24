@@ -138,7 +138,6 @@ public class ApiModelMixinModule extends SimpleModule {
          * @return the same mapper, for convenience.
          */
         public static ObjectMapper setupObjectMapper(ObjectMapper mapper) {
-            mapper.getSerializationConfig().withSerializationInclusion(JsonInclude.Include.NON_NULL);
             final ApiModelMixinModule module = new ApiModelMixinModule();
             mapper.registerModule(module);
             return mapper;

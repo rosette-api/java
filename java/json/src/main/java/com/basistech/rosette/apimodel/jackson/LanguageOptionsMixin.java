@@ -23,7 +23,7 @@ import com.basistech.rosette.apimodel.LanguageWeight;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LanguageOptionsMixin {
+public class LanguageOptionsMixin extends BaseMixin {
     @JsonCreator
     protected LanguageOptionsMixin(
             @JsonProperty("minValidChars") Integer minValidChars,
@@ -38,5 +38,4 @@ public class LanguageOptionsMixin {
     ) {
         //
     }
-
 }

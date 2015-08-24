@@ -21,7 +21,7 @@ import com.basistech.rosette.apimodel.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LinkedEntityRequestMixin {
+public class LinkedEntityRequestMixin extends BaseMixin {
     @JsonCreator
     protected LinkedEntityRequestMixin(
             @JsonProperty("language") LanguageCode language,
@@ -32,5 +32,4 @@ public class LinkedEntityRequestMixin {
     ) {
         //
     }
-
 }

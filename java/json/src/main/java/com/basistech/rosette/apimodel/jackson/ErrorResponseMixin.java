@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ErrorResponseMixin {
+public class ErrorResponseMixin extends BaseMixin {
     @JsonCreator
     public ErrorResponseMixin(
             @JsonProperty("requestId") String requestId,
@@ -28,5 +28,4 @@ public class ErrorResponseMixin {
     ) {
         //
     }
-
 }

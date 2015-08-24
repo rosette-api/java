@@ -25,7 +25,7 @@ import com.basistech.rosette.apimodel.PartOfSpeech;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MorphologyResponseMixin {
+public class MorphologyResponseMixin extends BaseMixin {
     @JsonCreator
     public MorphologyResponseMixin(
             @JsonProperty("requestId") String requestId,
@@ -36,5 +36,4 @@ public class MorphologyResponseMixin {
     ) {
         //
     }
-
 }
