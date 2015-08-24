@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 cd target/github-publish/examples
+mvn
 begin='src/main/java/com/basistech/rosette/examples/'
 end='.java'
 for f in src/main/java/com/basistech/rosette/examples/*.java
