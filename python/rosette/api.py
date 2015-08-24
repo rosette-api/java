@@ -76,7 +76,7 @@ def _retrying_request(op, url, data, headers):
     else:
         conn = httplib.HTTPConnection(loc)
     rdata = None
-    for i in range(N_RETRIES+1):
+    for i in range(N_RETRIES + 1):
         conn.request(op, url, data, headers)
         response = conn.getresponse()
         status = response.status
