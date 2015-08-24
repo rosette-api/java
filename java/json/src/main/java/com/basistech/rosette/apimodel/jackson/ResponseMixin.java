@@ -19,10 +19,9 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResponseMixin {
+public class ResponseMixin extends BaseMixin {
     @JsonCreator
     public ResponseMixin(@JsonProperty("requestId") String requestId) {
         //
     }
-
 }

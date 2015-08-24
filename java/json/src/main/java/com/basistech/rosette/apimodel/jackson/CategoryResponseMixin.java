@@ -22,7 +22,7 @@ import com.basistech.rosette.apimodel.Category;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CategoryResponseMixin {
+public class CategoryResponseMixin extends BaseMixin {
     @JsonCreator
     public CategoryResponseMixin(
             @JsonProperty("requestId") String requestId,
@@ -30,5 +30,4 @@ public class CategoryResponseMixin {
     ) {
         //
     }
-
 }

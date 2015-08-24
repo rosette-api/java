@@ -21,7 +21,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class HanReadingsMixin {
+public class HanReadingsMixin extends BaseMixin {
     @JsonCreator
     public HanReadingsMixin(
             @JsonProperty("text") String text,
@@ -29,5 +29,4 @@ public class HanReadingsMixin {
     ) {
         //
     }
-
 }

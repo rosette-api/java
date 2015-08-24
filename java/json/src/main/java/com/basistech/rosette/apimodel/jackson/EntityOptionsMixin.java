@@ -22,7 +22,7 @@ import com.basistech.rosette.apimodel.ExtractionMethod;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class EntityOptionsMixin {
+public class EntityOptionsMixin extends BaseMixin {
     @JsonCreator
     private EntityOptionsMixin(
             @JsonProperty("resolveNamedEntities") Boolean resolveNamedEntities,
@@ -33,5 +33,4 @@ public class EntityOptionsMixin {
     ) {
         //
     }
-
 }

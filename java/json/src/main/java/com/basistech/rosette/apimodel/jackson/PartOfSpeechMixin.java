@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PartOfSpeechMixin {
+public class PartOfSpeechMixin extends BaseMixin {
     @JsonCreator
     public PartOfSpeechMixin(
             @JsonProperty("text") String text,
@@ -27,5 +27,4 @@ public class PartOfSpeechMixin {
     ) {
         //
     }
-
 }

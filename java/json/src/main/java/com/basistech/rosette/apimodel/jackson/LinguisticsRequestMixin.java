@@ -22,7 +22,7 @@ import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LinguisticsRequestMixin {
+public class LinguisticsRequestMixin extends BaseMixin {
     @JsonCreator
     public LinguisticsRequestMixin(
             @JsonProperty("language") LanguageCode language,
@@ -34,5 +34,4 @@ public class LinguisticsRequestMixin {
     ) {
         //
     }
-
 }

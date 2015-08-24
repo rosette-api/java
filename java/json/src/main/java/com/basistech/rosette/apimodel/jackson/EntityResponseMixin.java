@@ -22,7 +22,7 @@ import com.basistech.rosette.apimodel.Entity;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class EntityResponseMixin {
+public class EntityResponseMixin extends BaseMixin {
     @JsonCreator
     public EntityResponseMixin(
             @JsonProperty("requestId") String requestId,
@@ -30,5 +30,4 @@ public class EntityResponseMixin {
     ) {
         //
     }
-
 }

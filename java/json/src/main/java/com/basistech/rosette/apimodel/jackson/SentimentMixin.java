@@ -21,7 +21,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SentimentMixin {
+public class SentimentMixin extends BaseMixin {
     @JsonCreator
     protected SentimentMixin(
             @JsonProperty("label") String label,
@@ -30,5 +30,4 @@ public class SentimentMixin {
     ) {
         //
     }
-
 }

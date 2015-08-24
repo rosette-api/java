@@ -59,6 +59,9 @@ public class ModelTest {
             if (className.endsWith(".ModelTest")) {
                 continue;
             }
+            if (className.endsWith(".NonNullTest")) {
+                continue;
+            }
             if (className.endsWith("Mixin")) {
                 continue;
             }

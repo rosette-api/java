@@ -23,7 +23,7 @@ import com.basistech.rosette.apimodel.ISO15924;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LanguageInfoResponseMixin {
+public class LanguageInfoResponseMixin extends BaseMixin {
     @JsonCreator
     public LanguageInfoResponseMixin(
             @JsonProperty("requestId") String requestId,
@@ -32,5 +32,4 @@ public class LanguageInfoResponseMixin {
     ) {
         //
     }
-
 }

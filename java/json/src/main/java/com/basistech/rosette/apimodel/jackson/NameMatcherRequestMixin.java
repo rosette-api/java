@@ -20,7 +20,7 @@ import com.basistech.rosette.apimodel.Name;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class NameMatcherRequestMixin {
+public class NameMatcherRequestMixin extends BaseMixin {
     @JsonCreator
     protected NameMatcherRequestMixin(
             @JsonProperty("name1") Name name1,
@@ -28,5 +28,4 @@ public class NameMatcherRequestMixin {
     ) {
         //
     }
-
 }

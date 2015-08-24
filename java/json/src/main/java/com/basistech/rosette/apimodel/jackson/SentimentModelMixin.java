@@ -21,5 +21,5 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonSerialize(using = SentimentModelSerializer.class, keyUsing = SentimentModelSerializer.class)
 @JsonDeserialize(using = SentimentModelDeserializer.class)
-public class SentimentModelMixin {
+public class SentimentModelMixin extends BaseMixin {
 }

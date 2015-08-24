@@ -22,7 +22,7 @@ import com.basistech.rosette.apimodel.SentimentOptions;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SentimentRequestMixin {
+public class SentimentRequestMixin  extends BaseMixin {
     @JsonCreator
     protected SentimentRequestMixin(
             @JsonProperty("language") LanguageCode language,
@@ -34,5 +34,4 @@ public class SentimentRequestMixin {
     ) {
         //
     }
-
 }

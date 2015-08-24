@@ -21,7 +21,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TokenResponseMixin {
+public class TokenResponseMixin  extends BaseMixin {
     @JsonCreator
     public TokenResponseMixin(
             @JsonProperty("requestId") String requestId,
@@ -29,5 +29,4 @@ public class TokenResponseMixin {
     ) {
         //
     }
-
 }

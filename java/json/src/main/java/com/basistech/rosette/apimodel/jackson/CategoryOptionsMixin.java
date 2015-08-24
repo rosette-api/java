@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CategoryOptionsMixin {
+public class CategoryOptionsMixin extends BaseMixin {
     @JsonCreator
     private CategoryOptionsMixin(
             @JsonProperty("model") String model,
@@ -28,5 +28,4 @@ public class CategoryOptionsMixin {
     ) {
         //
     }
-
 }

@@ -22,7 +22,7 @@ import com.basistech.rosette.apimodel.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CategoryRequestMixin {
+public class CategoryRequestMixin extends BaseMixin {
     @JsonCreator
     public CategoryRequestMixin(
             @JsonProperty("language") LanguageCode language,
@@ -34,5 +34,4 @@ public class CategoryRequestMixin {
     ) {
         //
     }
-
 }

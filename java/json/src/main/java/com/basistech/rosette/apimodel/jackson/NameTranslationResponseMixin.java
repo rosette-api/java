@@ -20,7 +20,7 @@ import com.basistech.rosette.apimodel.NameTranslationResult;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class NameTranslationResponseMixin {
+public class NameTranslationResponseMixin extends BaseMixin {
     @JsonCreator
     protected NameTranslationResponseMixin(
             @JsonProperty("requestId") String requestId,
@@ -28,5 +28,4 @@ public class NameTranslationResponseMixin {
     ) {
         //
     }
-
 }
