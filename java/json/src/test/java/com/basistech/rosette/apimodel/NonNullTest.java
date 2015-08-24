@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -58,7 +59,7 @@ public class NonNullTest extends Assert {
             for (Path file : paths) {
                 if (file.toString().endsWith(".json")) {
                     String className = file.getFileName().toString().replace(".json", "");
-                    params.add(new Object[]{"com.basistech.rosette.apimodel." + className, file.toFile()});
+                    params.add(new Object[]{NonNullTest.class.getPackage().getName() + "." + className, file.toFile()});
                 }
             }
         }
@@ -71,11 +72,10 @@ public class NonNullTest extends Assert {
     }
 
     @Test
-    public void nonNullTest() throws IOException, ClassNotFoundException {
-        Class c = Class.forName(className);
-        String s = FileUtils.readFileToString(testFile);
-        Object response = mapper.readValue(s, c);
-        String s2 = mapper.writeValueAsString(response);
+    public void testNonNull() throws IOException, ClassNotFoundException {
+        Class<?> c = Class.forName(className);
+        String s = FileUtils.readFileToString(testFile, StandardCharsets.UTF_8);
+        String s2 = mapper.writeValueAsString(mapper.readValue(s, c));
         assertFalse(s2.contains("requestId"));
         assertFalse(s2.contains("timers"));
     }

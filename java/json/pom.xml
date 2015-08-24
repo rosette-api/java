@@ -48,16 +48,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <build>
-        <testResources>
-            <testResource>
-                <directory>../mock-data</directory>
-                <includes>
-                    <include>**/*.json</include>
-                    <include>**/*.status</include>
-                </includes>
-                <filtering>false</filtering>
-            </testResource>
-        </testResources>
-    </build>
 </project>

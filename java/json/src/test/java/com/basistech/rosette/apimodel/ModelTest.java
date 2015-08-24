@@ -76,7 +76,6 @@ public class ModelTest {
             }
             Object o1;
             if (Modifier.isPublic(ctor.getModifiers())) {
-                System.out.println(className);
                 o1 = createObject(ctor);
                 // serialize
                 byte[] bytes = mapper.writeValueAsBytes(o1);
