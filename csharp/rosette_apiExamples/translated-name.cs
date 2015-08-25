@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +30,7 @@ namespace rosette_apiExamples
             {
                 CAPI TranslatedNameCAPI = new CAPI(apikey);
                 //The results of the API call will come back in the form of a Dictionary
-                Dictionary<string, Object> TranslatedNameResult = TranslatedNameCAPI.TranslatedName("李朝暉‎‎", null, null, "eng", null, null, null, "PERSON");
+                Dictionary<string, Object> TranslatedNameResult = TranslatedNameCAPI.TranslatedName("北京‎‎", null, null, "eng", null, null, null, "PERSON");
                 Console.WriteLine(new JavaScriptSerializer().Serialize(TranslatedNameResult));
             }
             catch (Exception e)
