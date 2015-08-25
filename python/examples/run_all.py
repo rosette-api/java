@@ -85,13 +85,6 @@ except:
     print 'Failed to move back into examples'
     sys.exit('Failed to move back into examples')
 
-# uninstall rosette_api
-try:
-    subprocess.call(["pip", "uninstall", "rosette_api", "y"])
-except:
-    cleanup()
-    sys.exit('Failed to uninstall rosette_api')
-
 if len(failures) != 0:
     cleanup()
     print 'Failed to pass these examples: ' + ', '.join(failures)
