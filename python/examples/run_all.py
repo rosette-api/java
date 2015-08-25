@@ -38,12 +38,14 @@ def cleanup():
 
 # helper function to setup folder
 def setup():
+    subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/python.git", "gitclone"])
+
     # clone from git and get examples
-    try:
-        subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/python.git", "gitclone"])
-    except:
-        cleanup()
-        sys.exit('Failed to clone examples from github: https://github.com/rosette-api/python.git')
+    #try:
+        #subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/python.git", "gitclone"])
+    #except:
+        #cleanup()
+        #sys.exit('Failed to clone examples from github: https://github.com/rosette-api/python.git')
 
     # install rosette_api python package
     try:
