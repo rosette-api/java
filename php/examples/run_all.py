@@ -39,9 +39,9 @@ cleanup()
 
 # clone from git and get examples
 try:
-    subprocess.call(["git", "clone", "-b", "master", "git@github.com:rosette-api/php.git", "gitclone"])
+    subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/php.git", "gitclone"])
 except:
-    sys.exit('Failed to clone examples from github: git@github.com:rosette-api/php.git')
+    sys.exit('Failed to clone examples from github: https://github.com/rosette-api/php.git')
 
 # Try to move into the cloned examples folder
 try:
