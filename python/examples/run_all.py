@@ -5,6 +5,7 @@ import shutil
 import time
 import sys
 
+
 # helper function to remove folders
 # http://stackoverflow.com/questions/2656322/python-shutil-rmtree-fails-on-windows-with-access-is-denied
 def onerror(func, path, exc_info):
@@ -33,6 +34,7 @@ def cleanup():
         shutil.rmtree('gitclone', onerror=onerror)
     except:
         print "Gitclone folder failed to be removed"
+
 
 # helper function to setup folder
 def setup():
@@ -89,7 +91,7 @@ try:
 except:
     cleanup()
     sys.exit('Failed to uninstall rosette_api')
-    
+
 if len(failures) != 0:
     cleanup()
     print 'Failed to pass these examples: ' + ', '.join(failures)
@@ -100,5 +102,3 @@ cleanup()
 
 print 'All tests passed successfully'
 sys.exit(0)
-
-
