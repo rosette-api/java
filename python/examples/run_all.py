@@ -34,14 +34,25 @@ def cleanup():
     except:
         print "Gitclone folder failed to be removed"
 
-# Start by cleaning up
-cleanup()
+# helper function to setup folder
+def setup():
+    # clone from git and get examples
+    try:
+        subprocess.call(["git", "clone", "-b", "master", "git@github.com:rosette-api/python.git", "gitclone"])
+    except:
+        cleanup()
+        sys.exit('Failed to clone examples from github: git@github.com:rosette-api/python.git')
 
-# clone from git and get examples
-try:
-    subprocess.call(["git", "clone", "-b", "master", "git@github.com:rosette-api/php.git", "gitclone"])
-except:
-    sys.exit('Failed to clone examples from github: git@github.com:rosette-api/php.git')
+    # install rosette_api python package
+    try:
+        subprocess.call(["pip", "install", "rosette_api"])
+    except:
+        cleanup()
+        sys.exit('Failed to install rosette_api')
+
+# Start by cleaning up and setting up
+cleanup()
+setup()
 
 # Try to move into the cloned examples folder
 try:
@@ -53,10 +64,10 @@ except:
 # compile and run each example
 failures = []
 for f in listdir(os.path.join(os.path.realpath('.'))):
-    if f.endswith(".php"):
+    if f.endswith(".py"):
         print f
         try:
-            cmd = subprocess.Popen(["php", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            cmd = subprocess.Popen(["python", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             cmd_out, cmd_err = cmd.communicate()
             print cmd_out
             if "Exception" in cmd_out or "{" not in cmd_out:
@@ -71,6 +82,14 @@ try:
 except:
     print 'Failed to move back into examples'
     sys.exit('Failed to move back into examples')
+
+# uninstall rosette_api
+try:
+    subprocess.call(["pip", "uninstall", "rosette_api", "y"])
+except:
+    cleanup()
+    sys.exit('Failed to uninstall rosette_api')
+    
 if len(failures) != 0:
     cleanup()
     print 'Failed to pass these examples: ' + ', '.join(failures)
