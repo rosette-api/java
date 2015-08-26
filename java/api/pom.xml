@@ -6,9 +6,9 @@
         <artifactId>rosette-api-parent</artifactId>
         <version>0.5.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api</artifactId>
     <name>rosette-api</name>
+    <packaging>bundle</packaging>
     <description>Rosette API main module</description>
     <properties>
         <assembly.skipAssembly>true</assembly.skipAssembly>
@@ -35,12 +35,6 @@
             <artifactId>mockserver-netty</artifactId>
             <version>${mockserver-version}</version>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -49,7 +43,21 @@
         </dependency>
     </dependencies>
     <build>
-        <plugins>
+      <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.5.3</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>true</addMavenDescriptor>
+                    </archive>
+                    <instructions>
+                        <Bundle-Version>${parsedVersion.osgiVersion}</Bundle-Version>
+                    </instructions>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -115,7 +123,7 @@
                 <version>${mockserver-version}</version>
                 <configuration>
                     <serverPort>${mockServerClient.port}</serverPort>
-                    <logLevel>OFF</logLevel>
+                    <logLevel>WARN</logLevel>
                 </configuration>
                 <executions>
                     <execution>
@@ -146,6 +154,7 @@
             <testResource>
                 <directory>src/test/resources</directory>
                 <includes>
+                    <include>**/*.xml</include>
                     <include>**/*.json</include>
                     <include>**/*.status</include>
                 </includes>
