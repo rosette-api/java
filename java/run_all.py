@@ -45,15 +45,13 @@ except:
     sys.exit('Failed to clone examples from github: https://github.com/rosette-api/java.git')
 
 # Set version from command line
-if not sys.argv:
+if len(sys.argv) == 1:
     version = '0.5.1-SNAPSHOT'
 else:
-    version = sys.argv[0]
+    version = sys.argv[1]
 
 # Get path to rosette jar file
-print version
 path = os.path.realpath('api/target/rosette-api-'+version+'.jar') 
-print str(path)
 
 # Try to move into the cloned examples folder
 try:
@@ -64,21 +62,20 @@ except:
     cleanup()
     sys.exit('Failed to move into gitclone/examples/src/main/java')
 
-print os.path.realpath('.')
 # compile and run each example
 failures = []
 for f in listdir(os.path.realpath('com/basistech/rosette/examples')):
     if f.endswith(".java"):
         print f
-        if not "ExampleBase" in f:
-            print str(path)
-            subprocess.call(["javac", "-cp", str(path) + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            cmd = subprocess.Popen(["java", "-cp", str(path) + ":.", + '-Drosette.api.key="88afd6b4b18a11d1248639ecf399903c"', "com.basistech.rosette.examples." + os.path.splitext(f)[0]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            cmd_out, cmd_err = cmd.communicate()
         try:
-            print cmd_out
-            if "Exception" in cmd_out or "{" not in cmd_out:
-                failures = failures + [f]
+            if not "ExampleBase" in f:
+                print str(path)
+                subprocess.call(["javac", "-cp", path + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                cmd = subprocess.Popen(["java", "-cp", path + ":.", '-Drosette.api.key="88afd6b4b18a11d1248639ecf399903c"', "com.basistech.rosette.examples." + os.path.splitext(f)[0]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                cmd_out, cmd_err = cmd.communicate()
+                print cmd_out
+                if "Exception" in cmd_out or "{" not in cmd_out:
+                    failures = failures + [f]
         except:
             print f + " was unable to be compiled and run"
             failures = failures + [f]
