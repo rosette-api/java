@@ -40,13 +40,6 @@ def cleanup():
 def setup():
     subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/python.git", "gitclone"])
 
-    # clone from git and get examples
-    #try:
-        #subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/python.git", "gitclone"])
-    #except:
-        #cleanup()
-        #sys.exit('Failed to clone examples from github: https://github.com/rosette-api/python.git')
-
     # install rosette_api python package
     try:
         subprocess.call(["pip", "install", "rosette_api"])
