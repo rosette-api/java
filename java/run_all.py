@@ -37,6 +37,12 @@ def cleanup():
 # Start by cleaning up
 cleanup()
 
+# Perform a mvn clean install call
+try:
+    cmd = subprocess.call(["mvn", "clean", "install"])
+except:
+    sys.exit('Failed to perform mvn clean install')
+
 # clone from git and get examples
 try:
     subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/java.git", "gitclone"])
@@ -48,20 +54,28 @@ try:
     os.chdir(os.path.realpath('gitclone/examples'))
 except:
     print 'Failed to move into gitclone/examples'
+    cleanup()
     sys.exit('Failed to move into gitclone/examples')
+
+# Perform a mvn call
+try:
+    cmd = subprocess.call(["mvn"])
+except:
+    cleanup()    
+    sys.exit('Failed to perform mvn')
 
 # compile and run each example
 failures = []
 for f in listdir(os.path.realpath('src/main/java/com/basistech/rosette/examples')):
     if f.endswith(".java"):
         print f
-        cmd = subprocess.Popen(["mvn", "exec:java", "-Dexec.mainClass=" + '"com.basistech.rosette.examples.' + os.path.splitext(f)[0] + '"', "-Drosette.api.key=" + '"88afd6b4b18a11d1248639ecf399903c"'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
         try:
-            cmd_out, cmd_err = cmd.communicate()
-            print cmd_out
-            if "Exception" in cmd_out or "{" not in cmd_out:
-                failures = failures + [f]
+            if not "ExampleBase" in f:
+                cmd = subprocess.Popen(["mvn", "exec:java", "-Dexec.mainClass=" + '"com.basistech.rosette.examples.' + os.path.splitext(f)[0] + '"', "-Drosette.api.key=" + '"88afd6b4b18a11d1248639ecf399903c"'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                cmd_out, cmd_err = cmd.communicate()
+                print cmd_out
+                if "Exception" in cmd_out or "{" not in cmd_out:
+                    failures = failures + [f]
         except:
             print f + " was unable to be compiled and run"
             failures = failures + [f]
