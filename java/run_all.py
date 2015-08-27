@@ -66,7 +66,7 @@ except:
     cleanup()    
     sys.exit('Failed to perform mvn')
 
-print os.path.realpath(.)
+print os.path.realpath('.')
 # compile and run each example
 failures = []
 for f in listdir(os.path.realpath('src/main/java/com/basistech/rosette/examples')):
