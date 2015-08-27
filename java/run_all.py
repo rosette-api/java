@@ -41,6 +41,7 @@ cleanup()
 try:
     cmd = subprocess.call(["mvn", "clean", "install"])
 except:
+    print "Failed to perform mvn clean install"
     sys.exit('Failed to perform mvn clean install')
 
 # clone from git and get examples
@@ -52,6 +53,7 @@ except:
 # Try to move into the cloned examples folder
 try:
     os.chdir(os.path.realpath('gitclone/examples'))
+    print "Moved into gitclone/examples"
 except:
     print 'Failed to move into gitclone/examples'
     cleanup()
@@ -64,6 +66,7 @@ except:
     cleanup()    
     sys.exit('Failed to perform mvn')
 
+print os.path.realpath(.)
 # compile and run each example
 failures = []
 for f in listdir(os.path.realpath('src/main/java/com/basistech/rosette/examples')):
