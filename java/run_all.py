@@ -37,13 +37,6 @@ def cleanup():
 # Start by cleaning up
 cleanup()
 
-# Perform a mvn clean install call
-try:
-    cmd = subprocess.call(["mvn", "clean", "install"])
-except:
-    print "Failed to perform mvn clean install"
-    sys.exit('Failed to perform mvn clean install')
-
 # clone from git and get examples
 try:
     subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/java.git", "gitclone"])
