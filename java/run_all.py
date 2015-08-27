@@ -34,15 +34,6 @@ def cleanup():
     except:
         print "Gitclone folder failed to be removed"
 
-# Start by cleaning up
-cleanup()
-
-# clone from git and get examples
-try:
-    subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/java.git", "gitclone"])
-except:
-    sys.exit('Failed to clone examples from github: https://github.com/rosette-api/java.git')
-
 # Try to move into the cloned examples folder
 try:
     os.chdir(os.path.realpath('gitclone/examples'))
