@@ -51,7 +51,9 @@ else:
     version = sys.argv[0]
 
 # Get path to rosette jar file
+print version
 path = os.path.realpath('api/target/rosette-api-'+version+'.jar') 
+print str(path)
 
 # Try to move into the cloned examples folder
 try:
@@ -69,8 +71,9 @@ for f in listdir(os.path.realpath('com/basistech/rosette/examples')):
     if f.endswith(".java"):
         print f
         if not "ExampleBase" in f:
-            subprocess.call(["javac", "-cp", path + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            cmd = subprocess.Popen(["java", "-cp", path + ":.", + '-Drosette.api.key="88afd6b4b18a11d1248639ecf399903c"', "com.basistech.rosette.examples." + os.path.splitext(f)[0]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            print str(path)
+            subprocess.call(["javac", "-cp", str(path) + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            cmd = subprocess.Popen(["java", "-cp", str(path) + ":.", + '-Drosette.api.key="88afd6b4b18a11d1248639ecf399903c"', "com.basistech.rosette.examples." + os.path.splitext(f)[0]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             cmd_out, cmd_err = cmd.communicate()
         try:
             print cmd_out
