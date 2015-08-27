@@ -34,31 +34,34 @@ def cleanup():
     except:
         print "Gitclone folder failed to be removed"
 
+# Set version from command line
+if not sys.argv:
+    version = '0.5.1-SNAPSHOT'
+else:
+    version = sys.argv[0]
+
+# Get path to rosette jar file
+path = os.path.realpath('api/target/rosette-api-'+version+'.jar') 
+
 # Try to move into the cloned examples folder
 try:
-    os.chdir(os.path.realpath('gitclone/examples'))
-    print "Moved into gitclone/examples"
+    os.chdir(os.path.realpath('gitclone/examples/src/main/java'))
+    print "Moved into gitclone/examples/src/main/java"
 except:
-    print 'Failed to move into gitclone/examples'
+    print 'Failed to move into gitclone/examples/src/main/java'
     cleanup()
-    sys.exit('Failed to move into gitclone/examples')
-
-# Perform a mvn call
-try:
-    cmd = subprocess.call(["mvn"])
-except:
-    cleanup()    
-    sys.exit('Failed to perform mvn')
+    sys.exit('Failed to move into gitclone/examples/src/main/java')
 
 print os.path.realpath('.')
 # compile and run each example
 failures = []
-for f in listdir(os.path.realpath('src/main/java/com/basistech/rosette/examples')):
+for f in listdir(os.path.realpath('com/basistech/rosette/examples')):
     if f.endswith(".java"):
         print f
         try:
             if not "ExampleBase" in f:
-                cmd = subprocess.Popen(["mvn", "exec:java", "-Dexec.mainClass=" + '"com.basistech.rosette.examples.' + os.path.splitext(f)[0] + '"', "-Drosette.api.key=" + '"88afd6b4b18a11d1248639ecf399903c"'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                subprocess.call(["javac", "-cp", path + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                cmd = subprocess.Popen(["java", "-cp", path + ":.", "com.basistech.rosette.examples." + os.path.splitext(f)[0], "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
                 cmd_out, cmd_err = cmd.communicate()
                 print cmd_out
                 if "Exception" in cmd_out or "{" not in cmd_out:
