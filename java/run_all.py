@@ -68,14 +68,14 @@ failures = []
 for f in listdir(os.path.realpath('com/basistech/rosette/examples')):
     if f.endswith(".java"):
         print f
+        if not "ExampleBase" in f:
+            subprocess.call(["javac", "-cp", path + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            cmd = subprocess.Popen(["java", "-cp", path + ":.", + '-Drosette.api.key="88afd6b4b18a11d1248639ecf399903c"', "com.basistech.rosette.examples." + os.path.splitext(f)[0]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            cmd_out, cmd_err = cmd.communicate()
         try:
-            if not "ExampleBase" in f:
-                subprocess.call(["javac", "-cp", path + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-                cmd = subprocess.Popen(["java", "-cp", path + ":.", + '-Drosette.api.key="88afd6b4b18a11d1248639ecf399903c"', "com.basistech.rosette.examples." + os.path.splitext(f)[0]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-                cmd_out, cmd_err = cmd.communicate()
-                print cmd_out
-                if "Exception" in cmd_out or "{" not in cmd_out:
-                    failures = failures + [f]
+            print cmd_out
+            if "Exception" in cmd_out or "{" not in cmd_out:
+                failures = failures + [f]
         except:
             print f + " was unable to be compiled and run"
             failures = failures + [f]
