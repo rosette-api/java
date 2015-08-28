@@ -29,7 +29,7 @@ file.unlink();
 var api = new Api(args.key);
 api.sentiment(docParams, function(err, res) {
   if (err) {
-    console.log("ERROR! " + err);
+    throw err;
   }
   else {
     console.log(res);

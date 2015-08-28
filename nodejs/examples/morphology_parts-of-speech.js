@@ -23,7 +23,7 @@ docParams.setItem("content", content);
 var api = new Api(args.key);
 api.morphology(docParams, rosetteConstants.morpholoyOutput.PARTS_OF_SPEECH, function(err, res) {
   if (err) {
-    console.log("ERROR! " + err);
+    throw err;
   }
   else {
     console.log(res);
