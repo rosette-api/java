@@ -74,7 +74,6 @@ for f in listdir(os.path.join(os.path.realpath('.'))):
                     break
                 time.sleep(2)
             print cmd_out
-            
             if not success:
                 failures = failures + [f]
         except:
