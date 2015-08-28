@@ -63,7 +63,7 @@ except:
 
 # compile and run each example
 failures = []
-retry = 5
+retry = 10
 for f in listdir(os.path.realpath('.')):
     if f.endswith(".js"):
         print f
@@ -75,6 +75,7 @@ for f in listdir(os.path.realpath('.')):
                 if "Exception" not in cmd_out and "{" in cmd_out:
                     success = True
                     break
+                time.sleep(2)
             print cmd_out
 
             if not success:
@@ -82,7 +83,6 @@ for f in listdir(os.path.realpath('.')):
         except:
             print f + " was unable to be compiled and run"
             failures = failures + [f]
-        time.sleep(2)
 
 # Exit test folder
 try:
