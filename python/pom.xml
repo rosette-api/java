@@ -146,6 +146,7 @@
                     </execution>
                 </executions>
                 <configuration>
+					<encoding>UTF-8</encoding>
                     <finalName>github</finalName>
                     <filters>
                         <filter>${basedir}/../filters.properties</filter>
