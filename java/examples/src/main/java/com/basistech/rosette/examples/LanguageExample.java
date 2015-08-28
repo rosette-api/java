@@ -9,7 +9,7 @@ import com.basistech.rosette.apimodel.LanguageResponse;
 public final class LanguageExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "Por favor Señorita, says the man.";
+            String text = "${language_data}";
 
             RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
             LanguageResponse response = rosetteApi.getLanguage(text, null, null);

@@ -13,8 +13,8 @@ import com.basistech.rosette.apimodel.NameMatchingResponse;
 public final class MatchedNameExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            Name name1 = new Name("Michael Jackson", "PERSON", ISO15924.Zyyy, LanguageCode.eng);
-            Name name2 = new Name("迈克尔·杰克逊");
+            Name name1 = new Name("${matched_name_data1}", "PERSON", ISO15924.Zyyy, LanguageCode.eng);
+            Name name2 = new Name("${matched_name_data2}");
 
             RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
             NameMatchingResponse response = rosetteApi.matchName(new NameMatchingRequest(name1, name2));

@@ -17,7 +17,7 @@ if (!isset($options['key'])) {
 
 $api = isset($options['url']) ? new Api($options['key'], $options['url']) : new Api($options['key']);
 $params = new DocumentParameters();
-$params->set('content', '北京大学生物系主任办公室内部会议');
+$params->set('content', "${morphology_han_readings_data}");
 
 try {
     $result = $api->morphology($params, RosetteConstants::$MorphologyOutput['HAN_READINGS']);

@@ -15,8 +15,8 @@ var parser = new ArgumentParser({
 parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
-var name1 = {"text": "Michael Jackson", "language": "eng", "entityType": "PERSON"};
-var name2 = {"text": "迈克尔·杰克逊", "entityType": "PERSON"};
+var name1 = {"text": "${matched_name_data1}", "language": "eng", "entityType": "PERSON"};
+var name2 = {"text": "${matched_name_data2}", "entityType": "PERSON"};
 var matchParams = new NameMatchingParameters(name1, name2);
 
 var api = new Api(args.key);
