@@ -58,6 +58,7 @@
       <excludes>
         <exclude>**/*.pyc</exclude>
         <exclude>**/__pycache__</exclude>
+		<exclude>run_all.py</exclude>
       </excludes>
     </fileSet>
   </fileSets>

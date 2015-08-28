@@ -25,7 +25,7 @@
     <modules>
         <module>php</module>
         <module>python</module>
-		<module>nodejs/production_code</module>
+		<module>nodejs</module>
         <module>java</module>
 		<module>csharp</module>
     </modules>

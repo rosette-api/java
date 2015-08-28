@@ -49,12 +49,12 @@ function setMock() {
   nock("https://api.rosette.com/rest/v1")
     .persist()
     .get("/ping")
-    .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/ping.json")));
+    .reply(200, new Buffer(fs.readFileSync("../mock-data/response/ping.json")));
 
   nock("https://api.rosette.com/rest/v1")
     .persist()
     .get("/info")
-    .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/info.json")));
+    .reply(200, new Buffer(fs.readFileSync("../mock-data/response/info.json")));
 
   var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
     "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
@@ -66,9 +66,9 @@ function setMock() {
       .reply(function (uri, request) {
         request = JSON.parse(request);
         var file = request.file;
-        var statusCode = parseInt(fs.readFileSync("../../mock-data/response/" + file + ".status"));
+        var statusCode = parseInt(fs.readFileSync("../mock-data/response/" + file + ".status"));
         // Because a call to the API returns a buffer
-        var response = fs.readFileSync("../../mock-data/response/" + file + ".json");
+        var response = fs.readFileSync("../mock-data/response/" + file + ".json");
         return [statusCode, new Buffer(response)];
       });
   }
@@ -86,7 +86,7 @@ exports.testAllEndpoints = {
     callback();
   },
   "test endpoints": function(test) {
-    var files = fs.readdirSync("../../mock-data/request");
+    var files = fs.readdirSync("../mock-data/request");
 
     // All the regex necessary to extract info for the tests
     var filenameRe = /(\w+).json/;
@@ -98,7 +98,7 @@ exports.testAllEndpoints = {
     var counter = 0;
 
     function checkResult(err, result) {
-      var expected = JSON.parse(fs.readFileSync("../../mock-data/response/" + files[counter]));
+      var expected = JSON.parse(fs.readFileSync("../mock-data/response/" + files[counter]));
       var errorExpected = false;
 
       // Figure out if there should be an error
@@ -135,7 +135,7 @@ exports.testAllEndpoints = {
       if (files[i].indexOf(".json") > -1) {
         // Set up API with the file name as the user key
         var api = new Api("0123456789");
-        var input = JSON.parse(fs.readFileSync("../../mock-data/request/" + files[i]));
+        var input = JSON.parse(fs.readFileSync("../mock-data/request/" + files[i]));
 
         // Anything not matched-name or translated-name
         if (files[i].indexOf("name") === -1) {
@@ -232,7 +232,7 @@ exports.testInfo = {
   "test info": function(test) {
     test.expect(1);
     var api = new Api("0123456789");
-    var expected = JSON.parse(fs.readFileSync("../../mock-data/response/info.json"));
+    var expected = JSON.parse(fs.readFileSync("../mock-data/response/info.json"));
     api.info(function (err, res) {
       if (err) {
         test.ok(false, "Shouldn't have thrown an error");
@@ -257,7 +257,7 @@ exports.testPing = {
   "test ping": function(test) {
     test.expect(1);
     var api = new Api("0123456789");
-    var expected = JSON.parse(fs.readFileSync("../../mock-data/response/ping.json"));
+    var expected = JSON.parse(fs.readFileSync("../mock-data/response/ping.json"));
     api.ping(function (err, res) {
       if (err) {
         test.ok(false, "Shouldn't have thrown an error");
@@ -323,7 +323,7 @@ function setPartialFailMock() {
 
   nock("https://api.rosette.com/rest/v1")
     .get("/info")
-    .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/info.json")));
+    .reply(200, new Buffer(fs.readFileSync("../mock-data/response/info.json")));
 }
 
 // Test that it actually retries because the first response will return a 503 status code but the second will return 200
@@ -340,7 +340,7 @@ exports.testRetryingRequest = {
   "test return correct error": function(test) {
     test.expect(1);
     var api = new Api("0123456789");
-    var expected = JSON.parse(fs.readFileSync("../../mock-data/response/info.json"));
+    var expected = JSON.parse(fs.readFileSync("../mock-data/response/info.json"));
     api.info(function (err, res) {
       if (err) {
         test.ok(false, "Shouldn't have thrown an error");
@@ -358,12 +358,12 @@ function setGzipMock() {
   nock("https://api.rosette.com/rest/v1")
     .persist()
     .get("/ping")
-    .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/ping.json")));
+    .reply(200, new Buffer(fs.readFileSync("../mock-data/response/ping.json")));
 
   nock("https://api.rosette.com/rest/v1")
     .persist()
     .get("/info")
-    .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/info.json")));
+    .reply(200, new Buffer(fs.readFileSync("../mock-data/response/info.json")));
 
   var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
     "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
@@ -376,9 +376,9 @@ function setGzipMock() {
       .reply(function (uri, request) {
         request = JSON.parse(request);
         var file = request.file;
-        var statusCode = parseInt(fs.readFileSync("../../mock-data/response/" + file + ".status"));
+        var statusCode = parseInt(fs.readFileSync("../mock-data/response/" + file + ".status"));
         // Because a call to the API returns a buffer
-        var response = fs.readFileSync("../../mock-data/response/" + file + ".json");
+        var response = fs.readFileSync("../mock-data/response/" + file + ".json");
         return [statusCode, zlib.gzipSync(response)];
       });
   }
@@ -396,7 +396,7 @@ exports.testAllEndpointsGzipped = {
     callback();
   },
   "test endpoints": function(test) {
-    var files = fs.readdirSync("../../mock-data/request");
+    var files = fs.readdirSync("../mock-data/request");
 
     // All the regex necessary to extract info for the tests
     var filenameRe = /(\w+).json/;
@@ -408,7 +408,7 @@ exports.testAllEndpointsGzipped = {
     var counter = 0;
 
     function checkResult(err, result) {
-      var expected = JSON.parse(fs.readFileSync("../../mock-data/response/" + files[counter]));
+      var expected = JSON.parse(fs.readFileSync("../mock-data/response/" + files[counter]));
       var errorExpected = false;
 
       // Figure out if there should be an error
@@ -445,7 +445,7 @@ exports.testAllEndpointsGzipped = {
       if (files[i].indexOf(".json") > -1) {
         // Set up API with the file name as the user key
         var api = new Api("0123456789");
-        var input = JSON.parse(fs.readFileSync("../../mock-data/request/" + files[i]));
+        var input = JSON.parse(fs.readFileSync("../mock-data/request/" + files[i]));
 
         // Anything not matched-name or translated-name
         if (files[i].indexOf("name") === -1) {

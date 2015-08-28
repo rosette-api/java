@@ -41,6 +41,9 @@
         <fileSet>
             <directory>examples</directory>
             <filtered>true</filtered>
+			<excludes>
+				<exclude>run_all.py</exclude>
+			</excludes>
         </fileSet>
     </fileSets>
 </assembly>

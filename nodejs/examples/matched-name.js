@@ -22,7 +22,7 @@ var matchParams = new NameMatchingParameters(name1, name2);
 var api = new Api(args.key);
 api.matchedName(matchParams, function(err, res) {
   if (err) {
-    console.log("ERROR! " + err);
+    throw err;
   }
   else {
     console.log(res);

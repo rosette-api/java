@@ -23,7 +23,7 @@ docParams.setItem("content", content);
 var api = new Api(args.key);
 api.entities(docParams, false, function(err, res) {
   if (err) {
-    console.log("ERROR! " + err);
+    throw err;
   }
   else {
     console.log(res);

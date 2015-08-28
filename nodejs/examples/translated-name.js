@@ -23,7 +23,7 @@ translationParams.setItem("targetLanguage", "eng");
 var api = new Api(args.key);
 api.translatedName(translationParams, function(err, res) {
   if (err) {
-    console.log("ERROR! " + err);
+    throw err;
   }
   else {
     console.log(res);

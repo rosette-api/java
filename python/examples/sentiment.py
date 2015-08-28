@@ -7,11 +7,13 @@ Example code to call Rosette API to get the sentiment of a local file.
 import argparse
 import json
 import tempfile
+import os
 
 from rosette.api import API, DocumentParameters
 
 # Create default file to read from
-f = tempfile.NamedTemporaryFile(suffix=".html")
+# f = tempfile.NamedTemporaryFile(suffix=".html")
+f = open("testhtml.html", 'w')
 message = "${sentiment_data}"
 f.write(message)
 f.seek(0)
@@ -37,5 +39,6 @@ result = api.sentiment(params)
 
 # Clean up the file
 f.close()
+os.remove("testhtml.html")
 
 print(json.dumps(result, indent=2, ensure_ascii=False).encode("utf8"))
