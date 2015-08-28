@@ -75,6 +75,7 @@ for f in listdir(os.path.realpath('.')):
         except:
             print f + " was unable to be compiled and run"
             failures = failures + [f]
+        time.sleep(1)
 
 # Exit test folder
 try:
