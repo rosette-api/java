@@ -64,7 +64,7 @@ retry = 10
 for f in listdir(os.path.join(os.path.realpath('.'))):
     if f.endswith(".py") and "init" not in f:
         print f
-        success = False:
+        success = False
         try:
             for i in range(retry):
                 cmd = subprocess.Popen(["python", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
