@@ -42,7 +42,7 @@
             <directory>conf</directory>
         </fileSet>
         <fileSet>
-            <directory>../examples</directory>
+            <directory>examples</directory>
             <filtered>true</filtered>
         </fileSet>
     </fileSets>
