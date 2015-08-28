@@ -60,14 +60,22 @@ except:
 
 # compile and run each example
 failures = []
+retry = 10
 for f in listdir(os.path.join(os.path.realpath('.'))):
-    if f.endswith(".py"):
+    if f.endswith(".py") and "init" not in f:
         print f
+        success = False:
         try:
-            cmd = subprocess.Popen(["python", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            cmd_out, cmd_err = cmd.communicate()
+            for i in range(retry):
+                cmd = subprocess.Popen(["python", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                cmd_out, cmd_err = cmd.communicate()
+                if "Exception" not in cmd_out and "{" in cmd_out:
+                    success = True
+                    break
+                time.sleep(2)
             print cmd_out
-            if "Exception" in cmd_out or "{" not in cmd_out:
+            
+            if not success:
                 failures = failures + [f]
         except:
             print f + " was unable to be compiled and run"
