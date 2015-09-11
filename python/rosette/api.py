@@ -91,8 +91,8 @@ def _retrying_request(op, url, data, headers):
         parsed = urlparse(url)
     parsed = urlparse.urlparse(url)
     loc = parsed.netloc
-        CONNECTION_TYPE = parsed.scheme
-        CONNECTION_START = datetime.now()
+    CONNECTION_TYPE = parsed.scheme
+    CONNECTION_START = datetime.now()
     if parsed.scheme == "https":
             HTTP_CONNECTION = httplib.HTTPSConnection(loc)
     else:
@@ -110,8 +110,8 @@ def _retrying_request(op, url, data, headers):
         status = response.status
         rdata = response.read()
         if status < 500:
-                if not REUSE_CONNECTION:
-                    HTTP_CONNECTION.close()
+            if not REUSE_CONNECTION:
+                HTTP_CONNECTION.close()
             return rdata, status
         if rdata is not None:
             try:
