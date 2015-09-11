@@ -16,7 +16,7 @@ parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
 var docParams = new DocumentParameters();
-var content = "Por favor Señorita, says the man.";
+var content = "${language_data}";
 docParams.setItem("content", content);
 
 var api = new Api(args.key);

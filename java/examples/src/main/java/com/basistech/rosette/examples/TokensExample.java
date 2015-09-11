@@ -9,7 +9,7 @@ import com.basistech.rosette.apimodel.TokensResponse;
 public final class TokensExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "北京大学生物系主任办公室内部会议";
+            String text = "${tokens_data}";
 
             RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
             TokensResponse response = rosetteApi.getTokens(text, null, null);

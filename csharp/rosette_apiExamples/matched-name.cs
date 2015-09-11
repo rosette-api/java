@@ -30,7 +30,7 @@ namespace rosette_apiExamples
             {
                 CAPI MatchedNameCAPI = new CAPI(apikey);
                 //The results of the API call will come back in the form of a Dictionary
-                Dictionary<string, Object> MatchedNameResult = MatchedNameCAPI.MatchedName(new Name("Elizabeth Doe", "eng", null, "PERSON"), new Name("Liz Doe", null, null, "PERSON"));
+                Dictionary<string, Object> MatchedNameResult = MatchedNameCAPI.MatchedName(new Name("${matched_name_data1}", "eng", null, "PERSON"), new Name("${matched_name_data2}", null, null, "PERSON"));
                 Console.WriteLine(new JavaScriptSerializer().Serialize(MatchedNameResult));
             }
             catch (Exception e)
