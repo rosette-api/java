@@ -15,7 +15,6 @@
     <vcvars>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC</vcvars>
     <oldversion>0.5.1.2</oldversion>
     <newversion>0.5.1.2</newversion>
-		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
   </properties>
   <build>
 		<plugins>
@@ -32,7 +31,7 @@
 				  </execution>
 				</executions>
 				<configuration>
-				  <encoding>${project.build.sourceEncoding}</encoding>
+				  <encoding>ISO-8859-1</encoding>
 				  <finalName>github</finalName>
 					<filters>
 			          <filter>${basedir}/../filters.properties</filter>

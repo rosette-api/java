@@ -36,7 +36,6 @@
         <assembly.skipAssembly>false</assembly.skipAssembly>
         <maven-shade-plugin-version>2.3</maven-shade-plugin-version>
         <mockserver-version>3.9.17</mockserver-version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <modules>
         <module>api</module>
@@ -72,7 +71,7 @@
                 </executions>
                 <configuration>
                     <finalName>github</finalName>
-					<encoding>${project.build.sourceEncoding}</encoding>
+					<encoding>ISO-8859-1</encoding>
                     <filters>
                         <filter>${basedir}/../filters.properties</filter>
                     </filters>
