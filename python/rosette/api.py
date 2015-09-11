@@ -121,11 +121,11 @@ def _retrying_request(op, url, data, headers):
                         code = the_json["code"]
                 except:
                     pass
-	# If there are issues connecting to the API server,
-	# try to regenerate the connection as long as there are
-	# still retries left.
-	# A short sleep delay occurs (similar to google reconnect)
-	# if the problem was a temporal one.
+        # If there are issues connecting to the API server,
+        # try to regenerate the connection as long as there are
+        # still retries left.
+        # A short sleep delay occurs (similar to google reconnect)
+        # if the problem was a temporal one.
         except (httplib.BadStatusLine, gaierror) as e:
             totalTime = CONNECTION_REFRESH_DURATION
             if i == N_RETRIES - 1:
