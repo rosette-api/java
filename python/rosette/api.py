@@ -111,16 +111,16 @@ def _retrying_request(op, url, data, headers):
 	    if status < 500:
 		if not REUSE_CONNECTION:
 		    HTTP_CONNECTION.close()
-		    return rdata, status
-		if rdata is not None:
-		    try:
-			the_json = _my_loads(rdata)
-			if "message" in the_json:
-			    message = the_json["message"]
-			if "code" in the_json:
-			    code = the_json["code"]
-			except:
-			    pass
+		return rdata, status
+	    if rdata is not None:
+		try:
+		    the_json = _my_loads(rdata)
+		    if "message" in the_json:
+			message = the_json["message"]
+		    if "code" in the_json:
+			code = the_json["code"]
+		except:
+		    pass
 	# If there are issues connecting to the API server,
 	# try to regenerate the connection as long as there are
 	# still retries left.
