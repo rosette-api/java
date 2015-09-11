@@ -83,19 +83,19 @@ def _retrying_request(op, url, data, headers):
 
     timeDelta = datetime.now() - CONNECTION_START
     totalTime = timeDelta.days * 86400 + timeDelta.seconds
-	parsed = urlparse.urlparse(url)
+    parsed = urlparse.urlparse(url)
     if parsed.scheme != CONNECTION_TYPE:
         totalTime = CONNECTION_REFRESH_DURATION
 
     if not REUSE_CONNECTION or HTTP_CONNECTION is None or totalTime >= CONNECTION_REFRESH_DURATION:
-		parsed = urlparse.urlparse(url)
-		loc = parsed.netloc
-		CONNECTION_TYPE = parsed.scheme
-		CONNECTION_START = datetime.now()
-		if parsed.scheme == "https":
-				HTTP_CONNECTION = httplib.HTTPSConnection(loc)
-		else:
-				HTTP_CONNECTION = httplib.HTTPConnection(loc)
+	parsed = urlparse.urlparse(url)
+	loc = parsed.netloc
+	CONNECTION_TYPE = parsed.scheme
+	CONNECTION_START = datetime.now()
+	if parsed.scheme == "https":
+	    HTTP_CONNECTION = httplib.HTTPSConnection(loc)
+	else:
+	    HTTP_CONNECTION = httplib.HTTPConnection(loc)
 
     message = None
     code = "unknownError"
@@ -106,26 +106,26 @@ def _retrying_request(op, url, data, headers):
         try:
             HTTP_CONNECTION.request(op, url, data, headers)
             response = HTTP_CONNECTION.getresponse()
-			status = response.status
-			rdata = response.read()
-			if status < 500:
-				if not REUSE_CONNECTION:
-					HTTP_CONNECTION.close()
-				return rdata, status
-			if rdata is not None:
-				try:
-					the_json = _my_loads(rdata)
-					if "message" in the_json:
-						message = the_json["message"]
-					if "code" in the_json:
-						code = the_json["code"]
-				except:
-					pass
-			# If there are issues connecting to the API server,
-			# try to regenerate the connection as long as there are
-			# still retries left.
-			# A short sleep delay occurs (similar to google reconnect)
-			# if the problem was a temporal one.
+	    status = response.status
+	    rdata = response.read()
+	    if status < 500:
+		if not REUSE_CONNECTION:
+		    HTTP_CONNECTION.close()
+		    return rdata, status
+		if rdata is not None:
+		    try:
+			the_json = _my_loads(rdata)
+			if "message" in the_json:
+			    message = the_json["message"]
+			if "code" in the_json:
+			    code = the_json["code"]
+			except:
+			    pass
+	# If there are issues connecting to the API server,
+	# try to regenerate the connection as long as there are
+	# still retries left.
+	# A short sleep delay occurs (similar to google reconnect)
+	# if the problem was a temporal one.
         except (httplib.BadStatusLine, gaierror) as e:
             totalTime = CONNECTION_REFRESH_DURATION
             if i == N_RETRIES - 1:
