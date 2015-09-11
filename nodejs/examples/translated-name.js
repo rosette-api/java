@@ -16,7 +16,7 @@ parser.addArgument(["--key"], {help: "Rosette API key", required: true});
 var args = parser.parseArgs();
 
 var translationParams = new NameTranslationParameters();
-translationParams.setItem("name", "معمر محمد أبو منيار القذافي‎");
+translationParams.setItem("name", "${translated_name_data}‎");
 translationParams.setItem("entityType", "PERSON");
 translationParams.setItem("targetLanguage", "eng");
 

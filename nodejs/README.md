@@ -10,7 +10,7 @@ var rosette-api = require('rosette-api');
 ```
 
 ## Examples
-See [examples](../examples).
+See [examples](examples).
 
 ## Additional Information
 See [Rosette API site](https://developer.rosette.com/)

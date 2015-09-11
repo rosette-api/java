@@ -77,6 +77,7 @@
                     </execution>
                 </executions>
                 <configuration>
+					<encoding>ISO-8859-1</encoding>
                     <finalName>github</finalName>
                     <filters>
                         <filter>${basedir}/../filters.properties</filter>

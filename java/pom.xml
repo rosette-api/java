@@ -31,7 +31,7 @@
     </distributionManagement>
 
     <properties>
-        <jackson-version>2.5.4</jackson-version>
+        <jackson-version>2.4.4</jackson-version>
         <junit-version>4.12</junit-version>
         <assembly.skipAssembly>false</assembly.skipAssembly>
         <maven-shade-plugin-version>2.3</maven-shade-plugin-version>
@@ -71,7 +71,7 @@
                 </executions>
                 <configuration>
                     <finalName>github</finalName>
-                    <encoding>UTF-8</encoding>
+					<encoding>ISO-8859-1</encoding>
                     <filters>
                         <filter>${basedir}/../filters.properties</filter>
                     </filters>

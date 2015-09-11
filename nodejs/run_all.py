@@ -5,7 +5,6 @@ import shutil
 import time
 import sys
 
-
 # helper function to remove folders
 # http://stackoverflow.com/questions/2656322/python-shutil-rmtree-fails-on-windows-with-access-is-denied
 def onerror(func, path, exc_info):
@@ -36,44 +35,49 @@ def cleanup():
         print "Gitclone folder failed to be removed"
 
 
-# helper function to setup folder
-def setup():
-    subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/python.git", "gitclone"])
-
-    # install rosette_api python package
-    try:
-        subprocess.call(["pip", "install", "rosette_api"])
-    except:
-        cleanup()
-        sys.exit('Failed to install rosette_api')
-
-# Start by cleaning up and setting up
+# Start by cleaning up
 cleanup()
-setup()
+
+# clone from git and get examples
+try:
+    subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/nodejs.git", "gitclone"])
+except:
+    sys.exit('Failed to clone examples from github: https://github.com/rosette-api/nodejs.git')
 
 # Try to move into the cloned examples folder
 try:
     os.chdir(os.path.realpath('gitclone/examples'))
+    print "Moved into gitclone/examples"
 except:
     print 'Failed to move into gitclone/examples'
+    cleanup()
     sys.exit('Failed to move into gitclone/examples')
+
+# Try to perform npm install
+try:
+    subprocess.call(["npm", "install"])
+except:
+    print "Failed to perform npm install"
+    cleanup()
+    sys.exit("Failed to perform npm install")
 
 # compile and run each example
 failures = []
 retry = 10
-for f in listdir(os.path.join(os.path.realpath('.'))):
-    if f.endswith(".py") and "init" not in f:
+for f in listdir(os.path.realpath('.')):
+    if f.endswith(".js"):
         print f
         success = False
         try:
-            for i in range(retry):
-                cmd = subprocess.Popen(["python", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            for i in range(retry): 
+                cmd = subprocess.Popen(["node", f, '--key', "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
                 cmd_out, cmd_err = cmd.communicate()
                 if "Exception" not in cmd_out and "{" in cmd_out:
                     success = True
                     break
                 time.sleep(2)
             print cmd_out
+
             if not success:
                 failures = failures + [f]
         except:
@@ -97,3 +101,5 @@ cleanup()
 
 print 'All tests passed successfully'
 sys.exit(0)
+
+
