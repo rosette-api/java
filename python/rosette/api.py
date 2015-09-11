@@ -579,7 +579,7 @@ class API:
     Call instance methods upon this object to obtain L{EndpointCaller} objects
     which can communicate with particular Rosette server endpoints.
     """
-    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3, reuse_connection=True, refresh_duration=86400):
+    def __init__(self, user_key=None, service_url='https://api.rosette.com/rest/v1', retries=3, reuse_connection=True, refresh_duration=86400, debug=False):
         """ Create an L{API} object.
         @param user_key: (Optional; required for servers requiring authentication.) An authentication string to be sent
          as user_key with all requests.  The default Rosette server requires authentication.
