@@ -46,6 +46,30 @@
         <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+						<phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+						<configuration>
+							<outputDirectory></outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/..</directory>
+									<includes>
+										<include>filters.properties</include>
+									</includes>
+								</resource>
+							</resourcs>
+						</configuration>
+					</execution>
+                </executions>
+            </plugin>
+			<plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>1.9.1</version>
