@@ -73,7 +73,7 @@
                     <finalName>github</finalName>
 					<encoding>ISO-8859-1</encoding>
                     <filters>
-                        <filter>${basedir}/../filters.properties</filter>
+                        <filter>filters.properties</filter>
                     </filters>
                     <descriptors>
                         <descriptor>publish.xml</descriptor>
