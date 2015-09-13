@@ -64,7 +64,7 @@
 										<include>filters.properties</include>
 									</includes>
 								</resource>
-							</resourcs>
+							</resources>
 						</configuration>
 					</execution>
                 </executions>
