@@ -29,11 +29,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
-import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 
 import static org.junit.Assert.assertEquals;
 
@@ -46,7 +48,7 @@ public class ModelTest {
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
-//    @Test
+    @Test
     public void packageTest() throws ClassNotFoundException, IllegalAccessException, InvocationTargetException,
             InstantiationException, IOException {
         Reflections reflections = new Reflections(this.getClass().getPackage().getName(), new SubTypesScanner(false));
@@ -205,8 +207,11 @@ public class ModelTest {
         Object o = null;
         for (Constructor ctor : ctors) {
             if (ctor.getGenericParameterTypes().length == 1) {
-                o = ctor.newInstance(createObjectOfType(ctor.getGenericParameterTypes()[0]));
-                break;
+                Object objectOfType = createObjectOfType(ctor.getGenericParameterTypes()[0]);
+                if (objectOfType != null) {
+                    o = ctor.newInstance(objectOfType);
+                    break;
+                }
             }
         }
         return o;
