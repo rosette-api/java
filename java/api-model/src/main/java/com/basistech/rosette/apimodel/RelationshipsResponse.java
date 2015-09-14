@@ -16,46 +16,56 @@
 
 package com.basistech.rosette.apimodel;
 
-/**
- * Class that represents the data from an relationship extraction request
+import java.util.List;
+
+/** 
+ * Simple api response data model for relationship extraction
  */
-public final class RelationshipsRequest extends Request {
+public final class RelationshipsResponse extends Response {
+
+    private final List<Relationship> relationships;
 
     /**
-     * Constructor for {@code RelationsipsRequest}
-     * @param language language code
-     * @param content raw data
-     * @param contentUri uri pointing to the data
-     * @param contentType byte array of data
-     * @param unit input unit code
+     * Constructor for {@code EntitiesResponse}
+     * @param requestId request id
+     * @param relationships list of extracted relationships
      */
-    public RelationshipsRequest(
-            LanguageCode language,
-            String content,
-            String contentUri,
-            String contentType,
-            InputUnit unit
+    public RelationshipsResponse(
+            String requestId,
+            List<Relationship> relationships
     ) {
-        super(language, content, contentUri, contentType, unit);
+        super(requestId);
+        this.relationships = relationships;
+    }
+
+    /**
+     * get the list of extracted relationships
+     * @return the list of extracted relationships
+     */
+    public List<Relationship> getRelationships() {
+        return relationships;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result;
+        result = 31 * result + (relationships != null ? relationships.hashCode() : 0);
         return result;
     }
 
     /**
-     * if the param is a {@code RelationsipsRequest}, compare contents for equality
+     * if the param is a {@code RelationshipsResponse}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof RelationshipsRequest)) {
+        if (!(o instanceof RelationshipsResponse)) {
             return false;
         }
-        return super.equals(o);
+
+        RelationshipsResponse that = (RelationshipsResponse) o;
+        return super.equals(o)
+                && relationships != null ? relationships.equals(that.getRelationships()) : that.relationships == null;
     }
 }

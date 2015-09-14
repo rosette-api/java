@@ -17,45 +17,50 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Class that represents the data from an relationship extraction request
+ * Relationship extracted by the relationship extractor
  */
-public final class RelationshipsRequest extends Request {
+public final class Relationship {
+
+    // TODO: WS-496 will complete this
+    private final String description; // placeholder
 
     /**
-     * Constructor for {@code RelationsipsRequest}
-     * @param language language code
-     * @param content raw data
-     * @param contentUri uri pointing to the data
-     * @param contentType byte array of data
-     * @param unit input unit code
+     * constructor for {@code Relationship}
+     * @param description relationship text
      */
-    public RelationshipsRequest(
-            LanguageCode language,
-            String content,
-            String contentUri,
-            String contentType,
-            InputUnit unit
+    public Relationship(
+            String description
     ) {
-        super(language, content, contentUri, contentType, unit);
+        this.description = description;
+    }
+
+    /**
+     * get the relationship description
+     * @return the relationship description
+     */
+    public String getDescription() {
+        return description;
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result;
+        int result;
+        result = description != null ? description.hashCode() : 0;
         return result;
     }
 
     /**
-     * if the param is a {@code RelationsipsRequest}, compare contents for equality
+     * if the param is a {@code Relationship}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof RelationshipsRequest)) {
+        if (!(o instanceof Relationship)) {
             return false;
         }
-        return super.equals(o);
+
+        Relationship that = (Relationship) o;
+        return description != null ? description.equals(that.getDescription()) : that.description == null;
     }
 }

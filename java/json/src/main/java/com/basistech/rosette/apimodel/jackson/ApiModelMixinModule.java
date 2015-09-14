@@ -51,7 +51,9 @@ import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.NameTranslationResult;
 import com.basistech.rosette.apimodel.PartOfSpeech;
 import com.basistech.rosette.apimodel.PingResponse;
+import com.basistech.rosette.apimodel.Relationship;
 import com.basistech.rosette.apimodel.RelationshipsRequest;
+import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.SchemesResponse;
@@ -127,6 +129,8 @@ public class ApiModelMixinModule extends SimpleModule {
             context.setMixInAnnotations(TokensResponse.class, TokenResponseMixin.class);
             context.setMixInAnnotations(NameTranslationResult.class, TranslatedNameResultMixin.class);
             context.setMixInAnnotations(RelationshipsRequest.class, RelationshipsRequestMixin.class);
+            context.setMixInAnnotations(RelationshipsResponse.class, RelationshipResponseMixin.class);
+            context.setMixInAnnotations(Relationship.class, RelationshipMixin.class);
 
             context.setMixInAnnotations(SentimentModel.class, SentimentModelMixin.class);
             SimpleSerializers keySerializers = new SimpleSerializers();
