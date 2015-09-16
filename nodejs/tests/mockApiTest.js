@@ -540,16 +540,16 @@ exports.testTextOnly = {
     nock("https://api.rosette.com/rest/v1")
       .persist()
       .get("/info")
-      .reply(200, new Buffer(fs.readFileSync("../../mock-data/response/info.json")));
+      .reply(200, new Buffer(fs.readFileSync("../mock-data/response/info.json")));
 
     nock("https://api.rosette.com/rest/v1")
       .persist()
       .post("/entities")
       .reply(function () {
         var file = "eng-sentence-entities";
-        var statusCode = parseInt(fs.readFileSync("../../mock-data/response/" + file + ".status"));
+        var statusCode = parseInt(fs.readFileSync("../mock-data/response/" + file + ".status"));
         // Because a call to the API returns a buffer
-        var response = fs.readFileSync("../../mock-data/response/" + file + ".json");
+        var response = fs.readFileSync("../mock-data/response/" + file + ".json");
         return [statusCode, new Buffer(response)];
       });
 
@@ -561,7 +561,7 @@ exports.testTextOnly = {
     callback();
   },
   "test entities": function(test) {
-    var expected = JSON.parse(fs.readFileSync("../../mock-data/response/eng-sentence-entities.json"));
+    var expected = JSON.parse(fs.readFileSync("../mock-data/response/eng-sentence-entities.json"));
     this.api.entities(this.content, false, function(err, res) {
       if (err) {
         test.ok(false, "threw an error");
