@@ -251,6 +251,8 @@ def test_debug():
 
     # Check that the most recent querystring had debug=true
     assert httpretty.last_request().querystring == {'debug': ['true']}
+
+
 # Test using text only input
 # To call entities: should work
 # To call matched-name and translated-name: should throw errors
