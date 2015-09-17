@@ -228,6 +228,10 @@ public class ModelTest {
             object = "foo";
             break;
         }
+        case "StringBuilder": {
+            object = new StringBuilder("foo");
+            break;
+        }
         case "long":
         case "Long": {
             object = (long) 123456789;
