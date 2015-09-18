@@ -209,8 +209,11 @@ public class ModelTest {
         Object o = null;
         for (Constructor ctor : ctors) {
             if (ctor.getGenericParameterTypes().length == 1) {
-                o = ctor.newInstance(createObjectOfType(ctor.getGenericParameterTypes()[0]));
-                break;
+                Object objectOfType = createObjectOfType(ctor.getGenericParameterTypes()[0]);
+                if (objectOfType != null) {
+                    o = ctor.newInstance(objectOfType);
+                    break;
+                }
             }
         }
         return o;
