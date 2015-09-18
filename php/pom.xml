@@ -106,7 +106,7 @@
                             <arguments>
                                 <argument>fix</argument>
                                 <argument>.</argument>
-								<argument>--dry-run</argument>
+                                <argument>--dry-run</argument>
                                 <argument>--diff</argument>
                             </arguments>
                         </configuration>
@@ -165,7 +165,7 @@
                     </execution>
                 </executions>
                 <configuration>
-					<encoding>ISO-8859-1</encoding>
+                    <encoding>ISO-8859-1</encoding>
                     <finalName>github</finalName>
                     <filters>
                         <filter>${basedir}/../filters.properties</filter>

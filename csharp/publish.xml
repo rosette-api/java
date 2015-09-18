@@ -30,7 +30,7 @@
             <directory>rosette_apiExamples</directory>
             <includes>
                 <include>**.cs</include>
-				<include>**.md</include>
+                <include>**.md</include>
             </includes>
             <filtered>true</filtered>
         </fileSet>

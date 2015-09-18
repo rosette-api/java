@@ -25,8 +25,8 @@
     <modules>
         <module>php</module>
         <module>python</module>
-		<module>nodejs</module>
+        <module>nodejs</module>
         <module>java</module>
-		<module>csharp</module>
+        <module>csharp</module>
     </modules>
 </project>

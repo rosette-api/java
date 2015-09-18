@@ -24,7 +24,7 @@
         <file>
             <source>publish.xml</source>
         </file>
-		<file>
+        <file>
             <source>filters.properties</source>
         </file>
     </files>
