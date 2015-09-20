@@ -14,33 +14,6 @@
         <oldversion>0.5.1.2</oldversion>
         <newversion>0.5.1.2</newversion>
     </properties>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.5.4</version>
-                <executions>
-                    <execution>
-                        <id>assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <encoding>ISO-8859-1</encoding>
-                    <finalName>github</finalName>
-                    <filters>
-                        <filter>${basedir}/../filters.properties</filter>
-                    </filters>
-                    <descriptors>
-                        <descriptor>publish.xml</descriptor>
-                    </descriptors>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <profiles>
         <profile>
             <activation>
@@ -143,6 +116,42 @@
                 </plugins>
             </build>
         </profile>
+		<profile>
+            <id>Target</id>
+            <activation>
+                <property>
+                    <name>target</name>
+                    <value>true</value>
+                </property>
+            </activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.5.4</version>
+						<executions>
+							<execution>
+								<id>assembly</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<encoding>ISO-8859-1</encoding>
+							<finalName>github</finalName>
+							<filters>
+								<filter>${basedir}/../filters.properties</filter>
+							</filters>
+							<descriptors>
+								<descriptor>publish.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</plugin>					
+				</plugins>
+			</build>
+		</profile>
     </profiles>
     <reporting>
         <plugins>
