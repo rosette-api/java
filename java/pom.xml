@@ -45,7 +45,7 @@
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
-			<plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>1.9.1</version>
@@ -71,7 +71,7 @@
                 </executions>
                 <configuration>
                     <finalName>github</finalName>
-					<encoding>ISO-8859-1</encoding>
+                    <encoding>ISO-8859-1</encoding>
                     <filters>
                         <filter>filters.properties</filter>
                     </filters>

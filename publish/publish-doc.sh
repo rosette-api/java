@@ -25,6 +25,7 @@ shopt -s extglob
 rm -rf "$tmp"
 mkdir -p "$tmp"
 (cd "$tmp"; git clone $repo)
-(cd "$clone"; git checkout -B $branch; git rm -rf .!(git|.))
+#(cd "$clone"; git checkout -B $branch -t origin/$branch; git rm -rf .!(git|.))
+(cd "$clone"; git checkout -B $branch -t origin/$branch)
 tar -cf - $binding/target/html | tar xf - -C "$clone" --strip-components 3
 (cd "$clone"; git add .; git commit -m "publish $binding apidocs $version"; git push -f)

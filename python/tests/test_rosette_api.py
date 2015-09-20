@@ -195,7 +195,7 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
         try:
             functions[rest_endpoint](test.params)
             assert False
-        except RosetteException:
+        except RosetteException as e:
             assert True
             return
 
@@ -251,3 +251,50 @@ def test_debug():
 
     # Check that the most recent querystring had debug=true
     assert httpretty.last_request().querystring == {'debug': ['true']}
+
+
+# Test using text only input
+# To call entities: should work
+# To call matched-name and translated-name: should throw errors
+@httpretty.activate
+def test_just_text():
+    endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology-complete",
+                 "sentiment", "translated-name"]
+    expected_status_filename = response_file_dir + "eng-sentence-entities.status"
+    expected_output_filename = response_file_dir + "eng-sentence-entities.json"
+    for rest_endpoint in endpoints:
+        httpretty.register_uri(httpretty.POST, "https://api.rosette.com/rest/v1/" + rest_endpoint,
+                               status=get_file_content(expected_status_filename),
+                               body=get_file_content(expected_output_filename),
+                               content_type="application/json")
+
+    with open(expected_output_filename, "r") as expected_file:
+        expected_result = json.loads(expected_file.read())
+
+    # need to mock /info call too because the api will call it implicitly
+    with open(response_file_dir + "info.json", "r") as info_file:
+        body = info_file.read()
+        httpretty.register_uri(httpretty.GET, "https://api.rosette.com/rest/v1/info",
+                               body=body, status=200, content_type="application/json")
+
+    api = API("0123456789")
+
+    content = "He also acknowledged the ongoing U.S. conflicts in Iraq and Afghanistan, noting that he is the \"commander in chief of a country that is responsible for ending a war and working in another theater to confront a ruthless adversary that directly threatens the American people\" and U.S. allies."
+
+    result = api.entities(content)
+    # Check that it work for entities
+    assert result == expected_result
+
+    # Check that it throws the correct error for matched-name
+    try:
+        api.matched_name(content)
+        assert False
+    except RosetteException as e:
+        assert e.status == "incompatible"
+
+    # Check that it throws the correct error for translated-name
+    try:
+        api.translated_name(content)
+        assert False
+    except RosetteException as e:
+        assert e.status == "incompatible"

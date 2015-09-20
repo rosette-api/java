@@ -16,6 +16,11 @@ script_dir=$(dirname "${BASH_SOURCE[0]}")
 tmp=$(dirname "$script_dir")/target/github-src
 clone=$tmp/$binding
 
+if [[ ! -d "$binding/target" ]]; then
+    echo "Missing target directory.  Did you run mvn clean install?"
+    exit 1
+fi
+
 shopt -s extglob
 rm -rf "$tmp"
 mkdir -p "$tmp"
