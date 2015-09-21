@@ -43,6 +43,11 @@ namespace rosette_api
         private bool version_checked;
 
         /// <summary>
+        /// Internal time value of the last version check. Set on first version check. Resets the version check after 24hrs. 
+        /// </summary>
+        private DateTime last_version_check;
+
+        /// <summary>
         /// String to set version number. Must be updated on API update.
         /// </summary>
         private string compatible_version = "0.5";
@@ -70,6 +75,7 @@ namespace rosette_api
             Timeout = 300;
             Client = client;
             version_checked = checkVersion();
+            last_version_check = default(DateTime);
         }
 
         /// <summary>UserKey
@@ -902,7 +908,7 @@ namespace rosette_api
         /// <returns>bool: Whether or not the versions match</returns>
         private bool checkVersion(string versionToCheck = null)
         {
-            if (!version_checked)
+            if (!version_checked || last_version_check.AddDays(1) < DateTime.Now)
             {
                 if (versionToCheck == null)
                 {
@@ -941,6 +947,7 @@ namespace rosette_api
                 else
                 {
                     version_checked = true;
+                    last_version_check = DateTime.Now;
                 }
             }
             return version_checked;

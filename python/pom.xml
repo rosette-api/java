@@ -10,6 +10,44 @@
     <artifactId>python</artifactId>
     <version>0.5.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+	<profiles>
+		<profile>
+            <id>Target</id>
+            <activation>
+                <property>
+                    <name>target</name>
+                    <value>true</value>
+                </property>
+            </activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>2.5.4</version>
+						<executions>
+							<execution>
+								<id>assembly</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<encoding>ISO-8859-1</encoding>
+							<finalName>github</finalName>
+							<filters>
+								<filter>${basedir}/../filters.properties</filter>
+							</filters>
+							<descriptors>
+								<descriptor>publish.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
     <build>
         <plugins>
             <plugin>
@@ -133,29 +171,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.5.4</version>
-                <executions>
-                    <execution>
-                        <id>assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <encoding>ISO-8859-1</encoding>
-                    <finalName>github</finalName>
-                    <filters>
-                        <filter>${basedir}/../filters.properties</filter>
-                    </filters>
-                    <descriptors>
-                        <descriptor>publish.xml</descriptor>
-                    </descriptors>
-                </configuration>
             </plugin>
         </plugins>
     </build>
