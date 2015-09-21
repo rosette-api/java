@@ -40,7 +40,7 @@ def get_example_file_map():
             example_file_map[language + ":" + endpoint] = example_file
         # For example responses
         f = tempfile.NamedTemporaryFile(dir=os.path.dirname(os.path.realpath(__file__)), delete=False)
-        os.system("python " + bindings_base_dir + "python/target/github-publish/examples/" + endpoint + ".py --key " + sys.argv[2] + " > " + f.name)
+        os.system(bindings_base_dir + "python/.tox/py27/bin/python " + bindings_base_dir + "python/target/github-publish/examples/" + endpoint + ".py --key " + sys.argv[2] + " > " + f.name)
         example_file_map["json:" + endpoint] = f.name
     print "built example file map"
     return example_file_map
