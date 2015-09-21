@@ -342,7 +342,7 @@
             Gets or sets a value indicating whether binary data reading should compatible with incorrect Json.NET 3.5 written binary.
             </summary>
             <value>
-            	<c>true</c> if binary data reading will be compatible with incorrect Json.NET 3.5 written binary; otherwise, <c>false</c>.
+                <c>true</c> if binary data reading will be compatible with incorrect Json.NET 3.5 written binary; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Bson.BsonReader.ReadRootValueAsArray">
@@ -350,7 +350,7 @@
             Gets or sets a value indicating whether the root object will be read as a JSON array.
             </summary>
             <value>
-            	<c>true</c> if the root object will be read as a JSON array; otherwise, <c>false</c>.
+                <c>true</c> if the root object will be read as a JSON array; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Bson.BsonReader.DateTimeKindHandling">
@@ -1092,7 +1092,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.JsonConverter.GetSchema">
@@ -1137,7 +1137,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.Converters.DataSetConverter">
@@ -1169,7 +1169,7 @@
             </summary>
             <param name="valueType">Type of the value.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified value type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified value type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.Converters.DataTableConverter">
@@ -1201,7 +1201,7 @@
             </summary>
             <param name="valueType">Type of the value.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified value type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified value type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.Converters.CustomCreationConverter`1">
@@ -1241,7 +1241,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="P:Newtonsoft.Json.Converters.CustomCreationConverter`1.CanWrite">
@@ -1249,7 +1249,7 @@
             Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
             </summary>
             <value>
-            	<c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
+                <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="T:Newtonsoft.Json.Converters.DateTimeConverterBase">
@@ -1263,7 +1263,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.Converters.DiscriminatedUnionConverter">
@@ -1295,7 +1295,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.Converters.EntityKeyMemberConverter">
@@ -1327,7 +1327,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.Converters.ExpandoObjectConverter">
@@ -1359,7 +1359,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="P:Newtonsoft.Json.Converters.ExpandoObjectConverter.CanWrite">
@@ -1367,7 +1367,7 @@
             Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
             </summary>
             <value>
-            	<c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
+                <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="T:Newtonsoft.Json.Converters.KeyValuePairConverter">
@@ -1399,7 +1399,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.Converters.BsonObjectIdConverter">
@@ -1431,7 +1431,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.Converters.RegexConverter">
@@ -1463,7 +1463,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.Converters.StringEnumConverter">
@@ -1559,7 +1559,7 @@
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="T:Newtonsoft.Json.FloatFormatHandling">
@@ -1660,7 +1660,7 @@
             Gets or sets a value that indicates whether to preserve object references.
             </summary>
             <value>
-            	<c>true</c> to keep object reference; otherwise, <c>false</c>. The default is <c>false</c>.
+                <c>true</c> to keep object reference; otherwise, <c>false</c>. The default is <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.JsonContainerAttribute.ItemIsReference">
@@ -1668,7 +1668,7 @@
             Gets or sets a value that indicates whether to preserve collection's items references.
             </summary>
             <value>
-            	<c>true</c> to keep collection's items object references; otherwise, <c>false</c>. The default is <c>false</c>.
+                <c>true</c> to keep collection's items object references; otherwise, <c>false</c>. The default is <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.JsonContainerAttribute.ItemReferenceLoopHandling">
@@ -1825,7 +1825,7 @@
             Gets or sets a value that indicates whether to write extension data when serializing the object.
             </summary>
             <value>
-            	<c>true</c> to write extension data when serializing the object; otherwise, <c>false</c>. The default is <c>true</c>.
+                <c>true</c> to write extension data when serializing the object; otherwise, <c>false</c>. The default is <c>true</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.JsonExtensionDataAttribute.ReadData">
@@ -1833,7 +1833,7 @@
             Gets or sets a value that indicates whether to read extension data when deserializing the object.
             </summary>
             <value>
-            	<c>true</c> to read extension data when deserializing the object; otherwise, <c>false</c>. The default is <c>true</c>.
+                <c>true</c> to read extension data when deserializing the object; otherwise, <c>false</c>. The default is <c>true</c>.
             </value>
         </member>
         <member name="T:Newtonsoft.Json.Linq.JsonMergeSettings">
@@ -2206,7 +2206,7 @@
             Gets a value indicating whether the class can return line information.
             </summary>
             <returns>
-            	<c>true</c> if LineNumber and LinePosition can be provided; otherwise, <c>false</c>.
+                <c>true</c> if LineNumber and LinePosition can be provided; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="P:Newtonsoft.Json.IJsonLineInfo.LineNumber">
@@ -3095,7 +3095,7 @@
             Gets a value indicating whether this token has child tokens.
             </summary>
             <value>
-            	<c>true</c> if this token has child values; otherwise, <c>false</c>.
+                <c>true</c> if this token has child values; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Linq.JToken.Next">
@@ -3347,7 +3347,7 @@
             This instance is greater than <paramref name="obj"/>.
             </returns>
             <exception cref="T:System.ArgumentException">
-            	<paramref name="obj"/> is not the same type as this instance.
+                <paramref name="obj"/> is not the same type as this instance.
             </exception>
         </member>
         <member name="P:Newtonsoft.Json.Linq.JValue.HasValues">
@@ -3355,7 +3355,7 @@
             Gets a value indicating whether this token has child tokens.
             </summary>
             <value>
-            	<c>true</c> if this token has child values; otherwise, <c>false</c>.
+                <c>true</c> if this token has child values; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Linq.JValue.Type">
@@ -3637,7 +3637,7 @@
             <param name="context">The serialization context.</param>
             <param name="value">The object to test for a reference.</param>
             <returns>
-            	<c>true</c> if the specified object is referenced; otherwise, <c>false</c>.
+                <c>true</c> if the specified object is referenced; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Serialization.IReferenceResolver.AddReference(System.Object,System.String,System.Object)">
@@ -3803,7 +3803,7 @@
             Gets or sets a value that indicates whether the object's properties are required.
             </summary>
             <value>
-            	A value indicating whether the object's properties are required.
+                A value indicating whether the object's properties are required.
             </value>
         </member>
         <member name="T:Newtonsoft.Json.JsonSerializerSettings">
@@ -3976,7 +3976,7 @@
             Gets a value indicating whether there will be a check for additional content after deserializing an object.
             </summary>
             <value>
-            	<c>true</c> if there will be a check for additional content after deserializing an object; otherwise, <c>false</c>.
+                <c>true</c> if there will be a check for additional content after deserializing an object; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="T:Newtonsoft.Json.JsonValidatingReader">
@@ -4257,7 +4257,7 @@
             </summary>
             <param name="valueType">Type of the value.</param>
             <returns>
-            	<c>true</c> if this instance can convert the specified value type; otherwise, <c>false</c>.
+                <c>true</c> if this instance can convert the specified value type; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="P:Newtonsoft.Json.Converters.XmlNodeConverter.DeserializeRootElementName">
@@ -4346,7 +4346,7 @@
             Gets a value indicating whether the class can return line information.
             </summary>
             <returns>
-            	<c>true</c> if LineNumber and LinePosition can be provided; otherwise, <c>false</c>.
+                <c>true</c> if LineNumber and LinePosition can be provided; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="P:Newtonsoft.Json.JsonTextReader.LineNumber">
@@ -4445,7 +4445,7 @@
             Gets or sets a value indicating whether this property is required.
             </summary>
             <value>
-            	A value indicating whether this property is required.
+                A value indicating whether this property is required.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.JsonPropertyAttribute.PropertyName">
@@ -5809,7 +5809,7 @@
             Gets a value indicating whether there will be a check for additional JSON content after deserializing an object.
             </summary>
             <value>
-            	<c>true</c> if there will be a check for additional JSON content after deserializing an object; otherwise, <c>false</c>.
+                <c>true</c> if there will be a check for additional JSON content after deserializing an object; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="T:Newtonsoft.Json.Linq.Extensions">
@@ -6062,7 +6062,7 @@
             Gets a value indicating whether this token has child tokens.
             </summary>
             <value>
-            	<c>true</c> if this token has child values; otherwise, <c>false</c>.
+                <c>true</c> if this token has child values; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Linq.JContainer.First">
@@ -6195,7 +6195,7 @@
             </summary>
             <param name="other">The <see cref="T:Newtonsoft.Json.Linq.JEnumerable`1"/> to compare with this instance.</param>
             <returns>
-            	<c>true</c> if the specified <see cref="T:Newtonsoft.Json.Linq.JEnumerable`1"/> is equal to this instance; otherwise, <c>false</c>.
+                <c>true</c> if the specified <see cref="T:Newtonsoft.Json.Linq.JEnumerable`1"/> is equal to this instance; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Linq.JEnumerable`1.Equals(System.Object)">
@@ -6204,7 +6204,7 @@
             </summary>
             <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
             <returns>
-            	<c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+                <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Linq.JEnumerable`1.GetHashCode">
@@ -6609,7 +6609,7 @@
             <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
             <param name="item">The object to insert into the <see cref="T:System.Collections.Generic.IList`1"/>.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            	<paramref name="index"/> is not a valid index in the <see cref="T:System.Collections.Generic.IList`1"/>.</exception>
+                <paramref name="index"/> is not a valid index in the <see cref="T:System.Collections.Generic.IList`1"/>.</exception>
             <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IList`1"/> is read-only.</exception>
         </member>
         <member name="M:Newtonsoft.Json.Linq.JArray.RemoveAt(System.Int32)">
@@ -6618,7 +6618,7 @@
             </summary>
             <param name="index">The zero-based index of the item to remove.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            	<paramref name="index"/> is not a valid index in the <see cref="T:System.Collections.Generic.IList`1"/>.</exception>
+                <paramref name="index"/> is not a valid index in the <see cref="T:System.Collections.Generic.IList`1"/>.</exception>
             <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IList`1"/> is read-only.</exception>
         </member>
         <member name="M:Newtonsoft.Json.Linq.JArray.GetEnumerator">
@@ -7149,7 +7149,7 @@
             <param name="source">The source <see cref="T:Newtonsoft.Json.Linq.JToken"/> to test.</param>
             <param name="schema">The schema to test with.</param>
             <returns>
-            	<c>true</c> if the specified <see cref="T:Newtonsoft.Json.Linq.JToken"/> is valid; otherwise, <c>false</c>.
+                <c>true</c> if the specified <see cref="T:Newtonsoft.Json.Linq.JToken"/> is valid; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Schema.Extensions.IsValid(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Schema.JsonSchema,System.Collections.Generic.IList{System.String}@)">
@@ -7160,7 +7160,7 @@
             <param name="schema">The schema to test with.</param>
             <param name="errorMessages">When this method returns, contains any error messages generated while validating. </param>
             <returns>
-            	<c>true</c> if the specified <see cref="T:Newtonsoft.Json.Linq.JToken"/> is valid; otherwise, <c>false</c>.
+                <c>true</c> if the specified <see cref="T:Newtonsoft.Json.Linq.JToken"/> is valid; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Schema.Extensions.Validate(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Schema.JsonSchema)">
@@ -7486,7 +7486,7 @@
             This value is determined by the runtime permissions available.
             </summary>
             <value>
-            	<c>true</c> if using dynamic code generation; otherwise, <c>false</c>.
+                <c>true</c> if using dynamic code generation; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Serialization.DefaultContractResolver.DefaultMembersSearchFlags">
@@ -7500,7 +7500,7 @@
             Gets or sets a value indicating whether compiler generated members should be serialized.
             </summary>
             <value>
-            	<c>true</c> if serialized compiler generated members; otherwise, <c>false</c>.
+                <c>true</c> if serialized compiler generated members; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Serialization.DefaultContractResolver.IgnoreSerializableInterface">
@@ -7508,7 +7508,7 @@
             Gets or sets a value indicating whether to ignore the <see cref="T:System.Runtime.Serialization.ISerializable"/> interface when serializing and deserializing types.
             </summary>
             <value>
-            	<c>true</c> if the <see cref="T:System.Runtime.Serialization.ISerializable"/> interface will be ignored when serializing and deserializing types; otherwise, <c>false</c>.
+                <c>true</c> if the <see cref="T:System.Runtime.Serialization.ISerializable"/> interface will be ignored when serializing and deserializing types; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Serialization.DefaultContractResolver.IgnoreSerializableAttribute">
@@ -7516,7 +7516,7 @@
             Gets or sets a value indicating whether to ignore the <see cref="T:System.SerializableAttribute"/> attribute when serializing and deserializing types.
             </summary>
             <value>
-            	<c>true</c> if the <see cref="T:System.SerializableAttribute"/> attribute will be ignored when serializing and deserializing types; otherwise, <c>false</c>.
+                <c>true</c> if the <see cref="T:System.SerializableAttribute"/> attribute will be ignored when serializing and deserializing types; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="M:Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver.#ctor">
@@ -7779,7 +7779,7 @@
             Gets or sets a value indicating whether this property preserves object references.
             </summary>
             <value>
-            	<c>true</c> if this instance is reference; otherwise, <c>false</c>.
+                <c>true</c> if this instance is reference; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Serialization.JsonProperty.NullValueHandling">
@@ -8122,7 +8122,7 @@
             Gets or sets a value indicating whether items in an array are validated using the <see cref="T:Newtonsoft.Json.Schema.JsonSchema"/> instance at their array position from <see cref="P:Newtonsoft.Json.Schema.JsonSchema.Items"/>.
             </summary>
             <value>
-            	<c>true</c> if items are validated using their array position; otherwise, <c>false</c>.
+                <c>true</c> if items are validated using their array position; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Schema.JsonSchema.AdditionalItems">
@@ -8136,7 +8136,7 @@
             Gets or sets a value indicating whether additional items are allowed.
             </summary>
             <value>
-            	<c>true</c> if additional items are allowed; otherwise, <c>false</c>.
+                <c>true</c> if additional items are allowed; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Schema.JsonSchema.UniqueItems">
@@ -8167,7 +8167,7 @@
             Gets or sets a value indicating whether additional properties are allowed.
             </summary>
             <value>
-            	<c>true</c> if additional properties are allowed; otherwise, <c>false</c>.
+                <c>true</c> if additional properties are allowed; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Schema.JsonSchema.Requires">
@@ -8326,7 +8326,7 @@
             Gets or sets a value that indicates whether the object's properties are required.
             </summary>
             <value>
-            	A value indicating whether the object's properties are required.
+                A value indicating whether the object's properties are required.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Serialization.JsonObjectContract.Properties">
@@ -8626,7 +8626,7 @@
             </summary>
             <param name="collection">The collection.</param>
             <returns>
-            	<c>true</c> if the collection is null or empty; otherwise, <c>false</c>.
+                <c>true</c> if the collection is null or empty; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Utilities.CollectionUtils.AddRange``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IEnumerable{``0})">
@@ -8666,7 +8666,7 @@
             </summary>
             <param name="member">The member.</param>
             <returns>
-            	<c>true</c> if the member is an indexed property; otherwise, <c>false</c>.
+                <c>true</c> if the member is an indexed property; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Utilities.ReflectionUtils.IsIndexedProperty(System.Reflection.PropertyInfo)">
@@ -8675,7 +8675,7 @@
             </summary>
             <param name="property">The property.</param>
             <returns>
-            	<c>true</c> if the property is an indexed property; otherwise, <c>false</c>.
+                <c>true</c> if the property is an indexed property; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Utilities.ReflectionUtils.GetMemberValue(System.Reflection.MemberInfo,System.Object)">
@@ -8701,7 +8701,7 @@
             <param name="member">The MemberInfo to determine whether can be read.</param>
             /// <param name="nonPublic">if set to <c>true</c> then allow the member to be gotten non-publicly.</param>
             <returns>
-            	<c>true</c> if the specified MemberInfo can be read; otherwise, <c>false</c>.
+                <c>true</c> if the specified MemberInfo can be read; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Utilities.ReflectionUtils.CanSetMemberValue(System.Reflection.MemberInfo,System.Boolean,System.Boolean)">
@@ -8712,7 +8712,7 @@
             <param name="nonPublic">if set to <c>true</c> then allow the member to be set non-publicly.</param>
             <param name="canSetReadOnly">if set to <c>true</c> then allow the member to be set if read-only.</param>
             <returns>
-            	<c>true</c> if the specified MemberInfo can be set; otherwise, <c>false</c>.
+                <c>true</c> if the specified MemberInfo can be set; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Utilities.StringUtils.IsWhiteSpace(System.String)">
@@ -8721,7 +8721,7 @@
             </summary>
             <param name="s">The string to test whether it is all white space.</param>
             <returns>
-            	<c>true</c> if the string is all white space; otherwise, <c>false</c>.
+                <c>true</c> if the string is all white space; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:Newtonsoft.Json.Utilities.StringUtils.NullEmptyString(System.String)">

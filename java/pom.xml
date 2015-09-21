@@ -42,8 +42,8 @@
         <module>api-model</module>
         <module>json</module>
     </modules>
-	<profiles>
-		<profile>
+    <profiles>
+        <profile>
             <id>Target</id>
             <activation>
                 <property>
@@ -51,34 +51,34 @@
                     <value>true</value>
                 </property>
             </activation>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>assembly</id>
-								<phase>package</phase>
-								<goals>
-									<goal>single</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<finalName>github</finalName>
-							<encoding>ISO-8859-1</encoding>
-							<filters>
-								<filter>${basedir}/../filters.properties</filter>
-							</filters>
-							<descriptors>
-								<descriptor>publish.xml</descriptor>
-							</descriptors>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>assembly</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <finalName>github</finalName>
+                            <encoding>ISO-8859-1</encoding>
+                            <filters>
+                                <filter>${basedir}/../filters.properties</filter>
+                            </filters>
+                            <descriptors>
+                                <descriptor>publish.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
