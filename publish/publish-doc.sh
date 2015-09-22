@@ -21,6 +21,11 @@ if [ "$binding" = "java" ] ; then
     exit 1
 fi
 
+if [[ ! -d "$binding/target/html" ]]; then
+    echo "$binding/target/html does not exist.  Do you need to build the documentation?"
+    exit 1
+fi
+
 shopt -s extglob
 rm -rf "$tmp"
 mkdir -p "$tmp"

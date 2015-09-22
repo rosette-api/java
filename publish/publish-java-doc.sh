@@ -18,6 +18,11 @@ if [ "$(uname)" == "Darwin" ] ; then
 fi
 tmp=$(mktemp -d $opt)
 
+if [[ ! -d "java/target/site/apidocs" ]]; then
+    echo "API docs not found.  Did you run mvn site?
+    exit 1
+fi
+
 shopt -s extglob
 (cd "$tmp"; git clone $repo)
 (cd "$tmp/java"; git checkout -B $branch; git rm -rf .!(git|.))
