@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.CategoriesOptions;
 import com.basistech.rosette.apimodel.CategoriesRequest;
 import com.basistech.rosette.apimodel.CategoriesResponse;
@@ -52,6 +53,7 @@ import com.basistech.rosette.apimodel.NameTranslationResult;
 import com.basistech.rosette.apimodel.PartOfSpeech;
 import com.basistech.rosette.apimodel.PingResponse;
 import com.basistech.rosette.apimodel.Relationship;
+import com.basistech.rosette.apimodel.RelationshipOptions;
 import com.basistech.rosette.apimodel.RelationshipsRequest;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
@@ -65,7 +67,6 @@ import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.TokensResponse;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -131,10 +132,13 @@ public class ApiModelMixinModule extends SimpleModule {
             context.setMixInAnnotations(RelationshipsRequest.class, RelationshipsRequestMixin.class);
             context.setMixInAnnotations(RelationshipsResponse.class, RelationshipResponseMixin.class);
             context.setMixInAnnotations(Relationship.class, RelationshipMixin.class);
+            context.setMixInAnnotations(RelationshipOptions.class, RelationshipOptionsMixin.class);
 
             context.setMixInAnnotations(SentimentModel.class, SentimentModelMixin.class);
+            context.setMixInAnnotations(AccuracyMode.class, AccuracyModeMixin.class);
             SimpleSerializers keySerializers = new SimpleSerializers();
             keySerializers.addSerializer(new SentimentModelSerializer());
+            keySerializers.addSerializer(new AccuracyModeSerializer());
             context.addKeySerializers(keySerializers);
         }
 

@@ -16,23 +16,10 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.InputUnit;
-import com.basistech.rosette.apimodel.LanguageCode;
-import com.basistech.rosette.apimodel.RelationshipOptions;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class RelationshipsRequestMixin {
-    @JsonCreator
-    public RelationshipsRequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("content") String content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType,
-            @JsonProperty("unit") InputUnit unit,
-            @JsonProperty("options") RelationshipOptions options
-    ) {
-        //
-    }
-
+@JsonSerialize(using = AccuracyModeSerializer.class, keyUsing = AccuracyModeSerializer.class)
+@JsonDeserialize(using = AccuracyModeDeserializer.class)
+public class AccuracyModeMixin extends BaseMixin {
 }

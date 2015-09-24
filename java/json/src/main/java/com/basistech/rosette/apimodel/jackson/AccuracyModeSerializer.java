@@ -16,23 +16,24 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.InputUnit;
-import com.basistech.rosette.apimodel.LanguageCode;
-import com.basistech.rosette.apimodel.RelationshipOptions;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-public class RelationshipsRequestMixin {
-    @JsonCreator
-    public RelationshipsRequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("content") String content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType,
-            @JsonProperty("unit") InputUnit unit,
-            @JsonProperty("options") RelationshipOptions options
-    ) {
-        //
+import com.basistech.rosette.apimodel.AccuracyMode;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+
+/**
+ * Jackson serializer for AccuracyMode.
+ */
+public class AccuracyModeSerializer extends JsonSerializer<AccuracyMode> {
+    @Override
+    public void serialize(AccuracyMode accuracyMode, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+        jsonGenerator.writeString(accuracyMode.getLabel());
     }
 
+    @Override
+    public Class<AccuracyMode> handledType() {
+        return AccuracyMode.class;
+    }
 }

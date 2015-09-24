@@ -16,23 +16,25 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.InputUnit;
-import com.basistech.rosette.apimodel.LanguageCode;
-import com.basistech.rosette.apimodel.RelationshipOptions;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
 
-public class RelationshipsRequestMixin {
-    @JsonCreator
-    public RelationshipsRequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("content") String content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType,
-            @JsonProperty("unit") InputUnit unit,
-            @JsonProperty("options") RelationshipOptions options
-    ) {
-        //
+import com.basistech.rosette.apimodel.AccuracyMode;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+
+/**
+ * Arrange for {@link AccuracyMode} to serialize as its code.
+ */
+public class AccuracyModeDeserializer extends StdDeserializer<AccuracyMode> {
+
+    public AccuracyModeDeserializer() {
+        super(AccuracyMode.class);
     }
 
+    @Override
+    public AccuracyMode deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
+        String code = jp.getText();
+        return AccuracyMode.forValue(code);
+    }
 }

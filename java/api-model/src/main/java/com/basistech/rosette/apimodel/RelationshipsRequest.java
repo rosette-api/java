@@ -21,6 +21,8 @@ package com.basistech.rosette.apimodel;
  */
 public final class RelationshipsRequest extends Request {
 
+    private RelationshipOptions options;
+
     /**
      * Constructor for {@code RelationsipsRequest}
      * @param language language code
@@ -28,21 +30,24 @@ public final class RelationshipsRequest extends Request {
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
      * @param unit input unit code
+     * @param options relationship options
      */
     public RelationshipsRequest(
             LanguageCode language,
             String content,
             String contentUri,
             String contentType,
-            InputUnit unit
+            InputUnit unit,
+            RelationshipOptions options
     ) {
         super(language, content, contentUri, contentType, unit);
+        this.options = options;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result;
+        result = 31 * result + (options != null ? options.hashCode() : 0);
         return result;
     }
 
@@ -56,6 +61,26 @@ public final class RelationshipsRequest extends Request {
         if (!(o instanceof RelationshipsRequest)) {
             return false;
         }
-        return super.equals(o);
+
+        RelationshipsRequest that = (RelationshipsRequest) o;
+        return super.equals(o)
+                && options != null ? options.equals(that.getOptions()) : that.options == null;
     }
+
+    /**
+     * get the relationship options
+     * @return the relationship options
+     */
+    public RelationshipOptions getOptions() {
+        return options;
+    }
+
+    /**
+     * set the relationship options
+     * @param options the relationship options
+     */
+    public void setOptions(RelationshipOptions options) {
+        this.options = options;
+    }
+
 }
