@@ -47,53 +47,61 @@ def setup():
         cleanup()
         sys.exit('Failed to install rosette_api')
 
-# Start by cleaning up and setting up
-cleanup()
-setup()
+failed = True
+runs = 0
+while failed and runs < 3:
+    try:
+        # Start by cleaning up and setting up
+        cleanup()
+        setup()
 
-# Try to move into the cloned examples folder
-try:
-    os.chdir(os.path.realpath('gitclone/examples'))
-except:
-    print 'Failed to move into gitclone/examples'
-    sys.exit('Failed to move into gitclone/examples')
-
-# compile and run each example
-failures = []
-retry = 10
-for f in listdir(os.path.join(os.path.realpath('.'))):
-    if f.endswith(".py") and "init" not in f:
-        print f
-        success = False
+        # Try to move into the cloned examples folder
         try:
-            for i in range(retry):
-                cmd = subprocess.Popen(["python", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-                cmd_out, cmd_err = cmd.communicate()
-                if "Exception" not in cmd_out and "{" in cmd_out:
-                    success = True
-                    break
-                time.sleep(2)
-            print cmd_out
-            if not success:
-                failures = failures + [f]
+            os.chdir(os.path.realpath('gitclone/examples'))
         except:
-            print f + " was unable to be compiled and run"
-            failures = failures + [f]
+            print 'Failed to move into gitclone/examples'
 
-# Exit test folder
-try:
-    os.chdir(os.path.realpath('../..'))
-except:
-    print 'Failed to move back into examples'
-    sys.exit('Failed to move back into examples')
+        # compile and run each example
+        failures = []
+        retry = 10
+        for f in listdir(os.path.join(os.path.realpath('.'))):
+            if f.endswith(".py") and "init" not in f:
+                print f
+                success = False
+                try:
+                    for i in range(retry):
+                        cmd = subprocess.Popen(["python", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                        cmd_out, cmd_err = cmd.communicate()
+                        if "Exception" not in cmd_out and "{" in cmd_out:
+                            success = True
+                            break
+                        time.sleep(2)
+                    print cmd_out
+                    if not success:
+                        failures = failures + [f]
+                except:
+                    print f + " was unable to be compiled and run"
+                    failures = failures + [f]
 
-if len(failures) != 0:
-    cleanup()
-    print 'Failed to pass these examples: ' + ', '.join(failures)
-    sys.exit('Failed to pass these examples: ' + ', '.join(failures))
+        # Exit test folder
+        try:
+            os.chdir(os.path.realpath('../..'))
+        except:
+            print 'Failed to move back into examples'
 
-# at the end clean up the folder
-cleanup()
+        if len(failures) != 0:
+            cleanup()
+            print 'Failed to pass these examples: ' + ', '.join(failures)
 
-print 'All tests passed successfully'
-sys.exit(0)
+        # at the end clean up the folder
+        cleanup()
+        failed = False
+    except:
+        runs = runs + 1
+        print 'Attempt ' + runs + ' failed. Retrying'
+
+if failed:
+    sys.exit('Failed after 3 attempts')
+else:
+    print 'All tests passed successfully'
+    sys.exit(0)
