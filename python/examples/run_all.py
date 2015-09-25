@@ -38,6 +38,7 @@ def cleanup():
 
 # helper function to setup folder
 def setup():
+    subprocess.call(['pip', 'install', '--upgrade', 'argparse'])
     subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/python.git", "gitclone"])
 
     # install rosette_api python package
