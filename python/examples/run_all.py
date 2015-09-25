@@ -42,7 +42,7 @@ def setup():
 
     # install rosette_api python package
     try:
-        subprocess.call(["pip", "install", "rosette_api"])
+        subprocess.call(["pip", "install", "--upgrade", "rosette_api"])
     except:
         cleanup()
         sys.exit('Failed to install rosette_api')
