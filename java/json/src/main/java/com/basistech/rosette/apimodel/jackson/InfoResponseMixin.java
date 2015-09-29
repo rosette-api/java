@@ -26,7 +26,8 @@ public class InfoResponseMixin extends BaseMixin {
             @JsonProperty("name") String name,
             @JsonProperty("version") String version,
             @JsonProperty("buildNumber") String buildNumber,
-            @JsonProperty("buildTime") String buildTime
+            @JsonProperty("buildTime") String buildTime,
+            @JsonProperty("versionChecked") Boolean versionChecked
     ) {
         //
     }
