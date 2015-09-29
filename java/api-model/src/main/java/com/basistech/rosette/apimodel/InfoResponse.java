@@ -25,6 +25,7 @@ public final class InfoResponse extends Response {
     private final String version;
     private final String buildNumber;
     private final String buildTime;
+    private final Boolean versionChecked;
 
     /**
      * constructor for {@code InfoResponse} 
@@ -32,13 +33,15 @@ public final class InfoResponse extends Response {
      * @param version version
      * @param buildNumber build number
      * @param buildTime build time
+     * @param versionChecked client version checked
      */
-    public InfoResponse(String name, String version, String buildNumber, String buildTime) {
+    public InfoResponse(String name, String version, String buildNumber, String buildTime, Boolean versionChecked) {
         super(null);
         this.name = name;
         this.version = version;
         this.buildNumber = buildNumber;
         this.buildTime = buildTime;
+        this.versionChecked = versionChecked;
     }
 
     /**
@@ -73,12 +76,21 @@ public final class InfoResponse extends Response {
         return buildTime;
     }
 
+    /**
+     * is client version checked to be compatible
+     * @return client version checked
+     */
+    public Boolean isVersionChecked() {
+        return versionChecked;
+    }
+
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (version != null ? version.hashCode() : 0);
         result = 31 * result + (buildNumber != null ? buildNumber.hashCode() : 0);
         result = 31 * result + (buildTime != null ? buildTime.hashCode() : 0);
+        result = 31 * result + (versionChecked != null ? versionChecked.hashCode() : 0);
         return result;
     }
 
@@ -98,6 +110,7 @@ public final class InfoResponse extends Response {
                 && name != null ? name.equals(that.getName()) : that.name == null
                 && version != null ? version.equals(that.getVersion()) : that.version == null
                 && buildNumber != null ? buildNumber.equals(that.getBuildNumber()) : that.buildNumber == null
-                && buildTime != null ? buildTime.equals(that.getBuildTime()) : that.buildTime == null;
+                && buildTime != null ? buildTime.equals(that.getBuildTime()) : that.buildTime == null
+                && versionChecked != null ? versionChecked.equals(that.isVersionChecked()) : that.versionChecked == null;
     }
 }
