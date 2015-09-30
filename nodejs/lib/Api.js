@@ -27,7 +27,7 @@ var DocumentParameters = require("./DocumentParameters");
  *
  * @type string
  */
-var COMPATIBLE_VERSION = "0.5";
+var BINDING_VERSION = "0.5";
 
 /**
  * @class
@@ -96,15 +96,13 @@ Api.prototype.checkVersion = function(api) {
   if (this.versionChecked) {
     return true;
   }
-  this.info(function(err, res) {
+  this.compareBindingToServer(function(err, res) {
     if (err) {
       console.log(err);
       throw err;
     }
-    var version = res.version;
-    var strVersion = version.split(".", 2).join(".");
-    if (strVersion !== COMPATIBLE_VERSION) {
-      throw new RosetteException("incompatibleVersion", "The server version is not " + COMPATIBLE_VERSION, strVersion);
+    if (!res.versionChecked) {
+      throw new RosetteException("incompatibleVersion", "The server version is not compatible with binding version " + BINDING_VERSION, res.Version);
     }
     api.versionChecked = true;
   });
@@ -324,6 +322,17 @@ Api.prototype.info = function(callback) {
 Api.prototype.ping = function(callback) {
   var url = this.serviceUrl + "/ping";
   this.retryingRequest(null, callback, "GET", url, null, "ping", this);
+};
+
+/**
+ * Calls the internal checkVersion endpoint
+ *
+ * @throws RosetteException
+ * @param {function} callback
+ */
+Api.prototype.compareBindingToServer = function(callback) {
+  var url = this.serviceUrl + "/info?clientVersion=" + BINDING_VERSION;
+  this.retryingRequest(null, callback, "POST", url, null, "info", this);
 };
 
 /**
