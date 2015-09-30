@@ -25,7 +25,7 @@ public class SentimentMixin extends BaseMixin {
     @JsonCreator
     protected SentimentMixin(
             @JsonProperty("label") String label,
-            @JsonProperty("confidence") double confidence,
+            @JsonProperty("confidence") Double confidence,
             @JsonProperty("explanations") List<String> explanations
     ) {
         //

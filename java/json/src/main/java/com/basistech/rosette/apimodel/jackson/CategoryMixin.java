@@ -25,7 +25,7 @@ public class CategoryMixin extends BaseMixin {
     @JsonCreator
     public CategoryMixin(
             @JsonProperty("label") String label,
-            @JsonProperty("confidence") double confidence,
+            @JsonProperty("confidence") Double confidence,
             @JsonProperty("explanations") List<String> explanations
     ) {
         //

@@ -16,23 +16,10 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import java.util.List;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class RelationshipMixin extends BaseMixin {
-    @JsonCreator
-    public RelationshipMixin(
-            @JsonProperty("predicate") String predicate,
-            @JsonProperty("arg1") String arg1,
-            @JsonProperty("arg2") String arg2,
-            @JsonProperty("arg3") String arg3,
-            @JsonProperty("temporals") List<String> temporals,
-            @JsonProperty("locatives") List<String> locatives,
-            @JsonProperty("adjuncts") List<String> adjuncts,
-            @JsonProperty("confidence") Double confidence
-    ) {
-        //
-    }
+@JsonSerialize(using = AccuracyModeSerializer.class, keyUsing = AccuracyModeSerializer.class)
+@JsonDeserialize(using = AccuracyModeDeserializer.class)
+public class AccuracyModeMixin extends BaseMixin {
 }
