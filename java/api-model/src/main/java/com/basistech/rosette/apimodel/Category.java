@@ -24,7 +24,7 @@ import java.util.List;
 public final class Category {
 
     private final String label;
-    private final double confidence;
+    private final Double confidence;
     private final List<String> explanations;
     
     /**
@@ -33,7 +33,7 @@ public final class Category {
      * @param confidence confidence score (0.0-1.0)
      * @param explanations list of input text elements
      */
-    public Category(String label, double confidence, List<String> explanations) {
+    public Category(String label, Double confidence, List<String> explanations) {
         this.label = label;
         this.confidence = confidence;
         this.explanations = explanations;
@@ -51,7 +51,7 @@ public final class Category {
      * get the confidence score (0.0-1.0)
      * @return the confidence score
      */
-    public double getConfidence() {
+    public Double getConfidence() {
         return confidence;
     }
 
@@ -87,7 +87,7 @@ public final class Category {
 
         Category that = (Category) o;
         return label != null ? label.equals(that.label) : that.label == null
-                && confidence == that.confidence
+                && confidence.equals(that.confidence)
                 && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;
     }
 }

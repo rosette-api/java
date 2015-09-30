@@ -21,7 +21,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RelationshipMixin {
+public class RelationshipMixin extends BaseMixin {
     @JsonCreator
     public RelationshipMixin(
             @JsonProperty("predicate") String predicate,
@@ -31,7 +31,7 @@ public class RelationshipMixin {
             @JsonProperty("temporals") List<String> temporals,
             @JsonProperty("locatives") List<String> locatives,
             @JsonProperty("adjuncts") List<String> adjuncts,
-            @JsonProperty("confidence") double confidence
+            @JsonProperty("confidence") Double confidence
     ) {
         //
     }

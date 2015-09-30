@@ -23,7 +23,7 @@ package com.basistech.rosette.apimodel;
 public final class LanguageDetectionResult {
 
     private final LanguageCode language;
-    private final double confidence;
+    private final Double confidence;
     
     /**
      * Constructor for {@code LanguageDetectionResult}
@@ -32,7 +32,7 @@ public final class LanguageDetectionResult {
      */
     public LanguageDetectionResult(
             LanguageCode language,
-            double confidence
+            Double confidence
     ) {
         this.language = language;
         this.confidence = confidence;
@@ -50,7 +50,7 @@ public final class LanguageDetectionResult {
      * get the detection confidence
      * @return the confidence
      */
-    public double getConfidence() {
+    public Double getConfidence() {
         return confidence;
     }
 
@@ -77,6 +77,6 @@ public final class LanguageDetectionResult {
 
         LanguageDetectionResult that = (LanguageDetectionResult) o;
         return language != null ? language.equals(that.getLanguage()) : that.language == null
-                && confidence == that.getConfidence();
+                && confidence.equals(that.getConfidence());
     }
 }

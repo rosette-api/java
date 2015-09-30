@@ -30,7 +30,7 @@ public final class Relationship {
     private final List<String> temporals;
     private final List<String> locatives;
     private final List<String> adjuncts;
-    private final double confidence;
+    private final Double confidence;
 
     /**
      * constructor for {@code Relationship}
@@ -51,7 +51,7 @@ public final class Relationship {
             List<String> temporals,
             List<String> locatives,
             List<String> adjuncts,
-            double confidence) {
+            Double confidence) {
         this.predicate = predicate;
         this.arg1 = arg1;
         this.arg2 = arg2;
@@ -157,7 +157,7 @@ public final class Relationship {
      * get the confidence
      * @return the confidence
      */
-    public double getConfidence() {
+    public Double getConfidence() {
         return confidence;
     }
 }

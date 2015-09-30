@@ -25,7 +25,7 @@ public class LinkedEntityMixin extends BaseMixin {
             @JsonProperty("entityId") String entityId,
             @JsonProperty("indocChainId") int indocChainId,
             @JsonProperty("mention") String mention,
-            @JsonProperty("confidence") double confidence
+            @JsonProperty("confidence") Double confidence
     ) {
         //
     }

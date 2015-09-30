@@ -24,7 +24,7 @@ public final class LinkedEntity {
     private final String entityId;
     private final int indocChainId;
     private final String mention;
-    private final double confidence;
+    private final Double confidence;
 
     /**
      * constructor for {@code LinkedEntity}
@@ -37,7 +37,7 @@ public final class LinkedEntity {
             String entityId,
             int indocChainId,
             String mention,
-            double confidence) {
+            Double confidence) {
         this.entityId = entityId;
         this.indocChainId = indocChainId;
         this.mention = mention;
@@ -72,7 +72,7 @@ public final class LinkedEntity {
      * get the confidence
      * @return the confidence
      */
-    public double getConfidence() {
+    public Double getConfidence() {
         return confidence;
     }
 
@@ -103,6 +103,6 @@ public final class LinkedEntity {
         return entityId != null ? entityId.equals(that.getEntityId()) : that.entityId == null
                 && indocChainId == that.getIndocChainId()
                 && mention != null ? mention.equals(that.getMention()) : that.mention == null
-                && confidence == that.getConfidence();
+                && confidence.equals(that.getConfidence());
     }
 }

@@ -24,7 +24,7 @@ public class LanguageDetectionResultMixin extends BaseMixin {
     @JsonCreator
     public LanguageDetectionResultMixin(
             @JsonProperty("language") LanguageCode language,
-            @JsonProperty("confidence") double confidence
+            @JsonProperty("confidence") Double confidence
     ) {
         //
     }
