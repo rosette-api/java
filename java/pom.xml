@@ -50,7 +50,7 @@
             <dependency>
                 <groupId>com.basistech.rosette</groupId>
                 <artifactId>rosette-api-json</artifactId>
-                <version>${project.version}</version> <!-- TODO: Update to new version -->
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
