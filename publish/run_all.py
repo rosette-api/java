@@ -8,6 +8,7 @@ import platform
 import pip
 pip.main(["install", "--upgrade", "--user", "pip"])
 pip.main(["install", "--upgrade", "--user", "gitpython"])
+import git
 from git import Repo
 join = os.path.join
 
