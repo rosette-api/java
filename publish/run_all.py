@@ -93,12 +93,12 @@ def runpython():
                 print 'Failed to move back into examples'
 
             if len(failures) != 0:
-                cleanup()
                 print 'Failed to pass these examples: ' + ', '.join(failures)
+            else:
+                failed = False
 
             # at the end clean up the folder
             cleanup()
-            failed = False
         except:
             runs = runs + 1
             print 'Attempt ' + str(runs) + ' failed. Retrying'
@@ -250,12 +250,12 @@ def runjava():
                 print 'Failed to move back into examples'
 
             if len(failures) != 0:
-                cleanup()
                 print 'Failed to pass these examples: ' + ', '.join(failures)
+            else:
+                failed = False
 
             # at the end clean up the folder
             cleanup()
-            failed = False
         except:
             runs = runs + 1
             print 'Attempt ' + str(runs) + ' failed. Retrying'
@@ -322,12 +322,12 @@ def runnode():
                 print 'Failed to move back into examples'
 
             if len(failures) != 0:
-                cleanup()
                 print 'Failed to pass these examples: ' + ', '.join(failures)
+            else:
+                failed = False
 
             # at the end clean up the folder
             cleanup()
-            failed = False
         except:
             runs = runs + 1
             print 'Attempt ' + str(runs) + ' failed. Retrying'
@@ -386,12 +386,12 @@ def runphp():
             except:
                 print 'Failed to move back into examples'
             if len(failures) != 0:
-                cleanup()
                 print 'Failed to pass these examples: ' + ', '.join(failures)
+            else:
+                failed = False
 
             # at the end clean up the folder
             cleanup()
-            failed = False
         except:
             runs = runs + 1
             print 'Attempt ' + str(runs) + ' failed. Retrying'
