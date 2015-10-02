@@ -50,10 +50,9 @@ def runpython():
         try:
             # Start by cleaning up and setting up
             cleanup()
-            try:
-                pip.main(["install", "--upgrade", "argparse"])
-            except:
-                pass
+
+            #Install some packages if missing them
+            pip.main(["install", "--upgrade", "argparse"])
             Repo.clone_from("https://github.com/rosette-api/python.git", "gitclone")
             # install rosette_api python package
             pip.main(["install", "--upgrade", "rosette_api"])
@@ -119,7 +118,6 @@ def runcsharp():
             cleanup()
 
             # clone from git and get examples
-            print "cloning from github"
             Repo.clone_from("https://github.com/rosette-api/csharp.git", "gitclone")
             
             # Try to move into the cloned examples folder
@@ -129,9 +127,9 @@ def runcsharp():
                 print 'Failed to move into gitclone/rosette_apiExamples'
             
             # Try to install rosette_api from nuget
-            print "installing api from nuget"
             subprocess.call(["nuget", "install", "rosette_api", "-o", "rosettePackage"])
 
+            #Move rosette_api.dll to examples folder
             try:
                 version = listdir(os.path.join(os.path.realpath('.'), 'rosettePackage'))[0]
                 src = os.path.join(os.path.realpath('.'), 'rosettePackage/' + version + '/lib/net45/rosette_api.dll')
@@ -164,6 +162,12 @@ def runcsharp():
                         print f + " was unable to be compiled and run"
                         failures = failures + [f]
 
+            # Exit test folder
+            try:
+                os.chdir(os.path.realpath('../..'))
+            except:
+                print 'Failed to move back into examples'
+
             if len(failures) != 0:
                 print 'Failed to pass these examples: ' + ', '.join(failures)
             else:
@@ -181,17 +185,231 @@ def runcsharp():
     else:
         print 'All tests passed successfully'
         return True
-    
+
+def runjava():
+    failed = True
+    runs = 0
+    while failed and runs < 3:
+        try:
+            # Start by cleaning up
+            cleanup()
+
+            # clone from git and get examples
+            Repo.clone_from("https://github.com/rosette-api/java.git", "gitclone")
+
+            # Set version from command line
+            if len(sys.argv) == 1:
+                version = '0.5.1-SNAPSHOT'
+            else:
+                version = sys.argv[1]
+
+            # Get path to rosette jar file
+            path = os.path.realpath('api/target/rosette-api-'+version+'.jar') 
+
+            # Try to move into the cloned examples folder
+            try:
+                os.chdir(os.path.realpath('gitclone/examples/src/main/java'))
+            except:
+                print 'Failed to move into gitclone/examples/src/main/java'
+                cleanup()
+
+            # compile and run each example
+            failures = []
+            retry = 10
+            for f in listdir(os.path.realpath('com/basistech/rosette/examples')):
+                if f.endswith(".java"):
+                    print f
+                    success = False
+                    try:
+                        for i in range(retry):
+                            if not "ExampleBase" in f:
+                                subprocess.call(["javac", "-cp", path + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                                cmd = subprocess.Popen(["java", "-cp", path + ":.", '-Drosette.api.key=88afd6b4b18a11d1248639ecf399903c', "com.basistech.rosette.examples." + os.path.splitext(f)[0]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                                cmd_out, cmd_err = cmd.communicate()
+                                if "Exception" not in cmd_out and "{" in cmd_out:
+                                    success = True
+                                    break
+                                time.sleep(2)
+                        print cmd_out
+                        if not success:
+                            failures = failures + [f]
+                    except:
+                        print f + " was unable to be compiled and run"
+                        failures = failures + [f]
+
+            # Exit test folder
+            try:
+                os.chdir(os.path.realpath('../..'))
+            except:
+                print 'Failed to move back into examples'
+
+            if len(failures) != 0:
+                cleanup()
+                print 'Failed to pass these examples: ' + ', '.join(failures)
+
+            # at the end clean up the folder
+            cleanup()
+            failed = False
+        except:
+            runs = runs + 1
+            print 'Attempt ' + str(runs) + ' failed. Retrying'
+
+    if failed:
+        print 'Failed after 3 attempts'
+        return False
+    else:
+        print 'All tests passed successfully'
+        return True
+
+def runnode():
+    failed = True
+    runs = 0
+    while failed and runs < 3:
+        try:
+            # Start by cleaning up
+            cleanup()
+
+            # clone from git and get examples
+            Repo.clone_from("https://github.com/rosette-api/nodejs.git", "gitclone")
+            
+            # Try to move into the cloned examples folder
+            try:
+                os.chdir(os.path.realpath('gitclone/examples'))
+            except:
+                print 'Failed to move into gitclone/examples'
+                cleanup()
+
+            # Try to perform npm install
+            try:
+                subprocess.call(["npm", "install"])
+            except:
+                print "Failed to perform npm install"
+                cleanup()
+
+            # compile and run each example
+            failures = []
+            retry = 10
+            for f in listdir(os.path.realpath('.')):
+                if f.endswith(".js"):
+                    print f
+                    success = False
+                    try:
+                        for i in range(retry): 
+                            cmd = subprocess.Popen(["node", f, '--key', "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                            cmd_out, cmd_err = cmd.communicate()
+                            if "Exception" not in cmd_out and "{" in cmd_out:
+                                success = True
+                                break
+                            time.sleep(2)
+                        print cmd_out
+
+                        if not success:
+                            failures = failures + [f]
+                    except:
+                        print f + " was unable to be compiled and run"
+                        failures = failures + [f]
+
+            # Exit test folder
+            try:
+                os.chdir(os.path.realpath('../..'))
+            except:
+                print 'Failed to move back into examples'
+
+            if len(failures) != 0:
+                cleanup()
+                print 'Failed to pass these examples: ' + ', '.join(failures)
+
+            # at the end clean up the folder
+            cleanup()
+            failed = False
+        except:
+            runs = runs + 1
+            print 'Attempt ' + str(runs) + ' failed. Retrying'
+
+    if failed:
+        print 'Failed after 3 attempts'
+        return False
+    else:
+        print 'All tests passed successfully'
+        return True
+
+def runphp():
+    failed = True
+    runs = 0
+    while failed and runs < 3:
+        try:
+            # Start by cleaning up
+            cleanup()
+
+            # clone from git and get examples
+            Repo.clone_from("https://github.com/rosette-api/php.git", "gitclone")
+
+            # Try to move into the cloned examples folder
+            try:
+                os.chdir(os.path.realpath('gitclone/examples'))
+            except:
+                print 'Failed to move into gitclone/examples'
+
+            # compile and run each example
+            failures = []
+            retry = 10
+            for f in listdir(os.path.join(os.path.realpath('.'))):
+                if f.endswith(".php"):
+                    print f
+                    success = False
+                    try:
+                        for i in range(retry):
+                            cmd = subprocess.Popen(["php", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                            cmd_out, cmd_err = cmd.communicate()
+                            print cmd_out
+                            if "Exception" not in cmd_out and "{" in cmd_out:
+                                success = True
+                                break
+                        time.sleep(2)
+                        print cmd_out
+
+                        if not success:
+                            failures = failures + [f]
+                    except:
+                        print f + " was unable to be compiled and run"
+                        failures = failures + [f]
+
+            # Exit test folder
+            try:
+                os.chdir(os.path.realpath('../..'))
+            except:
+                print 'Failed to move back into examples'
+            if len(failures) != 0:
+                cleanup()
+                print 'Failed to pass these examples: ' + ', '.join(failures)
+
+            # at the end clean up the folder
+            cleanup()
+            failed = False
+        except:
+            runs = runs + 1
+            print 'Attempt ' + str(runs) + ' failed. Retrying'
+
+    if failed:
+        print 'Failed after 3 attempts'
+        return False
+    else:
+        print 'All tests passed successfully'
+        return True
+
 if "Windows" in currOS:
-    #Run Python first
-    pythonsuccess = runpython()
-    #Run C# next
-    csharpsuccess = runcsharp()
-    os.chdir(os.path.realpath('../..'))
-    cleanup()
-    if pythonsuccess and csharpsuccess:
+    #Run Python and C#
+    if runpython() and runcsharp():
+        cleanup()
         sys.exit(0)
     else:
+        cleanup()
         sys.exit('Python and C# failed')
 else:
-    pass    
+    #Run Java, nodejs, and php
+    if runjava() and runnode() and runphp():
+        cleanup()
+        sys.exit(0)
+    else:
+        cleanup()
+        sys.exit('Java, Nodejs, and Php failed')
