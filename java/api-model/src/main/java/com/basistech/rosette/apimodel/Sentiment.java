@@ -24,7 +24,7 @@ import java.util.List;
 public final class Sentiment {
 
     private final String label;
-    private final double confidence;
+    private final Double confidence;
     private final List<String> explanations;
 
     /**
@@ -35,7 +35,7 @@ public final class Sentiment {
      */
     public Sentiment(
             String label,
-            double confidence,
+            Double confidence,
             List<String> explanations) {
         this.label = label;
         this.confidence = confidence;
@@ -54,7 +54,7 @@ public final class Sentiment {
      * get the confidence 
      * @return the confidence
      */
-    public double getConfidence() {
+    public Double getConfidence() {
         return confidence;
     }
 
@@ -90,7 +90,7 @@ public final class Sentiment {
 
         Sentiment that = (Sentiment) o;
         return label != null ? label.equals(that.getLabel()) : that.label == null
-                && confidence == that.getConfidence()
+                && confidence.equals(that.getConfidence())
                 && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;
     }
 }

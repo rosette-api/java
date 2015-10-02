@@ -26,7 +26,7 @@ public final class Entity {
     private final String mention;
     private final String normalized;
     private final int count;
-    private final double confidence;
+    private final Double confidence;
 
     /**
      * constructor for {@code Entity}
@@ -43,7 +43,7 @@ public final class Entity {
             String mention,
             String normalized,
             int count,
-            double confidence
+            Double confidence
     ) {
         this.indocChainId = indocChainId;
         this.type = type;
@@ -97,7 +97,7 @@ public final class Entity {
      * get the confidence 
      * @return the confidence
      */
-    public double getConfidence() {
+    public Double getConfidence() {
         return confidence;
     }
 
@@ -132,6 +132,6 @@ public final class Entity {
                 && mention != null ? mention.equals(that.getMention()) : that.mention == null
                 && normalized != null ? normalized.equals(that.getNormalized()) : that.normalized == null
                 && count == that.getCount()
-                && confidence == that.getConfidence();
+                && confidence.equals(that.getConfidence());
     }
 }

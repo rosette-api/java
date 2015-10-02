@@ -29,7 +29,7 @@ public class TranslatedNameResultMixin  extends BaseMixin {
             @JsonProperty("targetLanguage") String targetLanguage,
             @JsonProperty("targetScript") String targetScript,
             @JsonProperty("targetScheme") String targetScheme,
-            @JsonProperty("confidence") double confidence
+            @JsonProperty("confidence") Double confidence
     ) {
         //
     }

@@ -27,7 +27,7 @@ public class ExtractedEntityMixin extends BaseMixin {
             @JsonProperty("mention") String mention,
             @JsonProperty("normalized") String normalized,
             @JsonProperty("count") int count,
-            @JsonProperty("confidence") double confidence
+            @JsonProperty("confidence") Double confidence
     ) {
         //
     }

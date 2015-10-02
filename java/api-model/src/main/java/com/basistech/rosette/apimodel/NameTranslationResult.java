@@ -28,7 +28,7 @@ public final class NameTranslationResult {
     private final String targetScript;
     private final String targetScheme;
     private final String translation;
-    private final double confidence;
+    private final Double confidence;
     
     /**
      * constructor for {@code TranslatedNamesResult}
@@ -48,7 +48,7 @@ public final class NameTranslationResult {
             String targetLanguage,
             String targetScript,
             String targetScheme,
-            double confidence) {
+            Double confidence) {
         this.sourceScript = sourceScript;
         this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
         this.sourceLanguageOfUse = sourceLanguageOfUse;
@@ -119,7 +119,7 @@ public final class NameTranslationResult {
      * get the confidence of the translation
      * @return the confidence of the translation
      */
-    public double getConfidence() {
+    public Double getConfidence() {
         return confidence;
     }
 
@@ -157,6 +157,6 @@ public final class NameTranslationResult {
                 && targetLanguage != null ? targetLanguage.equals(that.getTargetLanguage()) : that.targetLanguage == null
                 && targetScript != null ? targetScript.equals(that.getTargetScript()) : that.targetScript == null
                 && targetScheme != null ? targetScheme.equals(that.getTargetScheme()) : that.targetScheme == null
-                && confidence == that.getConfidence();
+                && confidence.equals(that.getConfidence());
     }
 }
