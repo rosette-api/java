@@ -235,7 +235,7 @@ def runjava():
                                     break
                                 time.sleep(2)
                         print cmd_out
-                        if not success:
+                        if not success and not "ExampleBase" in f:
                             failures = failures + [f]
                     except:
                         print f + " was unable to be compiled and run"
@@ -244,6 +244,8 @@ def runjava():
             # Exit test folder
             try:
                 os.chdir(os.path.realpath('../..'))
+                cleanup()
+                os.chdir(os.path.realpath('../publish'))
             except:
                 print 'Failed to move back into examples'
 
@@ -381,7 +383,6 @@ def runphp():
             # Exit test folder
             try:
                 os.chdir(os.path.realpath('../..'))
-                os.chdir(os.path.realpath('../publish'))
             except:
                 print 'Failed to move back into examples'
             if len(failures) != 0:
