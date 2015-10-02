@@ -39,9 +39,21 @@
     </properties>
     <modules>
         <module>api</module>
-        <module>api-model</module>
-        <module>json</module>
     </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.basistech.rosette</groupId>
+                <artifactId>rosette-api-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.basistech.rosette</groupId>
+                <artifactId>rosette-api-json</artifactId>
+                <version>${project.version}</version> <!-- TODO: Update to new version -->
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <profiles>
         <profile>
             <id>Target</id>
