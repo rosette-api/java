@@ -195,6 +195,9 @@ def runjava():
             # Start by cleaning up
             cleanup()
 
+            #Move into Java directory
+            os.chdir(os.path.realpath('../java'))
+            
             # clone from git and get examples
             Repo.clone_from("https://github.com/rosette-api/java.git", "gitclone")
 
@@ -378,6 +381,7 @@ def runphp():
             # Exit test folder
             try:
                 os.chdir(os.path.realpath('../..'))
+                os.chdir(os.path.realpath('../publish'))
             except:
                 print 'Failed to move back into examples'
             if len(failures) != 0:
