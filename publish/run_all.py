@@ -6,8 +6,8 @@ import time
 import sys
 import platform
 import pip
-pip.main(["install", "--upgrade", "pip"])
-pip.main(["install", "--upgrade", "gitpython"])
+pip.main(["install", "--upgrade", "--user", "pip"])
+pip.main(["install", "--upgrade", "--user", "gitpython"])
 from git import Repo
 join = os.path.join
 
