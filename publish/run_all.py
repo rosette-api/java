@@ -52,10 +52,10 @@ def runpython():
             cleanup()
 
             #Install some packages if missing them
-            pip.main(["install", "--upgrade", "argparse"])
+            pip.main(["install", "--upgrade", "--user", "argparse"])
             Repo.clone_from("https://github.com/rosette-api/python.git", "gitclone")
             # install rosette_api python package
-            pip.main(["install", "--upgrade", "rosette_api"])
+            pip.main(["install", "--upgrade", "--user", "rosette_api"])
 
             # Try to move into the cloned examples folder
             try:
@@ -398,18 +398,18 @@ def runphp():
         return True
 
 if "Windows" in currOS:
-    #Run Python and C#
-    if runpython() and runcsharp():
+    #Run C#
+    if runcsharp():
         cleanup()
         sys.exit(0)
     else:
         cleanup()
-        sys.exit('Python and C# failed')
+        sys.exit('C# failed')
 else:
     #Run Java, nodejs, and php
-    if runjava() and runnode() and runphp():
+    if runpython() and runnode() and runphp() and runjava():
         cleanup()
         sys.exit(0)
     else:
         cleanup()
-        sys.exit('Java, Nodejs, and Php failed')
+        sys.exit('python, Nodejs, Php, and Java failed')
