@@ -24,6 +24,17 @@
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
+        <repository>
+            <id>basistech.repo</id>
+            <name>Basis Local Repository</name>
+            <url>http://maven.basistech.net/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>basistech.snapshot.repo</id>
+            <name>Basistech Local Snapshot Repository</name>
+            <url>http://maven.basistech.net/nexus/content/repositories/snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
         <site>
             <id>adm-site</id>
             <url>scm:git:git@git.basistech.net:raas/rosette-api-model.git</url>
