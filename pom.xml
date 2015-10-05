@@ -13,7 +13,7 @@
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-parent</artifactId>
     <name>rosette-api-parent</name>
-    <version>0.7.0</version>
+    <version>0.8.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>Parent project for Rosette API Model</description>
     <inceptionYear>2015</inceptionYear>
@@ -21,7 +21,7 @@
     <scm>
         <connection>scm:git:git@git.basistech.net:raas/rosette-api-model.git</connection>
         <developerConnection>scm:git:git@git.basistech.net:raas/rosette-api-model.git</developerConnection>
-        <tag>rosette-api-0.7.0</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
