@@ -82,7 +82,7 @@ def runpython():
                         print cmd_out
                         if not success:
                             failures = failures + [f]
-                    except:
+                    except Exception:
                         print f + " was unable to be compiled and run"
                         failures = failures + [f]
 
@@ -94,6 +94,7 @@ def runpython():
 
             if len(failures) != 0:
                 print 'Failed to pass these examples: ' + ', '.join(failures)
+                runs = runs + 1
             else:
                 failed = False
 
@@ -171,6 +172,7 @@ def runcsharp():
 
             if len(failures) != 0:
                 print 'Failed to pass these examples: ' + ', '.join(failures)
+                runs = runs + 1
             else:
                 failed = False
 
@@ -251,6 +253,7 @@ def runjava():
 
             if len(failures) != 0:
                 print 'Failed to pass these examples: ' + ', '.join(failures)
+                runs = runs + 1
             else:
                 failed = False
 
@@ -323,6 +326,7 @@ def runnode():
 
             if len(failures) != 0:
                 print 'Failed to pass these examples: ' + ', '.join(failures)
+                runs = runs + 1
             else:
                 failed = False
 
@@ -387,6 +391,7 @@ def runphp():
                 print 'Failed to move back into examples'
             if len(failures) != 0:
                 print 'Failed to pass these examples: ' + ', '.join(failures)
+                runs = runs + 1
             else:
                 failed = False
 
