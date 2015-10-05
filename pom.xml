@@ -98,6 +98,19 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <!-- This plugin overrides deploy -->
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.6</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>basistech.repo</serverId>
+                    <nexusUrl>http://nexus.basistech.net:8081/nexus/</nexusUrl>
+                    <!-- ID for text-analytics staging profile -->
+                    <stagingProfileId>1dd11ca8866422</stagingProfileId>
+                </configuration>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
