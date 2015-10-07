@@ -17,12 +17,10 @@
         <dependency>
             <groupId>com.basistech.rosette</groupId>
             <artifactId>rosette-api-model</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
             <artifactId>rosette-api-json</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
