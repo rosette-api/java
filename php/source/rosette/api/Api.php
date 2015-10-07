@@ -340,12 +340,11 @@ class Api
                 $versionToCheck = self::$binding_version;
             }
             $resultObject = $this->postHttp($url . "/info?clientVersion=$versionToCheck", $this->headers, null, $this->getOptions());
-            var_dump($resultObject);
             if ($resultObject['versionChecked'] === true) {
                 $this->version_checked = true;
             } else {
                 throw new RosetteException(
-                    'The server version is not compatible with binding version' . strval($versionToCheck),
+                    'The server version is not compatible with binding version ' . strval($versionToCheck),
                     RosetteException::$INCOMPATIBLE_VERSION
                 );
             }
