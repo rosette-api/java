@@ -31,6 +31,7 @@
     </distributionManagement>
 
     <properties>
+        <rosette-api-model-version>0.7.0</rosette-api-model-version>
         <jackson-version>2.6.2</jackson-version>
         <junit-version>4.12</junit-version>
         <assembly.skipAssembly>false</assembly.skipAssembly>
@@ -45,12 +46,12 @@
             <dependency>
                 <groupId>com.basistech.rosette</groupId>
                 <artifactId>rosette-api-model</artifactId>
-                <version>${project.version}</version>
+                <version>${rosette-api-model-version}</version>
             </dependency>
             <dependency>
                 <groupId>com.basistech.rosette</groupId>
                 <artifactId>rosette-api-json</artifactId>
-                <version>${project.version}</version>
+                <version>${rosette-api-model-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
