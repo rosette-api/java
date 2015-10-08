@@ -67,6 +67,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
  */
 public final class RosetteAPI {
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
+    public static final String BINDING_VERSION = "0.5";
 
     private static final String LANGUAGE_SERVICE_PATH = "/language";
     private static final String MORPHOLOGY_SERVICE_PATH = "/morphology/";
@@ -79,6 +80,7 @@ public final class RosetteAPI {
     private static final String TOKENS_SERVICE_PATH = "/tokens";
     private static final String SENTENCES_SERVICE_PATH = "/sentences";
     private static final String INFO_SERVICE_PATH = "/info";
+    private static final String VERSION_CHECK_PATH = "/info?clientVersion=" + BINDING_VERSION;
     private static final String PING_SERVICE_PATH = "/ping";
     private static final String DEBUG_PARAM_ON = "?debug=true";
     private static final String DEBUG_PARAM_OFF = "";
@@ -126,11 +128,12 @@ public final class RosetteAPI {
      * Sets the base URL of the Rosette service.
      * @param url The base URL
      */
-    public void setUrlBase(String url) {
+    public void setUrlBase(String url) throws IOException, RosetteAPIException {
         urlBase = url;
         if (!urlBase.endsWith("/")) {
             urlBase += "/";
         }
+        checkVersionCompatibility();
     }
 
     /**
@@ -166,6 +169,27 @@ public final class RosetteAPI {
      */
     public InfoResponse info() throws IOException, RosetteAPIException {
         return sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);
+    }
+
+    /**
+     * Checks binding version compatiblity against the Rosette API server
+     * @return boolean true if compatible
+     * @throws IOException
+     * @throws RosetteException
+     */
+    private boolean checkVersionCompatibility() throws IOException, RosetteAPIException {
+        try {
+        InfoResponse response = sendPostRequest("{ body: 'version check' }", urlBase + VERSION_CHECK_PATH, InfoResponse.class);
+        if (!response.isVersionChecked()) {
+            ErrorResponse errResponse = new ErrorResponse("0", "incompatibleVersion",
+                    "The server version is not compatible with binding version " + BINDING_VERSION);
+            throw new RosetteAPIException(200, errResponse);
+        }
+        return true;
+        }
+        catch (RosetteAPIException e) {
+            throw e;
+        }
     }
 
     /**
