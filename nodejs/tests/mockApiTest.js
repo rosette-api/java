@@ -56,6 +56,12 @@ function setMock() {
     .get("/info")
     .reply(200, new Buffer(fs.readFileSync("../mock-data/response/info.json")));
 
+  nock("https://api.rosette.com/rest/v1")
+    .persist()
+    .post("/info")
+    .query(true)
+    .reply(200, { versionChecked: true });
+
   var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
     "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
     "sentences", "sentiment", "tokens", "translated-name"];
@@ -365,6 +371,12 @@ function setGzipMock() {
     .get("/info")
     .reply(200, new Buffer(fs.readFileSync("../mock-data/response/info.json")));
 
+  nock("https://api.rosette.com/rest/v1")
+    .persist()
+    .post("/info")
+    .query(true)
+    .reply(200, { versionChecked: true });
+
   var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
     "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
     "sentences", "sentiment", "tokens", "translated-name"];
@@ -541,6 +553,12 @@ exports.testTextOnly = {
       .persist()
       .get("/info")
       .reply(200, new Buffer(fs.readFileSync("../mock-data/response/info.json")));
+
+    nock("https://api.rosette.com/rest/v1")
+      .persist()
+      .post("/info")
+      .query(true)
+      .reply(200, { versionChecked: true });
 
     nock("https://api.rosette.com/rest/v1")
       .persist()
