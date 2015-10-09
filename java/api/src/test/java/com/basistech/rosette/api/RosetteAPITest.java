@@ -129,12 +129,6 @@ public class RosetteAPITest extends Assert {
                 String statusStr = getStringFromInputStream(statusStream);
                 statusCode = Integer.parseInt(statusStr);
             }
-//            HttpResponse response;
-//            if (HttpRequest.request().getPath().getValue().contains("/info")) {
-//                response = new HttpResponse().withStatusCode(200).withBody("{ \"buildNumber\": \"6bafb29d\", \"buildTime\": \"2015.10.08_10:19:26\", \"name\": \"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }");
-//            } else {
-//                response = new HttpResponse().withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8);
-//            }
 
             if (responseStr.length() > 200) {  // test gzip if response is somewhat big
                 new MockServerClient("localhost", serverPort)
@@ -143,7 +137,7 @@ public class RosetteAPITest extends Assert {
                         .respond(HttpResponse.response()
                                 .withHeader("Content-Type", "application/json")
                                 .withHeader("Content-Encoding", "gzip")
-                                .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
+                                .withStatusCode(statusCode).withBody(gzip(responseStr)));
                 
             } else {
                 new MockServerClient("localhost", serverPort)
@@ -154,17 +148,15 @@ public class RosetteAPITest extends Assert {
                                 .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
             }
             new MockServerClient("localhost", serverPort)
-                .reset()
                 .when(HttpRequest.request()
-                    .withPath("info"))
+                    .withPath("/info"))
                 .respond(HttpResponse.response()
                     .withStatusCode(200)
                     .withHeader("Content-Type", "application/json")
                     .withBody("{ \"buildNumber\": \"6bafb29d\", \"buildTime\": \"2015.10.08_10:19:26\", \"name\": \"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }", StandardCharsets.UTF_8));
 
             String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
-            api = new RosetteAPI("my-key-123");
-            api.setUrlBase(mockServiceUrl);
+            api = new RosetteAPI("my-key-123", mockServiceUrl);
         }
     }
 

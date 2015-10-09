@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-mvn clean install
+mvn clean install -Dtarget=true
 cd target/github-publish/examples
 mvn
 begin='src/main/java/com/basistech/rosette/examples/'

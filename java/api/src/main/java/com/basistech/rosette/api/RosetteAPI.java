@@ -117,23 +117,30 @@ public final class RosetteAPI {
      * Constructs a Rosette API instance using an API key.
      *
      * @param key Rosette API key
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
-    public RosetteAPI(String key) {
+    public RosetteAPI(String key) throws IOException, RosetteAPIException {
         this.key = key;
         this.failureRetries = 1;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        checkVersionCompatibility();
     }
 
     /**
-     * Sets the base URL of the Rosette service.
-     * @param url The base URL
+     * Constructs a Rosette API instance using an API key and accepts an
+     * alternate URL for testing purposes.
+     *
+     * @param key Rosette API key
      */
-    public void setUrlBase(String url) throws IOException, RosetteAPIException {
-        urlBase = url;
+    public RosetteAPI(String key, String alternateUrl) {
+        urlBase = alternateUrl;
         if (!urlBase.endsWith("/")) {
             urlBase += "/";
         }
-        checkVersionCompatibility();
+        this.key = key;
+        this.failureRetries = 1;
+        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
     /**
@@ -164,8 +171,8 @@ public final class RosetteAPI {
     /**
      * Gets information about the Rosette API, returns name, version, build number and build time.
      * @return InfoResponse
-     * @throws IOException
-     * @throws RosetteAPIException
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
     public InfoResponse info() throws IOException, RosetteAPIException {
         return sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);
@@ -195,8 +202,8 @@ public final class RosetteAPI {
     /**
      * Pings the Rosette API for a response indicting that the service is available.
      * @return PingResponse
-     * @throws IOException
-     * @throws RosetteAPIException
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
     public PingResponse ping() throws IOException, RosetteAPIException {
         return sendGetRequest(urlBase + PING_SERVICE_PATH, PingResponse.class);
@@ -206,8 +213,8 @@ public final class RosetteAPI {
      * Matches 2 names and returns a score in NameMatchingResponse.
      * @param request NameMatchingRequest contains 2 names.
      * @return NameMatchingResponse
-     * @throws RosetteAPIException
-     * @throws IOException
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
     public NameMatchingResponse matchName(NameMatchingRequest request) throws RosetteAPIException, IOException {
         return sendPostRequest(request, urlBase + MATCHED_NAME_SERVICE_PATH, NameMatchingResponse.class);
@@ -816,7 +823,7 @@ public final class RosetteAPI {
      * Provides information on the language endpoint
      *
      * @return {@link com.basistech.rosette.apimodel.LanguageInfoResponse LanguageInfoResponse}
-     * @throws RosetteAPIException
+     * @throws RosetteAPIException Rosette specific exception
      * @throws IOException
      */
     public LanguageInfoResponse getLanguageInfo() throws RosetteAPIException, IOException {
@@ -827,8 +834,8 @@ public final class RosetteAPI {
      * Provides information on Rosette API
      *
      * @return {@link com.basistech.rosette.apimodel.InfoResponse InfoResponse}
-     * @throws RosetteAPIException
-     * @throws IOException
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
     public InfoResponse getInfo() throws RosetteAPIException, IOException {
         return sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);
