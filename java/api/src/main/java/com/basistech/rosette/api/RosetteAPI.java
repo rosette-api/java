@@ -121,10 +121,7 @@ public final class RosetteAPI {
      * @throws IOException General IO exception
      */
     public RosetteAPI(String key) throws IOException, RosetteAPIException {
-        this.key = key;
-        this.failureRetries = 1;
-        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-        checkVersionCompatibility();
+        this(key, DEFAULT_URL_BASE);
     }
 
     /**
@@ -133,14 +130,12 @@ public final class RosetteAPI {
      *
      * @param key Rosette API key
      */
-    public RosetteAPI(String key, String alternateUrl) {
+    public RosetteAPI(String key, String alternateUrl) throws IOException, RosetteAPIException {
         urlBase = alternateUrl;
-        if (!urlBase.endsWith("/")) {
-            urlBase += "/";
-        }
         this.key = key;
         this.failureRetries = 1;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        checkVersionCompatibility();
     }
 
     /**
@@ -182,21 +177,16 @@ public final class RosetteAPI {
      * Checks binding version compatiblity against the Rosette API server
      * @return boolean true if compatible
      * @throws IOException
-     * @throws RosetteException
+     * @throws RosetteAPIException
      */
     private boolean checkVersionCompatibility() throws IOException, RosetteAPIException {
-        try {
-        InfoResponse response = sendPostRequest("{ body: 'version check' }", urlBase + VERSION_CHECK_PATH, InfoResponse.class);
+        InfoResponse response = sendPostRequest("", urlBase + VERSION_CHECK_PATH, InfoResponse.class);
         if (!response.isVersionChecked()) {
             ErrorResponse errResponse = new ErrorResponse("0", "incompatibleVersion",
-                    "The server version is not compatible with binding version " + BINDING_VERSION);
-            throw new RosetteAPIException(200, errResponse);
+                    "The server version is not compatible with client binding version " + BINDING_VERSION);
+            throw new RosetteAPIException(400, errResponse);
         }
         return true;
-        }
-        catch (RosetteAPIException e) {
-            throw e;
-        }
     }
 
     /**
