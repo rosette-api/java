@@ -520,6 +520,82 @@ namespace rosette_api
             return getResponse(SetupClient());
         }
 
+        /// <summary>Relationships
+        /// <para>
+        /// (POST)Relationships Endpoint: Returns each relationship extracted from the input.
+        /// </para>
+        /// </summary>
+        /// <param name="content">(string, optional): Input to process (JSON string or base64 encoding of non-JSON string)</param>
+        /// <param name="language">(string, optional): Language: ISO 639-3 code (ignored for the /language endpoint)</param>
+        /// <param name="contentType">(string, optional): MIME type of the input (required for base64 content; if content type is unknown, set to "application/octet-stream")</param>
+        /// <param name="unit">(string, optional): Input unit: "doc" (document, the default) or "sentence"</param>
+        /// <param name="contentUri">(string, optional): URI to accessible content (content and contentUri are mutually exclusive)</param>
+        /// <returns>
+        /// The response is a list of extracted relationships. A relationship contains
+        /// 
+        /// predicate - usually the main verb, property or action that is expressed by the text
+        /// arg1 - usually the subject, agent or main actor of the relationship
+        /// arg2 [optional] - complements the predicate and is usually the object, theme or patient of the relationship
+        /// arg3 [optional] - usually an additional object in ditransitive verbs
+        /// adjuncts [optional] - contain all optional parts of a relationship which are not temporal or locative expressions
+        /// locatives [optional] - usually express the locations the action expressed by the relationship took place
+        /// temporals [optional] - usually express the time in which the action expressed by the relationship took place
+        /// confidence = a measure of quality of relationship extraction, between 0 - 1
+        /// </returns>
+        public Dictionary<string, object> Relationships(string content = null, string language = null, string contentType = null, string unit = null, string contentUri = null)
+        {
+            _uri = "relationships/";
+            return Process(content, language, contentType, unit, contentUri);
+        }
+
+        /// <summary>Relationships
+        /// <para>
+        /// (POST)Relationships Endpoint: Returns each relationship extracted from the input.
+        /// </para>
+        /// </summary>
+        /// <param name="dict">Dictionary&lt;object, object&gt;: Dictionary containing parameters as (key,value) pairs</param>
+        /// <returns>
+        /// The response is a list of extracted relationships. A relationship contains
+        /// 
+        /// predicate - usually the main verb, property or action that is expressed by the text
+        /// arg1 - usually the subject, agent or main actor of the relationship
+        /// arg2 [optional] - complements the predicate and is usually the object, theme or patient of the relationship
+        /// arg3 [optional] - usually an additional object in ditransitive verbs
+        /// adjuncts [optional] - contain all optional parts of a relationship which are not temporal or locative expressions
+        /// locatives [optional] - usually express the locations the action expressed by the relationship took place
+        /// temporals [optional] - usually express the time in which the action expressed by the relationship took place
+        /// confidence = a measure of quality of relationship extraction, between 0 - 1
+        /// </returns>
+        public Dictionary<string, object> Relationships(Dictionary<object, object> dict)
+        {
+            _uri = "relationships/";
+            return getResponse(SetupClient(), new JavaScriptSerializer().Serialize(dict));
+        }
+
+        /// <summary>Relationships
+        /// <para>
+        /// (POST)Relationships Endpoint: Returns each relationship extracted from the input.
+        /// </para>
+        /// </summary>
+        /// <param name="file">RosetteFile: RosetteFile Object containing the file (and possibly options) to upload</param>
+        /// <returns>
+        /// The response is a list of extracted relationships. A relationship contains
+        /// 
+        /// predicate - usually the main verb, property or action that is expressed by the text
+        /// arg1 - usually the subject, agent or main actor of the relationship
+        /// arg2 [optional] - complements the predicate and is usually the object, theme or patient of the relationship
+        /// arg3 [optional] - usually an additional object in ditransitive verbs
+        /// adjuncts [optional] - contain all optional parts of a relationship which are not temporal or locative expressions
+        /// locatives [optional] - usually express the locations the action expressed by the relationship took place
+        /// temporals [optional] - usually express the time in which the action expressed by the relationship took place
+        /// confidence = a measure of quality of relationship extraction, between 0 - 1
+        /// </returns>
+        public Dictionary<string, object> Relationships(RosetteFile file)
+        {
+            _uri = "relationships/";
+            return Process(file);
+        }
+
         /// <summary>Sentences
         /// <para>
         /// (POST)Sentences Endpoint: Divides the input into sentences.

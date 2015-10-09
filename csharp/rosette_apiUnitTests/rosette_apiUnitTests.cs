@@ -353,6 +353,9 @@ namespace rosette_apiUnitTests
                         case "ping":
                             result = c.Ping();
                             break;
+                        case "relationships":
+                            result = c.Relationships(tdInputData);
+                            break;
                         case "sentences":
                             result = c.Sentences(tdInputData);
                             break;
