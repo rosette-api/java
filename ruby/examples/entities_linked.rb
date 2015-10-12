@@ -14,7 +14,7 @@ request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
 
 content = {
-	content: "${entities_data}"
+	content: "${entities_linked_data}"
 }
 JSONbody = content.to_json
 

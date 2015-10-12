@@ -1,0 +1,1 @@
+curl "https://api.rosette.com/rest/v1/ping" -H'user_key: [your_api-key]'
