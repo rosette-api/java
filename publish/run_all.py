@@ -73,8 +73,8 @@ def runpython():
                     success = False
                     try:
                         for i in range(retry):
-                            cmd = subprocess.Popen(["python", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-                            cmd_out, cmd_err = cmd.communicate()
+                            import os.path.splitext(f)[0]
+                            cmd_out = run("88afd6b4b18a11d1248639ecf399903c")
                             if "Exception" not in cmd_out and "{" in cmd_out:
                                 success = True
                                 break
@@ -409,6 +409,8 @@ def runphp():
         return True
 
 if "Windows" in currOS:
+    runpython()
+    sys.exit()
     #Run C#
     if runcsharp():
         cleanup()
