@@ -10,6 +10,7 @@ import os
 
 from rosette.api import API, DocumentParameters
 
+
 def run(key):
     # Create default file to read from
     # f = tempfile.NamedTemporaryFile(suffix=".html")
@@ -19,7 +20,7 @@ def run(key):
     f.seek(0)
 
     # Create an API instance
-    api = API(user_key = key)
+    api = API(user_key=key)
 
     params = DocumentParameters()
 

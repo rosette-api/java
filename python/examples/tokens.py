@@ -8,10 +8,10 @@ import json
 
 from rosette.api import API, DocumentParameters
 
+
 def run(key):
-    url = "${categories_data}"
     # Create an API instance
-    api = API(user_key = key)
+    api = API(user_key=key)
 
     params = DocumentParameters()
     params["content"] = u"${tokens_data}"

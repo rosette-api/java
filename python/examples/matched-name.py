@@ -8,9 +8,10 @@ import json
 
 from rosette.api import API, NameMatchingParameters
 
+
 def run(key):
     # Create an API instance
-    api = API(user_key = key)
+    api = API(user_key=key)
 
     params = NameMatchingParameters()
     params["name1"] = {"text": "${matched_name_data1}", "language": "eng", "entityType": "PERSON"}

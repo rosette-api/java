@@ -8,9 +8,10 @@ import json
 
 from rosette.api import API
 
+
 def run(key):
     # Create an API instance
-    api = API(user_key = key)
+    api = API(user_key=key)
 
     result = api.ping()
 

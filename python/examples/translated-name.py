@@ -8,10 +8,10 @@ import json
 
 from rosette.api import API, NameTranslationParameters
 
+
 def run(key):
-    url = "${categories_data}"
     # Create an API instance
-    api = API(user_key = key)
+    api = API(user_key=key)
 
     params = NameTranslationParameters()
     params["name"] = u"${translated_name_data}"
