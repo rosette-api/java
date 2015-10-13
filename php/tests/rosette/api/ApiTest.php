@@ -113,18 +113,14 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @group gets
+     * @group posts
      * @expectedException \rosette\api\RosetteException
      */
     public function testCheckVersion()
     {
-        $api = $this->getMockBuilder('rosette\api\Api')
-                    ->setConstructorArgs(array(null))
-                    ->setMethods(array('info'))
-                    ->getMock();
-        $api->method('info')
-            ->willReturn(array('version' => '10.100.100'));
-        $api->checkVersion();
+        $this->userKey = 'checkVersion';
+        $api = $this->setUpApi($this->userKey);
+        $api->checkVersion('http://rosette.basistech.com');
     }
 
     /**
