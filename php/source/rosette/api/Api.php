@@ -686,4 +686,32 @@ class Api
     {
         return $this->callEndpoint($nameMatchingParams, 'matched-name');
     }
+
+    /**
+     * Calls the relationships/info endpoint.
+     *
+     * @return mixed
+     */
+    public function relationshipsInfo()
+    {
+        $this->skipVersionCheck();
+        $url = $this->service_url . '/relationships/info';
+        $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
+
+        return $this->finishResult($resultObject, 'relationships-info');
+    }
+
+    /**
+     * Calls the relationships endpoint.
+     *
+     * @param $params
+     *
+     * @return mixed
+     *
+     * @throws RosetteException
+     */
+    public function relationships($params)
+    {
+        return $this->callEndpoint($params, 'relationships');
+    }
 }

@@ -264,6 +264,9 @@ class ApiTest extends \PHPUnit_Framework_TestCase
             if ($endpoint === 'translated-name') {
                 $result = $api->translatedName($params);
             }
+            if ($endpoint === 'relationships') {
+                $result = $api->relationships($params);
+            }
             // If there is a "code" key, it means an exception should be thrown
             if (!array_key_exists('code', $expected)) {
                 $this->assertSame(json_encode($expected), json_encode($result));
