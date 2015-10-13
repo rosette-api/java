@@ -27,7 +27,7 @@ var DocumentParameters = require("./DocumentParameters");
  *
  * @type string
  */
-var BINDING_VERSION = "0.5";
+var BINDING_VERSION = "0.7";
 
 /**
  * @class

@@ -50,7 +50,7 @@ namespace rosette_api
         /// <summary>
         /// String to set version number. Must be updated on API update.
         /// </summary>
-        private string binding_version = "0.5";
+        private string binding_version = "0.7";
 
         /// <summary>C# API class
         /// <para>Rosette Python Client Binding API; representation of a Rosette server.
