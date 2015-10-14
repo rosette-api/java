@@ -74,7 +74,10 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${basedir}/version_compatibility.sh</executable>
+                            <executable>bash</executable>
+                            <arguments>
+                                <argument>${basedir}/version_compatibility.sh</argument>
+                            </arguments>
                         </configuration>
                     </execution>
                     <execution>
