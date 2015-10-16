@@ -25,7 +25,7 @@ contains the newly merged pull request, if not checkout that hasg/tag.
 This ensures the right files getting published to external github and
 installation repos.
 
-You **must** do a `mvn clean install; (cd java; mvn site)` in the top level directory.
+You **must** do a `mvn clean install -Dtarget=true; (cd java; mvn site)` in the top level directory.
 
 
 Step 1: publish the code

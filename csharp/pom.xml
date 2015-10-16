@@ -4,15 +4,15 @@
     <parent>
         <groupId>com.basistech.rosette.api</groupId>
         <artifactId>bindings</artifactId>
-        <version>0.5.0-SNAPSHOT</version>
+        <version>0.7.0-SNAPSHOT</version>
     </parent>
     <artifactId>csharp</artifactId>
     <packaging>pom</packaging>
     <properties>
         <config>Debug</config>
         <vcvars>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC</vcvars>
-        <oldversion>0.5.1.2</oldversion>
-        <newversion>0.5.1.2</newversion>
+        <oldversion>0.5.6</oldversion>
+        <newversion>0.7.0</newversion>
     </properties>
     <profiles>
         <profile>
