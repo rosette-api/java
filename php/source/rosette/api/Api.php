@@ -45,7 +45,7 @@ class Api
      *
      * @var string
      */
-    private static $compatible_version = '0.5';
+    private static $binding_version = '0.5';
     /**
      * User key (required for Rosette API).
      *
@@ -246,7 +246,7 @@ class Api
     /**
      * Setter for numRetries.
      *
-     * @param int numRetries
+     * @param $numRetries int
      */
     public function setNumRetries($numRetries)
     {
@@ -306,8 +306,8 @@ class Api
      */
     private function callEndpoint($parameters, $subUrl)
     {
+        $this->checkVersion($this->service_url);
         $this->subUrl = $subUrl;
-        $this->checkVersion();
         if ($this->useMultiPart && $parameters->contentType !== RosetteConstants::$DataFormat['SIMPLE']) {
             throw new RosetteException(
                 sprintf('MultiPart requires contentType SIMPLE: %s', $parameters['contentType']),
@@ -326,29 +326,27 @@ class Api
     /**
      * Checks the server version against the api (or provided )version.
      *
+     * @param $url
      * @param $versionToCheck
      *
      * @return bool
      *
      * @throws RosetteException
      */
-    public function checkVersion($versionToCheck = null)
+    public function checkVersion($url, $versionToCheck = null)
     {
         if (!$this->version_checked) {
             if (!$versionToCheck) {
-                $versionToCheck = self::$compatible_version;
+                $versionToCheck = self::$binding_version;
             }
-            $result = $this->info();
-            // compatibility with server side is at minor version level of semver
-            preg_match('/(^[0-9]+\.[0-9]+)/', $result['version'], $matches);
-            $version = $matches[1];
-            if ($version !== $versionToCheck) {
+            $resultObject = $this->postHttp($url . "/info?clientVersion=$versionToCheck", $this->headers, null, $this->getOptions());
+            if ($resultObject['versionChecked'] === true) {
+                $this->version_checked = true;
+            } else {
                 throw new RosetteException(
-                    'The server version is not ' . strval($versionToCheck),
+                    'The server version is not compatible with binding version ' . strval($versionToCheck),
                     RosetteException::$INCOMPATIBLE_VERSION
                 );
-            } else {
-                $this->version_checked = true;
             }
         }
 
@@ -500,7 +498,7 @@ class Api
     {
         $opts['http']['method'] = 'POST';
         $opts['http']['header'] = $this->headersAsString($headers);
-        $opts['http']['content'] = $data->serialize();
+        $opts['http']['content'] = empty($data) ? '' :  $data->serialize();
         $opts['http'] = array_merge($opts['http'], $options);
         $context = stream_context_create($opts);
 
