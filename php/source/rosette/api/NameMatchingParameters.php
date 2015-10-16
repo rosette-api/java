@@ -23,16 +23,23 @@ namespace rosette\api;
 class NameMatchingParameters extends RosetteParamsSetBase
 {
     /**
+     * @var Name sourceName source name
+     */
+    public $sourceName;
+    /**
+     * @var Name targetName target name
+     */
+    public $targetName;
+    /**
      * constructor.
      *
-     * @param Name - name1 source name to be matched
-     * @param Name - name2 target name to be matched
+     * @param Name - sourceName source name to be matched
+     * @param Name - targetName target name to be matched
      */
-    public function __construct(Name $name1, Name $name2)
+    public function __construct(Name $sourceName, Name $targetName)
     {
-        parent::__construct(array('name1', 'name2'));
-        $this->params['name1'] = $name1;
-        $this->params['name2'] = $name2;
+        $this->sourceName = $sourceName;
+        $this->targetName = $targetName;
     }
 
     /**
@@ -42,13 +49,17 @@ class NameMatchingParameters extends RosetteParamsSetBase
      */
     public function validate()
     {
-        foreach (array('name1', 'name2') as $key) {
-            if (empty($this->get($key))) {
-                throw new RosetteException(
-                    sprintf('Required name matching parameter not supplied: %s', $key),
-                    RosetteException::$BAD_REQUEST_FORMAT
-                );
-            }
+        if (empty($this->sourceName)) {
+            throw new RosetteException(
+                sprintf('Required name matching parameter not supplied: sourceName'),
+                RosetteException::$BAD_REQUEST_FORMAT
+            );
+        }
+        if (empty($this->targetName)) {
+            throw new RosetteException(
+                sprintf('Required name matching parameter not supplied: targetName'),
+                RosetteException::$BAD_REQUEST_FORMAT
+            );
         }
     }
 }

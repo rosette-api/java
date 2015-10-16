@@ -23,62 +23,44 @@ namespace rosette\api;
 abstract class RosetteParamsSetBase
 {
     /**
-     * Internal params array.
-     *
-     * @var array
-     */
-    protected $params = array();
-
-    /**
      * Constructor.
-     *
-     * @param $repertoire
      */
-    protected function __construct($repertoire)
+    protected function __construct()
     {
-        foreach ($repertoire as $key) {
-            $this->params[$key] = '';
+    }
+
+    /**
+     * Sets a property based on the name.
+     *
+     * @param string $propertyName the name of the property
+     * @param mixed  $value        the value to set
+     */
+    public function set($propertyName, $value)
+    {
+        if (property_exists($this, $propertyName)) {
+            $this->{$propertyName} = $value;
         }
     }
 
     /**
-     * Custom setter for the key/value parameter pair.
+     * Gets a property value based on the property name.
      *
-     * @param $key
-     * @param $val
+     * @param string $propertyName the name of the property
      *
-     * @throws RosetteException
+     * @return mixed property value
+     *
+     * @throws RosetteException if property name not found
      */
-    public function set($key, $val)
+    public function get($propertyName)
     {
-        if (!array_key_exists($key, $this->params)) {
+        if (property_exists($this, $propertyName)) {
+            return $this->{$propertyName};
+        } else {
             throw new RosetteException(
-                sprintf('Unknown Api parameter key %s', $key),
-                RosetteException::$BAD_REQUEST_FORMAT
+                'Property name not found',
+                RosetteException::$INVALID_PROPERTY_NAME
             );
         }
-        $this->params[$key] = $val;
-    }
-
-    /**
-     * Custom getter for the key/value parameter pair.
-     *
-     * @param $key
-     *
-     * @return mixed
-     *
-     * @throws RosetteException
-     */
-    public function get($key)
-    {
-        if (!array_key_exists($key, $this->params)) {
-            throw new RosetteException(
-                sprintf('Unknown Api parameter key %s', $key),
-                RosetteException::$BAD_REQUEST_FORMAT
-            );
-        }
-
-        return $this->params[$key];
     }
 
     /**
@@ -93,14 +75,12 @@ abstract class RosetteParamsSetBase
     /**
      * Serialize into a json string.
      *
-     * @param bool $skip_null if null values should be skipped
-     *
      * @return string
      */
-    public function serialize($skip_null = true)
+    public function serialize()
     {
         $this->validate();
 
-        return json_encode($skip_null ? array_filter($this->params) : $this->params);
+        return json_encode($this);
     }
 }

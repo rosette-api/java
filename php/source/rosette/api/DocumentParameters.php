@@ -23,14 +23,42 @@ namespace rosette\api;
 class DocumentParameters extends RosetteParamsSetBase
 {
     /**
+     * @var string ontent is the text to be analyzed (required if no contentUri)
+     */
+    public $content;
+
+    /**
+     * @var string contentUri is a URL to content that will be analyzed (required if no content)
+     */
+    public $contentUri;
+
+    /**
+     * @var string contentType is the type of content RosetteConstants::$DataFormat (optional)
+     */
+    public $contentType;
+
+    /**
+     * @var string unit is the RosetteConstants::$InputUnit (optional)
+     */
+    public $unit;
+
+    /**
+     * @var string language is the language of the content (optional)
+     */
+    public $language;
+
+    /**
      * Constructor.
      *
      * @throws RosetteException
      */
     public function __construct()
     {
-        parent::__construct(array('content', 'contentUri', 'contentType', 'unit', 'language'));
-        $this->set('unit', RosetteConstants::$InputUnit['DOC']);
+        $this->content = '';
+        $this->contentUri = '';
+        $this->contentType = '';
+        $this->unit = RosetteConstants::$InputUnit['DOC'];
+        $this->language = '';
     }
 
     /**
@@ -40,15 +68,15 @@ class DocumentParameters extends RosetteParamsSetBase
      */
     public function validate()
     {
-        if (empty(trim($this->get('content')))) {
-            if (empty(trim($this->get('contentUri')))) {
+        if (empty(trim($this->content))) {
+            if (empty(trim($this->contentUri))) {
                 throw new RosetteException(
                     'Must supply one of Content or ContentUri',
                     RosetteException::$INVALID_DATATYPE
                 );
             }
         } else {
-            if (!empty(trim($this->get('contentUri')))) {
+            if (!empty(trim($this->contentUri))) {
                 throw new RosetteException(
                     'Cannot supply both Content and ContentUri',
                     RosetteException::$INVALID_DATATYPE
@@ -92,8 +120,8 @@ class DocumentParameters extends RosetteParamsSetBase
      */
     public function loadDocumentString($stringData, $dataType)
     {
-        $this->set('content', $stringData);
-        $this->set('contentType', $dataType);
-        $this->set('unit', RosetteConstants::$InputUnit['DOC']);
+        $this->content = $stringData;
+        $this->contentType = $dataType;
+        $this->unit = RosetteConstants::$InputUnit['DOC'];
     }
 }

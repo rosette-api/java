@@ -304,11 +304,11 @@ class Api
      *
      * @throws RosetteException
      */
-    private function callEndpoint(RosetteParamsSetBase $parameters, $subUrl)
+    private function callEndpoint($parameters, $subUrl)
     {
         $this->subUrl = $subUrl;
         $this->checkVersion();
-        if ($this->useMultiPart && $parameters['contentType'] !== RosetteConstants::$DataFormat['SIMPLE']) {
+        if ($this->useMultiPart && $parameters->contentType !== RosetteConstants::$DataFormat['SIMPLE']) {
             throw new RosetteException(
                 sprintf('MultiPart requires contentType SIMPLE: %s', $parameters['contentType']),
                 RosetteException::$BAD_REQUEST_FORMAT
