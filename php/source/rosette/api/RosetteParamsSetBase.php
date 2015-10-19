@@ -73,6 +73,39 @@ abstract class RosetteParamsSetBase
     abstract public function validate();
 
     /**
+     * Recursively removes empty properties to facilitate json encoding.
+     *
+     * @param $obj Object to clean
+     *
+     * @return mixed
+     */
+    private function removeEmptyProperties($obj)
+    {
+        $objVars = get_object_vars($obj);
+
+        if (count($objVars) > 0) {
+            foreach ($objVars as $propName => $propVal) {
+                if (gettype($propVal) === 'object') {
+                    $cObj = $this->removeEmptyProperties($propVal);
+                    if ($cObj === null) {
+                        unset($obj->$propName);
+                    } else {
+                        $obj->$propName = $cObj;
+                    }
+                } else {
+                    if (empty($propVal)) {
+                        unset($obj->$propName);
+                    }
+                }
+            }
+        } else {
+            return;
+        }
+
+        return $obj;
+    }
+
+    /**
      * Serialize into a json string.
      *
      * @return string
@@ -80,6 +113,8 @@ abstract class RosetteParamsSetBase
     public function serialize()
     {
         $this->validate();
+
+        $classObject = $this->removeEmptyProperties($this);
 
         return json_encode($this);
     }

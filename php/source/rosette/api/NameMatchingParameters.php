@@ -25,11 +25,11 @@ class NameMatchingParameters extends RosetteParamsSetBase
     /**
      * @var Name sourceName source name
      */
-    public $sourceName;
+    public $name1;
     /**
      * @var Name targetName target name
      */
-    public $targetName;
+    public $name2;
     /**
      * constructor.
      *
@@ -38,8 +38,8 @@ class NameMatchingParameters extends RosetteParamsSetBase
      */
     public function __construct(Name $sourceName, Name $targetName)
     {
-        $this->sourceName = $sourceName;
-        $this->targetName = $targetName;
+        $this->name1 = $sourceName;
+        $this->name2 = $targetName;
     }
 
     /**
@@ -49,13 +49,13 @@ class NameMatchingParameters extends RosetteParamsSetBase
      */
     public function validate()
     {
-        if (empty($this->sourceName)) {
+        if (empty($this->name1)) {
             throw new RosetteException(
                 sprintf('Required name matching parameter not supplied: sourceName'),
                 RosetteException::$BAD_REQUEST_FORMAT
             );
         }
-        if (empty($this->targetName)) {
+        if (empty($this->name2)) {
             throw new RosetteException(
                 sprintf('Required name matching parameter not supplied: targetName'),
                 RosetteException::$BAD_REQUEST_FORMAT
