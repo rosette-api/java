@@ -52,6 +52,10 @@ import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.PingResponse;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.Relationship;
+import com.basistech.rosette.apimodel.RelationshipOptions;
+import com.basistech.rosette.apimodel.RelationshipsRequest;
+import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.SentencesResponse;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentRequest;
@@ -67,18 +71,21 @@ import static java.net.HttpURLConnection.HTTP_OK;
  */
 public final class RosetteAPI {
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
+    public static final String BINDING_VERSION = "0.5";
 
     private static final String LANGUAGE_SERVICE_PATH = "/language";
     private static final String MORPHOLOGY_SERVICE_PATH = "/morphology/";
     private static final String ENTITIES_SERVICE_PATH = "/entities";
     private static final String ENTITIES_LINKED_SERVICE_PATH = "/entities/linked";
     private static final String CATEGORIES_SERVICE_PATH = "/categories";
+    private static final String RELATIONSHIPS_SERVICE_PATH = "/relationships";
     private static final String SENTIMENT_SERVICE_PATH = "/sentiment";
     private static final String TRANSLATED_NAME_SERVICE_PATH = "/translated-name";
     private static final String MATCHED_NAME_SERVICE_PATH = "/matched-name";
     private static final String TOKENS_SERVICE_PATH = "/tokens";
     private static final String SENTENCES_SERVICE_PATH = "/sentences";
     private static final String INFO_SERVICE_PATH = "/info";
+    private static final String VERSION_CHECK_PATH = "/info?clientVersion=" + BINDING_VERSION;
     private static final String PING_SERVICE_PATH = "/ping";
     private static final String DEBUG_PARAM_ON = "?debug=true";
     private static final String DEBUG_PARAM_OFF = "";
@@ -115,22 +122,30 @@ public final class RosetteAPI {
      * Constructs a Rosette API instance using an API key.
      *
      * @param key Rosette API key
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
-    public RosetteAPI(String key) {
+    public RosetteAPI(String key) throws IOException, RosetteAPIException {
         this.key = key;
         this.failureRetries = 1;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        checkVersionCompatibility();
     }
 
     /**
-     * Sets the base URL of the Rosette service.
-     * @param url The base URL
+     * Constructs a Rosette API instance using an API key and accepts an
+     * alternate URL for testing purposes.
+     *
+     * @param key Rosette API key
      */
-    public void setUrlBase(String url) {
-        urlBase = url;
+    public RosetteAPI(String key, String alternateUrl) {
+        urlBase = alternateUrl;
         if (!urlBase.endsWith("/")) {
             urlBase += "/";
         }
+        this.key = key;
+        this.failureRetries = 1;
+        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
     /**
@@ -161,18 +176,39 @@ public final class RosetteAPI {
     /**
      * Gets information about the Rosette API, returns name, version, build number and build time.
      * @return InfoResponse
-     * @throws IOException
-     * @throws RosetteAPIException
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
     public InfoResponse info() throws IOException, RosetteAPIException {
         return sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);
     }
 
     /**
+     * Checks binding version compatiblity against the Rosette API server
+     * @return boolean true if compatible
+     * @throws IOException
+     * @throws RosetteException
+     */
+    private boolean checkVersionCompatibility() throws IOException, RosetteAPIException {
+        try {
+        InfoResponse response = sendPostRequest("{ body: 'version check' }", urlBase + VERSION_CHECK_PATH, InfoResponse.class);
+        if (!response.isVersionChecked()) {
+            ErrorResponse errResponse = new ErrorResponse("0", "incompatibleVersion",
+                    "The server version is not compatible with binding version " + BINDING_VERSION);
+            throw new RosetteAPIException(200, errResponse);
+        }
+        return true;
+        }
+        catch (RosetteAPIException e) {
+            throw e;
+        }
+    }
+
+    /**
      * Pings the Rosette API for a response indicting that the service is available.
      * @return PingResponse
-     * @throws IOException
-     * @throws RosetteAPIException
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
     public PingResponse ping() throws IOException, RosetteAPIException {
         return sendGetRequest(urlBase + PING_SERVICE_PATH, PingResponse.class);
@@ -182,8 +218,8 @@ public final class RosetteAPI {
      * Matches 2 names and returns a score in NameMatchingResponse.
      * @param request NameMatchingRequest contains 2 names.
      * @return NameMatchingResponse
-     * @throws RosetteAPIException
-     * @throws IOException
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
     public NameMatchingResponse matchName(NameMatchingRequest request) throws RosetteAPIException, IOException {
         return sendPostRequest(request, urlBase + MATCHED_NAME_SERVICE_PATH, NameMatchingResponse.class);
@@ -591,6 +627,117 @@ public final class RosetteAPI {
     }
 
     /**
+     * Returns each relationship extracted from the input.
+     *
+     * The response is a list of extracted relationships. A relationship contains
+     *
+     * predicate - usually the main verb, property or action that is expressed by the text
+     * arg1 - usually the subject, agent or main actor of the relationship
+     * arg2 [optional] - complements the predicate and is usually the object, theme or patient of the relationship
+     * arg3 [optional] - usually an additional object in ditransitive verbs
+     * adjuncts [optional] - contain all optional parts of a relationship which are not temporal or locative expressions
+     * locatives [optional] - usually express the locations the action expressed by the relationship took place
+     * temporals [ optional] - usually express the time in which the action expressed by the relationship took place
+     * confidence - a measure of quality of relationship extraction, between 0 - 1
+     *
+     * @param content, String containing the data.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}).
+     *             Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
+     * @param options RelationshipOptions
+     * @return RelationshipsResponse
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request
+     * @throws IOException - If there is a commuincation or JSON serialization/deserialization error
+     */
+    public RelationshipsResponse getRelationships(String content, LanguageCode language, InputUnit unit,
+                                                  RelationshipOptions options) throws RosetteAPIException, IOException {
+        RelationshipsRequest request = new RelationshipsRequest(language, content, null, null, unit, options);
+        return sendPostRequest(request, urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
+    }
+
+    /**
+     * Returns each relationship extracted from the input.
+     *
+     * The response is a list of extracted relationships. A relationship contains
+     *
+     * predicate - usually the main verb, property or action that is expressed by the text
+     * arg1 - usually the subject, agent or main actor of the relationship
+     * arg2 [optional] - complements the predicate and is usually the object, theme or patient of the relationship
+     * arg3 [optional] - usually an additional object in ditransitive verbs
+     * adjuncts [optional] - contain all optional parts of a relationship which are not temporal or locative expressions
+     * locatives [optional] - usually express the locations the action expressed by the relationship took place
+     * temporals [ optional] - usually express the time in which the action expressed by the relationship took place
+     * confidence - a measure of quality of relationship extraction, between 0 - 1
+     *
+     * @param content, String containing the data.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param options RelationshipOptions
+     * @return RelationshipsResponse
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request
+     * @throws IOException - If there is a commuincation or JSON serialization/deserialization error
+     */
+    public RelationshipsResponse getRelationships(String content, LanguageCode language, RelationshipOptions options)
+            throws RosetteAPIException, IOException {
+        RelationshipsRequest request = new RelationshipsRequest(language, content, null, null, null, options);
+        return sendPostRequest(request, urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
+    }
+
+    /**
+     * Returns each relationship extracted from the input.
+     *
+     * The response is a list of extracted relationships. A relationship contains
+     *
+     * predicate - usually the main verb, property or action that is expressed by the text
+     * arg1 - usually the subject, agent or main actor of the relationship
+     * arg2 [optional] - complements the predicate and is usually the object, theme or patient of the relationship
+     * arg3 [optional] - usually an additional object in ditransitive verbs
+     * adjuncts [optional] - contain all optional parts of a relationship which are not temporal or locative expressions
+     * locatives [optional] - usually express the locations the action expressed by the relationship took place
+     * temporals [ optional] - usually express the time in which the action expressed by the relationship took place
+     * confidence - a measure of quality of relationship extraction, between 0 - 1
+     *
+     * @param inputStream Input stream of file.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param options RelationshipOptions
+     * @return RelationshipsResponse
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request
+     * @throws IOException - If there is a commuincation or JSON serialization/deserialization error
+     */
+    public RelationshipsResponse getRelationships(InputStream inputStream, LanguageCode language, RelationshipOptions options)
+            throws RosetteAPIException, IOException {
+        String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
+        RelationshipsRequest request = new RelationshipsRequest(language, encodedStr, null, "text/html", null, options);
+        return sendPostRequest(request, urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
+    }
+
+    /**
+     * Returns each relationship extracted from the input.
+     *
+     * The response is a list of extracted relationships. A relationship contains
+     *
+     * predicate - usually the main verb, property or action that is expressed by the text
+     * arg1 - usually the subject, agent or main actor of the relationship
+     * arg2 [optional] - complements the predicate and is usually the object, theme or patient of the relationship
+     * arg3 [optional] - usually an additional object in ditransitive verbs
+     * adjuncts [optional] - contain all optional parts of a relationship which are not temporal or locative expressions
+     * locatives [optional] - usually express the locations the action expressed by the relationship took place
+     * temporals [ optional] - usually express the time in which the action expressed by the relationship took place
+     * confidence - a measure of quality of relationship extraction, between 0 - 1
+     *
+     * @param url URL containing the data.
+     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param options RelationshipOptions
+     * @return RelationshipsResponse
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request
+     * @throws IOException - If there is a commuincation or JSON serialization/deserialization error
+     */
+    public RelationshipsResponse getRelationships(URL url, LanguageCode language, RelationshipOptions options)
+            throws RosetteAPIException, IOException {
+        RelationshipsRequest request = new RelationshipsRequest(language, null, url.toString(), null, null, options);
+        return sendPostRequest(request, urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
+    }
+
+    /**
      * Analyzes the positive and negative sentiment expressed by the input.
      *
      * The response contains sentiment analysis results.
@@ -792,7 +939,7 @@ public final class RosetteAPI {
      * Provides information on the language endpoint
      *
      * @return {@link com.basistech.rosette.apimodel.LanguageInfoResponse LanguageInfoResponse}
-     * @throws RosetteAPIException
+     * @throws RosetteAPIException Rosette specific exception
      * @throws IOException
      */
     public LanguageInfoResponse getLanguageInfo() throws RosetteAPIException, IOException {
@@ -803,8 +950,8 @@ public final class RosetteAPI {
      * Provides information on Rosette API
      *
      * @return {@link com.basistech.rosette.apimodel.InfoResponse InfoResponse}
-     * @throws RosetteAPIException
-     * @throws IOException
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException General IO exception
      */
     public InfoResponse getInfo() throws RosetteAPIException, IOException {
         return sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);

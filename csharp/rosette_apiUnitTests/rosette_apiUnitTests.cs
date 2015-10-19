@@ -30,17 +30,17 @@ namespace rosette_apiUnitTests
             while (!Directory.Exists(mockDir) && retry < 10)
             {
                 baseDirectory = Directory.GetParent(baseDirectory).FullName;
-                mockDir = baseDirectory + "\\mock-data";
+                mockDir = baseDirectory + @"\mock-data";
                 retry = retry + 1;
             }
                        
             if (!Directory.Exists(mockDir))
             {
-                mockDir = "\\..\\..\\..\\mock-data";
+                mockDir = @"\..\..\..\mock-data";
             }
 
-            requestDir = mockDir + "\\request\\";
-            responseDir = mockDir + "\\response\\";
+            requestDir = mockDir + @"\request\";
+            responseDir = mockDir + @"\response\";
             RequestDir = requestDir;
             ResponseDir = responseDir;
         }
@@ -105,11 +105,12 @@ namespace rosette_apiUnitTests
             this.filename = filename;
             this.responseInfo = new HttpResponseMessage();
             this.responseInfo.StatusCode = (HttpStatusCode)(Convert.ToInt32(200));
-            this.responseInfo.Content = new StringContent(new JavaScriptSerializer().Serialize(new Dictionary<string, string>(){
+            this.responseInfo.Content = new StringContent(new JavaScriptSerializer().Serialize(new Dictionary<string, object>(){
                     {"buildNumber", "6bafb29d"}, 
                     {"buildTime", "2015.05.08_12:31:26"}, 
                     {"name", "Rosette API"}, 
-                    {"version", "0.5.0"}
+                    {"version", "0.5.0"},
+                    {"versionChecked", true}
                 })
             );
         }
@@ -127,7 +128,7 @@ namespace rosette_apiUnitTests
             string uri = request.RequestUri.ToString();
             string user_key = headerValues.FirstOrDefault();
             var responseTask = new TaskCompletionSource<HttpResponseMessage>();
-            if (uri.Contains("v1/info"))
+            if (uri.Contains("/info"))
             {
                 responseTask.SetResult(responseInfo);
             }
@@ -352,6 +353,9 @@ namespace rosette_apiUnitTests
                             break;
                         case "ping":
                             result = c.Ping();
+                            break;
+                        case "relationships":
+                            result = c.Relationships(tdInputData);
                             break;
                         case "sentences":
                             result = c.Sentences(tdInputData);
