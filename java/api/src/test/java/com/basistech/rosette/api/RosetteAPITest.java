@@ -62,6 +62,8 @@ import com.basistech.rosette.apimodel.NameMatchingResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.Request;
+import com.basistech.rosette.apimodel.RelationshipsRequest;
+import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
@@ -90,7 +92,8 @@ public class RosetteAPITest extends Assert {
             String s = getStringFromInputStream(is);
             serverPort = Integer.parseInt(s);
         }
-        URL url = RosetteAPITest.class.getClassLoader().getResource("mock-data/response");
+        ClassLoader classLoader = RosetteAPITest.class.getClassLoader();
+        URL url = classLoader.getResource("mock-data/response");
         File dir = new File(url.toURI());
         Collection<Object[]> params = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
@@ -109,7 +112,7 @@ public class RosetteAPITest extends Assert {
     }
 
     @Before
-    public void setUp() throws IOException, InterruptedException {
+    public void setUp() throws IOException, InterruptedException, RosetteAPIException {
         try {
             language = LanguageCode.valueOf(testFilename.substring(0, 3));
         } catch (IllegalArgumentException e) {
@@ -123,30 +126,40 @@ public class RosetteAPITest extends Assert {
                      "mock-data/response/" + statusFilename)) {
             responseStr = getStringFromInputStream(bodyStream);
             int statusCode = 200;
+
+
             if (statusStream != null) {
                 String statusStr = getStringFromInputStream(statusStream);
                 statusCode = Integer.parseInt(statusStr);
             }
+
             if (responseStr.length() > 200) {  // test gzip if response is somewhat big
                 new MockServerClient("localhost", serverPort)
                         .reset()
-                        .when(HttpRequest.request().withPath("/.*"))
+                        .when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
                                 .withHeader("Content-Type", "application/json")
                                 .withHeader("Content-Encoding", "gzip")
                                 .withStatusCode(statusCode).withBody(gzip(responseStr)));
+                
             } else {
                 new MockServerClient("localhost", serverPort)
                         .reset()
-                        .when(HttpRequest.request().withPath("/.*"))
+                        .when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
                                 .withHeader("Content-Type", "application/json")
                                 .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
             }
+            new MockServerClient("localhost", serverPort)
+                .when(HttpRequest.request()
+                    .withPath("/info"))
+                .respond(HttpResponse.response()
+                    .withStatusCode(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody("{ \"buildNumber\": \"6bafb29d\", \"buildTime\": \"2015.10.08_10:19:26\", \"name\": \"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }", StandardCharsets.UTF_8));
 
             String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
-            api = new RosetteAPI("my-key-123");
-            api.setUrlBase(mockServiceUrl);
+            api = new RosetteAPI("my-key-123", mockServiceUrl);
         }
     }
 
@@ -433,6 +446,54 @@ public class RosetteAPITest extends Assert {
         try {
             CategoriesResponse response = api.getCategories(request.getContent(), null, InputUnit.sentence, null);
             verifyCategory(response);
+        } catch (RosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+    @Test
+    public void testGetRelationships() throws IOException {
+        if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-doc-"))) {
+            return;
+        }
+        Request request = readValue(RelationshipsRequest.class);
+        try {
+            RelationshipsResponse response = api.getRelationships(request.getContent(), language, null);
+            verifyRelationships(response);
+        } catch (RosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+    private void verifyRelationships(RelationshipsResponse response) throws IOException {
+        RelationshipsResponse goldResponse = mapper.readValue(responseStr, RelationshipsResponse.class);
+        assertEquals(response.getRelationships().size(), goldResponse.getRelationships().size());
+    }
+
+    @Test
+    public void testGetRelationshipsURL() throws IOException {
+        if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-url-"))) {
+            return;
+        }
+        Request request = readValue(RelationshipsRequest.class);
+        try {
+            RelationshipsResponse response = api.getRelationships(new URL(request.getContentUri()), language, null);
+            verifyRelationships(response);
+        } catch (RosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+    @Test
+    public void testGetRelationshipsSentence() throws IOException {
+        if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-sentence-"))) {
+            return;
+        }
+        Request request = readValue(RelationshipsRequest.class);
+        try {
+            RelationshipsResponse response =
+                    api.getRelationships(request.getContent(), language, InputUnit.sentence, null);
+            verifyRelationships(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
         }

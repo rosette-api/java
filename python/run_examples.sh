@@ -1,14 +1,14 @@
 #!/bin/bash -e
 
+current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd target/github-publish/examples
-echo "Enter your password to allow sudo to pip install rosette_api"
-sudo pip install rosette_api
 for f in *.py
 do
-    python $f --key $1
+    if [ "$#" -gt 1 ]; then
+        echo $current_dir
+        $current_dir/.tox/py27/bin/python $f --key $1 --service_url $2
+    else
+        $current_dir/.tox/py27/bin/python $f --key $1
+    fi
 done
 
-echo "Uninstalling rosette_api"
-sudo pip uninstall rosette_api
-echo "Logged out of sudo"
-sudo -k
