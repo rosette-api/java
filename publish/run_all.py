@@ -39,7 +39,7 @@ def onerror(func, path, exc_info):
 # helper function to cleanup folder
 def cleanup():
     try:
-        shutil.rmtree('gitclone', onerror=onerror)
+        #shutil.rmtree('gitclone', onerror=onerror)
         print "gitclone folder found and removed"
     except:
         pass
@@ -73,7 +73,8 @@ def runpython():
                     success = False
                     try:
                         for i in range(retry):
-                            import os.path.splitext(f)[0]
+                            print os.path.realpath('.')
+                            module = __import__(os.path.splitext(f)[0])
                             cmd_out = run("88afd6b4b18a11d1248639ecf399903c")
                             if "Exception" not in cmd_out and "{" in cmd_out:
                                 success = True
