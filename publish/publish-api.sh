@@ -27,4 +27,4 @@ mkdir -p "$tmp"
 (cd "$tmp"; git clone $public)
 (cd "$clone"; git checkout -b $branch; git rm -rf .!(git|.))
 tar cf - $binding/target/github-publish | tar xf - -C "$clone" --strip-components 3
-(cd "$clone"; git add .; git commit -m "publish $branch ed412281"; git push origin refs/heads/$branch:refs/heads/$branch)
+(cd "$clone"; git add .; git commit -m "publish $branch"; git push origin refs/heads/$branch:refs/heads/$branch)
