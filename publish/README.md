@@ -21,7 +21,7 @@ For any bindings where the package manager requires a unique version,
 update the version in the relevant place before continuing.
 
 When you are ready to publish, you should be on the master branch that
-contains the newly merged pull request, if not checkout that hasg/tag.
+contains the newly merged pull request, if not checkout that hash/tag.
 This ensures the right files getting published to external github and
 installation repos.
 
@@ -95,7 +95,7 @@ Unless you have credentials to the repository where you want to
 publish your page, you should ask for them first.
 
 - Python/[PyPI](https://pypi.python.org)
-
+  ` You will need a .pypirc file with the user/password for the account`
   `(cd python; python setup.py sdist upload)`
 
 - Java/[Maven Central](http://search.maven.org)
