@@ -22,7 +22,7 @@
             <source>pom.xml</source>
         </file>
         <file>
-            <source>publish.xml</source>
+            <source>.travis.yml</source>
         </file>
     </files>
 

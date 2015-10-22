@@ -10,6 +10,9 @@
       <source>.gitignore</source>
     </file>
     <file>
+      <source>.travis.yml</source>
+    </file>
+    <file>
       <source>README.md</source>
     </file>
     <file>
