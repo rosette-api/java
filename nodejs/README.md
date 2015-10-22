@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rosette-api/nodejs.svg?branch=master)](https://travis-ci.org/rosette-api/nodejs)
+
 # rosette-api
 
 Rosette API binding for node.js

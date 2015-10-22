@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rosette-api/csharp.svg?branch=master)](https://travis-ci.org/rosette-api/csharp)
+
 .Net (C#) client binding for Rosette API
 ==================================
 

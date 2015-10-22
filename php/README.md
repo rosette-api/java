@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rosette-api/php.svg?branch=master)](https://travis-ci.org/rosette-api/php)
+
 PHP client binding for Rosette API
 ==================================
 
