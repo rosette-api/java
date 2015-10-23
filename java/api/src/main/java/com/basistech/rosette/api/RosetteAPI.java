@@ -71,7 +71,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
  */
 public final class RosetteAPI {
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
-    public static final String BINDING_VERSION = "0.5";
+    public static final String BINDING_VERSION = "0.7";
 
     private static final String LANGUAGE_SERVICE_PATH = "/language";
     private static final String MORPHOLOGY_SERVICE_PATH = "/morphology/";

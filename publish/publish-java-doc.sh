@@ -19,7 +19,7 @@ fi
 tmp=$(mktemp -d $opt)
 
 if [[ ! -d "java/target/site/apidocs" ]]; then
-    echo "API docs not found.  Did you run mvn site?
+    echo "API docs not found.  Did you run mvn site?"
     exit 1
 fi
 
@@ -27,5 +27,5 @@ shopt -s extglob
 (cd "$tmp"; git clone $repo)
 (cd "$tmp/java"; git checkout -B $branch; git rm -rf .!(git|.))
 tar -cf - java/target/site/apidocs | tar xf - -C "$tmp/java" --strip-components 4
-(cd "$tmp/java"; git add .; git commit -m "publish java apidocs $version"; git push -f)
+(cd "$tmp/java"; git add .; git commit -m "publish java apidocs $version"; git push -f --set-upstream origin $branch)
 rm -rf "$tmp"
