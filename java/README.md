@@ -10,7 +10,7 @@ If you use Maven, include this dependency in your `pom.xml`:
 <dependency>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api</artifactId>
-    <version>0.5.0.1</version>
+    <version>0.7.0</version>
 </dependency>
 ```
 

@@ -745,7 +745,7 @@ namespace rosette_api
         /// <returns>Dictionary&lt;string, object&gt;: Dictionary containing the results of the response from the server.</returns>
         private Dictionary<string, Object> getResponse(HttpClient client, string jsonRequest = null)
         {
-            if (client != null && checkVersion())
+            if (client != null && version_checked)
             {     
                 HttpResponseMessage responseMsg = null;
                 int retry = 0;
@@ -924,7 +924,7 @@ namespace rosette_api
                     {
                         System.Threading.Thread.Sleep(500);
                     }
-                    string url = string.Format("/info?clientVersion={0}", versionToCheck);
+                    string url = string.Format("info?clientVersion={0}", versionToCheck);
                     HttpContent content = new StringContent(string.Empty);
                     responseMsg = client.PostAsync(url, content).Result;
                     retry = retry + 1;
