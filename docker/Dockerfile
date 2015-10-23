@@ -1,0 +1,26 @@
+FROM nginx
+FROM maven:latest
+MAINTAINER Chris Park <cpark@basistech.com>
+ENV REFRESHED_AT 2015-10-20
+
+RUN apt-get -yqq update \
+    && apt-get install -y --force-yes --no-install-recommends\
+        apt-transport-https \
+        build-essential \
+        curl \
+        ca-certificates \
+        git \
+        lsb-release \
+        python-all \
+        rlwrap \
+        vim \
+        iputils-ping
+
+RUN cd /etc/ssl && openssl req -x509 -nodes -days 365 -subj '/C=US/ST=Massachusetts/L=Cambridge/CN=api.rosette.com' -newkey rsa:2014 -keyout api.rosette.com.pem -out api.rosette.com.pem
+COPY docker/server.conf /etc/nginx/conf.d/server.conf
+COPY docker/settings-local.xml .m2/settings.xml
+COPY docker/settings-global.xml /usr/share/maven/conf/settings.xml
+
+CMD /bin/bash
+
+VOLUME ["/source"]
