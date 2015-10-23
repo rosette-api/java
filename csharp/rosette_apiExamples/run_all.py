@@ -92,7 +92,9 @@ for f in listdir(os.path.join(os.path.realpath('.'))):
     if f.endswith(".cs"):
         print f
         try:
+            print "compiling";
             subprocess.call(["csc", f, "/r:System.Net.Http.dll", "/r:System.IO.dll", "/r:System.Web.Extensions.dll", "/r:rosette_api.dll"])
+            print "running";
             cmd = subprocess.Popen([os.path.splitext(f)[0] + ".exe", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             cmd_out, cmd_err = cmd.communicate()
             print cmd_out
