@@ -18,11 +18,26 @@
     <description>Parent project for Rosette API Model</description>
     <inceptionYear>2015</inceptionYear>
     <url>https://developer.rosette.com</url>
+    <!-- github.com scm setting
+        <scm>
+        <connection>scm:git:git@github.com:rosette-api/java.git</connection>
+        <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    -->
     <scm>
         <connection>scm:git:git@git.basistech.net:raas/rosette-api-model.git</connection>
         <developerConnection>scm:git:git@git.basistech.net:raas/rosette-api-model.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
+    <!-- github.com distributionManagement setting
+    <distributionManagement>
+        <site>
+            <id>site</id>
+            <url>scm:git:git@github.com:rosette-api/java.git</url>
+        </site>
+    </distributionManagement>
+    -->
     <distributionManagement>
         <repository>
             <id>basistech.repo</id>
@@ -61,19 +76,6 @@
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
-            <plugin>
-                <!-- This plugin overrides deploy -->
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.6</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>basistech.repo</serverId>
-                    <nexusUrl>http://nexus.basistech.net:8081/nexus/</nexusUrl>
-                    <!-- ID for text-analytics staging profile -->
-                    <stagingProfileId>1dd11ca8866422</stagingProfileId>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
