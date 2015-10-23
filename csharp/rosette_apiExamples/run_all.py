@@ -52,6 +52,7 @@ while failed and runs < 3:
         # clone from git and get examples
         try:
             subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/csharp.git", "gitclone"])
+
         except:
             sys.exit('Failed to clone examples from github: https://github.com/rosette-api/csharp.git')
 
