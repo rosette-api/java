@@ -455,5 +455,16 @@ Api.prototype.matchedName = function(parameters, callback) {
   this.callEndpoint(callback, parameters, "matched-name");
 };
 
+/**
+ * Calls the relationships endpoint
+ *
+ * @param {RelationshipsParameters} parameters
+ * @param {function} callback
+ * @throws RosetteException
+ */
+Api.prototype.relationships = function(parameters, callback) {
+  this.callEndpoint(callback, parameters, "relationships");
+}
+
 module.exports = Api;
 
