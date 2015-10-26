@@ -4,24 +4,18 @@
 Example code to call Rosette API to get entities from a piece of text.
 """
 
-import argparse
 import json
 
 from rosette.api import API, DocumentParameters
 
-parser = argparse.ArgumentParser(description="Get the entities from a piece of text")
-parser.add_argument("--key", required=True, help="Rosette API key")
-parser.add_argument("--service_url", nargs="?", help="Optional user service URL")
-args = parser.parse_args()
 
-# Create an API instance
-if args.service_url:
-    api = API(service_url=args.service_url, user_key=args.key)
-else:
-    api = API(user_key=args.key)
+def run(key):
+    # Create an API instance
+    api = API(user_key=key)
 
-params = DocumentParameters()
-params["content"] = u"${entities_data}"
-result = api.entities(params)  # entity linking is turned off
+    params = DocumentParameters()
+    params["content"] = u"${entities_data}"
+    result = api.entities(params)  # entity linking is turned off
 
-print(json.dumps(result, indent=2, ensure_ascii=False).encode("utf8"))
+    print(json.dumps(result, indent=2, ensure_ascii=False).encode("utf8"))
+    return json.dumps(result, indent=2, ensure_ascii=False).encode("utf8")

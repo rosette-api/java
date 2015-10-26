@@ -34,68 +34,76 @@ def cleanup():
     except:
         print "Gitclone folder failed to be removed"
 
+failed = True
+runs = 0
+while failed and runs < 3:
+    try:
+        # Start by cleaning up
+        cleanup()
 
-# Start by cleaning up
-cleanup()
-
-# clone from git and get examples
-try:
-    subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/java.git", "gitclone"])
-except:
-    sys.exit('Failed to clone examples from github: https://github.com/rosette-api/java.git')
-
-# Set version from command line
-if len(sys.argv) == 1:
-    version = '0.5.1-SNAPSHOT'
-else:
-    version = sys.argv[1]
-
-# Get path to rosette jar file
-path = os.path.realpath('api/target/rosette-api-'+version+'.jar') 
-
-# Try to move into the cloned examples folder
-try:
-    os.chdir(os.path.realpath('gitclone/examples/src/main/java'))
-    print "Moved into gitclone/examples/src/main/java"
-except:
-    print 'Failed to move into gitclone/examples/src/main/java'
-    cleanup()
-    sys.exit('Failed to move into gitclone/examples/src/main/java')
-
-# compile and run each example
-failures = []
-for f in listdir(os.path.realpath('com/basistech/rosette/examples')):
-    if f.endswith(".java"):
-        print f
-        print "java" + " -cp " + path + ":. " + '-Drosette.api.key="88afd6b4b18a11d1248639ecf399903c"' + " com.basistech.rosette.examples." + os.path.splitext(f)[0]
+        # clone from git and get examples
         try:
-            if not "ExampleBase" in f:
-                subprocess.call(["javac", "-cp", path + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-                cmd = subprocess.Popen(["java", "-cp", path + ":.", '-Drosette.api.key=88afd6b4b18a11d1248639ecf399903c', "com.basistech.rosette.examples." + os.path.splitext(f)[0]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-                cmd_out, cmd_err = cmd.communicate()
-                print cmd_out
-                if "Exception" in cmd_out or "{" not in cmd_out:
-                    failures = failures + [f]
+            subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/java.git", "gitclone"])
         except:
-            print f + " was unable to be compiled and run"
-            failures = failures + [f]
+            sys.exit('Failed to clone examples from github: https://github.com/rosette-api/java.git')
 
-# Exit test folder
-try:
-    os.chdir(os.path.realpath('../..'))
-except:
-    print 'Failed to move back into examples'
-    sys.exit('Failed to move back into examples')
+        # Set version from command line
+        if len(sys.argv) == 1:
+            version = '0.5.1-SNAPSHOT'
+        else:
+            version = sys.argv[1]
 
-if len(failures) != 0:
-    cleanup()
-    print 'Failed to pass these examples: ' + ', '.join(failures)
-    sys.exit('Failed to pass these examples: ' + ', '.join(failures))
+        # Get path to rosette jar file
+        path = os.path.realpath('api/target/rosette-api-'+version+'.jar') 
 
-# at the end clean up the folder
-cleanup()
+        # Try to move into the cloned examples folder
+        try:
+            os.chdir(os.path.realpath('gitclone/examples/src/main/java'))
+            print "Moved into gitclone/examples/src/main/java"
+        except:
+            print 'Failed to move into gitclone/examples/src/main/java'
+            cleanup()
+            sys.exit('Failed to move into gitclone/examples/src/main/java')
 
-print 'All tests passed successfully'
-sys.exit(0)
+        # compile and run each example
+        failures = []
+        for f in listdir(os.path.realpath('com/basistech/rosette/examples')):
+            if f.endswith(".java"):
+                print f
+                print "java" + " -cp " + path + ":. " + '-Drosette.api.key="88afd6b4b18a11d1248639ecf399903c"' + " com.basistech.rosette.examples." + os.path.splitext(f)[0]
+                try:
+                    if not "ExampleBase" in f:
+                        subprocess.call(["javac", "-cp", path + ":.", "com/basistech/rosette/examples/" + f], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                        cmd = subprocess.Popen(["java", "-cp", path + ":.", '-Drosette.api.key=88afd6b4b18a11d1248639ecf399903c', "com.basistech.rosette.examples." + os.path.splitext(f)[0]], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                        cmd_out, cmd_err = cmd.communicate()
+                        print cmd_out
+                        if "Exception" in cmd_out or "{" not in cmd_out:
+                            failures = failures + [f]
+                except:
+                    print f + " was unable to be compiled and run"
+                    failures = failures + [f]
 
+        # Exit test folder
+        try:
+            os.chdir(os.path.realpath('../..'))
+        except:
+            print 'Failed to move back into examples'
+            sys.exit('Failed to move back into examples')
 
+        if len(failures) != 0:
+            cleanup()
+            print 'Failed to pass these examples: ' + ', '.join(failures)
+            sys.exit('Failed to pass these examples: ' + ', '.join(failures))
+
+        # at the end clean up the folder
+        cleanup()
+        failed = False
+    except:
+        runs = runs + 1
+        print 'Attempt ' + runs + ' failed. Retrying'
+
+if failed:
+    sys.exit('Failed after 3 attempts')
+else:
+    print 'All tests passed successfully'
+    sys.exit(0)
