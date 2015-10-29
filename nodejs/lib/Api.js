@@ -127,8 +127,7 @@ Api.prototype.checkVersion = function(api) {
  */
 Api.prototype.retryingRequest = function(err, callback, op, url, data, action, api, tryNum) {
   if (err) {
-    callback(err);
-    return;
+    return callback(err);
   }
   if (!tryNum) {
     tryNum = 0;
@@ -161,8 +160,7 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
     });
     res.on("end", function (error) {
       if (error) {
-        callback(error);
-        return;
+        return callback(error);
       }
       if(res.headers["content-encoding"] === "gzip") {
         result = zlib.gunzipSync(result);
@@ -194,8 +192,7 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
         }
         if (tryNum >= api.nRetries) {
           err = new RosetteException(code, message, url);
-          callback(err);
-          return;
+          return callback(err);
         }
         else {
           api.retryingRequest(null, callback, op, url, data, action, api, ++tryNum);
@@ -238,14 +235,12 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
     else {
       err = new RosetteException("incompatible", "Text-only input only works for DocumentParameter endpoints",
         subUrl);
-      callback(err);
-      return;
+      return callback(err);
     }
   }
   if (this.useMultiPart && parameters.contentType !== rosetteConstants.dataFormat.SIMPLE) {
     err = new RosetteException("incompatible", "Multipart requires contentType SIMPLE", parameters.contentType);
-    callback(err);
-    return;
+    return callback(err);
   }
   var url = this.serviceUrl + "/" + subUrl;
 
@@ -265,8 +260,7 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
  */
 Api.prototype.finishResult = function(err, result, action, callback) {
   if (err) {
-    callback(err);
-    return;
+    return callback(err);
   }
   var code = result.statusCode;
   var json = result.json;

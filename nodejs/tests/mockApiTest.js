@@ -17,6 +17,7 @@
 
 var Api = require("../target/instrumented/lib/Api");
 var DocumentParameters = require("../target/instrumented/lib/DocumentParameters");
+var RelationshipsParameters = require("../target/instrumented/lib/RelationshipsParameters");
 var NameMatchingParameters = require("../target/instrumented/lib/NameMatchingParameters");
 var NameTranslationParameters = require("../target/instrumented/lib/NameTranslationParameters");
 
@@ -64,7 +65,7 @@ function setMock() {
 
   var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
     "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
-    "sentences", "sentiment", "tokens", "translated-name"];
+    "sentences", "sentiment", "tokens", "translated-name", "relationships"];
   for (var j = 0; j < endpoints.length; j++) {
     nock("https://api.rosette.com/rest/v1")
       .persist()
@@ -144,7 +145,17 @@ exports.testAllEndpoints = {
         var input = JSON.parse(fs.readFileSync("../mock-data/request/" + files[i]));
 
         // Anything not matched-name or translated-name
-        if (files[i].indexOf("name") === -1) {
+        if (files[i].indexOf("relationships")) {
+          parameters = new RelationshipsParameters();
+          parameters.params = input;
+          parameters.params.file = files[i].replace(filenameRe, "$1");
+          endpt = files[i].replace(endpointRe, "$1");
+
+          api.relationships(parameters, function (err, res) {
+            checkResult(err, res);
+          });
+        }
+        else if (files[i].indexOf("name") === -1) {
           parameters = new DocumentParameters();
           parameters.params = input;
           // Add extra parameter so that the nock can respond correctly
