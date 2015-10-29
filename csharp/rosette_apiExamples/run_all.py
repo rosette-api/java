@@ -42,81 +42,91 @@ def cleanup():
     except:
         print "Gitclone folder failed to be removed"
 
-# Start by cleaning up
-cleanup()
+failed = True
+runs = 0
+while failed and runs < 3:
+    try:
+        # Start by cleaning up
+        cleanup()
 
-# clone from git and get examples
-try:
-    subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/csharp.git", "gitclone"])
-except:
-    sys.exit('Failed to clone examples from github: https://github.com/rosette-api/csharp.git')
-
-# move examples to test folder
-try:
-    gitsrc = os.path.join(os.path.realpath('.'), 'gitclone/rosette_apiExamples')
-    gitdest = os.path.join(os.path.realpath('.'), 'test')
-    shutil.copytree(gitsrc, gitdest)
-except:
-    cleanup()
-    print 'Failed to copy examples from github folder to test folder'
-    sys.exit('Failed to copy examples from github folder to test folder')
-
-# Try to install rosette_api from nuget
-try:
-    subprocess.call(["nuget", "install", "rosette_api", "-o", "rosettePackage"])
-except:
-    print 'Failed to install newest rosette_api package from nuget'
-    sys.exit('Failed to install newest rosette_api package from nuget')
-
-# move rosette_api.dll to current folder
-try:
-    version = listdir(os.path.join(os.path.realpath('.'), 'rosettePackage'))[0]
-    src = os.path.join(os.path.realpath('.'), 'rosettePackage/' + version + '/lib/net45/rosette_api.dll')
-    dest = os.path.join(os.path.realpath('.'), 'test/rosette_api.dll')
-    shutil.copyfile(src, dest)
-except:
-    cleanup()
-    print 'Failed to copy over rosette_api.dll to test folder'
-    sys.exit('Failed to copy over rosette_api.dll to test folder')
-
-# Try to move into the test folder
-try:
-    os.chdir(os.path.realpath('test'))
-except:
-    print 'Failed to move into test'
-    sys.exit('Failed to move into test')
-
-# compile and run each example
-failures = []
-for f in listdir(os.path.join(os.path.realpath('.'))):
-    if f.endswith(".cs"):
-        print f
+        # clone from git and get examples
         try:
-            subprocess.call(["csc", f, "/r:System.Net.Http.dll", "/r:System.IO.dll", "/r:System.Web.Extensions.dll", "/r:rosette_api.dll"])
-            cmd = subprocess.Popen([os.path.splitext(f)[0] + ".exe", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            cmd_out, cmd_err = cmd.communicate()
-            print cmd_out
-            if "Exception" in cmd_out or "{" not in cmd_out:
-                failures = failures + [f]
+            subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/csharp.git", "gitclone"])
+
         except:
-            print f + " was unable to be compiled and run"
-            failures = failures + [f]
+            sys.exit('Failed to clone examples from github: https://github.com/rosette-api/csharp.git')
 
-# Exit test folder
-try:
-    os.chdir(os.path.realpath('..'))
-except:
-    print 'Failed to move back into rosette_apiExamples'
-    sys.exit('Failed to move back into rosette_apiExamples')
-if len(failures) != 0:
-    cleanup()
-    print 'Failed to pass these examples: ' + ', '.join(failures)
-    sys.exit('Failed to pass these examples: ' + ', '.join(failures))
+        # move examples to test folder
+        try:
+            gitsrc = os.path.join(os.path.realpath('.'), 'gitclone/rosette_apiExamples')
+            gitdest = os.path.join(os.path.realpath('.'), 'test')
+            shutil.copytree(gitsrc, gitdest)
+        except:
+            cleanup()
+            print 'Failed to copy examples from github folder to test folder'
+            sys.exit('Failed to copy examples from github folder to test folder')
 
-# at the end clean up the folder
-cleanup()
+        # Try to install rosette_api from nuget
+        try:
+            subprocess.call(["nuget", "install", "rosette_api", "-o", "rosettePackage"])
+        except:
+            print 'Failed to install newest rosette_api package from nuget'
+            sys.exit('Failed to install newest rosette_api package from nuget')
 
-print 'All tests passed successfully'
-sys.exit(0)
+        # move rosette_api.dll to current folder
+        try:
+            version = listdir(os.path.join(os.path.realpath('.'), 'rosettePackage'))[0]
+            src = os.path.join(os.path.realpath('.'), 'rosettePackage/' + version + '/lib/net45/rosette_api.dll')
+            dest = os.path.join(os.path.realpath('.'), 'test/rosette_api.dll')
+            shutil.copyfile(src, dest)
+        except:
+            cleanup()
+            print 'Failed to copy over rosette_api.dll to test folder'
+            sys.exit('Failed to copy over rosette_api.dll to test folder')
 
+        # Try to move into the test folder
+        try:
+            os.chdir(os.path.realpath('test'))
+        except:
+            print 'Failed to move into test'
+            sys.exit('Failed to move into test')
 
+        # compile and run each example
+        failures = []
+        for f in listdir(os.path.join(os.path.realpath('.'))):
+            if f.endswith(".cs"):
+                print f
+                try:
+                    subprocess.call(["csc", f, "/r:System.Net.Http.dll", "/r:System.IO.dll", "/r:System.Web.Extensions.dll", "/r:rosette_api.dll"])
+                    cmd = subprocess.Popen([os.path.splitext(f)[0] + ".exe", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                    cmd_out, cmd_err = cmd.communicate()
+                    print cmd_out
+                    if "Exception" in cmd_out or "{" not in cmd_out:
+                        failures = failures + [f]
+                except:
+                    print f + " was unable to be compiled and run"
+                    failures = failures + [f]
+
+        # Exit test folder
+        try:
+            os.chdir(os.path.realpath('..'))
+        except:
+            print 'Failed to move back into rosette_apiExamples'
+            sys.exit('Failed to move back into rosette_apiExamples')
+        if len(failures) != 0:
+            cleanup()
+            print 'Failed to pass these examples: ' + ', '.join(failures)
+            sys.exit('Failed to pass these examples: ' + ', '.join(failures))
+
+        # at the end clean up the folder
+        cleanup()
+        failed = False
+    except:
+        runs = runs + 1
+        print 'Attempt ' + runs + ' failed. Retrying'
+
+if failed:
+    sys.exit('Failed after 3 attempts')
+else:
+    print 'All tests passed successfully'
+    sys.exit(0)

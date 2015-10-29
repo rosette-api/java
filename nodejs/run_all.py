@@ -34,72 +34,80 @@ def cleanup():
     except:
         print "Gitclone folder failed to be removed"
 
+failed = True
+runs = 0
+while failed and runs < 3:
+    try:
+        # Start by cleaning up
+        cleanup()
 
-# Start by cleaning up
-cleanup()
-
-# clone from git and get examples
-try:
-    subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/nodejs.git", "gitclone"])
-except:
-    sys.exit('Failed to clone examples from github: https://github.com/rosette-api/nodejs.git')
-
-# Try to move into the cloned examples folder
-try:
-    os.chdir(os.path.realpath('gitclone/examples'))
-    print "Moved into gitclone/examples"
-except:
-    print 'Failed to move into gitclone/examples'
-    cleanup()
-    sys.exit('Failed to move into gitclone/examples')
-
-# Try to perform npm install
-try:
-    subprocess.call(["npm", "install"])
-except:
-    print "Failed to perform npm install"
-    cleanup()
-    sys.exit("Failed to perform npm install")
-
-# compile and run each example
-failures = []
-retry = 10
-for f in listdir(os.path.realpath('.')):
-    if f.endswith(".js"):
-        print f
-        success = False
+        # clone from git and get examples
         try:
-            for i in range(retry): 
-                cmd = subprocess.Popen(["node", f, '--key', "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-                cmd_out, cmd_err = cmd.communicate()
-                if "Exception" not in cmd_out and "{" in cmd_out:
-                    success = True
-                    break
-                time.sleep(2)
-            print cmd_out
-
-            if not success:
-                failures = failures + [f]
+            subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/nodejs.git", "gitclone"])
         except:
-            print f + " was unable to be compiled and run"
-            failures = failures + [f]
+            sys.exit('Failed to clone examples from github: https://github.com/rosette-api/nodejs.git')
 
-# Exit test folder
-try:
-    os.chdir(os.path.realpath('../..'))
-except:
-    print 'Failed to move back into examples'
-    sys.exit('Failed to move back into examples')
+        # Try to move into the cloned examples folder
+        try:
+            os.chdir(os.path.realpath('gitclone/examples'))
+            print "Moved into gitclone/examples"
+        except:
+            print 'Failed to move into gitclone/examples'
+            cleanup()
+            sys.exit('Failed to move into gitclone/examples')
 
-if len(failures) != 0:
-    cleanup()
-    print 'Failed to pass these examples: ' + ', '.join(failures)
-    sys.exit('Failed to pass these examples: ' + ', '.join(failures))
+        # Try to perform npm install
+        try:
+            subprocess.call(["npm", "install"])
+        except:
+            print "Failed to perform npm install"
+            cleanup()
+            sys.exit("Failed to perform npm install")
 
-# at the end clean up the folder
-cleanup()
+        # compile and run each example
+        failures = []
+        retry = 10
+        for f in listdir(os.path.realpath('.')):
+            if f.endswith(".js"):
+                print f
+                success = False
+                try:
+                    for i in range(retry): 
+                        cmd = subprocess.Popen(["node", f, '--key', "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                        cmd_out, cmd_err = cmd.communicate()
+                        if "Exception" not in cmd_out and "{" in cmd_out:
+                            success = True
+                            break
+                        time.sleep(2)
+                    print cmd_out
 
-print 'All tests passed successfully'
-sys.exit(0)
+                    if not success:
+                        failures = failures + [f]
+                except:
+                    print f + " was unable to be compiled and run"
+                    failures = failures + [f]
 
+        # Exit test folder
+        try:
+            os.chdir(os.path.realpath('../..'))
+        except:
+            print 'Failed to move back into examples'
+            sys.exit('Failed to move back into examples')
 
+        if len(failures) != 0:
+            cleanup()
+            print 'Failed to pass these examples: ' + ', '.join(failures)
+            sys.exit('Failed to pass these examples: ' + ', '.join(failures))
+
+        # at the end clean up the folder
+        cleanup()
+        failed = False
+    except:
+        runs = runs + 1
+        print 'Attempt ' + runs + ' failed. Retrying'
+
+if failed:
+    sys.exit('Failed after 3 attempts')
+else:
+    print 'All tests passed successfully'
+    sys.exit(0)

@@ -33,53 +33,61 @@ def cleanup():
         shutil.rmtree('gitclone', onerror=onerror)
     except:
         print "Gitclone folder failed to be removed"
+failed = True
+runs = 0
+while failed and runs < 3:
+    try:
+        # Start by cleaning up
+        cleanup()
 
-# Start by cleaning up
-cleanup()
-
-# clone from git and get examples
-try:
-    subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/php.git", "gitclone"])
-except:
-    sys.exit('Failed to clone examples from github: https://github.com/rosette-api/php.git')
-
-# Try to move into the cloned examples folder
-try:
-    os.chdir(os.path.realpath('gitclone/examples'))
-except:
-    print 'Failed to move into gitclone/examples'
-    sys.exit('Failed to move into gitclone/examples')
-
-# compile and run each example
-failures = []
-for f in listdir(os.path.join(os.path.realpath('.'))):
-    if f.endswith(".php"):
-        print f
+        # clone from git and get examples
         try:
-            cmd = subprocess.Popen(["php", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            cmd_out, cmd_err = cmd.communicate()
-            print cmd_out
-            if "Exception" in cmd_out or "{" not in cmd_out:
-                failures = failures + [f]
+            subprocess.call(["git", "clone", "-b", "master", "https://github.com/rosette-api/php.git", "gitclone"])
         except:
-            print f + " was unable to be compiled and run"
-            failures = failures + [f]
+            sys.exit('Failed to clone examples from github: https://github.com/rosette-api/php.git')
 
-# Exit test folder
-try:
-    os.chdir(os.path.realpath('../..'))
-except:
-    print 'Failed to move back into examples'
-    sys.exit('Failed to move back into examples')
-if len(failures) != 0:
-    cleanup()
-    print 'Failed to pass these examples: ' + ', '.join(failures)
-    sys.exit('Failed to pass these examples: ' + ', '.join(failures))
+        # Try to move into the cloned examples folder
+        try:
+            os.chdir(os.path.realpath('gitclone/examples'))
+        except:
+            print 'Failed to move into gitclone/examples'
+            sys.exit('Failed to move into gitclone/examples')
 
-# at the end clean up the folder
-cleanup()
+        # compile and run each example
+        failures = []
+        for f in listdir(os.path.join(os.path.realpath('.'))):
+            if f.endswith(".php"):
+                print f
+                try:
+                    cmd = subprocess.Popen(["php", f, "--key", "88afd6b4b18a11d1248639ecf399903c"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                    cmd_out, cmd_err = cmd.communicate()
+                    print cmd_out
+                    if "Exception" in cmd_out or "{" not in cmd_out:
+                        failures = failures + [f]
+                except:
+                    print f + " was unable to be compiled and run"
+                    failures = failures + [f]
 
-print 'All tests passed successfully'
-sys.exit(0)
+        # Exit test folder
+        try:
+            os.chdir(os.path.realpath('../..'))
+        except:
+            print 'Failed to move back into examples'
+            sys.exit('Failed to move back into examples')
+        if len(failures) != 0:
+            cleanup()
+            print 'Failed to pass these examples: ' + ', '.join(failures)
+            sys.exit('Failed to pass these examples: ' + ', '.join(failures))
 
+        # at the end clean up the folder
+        cleanup()
+        failed = False
+    except:
+        runs = runs + 1
+        print 'Attempt ' + runs + ' failed. Retrying'
 
+if failed:
+    sys.exit('Failed after 3 attempts')
+else:
+    print 'All tests passed successfully'
+    sys.exit(0)
