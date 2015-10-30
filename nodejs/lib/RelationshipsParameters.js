@@ -47,6 +47,9 @@ util.inherits(RelationshipsParameters, DocumentParamSetBase);
  * @throws RosetteException
  */
 RelationshipsParameters.prototype.setOption = function(key, value) {
+    if (!("options" in this.params)) {
+        this.params["options"] = { accuracyMode: "PRECISION" };
+    }
     if (!(key in this.params.options)) {
         throw new RosetteException("badKey", "Unknown Rosette parameter options key", key);
     }
@@ -103,8 +106,8 @@ RelationshipsParameters.prototype.validate = function() {
   if (this.okayString(this.params.content) && this.okayString(this.params.contentUri)) {
     throw new RosetteException("badArgument", "Cannot supply both Content and ContentUri", "bad arguments");
   }
-  if (this.params.options.accuracyMode !== 'PRECISION' && this.params.accuracyMode !== 'RECALL') {
-    throw new RosetteException('badOption', 'accuracyMode must be either PRECISION or RECALL', 'bad options');
+  if (this.params.options.accuracyMode !== "PRECISION" && this.params.options.accuracyMode !== "RECALL") {
+    throw new RosetteException("badOption", "accuracyMode must be either PRECISION or RECALL", "bad options");
   }
 };
 

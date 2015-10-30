@@ -81,9 +81,6 @@ Api.prototype.setNumRetries = function(numRetries) {
   if (typeof numRetries === "number") {
     this.nRetries = numRetries;
   }
-  else {
-    console.log("Did nothing. Try again with a number");
-  }
 };
 
 /**
@@ -98,7 +95,6 @@ Api.prototype.checkVersion = function(api) {
   }
   this.compareBindingToServer(function(err, res) {
     if (err) {
-      console.log(err);
       throw err;
     }
     if (!res.versionChecked) {
@@ -184,7 +180,7 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
               code = result.code;
             }
           } catch (e) {
-            console.error(e);
+            message = e.message;
           }
         }
         if (!message) {
@@ -227,15 +223,18 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
 
   // If parameters is a string (check both types of string)
   if (typeof parameters === "string" || parameters instanceof String) {
-    if (subUrl !== "matched-name" && subUrl !== "translated-name") {
-      var text = parameters;
-      parameters = new DocumentParameters();
-      parameters.setItem("content", text);
+    var text = parameters;
+    if (subUrl === "relationships") {
+        parameters = new RelationshipsParameters();
+        parameters.setItem("content", text);
+    }
+    else if (subUrl !== "matched-name" && subUrl !== "translated-name") {
+        parameters = new DocumentParameters();
+        parameters.setItem("content", text);
     }
     else {
-      err = new RosetteException("incompatible", "Text-only input only works for DocumentParameter endpoints",
-        subUrl);
-      return callback(err);
+        err = new RosetteException("incompatible", "Text-only input only works for DocumentParameter endpoints", subUrl);
+        return callback(err);
     }
   }
   if (this.useMultiPart && parameters.contentType !== rosetteConstants.dataFormat.SIMPLE) {
@@ -458,7 +457,7 @@ Api.prototype.matchedName = function(parameters, callback) {
  */
 Api.prototype.relationships = function(parameters, callback) {
   this.callEndpoint(callback, parameters, "relationships");
-}
+};
 
 module.exports = Api;
 
