@@ -45,7 +45,7 @@ class Api
      *
      * @var string
      */
-    private static $binding_version = '0.5';
+    private static $binding_version = '0.7';
     /**
      * User key (required for Rosette API).
      *
@@ -246,7 +246,7 @@ class Api
     /**
      * Setter for numRetries.
      *
-     * @param int numRetries
+     * @param $numRetries int
      */
     public function setNumRetries($numRetries)
     {
@@ -304,11 +304,11 @@ class Api
      *
      * @throws RosetteException
      */
-    private function callEndpoint(RosetteParamsSetBase $parameters, $subUrl)
+    private function callEndpoint($parameters, $subUrl)
     {
         $this->checkVersion($this->service_url);
         $this->subUrl = $subUrl;
-        if ($this->useMultiPart && $parameters['contentType'] !== RosetteConstants::$DataFormat['SIMPLE']) {
+        if ($this->useMultiPart && $parameters->contentType !== RosetteConstants::$DataFormat['SIMPLE']) {
             throw new RosetteException(
                 sprintf('MultiPart requires contentType SIMPLE: %s', $parameters['contentType']),
                 RosetteException::$BAD_REQUEST_FORMAT
@@ -683,5 +683,33 @@ class Api
     public function matchedName($nameMatchingParams)
     {
         return $this->callEndpoint($nameMatchingParams, 'matched-name');
+    }
+
+    /**
+     * Calls the relationships/info endpoint.
+     *
+     * @return mixed
+     */
+    public function relationshipsInfo()
+    {
+        $this->skipVersionCheck();
+        $url = $this->service_url . '/relationships/info';
+        $resultObject = $this->getHttp($url, $this->headers, $this->getOptions());
+
+        return $this->finishResult($resultObject, 'relationships-info');
+    }
+
+    /**
+     * Calls the relationships endpoint.
+     *
+     * @param $params
+     *
+     * @return mixed
+     *
+     * @throws RosetteException
+     */
+    public function relationships($params)
+    {
+        return $this->callEndpoint($params, 'relationships');
     }
 }

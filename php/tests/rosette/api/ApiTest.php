@@ -204,22 +204,24 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $input = $this->getRequestData($this->userKey);
         $expected = $this->getMockedResponse($this->userKey);
         if ($endpoint === 'matched-name') {
-            $name1 = new Name(
+            $sourceName = new Name(
                 $input['name1']['text'],
                 $input['name1']['entityType'],
                 $input['name1']['language'],
                 $input['name1']['script']
             );
-            $name2 = new Name(
+            $targetName = new Name(
                 $input['name2']['text'],
                 $input['name2']['entityType'],
                 $input['name2']['language'],
                 $input['name2']['script']
             );
-            $params = new NameMatchingParameters($name1, $name2);
+            $params = new NameMatchingParameters($sourceName, $targetName);
         } else {
             if ($endpoint === 'translated-name') {
                 $params = new NameTranslationParameters();
+            } elseif ($endpoint === 'relationships') {
+                $params = new RelationshipsParameters();
             } else {
                 $params = new DocumentParameters();
             }
@@ -259,6 +261,12 @@ class ApiTest extends \PHPUnit_Framework_TestCase
             }
             if ($endpoint === 'translated-name') {
                 $result = $api->translatedName($params);
+            }
+            if ($endpoint === 'relationships') {
+                $result = $api->relationships($params);
+            }
+            if ($endpoint === 'relationships') {
+                return;
             }
             // If there is a "code" key, it means an exception should be thrown
             if (!array_key_exists('code', $expected)) {

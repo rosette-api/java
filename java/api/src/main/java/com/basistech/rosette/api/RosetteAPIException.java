@@ -47,8 +47,8 @@ public class RosetteAPIException extends Exception {
     }
 
     public String toString() {
-        return this.getClass().getSimpleName() + " http status code: " + httpStatusCode +
-                ", requestId: " + requestId + ", code: " + code + ", message: " + message;
+        return this.getClass().getSimpleName() + " http status code: " + httpStatusCode
+                + ", requestId: " + requestId + ", code: " + code + ", message: " + message;
     }
 
     public int getHttpStatusCode() {
