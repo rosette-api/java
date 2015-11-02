@@ -21,6 +21,7 @@ var zlib = require("zlib");
 var rosetteConstants = require("./rosetteConstants");
 var RosetteException = require("./RosetteException");
 var DocumentParameters = require("./DocumentParameters");
+var RelationshipsParameters = require("./RelationshipsParameters");
 
 /**
  * Compatible server version.
