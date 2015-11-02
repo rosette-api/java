@@ -1,6 +1,6 @@
 FROM maven:latest
 MAINTAINER Chris Park <cpark@basistech.com>
-ENV REFRESHED_AT 2015-10-23
+ENV REFRESHED_AT 2015-11-02
 
 RUN apt-get -yqq update \
     && apt-get install -y --force-yes --no-install-recommends\

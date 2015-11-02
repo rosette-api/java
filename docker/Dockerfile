@@ -16,7 +16,6 @@ RUN apt-get -yqq update \
         vim \
         iputils-ping
 
-RUN cd /etc/ssl && openssl req -x509 -nodes -days 365 -subj '/C=US/ST=Massachusetts/L=Cambridge/CN=api.rosette.com' -newkey rsa:2014 -keyout api.rosette.com.pem -out api.rosette.com.pem
 COPY docker/server.conf /etc/nginx/conf.d/server.conf
 COPY docker/settings-local.xml .m2/settings.xml
 COPY docker/settings-global.xml /usr/share/maven/conf/settings.xml
