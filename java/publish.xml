@@ -21,28 +21,11 @@
         <file>
             <source>pom.xml</source>
         </file>
-        <file>
-            <source>publish.xml</source>
-        </file>
     </files>
 
     <fileSets>
         <fileSet>
             <directory>api</directory>
-            <includes>
-                <include>src/**</include>
-                <include>pom.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet>
-            <directory>api-model</directory>
-            <includes>
-                <include>src/**</include>
-                <include>pom.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet>
-            <directory>json</directory>
             <includes>
                 <include>src/**</include>
                 <include>pom.xml</include>
@@ -61,6 +44,14 @@
             <includes>
                 <include>pom.xml</include>
             </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/rosette-api-model/model</directory>
+            <outputDirectory>model</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/rosette-api-model/json</directory>
+            <outputDirectory>json</outputDirectory>
         </fileSet>
     </fileSets>
 </assembly>

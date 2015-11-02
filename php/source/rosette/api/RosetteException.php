@@ -40,4 +40,10 @@ class RosetteException extends CustomException
      * @var int
      */
     public static $INCOMPATIBLE_VERSION = -6; // api error
+    /**
+     * Internal error indicating that the requested property does not exist.
+     *
+     * @var int
+     */
+    public static $INVALID_PROPERTY_NAME = -7;
 }

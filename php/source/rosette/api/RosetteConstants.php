@@ -55,4 +55,14 @@ class RosetteConstants
         'HAN_READINGS' => 'han-readings',
         'COMPLETE' => 'complete',
     );
+
+    /**
+     * Valid relationship options.
+     *
+     * @var array
+     */
+    public static $RelationshipOptions = array(
+        'PRECISION' => 'PRECISION',
+        'RECALL' => 'RECALL',
+    );
 }
