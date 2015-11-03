@@ -153,7 +153,7 @@ under the License.
       <id>Nexus</id>
       <mirrorOf>*</mirrorOf>
       <name>Basis TEchnology Corp. Nexus</name>
-      <url>http://nexus.basistech.net:8080/nexus/content/groups/public</url>
+      <url>http://nexus.basistech.net:8081/nexus/content/groups/public</url>
     </mirror>
   </mirrors>
 
