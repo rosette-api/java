@@ -23,12 +23,42 @@ namespace rosette\api;
 class NameTranslationParameters extends RosetteParamsSetBase
 {
     /**
+     * @var string name to translate
+     */
+    public $name;
+    /**
+     * @var string targetLanguage ISO 639-3 code for the translation language
+     */
+    public $targetLanguage;
+    /**
+     * @var string entityType type of entity, e.g. PERSON, LOCATION, ORGANIZATION (optional)
+     */
+    public $entityType;
+    /**
+     * @var string sourceLanguageOfOrigin ISO 693-3 code for name's language of origin (optional)
+     */
+    public $sourceLanguageOfOrigin;
+    /**
+     * @var string sourceLanguageOfUse ISO 693-3 code for name's language of use (optional)
+     */
+    public $sourceLanguageOfUse;
+    /**
+     * @var string sourceScript ISO 15924 code for name's script (optional)
+     */
+    public $sourceScript;
+    /**
+     * @var string targetScript ISO 15924 code for name's script (optional)
+     */
+    public $targetScript;
+    /**
+     * @var string targetScheme transliteration scheme for the translation (optional)
+     */
+    public $targetScheme;
+    /**
      * constructor.
      */
     public function __construct()
     {
-        parent::__construct(array('name', 'targetLanguage', 'entityType', 'sourceLanguageOfOrigin',
-            'sourceLanguageOfUse', 'sourceScript', 'targetScript', 'targetScheme', ));
     }
 
     /**
@@ -38,13 +68,17 @@ class NameTranslationParameters extends RosetteParamsSetBase
      */
     public function validate()
     {
-        foreach (array('name', 'targetLanguage') as $key) {
-            if (empty(trim($this->get($key)))) {
-                throw new RosetteException(
-                    sprintf('Required name translation parameter not supplied: %s', $key),
-                    RosetteException::$BAD_REQUEST_FORMAT
-                );
-            }
+        if (empty($this->name)) {
+            throw new RosetteException(
+                sprintf('Required name translation parameter not supplied: name'),
+                RosetteException::$BAD_REQUEST_FORMAT
+            );
+        }
+        if (empty($this->targetLanguage)) {
+            throw new RosetteException(
+                sprintf('Required name translation parameter not supplied: targetLanguage'),
+                RosetteException::$BAD_REQUEST_FORMAT
+            );
         }
     }
 }
