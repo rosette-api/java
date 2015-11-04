@@ -20,7 +20,7 @@ def get_example_file_map():
                      "entities", "entities_linked",
                      "categories", "sentiment",
                      "translated-name", "matched-name"]:
-        for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp"]:
+        for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp", "ruby", "shell"]:
             language_dir = bindings_base_dir + language
             if language == "python":
                 example_file = "%s/examples/%s.py" % (language_dir, endpoint)
@@ -32,6 +32,10 @@ def get_example_file_map():
                                (language_dir, camel_case_endpoint)
             elif language == "nodejs":
                 example_file = "%s/examples/%s.js" % (language_dir, endpoint)
+            elif language == "ruby":
+                example_file = "%s/examples/%s.rb" % (language_dir, endpoint)
+            elif language == "shell":
+                example_file = "%s/examples/%s.sh" % (language_dir, endpoint)
             elif language == "csharp":
                 example_file = "%s/rosette_apiExamples/%s.cs" % (language_dir, endpoint)
             else:
@@ -48,7 +52,7 @@ def get_example_file_map():
 
 def get_example_regex_map():
     example_regex_map = {}
-    for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp", "json"]:
+    for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp", "json", "shell"]:
         if language == "python":
             # all content starting at first import
             pattern = re.compile("(import.*)()", re.DOTALL)
@@ -63,6 +67,10 @@ def get_example_regex_map():
         elif language == "csharp":
             pattern = re.compile("(.*)\n        /// <summary>.*/// </summary>(.*)", re.DOTALL)
         elif language == "json":
+            pattern = re.compile("(.*)()", re.DOTALL)
+        elif language == "ruby":
+            pattern = re.compile("(.*)()", re.DOTALL)
+        elif language == "shell":
             pattern = re.compile("(.*)()", re.DOTALL)
         else:
             # TODO: expand this as new bindings are added
@@ -165,7 +173,7 @@ def get_example_content(tag):
     return file_content
 
 def replace(match):
-    replace_pattern = "\${(.*)}"
+    replace_pattern = "\"\${(.*)}\""
     matched = match.group(1)
     check_match = re.match("(.*})(.*)(\${.*)", matched)
     if check_match != None:
@@ -198,6 +206,9 @@ def clean_temp_files():
         file = example_file_map["json:" + endpoint]
         os.remove(file)
 
+    for f in os.listdir(os.path.dirname(os.path.realpath('publish'))):
+        if 'tmp' in f:
+            os.remove(os.path.dirname(os.path.realpath(f)))
 
 if len(sys.argv) != 3:
     usage()
