@@ -12,7 +12,6 @@ from rosette.api import API, RelationshipsParameters
 def run(key):
     # Create an API instance
     api = API(user_key=key)
-    
     params = RelationshipsParameters()
     params["content"] = u"${relationships_data}"
     params["options"] = {"accuracyMode": "PRECISION"}
