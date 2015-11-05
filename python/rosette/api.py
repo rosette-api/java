@@ -375,7 +375,7 @@ class DocumentParameters(_DocumentParamSetBase):
         self["content"] = s
         self["contentType"] = data_type
         self["unit"] = InputUnit.DOC
-        
+
 
 class RelationshipsParameters(DocumentParameters):
 
