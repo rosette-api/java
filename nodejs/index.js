@@ -2,6 +2,8 @@ module.exports.Api = require('./lib/Api');
 
 module.exports.DocumentParameters = require('./lib/DocumentParameters');
 
+module.exports.RelationshipsParameters = require('./lib/RelationshipsParameters');
+
 module.exports.NameMatchingParameters = require("./lib/NameMatchingParameters");
 
 module.exports.Name = require("./lib/Name");
