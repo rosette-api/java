@@ -375,8 +375,10 @@ class DocumentParameters(_DocumentParamSetBase):
         self["content"] = s
         self["contentType"] = data_type
         self["unit"] = InputUnit.DOC
+        
 
 class RelationshipsParameters(DocumentParameters):
+
     """Parameter object for relationships endpoint. Inherits from L(DocumentParameters), but allows the user
     to specify the relationships-unique options parameter."""
     def __init__(self):
