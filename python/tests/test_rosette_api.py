@@ -30,7 +30,7 @@ try:
 except ImportError:
     from io import BytesIO as streamIO
 import gzip
-from rosette.api import API, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RosetteException
+from rosette.api import API, DocumentParameters, NameTranslationParameters, NameMatchingParameters, RelationshipsParameters, RosetteException
 
 _IsPy3 = sys.version_info[0] == 3
 
@@ -39,7 +39,6 @@ response_file_dir = os.path.dirname(__file__) + "/mock-data/response/"
 
 # Define the regex pattern of file names. Example: eng-doc-categories.json
 filename_pattern = re.compile("(\w+-\w+-([a-z_-]+))[.]json")
-
 
 def get_file_content(filename):
     with open(filename, "r") as f:
@@ -88,6 +87,9 @@ class RosetteTest:
             # Name translation requires NameTranslationParameters
             elif "translated-name" in filename:
                 self.params = NameTranslationParameters()
+            # Relationships requires RelationshipParameters if user wants to specify options
+            elif "relationships" in filename:
+                self.params = RelationshipsParameters()
             # Find and load contents of request file into parameters
             with open(request_file_dir + filename + ".json", "r") as inp_file:
                 params_dict = json.loads(inp_file.read())
@@ -190,6 +192,7 @@ def call_endpoint(input_filename, expected_status_filename, expected_output_file
                  "/language": test.api.language,
                  "/matched-name": test.api.matched_name,
                  "/morphology/complete": test.api.morphology,
+                 "/relationships": test.api.relationships,
                  "/sentiment": test.api.sentiment,
                  "/translated-name": test.api.translated_name}
 
@@ -226,7 +229,7 @@ def test_all(input_filename, expected_status_filename, expected_output_filename,
 def test_debug():
     # Doesn't really matter what it returns for this test, so just making sure it catches all of them
     endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology-complete",
-                 "sentiment", "translated-name"]
+                 "sentiment", "translated-name", "relationships"]
     expected_status_filename = response_file_dir + "eng-sentence-entities.status"
     expected_output_filename = response_file_dir + "eng-sentence-entities.json"
     for rest_endpoint in endpoints:
@@ -264,7 +267,7 @@ def test_debug():
 @httpretty.activate
 def test_just_text():
     endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology-complete",
-                 "sentiment", "translated-name"]
+                 "sentiment", "translated-name", "relationships"]
     expected_status_filename = response_file_dir + "eng-sentence-entities.status"
     expected_output_filename = response_file_dir + "eng-sentence-entities.json"
     for rest_endpoint in endpoints:
