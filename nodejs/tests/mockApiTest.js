@@ -17,6 +17,7 @@
 
 var Api = require("../target/instrumented/lib/Api");
 var DocumentParameters = require("../target/instrumented/lib/DocumentParameters");
+var RelationshipsParameters = require("../target/instrumented/lib/RelationshipsParameters");
 var NameMatchingParameters = require("../target/instrumented/lib/NameMatchingParameters");
 var NameTranslationParameters = require("../target/instrumented/lib/NameTranslationParameters");
 
@@ -64,7 +65,7 @@ function setMock() {
 
   var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
     "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
-    "sentences", "sentiment", "tokens", "translated-name"];
+    "sentences", "sentiment", "tokens", "translated-name", "relationships"];
   for (var j = 0; j < endpoints.length; j++) {
     nock("https://api.rosette.com/rest/v1")
       .persist()
@@ -116,10 +117,10 @@ exports.testAllEndpoints = {
 
       if (!err) {
         if (!errorExpected) {
-          test.deepEqual(result, expected, "Testing if result matches");
+          test.deepEqual(result, expected, "Testing if result matches" + files[counter]);
         }
         else {
-          test.ok(false, "Should have been an error");
+          test.ok(false, "Should have been an error" + files[counter]);
         }
       } else
       {
@@ -127,7 +128,7 @@ exports.testAllEndpoints = {
           test.ok(true, "Error was expected");
         }
         else {
-          test.ok(false, "Error was not expected, but was thrown");
+          test.ok(false, "Error was not expected, but was thrown" + files[counter]);
         }
       }
       if (++counter === files.length) {
@@ -145,13 +146,25 @@ exports.testAllEndpoints = {
 
         // Anything not matched-name or translated-name
         if (files[i].indexOf("name") === -1) {
-          parameters = new DocumentParameters();
-          parameters.params = input;
+            if (files[i].indexOf("relationships") > -1) {
+              parameters = new RelationshipsParameters();
+              parameters.params = input;
+              parameters.setOption("accuracyMode", "PRECISION");
+            }
+            else {
+              parameters = new DocumentParameters();
+              parameters.params = input;
+            }
           // Add extra parameter so that the nock can respond correctly
           parameters.params.file = files[i].replace(filenameRe, "$1");
           endpt = files[i].replace(endpointRe, "$1");
 
           if (endpt.indexOf("morphology") === -1) {
+            if (endpt === "relationships") {
+                api.relationships(parameters, function(err, res) {
+                    checkResult(err, res);
+                });
+            }
             if (endpt === "categories") {
               api.categories(parameters, function (err, res) {
                 checkResult(err, res);
@@ -379,7 +392,7 @@ function setGzipMock() {
 
   var endpoints = ["categories", "entities", "entities/linked", "language", "matched-name", "morphology/complete",
     "morphology/compound-components", "morphology/han-readings", "morphology/lemmas", "morphology/parts-of-speech",
-    "sentences", "sentiment", "tokens", "translated-name"];
+    "sentences", "sentiment", "tokens", "translated-name", "relationships"];
   for (var j = 0; j < endpoints.length; j++) {
     nock("https://api.rosette.com/rest/v1")
       .persist()
@@ -432,18 +445,18 @@ exports.testAllEndpointsGzipped = {
 
       if (!err) {
         if (!errorExpected) {
-          test.deepEqual(result, expected, "Testing if result matches");
+          test.deepEqual(result, expected, "Testing if result matches" + files[counter]);
         }
         else {
-          test.ok(false, "Should have been an error");
+          test.ok(false, "Should have been an error" + files[counter]);
         }
       } else
       {
         if (errorExpected) {
-          test.ok(true, "Error was expected");
+          test.ok(true, "Error was expected" + files[counter]);
         }
         else {
-          test.ok(false, "Error was not expected, but was thrown");
+          test.ok(false, "Error was not expected, but was thrown" + files[counter]);
         }
       }
       if (++counter === files.length) {
@@ -461,13 +474,25 @@ exports.testAllEndpointsGzipped = {
 
         // Anything not matched-name or translated-name
         if (files[i].indexOf("name") === -1) {
-          parameters = new DocumentParameters();
-          parameters.params = input;
+            endpt = files[i].replace(endpointRe, "$1");
+            if (endpt === "relationships") {
+              parameters = new RelationshipsParameters();
+              parameters.params = input;
+              parameters.setOption("accuracyMode", "PRECISION");
+            }
+            else {
+              parameters = new DocumentParameters();
+              parameters.params = input;
+            }
           // Add extra parameter so that the nock can respond correctly
           parameters.params.file = files[i].replace(filenameRe, "$1");
-          endpt = files[i].replace(endpointRe, "$1");
 
           if (endpt.indexOf("morphology") === -1) {
+            if (endpt === "relationships") {
+                api.relationships(parameters, function(err, res) {
+                    checkResult(err, res);
+                });
+            }
             if (endpt === "categories") {
               api.categories(parameters, function (err, res) {
                 checkResult(err, res);
