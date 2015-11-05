@@ -40,6 +40,7 @@ response_file_dir = os.path.dirname(__file__) + "/mock-data/response/"
 # Define the regex pattern of file names. Example: eng-doc-categories.json
 filename_pattern = re.compile("(\w+-\w+-([a-z_-]+))[.]json")
 
+
 def get_file_content(filename):
     with open(filename, "r") as f:
         s = f.read()
