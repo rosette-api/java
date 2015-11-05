@@ -12,7 +12,6 @@
     </prerequisites>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-parent</artifactId>
-    <version>0.7.1-SNAPSHOT</version>
     <name>rosette-api-parent</name>
     <packaging>pom</packaging>
     <description>Parent project for Rosette API</description>
@@ -31,7 +30,7 @@
     </distributionManagement>
 
     <properties>
-        <rosette-api-model-version>${project.version}</rosette-api-model-version>
+        <rosette-api-model-version>0.7.1</rosette-api-model-version>
         <jackson-version>2.6.2</jackson-version>
         <junit-version>4.12</junit-version>
         <assembly.skipAssembly>false</assembly.skipAssembly>

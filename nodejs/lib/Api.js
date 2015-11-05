@@ -21,6 +21,7 @@ var zlib = require("zlib");
 var rosetteConstants = require("./rosetteConstants");
 var RosetteException = require("./RosetteException");
 var DocumentParameters = require("./DocumentParameters");
+var RelationshipsParameters = require("./RelationshipsParameters");
 
 /**
  * Compatible server version.
@@ -81,9 +82,6 @@ Api.prototype.setNumRetries = function(numRetries) {
   if (typeof numRetries === "number") {
     this.nRetries = numRetries;
   }
-  else {
-    console.log("Did nothing. Try again with a number");
-  }
 };
 
 /**
@@ -98,7 +96,6 @@ Api.prototype.checkVersion = function(api) {
   }
   this.compareBindingToServer(function(err, res) {
     if (err) {
-      console.log(err);
       throw err;
     }
     if (!res.versionChecked) {
@@ -127,8 +124,7 @@ Api.prototype.checkVersion = function(api) {
  */
 Api.prototype.retryingRequest = function(err, callback, op, url, data, action, api, tryNum) {
   if (err) {
-    callback(err);
-    return;
+    return callback(err);
   }
   if (!tryNum) {
     tryNum = 0;
@@ -161,8 +157,7 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
     });
     res.on("end", function (error) {
       if (error) {
-        callback(error);
-        return;
+        return callback(error);
       }
       if(res.headers["content-encoding"] === "gzip") {
         result = zlib.gunzipSync(result);
@@ -186,7 +181,7 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
               code = result.code;
             }
           } catch (e) {
-            console.error(e);
+            message = e.message;
           }
         }
         if (!message) {
@@ -194,8 +189,7 @@ Api.prototype.retryingRequest = function(err, callback, op, url, data, action, a
         }
         if (tryNum >= api.nRetries) {
           err = new RosetteException(code, message, url);
-          callback(err);
-          return;
+          return callback(err);
         }
         else {
           api.retryingRequest(null, callback, op, url, data, action, api, ++tryNum);
@@ -230,22 +224,23 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
 
   // If parameters is a string (check both types of string)
   if (typeof parameters === "string" || parameters instanceof String) {
-    if (subUrl !== "matched-name" && subUrl !== "translated-name") {
-      var text = parameters;
-      parameters = new DocumentParameters();
-      parameters.setItem("content", text);
+    var text = parameters;
+    if (subUrl === "relationships") {
+        parameters = new RelationshipsParameters();
+        parameters.setItem("content", text);
+    }
+    else if (subUrl !== "matched-name" && subUrl !== "translated-name") {
+        parameters = new DocumentParameters();
+        parameters.setItem("content", text);
     }
     else {
-      err = new RosetteException("incompatible", "Text-only input only works for DocumentParameter endpoints",
-        subUrl);
-      callback(err);
-      return;
+        err = new RosetteException("incompatible", "Text-only input only works for DocumentParameter endpoints", subUrl);
+        return callback(err);
     }
   }
   if (this.useMultiPart && parameters.contentType !== rosetteConstants.dataFormat.SIMPLE) {
     err = new RosetteException("incompatible", "Multipart requires contentType SIMPLE", parameters.contentType);
-    callback(err);
-    return;
+    return callback(err);
   }
   var url = this.serviceUrl + "/" + subUrl;
 
@@ -265,8 +260,7 @@ Api.prototype.callEndpoint = function(callback, parameters, subUrl) {
  */
 Api.prototype.finishResult = function(err, result, action, callback) {
   if (err) {
-    callback(err);
-    return;
+    return callback(err);
   }
   var code = result.statusCode;
   var json = result.json;
@@ -453,6 +447,17 @@ Api.prototype.translatedName = function(parameters, callback) {
  */
 Api.prototype.matchedName = function(parameters, callback) {
   this.callEndpoint(callback, parameters, "matched-name");
+};
+
+/**
+ * Calls the relationships endpoint
+ *
+ * @param {RelationshipsParameters} parameters
+ * @param {function} callback
+ * @throws RosetteException
+ */
+Api.prototype.relationships = function(parameters, callback) {
+  this.callEndpoint(callback, parameters, "relationships");
 };
 
 module.exports = Api;
