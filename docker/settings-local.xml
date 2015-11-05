@@ -1,0 +1,44 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+     http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <servers>
+    <server>
+      <id>basis.releases</id>
+      <username>deployment</username>
+      <password>hudson</password>
+    </server>
+    <server>
+      <id>basistech.snapshot.repo</id>
+      <username>deployment</username>
+      <password>hudson</password>
+    </server>
+    <server>
+      <id>basistech.repo</id>
+      <username>deployment</username>
+      <password>hudson</password>
+    </server>
+  </servers>
+   <pluginGroups>
+    <pluginGroup>com.atlassian.maven.plugins</pluginGroup>
+  </pluginGroups>
+  <profiles>
+    <!--profile>
+      <id>basis.snapshots</id>
+      <activation>
+<activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+<repository>
+ <id>basis.snapshots</id>
+ <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+ </snapshots>
+ <url>http://maven.basistech.net/nexus/content/repositories/snapshots/</url>
+</repository>
+      </repositories>
+    </profile-->
+  </profiles>
+</settings>
