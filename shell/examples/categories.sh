@@ -4,7 +4,7 @@ if [ $# -eq 0 ]; then
 fi
 
 curl "https://api.rosette.com/rest/v1/categories" \
-  -H 'user_key: "88afd6b4b18a11d1248639ecf399903c"' \
+  -H 'user_key: $1\
   -H 'Content-Type:application/json' \
   -H 'Accept:application/json' \
   -d '{"contentUri": "${categories_data}"}'
