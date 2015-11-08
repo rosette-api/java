@@ -1,12 +1,12 @@
 apikey = $1
 
-if [ -z "$apikey" ]; then
+if [ $# eq 0 ]; then
    echo "Must have API key to run example"
    exit 1
 fi
 
 curl "https://api.rosette.com/rest/v1/categories" \
-  -H 'user_key: [your_api-key]' \
+  -H 'user_key: "$apikey"' \
   -H 'Content-Type:application/json' \
   -H 'Accept:application/json' \
   -d '{"contentUri": "${categories_data}"}'
