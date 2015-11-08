@@ -1,9 +1,9 @@
-apikey = $1
-
-if [ $# eq 0 ]; then
+if [ $# -eq 0 ]; then
    echo "Must have API key to run example"
    exit 1
 fi
+
+apikey = $1
 
 curl "https://api.rosette.com/rest/v1/categories" \
   -H 'user_key: "$apikey"' \
