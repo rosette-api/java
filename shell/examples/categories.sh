@@ -3,10 +3,8 @@ if [ $# -eq 0 ]; then
    exit 1
 fi
 
-apikey = $1
-
 curl "https://api.rosette.com/rest/v1/categories" \
-  -H 'user_key: "$apikey"' \
+  -H 'user_key: $1' \
   -H 'Content-Type:application/json' \
   -H 'Accept:application/json' \
   -d '{"contentUri": "${categories_data}"}'
