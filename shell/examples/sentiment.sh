@@ -9,4 +9,4 @@ curl "https://api.rosette.com/rest/v1/sentiment" \
   -H 'user_key: $1' \
   -H 'Content-Type:application/json' \
   -H 'Accept:application/json' \
-  -d '{"content": "${sentiment_data}"}'
+  -d '{"content": "${sentiment_data}", "options": {"model": "short-string", "explain": true}}'
