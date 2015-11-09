@@ -4,7 +4,7 @@ if [ $# -eq 0 ]; then
 fi
 
 curl "https://api.rosette.com/rest/v1/sentences" \
-  -H'user_key: $1' \
+  -H 'user_key: $1' \
   -H 'ContentType:multipart/form-data' \
   -H 'Accept:application/json' \
-  -F content=@/path/to/data/fox.txt
+  -F content=@$2
