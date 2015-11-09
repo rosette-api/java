@@ -1,5 +1,5 @@
 import subprocess
-examples = ["categories", "entities", "entities_linked", "info", "language", "matched-name", "morphology_complete", "morphology_compound-components", "morphology_han-readings", "morphology_lemmas", "morphology_parts-of-speech", "ping", "sentences", "sentiment", "tokens", "translated-name"]
+examples = ["categories", "entities", "entities_linked", "info", "language", "local", "matched-name", "morphology_complete", "morphology_compound-components", "morphology_han-readings", "morphology_lemmas", "morphology_parts-of-speech", "ping", "sentences", "sentiment", "tokens", "translated-name"]
 ext = ".sh"
 process = subprocess.Popen(["mvn", "-Dtarget=true"],shell=True)
 stdoutdata, stderrdata = process.communicate()
