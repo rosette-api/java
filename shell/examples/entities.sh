@@ -1,3 +1,5 @@
+#!/bin/bash -e
+
 if [ $# -eq 0 ]; then
     echo "Must have API key to run example"
     exit 1
