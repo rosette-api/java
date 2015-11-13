@@ -17,7 +17,7 @@ def get_example_file_map():
                      "language",
                      "tokens", "sentences", "morphology_complete", "morphology_lemmas",
                      "morphology_compound-components", "morphology_han-readings", "morphology_parts-of-speech",
-                     "entities", "entities_linked",
+                     "entities", "entities_linked", "relationships",
                      "categories", "sentiment",
                      "translated-name", "matched-name"]:
         for language in ["java", "ruby", "php", "python", "nodejs", "go", "csharp", "ruby", "shell"]:
@@ -200,7 +200,7 @@ def clean_temp_files():
                      "language",
                      "tokens", "sentences", "morphology_complete", "morphology_lemmas",
                      "morphology_compound-components", "morphology_han-readings", "morphology_parts-of-speech",
-                     "entities", "entities_linked",
+                     "entities", "entities_linked", "relationships",
                      "categories", "sentiment",
                      "translated-name", "matched-name"]:
         file = example_file_map["json:" + endpoint]
