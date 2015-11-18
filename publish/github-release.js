@@ -42,7 +42,7 @@ prompt.get(schema, function (err, result) {
     password: result.password
   });
 
-  var dir = __dirname + "/../nodejs/production_code/target/github-publish/";
+  var dir = __dirname + "/../nodejs/target/github-publish/";
   var packContents = fs.readFileSync(dir + "package.json");
   var version = JSON.parse(packContents).version;
 

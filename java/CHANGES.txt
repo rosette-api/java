@@ -1,3 +1,4 @@
+0.7.3: minor updates
 0.7.1: relationship endpoint added
 0.7.0: client version compatibility
 0.5.0: first published version.
