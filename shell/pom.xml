@@ -20,6 +20,25 @@
             </activation>
             <build>
                 <plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<executable>python</executable>
+									<arguments>
+										<argument>replaceFilters.py</argument>
+									</arguments>    
+								</configuration>
+								<id>python-build</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
                         <version>2.5.4</version>
@@ -36,7 +55,7 @@
                             <encoding>ISO-8859-1</encoding>
                             <finalName>github</finalName>
                             <filters>
-                                <filter>${basedir}/../filters.properties</filter>
+                                <filter>filters.properties</filter>
                             </filters>
                             <descriptors>
                                 <descriptor>publish.xml</descriptor>

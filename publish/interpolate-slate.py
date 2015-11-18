@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import re
+import subprocess
 import sys
 import tempfile
 
@@ -35,7 +36,7 @@ def get_example_file_map():
             elif language == "ruby":
                 example_file = "%s/examples/%s.rb" % (language_dir, endpoint)
             elif language == "shell":
-                example_file = "%s/examples/%s.sh" % (language_dir, endpoint)
+                example_file = "%s/target/github-publish/examples/%s.sh" % (language_dir, endpoint)
             elif language == "csharp":
                 example_file = "%s/rosette_apiExamples/%s.cs" % (language_dir, endpoint)
             else:
@@ -220,6 +221,11 @@ if not os.path.isfile(slate_file):
 if not os.access(slate_file, os.W_OK):
     print "slate file [%s] is not writable" % slate_file
     sys.exit(1)
+
+os.chdir('../shell')
+process = subprocess.Popen(["mvn", "clean", "install", "-Dtarget=true"],shell=True)
+aa, ab= process.communicate()
+os.chdir('../publish')
 
 replacements = load_properties(os.path.dirname(os.path.realpath(__file__)) + "/../filters.properties")
 example_file_map = get_example_file_map()
