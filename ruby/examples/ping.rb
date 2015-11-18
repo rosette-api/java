@@ -9,7 +9,7 @@ http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true if uri.scheme == 'https'
 
 request = Net::HTTP::Get.new(uri.request_uri)
-request["user_key"] = "[your_api-key]"
+request["user_key"] = ARGV[0] # your api key
 
 response = http.request(request)
 

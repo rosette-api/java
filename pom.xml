@@ -28,5 +28,7 @@
         <module>nodejs</module>
         <module>java</module>
         <module>csharp</module>
+        <module>ruby</module>
+        <module>shell</module>
     </modules>
 </project>
