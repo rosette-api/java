@@ -26,6 +26,14 @@
                 <include>Properties</include>
                 <include>CAPI.cs</include>
                 <include>rosette_api.csproj</include>
+                <include>app.config</include>
+                <include>rosette_api.nuspec</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>rosette_api/Properties</directory>
+            <includes>
+                <include>**.*</include>
             </includes>
         </fileSet>
         <fileSet>
