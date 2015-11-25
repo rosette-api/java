@@ -51,7 +51,6 @@
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>2.6.1</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -69,7 +68,7 @@
                 <executions>
                     <execution>
                         <id>copy-resources-request</id>
-                        <phase>generate-test-resources</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -88,7 +87,7 @@
                     </execution>
                     <execution>
                         <id>copy-resources-response</id>
-                        <phase>generate-test-resources</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -114,7 +113,7 @@
                 <executions>
                     <execution>
                         <id>exec-check-version-compatibility</id>
-                        <phase>validate</phase>
+                        <phase>process-resources</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -127,7 +126,7 @@
                     </execution>
                     <execution>
                         <id>exec-npm-install</id>
-                        <phase>generate-sources</phase>
+                        <phase>generate-test-sources</phase>
                         <configuration>
                             <executable>npm</executable>
                             <arguments>
@@ -140,7 +139,7 @@
                     </execution>
                     <execution>
                         <id>exec-grunt</id>
-                        <phase>process-resources</phase>
+                        <phase>generate-test-sources</phase>
                         <configuration>
                             <executable>grunt</executable>
                         </configuration>
