@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - "v0.10.40"
   - "0.12.7"
 before_install:
   - npm install -g npm
