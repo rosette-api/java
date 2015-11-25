@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rosette-api/java.svg?branch=master)](https://travis-ci.org/rosette-api/java)
+
 Java client binding for Rosette API
 ==================================
 
@@ -10,7 +12,7 @@ If you use Maven, include this dependency in your `pom.xml`:
 <dependency>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api</artifactId>
-    <version>0.7.1</version>
+    <version>0.7.3</version>
 </dependency>
 ```
 

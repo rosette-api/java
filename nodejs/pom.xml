@@ -51,7 +51,6 @@
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>2.6.1</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -65,12 +64,100 @@
                 </configuration>
             </plugin>
             <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources-request</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/request</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/request</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-response</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/response</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/response</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                        <include>**/*.status</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources-request</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/request</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/request</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-response</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/response</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/response</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                        <include>**/*.status</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>exec-check-version-compatibility</id>
-                        <phase>validate</phase>
+                        <phase>process-resources</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -83,7 +170,7 @@
                     </execution>
                     <execution>
                         <id>exec-npm-install</id>
-                        <phase>generate-sources</phase>
+                        <phase>generate-test-sources</phase>
                         <configuration>
                             <executable>npm</executable>
                             <arguments>
@@ -96,7 +183,7 @@
                     </execution>
                     <execution>
                         <id>exec-grunt</id>
-                        <phase>process-resources</phase>
+                        <phase>generate-test-sources</phase>
                         <configuration>
                             <executable>grunt</executable>
                         </configuration>

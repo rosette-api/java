@@ -15,7 +15,9 @@
         <file>
             <source>.gitignore</source>
         </file>
-
+        <file>
+            <source>.travis.yml</source>
+        </file>
     </files>
     <fileSets>
         <fileSet>

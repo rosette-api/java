@@ -1,7 +1,5 @@
-language: java
-jdk:
-  - oraclejdk8
-  - oraclejdk7
+language: csharp
+solution: rosette_api.sln
 
 notifications:
   slack:

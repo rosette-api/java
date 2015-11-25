@@ -19,6 +19,9 @@
             <source>.gitignore</source>
         </file>
         <file>
+            <source>.travis.yml</source>
+        </file>
+        <file>
             <source>Gruntfile.js</source>
         </file>
         <file>

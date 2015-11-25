@@ -1,10 +1,12 @@
+[![Build Status](https://travis-ci.org/rosette-api/php.svg?branch=master)](https://travis-ci.org/rosette-api/php)
+
 PHP client binding for Rosette API
 ==================================
 
 Installation
 ------------
 
-`composer require "rosette/api: ~0.7.1"`
+`composer require "rosette/api: ~0.7.2"`
 
 Basic Usage
 -----------
