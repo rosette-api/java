@@ -68,6 +68,50 @@
                 <executions>
                     <execution>
                         <id>copy-resources-request</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/request</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/request</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-response</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>tests/mock-data/response</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>../mock-data/response</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.json</include>
+                                        <include>**/*.status</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources-request</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>

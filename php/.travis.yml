@@ -1,7 +1,11 @@
-language: java
-jdk:
-  - oraclejdk8
-  - oraclejdk7
+language: php
+php:
+  - 5.5
+  - 5.6
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
+script: phpunit --bootstrap ./vendor/autoload.php ./tests/rosette/api/ApiTest.php
 
 notifications:
   slack:

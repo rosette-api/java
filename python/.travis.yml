@@ -1,7 +1,8 @@
-language: java
-jdk:
-  - oraclejdk8
-  - oraclejdk7
+language: python
+install:
+  - pip install tox 
+script:
+  - tox
 
 notifications:
   slack:

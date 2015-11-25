@@ -21,6 +21,12 @@
         <file>
             <source>pom.xml</source>
         </file>
+        <file>
+            <source>publish.xml</source>
+        </file>
+        <file>
+            <source>.travis.yml</source>
+        </file>
     </files>
 
     <fileSets>
