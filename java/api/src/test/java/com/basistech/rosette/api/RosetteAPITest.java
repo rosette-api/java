@@ -16,6 +16,40 @@
 
 package com.basistech.rosette.api;
 
+import com.basistech.rosette.apimodel.CategoriesRequest;
+import com.basistech.rosette.apimodel.CategoriesResponse;
+import com.basistech.rosette.apimodel.EntitiesRequest;
+import com.basistech.rosette.apimodel.EntitiesResponse;
+import com.basistech.rosette.apimodel.ErrorResponse;
+import com.basistech.rosette.apimodel.InputUnit;
+import com.basistech.rosette.apimodel.LanguageCode;
+import com.basistech.rosette.apimodel.LanguageRequest;
+import com.basistech.rosette.apimodel.LanguageResponse;
+import com.basistech.rosette.apimodel.LinkedEntitiesRequest;
+import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
+import com.basistech.rosette.apimodel.MorphologyRequest;
+import com.basistech.rosette.apimodel.MorphologyResponse;
+import com.basistech.rosette.apimodel.NameMatchingRequest;
+import com.basistech.rosette.apimodel.NameMatchingResponse;
+import com.basistech.rosette.apimodel.NameTranslationRequest;
+import com.basistech.rosette.apimodel.NameTranslationResponse;
+import com.basistech.rosette.apimodel.RelationshipsRequest;
+import com.basistech.rosette.apimodel.RelationshipsResponse;
+import com.basistech.rosette.apimodel.Request;
+import com.basistech.rosette.apimodel.SentimentRequest;
+import com.basistech.rosette.apimodel.SentimentResponse;
+import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.mockserver.client.server.MockServerClient;
+import org.mockserver.model.HttpRequest;
+import org.mockserver.model.HttpResponse;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -32,52 +66,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.zip.GZIPOutputStream;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.mockserver.client.server.MockServerClient;
-import org.mockserver.junit.MockServerRule;
-import org.mockserver.model.HttpRequest;
-import org.mockserver.model.HttpResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.basistech.rosette.apimodel.CategoriesRequest;
-import com.basistech.rosette.apimodel.CategoriesResponse;
-import com.basistech.rosette.apimodel.EntitiesRequest;
-import com.basistech.rosette.apimodel.EntitiesResponse;
-import com.basistech.rosette.apimodel.ErrorResponse;
-import com.basistech.rosette.apimodel.InputUnit;
-import com.basistech.rosette.apimodel.LanguageCode;
-import com.basistech.rosette.apimodel.LanguageRequest;
-import com.basistech.rosette.apimodel.LanguageResponse;
-import com.basistech.rosette.apimodel.MorphologyRequest;
-import com.basistech.rosette.apimodel.LinkedEntitiesRequest;
-import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
-import com.basistech.rosette.apimodel.MorphologyResponse;
-import com.basistech.rosette.apimodel.NameMatchingRequest;
-import com.basistech.rosette.apimodel.NameMatchingResponse;
-import com.basistech.rosette.apimodel.NameTranslationRequest;
-import com.basistech.rosette.apimodel.NameTranslationResponse;
-import com.basistech.rosette.apimodel.Request;
-import com.basistech.rosette.apimodel.RelationshipsRequest;
-import com.basistech.rosette.apimodel.RelationshipsResponse;
-import com.basistech.rosette.apimodel.SentimentRequest;
-import com.basistech.rosette.apimodel.SentimentResponse;
-import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
-
 @RunWith(Parameterized.class)
 public class RosetteAPITest extends Assert {
-
+    private static int serverPort;
     private static ObjectMapper mapper;
     private final String testFilename;
     private RosetteAPI api;
     private String responseStr;
     private LanguageCode language;
+    private MockServerClient mockServer;
 
     public RosetteAPITest(String filename) {
         testFilename = filename;
@@ -102,15 +99,14 @@ public class RosetteAPITest extends Assert {
 
     @BeforeClass
     public static void before() throws IOException {
+        try (InputStream is
+                     = RosetteAPITest.class.getClassLoader().getResourceAsStream("MockServerClientPort.property")) {
+            String s = getStringFromInputStream(is);
+            serverPort = Integer.parseInt(s);
+        }
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
-    //CHECKSTYLE:OFF
-    @Rule
-    public MockServerRule mockServerRule = new MockServerRule(this);
-    private MockServerClient mockServer;
-
-    //CHECKSTYLE:ON
 
     @Before
     public void setUp() throws IOException, InterruptedException, RosetteAPIException {
@@ -133,7 +129,7 @@ public class RosetteAPITest extends Assert {
                 String statusStr = getStringFromInputStream(statusStream);
                 statusCode = Integer.parseInt(statusStr);
             }
-
+            mockServer = new MockServerClient("localhost", serverPort);
             mockServer.reset()
                     .when(HttpRequest.request().withPath(".*/{2,}.*"))
                     .respond(HttpResponse.response()
@@ -161,7 +157,7 @@ public class RosetteAPITest extends Assert {
                     .withHeader("Content-Type", "application/json")
                     .withBody("{ \"buildNumber\": \"6bafb29d\", \"buildTime\": \"2015.10.08_10:19:26\", \"name\": \"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }", StandardCharsets.UTF_8));
 
-            String mockServiceUrl = "http://localhost:" + mockServerRule.getHttpPort().toString() + "/rest/v1";
+            String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
             api = new RosetteAPI("my-key-123", mockServiceUrl);
         }
     }
