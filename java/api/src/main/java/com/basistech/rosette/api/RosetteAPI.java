@@ -1048,8 +1048,21 @@ public final class RosetteAPI {
             InputStream inputStream = "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream
         ) {
             if (HTTP_OK != status) {
-                ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
-                throw new RosetteAPIException(status, errorResponse);
+                String responseContentType = httpUrlConnection.getHeaderField("Content-Type");
+                if ("application/json".equals(responseContentType)) {
+                    ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
+                    throw new RosetteAPIException(status, errorResponse);
+                } else {
+                    String errorContent;
+                    if (inputStream != null) {
+                        byte[] content = getBytes(inputStream);
+                        errorContent = new String(content, "utf-8");
+                    } else {
+                        errorContent = "(no body)";
+                    }
+                    // something not from us at al
+                    throw new RosetteAPIException(status, new ErrorResponse("", "invalidErrorResponse", errorContent));
+                }
             } else {
                 return mapper.readValue(inputStream, clazz);
             }

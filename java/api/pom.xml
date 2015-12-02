@@ -121,6 +121,7 @@
                     </execution>
                 </executions>
             </plugin>
+          <!--
             <plugin>
                 <groupId>org.mock-server</groupId>
                 <artifactId>mockserver-maven-plugin</artifactId>
@@ -146,6 +147,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
         </plugins>
         <testResources>
             <testResource>
