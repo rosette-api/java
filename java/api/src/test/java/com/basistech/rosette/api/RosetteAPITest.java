@@ -38,11 +38,7 @@ import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
-import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -50,12 +46,9 @@ import org.mockserver.client.server.MockServerClient;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -64,12 +57,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.zip.GZIPOutputStream;
 
 @RunWith(Parameterized.class)
-public class RosetteAPITest extends Assert {
-    private static int serverPort;
-    private static ObjectMapper mapper;
+public class RosetteAPITest extends AbstractTest {
     private final String testFilename;
     private RosetteAPI api;
     private String responseStr;
@@ -95,16 +85,6 @@ public class RosetteAPITest extends Assert {
             }
         }
         return params;
-    }
-
-    @BeforeClass
-    public static void before() throws IOException {
-        try (InputStream is
-                     = RosetteAPITest.class.getClassLoader().getResourceAsStream("MockServerClientPort.property")) {
-            String s = getStringFromInputStream(is);
-            serverPort = Integer.parseInt(s);
-        }
-        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
 
@@ -555,22 +535,5 @@ public class RosetteAPITest extends Assert {
         assertEquals(goldResponse.getCode(), e.getCode());
     }
 
-    private static String getStringFromInputStream(InputStream is) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        String line;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8.name()))) {
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        }
-        return sb.toString();
-    }
 
-    private static byte[] gzip(String text) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try (GZIPOutputStream out = new GZIPOutputStream(baos)) {
-            out.write(text.getBytes(StandardCharsets.UTF_8));
-        }
-        return baos.toByteArray();
-    }
 }
