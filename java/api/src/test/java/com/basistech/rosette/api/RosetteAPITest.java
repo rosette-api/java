@@ -135,7 +135,7 @@ public class RosetteAPITest extends Assert {
             }
 
             mockServer.reset()
-                    .when(HttpRequest.request().withPath(".*/+.*"))
+                    .when(HttpRequest.request().withPath(".*/{2,}.*"))
                     .respond(HttpResponse.response()
                                     .withBody("Invalid path; '//'")
                                     .withStatusCode(404)
