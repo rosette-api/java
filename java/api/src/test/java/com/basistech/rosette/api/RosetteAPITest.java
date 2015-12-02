@@ -16,34 +16,6 @@
 
 package com.basistech.rosette.api;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.zip.GZIPOutputStream;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.mockserver.client.server.MockServerClient;
-import org.mockserver.model.HttpRequest;
-import org.mockserver.model.HttpResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.basistech.rosette.apimodel.CategoriesRequest;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.EntitiesRequest;
@@ -53,63 +25,68 @@ import com.basistech.rosette.apimodel.InputUnit;
 import com.basistech.rosette.apimodel.LanguageCode;
 import com.basistech.rosette.apimodel.LanguageRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
-import com.basistech.rosette.apimodel.MorphologyRequest;
 import com.basistech.rosette.apimodel.LinkedEntitiesRequest;
 import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
+import com.basistech.rosette.apimodel.MorphologyRequest;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.NameMatchingRequest;
 import com.basistech.rosette.apimodel.NameMatchingResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
-import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.RelationshipsRequest;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
+import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
-import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.mockserver.client.server.MockServerClient;
+import org.mockserver.model.HttpRequest;
+import org.mockserver.model.HttpResponse;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class RosetteAPITest extends Assert {
-
-    private int serverPort;
-    private static ObjectMapper mapper;
+public class RosetteAPITest extends AbstractTest {
     private final String testFilename;
     private RosetteAPI api;
     private String responseStr;
     private LanguageCode language;
+    private MockServerClient mockServer;
 
-    public RosetteAPITest(int serverPort, String filename) {
-        this.serverPort = serverPort;
+    public RosetteAPITest(String filename) {
         testFilename = filename;
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() throws URISyntaxException, IOException {
-        int serverPort;
-        try (
-            InputStream is = RosetteAPITest.class.getClassLoader().getResourceAsStream("MockServerClientPort.property")
-        ) {
-            String s = getStringFromInputStream(is);
-            serverPort = Integer.parseInt(s);
-        }
         ClassLoader classLoader = RosetteAPITest.class.getClassLoader();
         URL url = classLoader.getResource("mock-data/response");
+        //TODO: don't plan  on directories as resources, move the data and just open it.
         File dir = new File(url.toURI());
         Collection<Object[]> params = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
             for (Path file : paths) {
                 if (file.toString().endsWith(".json")) {
-                    params.add(new Object[]{serverPort, file.getFileName().toString()});
+                    params.add(new Object[]{file.getFileName().toString()});
                 }
             }
         }
         return params;
     }
 
-    @BeforeClass
-    public static void before() throws IOException {
-        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-    }
 
     @Before
     public void setUp() throws IOException, InterruptedException, RosetteAPIException {
@@ -132,33 +109,35 @@ public class RosetteAPITest extends Assert {
                 String statusStr = getStringFromInputStream(statusStream);
                 statusCode = Integer.parseInt(statusStr);
             }
+            mockServer = new MockServerClient("localhost", serverPort);
+            mockServer.reset()
+                    .when(HttpRequest.request().withPath(".*/{2,}.*"))
+                    .respond(HttpResponse.response()
+                                    .withBody("Invalid path; '//'")
+                                    .withStatusCode(404)
+                    );
 
             if (responseStr.length() > 200) {  // test gzip if response is somewhat big
-                new MockServerClient("localhost", serverPort)
-                        .reset()
-                        .when(HttpRequest.request().withPath("^(?!/info).+"))
+                mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
                                 .withHeader("Content-Type", "application/json")
                                 .withHeader("Content-Encoding", "gzip")
                                 .withStatusCode(statusCode).withBody(gzip(responseStr)));
                 
             } else {
-                new MockServerClient("localhost", serverPort)
-                        .reset()
-                        .when(HttpRequest.request().withPath("^(?!/info).+"))
+                mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
                                 .withHeader("Content-Type", "application/json")
                                 .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
             }
-            new MockServerClient("localhost", serverPort)
-                .when(HttpRequest.request()
+            mockServer.when(HttpRequest.request()
                     .withPath("/info"))
                 .respond(HttpResponse.response()
                     .withStatusCode(200)
                     .withHeader("Content-Type", "application/json")
                     .withBody("{ \"buildNumber\": \"6bafb29d\", \"buildTime\": \"2015.10.08_10:19:26\", \"name\": \"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }", StandardCharsets.UTF_8));
 
-            String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
+            String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
             api = new RosetteAPI("my-key-123", mockServiceUrl);
         }
     }
@@ -553,25 +532,8 @@ public class RosetteAPITest extends Assert {
 
     private void verifyException(RosetteAPIException e) throws IOException {
         ErrorResponse goldResponse = mapper.readValue(responseStr, ErrorResponse.class);
-        assertEquals(e.getCode(), goldResponse.getCode());
+        assertEquals(goldResponse.getCode(), e.getCode());
     }
 
-    private static String getStringFromInputStream(InputStream is) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        String line;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8.name()))) {
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        }
-        return sb.toString();
-    }
 
-    private static byte[] gzip(String text) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try (GZIPOutputStream out = new GZIPOutputStream(baos)) {
-            out.write(text.getBytes(StandardCharsets.UTF_8));
-        }
-        return baos.toByteArray();
-    }
 }

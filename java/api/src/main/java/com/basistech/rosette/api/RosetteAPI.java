@@ -73,7 +73,7 @@ public final class RosetteAPI {
     public static final String BINDING_VERSION = "0.7";
 
     private static final String LANGUAGE_SERVICE_PATH = "/language";
-    private static final String MORPHOLOGY_SERVICE_PATH = "/morphology/";
+    private static final String MORPHOLOGY_SERVICE_PATH = "/morphology";
     private static final String ENTITIES_SERVICE_PATH = "/entities";
     private static final String ENTITIES_LINKED_SERVICE_PATH = "/entities/linked";
     private static final String CATEGORIES_SERVICE_PATH = "/categories";
@@ -140,8 +140,8 @@ public final class RosetteAPI {
      */
     public RosetteAPI(String key, String alternateUrl) {
         urlBase = alternateUrl;
-        if (!urlBase.endsWith("/")) {
-            urlBase += "/";
+        if (urlBase.endsWith("/")) {
+            urlBase = urlBase.substring(0, urlBase.length() - 1);
         }
         this.key = key;
         this.failureRetries = 1;
@@ -315,7 +315,7 @@ public final class RosetteAPI {
         throws RosetteAPIException, IOException {
         String encodedStr = DatatypeConverter.printBase64Binary(getBytes(inputStream));
         MorphologyRequest request = new MorphologyRequest(language, encodedStr, null, "text/html", null, options);
-        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(),
+        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
                 MorphologyResponse.class);
     }
 
@@ -334,7 +334,7 @@ public final class RosetteAPI {
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, URL url, LanguageCode language,
                                             MorphologyOptions options) throws RosetteAPIException, IOException {
         MorphologyRequest request = new MorphologyRequest(language, null, url.toString(), null, null, options);
-        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(),
+        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
                 MorphologyResponse.class);
     }
 
@@ -354,7 +354,8 @@ public final class RosetteAPI {
                                             LanguageCode language, MorphologyOptions options)
         throws RosetteAPIException, IOException {
         MorphologyRequest request = new MorphologyRequest(language, content, null, null, null, options);
-        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(),
+        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
+
                 MorphologyResponse.class);
     }
 
@@ -376,7 +377,7 @@ public final class RosetteAPI {
                                             LanguageCode language, InputUnit unit, MorphologyOptions options)
         throws RosetteAPIException, IOException {
         MorphologyRequest request = new MorphologyRequest(language, content, null, null, unit, options);
-        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + morphologicalFeature.toString(),
+        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
                 MorphologyResponse.class);
     }
 
@@ -1048,8 +1049,21 @@ public final class RosetteAPI {
             InputStream inputStream = "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream
         ) {
             if (HTTP_OK != status) {
-                ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
-                throw new RosetteAPIException(status, errorResponse);
+                String responseContentType = httpUrlConnection.getHeaderField("Content-Type");
+                if ("application/json".equals(responseContentType)) {
+                    ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
+                    throw new RosetteAPIException(status, errorResponse);
+                } else {
+                    String errorContent;
+                    if (inputStream != null) {
+                        byte[] content = getBytes(inputStream);
+                        errorContent = new String(content, "utf-8");
+                    } else {
+                        errorContent = "(no body)";
+                    }
+                    // something not from us at al
+                    throw new RosetteAPIException(status, new ErrorResponse("", "invalidErrorResponse", errorContent));
+                }
             } else {
                 return mapper.readValue(inputStream, clazz);
             }

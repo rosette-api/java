@@ -4,14 +4,12 @@
     <parent>
         <groupId>com.basistech</groupId>
         <artifactId>open-source-parent</artifactId>
-        <version>0.0.5</version>
+        <version>0.1.1</version>
         <relativePath />
     </parent>
-    <prerequisites>
-        <maven>3.0.4</maven>
-    </prerequisites>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-parent</artifactId>
+    <version>0.7.1-SNAPSHOT</version>
     <name>rosette-api-parent</name>
     <packaging>pom</packaging>
     <description>Parent project for Rosette API</description>
