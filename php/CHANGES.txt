@@ -1,2 +1,0 @@
-0.7.1: Added RELAX endpoints
-0.5.0: first published version.
