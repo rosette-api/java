@@ -23,12 +23,7 @@
         </site>
     </distributionManagement>
     <modules>
-        <module>php</module>
-        <module>python</module>
-        <module>nodejs</module>
-        <module>java</module>
-        <module>csharp</module>
-        <module>ruby</module>
-        <module>shell</module>
+        <module>model</module>
+        <module>api</module>
     </modules>
 </project>
