@@ -1,18 +1,18 @@
-/******************************************************************************
- ** Copyright (c) 2014-2015 Basis Technology Corporation.
- **
- ** Licensed under the Apache License, Version 2.0 (the "License");
- ** you may not use this file except in compliance with the License.
- ** You may obtain a copy of the License at
- **
- **     http://www.apache.org/licenses/LICENSE-2.0
- **
- ** Unless required by applicable law or agreed to in writing, software
- ** distributed under the License is distributed on an "AS IS" BASIS,
- ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- ** See the License for the specific language governing permissions and
- ** limitations under the License.
- ******************************************************************************/
+/*
+* Copyright 2014 Basis Technology Corp.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 package com.basistech.rosette.api;
 
@@ -22,7 +22,6 @@ import com.basistech.rosette.apimodel.EntitiesRequest;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InputUnit;
-import com.basistech.rosette.apimodel.LanguageCode;
 import com.basistech.rosette.apimodel.LanguageRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.LinkedEntitiesRequest;
@@ -38,6 +37,10 @@ import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
+import com.basistech.util.LanguageCode;
+import com.google.common.base.Charsets;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,6 +50,7 @@ import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -72,10 +76,7 @@ public class RosetteAPITest extends AbstractTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() throws URISyntaxException, IOException {
-        ClassLoader classLoader = RosetteAPITest.class.getClassLoader();
-        URL url = classLoader.getResource("mock-data/response");
-        //TODO: don't plan  on directories as resources, move the data and just open it.
-        File dir = new File(url.toURI());
+        File dir = new File("src/test/mock-data/response");
         Collection<Object[]> params = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
             for (Path file : paths) {
@@ -91,22 +92,19 @@ public class RosetteAPITest extends AbstractTest {
     @Before
     public void setUp() throws IOException, InterruptedException, RosetteAPIException {
         try {
-            language = LanguageCode.valueOf(testFilename.substring(0, 3));
+            language = LanguageCode.lookupByISO639(testFilename.substring(0, 3));
         } catch (IllegalArgumentException e) {
-            language = LanguageCode.xxx;
+            language = LanguageCode.UNKNOWN;
         }
 
         String statusFilename = testFilename.replace(".json", ".status");
-        try (InputStream bodyStream = getClass().getClassLoader().getResourceAsStream(
-                     "mock-data/response/" + testFilename);
-             InputStream statusStream = getClass().getClassLoader().getResourceAsStream(
-                     "mock-data/response/" + statusFilename)) {
-            responseStr = getStringFromInputStream(bodyStream);
+        try (InputStream bodyStream = new FileInputStream("src/test/mock-data/response/" + testFilename)) {
+            responseStr = IOUtils.toString(bodyStream, Charsets.UTF_8);
             int statusCode = 200;
 
-
-            if (statusStream != null) {
-                String statusStr = getStringFromInputStream(statusStream);
+            File statusFile = new File("src/test/mock-data/response", statusFilename);
+            if (statusFile.exists()) {
+                String statusStr = FileUtils.readFileToString(statusFile, Charsets.UTF_8).trim();
                 statusCode = Integer.parseInt(statusStr);
             }
             mockServer = new MockServerClient("localhost", serverPort);
@@ -162,8 +160,8 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     private NameMatchingRequest readValueNameMatcher() throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("mock-data/request/" + testFilename);
-        return mapper.readValue(inputStream, NameMatchingRequest.class);
+        File input = new File("src/test/mock-data/request", testFilename);
+        return mapper.readValue(input, NameMatchingRequest.class);
     }
 
     @Test
@@ -186,10 +184,9 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     private NameTranslationRequest readValueNameTranslation() throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("mock-data/request/" + testFilename);
-        return mapper.readValue(inputStream, NameTranslationRequest.class);
+        File input = new File("src/test/mock-data/request", testFilename);
+        return mapper.readValue(input, NameTranslationRequest.class);
     }
-
 
     private void verifyLanguage(LanguageResponse response) throws IOException {
         LanguageResponse goldResponse = mapper.readValue(responseStr, LanguageResponse.class);
@@ -526,8 +523,8 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     private <T extends Request> T readValue(Class<T> clazz) throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("mock-data/request/" + testFilename);
-        return mapper.readValue(inputStream, clazz);
+        File input = new File("src/test/mock-data/request", testFilename);
+        return mapper.readValue(input, clazz);
     }
 
     private void verifyException(RosetteAPIException e) throws IOException {

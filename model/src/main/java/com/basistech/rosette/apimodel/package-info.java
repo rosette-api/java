@@ -14,19 +14,8 @@
 * limitations under the License.
 */
 
-package com.basistech.rosette.apimodel.jackson;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.List;
-
-public class DecompoudingMixin extends BaseMixin {
-    @JsonCreator
-    public DecompoudingMixin(
-            @JsonProperty("text") String text,
-            @JsonProperty("compoundComponents") List<String> compoundComponents
-    ) {
-        //
-    }
-}
+/**
+ * The classes in this package make up the data model for simple requests
+ * and responses to the Rosette API.
+ */
+package com.basistech.rosette.apimodel;

@@ -1,18 +1,18 @@
-/******************************************************************************
- ** Copyright (c) 2014-2015 Basis Technology Corporation.
- **
- ** Licensed under the Apache License, Version 2.0 (the "License");
- ** you may not use this file except in compliance with the License.
- ** You may obtain a copy of the License at
- **
- **     http://www.apache.org/licenses/LICENSE-2.0
- **
- ** Unless required by applicable law or agreed to in writing, software
- ** distributed under the License is distributed on an "AS IS" BASIS,
- ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- ** See the License for the specific language governing permissions and
- ** limitations under the License.
- ******************************************************************************/
+/*
+* Copyright 2014 Basis Technology Corp.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 package com.basistech.rosette.api;
 
@@ -25,6 +25,7 @@ import java.net.URL;
 import java.util.zip.GZIPInputStream;
 import javax.xml.bind.DatatypeConverter;
 
+import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.basistech.rosette.apimodel.CategoriesRequest;
@@ -36,7 +37,6 @@ import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InfoResponse;
 import com.basistech.rosette.apimodel.InputUnit;
-import com.basistech.rosette.apimodel.LanguageCode;
 import com.basistech.rosette.apimodel.LanguageInfoResponse;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageRequest;
@@ -304,7 +304,7 @@ public final class RosetteAPI {
      * Support for specific return types depends on language.
      * @param morphologicalFeature Type of morphological analysis to perform.
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null
+     * @param language Language of input if known (see {@link LanguageCode}), or null
      * @param options Linguistics options
      * @return MorphologyResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -325,7 +325,7 @@ public final class RosetteAPI {
      * Support for specific return types depends on language.
      * @param morphologicalFeature Type of morphological analysis to perform.
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null
+     * @param language Language of input if known (see {@link LanguageCode}), or null
      * @param options Linguistics options
      * @return MorphologyResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -344,7 +344,7 @@ public final class RosetteAPI {
      * Support for specific return types depends on language.
      * @param morphologicalFeature Type of morphological analysis to perform.
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null
+     * @param language Language of input if known (see {@link LanguageCode}), or null
      * @param options Linguistics options
      * @return MorphologyResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -365,7 +365,7 @@ public final class RosetteAPI {
      * Support for specific return types depends on language.
      * @param morphologicalFeature Type of morphological analysis to perform.
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}).
      *             Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @param options Linguistics options
@@ -391,7 +391,7 @@ public final class RosetteAPI {
      * extraction.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options Entity options.
      * @return EntitiesResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -414,7 +414,7 @@ public final class RosetteAPI {
      * extraction.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options Entity options.
      * @return EntitiesResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -436,7 +436,7 @@ public final class RosetteAPI {
      * extraction.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options Entity options.
      * @return EntitiesResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -458,7 +458,7 @@ public final class RosetteAPI {
      * extraction.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}).
      *             Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @param options Entity options.
@@ -479,7 +479,7 @@ public final class RosetteAPI {
      * share a chain id), the mention (entity text from the input), and confidence associated with the linking.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -498,7 +498,7 @@ public final class RosetteAPI {
      * share a chain id), the mention (entity text from the input), and confidence associated with the linking.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -516,7 +516,7 @@ public final class RosetteAPI {
      * share a chain id), the mention (entity text from the input), and confidence associated with the linking.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -534,7 +534,7 @@ public final class RosetteAPI {
      * share a chain id), the mention (entity text from the input), and confidence associated with the linking.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}).
      *             Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @return LinkedEntityResponse
@@ -554,7 +554,7 @@ public final class RosetteAPI {
      * The response is the contextual categories identified in the input.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options CategoriesOptions.
      * @return CategoriesResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -574,7 +574,7 @@ public final class RosetteAPI {
      * The response is the contextual categories identified in the input.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options CategoriesOptions.
      * @return CategoriesResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -593,7 +593,7 @@ public final class RosetteAPI {
      * The response is the contextual categories identified in the input.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options CategoriesOptions.
      * @return CategoriesResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -612,7 +612,7 @@ public final class RosetteAPI {
      * The response is the contextual categories identified in the input.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}).
      *             Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @param options CategoriesOptions.
@@ -641,7 +641,7 @@ public final class RosetteAPI {
      * confidence - a measure of quality of relationship extraction, between 0 - 1
      *
      * @param content, String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}).
      *             Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @param options RelationshipOptions
@@ -670,7 +670,7 @@ public final class RosetteAPI {
      * confidence - a measure of quality of relationship extraction, between 0 - 1
      *
      * @param content, String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options RelationshipOptions
      * @return RelationshipsResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request
@@ -697,7 +697,7 @@ public final class RosetteAPI {
      * confidence - a measure of quality of relationship extraction, between 0 - 1
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options RelationshipOptions
      * @return RelationshipsResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request
@@ -725,7 +725,7 @@ public final class RosetteAPI {
      * confidence - a measure of quality of relationship extraction, between 0 - 1
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options RelationshipOptions
      * @return RelationshipsResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request
@@ -743,7 +743,7 @@ public final class RosetteAPI {
      * The response contains sentiment analysis results.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options SentimentOptions.
      * @return SentimentResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -762,7 +762,7 @@ public final class RosetteAPI {
      * The response contains sentiment analysis results.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options SentimentOptions.
      * @return SentimentResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -780,7 +780,7 @@ public final class RosetteAPI {
      * The response contains sentiment analysis results.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param options SentimentOptions.
      * @return SentimentResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
@@ -798,7 +798,7 @@ public final class RosetteAPI {
      * The response contains sentiment analysis results.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}).
      *             Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @param options SentimentOptions.
@@ -816,7 +816,7 @@ public final class RosetteAPI {
      * Divides the input into tokens.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @return The response contains a list of tokens.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -832,7 +832,7 @@ public final class RosetteAPI {
      * Divides the input into tokens.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @return The response contains a list of tokens.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -846,7 +846,7 @@ public final class RosetteAPI {
      * Divides the input into tokens.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @return The response contains a list of tokens.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -860,7 +860,7 @@ public final class RosetteAPI {
      * Divides the input into tokens.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}).
      *             Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @return The response contains a list of tokens.
@@ -877,7 +877,7 @@ public final class RosetteAPI {
      * Divides the input into sentences.
      *
      * @param inputStream Input stream of file.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @return The response contains a list of sentences.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -893,7 +893,7 @@ public final class RosetteAPI {
      * Divides the input into sentences.
      *
      * @param url URL containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @return The response contains a list of sentences.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -907,7 +907,7 @@ public final class RosetteAPI {
      * Divides the input into sentences.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @return The response contains a list of sentences.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException - If there is a communication or JSON serialization/deserialization error.
@@ -922,7 +922,7 @@ public final class RosetteAPI {
      * Divides the input into sentences.
      *
      * @param content String containing the data.
-     * @param language Language of input if known (see {@link com.basistech.rosette.apimodel.LanguageCode}), or null.
+     * @param language Language of input if known (see {@link LanguageCode}), or null.
      * @param unit The unit of content (see {@link com.basistech.rosette.apimodel.InputUnit}).
      *             Can be SENTENCE or DOC. If SENTENCE, the entire content is treated as one sentence.
      * @return The response contains a list of sentences.

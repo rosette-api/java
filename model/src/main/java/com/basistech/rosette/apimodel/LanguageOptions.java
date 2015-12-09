@@ -1,20 +1,22 @@
-/******************************************************************************
- ** Copyright (c) 2014-2015 Basis Technology Corporation.
- **
- ** Licensed under the Apache License, Version 2.0 (the "License");
- ** you may not use this file except in compliance with the License.
- ** You may obtain a copy of the License at
- **
- **     http://www.apache.org/licenses/LICENSE-2.0
- **
- ** Unless required by applicable law or agreed to in writing, software
- ** distributed under the License is distributed on an "AS IS" BASIS,
- ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- ** See the License for the specific language governing permissions and
- ** limitations under the License.
- ******************************************************************************/
+/*
+* Copyright 2014 Basis Technology Corp.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 package com.basistech.rosette.apimodel;
+
+import com.basistech.util.LanguageCode;
 
 import java.util.Set;
 
@@ -202,9 +204,9 @@ public final class LanguageOptions {
      * set the language hint weight used to help resolve ambiguous results. 
      + A value of N reduces the distance of correctly hinted ambiguous result by N%.
      + Weight Value range [1-99]. Value of 1 is the lightest hint, value of 99 the strongest. 
-     * @param languageHintWeight
+     * @param languageHintWeight hint weight.
      */
-    public void setLanguageHintWeight(Double languageHintWeight) {
+    public void setLanguageHintWeight(double languageHintWeight) {
         if (languageHintWeight >= 1 && languageHintWeight <= 99) {
             this.languageHintWeight = languageHintWeight;
         } else {
@@ -227,7 +229,7 @@ public final class LanguageOptions {
      + A value of 100 forces the detector to consider only the results with the hinted encoding.
      * @param encodingHintWeight the encoding hint weight
      */
-    public void setEncodingHintWeight(Double encodingHintWeight) {
+    public void setEncodingHintWeight(double encodingHintWeight) {
         if (encodingHintWeight >= 1 && encodingHintWeight <= 100) {
             this.encodingHintWeight = encodingHintWeight;
         } else {
