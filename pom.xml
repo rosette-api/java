@@ -36,19 +36,6 @@
       here help Java applications to communicate with the Rosette API.
     </description>
     <distributionManagement>
-        <!-- releases are staged on Basis infrastructure before being
-           sent to OSSRH. -->
-        <repository>
-            <id>basistech.repo</id>
-            <name>Basis Local Repository</name>
-            <url>http://maven.basistech.net/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>basistech.snapshot.repo</id>
-            <name>Basistech Local Snapshot Repository</name>
-            <url>http://maven.basistech.net/nexus/content/repositories/snapshots/</url>
-            <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
         <site>
             <id>site</id>
             <url>scm:git:git@github.com:rosette-api/java.git</url>
