@@ -59,6 +59,7 @@
         <module>json</module>
         <module>api</module>
         <module>examples</module>
+        <module>release</module>
     </modules>
     <dependencyManagement>
         <dependencies>
