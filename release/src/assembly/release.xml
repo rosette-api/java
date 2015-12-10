@@ -6,18 +6,25 @@
         <fileSet>
             <directory>${project.build.directory}/dependency-jars</directory>
             <outputDirectory>lib</outputDirectory>
-            <fileMode>0755</fileMode>
+            <fileMode>0744</fileMode>
         </fileSet>
     </fileSets>
     <files>
         <file>
             <source>${project.build.directory}/rosette-api-examples.jar</source>
             <outputDirectory/>
+            <fileMode>0744</fileMode>
         </file>
         <file>
             <source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
             <outputDirectory>lib</outputDirectory>
             <destName>rosette-api-manifest.jar</destName>
+            <fileMode>0744</fileMode>
+        </file>
+        <file>
+          <source>src/scripts/run_all_examples.sh</source>
+            <outputDirectory/>
+            <fileMode>0755</fileMode>
         </file>
     </files>
 </assembly>

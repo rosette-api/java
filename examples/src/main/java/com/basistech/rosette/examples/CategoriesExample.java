@@ -38,7 +38,7 @@ public final class CategoriesExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        URL docUrl = new URL("${categories_data}");
+        URL docUrl = new URL("https://en.wikipedia.org/wiki/Basis_Technology_Corp.");
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
         CategoriesResponse response = rosetteApi.getCategories(docUrl, null, null);
