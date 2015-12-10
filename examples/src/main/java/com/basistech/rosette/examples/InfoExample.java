@@ -16,7 +16,10 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.RosetteAPI;
+import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.InfoResponse;
+
+import java.io.IOException;
 
 /**
  * Example which demonstrates the top level info api.
@@ -24,11 +27,15 @@ import com.basistech.rosette.apimodel.InfoResponse;
 public final class InfoExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-            InfoResponse response = rosetteApi.getInfo();
-            System.out.println(responseToJson(response));
+            new InfoExample().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void run() throws IOException, RosetteAPIException {
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        InfoResponse response = rosetteApi.getInfo();
+        System.out.println(responseToJson(response));
     }
 }

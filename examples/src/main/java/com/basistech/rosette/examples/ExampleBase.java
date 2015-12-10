@@ -15,9 +15,6 @@
 */
 package com.basistech.rosette.examples;
 
-import java.lang.invoke.MethodHandles;
-
-
 import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -30,16 +27,16 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  */
 public abstract class ExampleBase {
     private static final String KEY_PROP_NAME = "rosette.api.key";
-    private static final String USAGE_STR = "Usage: java -cp .:<path_to_rosette-api.jar> "
+    private static final String USAGE_STR = "Usage: java -cp rosette-api-examples.jar:lib/rosette-api-manifest.jar "
             + "-D" + KEY_PROP_NAME + "=<required_api_key> ";
 
     /**
      * Gets api key using system property {@value #KEY_PROP_NAME}
      */
-    protected static String getApiKeyFromSystemProperty() {
+    protected String getApiKeyFromSystemProperty() {
         String apiKeyStr = System.getProperty(KEY_PROP_NAME);
         if (apiKeyStr == null || apiKeyStr.trim().length() < 1) {
-            showUsage();
+            showUsage(getClass());
             System.exit(1);
         }
         return apiKeyStr.trim();
@@ -48,8 +45,8 @@ public abstract class ExampleBase {
     /**
      * Prints out how to run the program
      */
-    protected static void showUsage() {
-        System.err.println(USAGE_STR + MethodHandles.lookup().lookupClass());
+    protected static void showUsage(Class<? extends ExampleBase> commandClass) {
+        System.err.println(USAGE_STR + commandClass.getName());
     }
 
     /**

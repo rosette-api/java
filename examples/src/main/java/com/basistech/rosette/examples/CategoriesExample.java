@@ -15,9 +15,11 @@
 */
 package com.basistech.rosette.examples;
 
+import java.io.IOException;
 import java.net.URL;
 
 import com.basistech.rosette.api.RosetteAPI;
+import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 
 /**
@@ -29,13 +31,17 @@ import com.basistech.rosette.apimodel.CategoriesResponse;
 public final class CategoriesExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            URL docUrl = new URL("${categories_data}");
-
-            RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-            CategoriesResponse response = rosetteApi.getCategories(docUrl, null, null);
-            System.out.println(responseToJson(response));
+            new CategoriesExample().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void run() throws IOException, RosetteAPIException {
+        URL docUrl = new URL("${categories_data}");
+
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        CategoriesResponse response = rosetteApi.getCategories(docUrl, null, null);
+        System.out.println(responseToJson(response));
     }
 }

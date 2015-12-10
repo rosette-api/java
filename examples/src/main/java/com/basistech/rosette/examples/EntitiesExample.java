@@ -16,7 +16,10 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.RosetteAPI;
+import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.EntitiesResponse;
+
+import java.io.IOException;
 
 /**
  * Example which demonstrates the entity extraction api.
@@ -24,13 +27,17 @@ import com.basistech.rosette.apimodel.EntitiesResponse;
 public final class EntitiesExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "${entities_data}";
-
-            RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-            EntitiesResponse response = rosetteApi.getEntities(text, null, null);
-            System.out.println(responseToJson(response));
+            new EntitiesExample().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void run() throws IOException, RosetteAPIException {
+        String text = "${entities_data}";
+
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        EntitiesResponse response = rosetteApi.getEntities(text, null, null);
+        System.out.println(responseToJson(response));
     }
 }

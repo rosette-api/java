@@ -24,6 +24,7 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
 import com.basistech.rosette.api.RosetteAPI;
+import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.SentimentResponse;
 
 /**
@@ -32,17 +33,21 @@ import com.basistech.rosette.apimodel.SentimentResponse;
 public final class SentimentExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String html = "${sentiment_data}";
-            File file = createTempDataFile(html);
-            FileInputStream inputStream = new FileInputStream(file);
-
-            RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-            SentimentResponse response = rosetteApi.getSentiment(inputStream, null, null);
-            inputStream.close();
-            System.out.println(responseToJson(response));
+            new SentimentExample().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void run() throws IOException, RosetteAPIException {
+        String html = "${sentiment_data}";
+        File file = createTempDataFile(html);
+        FileInputStream inputStream = new FileInputStream(file);
+
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        SentimentResponse response = rosetteApi.getSentiment(inputStream, null, null);
+        inputStream.close();
+        System.out.println(responseToJson(response));
     }
 
     private static File createTempDataFile(String data) throws IOException {
@@ -52,6 +57,7 @@ public final class SentimentExample extends ExampleBase {
         ));
         bw.write(data);
         bw.close();
+        file.deleteOnExit();
         return file;
     }
 }

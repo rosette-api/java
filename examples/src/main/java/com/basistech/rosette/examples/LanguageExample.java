@@ -16,7 +16,10 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.RosetteAPI;
+import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.LanguageResponse;
+
+import java.io.IOException;
 
 /**
  * Example which demonstrates the language detection api.
@@ -24,13 +27,17 @@ import com.basistech.rosette.apimodel.LanguageResponse;
 public final class LanguageExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "${language_data}";
-
-            RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-            LanguageResponse response = rosetteApi.getLanguage(text, null, null);
-            System.out.println(responseToJson(response));
+            new LanguageExample().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void run() throws IOException, RosetteAPIException {
+        String text = "${language_data}";
+
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        LanguageResponse response = rosetteApi.getLanguage(text, null, null);
+        System.out.println(responseToJson(response));
     }
 }

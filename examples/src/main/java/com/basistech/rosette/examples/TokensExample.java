@@ -16,7 +16,10 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.RosetteAPI;
+import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.TokensResponse;
+
+import java.io.IOException;
 
 /**
  * Example which demonstrates the tokens api.
@@ -24,13 +27,17 @@ import com.basistech.rosette.apimodel.TokensResponse;
 public final class TokensExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "${tokens_data}";
-
-            RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-            TokensResponse response = rosetteApi.getTokens(text, null, null);
-            System.out.println(responseToJson(response));
+            new TokensExample().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void run() throws IOException, RosetteAPIException {
+        String text = "${tokens_data}";
+
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        TokensResponse response = rosetteApi.getTokens(text, null, null);
+        System.out.println(responseToJson(response));
     }
 }

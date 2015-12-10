@@ -16,7 +16,10 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.RosetteAPI;
+import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.MorphologyResponse;
+
+import java.io.IOException;
 
 /**
  * Example which demonstrates the part-of-speech api.
@@ -24,14 +27,18 @@ import com.basistech.rosette.apimodel.MorphologyResponse;
 public final class MorphologyPartsOfSpeechExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            String text = "${morphology_parts_of_speech_data}";
-
-            RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-            MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.PARTS_OF_SPEECH,
-                    text, null, null);
-            System.out.println(responseToJson(response));
+            new MorphologyPartsOfSpeechExample().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void run() throws IOException, RosetteAPIException {
+        String text = "${morphology_parts_of_speech_data}";
+
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.PARTS_OF_SPEECH,
+                text, null, null);
+        System.out.println(responseToJson(response));
     }
 }
