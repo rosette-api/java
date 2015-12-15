@@ -30,6 +30,10 @@
       <mockserver-version>3.10.2</mockserver-version>
     </properties>
     <dependencies>
+      <dependency>
+        <groupId>com.basistech</groupId>
+        <artifactId>common-api</artifactId>
+      </dependency>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
             <artifactId>rosette-api-model</artifactId>
@@ -39,6 +43,10 @@
             <groupId>com.basistech.rosette</groupId>
             <artifactId>rosette-api-json</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -51,9 +59,21 @@
           <scope>test</scope>
         </dependency>
         <dependency>
+          <groupId>org.mock-server</groupId>
+          <artifactId>mockserver-core</artifactId>
+          <version>${mockserver-version}</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>2.4</version>
+          <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
