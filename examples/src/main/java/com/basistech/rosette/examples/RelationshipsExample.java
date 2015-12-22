@@ -34,7 +34,7 @@ public final class RelationshipsExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "${relationships_data}";
+        String text = "Bill Murray is in the new Ghostbusters film!";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
         RelationshipsResponse response = rosetteApi.getRelationships(text, null, null);

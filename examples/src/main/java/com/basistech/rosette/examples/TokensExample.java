@@ -34,7 +34,7 @@ public final class TokensExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "${tokens_data}";
+        String text = "北京大学生物系主任办公室内部会议";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
         TokensResponse response = rosetteApi.getTokens(text, null, null);

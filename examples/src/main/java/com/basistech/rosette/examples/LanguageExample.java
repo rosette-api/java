@@ -34,7 +34,7 @@ public final class LanguageExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "${language_data}";
+        String text = "Por favor Señorita, says the man.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
         LanguageResponse response = rosetteApi.getLanguage(text, null, null);

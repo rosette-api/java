@@ -34,7 +34,7 @@ public final class MorphologyHanReadingsExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "${morphology_han_readings_data}";
+        String text = "北京大学生物系主任办公室内部会议";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
         MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.HAN_READINGS,

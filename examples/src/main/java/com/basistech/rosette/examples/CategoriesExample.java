@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import java.io.IOException;
-import java.net.URL;
 
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
@@ -38,10 +37,9 @@ public final class CategoriesExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        URL docUrl = new URL("https://en.wikipedia.org/wiki/Basis_Technology_Corp.");
-
+        String text = "Sony Pictures is planning to shoot a good portion of the new \"Ghostbusters\" in Boston as well.";
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        CategoriesResponse response = rosetteApi.getCategories(docUrl, null, null);
+        CategoriesResponse response = rosetteApi.getCategories(text, null, null);
         System.out.println(responseToJson(response));
     }
 }

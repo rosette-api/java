@@ -34,7 +34,7 @@ public final class MorphologyCompleteExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "${morphology_complete_data}";
+        String text = "The quick brown fox jumped over the lazy dog. Yes he did.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
         MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE,
