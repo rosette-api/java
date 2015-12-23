@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.util.PartOfSpeechTagSet;
+
 /**
  * Linguistics analysis options 
  */
@@ -29,6 +31,7 @@ public final class MorphologyOptions {
     private Boolean nfkcNormalize;
     private Boolean fstTokenize;
     private String defaultTokenizationLanguage;
+    private PartOfSpeechTagSet partOfSpeechTagSet;
 
     /**
      * Create a set of morphology options with default values.
@@ -57,7 +60,8 @@ public final class MorphologyOptions {
             Boolean includeHebrewRoots,
             Boolean nfkcNormalize,
             Boolean fstTokenize,
-            String defaultTokenizationLanguage
+            String defaultTokenizationLanguage,
+            PartOfSpeechTagSet partOfSpeechTagSet
     ) {
         this.disambiguate = disambiguate;
         this.query = query;
@@ -67,6 +71,7 @@ public final class MorphologyOptions {
         this.nfkcNormalize = nfkcNormalize;
         this.fstTokenize = fstTokenize;
         this.defaultTokenizationLanguage = defaultTokenizationLanguage;
+        this.partOfSpeechTagSet = partOfSpeechTagSet;
     }
 
     /**
@@ -80,7 +85,7 @@ public final class MorphologyOptions {
     /**
      * Request query processing. Linguistics analysis may change its behavior
      * to reflect the fact that query input is often not in full sentences;
-     * typically, this disables disambiguation 
+     * Typically, this disables disambiguation.
      * @return request query processing
      */
     public Boolean getQuery() {
@@ -90,7 +95,7 @@ public final class MorphologyOptions {
     /**
      * Get whether to use different tokenizers for different scripts. 
      * If false, uses the tokenizer for the {@code defaultTokenizationLanguage}. 
-     * Applies only to statistical segmentation languages 
+     * Applies only to statistical segmentation languages (Chinese, Japanese, and Thai).
      * @return whether to use different tokenizers for different scripts
      */
     public Boolean getTokenizeForScript() {
@@ -106,7 +111,7 @@ public final class MorphologyOptions {
     }
 
     /**
-     * get whether to include Hebrew roots
+     * get whether to include Hebrew triliteral roots
      * @return whether to include Hebrew roots
      */
     public Boolean getIncludeHebrewRoots() {
@@ -122,7 +127,7 @@ public final class MorphologyOptions {
     }
 
     /**
-     * get whether to enable tokenization for supported languages
+     * get whether to enable FST tokenization for supported languages
      * @return whether to enable tokenization for supported languages
      */
     public Boolean getFstTokenize() {
@@ -166,7 +171,8 @@ public final class MorphologyOptions {
     }
 
     /**
-     * set the minimum non-primary scripting region length
+     * set the minimum non-primary scripting region length. This controls the behavior of tokenization
+     * where there is non-Han text embedded in Chinese or Japanese, or non-Thai text embedded in Thai.
      * @param minNonPrimaryScriptRegionLength the minimum non-primary scripting region length
      */
     public void setMinNonPrimaryScriptRegionLength(Integer minNonPrimaryScriptRegionLength) {
@@ -174,7 +180,7 @@ public final class MorphologyOptions {
     }
 
     /**
-     * set whether to include Hebrew roots
+     * set whether to include Hebrew triliteral roots
      * @param includeHebrewRoots whether to include Hebrew roots
      */
     public void setIncludeHebrewRoots(Boolean includeHebrewRoots) {
@@ -190,7 +196,8 @@ public final class MorphologyOptions {
     }
 
     /**
-     *  set whether to enable tokenization for supported languages
+     *  set whether to enable FST tokenization for supported languages. The FST tokenization
+     *  is an alternative tokenization supported for compatibility.
      * @param fstTokenize whether to enable tokenization for supported languages
      */
     public void setFstTokenize(Boolean fstTokenize) {
@@ -198,11 +205,28 @@ public final class MorphologyOptions {
     }
 
     /**
-     * set the default tokenization language
+     * set the default tokenization language. This is only used for non-Han text embedded in Japanese or Chinese
+     * and non-Thai text embedded in Thai.
      * @param defaultTokenizationLanguage the default tokenization language
      */
     public void setDefaultTokenizationLanguage(String defaultTokenizationLanguage) {
         this.defaultTokenizationLanguage = defaultTokenizationLanguage;
+    }
+
+    /**
+     * @return the tag set used when returning part of speech tags. A {@code null} value
+     * indicates the default.
+     */
+    public PartOfSpeechTagSet getPartOfSpeechTagSet() {
+        return partOfSpeechTagSet;
+    }
+
+    /**
+     * Set the tag set used to return part of speech tags. The default is {@link PartOfSpeechTagSet#upt16}.
+     * @param partOfSpeechTagSet the tag set.
+     */
+    public void setPartOfSpeechTagSet(PartOfSpeechTagSet partOfSpeechTagSet) {
+        this.partOfSpeechTagSet = partOfSpeechTagSet;
     }
 
     @Override
