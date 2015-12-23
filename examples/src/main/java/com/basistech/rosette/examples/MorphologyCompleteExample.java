@@ -15,6 +15,7 @@
 */
 package com.basistech.rosette.examples;
 
+import com.basistech.rosette.api.MorphologicalFeature;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.MorphologyResponse;
@@ -37,7 +38,7 @@ public final class MorphologyCompleteExample extends ExampleBase {
         String morphologyCompleteData = "The quick brown fox jumped over the lazy dog. Yes he did.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, 
+        MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.COMPLETE,
                 morphologyCompleteData, null, null);
         System.out.println(responseToJson(response));
     }

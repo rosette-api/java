@@ -50,7 +50,7 @@ public final class NameTranslationRequest {
      * @param targetScript target script code
      * @param targetScheme target transliteration scheme
      */
-    public NameTranslationRequest(String name,
+    protected NameTranslationRequest(String name,
                                   String entityType,
                                   ISO15924 sourceScript,
                                   LanguageCode sourceLanguageOfOrigin,
@@ -132,70 +132,6 @@ public final class NameTranslationRequest {
         return targetScheme;
     }
 
-    /**
-     * set the name to be translated
-     * @param name the name to be translated
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * set the entity type of the name
-     * @param entityType the entity type of the name
-     */
-    public void setEntityType(String entityType) {
-        this.entityType = entityType;
-    }
-
-    /**
-     * set the code for the name's script
-     * @param sourceScript code for the name's script
-     */
-    public void setSourceScript(ISO15924 sourceScript) {
-        this.sourceScript = sourceScript;
-    }
-
-    /**
-     * set the code for the name's language of origin
-     * @param sourceLanguageOfOrigin the name's language of origin
-     */
-    public void setSourceLanguageOfOrigin(LanguageCode sourceLanguageOfOrigin) {
-        this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
-    }
-
-    /**
-     * set the code for the name's language of use
-     * @param sourceLanguageOfUse code for the name's language of use
-     */
-    public void setSourceLanguageOfUse(LanguageCode sourceLanguageOfUse) {
-        this.sourceLanguageOfUse = sourceLanguageOfUse;
-    }
-
-    /**
-     * set code for the translation language
-     * @param targetLanguage code for the translation language
-     */
-    public void setTargetLanguage(LanguageCode targetLanguage) {
-        this.targetLanguage = targetLanguage;
-    }
-
-    /**
-     * set the code for the target script
-     * @param targetScript code for the target script
-     */
-    public void setTargetScript(ISO15924 targetScript) {
-        this.targetScript = targetScript;
-    }
-
-    /**
-     * set the transliteration scheme for the translation
-     * @param targetScheme the transliteration scheme for the translation
-     */
-    public void setTargetScheme(TransliterationScheme targetScheme) {
-        this.targetScheme = targetScheme;
-    }
-
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
@@ -229,5 +165,65 @@ public final class NameTranslationRequest {
                 && targetLanguage != null ? targetLanguage.equals(that.getTargetLanguage()) : that.targetLanguage == null
                 && targetScript != null ? targetScript.equals(that.getTargetScript()) : that.targetScript == null
                 && targetScheme != null ? targetScheme.equals(that.getTargetScheme()) : that.targetScheme == null;
+    }
+
+    public static class Builder {
+        private String name;
+        private String entityType;
+        private ISO15924 sourceScript;
+        private LanguageCode sourceLanguageOfOrigin;
+        private LanguageCode sourceLanguageOfUse;
+        private LanguageCode targetLanguage;
+        private ISO15924 targetScript;
+        private TransliterationScheme targetScheme;
+
+        public Builder(String name, LanguageCode targetLanguage, ISO15924 targetScript, TransliterationScheme targetScheme) {
+            this.name = name;
+            this.targetLanguage = targetLanguage;
+            this.targetScript = targetScript;
+            this.targetScheme = targetScheme;
+        }
+
+        public Builder entityType(String entityType) {
+            this.entityType = entityType;
+            return this;
+        }
+
+        public String entityType() {
+            return entityType;
+        }
+
+        public Builder sourceScript(ISO15924 sourceScript) {
+            this.sourceScript = sourceScript;
+            return this;
+        }
+
+        public ISO15924 sourceScript() {
+            return sourceScript;
+        }
+
+        public Builder sourceLanguageOfUse(LanguageCode sourceLanguageOfUse) {
+            this.sourceLanguageOfUse = sourceLanguageOfUse;
+            return this;
+        }
+
+        public LanguageCode sourceLanguageOfUse() {
+            return sourceLanguageOfUse;
+        }
+
+        public Builder sourceLanguageOfOrigin(LanguageCode sourceLanguageOfOrigin) {
+            this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
+            return this;
+        }
+
+        public LanguageCode sourceLanguageOfOrigin() {
+            return sourceLanguageOfOrigin;
+        }
+
+        public NameTranslationRequest build() {
+            return new NameTranslationRequest(name, entityType, sourceScript, sourceLanguageOfOrigin,
+                    sourceLanguageOfUse, targetLanguage, targetScript, targetScheme);
+        }
+
     }
 }

@@ -16,22 +16,21 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.util.ISO15924;
-import com.basistech.util.LanguageCode;
-import com.basistech.util.TransliterationScheme;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TranslatedNameResultMixin  extends BaseMixin {
+import java.util.List;
+
+public class RelationshipsMixin extends BaseMixin {
     @JsonCreator
-    protected TranslatedNameResultMixin(
-            @JsonProperty("sourceScript") ISO15924 sourceScript,
-            @JsonProperty("sourceLanguageOfOrigin") LanguageCode sourceLanguageOfOrigin,
-            @JsonProperty("sourceLanguageOfUse") LanguageCode sourceLanguageOfUse,
-            @JsonProperty("translation") String translation,
-            @JsonProperty("targetLanguage") LanguageCode targetLanguage,
-            @JsonProperty("targetScript") ISO15924 targetScript,
-            @JsonProperty("targetScheme") TransliterationScheme targetScheme,
+    public RelationshipsMixin(
+            @JsonProperty("predicate") String predicate,
+            @JsonProperty("arg1") String arg1,
+            @JsonProperty("arg2") String arg2,
+            @JsonProperty("arg3") String arg3,
+            @JsonProperty("temporals") List<String> temporals,
+            @JsonProperty("locatives") List<String> locatives,
+            @JsonProperty("adjuncts") List<String> adjuncts,
             @JsonProperty("confidence") Double confidence
     ) {
         //

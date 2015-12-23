@@ -27,12 +27,9 @@ public final class SentimentResponse extends Response {
     
     /**
      * constructor for {@code SentimentResponse}
-     * @param requestId request id
      * @param sentiment list of sentiment analysis results
      */
-    public SentimentResponse(String requestId,
-                             List<Sentiment> sentiment) {
-        super(requestId);
+    public SentimentResponse(List<Sentiment> sentiment) {
         this.sentiment = sentiment;
     }
 
@@ -46,9 +43,7 @@ public final class SentimentResponse extends Response {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (sentiment != null ? sentiment.hashCode() : 0);
-        return result;
+        return sentiment != null ? sentiment.hashCode() : 0;
     }
 
     /**
@@ -63,7 +58,6 @@ public final class SentimentResponse extends Response {
         }
 
         SentimentResponse that = (SentimentResponse) o;
-        return super.equals(o)
-                && sentiment != null ? sentiment.equals(that.getSentiment()) : that.sentiment == null;
+        return sentiment != null ? sentiment.equals(that.getSentiment()) : that.sentiment == null;
     }
 }

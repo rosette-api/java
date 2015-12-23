@@ -37,7 +37,7 @@ public final class TokensExample extends ExampleBase {
         String tokensData = "北京大学生物系主任办公室内部会议";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        TokensResponse response = rosetteApi.getTokens(tokensData, null, null);
+        TokensResponse response = rosetteApi.getTokens(tokensData, null);
         System.out.println(responseToJson(response));
     }
 }

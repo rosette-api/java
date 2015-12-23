@@ -16,20 +16,16 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.util.ISO15924;
+import com.basistech.rosette.apimodel.Relationship;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
-public class LanguageInfoResponseMixin extends BaseMixin {
+public class RelationshipsResponseMixin {
     @JsonCreator
-    public LanguageInfoResponseMixin(
-            @JsonProperty("requestId") String requestId,
-            @JsonProperty("supportedLanguages") Map<String, Set<ISO15924>> supportedLanguages,
-            @JsonProperty("supportedScripts") Map<ISO15924, Set<String>> supportedScripts
-    ) {
+    public RelationshipsResponseMixin(@JsonProperty("relationships") List<Relationship> relationships) {
         //
     }
+
 }

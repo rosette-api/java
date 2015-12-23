@@ -19,33 +19,29 @@ package com.basistech.rosette.apimodel;
 /**
  * Response data model for name matcher
  */
-public final class NameMatchingResponse extends Response {
+public final class NameComparisonResponse extends Response {
 
-    private final NameMatchingResult result;
+    private final Double score;
 
     /**
      * Constructor for {@code NameMatchingResponse}
-     * @param requestId request id
-     * @param result name matcher result
+     * @param score the match score.
      */
-    public NameMatchingResponse(String requestId,
-                                NameMatchingResult result
-    ) {
-        super(requestId);
-        this.result = result;
+    public NameComparisonResponse(Double score) {
+        this.score = score;
     }
 
     /**
      * Gets the name matcher result
      * @return name matcher result
      */
-    public NameMatchingResult getResult() {
-        return result;
+    public Double getScore() {
+        return score;
     }
 
     @Override
     public int hashCode() {
-        return result != null ? result.hashCode() : 0;
+        return score != null ? score.hashCode() : 0;
     }
 
     /**
@@ -55,11 +51,11 @@ public final class NameMatchingResponse extends Response {
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof NameMatchingResponse)) {
+        if (!(o instanceof NameComparisonResponse)) {
             return false;
         }
 
-        NameMatchingResponse that = (NameMatchingResponse) o;
-        return result != null ? result.equals(that.getResult()) : that.result == null;
+        NameComparisonResponse that = (NameComparisonResponse) o;
+        return score != null ? score.equals(that.getScore()) : that.score == null;
     }
 }

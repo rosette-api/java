@@ -28,13 +28,9 @@ public final class TokensResponse extends Response {
     
     /**
      * constructor for {@code TokensResponse}
-     * @param requestId request id
      * @param tokens list of tokens
      */
-    public TokensResponse(
-            String requestId,
-            List<String> tokens) {
-        super(requestId);
+    public TokensResponse(List<String> tokens) {
         this.tokens = tokens;
     }
 
@@ -48,9 +44,7 @@ public final class TokensResponse extends Response {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (tokens != null ? tokens.hashCode() : 0);
-        return result;
+        return tokens != null ? tokens.hashCode() : 0;
     }
 
     /**
@@ -65,7 +59,6 @@ public final class TokensResponse extends Response {
         }
 
         TokensResponse that = (TokensResponse) o;
-        return super.equals(o)
-                && tokens != null ? tokens.equals(that.getTokens()) : that.tokens == null;
+        return tokens != null ? tokens.equals(that.getTokens()) : that.tokens == null;
     }
 }

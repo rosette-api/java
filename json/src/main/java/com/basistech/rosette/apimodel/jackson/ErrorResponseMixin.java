@@ -21,9 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ErrorResponseMixin extends BaseMixin {
     @JsonCreator
-    public ErrorResponseMixin(
-            @JsonProperty("requestId") String requestId,
-            @JsonProperty("code") String code,
+    public ErrorResponseMixin(@JsonProperty("code") String code,
             @JsonProperty("message") String message
     ) {
         //

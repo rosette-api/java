@@ -16,20 +16,34 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import com.basistech.rosette.apimodel.jackson.RequestMixin;
+import com.basistech.util.ISO15924;
+import com.basistech.util.LanguageCode;
+import com.basistech.util.TransliterationScheme;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
@@ -39,9 +53,22 @@ import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class ModelTest {
 
-    ObjectMapper mapper;
+    private boolean inputStreams;
+    private ObjectMapper mapper;
+
+    public ModelTest(Boolean inputStreams) {
+        this.inputStreams = inputStreams;
+    }
+
+
+    @Parameterized.Parameters(name = "inputStreamContent: {0}")
+    public static Collection<Object[]> data() {
+        return Lists.newArrayList(new Object[] {Boolean.FALSE}, new Object[] {Boolean.TRUE});
+    }
+
 
     @Before
     public void init() {
@@ -65,6 +92,11 @@ public class ModelTest {
             if (className.endsWith("Mixin")) {
                 continue;
             }
+
+            if (className.endsWith("Builder")) {
+                continue;
+            }
+
             Class c = Class.forName(className);
             if (Modifier.isAbstract(c.getModifiers())) {
                 continue;
@@ -79,16 +111,36 @@ public class ModelTest {
             }
             Object o1;
             if (Modifier.isPublic(ctor.getModifiers())) {
-                o1 = createObject(ctor);
+
+                boolean oldInputStreams = inputStreams;
+                try {
+                    if (className.endsWith("ConstantsResponse")) {
+                        inputStreams = false; // special case due to Object in there.
+                    }
+                    o1 = createObject(ctor);
+                } finally {
+                    inputStreams = oldInputStreams;
+                }
+
+
                 // serialize
-                byte[] bytes = mapper.writeValueAsBytes(o1);
+                // for a request, we might need a view
+                ObjectWriter writer = mapper.writerWithView(Object.class);
+                if (o1 instanceof Request) {
+                    Request r = (Request) o1;
+                    if (r.getRawContent() instanceof String) {
+                        writer = mapper.writerWithView(RequestMixin.Views.Content.class);
+                    }
+                }
+                String json = writer.writeValueAsString(o1);
                 // deserialize
-                Object o2 = mapper.readValue(bytes, (Class<? extends Object>) clazz);
+                Object o2 = mapper.readValue(json, (Class<? extends Object>) clazz);
                 // verify
                 assertEquals(o1, o2);
             }
         }
     }
+
 
     private Object createObject(Constructor ctor) throws IllegalAccessException, InvocationTargetException,
             InstantiationException {
@@ -103,7 +155,7 @@ public class ModelTest {
         return o;
     }
 
-    private Object createObjectForType(Class type, Type genericParameterType) throws IllegalAccessException,
+    private Object createObjectForType(Class<?> type, Type genericParameterType) throws IllegalAccessException,
             InstantiationException, InvocationTargetException {
         Object o = null;
         Class firstComponentType = type.isArray() ? type.getComponentType() : type;
@@ -115,9 +167,18 @@ public class ModelTest {
                 ParameterizedType aType = (ParameterizedType) genericParameterType;
                 parameterArgTypes = aType.getActualTypeArguments();
                 for (Type parameterArgType : parameterArgTypes) {
-                    parameterArgClass = (Class) parameterArgType;
-                    if ("Map".equals(typeName)) {
-                        break;
+                    if (parameterArgType instanceof ParameterizedType) {
+                        ParameterizedType parameterizedType = (ParameterizedType)parameterArgType;
+                        if (isListString(parameterizedType)) {
+                            List<List<String>> rv = Lists.newArrayList();
+                            rv.add(Lists.newArrayList("string"));
+                            return rv;
+                        }
+                    } else {
+                        parameterArgClass = (Class) parameterArgType;
+                        if ("Map".equals(typeName)) {
+                            break;
+                        }
                     }
                 }
             }
@@ -168,6 +229,12 @@ public class ModelTest {
             break;
         }
         case "Object":
+            if (inputStreams) {
+                o = new ByteArrayInputStream(new byte[0]);
+            } else {
+                o = "foo";
+            }
+            break;
         case "EnumSet":
             break;
         case "Set": {
@@ -201,6 +268,11 @@ public class ModelTest {
             }
         }
         return o;
+    }
+
+    private boolean isListString(ParameterizedType parameterizedType) {
+        // oh, just use the String.
+        return "java.util.List<java.lang.String>".equals(parameterizedType.getTypeName());
     }
 
     private Object createObject(Class clazz) throws IllegalAccessException, InstantiationException,

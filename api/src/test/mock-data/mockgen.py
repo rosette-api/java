@@ -5,17 +5,18 @@
 
 import argparse
 import csv
-import feedparser
 import glob
 import io
 import json
 import os
+
+import feedparser
 import requests
 import sys
 
 DOC_ENDPOINTS = ["language", "morphology/complete", "entities", "entities/linked", "categories", "sentiment"]
-RNT_ENDPOINTS = ["translated-name"]
-RNI_ENDPOINTS = ["matched-name"]
+RNT_ENDPOINTS = ["name-translation"]
+RNI_ENDPOINTS = ["name-similarity"]
 GNEWS_LANGS = {"eng": "ned=us&hl=en-US",
                "zho": "ned=cn&hl=zh-CN",
                "ara": "ned=ar_me&hl=ar",

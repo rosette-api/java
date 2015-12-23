@@ -17,53 +17,10 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Rosette api response data base
+ * Base class for all responses.
+ * In this version, they have nothing in common.
  */
 public abstract class Response {
+    //
 
-    private String requestId;
-
-    /**
-     * abstract constructor for {@code Response}
-     * @param requestId request id
-     */
-    public Response(String requestId) {
-        this.requestId = requestId;
-    }
-
-    /**
-     * get the request id for tracking purposes 
-     * @return the request id
-     */
-    public String getRequestId() {
-        return requestId;
-    }
-
-    /**
-     * Set the request id.
-     * @param requestId the id.
-     */
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
-    @Override
-    public int hashCode() {
-        return requestId != null ? requestId.hashCode() : 0;
-    }
-
-    /**
-     * if the param is a response, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object; t
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Response)) {
-            return false;
-        }
-
-        Response that = (Response) o;
-        return requestId != null ? requestId.equals(that.getRequestId()) : that.requestId == null;
-    }
 }

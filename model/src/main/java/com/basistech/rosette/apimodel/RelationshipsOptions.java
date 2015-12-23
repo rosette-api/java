@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 /**
  * Relationship extraction options
  */
-public final class RelationshipOptions {
+public final class RelationshipsOptions {
 
     private AccuracyMode accuracyMode;
 
@@ -27,7 +27,7 @@ public final class RelationshipOptions {
      * Create a set of relationship extraction options with default values.
      * Note that {@code null} is used to represent defaults.
      */
-    public RelationshipOptions() {
+    public RelationshipsOptions() {
         //
     }
 
@@ -35,7 +35,7 @@ public final class RelationshipOptions {
      * constructor for {@code RelationshipOptions}
      * @param accuracyMode   accuracyMode to use for relationship extraction
      */
-    public RelationshipOptions(
+    public RelationshipsOptions(
             AccuracyMode accuracyMode) {
         this.accuracyMode = accuracyMode;
     }
@@ -68,11 +68,11 @@ public final class RelationshipOptions {
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof RelationshipOptions)) {
+        if (!(o instanceof RelationshipsOptions)) {
             return false;
         }
 
-        RelationshipOptions that = (RelationshipOptions) o;
+        RelationshipsOptions that = (RelationshipsOptions) o;
         return accuracyMode != null ? accuracyMode.equals(that.getAccuracyMode()) : that.accuracyMode == null;
     }
 }

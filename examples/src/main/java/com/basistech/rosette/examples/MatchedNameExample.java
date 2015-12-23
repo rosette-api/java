@@ -18,8 +18,7 @@ package com.basistech.rosette.examples;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Name;
-import com.basistech.rosette.apimodel.NameMatchingRequest;
-import com.basistech.rosette.apimodel.NameMatchingResponse;
+import com.basistech.rosette.apimodel.NameComparisonResponse;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 
@@ -43,7 +42,7 @@ public final class MatchedNameExample extends ExampleBase {
         Name name1 = new Name(matchedNameData1, "PERSON", ISO15924.Zyyy, LanguageCode.ENGLISH);
         Name name2 = new Name(matchedNameData2);
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        NameMatchingResponse response = rosetteApi.matchName(new NameMatchingRequest(name1, name2));
+        NameComparisonResponse response = rosetteApi.matchName(new NameComparisonRequest(name1, name2));
         System.out.println(responseToJson(response));
     }
 }

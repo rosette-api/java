@@ -31,18 +31,16 @@ public final class CategoriesRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
-     * @param unit input unit code
      * @param options categorization options
-     */
-    public CategoriesRequest(
+      */
+    protected CategoriesRequest(
             LanguageCode language,
-            String content,
+            Object content,
             String contentUri,
             String contentType,
-            InputUnit unit,
             CategoriesOptions options
     ) {
-        super(language, content, contentUri, contentType, unit);
+        super(language, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -52,14 +50,6 @@ public final class CategoriesRequest extends Request {
      */
     public CategoriesOptions getOptions() {
         return options;
-    }
-
-    /**
-     * set the categorization options
-     * @param options the options
-     */
-    public void setOptions(CategoriesOptions options) {
-        this.options = options;
     }
 
     @Override
@@ -83,5 +73,20 @@ public final class CategoriesRequest extends Request {
         CategoriesRequest that = (CategoriesRequest) o;
         return super.equals(o)
                 && options != null ? options.equals(that.getOptions()) : that.options == null;
+    }
+
+    /**
+     * Fluent builder class for {@link CategoriesRequest}.
+     */
+    public static class Builder extends Request.Builder<CategoriesRequest, CategoriesOptions, CategoriesRequest.Builder> {
+        @Override
+        protected Builder getThis() {
+            return this;
+        }
+
+        @Override
+        public CategoriesRequest build() {
+            return new CategoriesRequest(language, content, contentUri, contentType, options);
+        }
     }
 }

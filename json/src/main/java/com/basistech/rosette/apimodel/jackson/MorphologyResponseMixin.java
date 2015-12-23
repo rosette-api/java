@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2016 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,12 +14,9 @@
 * limitations under the License.
 */
 
+
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.CompoundComponents;
-import com.basistech.rosette.apimodel.HanReadings;
-import com.basistech.rosette.apimodel.Lemma;
-import com.basistech.rosette.apimodel.PartOfSpeech;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -27,13 +24,11 @@ import java.util.List;
 
 public class MorphologyResponseMixin extends BaseMixin {
     @JsonCreator
-    public MorphologyResponseMixin(
-            @JsonProperty("requestId") String requestId,
-            @JsonProperty("posTags") List<PartOfSpeech> posTags,
-            @JsonProperty("lemmas") List<Lemma> lemmas,
-            @JsonProperty("compounds") List<CompoundComponents> compounds,
-            @JsonProperty("han-readings") List<HanReadings> hanReadings
-    ) {
+    public MorphologyResponseMixin(@JsonProperty("tokens") List<String> tokens,
+                                   @JsonProperty("posTags") List<String> posTags,
+                                   @JsonProperty("lemmas") List<String> lemmas,
+                                   @JsonProperty("compoundComponents") List<List<String>> compoundComponents,
+                                   @JsonProperty("hanReadings") List<List<String>> hanReadings) {
         //
     }
 }

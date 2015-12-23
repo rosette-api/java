@@ -18,48 +18,55 @@ package com.basistech.rosette.apimodel;
 
 import com.basistech.util.LanguageCode;
 
-import java.util.Arrays;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 /**
- * Class containing data common to Rosette API client requests
+ * This class represents the common information for all document processing requests to the Rosette API.
+ * Most applications do not use this class directly; the methods of the {@code RosetteAPI} class
+ * create request objects. More complex applications may create objects of the subclasses
+ * of this class for themselves via the fluent Builder classes.
+ * <br>
+ * On the wire, a request is a json object. All the endpoints accept the same set of items,
+ * represented here, that describe the input document text.
+ * <br>
+ * Applications specify the text to process in three ways:
+ * <ol>
+ *     <li>Plain text, as the {@code content} item in the Json object.</li>
+ *     <li>A binary file image, attached as an additional MIME part to the request.
+ *     The application provides a MIME content type in {@code contentType}.</li>
+ *     <li>A URL of a data to download. The application provides the URL in
+ *     {@code contentUri}. Note that the Rosette API respects the content type
+ *     returned by the server for downloaded data.</li>
+ * </ol>
+ * In this object the 'content' item is an {@link Object}; it contains a {@link String}
+ * for plain text, and an {@link java.io.InputStream} for binary data. {@link Request.Builder}
+ * provides several alternative methods for setting this information.
+ *
  */
 public abstract class Request {
 
     private LanguageCode language;
-    private String content;
+    private Object content;
     private String contentUri;
-    private byte[] contentBytes;
     private String contentType;
-    private InputUnit unit;
-    
+
     /**
      * Constructor for {@code Request}
-     * Fields for the three ways content can come in:
-     * 1. a "content" raw data
-     * 2. a "contentUri" pointing to the data
-     * 3. a "contentBytes" byte array for cases where data comes to us raw as an attachment
      * @param language language code
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
-     * @param unit input unit code
      */
     protected Request(
             LanguageCode language,
-            String content,
+            Object content,
             String contentUri,
-            String contentType,
-            InputUnit unit
-    ) {
+            String contentType) {
         this.language = language;
         this.content = content;
         this.contentUri = contentUri;
         this.contentType = contentType;
-        if (unit == null) {
-            this.unit = InputUnit.doc;
-        } else {
-            this.unit = unit;
-        }
     }
 
     /**
@@ -71,19 +78,31 @@ public abstract class Request {
     }
 
     /**
-     * get content to process (JSON string or base64 encoding of non-JSON string) 
-     * @return the content
+     * get content to process if it's a String.
+     * @return the content if a String, else null.
      */
     public String getContent() {
-        return content;
+        if (content instanceof String) {
+            return (String) content;
+        } else {
+            return null;
+        }
     }
 
     /**
      * get the content as an array of bytes 
      * @return the content as bytes
      */
-    public byte[] getContentBytes() {
-        return contentBytes;
+    public InputStream getContentBytes() {
+        if (content instanceof InputStream) {
+            return (InputStream)content;
+        } else {
+            return null;
+        }
+    }
+
+    public Object getRawContent() {
+        return content;
     }
 
     /**
@@ -102,72 +121,12 @@ public abstract class Request {
         return contentType;
     }
 
-    /**
-     * get the {@code InputUnit} code
-     * @see InputUnit
-     * @return the {@code InputUnit} code
-     */
-    public InputUnit getUnit() {
-        return unit;
-    }
-
-    /**
-     * set the language code 
-     * @param language the language code
-     */
-    public void setLanguage(LanguageCode language) {
-        this.language = language;
-    }
-
-    /**
-     * set content to process (JSON string or base64 encoding of non-JSON string)
-     * @param content the content
-     */
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    /**
-     * set the URI to accessible content (content and contentURI are mutually exlcusive) 
-     * @param contentUri the content URI
-     */
-    public void setContentUri(String contentUri) {
-        this.contentUri = contentUri;
-    }
-
-    /**
-     * set the content as an array of bytes 
-     * @param contentBytes the content as bytes
-     */
-    public void setContentBytes(byte[] contentBytes) {
-        this.contentBytes = contentBytes;
-    }
-
-    /**
-     * set the content type
-     * @param contentType the content type
-     */
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
-    /**
-     * set the {@code InputUnit} code 
-     * @see InputUnit
-     * @param unit the {@code InputUnit} code
-     */
-    public void setUnit(InputUnit unit) {
-        this.unit = unit;
-    }
-
     @Override
     public int hashCode() {
         int result = language != null ? language.hashCode() : 0;
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (contentUri != null ? contentUri.hashCode() : 0);
-        result = 31 * result + (contentBytes != null ? Arrays.hashCode(contentBytes) : 0);
         result = 31 * result + (contentType != null ? contentType.hashCode() : 0);
-        result = 31 * result + (unit != null ? unit.hashCode() : 0);
         return result;
     }
 
@@ -184,10 +143,137 @@ public abstract class Request {
 
         Request that = (Request) o;
         return language != null ? language.equals(that.getLanguage()) : that.language == null
-                && content != null ? content.equals(that.getContent()) : that.content == null
+                && content != null ? content.equals(that.content) : that.content == null
                 && contentUri != null ? contentUri.equals(that.getContentUri()) : that.contentUri == null
-                && contentType != null ? contentType.equals(that.getContentType()) : that.contentType == null
-                && unit != null ? unit.equals(that.getUnit()) : that.unit == null
-                && contentBytes != null ? Arrays.equals(contentBytes, that.getContentBytes()) : that.contentBytes == null;
+                && contentType != null ? contentType.equals(that.getContentType()) : that.contentType == null;
+    }
+
+    /**
+     * Base class for builders for the request objects.
+     * @param <T> The type of the request object.
+     */
+    public abstract static class Builder<T extends Request, O, B extends Builder<T, O, B>> {
+        protected LanguageCode language;
+        protected Object content;
+        protected String contentUri;
+        protected String contentType;
+        protected O options;
+
+        protected abstract B getThis();
+
+        /**
+         * Set the language of the input.
+         * @param language the language.
+         * @return this
+         */
+        public B language(LanguageCode language) {
+            this.language = language;
+            return getThis();
+        }
+
+        /**
+         * @return the language, if any, for this request.
+         */
+        LanguageCode language() {
+            return language;
+        }
+
+        /**
+         * Set the content for this request as a string of plain text.
+         * @param content the content.
+         * @return this.
+         */
+        public B content(String content) {
+            this.content = content;
+            return getThis();
+        }
+
+        /**
+         * @return the content for this request.
+         */
+        public String contentString() {
+            return (String) content;
+        }
+
+        /**
+         * Set the content for this request to be the URI of data to download.
+         * Only 'http:' URI's are supported.
+         * @param uri the URI.
+         * @return this.
+         */
+        public B contentUri(String uri) {
+            this.contentUri = uri;
+            return getThis();
+        }
+
+        /**
+         * @return the URI of the content to retrieve, if any.
+         */
+        public String contentUri() {
+            return contentUri;
+        }
+
+        /**
+         * Specify the content as bytes with a content type. Use this for
+         * formats other than plain text.
+         * @param bytes The data.
+         * @param contentType the content type.
+         * @return this.
+         */
+        public B contentBytes(byte[] bytes, String contentType) {
+            this.content = new ByteArrayInputStream(bytes);
+            this.contentType = contentType;
+            return getThis();
+        }
+
+        /**
+         * Specify the content as bytes with a content type. Use this for
+         * formats other than plain text.
+         * @param bytes The data.
+         * @param contentType the content type.
+         * @return this.
+         */
+        public B contentBytes(InputStream bytes, String contentType) {
+            this.content = bytes;
+            this.contentType = contentType;
+            return getThis();
+        }
+
+        /**
+         * @return the content bytes, if any.
+         */
+        public InputStream contentBytes() {
+            return (InputStream)content;
+        }
+
+        /**
+         * @return the content type for the content bytes.
+         */
+        public String contentType() {
+            return contentType;
+        }
+
+        /**
+         * Set the options for this request.
+         * @param options the options.
+         * @return this.
+         */
+        public B options(O options) {
+            this.options = options;
+            return getThis();
+        }
+
+        /**
+         * @return the options for this request.
+         */
+        public O options() {
+            return options;
+        }
+
+        /**
+         * Construct the request object.
+         * @return the request object.
+         */
+        public abstract T build();
     }
 }

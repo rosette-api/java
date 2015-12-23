@@ -14,21 +14,26 @@
 * limitations under the License.
 */
 
-package com.basistech.rosette.apimodel.jackson;
+package com.basistech.rosette.api;
 
-import com.basistech.rosette.apimodel.Relationship;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+/**
+ * Specify which feature you want Rosette API Morphology endpoint to return. Specify COMPLETE for every feature.
+ */
+public enum MorphologicalFeature {
+    COMPLETE("complete"),
+    LEMMAS("lemmas"),
+    PARTS_OF_SPEECH("parts-of-speech"),
+    COMPOUND_COMPONENTS("compound-components"),
+    HAN_READINGS("han-readings");
 
-import java.util.List;
+    private String pathLabel;
 
-public class RelationshipResponseMixin {
-    @JsonCreator
-    public RelationshipResponseMixin(
-            @JsonProperty("requestId") String requestId,
-            @JsonProperty("relationships") List<Relationship> relationships
-    ) {
-        //
+    MorphologicalFeature(String pathLabel) {
+        this.pathLabel = pathLabel;
     }
 
+    @Override
+    public String toString() {
+        return pathLabel;
+    }
 }

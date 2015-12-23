@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.util.LanguageCode;
+
 /**
  * Data from a RosetteAPI client languages detection request
  */
@@ -28,17 +30,15 @@ public final class LanguageRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
-     * @param unit input unit code
      * @param options languages detection options
      */
-    public LanguageRequest(
-            String content,
+    protected LanguageRequest(
+            Object content,
             String contentUri,
             String contentType,
-            InputUnit unit,
             LanguageOptions options
     ) {
-        super(null, content, contentUri, contentType, unit);
+        super(null, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -77,5 +77,22 @@ public final class LanguageRequest extends Request {
         LanguageRequest that = (LanguageRequest) o;
         return super.equals(o)
                 && options != null ? options.equals(that.options) : that.options == null;
+    }
+
+    /**
+     * Fluent builder class for {@link LanguageRequest}.
+     * Note that calls to {@link com.basistech.rosette.apimodel.Request.Builder#language(LanguageCode)}
+     * will be ignored.
+     */
+    public static class Builder extends Request.Builder<LanguageRequest, LanguageOptions, LanguageRequest.Builder> {
+        @Override
+        protected Builder getThis() {
+            return this;
+        }
+
+        @Override
+        public LanguageRequest build() {
+            return new LanguageRequest(content, contentUri, contentType, options);
+        }
     }
 }

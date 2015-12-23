@@ -27,12 +27,9 @@ public final class LanguageResponse extends Response {
 
     /**
      * constructor for {@code LanguageResponse}
-     * @param requestId request id
      * @param languageDetections list of detected languages
      */
-    public LanguageResponse(String requestId,
-                            List<LanguageDetectionResult> languageDetections) {
-        super(requestId);
+    public LanguageResponse(List<LanguageDetectionResult> languageDetections) {
         this.languageDetections = languageDetections;
     }
 
@@ -61,7 +58,6 @@ public final class LanguageResponse extends Response {
         }
 
         LanguageResponse that = (LanguageResponse) o;
-        return super.equals(o)
-                && languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
+        return languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
     }
 }

@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 import com.basistech.util.LanguageCode;
 
 /**
- * Class that represents the data from a linguistics request
+ * Input parameters for the morphology endpoint.
  */
 public final class MorphologyRequest extends Request {
 
@@ -31,18 +31,16 @@ public final class MorphologyRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
-     * @param unit input unit code
-     * @param options base linguistics options
+     * @param options morphology options
      */
-    public MorphologyRequest(
+    protected MorphologyRequest(
             LanguageCode language,
-            String content,
+            Object content,
             String contentUri,
             String contentType,
-            InputUnit unit,
             MorphologyOptions options
     ) {
-        super(language, content, contentUri, contentType, unit);
+        super(language, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -81,5 +79,20 @@ public final class MorphologyRequest extends Request {
         MorphologyRequest that = (MorphologyRequest) o;
         return super.equals(o)
                 && options != null ? options.equals(that.getOptions()) : that.options == null;
+    }
+
+    /**
+     * Fluent builder class for {@link MorphologyRequest}.
+     */
+    public static class Builder extends Request.Builder<MorphologyRequest, MorphologyOptions, MorphologyRequest.Builder> {
+        @Override
+        protected Builder getThis() {
+            return this;
+        }
+
+        @Override
+        public MorphologyRequest build() {
+            return new MorphologyRequest(language, content, contentUri, contentType, options);
+        }
     }
 }

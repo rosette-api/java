@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2016 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 package com.basistech.rosette.apimodel.jackson;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,12 +20,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class DecompoudingMixin extends BaseMixin {
+/**
+ *
+ */
+public class SentencesResponseMixin {
+
     @JsonCreator
-    public DecompoudingMixin(
-            @JsonProperty("text") String text,
-            @JsonProperty("compoundComponents") List<String> compoundComponents
-    ) {
+    public SentencesResponseMixin(@JsonProperty("sentences") List<String> sentences) {
         //
     }
 }

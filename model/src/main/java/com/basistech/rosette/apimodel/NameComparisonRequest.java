@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
  *
  * Request to match 2 names.
  */
-public final class NameMatchingRequest {
+public final class NameComparisonRequest {
 
     @NotNull
     private Name name1;
@@ -35,8 +35,8 @@ public final class NameMatchingRequest {
      * @param name1 First name to be matched against second name
      * @param name2 Second name to be matched against first name
      */
-    public NameMatchingRequest(Name name1,
-                               Name name2) {
+    public NameComparisonRequest(Name name1,
+                                 Name name2) {
         this.name1 = name1;
         this.name2 = name2;
     }
@@ -87,11 +87,11 @@ public final class NameMatchingRequest {
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof NameMatchingRequest)) {
+        if (!(o instanceof NameComparisonRequest)) {
             return false;
         }
 
-        NameMatchingRequest that = (NameMatchingRequest) o;
+        NameComparisonRequest that = (NameComparisonRequest) o;
         return name1 != null ? name1.equals(that.getName1()) : that.name1 == null
                 && name2 != null ? name2.equals(that.getName1()) : that.name2 == null;
     }

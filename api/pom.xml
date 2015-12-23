@@ -27,7 +27,9 @@
     <packaging>bundle</packaging>
     <description>Rosette API Communications</description>
     <properties>
-      <mockserver-version>3.10.2</mockserver-version>
+        <mockserver-version>3.10.2</mockserver-version>
+        <skip-mockserver>false</skip-mockserver>
+        <http-components-version>4.4.1</http-components-version>
     </properties>
     <dependencies>
       <dependency>
@@ -47,6 +49,20 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${http-components-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${http-components-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -108,6 +124,7 @@
                 <configuration>
                     <serverPort>${mockServerClient.port}</serverPort>
                     <logLevel>WARN</logLevel>
+                    <skip>${skip-mockserver}</skip>
                 </configuration>
                 <executions>
                     <execution>
@@ -146,4 +163,24 @@
             </testResource>
         </testResources>
     </build>
+    <profiles>
+        <profile>
+            <id>skip-mockserver-tests</id>
+            <properties>
+                <skip-mockserver>true</skip-mockserver>
+            </properties>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <configuration>
+                                <skip>true</skip>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -23,9 +23,7 @@ import java.util.List;
 
 public class TokenResponseMixin  extends BaseMixin {
     @JsonCreator
-    public TokenResponseMixin(
-            @JsonProperty("requestId") String requestId,
-            @JsonProperty("tokens") List<String> tokens
+    public TokenResponseMixin(@JsonProperty("tokens") List<String> tokens
     ) {
         //
     }

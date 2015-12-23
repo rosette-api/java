@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2016 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,24 +13,24 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.rosette.apimodel.MorphologyOptions;
+import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LinguisticsOptionsMixin extends BaseMixin {
+/**
+ *
+ */
+public class MorphologyRequestMixin extends BaseMixin {
     @JsonCreator
-    protected LinguisticsOptionsMixin(
-            @JsonProperty("disambiguate") Boolean disambiguate,
-            @JsonProperty("query") Boolean query,
-            @JsonProperty("tokenizeForScript") Boolean tokenizeForScript,
-            @JsonProperty("minNonPrimaryScriptRegionLength") Integer minNonPrimaryScriptRegionLength,
-            @JsonProperty("includeHebrewRoots") Boolean includeHebrewRoots,
-            @JsonProperty("nfkcNormalize") Boolean nfkcNormalize,
-            @JsonProperty("fstTokenize") Boolean fstTokenize,
-            @JsonProperty("defaultTokenizationLanguage") String defaultTokenizationLanguageCode
-    ) {
+    protected MorphologyRequestMixin(
+            @JsonProperty("language") LanguageCode language,
+            @JsonProperty("content") Object content,
+            @JsonProperty("contentUri") String contentUri,
+            @JsonProperty("contentType") String contentType,
+            @JsonProperty("options") MorphologyOptions options) {
         //
     }
 }
