@@ -24,6 +24,14 @@ public final class RelationshipOptions {
     private AccuracyMode accuracyMode;
 
     /**
+     * Create a set of relationship extraction options with default values.
+     * Note that {@code null} is used to represent defaults.
+     */
+    public RelationshipOptions() {
+        //
+    }
+
+    /**
      * constructor for {@code RelationshipOptions}
      * @param accuracyMode   accuracyMode to use for relationship extraction
      */

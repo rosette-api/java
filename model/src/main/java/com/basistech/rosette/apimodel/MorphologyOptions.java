@@ -31,6 +31,14 @@ public final class MorphologyOptions {
     private String defaultTokenizationLanguage;
 
     /**
+     * Create a set of morphology options with default values.
+     * Note that {@code null} is used to represent defaults.
+     */
+    public MorphologyOptions() {
+        //
+    }
+
+    /**
      * constructor for {@code MorphologyOptions}
      * @param disambiguate whether the linguistics analysis should disambiguate results
      * @param query request query processing

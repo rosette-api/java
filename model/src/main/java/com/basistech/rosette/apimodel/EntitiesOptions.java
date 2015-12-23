@@ -32,6 +32,14 @@ public final class EntitiesOptions {
     private Boolean redactorPreferLength;
 
     /**
+     * Create a set of entity extraction options with default values.
+     * Note that {@code null} is used to represent defaults.
+     */
+    public EntitiesOptions() {
+        //
+    }
+
+    /**
      * Constructor for {@code EntitiesOptions}
      * @param resolveNamedEntities resolve in-document named entities
      * @param maxEntityTokens max number of tokens allowed in an entity
