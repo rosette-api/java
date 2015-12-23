@@ -34,6 +34,13 @@ public final class LanguageOptions {
     private String encodingHint;
     private Double encodingHintWeight;
     private Set<LanguageWeight> languageWeightAdjustments;
+
+    /**
+     * Create a set of language detection options with default values.
+     * Note that {@code null} is used to represent defaults.
+     */
+    public LanguageOptions() {
+    }
     
     /**
      * constructor for {@code LanguageOptions} 

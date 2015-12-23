@@ -26,6 +26,14 @@ public final class CategoriesOptions {
     private Integer numCategories;
 
     /**
+     * Create a set of categorization options with default values.
+     * Note that {@code null} is used to represent defaults.
+     */
+    public CategoriesOptions() {
+        //
+    }
+
+    /**
      * constructor for {@code CategoriesOptions}
      * @param model model to use for categorization
      * @param explain whether to return explanation strings for each category returned

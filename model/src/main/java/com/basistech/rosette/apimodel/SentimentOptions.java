@@ -25,6 +25,14 @@ public final class SentimentOptions {
     private Boolean explain;
 
     /**
+     * Create a set of sentiment analysis options with default values.
+     * Note that {@code null} is used to represent defaults.
+     */
+    public SentimentOptions() {
+        //
+    }
+
+    /**
      * constructor for {@code SentimentOptions}
      * @param model   model to use for sentiment analysis
      * @param explain whether to return explanation strings for the sentiment results returned
