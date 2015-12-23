@@ -53,7 +53,7 @@
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>common-api</artifactId>
-                <version>35.3.0</version>
+                <version>35.4.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
