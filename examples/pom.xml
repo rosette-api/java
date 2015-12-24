@@ -27,9 +27,6 @@
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-examples</artifactId>
     <name>rosette-api-examples</name>
-    <properties>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
