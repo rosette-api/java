@@ -24,9 +24,7 @@
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-release</artifactId>
     <name>rosette-api-release</name>
-    <properties>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
-    </properties>
+    <packaging>pom</packaging>
     <dependencies>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
@@ -46,6 +44,13 @@
                         </manifest>
                     </archive>
                 </configuration>
+                <executions>
+                  <execution>
+                    <id>make-manifest-jar</id>
+                    <goals><goal>jar</goal></goals>
+                    <phase>package</phase>
+                  </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
