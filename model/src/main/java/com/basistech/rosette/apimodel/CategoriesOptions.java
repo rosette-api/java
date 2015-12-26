@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel;
 
+import javax.validation.constraints.Min;
+
 /**
  * Categorization options 
  */
@@ -23,6 +25,7 @@ public final class CategoriesOptions {
 
     private String model;
     private Boolean explain;
+    @Min(1)
     private Integer numCategories;
 
     /**

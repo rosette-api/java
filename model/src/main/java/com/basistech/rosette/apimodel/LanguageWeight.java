@@ -19,6 +19,9 @@ package com.basistech.rosette.apimodel;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 /**
  * language weight used to resolve ambiguous results
  */
@@ -26,6 +29,8 @@ public final class LanguageWeight {
 
     private final LanguageCode language;
     private final ISO15924 script;
+    @Min(0)
+    @Max(100)
     private final Integer weight;
 
     /**

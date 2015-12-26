@@ -16,21 +16,25 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.util.LanguageCode;
 import com.basistech.util.PartOfSpeechTagSet;
 
+import javax.validation.constraints.Min;
+
 /**
- * Linguistics analysis options 
+ * Morphology options
  */
 public final class MorphologyOptions {
 
     private Boolean disambiguate;
     private Boolean query;
     private Boolean tokenizeForScript;
+    @Min(1)
     private Integer minNonPrimaryScriptRegionLength;
     private Boolean includeHebrewRoots;
     private Boolean nfkcNormalize;
     private Boolean fstTokenize;
-    private String defaultTokenizationLanguage;
+    private LanguageCode defaultTokenizationLanguage;
     private PartOfSpeechTagSet partOfSpeechTagSet;
 
     /**
@@ -60,7 +64,7 @@ public final class MorphologyOptions {
             Boolean includeHebrewRoots,
             Boolean nfkcNormalize,
             Boolean fstTokenize,
-            String defaultTokenizationLanguage,
+            LanguageCode defaultTokenizationLanguage,
             PartOfSpeechTagSet partOfSpeechTagSet
     ) {
         this.disambiguate = disambiguate;
@@ -138,7 +142,7 @@ public final class MorphologyOptions {
      * get the default tokenization language 
      * @return the default tokenization language
      */
-    public String getDefaultTokenizationLanguage() {
+    public LanguageCode getDefaultTokenizationLanguage() {
         return defaultTokenizationLanguage;
     }
 
@@ -209,7 +213,7 @@ public final class MorphologyOptions {
      * and non-Thai text embedded in Thai.
      * @param defaultTokenizationLanguage the default tokenization language
      */
-    public void setDefaultTokenizationLanguage(String defaultTokenizationLanguage) {
+    public void setDefaultTokenizationLanguage(LanguageCode defaultTokenizationLanguage) {
         this.defaultTokenizationLanguage = defaultTokenizationLanguage;
     }
 

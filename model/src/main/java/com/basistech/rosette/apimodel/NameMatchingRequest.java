@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Class that represents a name matcher request.
  *
@@ -23,7 +25,9 @@ package com.basistech.rosette.apimodel;
  */
 public final class NameMatchingRequest {
 
+    @NotNull
     private Name name1;
+    @NotNull
     private Name name2;
 
     /**

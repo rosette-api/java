@@ -16,7 +16,9 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
+import com.basistech.util.TransliterationScheme;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -25,12 +27,12 @@ public class NameTranslationRequestMixin extends BaseMixin {
     protected NameTranslationRequestMixin(
             @JsonProperty("name") String name,
             @JsonProperty("entityType") String entityType,
-            @JsonProperty("sourceScript") String sourceScript,
+            @JsonProperty("sourceScript") ISO15924 sourceScript,
             @JsonProperty("sourceLanguageOfOrigin") LanguageCode sourceLanguageOfOrigin,
             @JsonProperty("sourceLanguageOfUse") LanguageCode sourceLanguageOfUse,
             @JsonProperty("targetLanguage") LanguageCode targetLanguage,
-            @JsonProperty("targetScript") String targetScript,
-            @JsonProperty("targetScheme") String targetScheme
+            @JsonProperty("targetScript") ISO15924 targetScript,
+            @JsonProperty("targetScheme") TransliterationScheme targetScheme
     ) {
         //
     }
