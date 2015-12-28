@@ -19,11 +19,14 @@ package com.basistech.rosette.apimodel;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Class that represents a name.
  */
 public final class Name {
 
+    @NotNull
     private String text;
     private String entityType;
     private ISO15924 script;

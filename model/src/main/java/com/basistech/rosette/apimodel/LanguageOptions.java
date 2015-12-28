@@ -16,8 +16,12 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.util.EncodingCode;
 import com.basistech.util.LanguageCode;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import java.util.Set;
 
 /**
@@ -25,13 +29,23 @@ import java.util.Set;
  */
 public final class LanguageOptions {
 
+    @Min(1)
     private Integer minValidChars;
+    @Min(1)
     private Integer profileDepth;
+    @DecimalMin("0.0")
+    @DecimalMax("100.0")
     private Double ambiguityThreshold;
+    @DecimalMin("0.0")
+    @DecimalMax("100.0")
     private Double invalidityThreshold;
     private LanguageCode languageHint;
+    @DecimalMin("1.0")
+    @DecimalMax("99.0")
     private Double languageHintWeight;
-    private String encodingHint;
+    private EncodingCode encodingHint;
+    @DecimalMin("1.0")
+    @DecimalMax("99.0")
     private Double encodingHintWeight;
     private Set<LanguageWeight> languageWeightAdjustments;
 
@@ -61,7 +75,7 @@ public final class LanguageOptions {
             Double invalidityThreshold,
             LanguageCode languageHint,
             Double languageHintWeight,
-            String encodingHint,
+            EncodingCode encodingHint,
             Double encodingHintWeight,
             Set<LanguageWeight> languageWeightAdjustments
     ) {
@@ -133,7 +147,7 @@ public final class LanguageOptions {
      * get encoding hint used to help resolve ambiguous results
      * @return the encoding hint
      */
-    public String getEncodingHint() {
+    public EncodingCode getEncodingHint() {
         return encodingHint;
     }
 
@@ -225,7 +239,7 @@ public final class LanguageOptions {
      * set encoding hint used to help resolve ambiguous results
      * @param encodingHint the encoding hint
      */
-    public void setEncodingHint(String encodingHint) {
+    public void setEncodingHint(EncodingCode encodingHint) {
         this.encodingHint = encodingHint;
     }
 

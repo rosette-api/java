@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import javax.validation.constraints.Min;
 import java.util.EnumSet;
 
 /**
@@ -26,6 +27,7 @@ public final class EntitiesOptions {
     public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(true, 8, EnumSet.allOf(ExtractionMethod.class), false, false);
 
     private Boolean resolveNamedEntities;
+    @Min(1)
     private Integer maxEntityTokens;
     private EnumSet<ExtractionMethod> extractionMethods;
     private Boolean allowPartialGazetteerMatches;

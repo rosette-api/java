@@ -16,21 +16,28 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
+import com.basistech.util.TransliterationScheme;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Class that represents the data from a name translation request
  */
 public final class NameTranslationRequest {
-
+    @NotNull
     private String name;
     private String entityType;
-    private String sourceScript;
+    private ISO15924 sourceScript;
     private LanguageCode sourceLanguageOfOrigin;
     private LanguageCode sourceLanguageOfUse;
+    @NotNull
     private LanguageCode targetLanguage;
-    private String targetScript;
-    private String targetScheme;
+    @NotNull
+    private ISO15924 targetScript;
+    @NotNull
+    private TransliterationScheme targetScheme;
 
     /**
      * constructor for {@code NameTranslationRequest}
@@ -45,12 +52,12 @@ public final class NameTranslationRequest {
      */
     public NameTranslationRequest(String name,
                                   String entityType,
-                                  String sourceScript,
+                                  ISO15924 sourceScript,
                                   LanguageCode sourceLanguageOfOrigin,
                                   LanguageCode sourceLanguageOfUse,
                                   LanguageCode targetLanguage,
-                                  String targetScript,
-                                  String targetScheme) {
+                                  ISO15924 targetScript,
+                                  TransliterationScheme targetScheme) {
         this.name = name;
         this.entityType = entityType;
         this.sourceScript = sourceScript;
@@ -81,7 +88,7 @@ public final class NameTranslationRequest {
      * get the code for the name's script
      * @return code for the name's script
      */
-    public String getSourceScript() {
+    public ISO15924 getSourceScript() {
         return sourceScript;
     }
 
@@ -113,7 +120,7 @@ public final class NameTranslationRequest {
      * get the code for the target script 
      * @return code for the target script
      */
-    public String getTargetScript() {
+    public ISO15924 getTargetScript() {
         return targetScript;
     }
 
@@ -121,7 +128,7 @@ public final class NameTranslationRequest {
      * get the transliteration scheme for the translation
      * @return the transliteration scheme for the translation
      */
-    public String getTargetScheme() {
+    public TransliterationScheme getTargetScheme() {
         return targetScheme;
     }
 
@@ -145,7 +152,7 @@ public final class NameTranslationRequest {
      * set the code for the name's script
      * @param sourceScript code for the name's script
      */
-    public void setSourceScript(String sourceScript) {
+    public void setSourceScript(ISO15924 sourceScript) {
         this.sourceScript = sourceScript;
     }
 
@@ -177,7 +184,7 @@ public final class NameTranslationRequest {
      * set the code for the target script
      * @param targetScript code for the target script
      */
-    public void setTargetScript(String targetScript) {
+    public void setTargetScript(ISO15924 targetScript) {
         this.targetScript = targetScript;
     }
 
@@ -185,7 +192,7 @@ public final class NameTranslationRequest {
      * set the transliteration scheme for the translation
      * @param targetScheme the transliteration scheme for the translation
      */
-    public void setTargetScheme(String targetScheme) {
+    public void setTargetScheme(TransliterationScheme targetScheme) {
         this.targetScheme = targetScheme;
     }
 
