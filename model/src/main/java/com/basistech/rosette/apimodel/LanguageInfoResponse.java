@@ -16,6 +16,9 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.util.ISO15924;
+import com.basistech.util.LanguageCode;
+
 import java.util.Map;
 import java.util.Set;
 
@@ -24,8 +27,8 @@ import java.util.Set;
  */
 public final class LanguageInfoResponse extends Response {
 
-    private final Map<String, Set<String>> supportedLanguages;
-    private final Map<String, Set<String>> supportedScripts;
+    private final Map<LanguageCode, Set<ISO15924>> supportedLanguages;
+    private final Map<ISO15924, Set<LanguageCode>> supportedScripts;
     
     /**
      * constructor for {@code LanguageInfoResponse}
@@ -34,26 +37,26 @@ public final class LanguageInfoResponse extends Response {
      * @param supportedScripts list of supported scripts
      */
     public LanguageInfoResponse(String requestId,
-                                Map<String, Set<String>> supportedLanguages,
-                                Map<String, Set<String>> supportedScripts) {
+                                Map<LanguageCode, Set<ISO15924>> supportedLanguages,
+                                Map<ISO15924, Set<LanguageCode>> supportedScripts) {
         super(requestId);
         this.supportedLanguages = supportedLanguages;
         this.supportedScripts = supportedScripts;
     }
 
     /**
-     * get the list of supported languages 
-     * @return the list of supported languages
+     * @return a map. The keys are the supported languages, and the value
+     * for each key is the scripts that are supported for that language.
      */
-    public Map<String, Set<String>> getSupportedLanguages() {
+    public Map<LanguageCode, Set<ISO15924>> getSupportedLanguages() {
         return supportedLanguages;
     }
 
     /**
-     * get the list of supported scripts
-     * @return the list of supported scripts
+     * @return a map. The keys are the supported scripts, and the value
+     * for each key is the languages that are supported for that script.
      */
-    public Map<String, Set<String>> getSupportedScripts() {
+    public Map<ISO15924, Set<LanguageCode>> getSupportedScripts() {
         return supportedScripts;
     }
 
