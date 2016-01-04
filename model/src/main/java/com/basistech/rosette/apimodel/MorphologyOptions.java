@@ -55,6 +55,7 @@ public final class MorphologyOptions {
      * @param nfkcNormalize whether to enable Unicode normalization before tokenization
      * @param fstTokenize whether to enable tokenization for supported languages
      * @param defaultTokenizationLanguage default tokenization language
+     * @param partOfSpeechTagSet the repetoire of part of speech tags.
      */
     public MorphologyOptions(
             Boolean disambiguate,
