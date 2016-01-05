@@ -133,13 +133,5 @@
       "mention": "广西"
     }
   ], 
-  "requestId": "39c5cb0b-950a-4ae8-ba76-54f9983bcf68", 
-  "timers": {
-    "rblJe": 9, 
-    "res": 886, 
-    "rexJe": 20, 
-    "rliJe": 3, 
-    "textExtractor": 21, 
-    "urlContentDownloader": 93
-  }
+  "requestId": "39c5cb0b-950a-4ae8-ba76-54f9983bcf68"
 }

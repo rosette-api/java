@@ -37,11 +37,5 @@
       "mention": "Estados Unidos"
     }
   ], 
-  "requestId": "e8f5ca40-71c8-40d8-98b3-0b6b7d61e309", 
-  "timers": {
-    "rblJe": 2, 
-    "res": 86, 
-    "rexJe": 4, 
-    "rliJe": 4
-  }
+  "requestId": "e8f5ca40-71c8-40d8-98b3-0b6b7d61e309"
 }

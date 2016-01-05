@@ -21,10 +21,5 @@
       "language": "pus"
     }
   ], 
-  "requestId": "e6e44b35-db49-4e47-b51b-5fc92c204ca2", 
-  "timers": {
-    "rliJe": 4, 
-    "textExtractor": 60, 
-    "urlContentDownloader": 159
-  }
+  "requestId": "e6e44b35-db49-4e47-b51b-5fc92c204ca2"
 }

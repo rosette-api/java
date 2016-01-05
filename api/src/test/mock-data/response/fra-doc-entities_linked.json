@@ -139,11 +139,5 @@
       "mention": "TARP"
     }
   ], 
-  "requestId": "88f85c50-081d-49bd-9105-2e040c50735e", 
-  "timers": {
-    "rblJe": 10, 
-    "res": 822, 
-    "rexJe": 46, 
-    "rliJe": 6
-  }
+  "requestId": "88f85c50-081d-49bd-9105-2e040c50735e"
 }

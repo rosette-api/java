@@ -23,7 +23,6 @@ import javax.validation.constraints.Min;
  */
 public final class CategoriesOptions {
 
-    private String model;
     private Boolean explain;
     @Min(1)
     private Integer numCategories;
@@ -38,28 +37,17 @@ public final class CategoriesOptions {
 
     /**
      * constructor for {@code CategoriesOptions}
-     * @param model model to use for categorization
      * @param explain whether to return explanation strings for each category returned
      * @param numCategories max number of categories
      */
     public CategoriesOptions(
-            String model,
             Boolean explain,
             Integer numCategories
     ) {
-        this.model = model;
         this.explain = explain;
         this.numCategories = numCategories;
     }
     
-    /**
-     * get the model to use for categorization 
-     * @return the model
-     */
-    public String getModel() {
-        return model;
-    }
-
     /**
      * get whether to return explanation strings for each category returned 
      * @return whether to return explanation strings
@@ -74,14 +62,6 @@ public final class CategoriesOptions {
      */
     public Integer getNumCategories() {
         return numCategories;
-    }
-
-    /**
-     * set the model to use for categorization
-     * @param model the model
-     */
-    public void setModel(String model) {
-        this.model = model;
     }
 
     /**
@@ -100,10 +80,8 @@ public final class CategoriesOptions {
         this.numCategories = numCategories;
     }
 
-    @Override
     public int hashCode() {
-        int result = model != null ? model.hashCode() : 0;
-        result = 31 * result + (explain != null ? explain.hashCode() : 0);
+        int result = explain != null ? explain.hashCode() : 0;
         result = 31 * result + (numCategories != null ? numCategories.hashCode() : 0);
         return result;
     }
@@ -120,8 +98,7 @@ public final class CategoriesOptions {
         }
 
         CategoriesOptions that = (CategoriesOptions) o;
-        return model != null ? model.equals(that.getModel()) : that.model == null
-                && explain != null ? explain.equals(that.getExplain()) : that.explain == null
+        return explain != null ? explain.equals(that.getExplain()) : that.explain == null
                 && numCategories != null ? numCategories.equals(that.getNumCategories()) : that.numCategories == null;
     }
 }

@@ -361,12 +361,5 @@
       "type": "ORGANIZATION"
     }
   ], 
-  "requestId": "aa75dc98-1189-4f37-a623-8a804d788ee7", 
-  "timers": {
-    "rblJe": 4, 
-    "rexJe": 231, 
-    "rliJe": 5, 
-    "textExtractor": 22, 
-    "urlContentDownloader": 74
-  }
+  "requestId": "aa75dc98-1189-4f37-a623-8a804d788ee7"
 }

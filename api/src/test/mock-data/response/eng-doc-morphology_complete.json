@@ -3661,9 +3661,5 @@
       "text": "2011.12.05"
     }
   ], 
-  "requestId": "ef1351d7-17dc-4d25-bf1f-50209902a475", 
-  "timers": {
-    "rblJe": 75, 
-    "rliJe": 39
-  }
+  "requestId": "ef1351d7-17dc-4d25-bf1f-50209902a475"
 }

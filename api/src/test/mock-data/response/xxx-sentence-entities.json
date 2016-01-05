@@ -41,10 +41,5 @@
       "type": "LOCATION"
     }
   ], 
-  "requestId": "3d554165-486c-4716-aea7-868c316fb883", 
-  "timers": {
-    "rblJe": 1, 
-    "rexJe": 29, 
-    "rliJe": 4
-  }
+  "requestId": "3d554165-486c-4716-aea7-868c316fb883"
 }

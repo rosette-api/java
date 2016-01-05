@@ -73,13 +73,5 @@
       "mention": "Peña Nieto Ver"
     }
   ], 
-  "requestId": "f7202522-6e5c-4635-ba9d-867f4b96352f", 
-  "timers": {
-    "rblJe": 1, 
-    "res": 944, 
-    "rexJe": 12, 
-    "rliJe": 4, 
-    "textExtractor": 14, 
-    "urlContentDownloader": 279
-  }
+  "requestId": "f7202522-6e5c-4635-ba9d-867f4b96352f"
 }

@@ -84,9 +84,9 @@ public class ApiModelMixinModule extends EnumModule {
     public void setupModule(SetupContext context) {
         super.setupModule(context);
         context.setMixInAnnotations(Category.class, CategoryMixin.class);
-        context.setMixInAnnotations(CategoriesOptions.class, CategoryOptionsMixin.class);
-        context.setMixInAnnotations(CategoriesRequest.class, CategoryRequestMixin.class);
-        context.setMixInAnnotations(CategoriesResponse.class, CategoryResponseMixin.class);
+        context.setMixInAnnotations(CategoriesOptions.class, CategoriesOptionsMixin.class);
+        context.setMixInAnnotations(CategoriesRequest.class, CategoriesRequestMixin.class);
+        context.setMixInAnnotations(CategoriesResponse.class, CategoriesResponseMixin.class);
         context.setMixInAnnotations(ConstantsResponse.class, ConstantsResponseMixin.class);
         context.setMixInAnnotations(CompoundComponents.class, DecompoudingMixin.class);
         context.setMixInAnnotations(EntitiesOptions.class, EntityOptionsMixin.class);

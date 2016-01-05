@@ -19,11 +19,5 @@
       "mention": "Afghanistan"
     }
   ], 
-  "requestId": "8e106556-7bf6-4dbf-82e5-393d4cdebaee", 
-  "timers": {
-    "rblJe": 2, 
-    "res": 188, 
-    "rexJe": 4, 
-    "rliJe": 13
-  }
+  "requestId": "8e106556-7bf6-4dbf-82e5-393d4cdebaee"
 }

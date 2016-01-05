@@ -67,11 +67,5 @@
       "mention": "Brüssel"
     }
   ], 
-  "requestId": "c184acbe-d6e4-4db7-b599-9dc31dc07a08", 
-  "timers": {
-    "rblJe": 5, 
-    "res": 249, 
-    "rexJe": 15, 
-    "rliJe": 4
-  }
+  "requestId": "c184acbe-d6e4-4db7-b599-9dc31dc07a08"
 }

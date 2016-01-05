@@ -41,10 +41,5 @@
       "type": "PERSON"
     }
   ], 
-  "requestId": "f3a26bb9-ac45-4a30-8d90-f13fb2f1a736", 
-  "timers": {
-    "rblJe": 5, 
-    "rexJe": 4, 
-    "rliJe": 11
-  }
+  "requestId": "f3a26bb9-ac45-4a30-8d90-f13fb2f1a736"
 }

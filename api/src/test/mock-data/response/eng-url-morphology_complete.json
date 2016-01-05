@@ -8989,11 +8989,5 @@
       "text": "2015"
     }
   ], 
-  "requestId": "7298beee-a818-4102-9842-1e54b7bb9eec", 
-  "timers": {
-    "rblJe": 10, 
-    "rliJe": 5, 
-    "textExtractor": 17, 
-    "urlContentDownloader": 181
-  }
+  "requestId": "7298beee-a818-4102-9842-1e54b7bb9eec"
 }

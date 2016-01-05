@@ -22,9 +22,9 @@ import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CategoryRequestMixin extends BaseMixin {
+public class CategoriesRequestMixin extends BaseMixin {
     @JsonCreator
-    public CategoryRequestMixin(
+    public CategoriesRequestMixin(
             @JsonProperty("language") LanguageCode language,
             @JsonProperty("content") String content,
             @JsonProperty("contentUri") String contentUri,

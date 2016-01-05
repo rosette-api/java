@@ -8277,11 +8277,5 @@
       "text": ")"
     }
   ], 
-  "requestId": "cc8adc05-b9f9-4c9d-b9fb-0e80536ce175", 
-  "timers": {
-    "rblJe": 14, 
-    "rliJe": 4, 
-    "textExtractor": 103, 
-    "urlContentDownloader": 140
-  }
+  "requestId": "cc8adc05-b9f9-4c9d-b9fb-0e80536ce175"
 }

@@ -9,10 +9,5 @@
       "confidence": 0.36364678032677095, 
       "label": "neg"
     }
-  ], 
-  "timers": {
-    "rblJe": 2, 
-    "rliJe": 12, 
-    "sent": 2
-  }
+  ]
 }

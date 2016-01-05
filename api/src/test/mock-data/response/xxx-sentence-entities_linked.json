@@ -31,11 +31,5 @@
       "mention": "Ванкувер"
     }
   ], 
-  "requestId": "67c83ddd-463b-481b-b37a-266b034dfffc", 
-  "timers": {
-    "rblJe": 1, 
-    "res": 501, 
-    "rexJe": 5, 
-    "rliJe": 4
-  }
+  "requestId": "67c83ddd-463b-481b-b37a-266b034dfffc"
 }

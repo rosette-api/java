@@ -41,10 +41,5 @@
       "type": "NATIONALITY"
     }
   ], 
-  "requestId": "75686168-76e1-490c-b960-a4d3a4b0cf5d", 
-  "timers": {
-    "rblJe": 3, 
-    "rexJe": 5, 
-    "rliJe": 14
-  }
+  "requestId": "75686168-76e1-490c-b960-a4d3a4b0cf5d"
 }
