@@ -39,6 +39,14 @@ public abstract class Response {
         return requestId;
     }
 
+    /**
+     * Set the request id.
+     * @param requestId the id.
+     */
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
     @Override
     public int hashCode() {
         return requestId != null ? requestId.hashCode() : 0;

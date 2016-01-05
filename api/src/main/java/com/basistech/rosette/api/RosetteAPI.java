@@ -997,7 +997,13 @@ public final class RosetteAPI {
                 mapper.writeValue(os, request);
             }
             try {
-                return clazz.cast(getResponse(httpUrlConnection, clazz));
+                T resp = clazz.cast(getResponse(httpUrlConnection, clazz));
+                String ridHeader = httpUrlConnection.getHeaderField("X-RosetteAPI-Request-Id");
+                if (ridHeader != null) {
+                    resp.setRequestId(ridHeader);
+                }
+
+                return resp;
             } catch (RosetteAPIException e) {
                 // only 5xx errors are worthy retrying, others throw right away
                 if (e.getHttpStatusCode() < 500) {
@@ -1046,12 +1052,23 @@ public final class RosetteAPI {
         try (
             InputStream stream = status != HTTP_OK
                     ? httpUrlConnection.getErrorStream() : httpUrlConnection.getInputStream();
-            InputStream inputStream = "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream
-        ) {
+            InputStream inputStream = "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream) {
+            String ridHeader = httpUrlConnection.getHeaderField("X-RosetteAPI-Request-Id");
             if (HTTP_OK != status) {
+                String ecHeader = httpUrlConnection.getHeaderField("X-RosetteAPI-Status-Code");
+                String emHeader = httpUrlConnection.getHeaderField("X-RosetteAPI-Status-Message");
                 String responseContentType = httpUrlConnection.getHeaderField("Content-Type");
                 if ("application/json".equals(responseContentType)) {
                     ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
+                    if (ridHeader != null) {
+                        errorResponse.setRequestId(ridHeader);
+                    }
+                    if (ecHeader != null) {
+                        errorResponse.setCode(ecHeader);
+                    }
+                    if (emHeader != null) {
+                        errorResponse.setMessage(emHeader);
+                    }
                     throw new RosetteAPIException(status, errorResponse);
                 } else {
                     String errorContent;
