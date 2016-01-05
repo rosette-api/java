@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class CategoryResponseMixin extends BaseMixin {
+public class CategoriesResponseMixin extends BaseMixin {
     @JsonCreator
-    public CategoryResponseMixin(
+    public CategoriesResponseMixin(
             @JsonProperty("requestId") String requestId,
             @JsonProperty("categories") List<Category> categories
     ) {

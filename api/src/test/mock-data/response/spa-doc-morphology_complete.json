@@ -3213,9 +3213,5 @@
       "text": "2010.01.23"
     }
   ], 
-  "requestId": "adcc0f54-1882-44af-ae25-2de733ee5ca0", 
-  "timers": {
-    "rblJe": 76, 
-    "rliJe": 3
-  }
+  "requestId": "adcc0f54-1882-44af-ae25-2de733ee5ca0"
 }

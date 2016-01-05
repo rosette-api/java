@@ -217,13 +217,5 @@
       "mention": "AFP"
     }
   ], 
-  "requestId": "6954f9b9-f2c5-421b-b3ee-741cd09e8386", 
-  "timers": {
-    "rblJe": 4, 
-    "res": 1143, 
-    "rexJe": 35, 
-    "rliJe": 5, 
-    "textExtractor": 33, 
-    "urlContentDownloader": 83
-  }
+  "requestId": "6954f9b9-f2c5-421b-b3ee-741cd09e8386"
 }

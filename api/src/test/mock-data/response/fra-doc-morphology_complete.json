@@ -9653,9 +9653,5 @@
       "text": "2010.01.21"
     }
   ], 
-  "requestId": "c4bdf301-9d26-41cf-b9ef-26f83ded0fb9", 
-  "timers": {
-    "rblJe": 535, 
-    "rliJe": 4
-  }
+  "requestId": "c4bdf301-9d26-41cf-b9ef-26f83ded0fb9"
 }

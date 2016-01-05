@@ -21,10 +21,5 @@
       "language": "por"
     }
   ], 
-  "requestId": "cdd7a5c2-1cec-4391-808e-2917851016f4", 
-  "timers": {
-    "rliJe": 5, 
-    "textExtractor": 33, 
-    "urlContentDownloader": 342
-  }
+  "requestId": "cdd7a5c2-1cec-4391-808e-2917851016f4"
 }

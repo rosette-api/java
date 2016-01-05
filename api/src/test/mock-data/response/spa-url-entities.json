@@ -113,12 +113,5 @@
       "type": "PERSON"
     }
   ], 
-  "requestId": "f0cfd156-e9cd-4c97-bb0e-0337fad05458", 
-  "timers": {
-    "rblJe": 1, 
-    "rexJe": 60, 
-    "rliJe": 4, 
-    "textExtractor": 18, 
-    "urlContentDownloader": 243
-  }
+  "requestId": "f0cfd156-e9cd-4c97-bb0e-0337fad05458"
 }

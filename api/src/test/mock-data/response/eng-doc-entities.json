@@ -145,10 +145,5 @@
       "type": "IDENTIFIER:URL"
     }
   ], 
-  "requestId": "2be64f9f-6246-4366-aab3-16f635ed87a5", 
-  "timers": {
-    "rblJe": 29, 
-    "rexJe": 656, 
-    "rliJe": 35
-  }
+  "requestId": "2be64f9f-6246-4366-aab3-16f635ed87a5"
 }

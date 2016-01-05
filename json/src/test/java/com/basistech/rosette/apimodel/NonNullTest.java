@@ -19,7 +19,6 @@ package com.basistech.rosette.apimodel;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -50,10 +49,9 @@ public class NonNullTest extends Assert {
     }
 
     // All test resource filename has <ClassName>.json pattern. They contain null requestId and timers fields.
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "{0}")
     public static Collection<Object[]> data() throws URISyntaxException, IOException {
-        URL url = NonNullTest.class.getClassLoader().getResource(".");
-        File dir = new File(url.toURI());
+        File dir = new File("src/test/data");
         Collection<Object[]> params = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
             for (Path file : paths) {
@@ -77,6 +75,5 @@ public class NonNullTest extends Assert {
         String s = FileUtils.readFileToString(testFile, StandardCharsets.UTF_8);
         String s2 = mapper.writeValueAsString(mapper.readValue(s, c));
         assertFalse(s2.contains("requestId"));
-        assertFalse(s2.contains("timers"));
     }
 }

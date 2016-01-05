@@ -497,10 +497,5 @@
       "type": "IDENTIFIER:URL"
     }
   ], 
-  "requestId": "517da744-d53c-46a0-bf0a-c0f179966dbe", 
-  "timers": {
-    "rblJe": 2, 
-    "rexJe": 42, 
-    "rliJe": 5
-  }
+  "requestId": "517da744-d53c-46a0-bf0a-c0f179966dbe"
 }

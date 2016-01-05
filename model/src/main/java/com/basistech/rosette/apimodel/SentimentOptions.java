@@ -21,7 +21,6 @@ package com.basistech.rosette.apimodel;
  */
 public final class SentimentOptions {
 
-    private SentimentModel model;
     private Boolean explain;
 
     /**
@@ -34,22 +33,10 @@ public final class SentimentOptions {
 
     /**
      * constructor for {@code SentimentOptions}
-     * @param model   model to use for sentiment analysis
      * @param explain whether to return explanation strings for the sentiment results returned
      */
-    public SentimentOptions(
-            SentimentModel model,
-            Boolean explain) {
-        this.model = model;
+    public SentimentOptions(Boolean explain) {
         this.explain = explain;
-    }
-
-    /**
-     * get the model to use for sentiment analysis
-     * @return the model to use for sentiment analysis
-     */
-    public SentimentModel getModel() {
-        return model;
     }
 
     /**
@@ -58,14 +45,6 @@ public final class SentimentOptions {
      */
     public Boolean getExplain() {
         return explain;
-    }
-
-    /**
-     * set the model to use for sentiment analysis
-     * @param model the model to use for sentiment analysis
-     */
-    public void setModel(SentimentModel model) {
-        this.model = model;
     }
 
     /**
@@ -78,9 +57,7 @@ public final class SentimentOptions {
 
     @Override
     public int hashCode() {
-        int result = model != null ? model.hashCode() : 0;
-        result = 31 * result + (explain != null ? explain.hashCode() : 0);
-        return result;
+        return explain != null ? explain.hashCode() : 0;
     }
 
     /**
@@ -95,7 +72,6 @@ public final class SentimentOptions {
         }
 
         SentimentOptions that = (SentimentOptions) o;
-        return model != null ? model.equals(that.getModel()) : that.model == null
-                && explain != null ? explain.equals(that.getExplain()) : that.explain == null;
+        return explain != null ? explain.equals(that.getExplain()) : that.explain == null;
     }
 }

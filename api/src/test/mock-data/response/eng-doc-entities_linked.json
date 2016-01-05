@@ -43,11 +43,5 @@
       "mention": "Australia"
     }
   ], 
-  "requestId": "547f4ef0-8052-41bc-b019-bbc78330150b", 
-  "timers": {
-    "rblJe": 25, 
-    "res": 1996, 
-    "rexJe": 117, 
-    "rliJe": 28
-  }
+  "requestId": "547f4ef0-8052-41bc-b019-bbc78330150b"
 }

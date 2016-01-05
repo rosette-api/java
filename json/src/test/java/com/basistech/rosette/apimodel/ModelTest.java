@@ -42,8 +42,8 @@ import static org.junit.Assert.assertEquals;
 public class ModelTest {
 
     ObjectMapper mapper;
-    
-    @Before 
+
+    @Before
     public void init() {
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
@@ -126,97 +126,103 @@ public class ModelTest {
             return firstComponentType.getEnumConstants()[0];
         }
         switch (typeName) {
-            case "byte": {
-                if (type.isArray()) {
-                    o = "somebytes".getBytes();
-                } else {
-                    o = (byte) '8';
+        case "byte": {
+            if (type.isArray()) {
+                o = "somebytes".getBytes();
+            } else {
+                o = (byte) '8';
+            }
+            break;
+        }
+        case "String": {
+            o = "foo";
+            break;
+        }
+        case "long":
+        case "Long": {
+            o = (long) 123456789;
+            break;
+        }
+        case "Double":
+        case "double": {
+            o = 1.0;
+            break;
+        }
+        case "int":
+        case "Integer": {
+            o = 98761234;
+            break;
+        }
+        case "boolean":
+        case "Boolean": {
+            o = false;
+            break;
+        }
+        case "List": {
+            if (parameterArgClass != null) {
+                Object o1 = createObjectForType(parameterArgClass, null);
+                List<Object> list = new ArrayList<>();
+                list.add(o1);
+                o = list;
+            }
+            break;
+        }
+        case "Object":
+        case "EnumSet":
+            break;
+        case "Set": {
+            if (parameterArgClass != null) {
+                Object o1 = createObjectForType(parameterArgClass, null);
+                Set<Object> set = new HashSet<>();
+                set.add(o1);
+                o = set;
+            }
+            break;
+        }
+        case "Map": {
+            if (parameterArgTypes != null && parameterArgTypes.length == 2) {
+                Class keyClass = (Class) parameterArgTypes[0];
+                Object keyObject = createObject(keyClass);
+                if (keyObject != null) {
+                    HashMap<Object, Object> map = new HashMap<>();
+                    map.put(keyObject, null);
+                    o = map;
                 }
-                break;
             }
-            case "String": {
-                o = "foo";
-                break;
+            break;
+        }
+        default:
+            if (parameterArgClass != null) {
+                Constructor[] ctors = parameterArgClass.getDeclaredConstructors();
+                o = createObject(ctors[0]);
+            } else {
+                Constructor[] ctors = firstComponentType.getDeclaredConstructors();
+                o = createObject(ctors[0]);
             }
-            case "long":
-            case "Long": {
-                o = (long) 123456789;
-                break;
-            }
-            case "Double":
-            case "double" : {
-                o = 1.0;
-                break;
-            }
-            case "int":
-            case "Integer": {
-                o = 98761234;
-                break;
-            }
-            case "boolean":
-            case "Boolean": {
-                o = false;
-                break;
-            }
-            case "List": {
-                if (parameterArgClass != null) {
-                    Object o1 = createObjectForType(parameterArgClass, null);
-                    List<Object> list = new ArrayList<>();
-                    list.add(o1);
-                    o = list;
-                }
-                break;
-            }
-            case "Object":
-            case "EnumSet":
-                break;
-            case "Set": {
-                if (parameterArgClass != null) {
-                    Object o1 = createObjectForType(parameterArgClass, null);
-                    Set<Object> set = new HashSet<>();
-                    set.add(o1);
-                    o = set;
-                }
-                break;
-            }
-            case "Map": {
-                if (parameterArgTypes != null && parameterArgTypes.length == 2) {
-                    Class keyClass = (Class) parameterArgTypes[0];
-                    Object keyObject = createObject(keyClass);
-                    if (keyObject != null) {
-                        HashMap<Object, Object> map = new HashMap<>();
-                        map.put(keyObject, null);
-                        o = map;
-                    }
-                }
-                break;
-            }
-            default:
-                if (parameterArgClass != null) {
-                    Constructor[] ctors = parameterArgClass.getDeclaredConstructors();
-                    o = createObject(ctors[0]);
-                } else {
-                    Constructor[] ctors = firstComponentType.getDeclaredConstructors();
-                    o = createObject(ctors[0]);
-                }
         }
         return o;
     }
 
     private Object createObject(Class clazz) throws IllegalAccessException, InstantiationException,
             InvocationTargetException {
-        Constructor<?>[] ctors = clazz.newInstance().getClass().getDeclaredConstructors();
-        Object o = null;
-        for (Constructor ctor : ctors) {
-            if (ctor.getGenericParameterTypes().length == 1) {
-                Object objectOfType = createObjectOfType(ctor.getGenericParameterTypes()[0]);
-                if (objectOfType != null) {
-                    o = ctor.newInstance(objectOfType);
-                    break;
+        if (Enum.class.isAssignableFrom(clazz)) {
+            // pick a value, any value.
+            return clazz.getEnumConstants()[0];
+        } else {
+            Constructor<?>[] ctors = clazz.newInstance().getClass().getDeclaredConstructors();
+
+            Object o = null;
+            for (Constructor ctor : ctors) {
+                if (ctor.getGenericParameterTypes().length == 1) {
+                    Object objectOfType = createObjectOfType(ctor.getGenericParameterTypes()[0]);
+                    if (objectOfType != null) {
+                        o = ctor.newInstance(objectOfType);
+                        break;
+                    }
                 }
             }
+            return o;
         }
-        return o;
     }
 
     private Object createObjectOfType(Type type) {

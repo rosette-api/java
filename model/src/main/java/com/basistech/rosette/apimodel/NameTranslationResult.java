@@ -16,17 +16,21 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.util.ISO15924;
+import com.basistech.util.LanguageCode;
+import com.basistech.util.TransliterationScheme;
+
 /**
  * name translation result 
  */
 public final class NameTranslationResult {
 
-    private final String sourceScript;
-    private final String sourceLanguageOfOrigin;
-    private final String sourceLanguageOfUse;
-    private final String targetLanguage;
-    private final String targetScript;
-    private final String targetScheme;
+    private final ISO15924 sourceScript;
+    private final LanguageCode sourceLanguageOfOrigin;
+    private final LanguageCode sourceLanguageOfUse;
+    private final LanguageCode targetLanguage;
+    private final ISO15924 targetScript;
+    private final TransliterationScheme targetScheme;
     private final String translation;
     private final Double confidence;
     
@@ -42,13 +46,13 @@ public final class NameTranslationResult {
      * @param confidence confidence score for result
      */
     public NameTranslationResult(
-            String sourceScript,
-            String sourceLanguageOfOrigin,
-            String sourceLanguageOfUse,
+            ISO15924 sourceScript,
+            LanguageCode sourceLanguageOfOrigin,
+            LanguageCode sourceLanguageOfUse,
             String translation,
-            String targetLanguage,
-            String targetScript,
-            String targetScheme,
+            LanguageCode targetLanguage,
+            ISO15924 targetScript,
+            TransliterationScheme targetScheme,
             Double confidence) {
         this.sourceScript = sourceScript;
         this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
@@ -64,7 +68,7 @@ public final class NameTranslationResult {
      * get the code for the script of the name to translate 
      * @return the source script code
      */
-    public String getSourceScript() {
+    public ISO15924 getSourceScript() {
         return sourceScript;
     }
 
@@ -72,7 +76,7 @@ public final class NameTranslationResult {
      * get the code for the name's language of origin
      * @return the source language of origin code
      */
-    public String getSourceLanguageOfOrigin() {
+    public LanguageCode getSourceLanguageOfOrigin() {
         return sourceLanguageOfOrigin;
     }
 
@@ -80,7 +84,7 @@ public final class NameTranslationResult {
      * get the code for the name's language of use 
      * @return the source language of use code
      */
-    public String getSourceLanguageOfUse() {
+    public LanguageCode getSourceLanguageOfUse() {
         return sourceLanguageOfUse;
     }
 
@@ -88,7 +92,7 @@ public final class NameTranslationResult {
      * get the code for the translation language 
      * @return code for the translation language
      */
-    public String getTargetLanguage() {
+    public LanguageCode getTargetLanguage() {
         return targetLanguage;
     }
 
@@ -96,7 +100,7 @@ public final class NameTranslationResult {
      * get the code for the translation script 
      * @return code for the translation script
      */
-    public String getTargetScript() {
+    public ISO15924 getTargetScript() {
         return targetScript;
     }
 
@@ -104,7 +108,7 @@ public final class NameTranslationResult {
      * get the transliteration scheme for the translation 
      * @return code for the transliteration scheme
      */
-    public String getTargetScheme() {
+    public TransliterationScheme getTargetScheme() {
         return targetScheme;
     }
 

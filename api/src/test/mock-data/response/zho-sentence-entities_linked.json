@@ -25,11 +25,5 @@
       "mention": "梅德韦"
     }
   ], 
-  "requestId": "e02eebfa-e05e-49b9-b32d-f8284700e97d", 
-  "timers": {
-    "rblJe": 4, 
-    "res": 136, 
-    "rexJe": 4, 
-    "rliJe": 10
-  }
+  "requestId": "e02eebfa-e05e-49b9-b32d-f8284700e97d"
 }

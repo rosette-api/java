@@ -21,10 +21,5 @@
       "language": "nor"
     }
   ], 
-  "requestId": "7174fbf8-a58e-4ec4-9ac4-92fee2bd5b40", 
-  "timers": {
-    "rliJe": 5, 
-    "textExtractor": 20, 
-    "urlContentDownloader": 159
-  }
+  "requestId": "7174fbf8-a58e-4ec4-9ac4-92fee2bd5b40"
 }

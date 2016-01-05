@@ -16,15 +16,12 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Map;
-
 /**
  * Rosette api response data base
  */
 public abstract class Response {
 
     private String requestId;
-    private Map<String, Long> timers;
 
     /**
      * abstract constructor for {@code Response}
@@ -43,32 +40,22 @@ public abstract class Response {
     }
 
     /**
-     * get the debug timing info 
-     * @return the debug timing info
+     * Set the request id.
+     * @param requestId the id.
      */
-    public Map<String, Long> getTimers() {
-        return timers;
-    }
-
-    /**
-     * set the timing info
-     * @param timers the timing info
-     */
-    public void setTimers(Map<String, Long> timers) {
-        this.timers = timers;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
     @Override
     public int hashCode() {
-        int result = requestId != null ? requestId.hashCode() : 0;
-        result = 31 * result + (timers != null ? timers.hashCode() : 0);
-        return result;
+        return requestId != null ? requestId.hashCode() : 0;
     }
 
     /**
      * if the param is a response, compare contents for equality
      * @param o the object
-     * @return whether or not the param object is equal to this object
+     * @return whether or not the param object is equal to this object; t
      */
     @Override
     public boolean equals(Object o) {
@@ -77,7 +64,6 @@ public abstract class Response {
         }
 
         Response that = (Response) o;
-        return requestId != null ? requestId.equals(that.getRequestId()) : that.requestId == null
-                && timers != null ? timers.equals(that.getTimers()) : that.timers == null;
+        return requestId != null ? requestId.equals(that.getRequestId()) : that.requestId == null;
     }
 }

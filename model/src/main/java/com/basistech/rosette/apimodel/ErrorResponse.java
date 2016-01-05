@@ -21,8 +21,8 @@ package com.basistech.rosette.apimodel;
  */
 public final class ErrorResponse extends Response {
 
-    private final String code;
-    private final String message;
+    private String code;
+    private String message;
 
     /**
      * constructor for {@code ErrorResponse}
@@ -44,6 +44,14 @@ public final class ErrorResponse extends Response {
      */
     public String getCode() {
         return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     /**

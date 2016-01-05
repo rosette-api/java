@@ -1877,11 +1877,5 @@
       "text": "mrc"
     }
   ], 
-  "requestId": "c77f0d0f-1474-4d2c-b6cc-a88bcc32f4cb", 
-  "timers": {
-    "rblJe": 3, 
-    "rliJe": 2, 
-    "textExtractor": 16, 
-    "urlContentDownloader": 394
-  }
+  "requestId": "c77f0d0f-1474-4d2c-b6cc-a88bcc32f4cb"
 }

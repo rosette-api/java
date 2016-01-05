@@ -345,12 +345,5 @@
       "type": "LOCATION"
     }
   ], 
-  "requestId": "20cc0667-b5d1-45ca-8649-388b42695ed6", 
-  "timers": {
-    "rblJe": 6, 
-    "rexJe": 194, 
-    "rliJe": 6, 
-    "textExtractor": 14, 
-    "urlContentDownloader": 117
-  }
+  "requestId": "20cc0667-b5d1-45ca-8649-388b42695ed6"
 }

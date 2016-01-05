@@ -127,13 +127,5 @@
       "mention": "نجران"
     }
   ], 
-  "requestId": "04d771f1-7664-4c39-9dd6-59b38a9bec01", 
-  "timers": {
-    "rblJe": 50, 
-    "res": 546, 
-    "rexJe": 22, 
-    "rliJe": 5, 
-    "textExtractor": 51, 
-    "urlContentDownloader": 99
-  }
+  "requestId": "04d771f1-7664-4c39-9dd6-59b38a9bec01"
 }

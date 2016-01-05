@@ -201,10 +201,5 @@
       "type": "PERSON"
     }
   ], 
-  "requestId": "f1c7d4d6-a219-42b2-9b30-b636a80d3746", 
-  "timers": {
-    "rblJe": 84, 
-    "rexJe": 59, 
-    "rliJe": 3
-  }
+  "requestId": "f1c7d4d6-a219-42b2-9b30-b636a80d3746"
 }

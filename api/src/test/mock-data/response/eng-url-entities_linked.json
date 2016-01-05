@@ -217,13 +217,5 @@
       "mention": "Britain"
     }
   ], 
-  "requestId": "5de2e00b-efcd-4fd0-a404-f9629dc60619", 
-  "timers": {
-    "rblJe": 7, 
-    "res": 1408, 
-    "rexJe": 68, 
-    "rliJe": 5, 
-    "textExtractor": 19, 
-    "urlContentDownloader": 103
-  }
+  "requestId": "5de2e00b-efcd-4fd0-a404-f9629dc60619"
 }

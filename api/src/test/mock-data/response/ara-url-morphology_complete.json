@@ -3381,11 +3381,5 @@
       "text": "by"
     }
   ], 
-  "requestId": "8ea04ca1-c708-4bb1-a652-1599fc02268a", 
-  "timers": {
-    "rblJe": 58, 
-    "rliJe": 4, 
-    "textExtractor": 48, 
-    "urlContentDownloader": 166
-  }
+  "requestId": "8ea04ca1-c708-4bb1-a652-1599fc02268a"
 }
