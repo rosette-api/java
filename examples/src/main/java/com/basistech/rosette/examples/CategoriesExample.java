@@ -37,9 +37,9 @@ public final class CategoriesExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "Sony Pictures is planning to shoot a good portion of the new \"Ghostbusters\" in Boston as well.";
+        String categories_url_data = "Sony Pictures is planning to shoot a good portion of the new \"Ghostbusters\" in Boston as well.";
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        CategoriesResponse response = rosetteApi.getCategories(text, null, null);
+        CategoriesResponse response = rosetteApi.getCategories(categories_url_data, null, null);
         System.out.println(responseToJson(response));
     }
 }

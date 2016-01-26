@@ -34,11 +34,11 @@ public final class MorphologyHanReadingsExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "北京大学生物系主任办公室内部会议";
+        String morphology_han_readings_data = "北京大学生物系主任办公室内部会议";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
         MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.HAN_READINGS,
-                text, null, null);
+                morphology_han_readings_data, null, null);
         System.out.println(responseToJson(response));
     }
 }

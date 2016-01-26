@@ -37,12 +37,12 @@ public final class Base64InputExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        byte[] encodedExample = Base64.encodeBase64(
-                "Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS ".getBytes(Charsets.UTF_8));
+        String entities_text_data = "Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS";
+        byte[] encodedExample = Base64.encodeBase64(entities_text_data.getBytes(Charsets.UTF_8));
         String text = new String(encodedExample);
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        EntitiesResponse response = rosetteApi.getEntities(text, null, null);
+        EntitiesResponse response = rosetteApi.getEntities(entities_text_data, null, null);
         System.out.println(responseToJson(response));
     }
 }
