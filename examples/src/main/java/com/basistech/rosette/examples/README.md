@@ -14,6 +14,7 @@ Otherwise you can compile and run these examples by hand:
  
 | File Name                                   | Description
 | -------------                               |------------- 
+| Base64InputExample.java                     | Entities using base64 encoded string
 | CategoriesExample.java                      | Gets the category of a document at a URL
 | EntitiesExample.java                        | Extracts entities
 | EntitiesLinkedExample.java                  | Gets linked (to Wikidata) entities
