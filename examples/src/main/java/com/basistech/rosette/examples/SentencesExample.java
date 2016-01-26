@@ -34,10 +34,10 @@ public final class SentencesExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "This land is your land. This land is my land\nFrom California to the New York island;\nFrom the red wood forest to the Gulf Stream waters\n\nThis land was made for you and Me.\n\nAs I was walking that ribbon of highway,\nI saw above me that endless skyway:\nI saw below me that golden valley:\nThis land was made for you and me.";
+        String sentences_data = "This land is your land. This land is my land\nFrom California to the New York island;\nFrom the red wood forest to the Gulf Stream waters\n\nThis land was made for you and Me.\n\nAs I was walking that ribbon of highway,\nI saw above me that endless skyway:\nI saw below me that golden valley:\nThis land was made for you and me.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        SentencesResponse response = rosetteApi.getSentences(text, null, null);
+        SentencesResponse response = rosetteApi.getSentences(sentences_data, null, null);
         System.out.println(responseToJson(response));
     }
 }

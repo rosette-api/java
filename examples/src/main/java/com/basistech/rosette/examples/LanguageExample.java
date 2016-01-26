@@ -34,10 +34,10 @@ public final class LanguageExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "Por favor Señorita, says the man.";
+        String language_data = "Por favor Señorita, says the man.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        LanguageResponse response = rosetteApi.getLanguage(text, null, null);
+        LanguageResponse response = rosetteApi.getLanguage(language_data, null, null);
         System.out.println(responseToJson(response));
     }
 }

@@ -36,7 +36,8 @@ public final class TranslatedNameExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        NameTranslationRequest request = new NameTranslationRequest("معمر محمد أبو منيار القذاف",
+        String translated_name_data = "معمر محمد أبو منيار القذاف";
+        NameTranslationRequest request = new NameTranslationRequest(translated_name_data,
                 null, null, null, null, LanguageCode.ENGLISH, null, null);
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());

@@ -34,10 +34,10 @@ public final class EntitiesLinkedExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String text = "Last month director Paul Feig announced the movie will have an all-star female cast including Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.";
+        String entities_linked_text_data = "Last month director Paul Feig announced the movie will have an all-star female cast including Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        LinkedEntitiesResponse response = rosetteApi.getLinkedEntities(text, null, null);
+        LinkedEntitiesResponse response = rosetteApi.getLinkedEntities(entities_linked_text_data, null, null);
         System.out.println(responseToJson(response));
     }
 }
