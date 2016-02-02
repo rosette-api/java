@@ -40,11 +40,11 @@ public final class SentimentExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String sentiment_file_data = "<html><head><title>New Ghostbusters Film</title></head><body><p>Original Ghostbuster Dan Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new all-female Ghostbusters cast, telling The Hollywood Reporter, “The Aykroyd family is delighted by this inheritance of the Ghostbusters torch by these most magnificent women in comedy.”</p></body></html>";
-        File file = createTempDataFile(sentiment_file_data);
+        String sentimentFileFata = "<html><head><title>New Ghostbusters Film</title></head><body><p>Original Ghostbuster Dan Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new all-female Ghostbusters cast, telling The Hollywood Reporter, “The Aykroyd family is delighted by this inheritance of the Ghostbusters torch by these most magnificent women in comedy.”</p></body></html>";
+        File file = createTempDataFile(sentimentFileFata);
         FileInputStream inputStream = new FileInputStream(file);
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         SentimentResponse response = rosetteApi.getSentiment(inputStream, null, null);
         inputStream.close();
         System.out.println(responseToJson(response));

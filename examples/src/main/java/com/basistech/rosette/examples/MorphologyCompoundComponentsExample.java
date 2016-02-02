@@ -34,11 +34,11 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String morphology_compound_components_data = "Rechtsschutzversicherungsgesellschaften";
+        String morphologyCompoundComponentsData = "Rechtsschutzversicherungsgesellschaften";
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.COMPOUND_COMPONENTS,
-                morphology_compound_components_data, null, null);
+                morphologyCompoundComponentsData, null, null);
         System.out.println(responseToJson(response));
     }
 }

@@ -38,11 +38,11 @@ public final class MatchedNameExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String matched_name_data1 = "Michael Jackson";
-        String matched_name_data2 = "迈克尔·杰克逊";
-        Name name1 = new Name(matched_name_data1, "PERSON", ISO15924.Zyyy, LanguageCode.ENGLISH);
-        Name name2 = new Name(matched_name_data2);
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        String matchedNameData1 = "Michael Jackson";
+        String matchedNameData2 = "迈克尔·杰克逊";
+        Name name1 = new Name(matchedNameData1, "PERSON", ISO15924.Zyyy, LanguageCode.ENGLISH);
+        Name name2 = new Name(matchedNameData2);
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         NameMatchingResponse response = rosetteApi.matchName(new NameMatchingRequest(name1, name2));
         System.out.println(responseToJson(response));
     }

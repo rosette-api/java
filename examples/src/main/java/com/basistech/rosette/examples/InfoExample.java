@@ -34,7 +34,7 @@ public final class InfoExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         InfoResponse response = rosetteApi.getInfo();
         System.out.println(responseToJson(response));
     }

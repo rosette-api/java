@@ -34,11 +34,11 @@ public final class MorphologyCompleteExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String morphology_complete_data = "The quick brown fox jumped over the lazy dog. Yes he did.";
+        String morphologyCompleteData = "The quick brown fox jumped over the lazy dog. Yes he did.";
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE, 
-                morphology_complete_data, null, null);
+                morphologyCompleteData, null, null);
         System.out.println(responseToJson(response));
     }
 }
