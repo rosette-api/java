@@ -1,137 +1,76 @@
 {
   "entities": [
     {
-      "confidence": 0.899619272322934, 
-      "entityId": "Q15031", 
+      "confidence": 0.5547979577082905, 
+      "entityId": "Q204839", 
       "indocChainId": 0, 
+      "mention": "新华网"
+    }, 
+    {
+      "confidence": 0.5813473303122828, 
+      "entityId": "Q956", 
+      "indocChainId": 1, 
+      "mention": "北京"
+    }, 
+    {
+      "confidence": 0.925120139453568, 
+      "entityId": "Q15031", 
+      "indocChainId": 2, 
       "mention": "习近平"
     }, 
     {
-      "confidence": 0.3528267721146622, 
-      "entityId": "Q956", 
-      "indocChainId": 1, 
-      "mention": "京"
-    }, 
-    {
-      "confidence": 0.5816475326681386, 
-      "entityId": "Q159", 
-      "indocChainId": 2, 
-      "mention": "俄"
-    }, 
-    {
-      "confidence": 0.9142187150598888, 
-      "entityId": "Q54340", 
-      "indocChainId": 3, 
-      "mention": "人民日报"
-    }, 
-    {
-      "confidence": 0.8608566483007024, 
-      "entityId": "Q649", 
+      "confidence": 0.7884097155026737, 
+      "entityId": "Q57052", 
       "indocChainId": 4, 
-      "mention": "莫斯科"
+      "mention": "江西"
     }, 
     {
-      "confidence": 0.5805713365753495, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 6, 
-      "mention": "杜尚泽"
+      "confidence": 0.7163112921614337, 
+      "entityId": "Q1326780", 
+      "indocChainId": 7, 
+      "mention": "井冈山"
     }, 
     {
-      "confidence": 0.8702899453350353, 
-      "entityId": "Q159", 
-      "indocChainId": 9, 
-      "mention": "俄罗斯"
+      "confidence": 0.9403184898105232, 
+      "entityId": "Q5816", 
+      "indocChainId": 10, 
+      "mention": "毛泽东"
     }, 
     {
-      "confidence": 0.9856814786589845, 
-      "entityId": "Q7747", 
+      "confidence": 0.8916823421617911, 
+      "entityId": "Q22513", 
       "indocChainId": 11, 
-      "mention": "普京"
+      "mention": "朱德"
     }, 
     {
-      "confidence": 0.4443587367642076, 
+      "confidence": 0.894702765773334, 
+      "entityId": "Q1036830", 
+      "indocChainId": 12, 
+      "mention": "中国工农红军"
+    }, 
+    {
+      "confidence": 0.2852934391233523, 
       "entityId": "Q148", 
-      "indocChainId": 17, 
-      "mention": "中"
-    }, 
-    {
-      "confidence": 0.8823411560859947, 
-      "entityId": "Q474548", 
-      "indocChainId": 21, 
-      "mention": "欧亚经济联盟"
-    }, 
-    {
-      "confidence": 0.6130111295417227, 
-      "entityId": "Q148", 
-      "indocChainId": 24, 
+      "indocChainId": 13, 
       "mention": "中国"
     }, 
     {
-      "confidence": 0.927725568096703, 
-      "entityId": "Q48", 
-      "indocChainId": 26, 
-      "mention": "亚洲"
+      "confidence": 0.9077856323061664, 
+      "entityId": "Q148", 
+      "indocChainId": 15, 
+      "mention": "中华人民共和国"
     }, 
     {
-      "confidence": 0.897729266643381, 
-      "entityId": "Q46", 
-      "indocChainId": 27, 
-      "mention": "欧洲"
+      "confidence": 0.37745241160260995, 
+      "entityId": "Q1156920", 
+      "indocChainId": 38, 
+      "mention": "罗霄"
     }, 
     {
-      "confidence": 0.4847404303137973, 
-      "entityId": "Q46", 
-      "indocChainId": 47, 
-      "mention": "欧"
-    }, 
-    {
-      "confidence": 0.762793967436439, 
-      "entityId": "Q48", 
-      "indocChainId": 48, 
-      "mention": "亚"
-    }, 
-    {
-      "confidence": 0.8781700324275331, 
-      "entityId": "Q5401", 
-      "indocChainId": 49, 
-      "mention": "欧亚大陆"
-    }, 
-    {
-      "confidence": 0.8423861643310755, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 50, 
-      "mention": "远东"
-    }, 
-    {
-      "confidence": 0.8908354747502565, 
-      "entityId": "Q485207", 
-      "indocChainId": 51, 
-      "mention": "上海合作组织"
-    }, 
-    {
-      "confidence": 0.8122172945191241, 
-      "entityId": "Q19771", 
-      "indocChainId": 52, 
-      "mention": "二十国集团"
-    }, 
-    {
-      "confidence": 0.794880223153438, 
-      "entityId": "Q483134", 
-      "indocChainId": 53, 
-      "mention": "朝鲜半岛"
-    }, 
-    {
-      "confidence": 0.4684058602808494, 
-      "entityId": "Q15174", 
-      "indocChainId": 58, 
-      "mention": "深圳"
-    }, 
-    {
-      "confidence": 0.5669229170882081, 
-      "entityId": "Q15176", 
-      "indocChainId": 59, 
-      "mention": "广西"
+      "confidence": 0.6502943103874071, 
+      "entityId": "Q16923591", 
+      "indocChainId": 41, 
+      "mention": "茅坪"
     }
-  ], 
-  "requestId": "39c5cb0b-950a-4ae8-ba76-54f9983bcf68"
+  ]
 }

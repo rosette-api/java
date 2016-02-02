@@ -1,117 +1,444 @@
 {
   "entities": [
     {
-      "confidence": 0.05986414849758148, 
+      "confidence": 0.0, 
       "count": 4, 
       "indocChainId": 0, 
-      "mention": "Europa", 
-      "normalized": "Europa", 
-      "type": "LOCATION"
+      "mention": "김일성의", 
+      "normalized": "김일성", 
+      "type": "PERSON"
     }, 
     {
-      "confidence": 0.008987635374069214, 
+      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 2, 
-      "mention": "Teneriffa", 
-      "normalized": "Teneriffa", 
+      "mention": "한국의", 
+      "normalized": "한국", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.035944998264312744, 
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 3, 
+      "mention": "만주", 
+      "normalized": "만주", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 13, 
+      "mention": "총비서로", 
+      "normalized": "총비서로", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 20, 
+      "mention": "대동군", 
+      "normalized": "대동군", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 24, 
+      "mention": "김형직", 
+      "normalized": "김형직", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "김일성은", 
+      "normalized": "김일성", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "김일성으로", 
+      "normalized": "김일성", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 0, 
+      "mention": "김일성", 
+      "normalized": "김일성", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 1, 
-      "mention": "Spanien", 
-      "normalized": "Spanien", 
-      "type": "LOCATION"
+      "mention": "金日成", 
+      "normalized": "金日成", 
+      "type": "PERSON"
     }, 
     {
-      "confidence": 0.03711158037185669, 
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 1, 
+      "mention": "金成", 
+      "normalized": "金成", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 3, 
-      "mention": "Europäische Union", 
-      "normalized": "Europäische Union", 
+      "mention": "만주로", 
+      "normalized": "만주", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.03636401891708374, 
+      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 4, 
-      "mention": "Innenminister", 
-      "normalized": "Innenminister", 
+      "mention": "조선혁명군", 
+      "normalized": "조선혁명군", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 5, 
+      "mention": "조선인민혁명군으로", 
+      "normalized": "조선인민혁명군", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 6, 
+      "mention": "조선민주주의인민공화국의", 
+      "normalized": "조선민주주의인민공화국", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 7, 
+      "mention": "총리", 
+      "normalized": "총리", 
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.01726752519607544, 
+      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 8, 
-      "mention": "Professor", 
-      "normalized": "Professor", 
+      "mention": "김성주", 
+      "normalized": "김성주", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "金聖柱", 
+      "normalized": "金聖柱", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 12, 
+      "mention": "조선로동당 중앙위원회", 
+      "normalized": "조선로동당 중앙위원회", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 14, 
+      "mention": "당중앙위원회", 
+      "normalized": "당중앙위원회", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "대한민국에서는", 
+      "normalized": "대한민국", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 17, 
+      "mention": "한국전쟁을", 
+      "normalized": "한국전쟁", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 19, 
+      "mention": "평안남도", 
+      "normalized": "평안남도", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 21, 
+      "mention": "고평면", 
+      "normalized": "고평면", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 22, 
+      "mention": "평양으로", 
+      "normalized": "평양", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 22, 
+      "mention": "평양", 
+      "normalized": "평양", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 23, 
+      "mention": "만경대", 
+      "normalized": "만경대", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 24, 
+      "mention": "김형직이", 
+      "normalized": "김형직", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 25, 
+      "mention": "金亨稷", 
+      "normalized": "金亨稷", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 26, 
+      "mention": "강반석", 
+      "normalized": "강반석", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 28, 
+      "mention": "전주", 
+      "normalized": "전주", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 29, 
+      "mention": "김씨", 
+      "normalized": "김", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 30, 
+      "mention": "전라북도", 
+      "normalized": "전라북도", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 32, 
+      "mention": "김응우는", 
+      "normalized": "김응우", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 33, 
+      "mention": "셔먼", 
+      "normalized": "셔먼", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 34, 
+      "mention": "만경대라는", 
+      "normalized": "만경대", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 35, 
+      "mention": "일본", 
+      "normalized": "일본", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 37, 
+      "mention": "기독교", 
+      "normalized": "기독교", 
+      "type": "RELIGION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 38, 
+      "mention": "장로교", 
+      "normalized": "장로교", 
+      "type": "RELIGION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 39, 
+      "mention": "강돈욱도", 
+      "normalized": "강돈욱", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 39, 
+      "mention": "강돈욱", 
+      "normalized": "강돈욱", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 40, 
+      "mention": "칠골교회의", 
+      "normalized": "칠골교회", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 42, 
+      "mention": "강진석", 
+      "normalized": "강진석", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 43, 
+      "mention": "康晋錫", 
+      "normalized": "康晋錫", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 45, 
+      "mention": "김보현이", 
+      "normalized": "김보현", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 46, 
+      "mention": "성주", 
+      "normalized": "성주", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 47, 
+      "mention": "성주", 
+      "normalized": "성주", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 49, 
+      "mention": "지린성(吉林省", 
+      "normalized": "지린성(吉林省", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 50, 
+      "mention": "무송", 
+      "normalized": "무송", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 54, 
+      "mention": "용산면", 
+      "normalized": "용산면", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 55, 
+      "mention": "칠골에", 
+      "normalized": "칠골", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 56, 
+      "mention": "창덕학교의", 
+      "normalized": "창덕학교", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 56, 
+      "mention": "창덕학교는", 
+      "normalized": "창덕학교", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 60, 
+      "mention": "교감과 교장을", 
+      "normalized": "교감과 교장을", 
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.00736004114151001, 
+      "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 9, 
-      "mention": "Klaus J. Bade", 
-      "normalized": "Klaus J. Bade", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.013958752155303955, 
-      "count": 1, 
-      "indocChainId": 10, 
-      "mention": "Universität Osnabrück", 
-      "normalized": "Universität Osnabrück", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.03818148374557495, 
-      "count": 1, 
-      "indocChainId": 11, 
-      "mention": "Somalia", 
-      "normalized": "Somalia", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.03774428367614746, 
-      "count": 1, 
-      "indocChainId": 12, 
-      "mention": "Fischer", 
-      "normalized": "Fischer", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.019688069820404053, 
-      "count": 1, 
-      "indocChainId": 14, 
-      "mention": "Wolfgang Schäuble", 
-      "normalized": "Wolfgang Schäuble", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.06329077482223511, 
-      "count": 1, 
-      "indocChainId": 14, 
-      "mention": "Schäuble", 
-      "normalized": "Schäuble", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.024634122848510742, 
-      "count": 1, 
-      "indocChainId": 15, 
-      "mention": "CDU", 
-      "normalized": "CDU", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.023647606372833252, 
-      "count": 1, 
-      "indocChainId": 16, 
-      "mention": "Brüssel", 
-      "normalized": "Brüssel", 
+      "indocChainId": 62, 
+      "mention": "중국", 
+      "normalized": "중국", 
       "type": "LOCATION"
     }
-  ], 
-  "requestId": "31401656-5766-4965-a472-51e3744b87bb"
+  ]
 }

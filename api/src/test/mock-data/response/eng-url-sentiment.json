@@ -1,12 +1,11 @@
 {
-  "requestId": "8e277ba2-00e9-46ec-bd30-04d885b1882d", 
   "sentiment": [
     {
-      "confidence": 0.9156604769654398, 
+      "confidence": 0.6329035634057169, 
       "label": "pos"
     }, 
     {
-      "confidence": 0.08433952303456017, 
+      "confidence": 0.36709643659428315, 
       "label": "neg"
     }
   ]

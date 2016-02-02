@@ -23,6 +23,7 @@ GNEWS_LANGS = {"eng": "ned=us&hl=en-US",
                "spa": "ned=es_mx&hl=es",
                "fra": "ned=fr&hl=fr"}
 
+
 def capture(req, endpoints, filename_prefix):
     for endpoint in endpoints:
         resp = requests.post(args.endpoint + "/" + endpoint + "?debug=true",
@@ -64,15 +65,15 @@ for f in files:
 # store some info
 resp = requests.get(args.endpoint + "/info", headers=headers)
 if resp.status_code != 200:
-    print "info call failed - abord"
+    print "info call failed - abort"
     sys.exit(1)
 else:
     with io.open("response/info.json", "w", encoding="utf8") as resp_file,\
-        io.open("response/info.status", "w", encoding="utf8") as resp_status_file:
+         io.open("response/info.status", "w", encoding="utf8") as resp_status_file:
         resp_file.write(json.dumps(resp.json(), ensure_ascii=False, indent=2, sort_keys=True, encoding="utf8"))
         resp_status_file.write(unicode(resp.status_code))
         resp_file.close()
-        resp_status_file.clse()
+        resp_status_file.close()
 
 # deal with local docs
 with open("source/doc-strings.tsv", "r") as tsvfile:
@@ -85,11 +86,7 @@ with open("source/doc-strings.tsv", "r") as tsvfile:
             filename_prefix = row["language"]
         else:
             filename_prefix = "xxx"
-        if row["unit"]:
-            req["unit"] = row["unit"]
-            filename_prefix += "-" + row["unit"]
-        else:
-            filename_prefix += "-null"
+        filename_prefix += "-doc"
         if row["content"]:
             req["content"] = row["content"]
         else:

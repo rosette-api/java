@@ -1,7 +1,6 @@
 {
-  "buildNumber": "6bafb29d", 
-  "buildTime": "2015.05.08_12:31:26", 
+  "buildNumber": "", 
+  "buildTime": "20160202", 
   "name": "Rosette API", 
-  "version": "0.5.0",
-  "versionChecked": true
+  "version": "0.8.100.v20160202044507"
 }

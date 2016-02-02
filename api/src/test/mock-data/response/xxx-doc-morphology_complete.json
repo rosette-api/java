@@ -1,1910 +1,2652 @@
 {
-  "compounds": [
-    {
-      "compoundComponents": [
-        "Heimat", 
-        "Land"
-      ], 
-      "text": "Heimatländern"
-    }, 
-    {
-      "compoundComponents": [
-        "Flüchtling", 
-        "Strom"
-      ], 
-      "text": "Flüchtlingsstrom"
-    }, 
-    {
-      "compoundComponents": [
-        "Gemeinschaft", 
-        "Problem"
-      ], 
-      "text": "Gemeinschaftsproblem"
-    }, 
-    {
-      "compoundComponents": [
-        "eignen", 
-        "Verantwortung"
-      ], 
-      "text": "Eigenverantwortung"
-    }, 
-    {
-      "compoundComponents": [
-        "Migration", 
-        "Forscher"
-      ], 
-      "text": "Migrationsforscher"
-    }, 
-    {
-      "compoundComponents": [
-        "textil", 
-        "Sammlung"
-      ], 
-      "text": "Textilsammlungen"
-    }, 
-    {
-      "compoundComponents": [
-        "textil", 
-        "Industrie"
-      ], 
-      "text": "Textilindustrie"
-    }, 
-    {
-      "compoundComponents": [
-        "Fisch", 
-        "Fabrik"
-      ], 
-      "text": "Fischfabriken"
-    }, 
-    {
-      "compoundComponents": [
-        "Küste", 
-        "Fischerei"
-      ], 
-      "text": "Küstenfischerei"
-    }, 
-    {
-      "compoundComponents": [
-        "Außen", 
-        "Grenze"
-      ], 
-      "text": "Außengrenzen"
-    }, 
-    {
-      "compoundComponents": [
-        "Außen", 
-        "Grenze"
-      ], 
-      "text": "Außengrenzen"
-    }, 
-    {
-      "compoundComponents": [
-        "Bürger", 
-        "nah"
-      ], 
-      "text": "bürgernäher"
-    }
+  "compoundComponents": [
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "독립", 
+      "운동가"
+    ], 
+    [
+      "조선", 
+      "민주주의"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "조선", 
+      "공산주의", 
+      "청년", 
+      "동맹"
+    ], 
+    null, 
+    [
+      "조선", 
+      "혁명군"
+    ], 
+    null, 
+    [
+      "반일", 
+      "인민", 
+      "유격대"
+    ], 
+    null, 
+    null, 
+    [
+      "조선", 
+      "인민", 
+      "혁명군"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "조선", 
+      "민주주의", 
+      "인민", 
+      "공화국"
+    ], 
+    null, 
+    null, 
+    null, 
+    [
+      "인민", 
+      "공화국"
+    ], 
+    [
+      "국가", 
+      "주석"
+    ], 
+    null, 
+    null, 
+    [
+      "국가", 
+      "주석"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "당중앙", 
+      "위원회"
+    ], 
+    null, 
+    null, 
+    null, 
+    [
+      "중앙", 
+      "위원회"
+    ], 
+    [
+      "총비", 
+      "서로"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "당중앙", 
+      "위원회"
+    ], 
+    [
+      "총비", 
+      "서로"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "한국", 
+      "전쟁"
+    ], 
+    null, 
+    null, 
+    [
+      "장본인", 
+      "중"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "절대", 
+      "권력"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "삼형", 
+      "제의"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "셔먼", 
+      "호"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "항일", 
+      "무장", 
+      "투쟁"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "민족", 
+      "운동"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "교육", 
+      "사업"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "독립", 
+      "운동"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "팔", 
+      "도구"
+    ], 
+    [
+      "팔도", 
+      "구소"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "창덕", 
+      "소학교"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "창덕", 
+      "학교"
+    ], 
+    null, 
+    null, 
+    [
+      "장로", 
+      "교회"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "창덕", 
+      "학교"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "중국인", 
+      "소학교"
+    ], 
+    [
+      "중어", 
+      "공부"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "창덕", 
+      "학교"
+    ], 
+    [
+      "진학", 
+      "과정"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "팔", 
+      "도구"
+    ], 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    [
+      "창덕", 
+      "학교"
+    ], 
+    null, 
+    null, 
+    null
   ], 
-  "hanReadings": [], 
+  "hanReadings": [
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null, 
+    null
+  ], 
   "lemmas": [
-    {
-      "lemma": "3.11.06", 
-      "text": "3.11.06"
-    }, 
-    {
-      "lemma": "-", 
-      "text": "-"
-    }, 
-    {
-      "lemma": "not", 
-      "text": "Not"
-    }, 
-    {
-      "lemma": "und", 
-      "text": "und"
-    }, 
-    {
-      "lemma": "Elend", 
-      "text": "Elend"
-    }, 
-    {
-      "lemma": "in", 
-      "text": "in"
-    }, 
-    {
-      "lemma": "ihr", 
-      "text": "ihren"
-    }, 
-    {
-      "lemma": "Heimatland", 
-      "text": "Heimatländern"
-    }, 
-    {
-      "lemma": "lassen", 
-      "text": "lassen"
-    }, 
-    {
-      "lemma": "immer", 
-      "text": "immer"
-    }, 
-    {
-      "lemma": "mehr", 
-      "text": "mehr"
-    }, 
-    {
-      "lemma": "Afrikaner", 
-      "text": "Afrikaner"
-    }, 
-    {
-      "lemma": "die", 
-      "text": "die"
-    }, 
-    {
-      "lemma": "Reise", 
-      "text": "Reise"
-    }, 
-    {
-      "lemma": "nach", 
-      "text": "nach"
-    }, 
-    {
-      "lemma": "Europa", 
-      "text": "Europa"
-    }, 
-    {
-      "lemma": "antreten", 
-      "text": "antreten"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "insbesondere", 
-      "text": "Insbesondere"
-    }, 
-    {
-      "lemma": "Spanien", 
-      "text": "Spanien"
-    }, 
-    {
-      "lemma": "sein", 
-      "text": "ist"
-    }, 
-    {
-      "lemma": "betreffen", 
-      "text": "betroffen"
-    }, 
-    {
-      "lemma": "-", 
-      "text": "-"
-    }, 
-    {
-      "lemma": "allein", 
-      "text": "allein"
-    }, 
-    {
-      "lemma": "24.000", 
-      "text": "24.000"
-    }, 
-    {
-      "lemma": "Flüchtling", 
-      "text": "Flüchtlinge"
-    }, 
-    {
-      "lemma": "sein", 
-      "text": "sind"
-    }, 
-    {
-      "lemma": "in", 
-      "text": "in"
-    }, 
-    {
-      "lemma": "dies", 
-      "text": "diesem"
-    }, 
-    {
-      "lemma": "Jahr", 
-      "text": "Jahr"
-    }, 
-    {
-      "lemma": "in", 
-      "text": "in"
-    }, 
-    {
-      "lemma": "Teneriffa", 
-      "text": "Teneriffa"
-    }, 
-    {
-      "lemma": "ankommen", 
-      "text": "angekommen"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "nun", 
-      "text": "Nun"
-    }, 
-    {
-      "lemma": "beraten", 
-      "text": "berät"
-    }, 
-    {
-      "lemma": "die", 
-      "text": "die"
-    }, 
-    {
-      "lemma": "europäisch", 
-      "text": "Europäische"
-    }, 
-    {
-      "lemma": "Union", 
-      "text": "Union"
-    }, 
-    {
-      "lemma": "über", 
-      "text": "über"
-    }, 
-    {
-      "lemma": "Maßnahme", 
-      "text": "Maßnahmen"
-    }, 
-    {
-      "lemma": "gegen", 
-      "text": "gegen"
-    }, 
-    {
-      "lemma": "der", 
-      "text": "den"
-    }, 
-    {
-      "lemma": "Flüchtlingsstrom", 
-      "text": "Flüchtlingsstrom"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "nicht", 
-      "text": "Nicht"
-    }, 
-    {
-      "lemma": "alle", 
-      "text": "alle"
-    }, 
-    {
-      "lemma": "Länder", 
-      "text": "Länder"
-    }, 
-    {
-      "lemma": "sehen", 
-      "text": "sehen"
-    }, 
-    {
-      "lemma": "darin", 
-      "text": "darin"
-    }, 
-    {
-      "lemma": "ein", 
-      "text": "ein"
-    }, 
-    {
-      "lemma": "Gemeinschaftsproblem", 
-      "text": "Gemeinschaftsproblem"
-    }, 
-    {
-      "lemma": "-", 
-      "text": "-"
-    }, 
-    {
-      "lemma": "der", 
-      "text": "der"
-    }, 
-    {
-      "lemma": "deutsch", 
-      "text": "deutsche"
-    }, 
-    {
-      "lemma": "Innenminister", 
-      "text": "Innenminister"
-    }, 
-    {
-      "lemma": "Schäuble", 
-      "text": "Schäuble"
-    }, 
-    {
-      "lemma": "appellieren", 
-      "text": "appelliert"
-    }, 
-    {
-      "lemma": "an", 
-      "text": "an"
-    }, 
-    {
-      "lemma": "die", 
-      "text": "die"
-    }, 
-    {
-      "lemma": "Eigenverantwortung", 
-      "text": "Eigenverantwortung"
-    }, 
-    {
-      "lemma": "der", 
-      "text": "der"
-    }, 
-    {
-      "lemma": "Länder", 
-      "text": "Länder"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "die", 
-      "text": "Die"
-    }, 
-    {
-      "lemma": "Flüchtling", 
-      "text": "Flüchtlinge"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "die", 
-      "text": "die"
-    }, 
-    {
-      "lemma": "auf", 
-      "text": "auf"
-    }, 
-    {
-      "lemma": "Teneriffa", 
-      "text": "Teneriffa"
-    }, 
-    {
-      "lemma": "in der", 
-      "text": "im"
-    }, 
-    {
-      "lemma": "Lager", 
-      "text": "Lager"
-    }, 
-    {
-      "lemma": "ausharren", 
-      "text": "ausharren"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "kommen", 
-      "text": "kommen"
-    }, 
-    {
-      "lemma": "aus", 
-      "text": "aus"
-    }, 
-    {
-      "lemma": "Land", 
-      "text": "Ländern"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "in", 
-      "text": "in"
-    }, 
-    {
-      "lemma": "die", 
-      "text": "denen"
-    }, 
-    {
-      "lemma": "sie", 
-      "text": "sie"
-    }, 
-    {
-      "lemma": "kaum", 
-      "text": "kaum"
-    }, 
-    {
-      "lemma": "existieren", 
-      "text": "existieren"
-    }, 
-    {
-      "lemma": "können", 
-      "text": "können"
-    }, 
-    {
-      "lemma": "-", 
-      "text": "-"
-    }, 
-    {
-      "lemma": "auch", 
-      "text": "auch"
-    }, 
-    {
-      "lemma": "wegen", 
-      "text": "wegen"
-    }, 
-    {
-      "lemma": "der", 
-      "text": "der"
-    }, 
-    {
-      "lemma": "Konkurrenz", 
-      "text": "Konkurrenz"
-    }, 
-    {
-      "lemma": "aus", 
-      "text": "aus"
-    }, 
-    {
-      "lemma": "Europa", 
-      "text": "Europa"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "wie", 
-      "text": "wie"
-    }, 
-    {
-      "lemma": "Professor", 
-      "text": "Professor"
-    }, 
-    {
-      "lemma": "Klaus", 
-      "text": "Klaus"
-    }, 
-    {
-      "lemma": "J.", 
-      "text": "J."
-    }, 
-    {
-      "lemma": "Bad", 
-      "text": "Bade"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "Migrationsforscher", 
-      "text": "Migrationsforscher"
-    }, 
-    {
-      "lemma": "an", 
-      "text": "an"
-    }, 
-    {
-      "lemma": "der", 
-      "text": "der"
-    }, 
-    {
-      "lemma": "Universität", 
-      "text": "Universität"
-    }, 
-    {
-      "lemma": "Osnabrück", 
-      "text": "Osnabrück"
-    }, 
-    {
-      "lemma": "wissen", 
-      "text": "weiß"
-    }, 
-    {
-      "lemma": ":", 
-      "text": ":"
-    }, 
-    {
-      "lemma": "\"", 
-      "text": "\""
-    }, 
-    {
-      "lemma": "unser", 
-      "text": "Unsere"
-    }, 
-    {
-      "lemma": "Textilsammlung", 
-      "text": "Textilsammlungen"
-    }, 
-    {
-      "lemma": "landen", 
-      "text": "landen"
-    }, 
-    {
-      "lemma": "auf", 
-      "text": "auf"
-    }, 
-    {
-      "lemma": "kommerziell", 
-      "text": "kommerziellen"
-    }, 
-    {
-      "lemma": "Markt", 
-      "text": "Märkten"
-    }, 
-    {
-      "lemma": "und", 
-      "text": "und"
-    }, 
-    {
-      "lemma": "ruinieren", 
-      "text": "ruinieren"
-    }, 
-    {
-      "lemma": "die", 
-      "text": "die"
-    }, 
-    {
-      "lemma": "Textilindustrie", 
-      "text": "Textilindustrie"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "und", 
-      "text": "Und"
-    }, 
-    {
-      "lemma": "die", 
-      "text": "die"
-    }, 
-    {
-      "lemma": "schwimmen", 
-      "text": "schwimmenden"
-    }, 
-    {
-      "lemma": "Fischfabrik", 
-      "text": "Fischfabriken"
-    }, 
-    {
-      "lemma": "-", 
-      "text": "-"
-    }, 
-    {
-      "lemma": "Fisch", 
-      "text": "Fisch"
-    }, 
-    {
-      "lemma": "unten", 
-      "text": "unten"
-    }, 
-    {
-      "lemma": "rein", 
-      "text": "rein"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "Dose", 
-      "text": "Dose"
-    }, 
-    {
-      "lemma": "oben", 
-      "text": "oben"
-    }, 
-    {
-      "lemma": "raus", 
-      "text": "raus"
-    }, 
-    {
-      "lemma": "-", 
-      "text": "-"
-    }, 
-    {
-      "lemma": "vor", 
-      "text": "vor"
-    }, 
-    {
-      "lemma": "der", 
-      "text": "den"
-    }, 
-    {
-      "lemma": "afrikanisch", 
-      "text": "afrikanischen"
-    }, 
-    {
-      "lemma": "Küste", 
-      "text": "Küsten"
-    }, 
-    {
-      "lemma": "ruinieren", 
-      "text": "ruinieren"
-    }, 
-    {
-      "lemma": "die", 
-      "text": "die"
-    }, 
-    {
-      "lemma": "Küstenfischerei", 
-      "text": "Küstenfischerei"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "Ergebnis", 
-      "text": "Ergebnis"
-    }, 
-    {
-      "lemma": ":", 
-      "text": ":"
-    }, 
-    {
-      "lemma": "in", 
-      "text": "In"
-    }, 
-    {
-      "lemma": "Somalia", 
-      "text": "Somalia"
-    }, 
-    {
-      "lemma": "transportieren", 
-      "text": "transportieren"
-    }, 
-    {
-      "lemma": "inzwischen", 
-      "text": "inzwischen"
-    }, 
-    {
-      "lemma": "ruinieren", 
-      "text": "ruinierte"
-    }, 
-    {
-      "lemma": "Fischer", 
-      "text": "Fischer"
-    }, 
-    {
-      "lemma": "mit", 
-      "text": "mit"
-    }, 
-    {
-      "lemma": "ihr", 
-      "text": "ihren"
-    }, 
-    {
-      "lemma": "Boot", 
-      "text": "Booten"
-    }, 
-    {
-      "lemma": "die", 
-      "text": "die"
-    }, 
-    {
-      "lemma": "illegal", 
-      "text": "Illegalen"
-    }, 
-    {
-      "lemma": "in", 
-      "text": "in"
-    }, 
-    {
-      "lemma": "Richtung", 
-      "text": "Richtung"
-    }, 
-    {
-      "lemma": "Europa", 
-      "text": "Europa"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "\"", 
-      "text": "\""
-    }, 
-    {
-      "lemma": "doch", 
-      "text": "Doch"
-    }, 
-    {
-      "lemma": "sich", 
-      "text": "sich"
-    }, 
-    {
-      "lemma": "vor", 
-      "text": "vor"
-    }, 
-    {
-      "lemma": "illegal", 
-      "text": "Illegalen"
-    }, 
-    {
-      "lemma": "zu", 
-      "text": "zu"
-    }, 
-    {
-      "lemma": "schützen", 
-      "text": "schützen"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "damit", 
-      "text": "damit"
-    }, 
-    {
-      "lemma": "müssen", 
-      "text": "müsse"
-    }, 
-    {
-      "lemma": "jede", 
-      "text": "jedes"
-    }, 
-    {
-      "lemma": "Land", 
-      "text": "Land"
-    }, 
-    {
-      "lemma": "selbst", 
-      "text": "selbst"
-    }, 
-    {
-      "lemma": "fertig", 
-      "text": "fertig"
-    }, 
-    {
-      "lemma": "werden", 
-      "text": "werden"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "wie", 
-      "text": "wie"
-    }, 
-    {
-      "lemma": "Wolfgang", 
-      "text": "Wolfgang"
-    }, 
-    {
-      "lemma": "Schäuble", 
-      "text": "Schäuble"
-    }, 
-    {
-      "lemma": "(", 
-      "text": "("
-    }, 
-    {
-      "lemma": "CDU", 
-      "text": "CDU"
-    }, 
-    {
-      "lemma": ")", 
-      "text": ")"
-    }, 
-    {
-      "lemma": "betonen", 
-      "text": "betont"
-    }, 
-    {
-      "lemma": ":", 
-      "text": ":"
-    }, 
-    {
-      "lemma": "\"", 
-      "text": "\""
-    }, 
-    {
-      "lemma": "in", 
-      "text": "In"
-    }, 
-    {
-      "lemma": "Brüssel", 
-      "text": "Brüssel"
-    }, 
-    {
-      "lemma": "sein", 
-      "text": "ist"
-    }, 
-    {
-      "lemma": "der", 
-      "text": "der"
-    }, 
-    {
-      "lemma": "Ruf", 
-      "text": "Ruf"
-    }, 
-    {
-      "lemma": "immer", 
-      "text": "immer"
-    }, 
-    {
-      "lemma": "wohlfeil", 
-      "text": "wohlfeil"
-    }, 
-    {
-      "lemma": ":", 
-      "text": ":"
-    }, 
-    {
-      "lemma": "es", 
-      "text": "Es"
-    }, 
-    {
-      "lemma": "müssen", 
-      "text": "muss"
-    }, 
-    {
-      "lemma": "alles", 
-      "text": "alles"
-    }, 
-    {
-      "lemma": "europäisch", 
-      "text": "europäisch"
-    }, 
-    {
-      "lemma": "machen", 
-      "text": "gemacht"
-    }, 
-    {
-      "lemma": "werden", 
-      "text": "werden"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "jede", 
-      "text": "Jedes"
-    }, 
-    {
-      "lemma": "Land", 
-      "text": "Land"
-    }, 
-    {
-      "lemma": "mit", 
-      "text": "mit"
-    }, 
-    {
-      "lemma": "Außengrenze", 
-      "text": "Außengrenzen"
-    }, 
-    {
-      "lemma": "müssen", 
-      "text": "muss"
-    }, 
-    {
-      "lemma": "sein", 
-      "text": "seine"
-    }, 
-    {
-      "lemma": "Außengrenze", 
-      "text": "Außengrenzen"
-    }, 
-    {
-      "lemma": "schon", 
-      "text": "schon"
-    }, 
-    {
-      "lemma": "selber", 
-      "text": "selber"
-    }, 
-    {
-      "lemma": "kontrollieren", 
-      "text": "kontrollieren"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "wenn", 
-      "text": "Wenn"
-    }, 
-    {
-      "lemma": "wir", 
-      "text": "wir"
-    }, 
-    {
-      "lemma": "die", 
-      "text": "die"
-    }, 
-    {
-      "lemma": "Verantwortung", 
-      "text": "Verantwortung"
-    }, 
-    {
-      "lemma": "nach", 
-      "text": "nach"
-    }, 
-    {
-      "lemma": "Europa", 
-      "text": "Europa"
-    }, 
-    {
-      "lemma": "schieben", 
-      "text": "schieben"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "werden", 
-      "text": "wird"
-    }, 
-    {
-      "lemma": "es", 
-      "text": "es"
-    }, 
-    {
-      "lemma": "weder", 
-      "text": "weder"
-    }, 
-    {
-      "lemma": "Bürgernah", 
-      "text": "bürgernäher"
-    }, 
-    {
-      "lemma": "noch", 
-      "text": "noch"
-    }, 
-    {
-      "lemma": "effizient", 
-      "text": "effizienter"
-    }, 
-    {
-      "lemma": ",", 
-      "text": ","
-    }, 
-    {
-      "lemma": "sondern", 
-      "text": "sondern"
-    }, 
-    {
-      "lemma": "ganz", 
-      "text": "ganz"
-    }, 
-    {
-      "lemma": "in der", 
-      "text": "im"
-    }, 
-    {
-      "lemma": "Gegenteil", 
-      "text": "Gegenteil"
-    }, 
-    {
-      "lemma": ".", 
-      "text": "."
-    }, 
-    {
-      "lemma": "\"", 
-      "text": "\""
-    }
+    "김일성", 
+    "(", 
+    "金", 
+    "日", 
+    "成", 
+    ",", 
+    "년", 
+    "월", 
+    "일", 
+    "~", 
+    "년", 
+    "월", 
+    "일", 
+    ")", 
+    "은", 
+    "한국", 
+    "독립운동가", 
+    "조선민주주의", 
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx인민공화국의", 
+    "정치인", 
+    ".", 
+    "만주", 
+    "조선공산주의청년동맹", 
+    ",", 
+    "조선혁명군", 
+    ",", 
+    "반일인민유격대", 
+    "(", 
+    "그후", 
+    "조선인민혁명군", 
+    "개편", 
+    ")", 
+    "등", 
+    "조직", 
+    ".", 
+    "해방", 
+    "후", 
+    "년", 
+    "년", 
+    "조선민주주의인민공화국", 
+    "총리", 
+    ",", 
+    "년", 
+    "인민공화국", 
+    "국가주석", 
+    ",", 
+    "년", 
+    "국가주석", 
+    "재선", 
+    ".", 
+    "원래", 
+    "이름", 
+    "김성주", 
+    "(", 
+    "金", 
+    "成", 
+    "柱", 
+    "[", 
+    "1", 
+    "]", 
+    "[", 
+    "2", 
+    "]", 
+    "또는", 
+    "金", 
+    "聖", 
+    "柱", 
+    "[", 
+    "3", 
+    "]", 
+    "[", 
+    "4", 
+    "]", 
+    ")", 
+    "이다", 
+    ",", 
+    "항일", 
+    "투쟁", 
+    "하다", 
+    "[", 
+    "3", 
+    "]", 
+    "[", 
+    "4", 
+    "]", 
+    "[", 
+    "5", 
+    "]", 
+    "김일성", 
+    "개명", 
+    "[", 
+    "3", 
+    "]", 
+    "[", 
+    "4", 
+    "]", 
+    "[", 
+    "6", 
+    "]", 
+    "하다", 
+    ".", 
+    "년", 
+    "월", 
+    "당중앙위원회", 
+    "제4기", 
+    "14차전원회의에서", 
+    "조선로동당", 
+    "중앙위원회", 
+    "총비서로", 
+    "선출", 
+    "1970", 
+    "년", 
+    "진행", 
+    "제5차전당대회와", 
+    "년", 
+    "월", 
+    "6차전당대회에서", 
+    "당중앙위원회", 
+    "총비서로", 
+    "또다시", 
+    "재서", 
+    "되", 
+    ".", 
+    "대한민국", 
+    "한국전쟁", 
+    "발발", 
+    "하", 
+    "장본인중", 
+    "한사람", 
+    "지목", 
+    "최근", 
+    "부정", 
+    "평가", 
+    "받다", 
+    "오", 
+    ".", 
+    "년", 
+    "절대권력", 
+    "상징", 
+    "그", 
+    "사망", 
+    "아들", 
+    "김정일", 
+    "모든", 
+    "권력", 
+    "승", 
+    "계하", 
+    ".", 
+    "어리", 
+    "시절", 
+    "가계", 
+    "[", 
+    "편집", 
+    "]", 
+    "김일성", 
+    "생가", 
+    "김일성", 
+    "년", 
+    "월", 
+    "일", 
+    "평안남도", 
+    "대동군", 
+    "고평면", 
+    "(", 
+    "古", 
+    "平", 
+    "面", 
+    ")", 
+    "하리", 
+    "칠곡", 
+    "(", 
+    "외가", 
+    "있", 
+    "곳", 
+    ",", 
+    "오늘날", 
+    "평양", 
+    "만경대", 
+    ")", 
+    "[", 
+    "6", 
+    "]", 
+    "에서", 
+    "아버지", 
+    "김형직", 
+    "(", 
+    "金", 
+    "亨", 
+    "稷", 
+    ",", 
+    "년", 
+    "월", 
+    "일", 
+    "~", 
+    "년", 
+    ")", 
+    "과", 
+    "어머니", 
+    "강반석", 
+    "(", 
+    "康", 
+    "盤", 
+    "石", 
+    ",", 
+    "[", 
+    "7", 
+    "]", 
+    "년", 
+    "~", 
+    "년", 
+    ")", 
+    "의", 
+    "삼형제의", 
+    "맏아", 
+    "태어나다", 
+    ".", 
+    "김일성", 
+    "전주", 
+    "김", 
+    "12대조", 
+    "김계상", 
+    "전라북도", 
+    "전", 
+    "주", 
+    "평양", 
+    "이주", 
+    ",", 
+    "[", 
+    "6", 
+    "]", 
+    "[", 
+    "8", 
+    "]", 
+    "이후", 
+    "농업", 
+    "종사", 
+    ",", 
+    "증조부", 
+    "김응우", 
+    "제너럴", 
+    "셔먼호", 
+    "사건", 
+    "종군", 
+    ".", 
+    "북조선", 
+    "김응우", 
+    "제너럴", 
+    "셔먼", 
+    "호", 
+    "격퇴", 
+    "지휘관", 
+    "주장", 
+    ".", 
+    "그", 
+    "생가", 
+    "만경대", 
+    "이름", 
+    "보존", 
+    ",", 
+    "관리", 
+    "있", 
+    ".", 
+    "김형직", 
+    "할아버지", 
+    "이래", 
+    "지주", 
+    "집안", 
+    "묘지기", 
+    ",", 
+    "[", 
+    "9", 
+    "]", 
+    "일본", 
+    "제국주의", 
+    "대항", 
+    "항일무장투쟁", 
+    "벌이다", 
+    "한국", 
+    "독립", 
+    "운동가", 
+    "알려지다", 
+    "있", 
+    ".", 
+    "[", 
+    "3", 
+    "]", 
+    "어머니", 
+    "강반석", 
+    "기독교", 
+    "장로교", 
+    "신도", 
+    ",", 
+    "외할아버지", 
+    "강돈욱", 
+    "[", 
+    "9", 
+    "]", 
+    "늘", 
+    "칠골교회", 
+    "장로", 
+    "[", 
+    "10", 
+    "]", 
+    "이다", 
+    ".", 
+    "[", 
+    "3", 
+    "]", 
+    "김일성", 
+    "외", 
+    "늘다", 
+    "크", 
+    "외삼촌", 
+    "강진석", 
+    "(", 
+    "康", 
+    "晋", 
+    "錫", 
+    ")", 
+    "을", 
+    "비롯", 
+    "일찍부터", 
+    "항일", 
+    "민족운동", 
+    "관련", 
+    "맺다", 
+    "있", 
+    ",", 
+    "강돈욱", 
+    "평생", 
+    "교육사업", 
+    "헌신", 
+    "기독교인", 
+    ".", 
+    "[", 
+    "9", 
+    "]", 
+    "아버지", 
+    "김형직", 
+    "또는", 
+    "할아버지", 
+    "김보현", 
+    "기둥이", 
+    "되", 
+    "늘", 
+    "뜻", 
+    "그", 
+    "이름", 
+    "성주", 
+    "(", 
+    "成", 
+    "柱", 
+    ")", 
+    "또는", 
+    "성주", 
+    "(", 
+    "聖", 
+    "柱", 
+    ")", 
+    "라", 
+    "짓다", 
+    "하", 
+    ".", 
+    "어려서", 
+    "부모", 
+    "따르다", 
+    "주", 
+    "지린성", 
+    "(", 
+    "吉", 
+    "林", 
+    "省", 
+    ")", 
+    "무송", 
+    "(", 
+    "撫", 
+    "松", 
+    ")", 
+    "으로", 
+    "이사", 
+    ".", 
+    "년", 
+    "일곱", 
+    "살", 
+    "김일성", 
+    "민족주의", 
+    "계열", 
+    "독립운동", 
+    "하다", 
+    "아버지", 
+    "김형직", 
+    "따르다", 
+    "만주", 
+    "건너", 
+    "장백현", 
+    "팔도구", 
+    "팔도구소", 
+    "학교", 
+    "다니다", 
+    ".", 
+    "그", 
+    "뒤", 
+    "자식", 
+    "장래", 
+    "생각", 
+    "김형직", 
+    "결심", 
+    "따르다", 
+    "년", 
+    "초", 
+    "년", 
+    "초", 
+    "평", 
+    "안", 
+    "대동군", 
+    "용산면", 
+    "하리", 
+    "(", 
+    "下", 
+    "里", 
+    ")", 
+    "칠골", 
+    "있", 
+    "외가", 
+    "머물다", 
+    "창덕소학교", 
+    "다니다", 
+    ".", 
+    "[", 
+    "9", 
+    "]", 
+    "창덕학교", 
+    "년", 
+    "하리", 
+    "장로교회", 
+    "중심", 
+    "되다", 
+    "세운", 
+    "년제", 
+    "학교", 
+    ",", 
+    "김일성", 
+    "외할아버지", 
+    "강돈욱", 
+    "설립자", 
+    "가운데", 
+    "한", 
+    "사람", 
+    ",", 
+    "한때", 
+    "창덕학교", 
+    "교감", 
+    "교장", 
+    "맡다", 
+    "하", 
+    ".", 
+    "아버지", 
+    "김형직", 
+    "권고", 
+    "중국말", 
+    "을", 
+    "배우다", 
+    "중국인소학교", 
+    "중어공부", 
+    "하다", 
+    "중어", 
+    "자유롭", 
+    "구사할수", 
+    "있", 
+    ".", 
+    "[", 
+    "11", 
+    "]", 
+    "창덕학교", 
+    "진학과정", 
+    "대하다", 
+    "략력", 
+    "아버지", 
+    "김형직", 
+    "'", 
+    "혁명", 
+    "하다", 
+    "자기", 
+    "나라", 
+    "알다", 
+    "하", 
+    "말하다", 
+    "권고", 
+    "받다", 
+    "년", 
+    "월", 
+    "중국", 
+    "팔도구", 
+    "만경대까지배움", 
+    "천리길", 
+    "걷다", 
+    "통학", 
+    "외", 
+    "가집", 
+    "있", 
+    "칠고", 
+    "창덕학교", 
+    "공부", 
+    "것", 
+    "."
   ], 
   "posTags": [
-    {
-      "pos": "CARD", 
-      "text": "3.11.06"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "-"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "Not"
-    }, 
-    {
-      "pos": "COORD", 
-      "text": "und"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Elend"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "in"
-    }, 
-    {
-      "pos": "POSDET", 
-      "text": "ihren"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Heimatländern"
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "lassen"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "immer"
-    }, 
-    {
-      "pos": "INDADJ", 
-      "text": "mehr"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Afrikaner"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "die"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Reise"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "nach"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Europa"
-    }, 
-    {
-      "pos": "VVINF", 
-      "text": "antreten"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "Insbesondere"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Spanien"
-    }, 
-    {
-      "pos": "VAFIN", 
-      "text": "ist"
-    }, 
-    {
-      "pos": "VVPP", 
-      "text": "betroffen"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "-"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "allein"
-    }, 
-    {
-      "pos": "CARD", 
-      "text": "24.000"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Flüchtlinge"
-    }, 
-    {
-      "pos": "VAFIN", 
-      "text": "sind"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "in"
-    }, 
-    {
-      "pos": "DEMDET", 
-      "text": "diesem"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Jahr"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "in"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Teneriffa"
-    }, 
-    {
-      "pos": "VVPP", 
-      "text": "angekommen"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "Nun"
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "berät"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "die"
-    }, 
-    {
-      "pos": "ADJA", 
-      "text": "Europäische"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Union"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "über"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Maßnahmen"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "gegen"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "den"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Flüchtlingsstrom"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "PTKNEG", 
-      "text": "Nicht"
-    }, 
-    {
-      "pos": "INDDET", 
-      "text": "alle"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Länder"
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "sehen"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "darin"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "ein"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Gemeinschaftsproblem"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "-"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "der"
-    }, 
-    {
-      "pos": "ADJA", 
-      "text": "deutsche"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Innenminister"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Schäuble"
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "appelliert"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "an"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "die"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Eigenverantwortung"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "der"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Länder"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "ART", 
-      "text": "Die"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Flüchtlinge"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "RELPRO", 
-      "text": "die"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "auf"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Teneriffa"
-    }, 
-    {
-      "pos": "PREPART", 
-      "text": "im"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Lager"
-    }, 
-    {
-      "pos": "VVINF", 
-      "text": "ausharren"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "kommen"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "aus"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Ländern"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "in"
-    }, 
-    {
-      "pos": "RELPRO", 
-      "text": "denen"
-    }, 
-    {
-      "pos": "PERSPRO", 
-      "text": "sie"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "kaum"
-    }, 
-    {
-      "pos": "VVINF", 
-      "text": "existieren"
-    }, 
-    {
-      "pos": "VMFIN", 
-      "text": "können"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "-"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "auch"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "wegen"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "der"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Konkurrenz"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "aus"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Europa"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "COWIE", 
-      "text": "wie"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Professor"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Klaus"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "J."
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Bade"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Migrationsforscher"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "an"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "der"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Universität"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Osnabrück"
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "weiß"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ":"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "\""
-    }, 
-    {
-      "pos": "POSDET", 
-      "text": "Unsere"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Textilsammlungen"
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "landen"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "auf"
-    }, 
-    {
-      "pos": "ADJA", 
-      "text": "kommerziellen"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Märkten"
-    }, 
-    {
-      "pos": "COORD", 
-      "text": "und"
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "ruinieren"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "die"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Textilindustrie"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "COORD", 
-      "text": "Und"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "die"
-    }, 
-    {
-      "pos": "ADJA", 
-      "text": "schwimmenden"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Fischfabriken"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "-"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Fisch"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "unten"
-    }, 
-    {
-      "pos": "ADJD", 
-      "text": "rein"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Dose"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "oben"
-    }, 
-    {
-      "pos": "VPREF", 
-      "text": "raus"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "-"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "vor"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "den"
-    }, 
-    {
-      "pos": "ADJA", 
-      "text": "afrikanischen"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Küsten"
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "ruinieren"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "die"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Küstenfischerei"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Ergebnis"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ":"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "In"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Somalia"
-    }, 
-    {
-      "pos": "VVFIN", 
-      "text": "transportieren"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "inzwischen"
-    }, 
-    {
-      "pos": "ADJA", 
-      "text": "ruinierte"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Fischer"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "mit"
-    }, 
-    {
-      "pos": "POSDET", 
-      "text": "ihren"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Booten"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "die"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Illegalen"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "in"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Richtung"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Europa"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "\""
-    }, 
-    {
-      "pos": "COADV", 
-      "text": "Doch"
-    }, 
-    {
-      "pos": "REFLPRO", 
-      "text": "sich"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "vor"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Illegalen"
-    }, 
-    {
-      "pos": "PTKINF", 
-      "text": "zu"
-    }, 
-    {
-      "pos": "VVINF", 
-      "text": "schützen"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "damit"
-    }, 
-    {
-      "pos": "VMFIN", 
-      "text": "müsse"
-    }, 
-    {
-      "pos": "INDDET", 
-      "text": "jedes"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Land"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "selbst"
-    }, 
-    {
-      "pos": "ADJD", 
-      "text": "fertig"
-    }, 
-    {
-      "pos": "VAINF", 
-      "text": "werden"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "COWIE", 
-      "text": "wie"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Wolfgang"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Schäuble"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "("
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "CDU"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ")"
-    }, 
-    {
-      "pos": "VVPP", 
-      "text": "betont"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ":"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "\""
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "In"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Brüssel"
-    }, 
-    {
-      "pos": "VAFIN", 
-      "text": "ist"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "der"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Ruf"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "immer"
-    }, 
-    {
-      "pos": "ADJD", 
-      "text": "wohlfeil"
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": ":"
-    }, 
-    {
-      "pos": "PERSPRO", 
-      "text": "Es"
-    }, 
-    {
-      "pos": "VMFIN", 
-      "text": "muss"
-    }, 
-    {
-      "pos": "INDPRO", 
-      "text": "alles"
-    }, 
-    {
-      "pos": "ADJD", 
-      "text": "europäisch"
-    }, 
-    {
-      "pos": "VVPP", 
-      "text": "gemacht"
-    }, 
-    {
-      "pos": "VAINF", 
-      "text": "werden"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "INDDET", 
-      "text": "Jedes"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Land"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "mit"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Außengrenzen"
-    }, 
-    {
-      "pos": "VMFIN", 
-      "text": "muss"
-    }, 
-    {
-      "pos": "POSDET", 
-      "text": "seine"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Außengrenzen"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "schon"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "selber"
-    }, 
-    {
-      "pos": "VVINF", 
-      "text": "kontrollieren"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "COSUB", 
-      "text": "Wenn"
-    }, 
-    {
-      "pos": "PERSPRO", 
-      "text": "wir"
-    }, 
-    {
-      "pos": "ART", 
-      "text": "die"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Verantwortung"
-    }, 
-    {
-      "pos": "PREP", 
-      "text": "nach"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Europa"
-    }, 
-    {
-      "pos": "VVINF", 
-      "text": "schieben"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "VAFIN", 
-      "text": "wird"
-    }, 
-    {
-      "pos": "PERSPRO", 
-      "text": "es"
-    }, 
-    {
-      "pos": "COP1", 
-      "text": "weder"
-    }, 
-    {
-      "pos": "ADJD2", 
-      "text": "bürgernäher"
-    }, 
-    {
-      "pos": "ADV", 
-      "text": "noch"
-    }, 
-    {
-      "pos": "ADJD2", 
-      "text": "effizienter"
-    }, 
-    {
-      "pos": "CM", 
-      "text": ","
-    }, 
-    {
-      "pos": "COORD", 
-      "text": "sondern"
-    }, 
-    {
-      "pos": "ADJD", 
-      "text": "ganz"
-    }, 
-    {
-      "pos": "PREPART", 
-      "text": "im"
-    }, 
-    {
-      "pos": "NOUN", 
-      "text": "Gegenteil"
-    }, 
-    {
-      "pos": "SENT", 
-      "text": "."
-    }, 
-    {
-      "pos": "PUNCT", 
-      "text": "\""
-    }
+    "NPR", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "UNK", 
+    "SCM", 
+    "NNU", 
+    "NNU", 
+    "NNU", 
+    "SSY", 
+    "NNU", 
+    "NNU", 
+    "NNU", 
+    "SRQ", 
+    "NPR", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    null, 
+    "NPR", 
+    "SSY", 
+    "NPR", 
+    "NNC", 
+    "SCM", 
+    "NNC", 
+    "SCM", 
+    "NNC", 
+    "SLQ", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "SRQ", 
+    "NNX", 
+    "NNC", 
+    "SFN", 
+    "NNC", 
+    "NNC", 
+    "NNU", 
+    "NNU", 
+    "NNC", 
+    "NNC", 
+    "SCM", 
+    "NNU", 
+    "NNC", 
+    "NNC", 
+    "SCM", 
+    "NNU", 
+    "NNC", 
+    "NNC", 
+    "SFN", 
+    "NNC", 
+    "NNC", 
+    "NPR", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "UNK", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "ADC", 
+    "UNK", 
+    "UNK", 
+    "UNK", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "SRQ", 
+    "VV", 
+    "SCM", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NPR", 
+    "NNC", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "VV", 
+    "SFN", 
+    "NNU", 
+    "NNU", 
+    "NNC", 
+    "UNK", 
+    "UNK", 
+    "NPR", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NNU", 
+    "NNX", 
+    "NNC", 
+    "UNK", 
+    "NNU", 
+    "NNU", 
+    "UNK", 
+    "NNC", 
+    "NNC", 
+    "ADV", 
+    "NNC", 
+    "VJ", 
+    "SFN", 
+    "NPR", 
+    "NPR", 
+    "NNC", 
+    "VX", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "VX", 
+    "SFN", 
+    "NNU", 
+    "NNC", 
+    "NNC", 
+    "NPN", 
+    "NNC", 
+    "NNC", 
+    "NPR", 
+    "DAN", 
+    "NNC", 
+    "NPR", 
+    "NNC", 
+    "SFN", 
+    "VJ", 
+    "NNC", 
+    "NNC", 
+    "SLQ", 
+    "NNC", 
+    "SRQ", 
+    "NPR", 
+    "NNC", 
+    "NPR", 
+    "NNU", 
+    "NNU", 
+    "NNU", 
+    "NPR", 
+    "NPR", 
+    "NPR", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "UNK", 
+    "SRQ", 
+    "NNC", 
+    "NPR", 
+    "SLQ", 
+    "NNC", 
+    "VJ", 
+    "NNC", 
+    "SCM", 
+    "NNC", 
+    "NPR", 
+    "NPR", 
+    "SRQ", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NPR", 
+    "NNC", 
+    "NPR", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "UNK", 
+    "SCM", 
+    "NNU", 
+    "NNU", 
+    "NNU", 
+    "SSY", 
+    "NNU", 
+    "SRQ", 
+    "NNC", 
+    "NNC", 
+    "NPR", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "UNK", 
+    "SCM", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NNU", 
+    "SSY", 
+    "NNU", 
+    "SRQ", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "SFN", 
+    "NPR", 
+    "NNC", 
+    "NPR", 
+    "UNK", 
+    "NPR", 
+    "NPR", 
+    "NNC", 
+    "NNX", 
+    "NPR", 
+    "NNC", 
+    "SCM", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "SCM", 
+    "NNC", 
+    "NPR", 
+    "NPR", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "SFN", 
+    "NNC", 
+    "NPR", 
+    "ADV", 
+    "NPR", 
+    "NNX", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "SFN", 
+    "NPN", 
+    "NNC", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "SCM", 
+    "NNC", 
+    "VX", 
+    "SFN", 
+    "NPR", 
+    "NNC", 
+    "NNX", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "SCM", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "VX", 
+    "SFN", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NNC", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "SCM", 
+    "NNC", 
+    "NPR", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "VJ", 
+    "NNC", 
+    "NNC", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "VV", 
+    "SFN", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NPR", 
+    "NNC", 
+    "VV", 
+    "VJ", 
+    "NNC", 
+    "NPR", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "UNK", 
+    "SRQ", 
+    "NNC", 
+    "NNC", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "VX", 
+    "SCM", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "SFN", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NNC", 
+    "NPR", 
+    "ADC", 
+    "NNC", 
+    "NPR", 
+    "NNC", 
+    "NNX", 
+    "VJ", 
+    "NNC", 
+    "NPN", 
+    "NNC", 
+    "NNC", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "SRQ", 
+    "ADC", 
+    "NNC", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "SRQ", 
+    "NPR", 
+    "VV", 
+    "VX", 
+    "SFN", 
+    "NPR", 
+    "NNC", 
+    "VV", 
+    "NNU", 
+    "NPR", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "UNK", 
+    "SRQ", 
+    "NNC", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "SRQ", 
+    "NPR", 
+    "NNC", 
+    "SFN", 
+    "NNU", 
+    "NNU", 
+    "NNX", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "NNC", 
+    "NPR", 
+    "VV", 
+    "NPR", 
+    "NNC", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "SFN", 
+    "DAN", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "NPR", 
+    "NNC", 
+    "VV", 
+    "NNU", 
+    "NNX", 
+    "NNU", 
+    "NNX", 
+    "NPR", 
+    "NNC", 
+    "NPR", 
+    "NPR", 
+    "NNC", 
+    "SLQ", 
+    "UNK", 
+    "UNK", 
+    "SRQ", 
+    "NPR", 
+    "VJ", 
+    "NNC", 
+    "VV", 
+    "NPR", 
+    "VV", 
+    "SFN", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NNC", 
+    "NNU", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "NNC", 
+    "NNU", 
+    "NNC", 
+    "SCM", 
+    "NPR", 
+    "NNC", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NNU", 
+    "NNC", 
+    "SCM", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "VX", 
+    "SFN", 
+    "NNC", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "NNC", 
+    "VJ", 
+    "ADV", 
+    "VJ", 
+    "SFN", 
+    "SLQ", 
+    "NNU", 
+    "SRQ", 
+    "NNC", 
+    "NNC", 
+    "VV", 
+    "NNC", 
+    "NNC", 
+    "NPR", 
+    "SLQ", 
+    "NNC", 
+    "VV", 
+    "NPN", 
+    "NNC", 
+    "VV", 
+    "VX", 
+    "VV", 
+    "NNC", 
+    "VV", 
+    "NNU", 
+    "NNU", 
+    "NPR", 
+    "NNC", 
+    "NNC", 
+    "NPR", 
+    "VV", 
+    "NNC", 
+    "NNX", 
+    "NNC", 
+    "VJ", 
+    "NNC", 
+    "NNC", 
+    "NNC", 
+    "NNX", 
+    "SSY"
   ], 
-  "requestId": "4e114334-6092-497f-9c00-93cacd700ebf"
+  "tokens": [
+    "김일성", 
+    "(", 
+    "金", 
+    "日", 
+    "成", 
+    ",", 
+    "1912년", 
+    "4월", 
+    "15일", 
+    "~", 
+    "1994년", 
+    "7월", 
+    "8일", 
+    ")", 
+    "은", 
+    "한국의", 
+    "독립운동가이자", 
+    "조선민주주의", 
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx인민공화국의", 
+    "정치인이다", 
+    ".", 
+    "만주", 
+    "조선공산주의청년동맹", 
+    ",", 
+    "조선혁명군", 
+    ",", 
+    "반일인민유격대", 
+    "(", 
+    "그후", 
+    "조선인민혁명군으로", 
+    "개편", 
+    ")", 
+    "등을", 
+    "조직했다", 
+    ".", 
+    "해방", 
+    "후", 
+    "1948년부터", 
+    "1972년까지는", 
+    "조선민주주의인민공화국의", 
+    "총리", 
+    ",", 
+    "1972년부터는", 
+    "인민공화국", 
+    "국가주석이었고", 
+    ",", 
+    "1990년", 
+    "국가주석에", 
+    "재선되었다", 
+    ".", 
+    "원래", 
+    "이름은", 
+    "김성주", 
+    "(", 
+    "金", 
+    "成", 
+    "柱", 
+    "[", 
+    "1", 
+    "]", 
+    "[", 
+    "2", 
+    "]", 
+    "또는", 
+    "金", 
+    "聖", 
+    "柱", 
+    "[", 
+    "3", 
+    "]", 
+    "[", 
+    "4", 
+    "]", 
+    ")", 
+    "였는데", 
+    ",", 
+    "항일", 
+    "투쟁을", 
+    "하면서", 
+    "[", 
+    "3", 
+    "]", 
+    "[", 
+    "4", 
+    "]", 
+    "[", 
+    "5", 
+    "]", 
+    "김일성으로", 
+    "개명", 
+    "[", 
+    "3", 
+    "]", 
+    "[", 
+    "4", 
+    "]", 
+    "[", 
+    "6", 
+    "]", 
+    "하였다", 
+    ".", 
+    "1966년", 
+    "10월", 
+    "당중앙위원회", 
+    "제4기", 
+    "14차전원회의에서", 
+    "조선로동당", 
+    "중앙위원회", 
+    "총비서로", 
+    "선출되었고", 
+    "1970", 
+    "년에", 
+    "진행된", 
+    "제5차전당대회와", 
+    "1980년", 
+    "10월에의", 
+    "6차전당대회에서", 
+    "당중앙위원회", 
+    "총비서로", 
+    "또다시", 
+    "재선", 
+    "되었다", 
+    ".", 
+    "대한민국에서는", 
+    "한국전쟁을", 
+    "발발하게", 
+    "한", 
+    "장본인중", 
+    "한사람으로", 
+    "지목되어", 
+    "최근까지", 
+    "부정적인", 
+    "평가를", 
+    "받아", 
+    "왔다", 
+    ".", 
+    "1994년", 
+    "절대권력의", 
+    "상징이었던", 
+    "그가", 
+    "사망하면서", 
+    "아들", 
+    "김정일에게", 
+    "모든", 
+    "권력을", 
+    "승", 
+    "계하였다", 
+    ".", 
+    "어린", 
+    "시절과", 
+    "가계", 
+    "[", 
+    "편집", 
+    "]", 
+    "김일성의", 
+    "생가", 
+    "김일성은", 
+    "1912년", 
+    "4월", 
+    "15일에", 
+    "평안남도", 
+    "대동군", 
+    "고평면", 
+    "(", 
+    "古", 
+    "平", 
+    "面", 
+    ")", 
+    "하리", 
+    "칠곡", 
+    "(", 
+    "외가가", 
+    "있었던", 
+    "곳으로", 
+    ",", 
+    "오늘날", 
+    "평양", 
+    "만경대", 
+    ")", 
+    "[", 
+    "6", 
+    "]", 
+    "에서", 
+    "아버지", 
+    "김형직", 
+    "(", 
+    "金", 
+    "亨", 
+    "稷", 
+    ",", 
+    "1894년", 
+    "7월", 
+    "10일", 
+    "~", 
+    "1926년", 
+    ")", 
+    "과", 
+    "어머니", 
+    "강반석", 
+    "(", 
+    "康", 
+    "盤", 
+    "石", 
+    ",", 
+    "[", 
+    "7", 
+    "]", 
+    "1892년", 
+    "~", 
+    "1932년", 
+    ")", 
+    "의", 
+    "삼형제의", 
+    "맏아들로", 
+    "태어났다", 
+    ".", 
+    "김일성의", 
+    "전주", 
+    "김씨", 
+    "12대조", 
+    "김계상이", 
+    "전라북도", 
+    "전", 
+    "주에서", 
+    "평양으로", 
+    "이주하였으며", 
+    ",", 
+    "[", 
+    "6", 
+    "]", 
+    "[", 
+    "8", 
+    "]", 
+    "이후", 
+    "농업에", 
+    "종사하였으며", 
+    ",", 
+    "증조부", 
+    "김응우는", 
+    "제너럴", 
+    "셔먼호", 
+    "사건에", 
+    "종군하였다", 
+    ".", 
+    "북조선에서는", 
+    "김응우가", 
+    "제너럴", 
+    "셔먼", 
+    "호", 
+    "격퇴의", 
+    "지휘관이라", 
+    "주장한다", 
+    ".", 
+    "그의", 
+    "생가는", 
+    "만경대라는", 
+    "이름으로", 
+    "보존", 
+    ",", 
+    "관리되고", 
+    "있다", 
+    ".", 
+    "김형직은", 
+    "할아버지", 
+    "이래로", 
+    "지주", 
+    "집안의", 
+    "묘지기였으며", 
+    ",", 
+    "[", 
+    "9", 
+    "]", 
+    "일본", 
+    "제국주의에", 
+    "대항하여", 
+    "항일무장투쟁을", 
+    "벌인", 
+    "한국의", 
+    "독립", 
+    "운동가로", 
+    "알려져", 
+    "있다", 
+    ".", 
+    "[", 
+    "3", 
+    "]", 
+    "어머니", 
+    "강반석은", 
+    "기독교", 
+    "장로교", 
+    "신도였고", 
+    ",", 
+    "외할아버지", 
+    "강돈욱", 
+    "[", 
+    "9", 
+    "]", 
+    "는", 
+    "칠골교회의", 
+    "장로", 
+    "[", 
+    "10", 
+    "]", 
+    "였다", 
+    ".", 
+    "[", 
+    "3", 
+    "]", 
+    "김일성의", 
+    "외가", 
+    "는", 
+    "큰", 
+    "외삼촌", 
+    "강진석", 
+    "(", 
+    "康", 
+    "晋", 
+    "錫", 
+    ")", 
+    "을", 
+    "비롯하여", 
+    "일찍부터", 
+    "항일", 
+    "민족운동과", 
+    "관련을", 
+    "맺고", 
+    "있었으며", 
+    ",", 
+    "강돈욱은", 
+    "평생을", 
+    "교육사업에", 
+    "헌신한", 
+    "기독교인이었다", 
+    ".", 
+    "[", 
+    "9", 
+    "]", 
+    "아버지", 
+    "김형직", 
+    "또는", 
+    "할아버지", 
+    "김보현이", 
+    "기둥이", 
+    "되라", 
+    "는", 
+    "뜻에서", 
+    "그의", 
+    "이름을", 
+    "성주", 
+    "(", 
+    "成", 
+    "柱", 
+    ")", 
+    "또는", 
+    "성주", 
+    "(", 
+    "聖", 
+    "柱", 
+    ")", 
+    "라", 
+    "지었다고", 
+    "한다", 
+    ".", 
+    "어려서", 
+    "부모를", 
+    "따라", 
+    "만주", 
+    "지린성", 
+    "(", 
+    "吉", 
+    "林", 
+    "省", 
+    ")", 
+    "무송", 
+    "(", 
+    "撫", 
+    "松", 
+    ")", 
+    "으로", 
+    "이사했다", 
+    ".", 
+    "1919년", 
+    "일곱", 
+    "살이었던", 
+    "김일성은", 
+    "민족주의", 
+    "계열의", 
+    "독립운동을", 
+    "하던", 
+    "아버지", 
+    "김형직을", 
+    "따라", 
+    "만주로", 
+    "건너가", 
+    "장백현", 
+    "팔도구에서", 
+    "팔도구소", 
+    "학교를", 
+    "다녔다", 
+    ".", 
+    "그", 
+    "뒤", 
+    "자식의", 
+    "장래를", 
+    "생각한", 
+    "김형직의", 
+    "결심에", 
+    "따라", 
+    "1923년", 
+    "초부터", 
+    "1925년", 
+    "초까지", 
+    "평", 
+    "안도", 
+    "대동군", 
+    "용산면", 
+    "하리", 
+    "(", 
+    "下", 
+    "里", 
+    ")", 
+    "칠골에", 
+    "있는", 
+    "외가에서", 
+    "머물면서", 
+    "창덕소학교에", 
+    "다녔다", 
+    ".", 
+    "[", 
+    "9", 
+    "]", 
+    "창덕학교는", 
+    "1907년", 
+    "하리", 
+    "장로교회가", 
+    "중심이", 
+    "되어", 
+    "세운", 
+    "5년제", 
+    "학교인데", 
+    ",", 
+    "김일성의", 
+    "외할아버지인", 
+    "강돈욱도", 
+    "설립자", 
+    "가운데", 
+    "한", 
+    "사람이며", 
+    ",", 
+    "한때", 
+    "창덕학교의", 
+    "교감과", 
+    "교장을", 
+    "맡기도", 
+    "했다", 
+    ".", 
+    "아버지", 
+    "김형직의", 
+    "권고로", 
+    "중국말", 
+    "을", 
+    "배우고", 
+    "중국인소학교에서", 
+    "중어공부를", 
+    "하여", 
+    "중어를", 
+    "자유롭게", 
+    "구사할수", 
+    "있었다", 
+    ".", 
+    "[", 
+    "11", 
+    "]", 
+    "창덕학교로의", 
+    "진학과정에", 
+    "대하여", 
+    "략력에서는", 
+    "아버지", 
+    "김형직이", 
+    "'", 
+    "혁명을", 
+    "하자면", 
+    "자기", 
+    "나라를", 
+    "알아야", 
+    "한다고", 
+    "말한", 
+    "권고를", 
+    "받고", 
+    "1923년", 
+    "3월", 
+    "중국", 
+    "팔도구로부터", 
+    "만경대까지배움의", 
+    "천리길을", 
+    "걸어", 
+    "통학하며", 
+    "외", 
+    "가집이", 
+    "있는", 
+    "칠골", 
+    "창덕학교에서", 
+    "공부하였다는", 
+    "것이다", 
+    "."
+  ]
 }
