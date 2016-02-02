@@ -137,7 +137,7 @@ public final class NameTranslationResponse extends Response {
         result = 31 * result + (targetScript != null ? targetScript.hashCode() : 0);
         result = 31 * result + (targetScheme != null ? targetScheme.hashCode() : 0);
         result = 31 * result + (translation != null ? translation.hashCode() : 0);
-        result = 31 * result + Double.hashCode(confidence);
+        result = 31 * result + confidence.hashCode();
         return result;
     }
 

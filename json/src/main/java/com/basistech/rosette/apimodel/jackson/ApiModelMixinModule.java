@@ -49,6 +49,7 @@ import com.basistech.rosette.apimodel.RelationshipsOptions;
 import com.basistech.rosette.apimodel.RelationshipsRequest;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
+import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.SentencesRequest;
 import com.basistech.rosette.apimodel.SentencesResponse;
 import com.basistech.rosette.apimodel.Sentiment;
@@ -72,6 +73,7 @@ public class ApiModelMixinModule extends EnumModule {
 
     public void setupModule(SetupContext context) {
         super.setupModule(context);
+        context.setMixInAnnotations(Response.class, ResponseMixin.class);
         context.setMixInAnnotations(Category.class, CategoryMixin.class);
         context.setMixInAnnotations(CategoriesOptions.class, CategoriesOptionsMixin.class);
         context.setMixInAnnotations(CategoriesRequest.class, CategoriesRequestMixin.class);

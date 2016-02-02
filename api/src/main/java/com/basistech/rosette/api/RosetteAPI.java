@@ -960,9 +960,9 @@ public class RosetteAPI implements Closeable {
                 response = httpClient.execute(post);
 
                 T resp = getResponse(response, clazz);
-                String ridHeader = response.getFirstHeader("X-RosetteAPI-Request-Id").getValue();
-                if (ridHeader != null) {
-                    LOG.debug("Request ID " + ridHeader);
+                Header ridHeader = response.getFirstHeader("X-RosetteAPI-Request-Id");
+                if (ridHeader != null && ridHeader.getValue() != null) {
+                    LOG.debug("Request ID " + ridHeader.getValue());
                 }
                 return resp;
             } catch (RosetteAPIException e) {

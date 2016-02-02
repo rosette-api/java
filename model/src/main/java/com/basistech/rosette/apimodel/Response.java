@@ -16,11 +16,24 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Base class for all responses.
  * In this version, they have nothing in common.
  */
 public abstract class Response {
-    //
+    protected Map<String, Object> extendedInformation;
 
+    public Map<String, Object> getExtendedInformation() {
+        return extendedInformation;
+    }
+
+    void setExtendedInformation(String key, Object value) {
+        if (extendedInformation == null) {
+            extendedInformation = new HashMap<>();
+        }
+        extendedInformation.put(key, value);
+    }
 }
