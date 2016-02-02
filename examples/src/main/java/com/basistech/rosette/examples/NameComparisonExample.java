@@ -18,6 +18,7 @@ package com.basistech.rosette.examples;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Name;
+import com.basistech.rosette.apimodel.NameComparisonRequest;
 import com.basistech.rosette.apimodel.NameComparisonResponse;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
@@ -27,10 +28,10 @@ import java.io.IOException;
 /**
  * Example which demonstrates the name matching api.
  */
-public final class MatchedNameExample extends ExampleBase {
+public final class NameComparisonExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            new MatchedNameExample().run();
+            new NameComparisonExample().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
