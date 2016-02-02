@@ -36,11 +36,11 @@ public final class TranslatedNameExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String translated_name_data = "معمر محمد أبو منيار القذاف";
-        NameTranslationRequest request = new NameTranslationRequest(translated_name_data,
+        String translateNameData = "معمر محمد أبو منيار القذاف";
+        NameTranslationRequest request = new NameTranslationRequest(translateNameData,
                 null, null, null, null, LanguageCode.ENGLISH, null, null);
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         NameTranslationResponse response = rosetteApi.translateName(request);
         System.out.println(responseToJson(response));
     }

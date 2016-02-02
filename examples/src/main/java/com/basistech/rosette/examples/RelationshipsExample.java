@@ -34,10 +34,10 @@ public final class RelationshipsExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String relationships_text_data = "Bill Murray is in the new Ghostbusters film!";
+        String relationshipsTextData = "Bill Murray is in the new Ghostbusters film!";
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        RelationshipsResponse response = rosetteApi.getRelationships(relationships_text_data, null, null);
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        RelationshipsResponse response = rosetteApi.getRelationships(relationshipsTextData, null, null);
         System.out.println(responseToJson(response));
     }
 }

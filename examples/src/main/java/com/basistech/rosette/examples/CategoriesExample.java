@@ -37,9 +37,9 @@ public final class CategoriesExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String categories_url_data = "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/";
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        CategoriesResponse response = rosetteApi.getCategories(categories_url_data, null, null);
+        String categoriesUrlData = "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/";
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        CategoriesResponse response = rosetteApi.getCategories(categoriesUrlData, null, null);
         System.out.println(responseToJson(response));
     }
 }

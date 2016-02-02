@@ -34,11 +34,11 @@ public final class MorphologyLemmasExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String morphology_lemmas_data = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon";
+        String morphologyLemmasData = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon";
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.LEMMAS,
-                morphology_lemmas_data, null, null);
+                morphologyLemmasData, null, null);
         System.out.println(responseToJson(response));
     }
 }
