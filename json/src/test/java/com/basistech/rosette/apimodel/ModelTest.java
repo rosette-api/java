@@ -52,6 +52,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 @RunWith(Parameterized.class)
 public class ModelTest {
@@ -142,16 +143,29 @@ public class ModelTest {
     }
 
 
-    private Object createObject(Constructor ctor) throws IllegalAccessException, InvocationTargetException,
-            InstantiationException {
+    private Object createObject(Constructor ctor) {
         Object o;
         int argSize = ctor.getParameterTypes().length;
         Class[] parameterTypes = ctor.getParameterTypes();
         Object[] args = new Object[argSize];
+
         for (int i = 0; i < argSize; i++) {
-            args[i] = createObjectForType(parameterTypes[i], ctor.getGenericParameterTypes()[i]);
+            try {
+                args[i] = createObjectForType(parameterTypes[i], ctor.getGenericParameterTypes()[i]);
+            } catch (Throwable e) {
+                e.printStackTrace();
+                fail(String.format("Unable to create object %s %d %s %s", ctor, i, parameterTypes[i], ctor.getGenericParameterTypes()[i]));
+                return null;
+            }
+
         }
-        o = ctor.newInstance(args);
+        try {
+            o = ctor.newInstance(args);
+        } catch (Throwable t) {
+            t.printStackTrace();
+            fail(String.format("Unable to create object for %s", ctor));
+            return null;
+        }
         return o;
     }
 
@@ -219,6 +233,8 @@ public class ModelTest {
             o = false;
             break;
         }
+
+        case "Collection":
         case "List": {
             if (parameterArgClass != null) {
                 Object o1 = createObjectForType(parameterArgClass, null);

@@ -17,6 +17,8 @@
 package com.basistech.rosette.apimodel;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 /**
  *  Information returned from the sentiment endpoint.
@@ -36,5 +38,23 @@ public final class SentimentResponse extends Response {
 
     public Collection<EntitySentiment> getEntities() {
         return entities;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SentimentResponse that = (SentimentResponse) o;
+        return Objects.equals(document, that.document) &&
+                Objects.equals(entities, that.entities);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(document, entities);
     }
 }

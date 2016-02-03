@@ -16,16 +16,16 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.Sentiment;
+import com.basistech.rosette.apimodel.EntitySentiment;
+import com.basistech.rosette.apimodel.Label;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
+import java.util.Collection;
 
 public class SentimentResponseMixin  extends BaseMixin {
     @JsonCreator
-    protected SentimentResponseMixin(@JsonProperty("sentiment") List<Sentiment> sentiment
-    ) {
+    protected SentimentResponseMixin(@JsonProperty("document") Label document, @JsonProperty("entities") Collection<EntitySentiment> entities) {
         //
     }
 }
