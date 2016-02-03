@@ -31,7 +31,6 @@ import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.HanReadings;
 import com.basistech.rosette.apimodel.InfoResponse;
 import com.basistech.rosette.apimodel.LanguageDetectionResult;
-import com.basistech.rosette.apimodel.LanguageInfoResponse;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
@@ -97,7 +96,6 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(HanReadings.class, HanReadingsMixin.class);
         context.setMixInAnnotations(InfoResponse.class, InfoResponseMixin.class);
         context.setMixInAnnotations(LanguageDetectionResult.class, LanguageDetectionResultMixin.class);
-        context.setMixInAnnotations(LanguageInfoResponse.class, LanguageInfoResponseMixin.class);
         context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);
         context.setMixInAnnotations(LanguageRequest.class, LanguageRequestMixin.class);
         context.setMixInAnnotations(LanguageResponse.class, LanguageResponseMixin.class);

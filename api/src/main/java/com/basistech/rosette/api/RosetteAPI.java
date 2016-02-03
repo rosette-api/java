@@ -37,7 +37,6 @@ import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InfoResponse;
 import com.basistech.rosette.apimodel.InputUnit;
-import com.basistech.rosette.apimodel.LanguageInfoResponse;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
@@ -933,17 +932,6 @@ public final class RosetteAPI {
         throws RosetteAPIException, IOException {
         MorphologyRequest request = new MorphologyRequest(language, content, null, null, unit, null);
         return sendPostRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
-    }
-
-    /**
-     * Provides information on the language endpoint
-     *
-     * @return {@link com.basistech.rosette.apimodel.LanguageInfoResponse LanguageInfoResponse}
-     * @throws RosetteAPIException Rosette specific exception
-     * @throws IOException General IO exception
-     */
-    public LanguageInfoResponse getLanguageInfo() throws RosetteAPIException, IOException {
-        return sendGetRequest(urlBase + LANGUAGE_SERVICE_PATH + INFO_SERVICE_PATH, LanguageInfoResponse.class);
     }
 
     /**
