@@ -16,48 +16,25 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
- *  Simple api response data model for sentiment analysis
+ *  Information returned from the sentiment endpoint.
  **/
 public final class SentimentResponse extends Response {
+    private final Label document;
+    private final Collection<EntitySentiment> entities;
 
-    private final List<Sentiment> sentiment;
-    
-    /**
-     * constructor for {@code SentimentResponse}
-     * @param sentiment list of sentiment analysis results
-     */
-    public SentimentResponse(List<Sentiment> sentiment) {
-        this.sentiment = sentiment;
+    public SentimentResponse(Label document, Collection<EntitySentiment> entities) {
+        this.document = document;
+        this.entities = entities;
     }
 
-    /**
-     * get the list of sentiment analysis results
-     * @return the list of sentiment analysis results
-     */
-    public List<Sentiment> getSentiment() {
-        return sentiment;
+    public Label getDocument() {
+        return document;
     }
 
-    @Override
-    public int hashCode() {
-        return sentiment != null ? sentiment.hashCode() : 0;
-    }
-
-    /**
-     * if the param is a {@code SentimentResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof SentimentResponse)) {
-            return false;
-        }
-
-        SentimentResponse that = (SentimentResponse) o;
-        return sentiment != null ? sentiment.equals(that.getSentiment()) : that.sentiment == null;
+    public Collection<EntitySentiment> getEntities() {
+        return entities;
     }
 }

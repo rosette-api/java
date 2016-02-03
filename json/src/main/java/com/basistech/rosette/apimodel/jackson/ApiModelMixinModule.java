@@ -20,7 +20,7 @@ import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.CategoriesOptions;
 import com.basistech.rosette.apimodel.CategoriesRequest;
 import com.basistech.rosette.apimodel.CategoriesResponse;
-import com.basistech.rosette.apimodel.Category;
+import com.basistech.rosette.apimodel.Label;
 import com.basistech.rosette.apimodel.ConstantsResponse;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesRequest;
@@ -74,7 +74,7 @@ public class ApiModelMixinModule extends EnumModule {
     public void setupModule(SetupContext context) {
         super.setupModule(context);
         context.setMixInAnnotations(Response.class, ResponseMixin.class);
-        context.setMixInAnnotations(Category.class, CategoryMixin.class);
+        context.setMixInAnnotations(Label.class, CategoryMixin.class);
         context.setMixInAnnotations(CategoriesOptions.class, CategoriesOptionsMixin.class);
         context.setMixInAnnotations(CategoriesRequest.class, CategoriesRequestMixin.class);
         context.setMixInAnnotations(CategoriesResponse.class, CategoriesResponseMixin.class);
