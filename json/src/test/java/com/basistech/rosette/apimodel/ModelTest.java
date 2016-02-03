@@ -271,8 +271,9 @@ public class ModelTest {
     }
 
     private boolean isListString(ParameterizedType parameterizedType) {
-        // oh, just use the String.
-        return "java.util.List<java.lang.String>".equals(parameterizedType.getTypeName());
+        return List.class.equals(parameterizedType.getRawType())
+                && parameterizedType.getActualTypeArguments().length == 1
+                && String.class.equals(parameterizedType.getActualTypeArguments()[0]);
     }
 
     private Object createObject(Class clazz) throws IllegalAccessException, InstantiationException,
