@@ -25,9 +25,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public abstract class EntitySentimentMixin {
     @JsonCreator
-    public EntitySentimentMixin(@JsonProperty("entity") String entity,
+    public EntitySentimentMixin(@JsonProperty("mention") String mention,
                                 @JsonProperty("type") String type,
-                                @JsonProperty("qid") String qid,
+                                @JsonProperty("entityId") String entityId,
                                 @JsonProperty("label") Label label) {
 
     }

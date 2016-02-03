@@ -23,28 +23,28 @@ import java.util.Objects;
  * Per-entity sentiment info.
  */
 public class EntitySentiment {
-    private final String entity;
+    private final String mention;
     private final String type;
-    private final String qid;
+    private final String entityId;
     private final Label label;
 
-    public EntitySentiment(String entity, String type, String qid, Label label) {
-        this.entity = entity;
+    public EntitySentiment(String mention, String type, String entityId, Label label) {
+        this.mention = mention;
         this.type = type;
-        this.qid = qid;
+        this.entityId = entityId;
         this.label = label;
     }
 
-    public String getEntity() {
-        return entity;
+    public String getMention() {
+        return mention;
     }
 
     public String getType() {
         return type;
     }
 
-    public String getQid() {
-        return qid;
+    public String getEntityId() {
+        return entityId;
     }
 
     public Label getLabel() {
@@ -60,14 +60,14 @@ public class EntitySentiment {
             return false;
         }
         EntitySentiment that = (EntitySentiment) o;
-        return Objects.equals(entity, that.entity)
+        return Objects.equals(mention, that.mention)
                 && Objects.equals(type, that.type)
-                && Objects.equals(qid, that.qid)
+                && Objects.equals(entityId, that.entityId)
                 && Objects.equals(label, that.label);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(entity, type, qid, label);
+        return Objects.hash(mention, type, entityId, label);
     }
 }
