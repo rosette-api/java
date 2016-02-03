@@ -40,8 +40,6 @@ def capture(req, endpoints, filename_prefix):
             req_file.write(json.dumps(req, ensure_ascii=False, indent=2, sort_keys=True, encoding="utf8"))
             resp_file.write(json.dumps(resp.json(), ensure_ascii=False, indent=2, sort_keys=True, encoding="utf8"))
             resp_status_file.write(unicode(resp.status_code))
-            req_file.close()
-            resp_file.close()
         print "created mock req/resp files for %s" % (filename_prefix + "-" + endpoint)
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
@@ -72,8 +70,6 @@ else:
          io.open("response/info.status", "w", encoding="utf8") as resp_status_file:
         resp_file.write(json.dumps(resp.json(), ensure_ascii=False, indent=2, sort_keys=True, encoding="utf8"))
         resp_status_file.write(unicode(resp.status_code))
-        resp_file.close()
-        resp_status_file.close()
 
 # deal with local docs
 with open("source/doc-strings.tsv", "r") as tsvfile:
@@ -92,7 +88,6 @@ with open("source/doc-strings.tsv", "r") as tsvfile:
         else:
             continue
         capture(req, DOC_ENDPOINTS, filename_prefix)
-    tsvfile.close()
 
 # deal with URLs
 for key in GNEWS_LANGS.keys():
@@ -111,7 +106,6 @@ with open("source/rnt.tsv", "r") as tsvfile:
         i += 1
         filename_prefix = "rnt-" + str(i)
         capture(row, RNT_ENDPOINTS, filename_prefix)
-    tsvfile.close()
 
 # deal with RNI
 with open("source/rni.tsv", "r") as tsvfile:
@@ -132,5 +126,4 @@ with open("source/rni.tsv", "r") as tsvfile:
                 print "bad column heading %s - abort" % column_name
                 sys.exit(1)
         capture({"name1": name1, "name2": name2}, RNI_ENDPOINTS, filename_prefix)
-    tsvfile.close()
 

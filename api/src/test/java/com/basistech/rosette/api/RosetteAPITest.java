@@ -155,7 +155,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyNameMatcher(NameComparisonResponse response) throws IOException {
         NameComparisonResponse goldResponse = mapper.readValue(responseStr, NameComparisonResponse.class);
-        assertEquals(response.getScore(), goldResponse.getScore(), 0.0);
+        assertEquals(goldResponse.getScore(),response.getScore(), 0.0);
     }
 
     private NameComparisonRequest readValueNameMatcher() throws IOException {
@@ -179,7 +179,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyNameTranslation(NameTranslationResponse response) throws IOException {
         NameTranslationResponse goldResponse = mapper.readValue(responseStr, NameTranslationResponse.class);
-        assertEquals(response.getTranslation(), goldResponse.getTranslation());
+        assertEquals(goldResponse.getTranslation(), response.getTranslation());
     }
 
     private NameTranslationRequest readValueNameTranslation() throws IOException {
@@ -189,7 +189,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyLanguage(LanguageResponse response) throws IOException {
         LanguageResponse goldResponse = mapper.readValue(responseStr, LanguageResponse.class);
-        assertEquals(response.getLanguageDetections().size(), goldResponse.getLanguageDetections().size());
+        assertEquals(goldResponse.getLanguageDetections().size(), response.getLanguageDetections().size());
     }
 
     @Test
