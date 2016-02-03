@@ -1,213 +1,148 @@
 {
   "entities": [
     {
-      "confidence": 0.01987546682357788, 
+      "confidence": 0.0, 
       "count": 10, 
-      "indocChainId": 2, 
-      "mention": "俄", 
-      "normalized": "俄", 
-      "type": "LOCATION"
+      "indocChainId": 3, 
+      "mention": "总书记", 
+      "normalized": "总书记", 
+      "type": "TITLE"
     }, 
     {
-      "confidence": 0.013244820965660943, 
+      "confidence": 0.0, 
       "count": 9, 
-      "indocChainId": 17, 
-      "mention": "中", 
-      "normalized": "中", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.03708694662366595, 
-      "count": 7, 
-      "indocChainId": 0, 
+      "indocChainId": 2, 
       "mention": "习近平", 
       "normalized": "习近平", 
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0640413999557495, 
-      "count": 5, 
-      "indocChainId": 11, 
-      "mention": "普京", 
-      "normalized": "普京", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.028446480631828308, 
-      "count": 4, 
-      "indocChainId": 9, 
-      "mention": "俄罗斯", 
-      "normalized": "俄罗斯", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.014063576857248941, 
-      "count": 3, 
-      "indocChainId": 21, 
-      "mention": "欧亚经济联盟", 
-      "normalized": "欧亚经济联盟", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.034951239824295044, 
-      "count": 2, 
-      "indocChainId": 4, 
-      "mention": "莫斯科", 
-      "normalized": "莫斯科", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.03000470995903015, 
-      "count": 2, 
-      "indocChainId": 5, 
-      "mention": "记者", 
-      "normalized": "记者", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.008697807788848877, 
-      "count": 1, 
-      "indocChainId": 1, 
-      "mention": "京", 
-      "normalized": "京", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.007232844829559326, 
-      "count": 1, 
-      "indocChainId": 3, 
-      "mention": "人民日报", 
-      "normalized": "人民日报", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.02314591407775879, 
-      "count": 1, 
-      "indocChainId": 6, 
-      "mention": "杜尚泽", 
-      "normalized": "杜尚泽", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.00882101058959961, 
-      "count": 1, 
+      "confidence": 0.0, 
+      "count": 7, 
       "indocChainId": 7, 
-      "mention": "国家主席", 
-      "normalized": "国家主席", 
-      "type": "TITLE"
+      "mention": "井冈山", 
+      "normalized": "井冈山", 
+      "type": "LOCATION"
     }, 
     {
-      "confidence": 0.014860749244689941, 
-      "count": 1, 
+      "confidence": 0.0, 
+      "count": 4, 
       "indocChainId": 10, 
-      "mention": "总统", 
-      "normalized": "总统", 
-      "type": "TITLE"
+      "mention": "毛泽东", 
+      "normalized": "毛泽东", 
+      "type": "PERSON"
     }, 
     {
-      "confidence": 0.027349650859832764, 
-      "count": 1, 
-      "indocChainId": 24, 
+      "confidence": 0.0, 
+      "count": 3, 
+      "indocChainId": 13, 
       "mention": "中国", 
       "normalized": "中国", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.015836060047149658, 
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 11, 
+      "mention": "朱德", 
+      "normalized": "朱德", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 26, 
-      "mention": "亚洲", 
-      "normalized": "亚洲", 
+      "indocChainId": 0, 
+      "mention": "新华网", 
+      "normalized": "新华网", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 1, 
+      "mention": "北京", 
+      "normalized": "北京", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.025710999965667725, 
+      "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 27, 
-      "mention": "欧洲", 
-      "normalized": "欧洲", 
+      "indocChainId": 2, 
+      "mention": "近平", 
+      "normalized": "近平", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 4, 
+      "mention": "江西", 
+      "normalized": "江西", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.01170969009399414, 
+      "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 41, 
-      "mention": "主席", 
-      "normalized": "主席", 
+      "indocChainId": 12, 
+      "mention": "中国工农红军", 
+      "normalized": "中国工农红军", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 15, 
+      "mention": "中华人民共和国", 
+      "normalized": "中华人民共和国", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 22, 
+      "mention": "中共湘赣边界", 
+      "normalized": "中共湘赣边界", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 25, 
+      "mention": "听说毛泽东", 
+      "normalized": "听说毛泽东", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 30, 
+      "mention": "茅坪村", 
+      "normalized": "茅坪村", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 32, 
+      "mention": "同志", 
+      "normalized": "同志", 
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.005235791206359863, 
+      "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 47, 
-      "mention": "欧", 
-      "normalized": "欧", 
-      "type": "LOCATION"
+      "indocChainId": 38, 
+      "mention": "罗霄", 
+      "normalized": "罗霄", 
+      "type": "PERSON"
     }, 
     {
-      "confidence": 0.002737879753112793, 
+      "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 48, 
-      "mention": "亚", 
-      "normalized": "亚", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0016486644744873047, 
-      "count": 1, 
-      "indocChainId": 49, 
-      "mention": "欧亚大陆", 
-      "normalized": "欧亚大陆", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.006211519241333008, 
-      "count": 1, 
-      "indocChainId": 50, 
-      "mention": "远东", 
-      "normalized": "远东", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.01225060224533081, 
-      "count": 1, 
-      "indocChainId": 51, 
-      "mention": "上海合作组织", 
-      "normalized": "上海合作组织", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.05038654804229736, 
-      "count": 1, 
-      "indocChainId": 52, 
-      "mention": "二十国集团", 
-      "normalized": "二十国集团", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.014413714408874512, 
-      "count": 1, 
-      "indocChainId": 53, 
-      "mention": "朝鲜半岛", 
-      "normalized": "朝鲜半岛", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.007769942283630371, 
-      "count": 1, 
-      "indocChainId": 58, 
-      "mention": "深圳", 
-      "normalized": "深圳", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.005864083766937256, 
-      "count": 1, 
-      "indocChainId": 59, 
-      "mention": "广西", 
-      "normalized": "广西", 
+      "indocChainId": 41, 
+      "mention": "茅坪", 
+      "normalized": "茅坪", 
       "type": "LOCATION"
     }
-  ], 
-  "requestId": "e7dde9f7-cf2a-4eb7-9640-dbcb01876c84"
+  ]
 }

@@ -21,11 +21,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ConstantsResponseMixin extends BaseMixin {
     @JsonCreator
-    public ConstantsResponseMixin(
-            @JsonProperty("requestId") String requestId,
-            @JsonProperty("version") String version,
-            @JsonProperty("build") String build,
-            @JsonProperty("support") Object support
+    public ConstantsResponseMixin(@JsonProperty("version") String version,
+                                  @JsonProperty("build") String build,
+                                  @JsonProperty("support") Object support
     ) {
         //
     }

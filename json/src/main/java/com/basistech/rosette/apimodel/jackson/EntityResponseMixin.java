@@ -25,7 +25,6 @@ import java.util.List;
 public class EntityResponseMixin extends BaseMixin {
     @JsonCreator
     public EntityResponseMixin(
-            @JsonProperty("requestId") String requestId,
             @JsonProperty("entities") List<Entity> entities
     ) {
         //

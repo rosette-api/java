@@ -16,8 +16,7 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.InputUnit;
-import com.basistech.rosette.apimodel.RelationshipOptions;
+import com.basistech.rosette.apimodel.RelationshipsOptions;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,11 +25,10 @@ public class RelationshipsRequestMixin {
     @JsonCreator
     public RelationshipsRequestMixin(
             @JsonProperty("language") LanguageCode language,
-            @JsonProperty("content") String content,
+            @JsonProperty("content") Object content,
             @JsonProperty("contentUri") String contentUri,
             @JsonProperty("contentType") String contentType,
-            @JsonProperty("unit") InputUnit unit,
-            @JsonProperty("options") RelationshipOptions options
+            @JsonProperty("options") RelationshipsOptions options
     ) {
         //
     }

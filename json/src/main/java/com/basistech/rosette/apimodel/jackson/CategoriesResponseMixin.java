@@ -24,10 +24,7 @@ import java.util.List;
 
 public class CategoriesResponseMixin extends BaseMixin {
     @JsonCreator
-    public CategoriesResponseMixin(
-            @JsonProperty("requestId") String requestId,
-            @JsonProperty("categories") List<Category> categories
-    ) {
+    public CategoriesResponseMixin(@JsonProperty("categories") List<Category> categories) {
         //
     }
 }

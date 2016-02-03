@@ -29,16 +29,13 @@ public final class LinkedEntitiesRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
-     * @param unit input unit code
      */
-    public LinkedEntitiesRequest(
+    protected LinkedEntitiesRequest(
             LanguageCode language,
-            String content,
+            Object content,
             String contentUri,
-            String contentType,
-            InputUnit unit
-    ) {
-        super(language, content, contentUri, contentType, unit);
+            String contentType) {
+        super(language, content, contentUri, contentType);
     }
 
     @Override
@@ -58,5 +55,20 @@ public final class LinkedEntitiesRequest extends Request {
         }
 
         return super.equals(o);
+    }
+
+    /**
+     * Fluent builder class for {@link LinkedEntitiesRequest}.
+     */
+    public static class Builder extends Request.Builder<LinkedEntitiesRequest, Void, LinkedEntitiesRequest.Builder> {
+        @Override
+        protected Builder getThis() {
+            return this;
+        }
+
+        @Override
+        public LinkedEntitiesRequest build() {
+            return new LinkedEntitiesRequest(language, content, contentUri, contentType);
+        }
     }
 }

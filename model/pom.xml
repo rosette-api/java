@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
         <artifactId>rosette-api-java-binding</artifactId>
-        <version>0.7.103-SNAPSHOT</version>
+        <version>0.9.100-SNAPSHOT</version>
     </parent>
     <artifactId>rosette-api-model</artifactId>
     <name>rosette-api-model</name>
@@ -35,6 +35,11 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>1.1.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
         </dependency>
     </dependencies>
     <build>

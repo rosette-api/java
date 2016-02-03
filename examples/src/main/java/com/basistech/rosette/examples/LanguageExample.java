@@ -37,7 +37,7 @@ public final class LanguageExample extends ExampleBase {
         String languageData = "Por favor Señorita, says the man.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        LanguageResponse response = rosetteApi.getLanguage(languageData, null, null);
+        LanguageResponse response = rosetteApi.getLanguage(languageData, null);
         System.out.println(responseToJson(response));
     }
 }

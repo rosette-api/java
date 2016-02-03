@@ -37,7 +37,7 @@ public final class EntitiesLinkedExample extends ExampleBase {
         String entitiesLinkedTextData = "Last month director Paul Feig announced the movie will have an all-star female cast including Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        LinkedEntitiesResponse response = rosetteApi.getLinkedEntities(entitiesLinkedTextData, null, null);
+        LinkedEntitiesResponse response = rosetteApi.getLinkedEntities(entitiesLinkedTextData, null);
         System.out.println(responseToJson(response));
     }
 }

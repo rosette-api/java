@@ -27,13 +27,9 @@ public final class SentencesResponse extends Response {
 
     /**
      * constructor for {@code SentencesResponse}
-     * @param requestId request id
      * @param sentences list of sentences
      */
-    public SentencesResponse(
-            String requestId,
-            List<String> sentences) {
-        super(requestId);
+    public SentencesResponse(List<String> sentences) {
         this.sentences = sentences;
     }
 
@@ -47,9 +43,7 @@ public final class SentencesResponse extends Response {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (sentences != null ? sentences.hashCode() : 0);
-        return result;
+        return sentences != null ? sentences.hashCode() : 0;
     }
 
     /**
@@ -64,7 +58,6 @@ public final class SentencesResponse extends Response {
         }
 
         SentencesResponse that = (SentencesResponse) o;
-        return super.equals(o)
-                && sentences != null ? sentences.equals(that.getSentences()) : that.sentences == null;
+        return sentences != null ? sentences.equals(that.getSentences()) : that.sentences == null;
     }
 }

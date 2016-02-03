@@ -1,25 +1,24 @@
 {
   "languageDetections": [
     {
-      "confidence": 0.023407053954701884, 
-      "language": "deu"
+      "confidence": 0.03488216765945229, 
+      "language": "kor"
     }, 
     {
-      "confidence": 0.008063001331808373, 
-      "language": "nld"
+      "confidence": 8.670944458344376e-05, 
+      "language": "zho"
     }, 
     {
-      "confidence": 0.006120518059292035, 
-      "language": "swe"
+      "confidence": 7.461277626452656e-05, 
+      "language": "zho"
     }, 
     {
-      "confidence": 0.005709172789692851, 
-      "language": "nor"
+      "confidence": 3.509680092184109e-05, 
+      "language": "jpn"
     }, 
     {
-      "confidence": 0.005298351817899061, 
-      "language": "eng"
+      "confidence": 0.0, 
+      "language": "ara"
     }
-  ], 
-  "requestId": "1b3fc281-9fcb-4d89-a2a6-0abaf47171cb"
+  ]
 }

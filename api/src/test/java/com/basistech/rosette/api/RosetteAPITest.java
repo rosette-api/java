@@ -21,15 +21,14 @@ import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.EntitiesRequest;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
-import com.basistech.rosette.apimodel.InputUnit;
 import com.basistech.rosette.apimodel.LanguageRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.LinkedEntitiesRequest;
 import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
 import com.basistech.rosette.apimodel.MorphologyRequest;
 import com.basistech.rosette.apimodel.MorphologyResponse;
-import com.basistech.rosette.apimodel.NameMatchingRequest;
-import com.basistech.rosette.apimodel.NameMatchingResponse;
+import com.basistech.rosette.apimodel.NameComparisonRequest;
+import com.basistech.rosette.apimodel.NameComparisonResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.RelationshipsRequest;
@@ -145,23 +144,23 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-matched-name.json"))) {
             return;
         }
-        NameMatchingRequest request = readValueNameMatcher();
+        NameComparisonRequest request = readValueNameMatcher();
         try {
-            NameMatchingResponse response = api.matchName(request);
+            NameComparisonResponse response = api.matchName(request);
             verifyNameMatcher(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
         }
     }
 
-    private void verifyNameMatcher(NameMatchingResponse response) throws IOException {
-        NameMatchingResponse goldResponse = mapper.readValue(responseStr, NameMatchingResponse.class);
-        assertEquals(response.getResult().getScore(), goldResponse.getResult().getScore(), 0.0);
+    private void verifyNameMatcher(NameComparisonResponse response) throws IOException {
+        NameComparisonResponse goldResponse = mapper.readValue(responseStr, NameComparisonResponse.class);
+        assertEquals(goldResponse.getScore(),response.getScore(), 0.0);
     }
 
-    private NameMatchingRequest readValueNameMatcher() throws IOException {
+    private NameComparisonRequest readValueNameMatcher() throws IOException {
         File input = new File("src/test/mock-data/request", testFilename);
-        return mapper.readValue(input, NameMatchingRequest.class);
+        return mapper.readValue(input, NameComparisonRequest.class);
     }
 
     @Test
@@ -180,7 +179,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyNameTranslation(NameTranslationResponse response) throws IOException {
         NameTranslationResponse goldResponse = mapper.readValue(responseStr, NameTranslationResponse.class);
-        assertEquals(response.getResult().getTranslation(), goldResponse.getResult().getTranslation());
+        assertEquals(goldResponse.getTranslation(), response.getTranslation());
     }
 
     private NameTranslationRequest readValueNameTranslation() throws IOException {
@@ -190,7 +189,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyLanguage(LanguageResponse response) throws IOException {
         LanguageResponse goldResponse = mapper.readValue(responseStr, LanguageResponse.class);
-        assertEquals(response.getLanguageDetections().size(), goldResponse.getLanguageDetections().size());
+        assertEquals(goldResponse.getLanguageDetections().size(), response.getLanguageDetections().size());
     }
 
     @Test
@@ -222,27 +221,13 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     @Test
-    public void testGetLanguageSentence() throws IOException {
-        if (!(testFilename.contains("-language.json") && testFilename.contains("-sentence-"))) {
-            return;
-        }
-        Request request = readValue(LanguageRequest.class);
-        try {
-            LanguageResponse response = api.getLanguage(request.getContent(), InputUnit.sentence, null);
-            verifyLanguage(response);
-        } catch (RosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    @Test
     public void testGetMorphologyDoc() throws IOException {
         if (!(testFilename.endsWith("-morphology_complete.json") && testFilename.contains("-doc-"))) {
             return;
         }
         Request request = readValue(MorphologyRequest.class);
         try {
-            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE,
+            MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE,
                     request.getContent(), null, null);
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
@@ -262,23 +247,8 @@ public class RosetteAPITest extends AbstractTest {
         }
         Request request = readValue(MorphologyRequest.class);
         try {
-            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE,
+            MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE,
                     new URL(request.getContentUri()), null, null);
-            verifyMorphology(response);
-        } catch (RosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    @Test
-    public void testGetMorphologySentence() throws IOException {
-        if (!(testFilename.endsWith("-morphology_complete.json") && testFilename.contains("-sentence-"))) {
-            return;
-        }
-        Request request = readValue(MorphologyRequest.class);
-        try {
-            MorphologyResponse response = api.getMorphology(RosetteAPI.MorphologicalFeature.COMPLETE,
-                    request.getContent(), null, InputUnit.sentence, null);
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -318,28 +288,14 @@ public class RosetteAPITest extends AbstractTest {
         }
     }
 
-    @Test
-    public void testGetEntitySentence() throws IOException {
-        if (!(testFilename.endsWith("-entities.json") && testFilename.contains("-sentence-"))) {
-            return;
-        }
-        Request request = readValue(EntitiesRequest.class);
-        try {
-            EntitiesResponse response = api.getEntities(request.getContent(), null, InputUnit.sentence, null);
-            verifyEntity(response);
-        } catch (RosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    @Test
+     @Test
     public void testGetLinkedEntity() throws IOException {
         if (!(testFilename.endsWith("-entities_linked.json") && testFilename.contains("-doc-"))) {
             return;
         }
         Request request = readValue(LinkedEntitiesRequest.class);
         try {
-            LinkedEntitiesResponse response = api.getLinkedEntities(request.getContent(), null, null);
+            LinkedEntitiesResponse response = api.getLinkedEntities(request.getContent(), null);
             verifyLinkedEntity(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -359,20 +315,6 @@ public class RosetteAPITest extends AbstractTest {
         Request request = readValue(LinkedEntitiesRequest.class);
         try {
             LinkedEntitiesResponse response = api.getLinkedEntities(new URL(request.getContentUri()), null);
-            verifyLinkedEntity(response);
-        } catch (RosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    @Test
-    public void testGetLinkedEntitySentence() throws IOException {
-        if (!(testFilename.endsWith("-entities_linked.json") && testFilename.contains("-sentence-"))) {
-            return;
-        }
-        Request request = readValue(LinkedEntitiesRequest.class);
-        try {
-            LinkedEntitiesResponse response = api.getLinkedEntities(request.getContent(), null, InputUnit.sentence);
             verifyLinkedEntity(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -414,20 +356,6 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     @Test
-    public void testGetCategoriesSentence() throws IOException {
-        if (!(testFilename.endsWith("-categories.json") && testFilename.contains("-sentence-"))) {
-            return;
-        }
-        Request request = readValue(CategoriesRequest.class);
-        try {
-            CategoriesResponse response = api.getCategories(request.getContent(), null, InputUnit.sentence, null);
-            verifyCategory(response);
-        } catch (RosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    @Test
     public void testGetRelationships() throws IOException {
         if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-doc-"))) {
             return;
@@ -461,21 +389,6 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     @Test
-    public void testGetRelationshipsSentence() throws IOException {
-        if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-sentence-"))) {
-            return;
-        }
-        Request request = readValue(RelationshipsRequest.class);
-        try {
-            RelationshipsResponse response =
-                    api.getRelationships(request.getContent(), language, InputUnit.sentence, null);
-            verifyRelationships(response);
-        } catch (RosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    @Test
     public void testGetSentiment() throws IOException {
         if (!(testFilename.endsWith("-sentiment.json") && testFilename.contains("-doc-"))) {
             return;
@@ -502,20 +415,6 @@ public class RosetteAPITest extends AbstractTest {
         Request request = readValue(SentimentRequest.class);
         try {
             SentimentResponse response = api.getSentiment(new URL(request.getContentUri()), language, null);
-            verifySentiment(response);
-        } catch (RosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    @Test
-    public void testGetSentimentSentence() throws IOException {
-        if (!(testFilename.endsWith("-sentiment.json") && testFilename.contains("-url-"))) {
-            return;
-        }
-        Request request = readValue(SentimentRequest.class);
-        try {
-            SentimentResponse response = api.getSentiment(request.getContent(), language, InputUnit.sentence, null);
             verifySentiment(response);
         } catch (RosetteAPIException e) {
             verifyException(e);

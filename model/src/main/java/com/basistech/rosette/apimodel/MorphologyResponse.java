@@ -17,97 +17,77 @@
 package com.basistech.rosette.apimodel;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Simple API response data model returned by MorphologyRequest
  *
- * See {@code LinguisticRequest} and {@code MorphologicalFeature} for details.
- */
+  */
 public final class MorphologyResponse extends Response {
+    private final List<String> tokens;
+    private final List<String> posTags;
+    private final List<String> lemmas;
+    private final List<List<String>> compoundComponents;
+    private final List<List<String>> hanReadings;
 
-    private final List<PartOfSpeech> posTags;
-    private final List<Lemma> lemmas;
-    private final List<CompoundComponents> compounds;
-    private final List<HanReadings> hanReadings;
-    
     /**
-     * constructor for {@code MorphologyResponse}
-     * @param requestId request id
-     * @param posTags list of part of speech tags
-     * @param lemmas list of lemmas
-     * @param compounds list of compounds
-     * @param hanReadings list of Han readings
+     * Construct response.
+     * @param tokens tokens, or {@code null}.
+     * @param posTags posTags, 1-1 with tokens, or {@code null}.
+     * @param lemmas lemmas, 1-1 with tokens, or {@code null}.
+     * @param compoundComponents    compoundComponents, 1-1 with tokens, or {@code null}.
+     * @param hanReadings hanReadings, 1-1 with tokens, or {@code null}.
      */
-    public MorphologyResponse(
-            String requestId,
-            List<PartOfSpeech> posTags,
-            List<Lemma> lemmas,
-            List<CompoundComponents> compounds,
-            List<HanReadings> hanReadings) {
-        super(requestId);
+    public MorphologyResponse(List<String> tokens, List<String> posTags, List<String> lemmas, List<List<String>> compoundComponents, List<List<String>> hanReadings) {
+        this.tokens = tokens;
         this.posTags = posTags;
         this.lemmas = lemmas;
-        this.compounds = compounds;
+        this.compoundComponents = compoundComponents;
         this.hanReadings = hanReadings;
     }
 
-    /**
-     * get the list of part of speech tags 
-     * @return the list of part of speech tags
-     */
-    public List<PartOfSpeech> getPosTags() {
+    public List<String> getTokens() {
+        return tokens;
+    }
+
+    public List<String> getPosTags() {
         return posTags;
     }
 
-    /**
-     * get the list of lemmas 
-     * @return the list of lemmas
-     */
-    public List<Lemma> getLemmas() {
+    public List<String> getLemmas() {
         return lemmas;
     }
 
-    /**
-     * get the list of compounds 
-     * @return the list of compounds
-     */
-    public List<CompoundComponents> getCompounds() {
-        return compounds;
+    public List<List<String>> getCompoundComponents() {
+        return compoundComponents;
     }
 
-    /**
-     * get the list of Han readings
-     * @return the list of Han readings
-     */
-    public List<HanReadings> getHanReadings() {
+    public List<List<String>> getHanReadings() {
         return hanReadings;
     }
 
     @Override
-    public int hashCode() {
-        int result = posTags != null ? posTags.hashCode() : 0;
-        result = 31 * result + (lemmas != null ? lemmas.hashCode() : 0);
-        result = 31 * result + (compounds != null ? compounds.hashCode() : 0);
-        result = 31 * result + (hanReadings != null ? hanReadings.hashCode() : 0);
-        return result;
-    }
-
-    /**
-     * if the param is a {@code MorphologyResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
     public boolean equals(Object o) {
-        if (!(o instanceof MorphologyResponse)) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         MorphologyResponse that = (MorphologyResponse) o;
-        return super.equals(o)
-                && posTags != null ? posTags.equals(that.getPosTags()) : that.posTags == null
-                && lemmas != null ? lemmas.equals(that.getLemmas()) : that.lemmas == null
-                && compounds != null ? compounds.equals(that.getCompounds()) : that.compounds == null
-                && hanReadings != null ? hanReadings.equals(that.getHanReadings()) : that.hanReadings == null;
+        return Objects.equals(tokens, that.tokens)
+                &&
+                Objects.equals(posTags, that.posTags)
+                &&
+                Objects.equals(lemmas, that.lemmas)
+                &&
+                Objects.equals(compoundComponents, that.compoundComponents)
+                &&
+                Objects.equals(hanReadings, that.hanReadings);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tokens, posTags, lemmas, compoundComponents, hanReadings);
     }
 }

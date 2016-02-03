@@ -27,14 +27,9 @@ public final class EntitiesResponse extends Response {
     
     /**
      * Constructor for {@code EntitiesResponse}
-     * @param requestId request id
      * @param entities list of extracted entities
      */
-    public EntitiesResponse(
-            String requestId,
-            List<Entity> entities
-    ) {
-        super(requestId);
+    public EntitiesResponse(List<Entity> entities) {
         this.entities = entities;
     }
 
@@ -48,9 +43,7 @@ public final class EntitiesResponse extends Response {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (entities != null ? entities.hashCode() : 0);
-        return result;
+        return entities != null ? entities.hashCode() : 0;
     }
 
     /**
@@ -65,7 +58,6 @@ public final class EntitiesResponse extends Response {
         }
 
         EntitiesResponse that = (EntitiesResponse) o;
-        return super.equals(o)
-                && entities != null ? entities.equals(that.getEntities()) : that.entities == null;
+        return entities != null ? entities.equals(that.getEntities()) : that.entities == null;
     }
 }

@@ -24,9 +24,7 @@ import java.util.List;
 
 public class SentimentResponseMixin  extends BaseMixin {
     @JsonCreator
-    protected SentimentResponseMixin(
-            @JsonProperty("requestId") String requestId,
-            @JsonProperty("sentiment") List<Sentiment> sentiment
+    protected SentimentResponseMixin(@JsonProperty("sentiment") List<Sentiment> sentiment
     ) {
         //
     }

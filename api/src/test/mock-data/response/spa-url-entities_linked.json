@@ -1,77 +1,34 @@
 {
   "entities": [
     {
-      "confidence": 1.0, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 0, 
-      "mention": "SECCIONES Sociedad México"
-    }, 
-    {
-      "confidence": 0.3842942678466512, 
-      "entityId": "Q739", 
-      "indocChainId": 1, 
-      "mention": "Colombia"
-    }, 
-    {
-      "confidence": 0.29145007042506105, 
-      "entityId": "Q296741", 
-      "indocChainId": 2, 
-      "mention": "EPN"
-    }, 
-    {
-      "confidence": 0.9576033902530637, 
-      "entityId": "Q296741", 
-      "indocChainId": 6, 
-      "mention": "Enrique Peña Nieto"
-    }, 
-    {
-      "confidence": 0.25986302388359683, 
+      "confidence": 0.1699630580022847, 
       "entityId": "Q96", 
-      "indocChainId": 8, 
+      "indocChainId": 0, 
       "mention": "México"
     }, 
     {
-      "confidence": 0.8635177623456834, 
-      "entityId": "Q57311", 
-      "indocChainId": 11, 
-      "mention": "Juan Manuel Santos"
+      "confidence": 0.7626766773813667, 
+      "entityId": "Q806208", 
+      "indocChainId": 1, 
+      "mention": "Banxico"
     }, 
     {
-      "confidence": 0.31713577301095347, 
-      "entityId": "Q7122288", 
-      "indocChainId": 18, 
-      "mention": "Alianza Pacífico"
+      "confidence": 0.15580002982890145, 
+      "entityId": "Q2919540", 
+      "indocChainId": 3, 
+      "mention": "Getty"
     }, 
     {
-      "confidence": 0.5114125729137015, 
-      "entityId": "Q419", 
-      "indocChainId": 20, 
-      "mention": "Perú"
+      "confidence": 0.40571102338241527, 
+      "entityId": "Q6826206", 
+      "indocChainId": 5, 
+      "mention": "CIUDAD DE MÉXICO"
     }, 
     {
-      "confidence": 0.30983850993114276, 
-      "entityId": "Q298", 
-      "indocChainId": 21, 
-      "mention": "Chile"
-    }, 
-    {
-      "confidence": 0.8050428060258218, 
-      "entityId": "Q12585", 
-      "indocChainId": 22, 
-      "mention": "América Latina"
-    }, 
-    {
-      "confidence": 0.41896853374939264, 
-      "entityId": "Q98", 
-      "indocChainId": 23, 
-      "mention": "Pacífico"
-    }, 
-    {
-      "confidence": 0.9132640852566012, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 24, 
-      "mention": "Peña Nieto Ver"
+      "confidence": 0.7804263794843455, 
+      "entityId": "Q806208", 
+      "indocChainId": 6, 
+      "mention": "Banco de México"
     }
-  ], 
-  "requestId": "f7202522-6e5c-4635-ba9d-867f4b96352f"
+  ]
 }

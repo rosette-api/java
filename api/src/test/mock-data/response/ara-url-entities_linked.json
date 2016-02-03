@@ -1,131 +1,118 @@
 {
   "entities": [
     {
-      "confidence": 0.4180757450854853, 
-      "entityId": "NEW-CLUSTER", 
+      "confidence": 0.667712864174646, 
+      "entityId": "Q1546", 
       "indocChainId": 0, 
-      "mention": "مكة المكرمة"
+      "mention": "آيوا"
     }, 
     {
-      "confidence": 0.5178530081219924, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 2, 
-      "mention": "صعدة"
-    }, 
-    {
-      "confidence": 0.1557383262524555, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 3, 
-      "mention": "شبوه"
-    }, 
-    {
-      "confidence": 0.5016791841319038, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 4, 
-      "mention": "عدن"
-    }, 
-    {
-      "confidence": 0.39822414545725726, 
-      "entityId": "Q466216", 
-      "indocChainId": 5, 
-      "mention": "تعز"
-    }, 
-    {
-      "confidence": 1.0, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 6, 
-      "mention": "قيادة التحالف"
-    }, 
-    {
-      "confidence": 0.6117159114135108, 
-      "entityId": "Q805", 
-      "indocChainId": 8, 
-      "mention": "اليمن"
-    }, 
-    {
-      "confidence": 0.5203183336875661, 
-      "entityId": "Q13477", 
+      "confidence": 0.7201198079722657, 
+      "entityId": "Q22686", 
       "indocChainId": 9, 
-      "mention": "الجزيرة"
+      "mention": "دونالد ترامب"
     }, 
     {
-      "confidence": 0.7308444368302152, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 10, 
-      "mention": "مركز وبرج الاتصالات"
-    }, 
-    {
-      "confidence": 0.623258178252376, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 12, 
-      "mention": "قوات التحالف"
-    }, 
-    {
-      "confidence": 1.0, 
-      "entityId": "NEW-CLUSTER", 
+      "confidence": 0.3996739210344437, 
+      "entityId": "Q29468", 
       "indocChainId": 13, 
-      "mention": "جماعة الحوثي"
+      "mention": "الجمهوريون"
     }, 
     {
-      "confidence": 1.0, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 16, 
-      "mention": "ضحيان"
-    }, 
-    {
-      "confidence": 0.09139991340373968, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 17, 
-      "mention": "مذاب الصفراء"
-    }, 
-    {
-      "confidence": 1.0, 
-      "entityId": "NEW-CLUSTER", 
+      "confidence": 0.2779446540440955, 
+      "entityId": "Q2570643", 
       "indocChainId": 19, 
-      "mention": "طيران التحالف"
+      "mention": "مجلس الشيوخ"
     }, 
     {
-      "confidence": 0.3224708373992394, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 20, 
-      "mention": "رازح"
+      "confidence": 0.5659996295644975, 
+      "entityId": "Q1439", 
+      "indocChainId": 21, 
+      "mention": "تكساس"
     }, 
     {
-      "confidence": 0.5380180683126542, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 22, 
-      "mention": "السعودية"
+      "confidence": 0.4967389079216065, 
+      "entityId": "Q812", 
+      "indocChainId": 24, 
+      "mention": "فلوريدا"
     }, 
     {
-      "confidence": 0.03212408218368355, 
-      "entityId": "Q4695759", 
-      "indocChainId": 29, 
-      "mention": "أحمد عسيري"
+      "confidence": 0.474816482378984, 
+      "entityId": "Q29468", 
+      "indocChainId": 31, 
+      "mention": "الجمهوريين"
     }, 
     {
-      "confidence": 1.0, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 33, 
-      "mention": "عتق"
+      "confidence": 0.7296432344282298, 
+      "entityId": "Q186068", 
+      "indocChainId": 45, 
+      "mention": "فوكس نيوز"
     }, 
     {
-      "confidence": 0.5045473626996668, 
-      "entityId": "Q131694", 
-      "indocChainId": 34, 
-      "mention": "عدن"
+      "confidence": 0.9464004969581655, 
+      "entityId": "Q76", 
+      "indocChainId": 58, 
+      "mention": "باراك أوباما"
     }, 
     {
-      "confidence": 0.14623359675528494, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 35, 
-      "mention": "أمس"
+      "confidence": 0.609847471336826, 
+      "entityId": "Q207", 
+      "indocChainId": 71, 
+      "mention": "جورج بوش"
     }, 
     {
-      "confidence": 0.3954942431664408, 
-      "entityId": "NEW-CLUSTER", 
-      "indocChainId": 44, 
-      "mention": "نجران"
+      "confidence": 0.6798451262305159, 
+      "entityId": "Q158813", 
+      "indocChainId": 72, 
+      "mention": "مايك هوكابي"
+    }, 
+    {
+      "confidence": 0.8511351289289357, 
+      "entityId": "Q155985", 
+      "indocChainId": 73, 
+      "mention": "ريك سانتوروم"
+    }, 
+    {
+      "confidence": 0.705441928596071, 
+      "entityId": "Q759", 
+      "indocChainId": 77, 
+      "mention": "نيوهامبشير"
+    }, 
+    {
+      "confidence": 0.7555821961752025, 
+      "entityId": "Q29468", 
+      "indocChainId": 80, 
+      "mention": "الحزب الجمهوري"
+    }, 
+    {
+      "confidence": 0.6538417439497141, 
+      "entityId": "Q11690", 
+      "indocChainId": 93, 
+      "mention": "وول ستريت"
+    }, 
+    {
+      "confidence": 0.8561413468778017, 
+      "entityId": "Q35525", 
+      "indocChainId": 104, 
+      "mention": "البيت الأبيض"
+    }, 
+    {
+      "confidence": 0.7099615589086752, 
+      "entityId": "Q759", 
+      "indocChainId": 108, 
+      "mention": "نيوهامبشر"
+    }, 
+    {
+      "confidence": 0.49012379251781385, 
+      "entityId": "Q29552", 
+      "indocChainId": 109, 
+      "mention": "الديموقراطيين"
+    }, 
+    {
+      "confidence": 0.5958389303068974, 
+      "entityId": "Q30", 
+      "indocChainId": 117, 
+      "mention": "أميركا"
     }
-  ], 
-  "requestId": "04d771f1-7664-4c39-9dd6-59b38a9bec01"
+  ]
 }

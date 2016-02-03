@@ -16,54 +16,24 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Rosette api response data base
+ * Base class for all responses.
+ * In this version, they have nothing in common.
  */
 public abstract class Response {
+    protected Map<String, Object> extendedInformation;
 
-    private String requestId;
-
-    /**
-     * abstract constructor for {@code Response}
-     * @param requestId request id
-     */
-    public Response(String requestId) {
-        this.requestId = requestId;
+    public Map<String, Object> getExtendedInformation() {
+        return extendedInformation;
     }
 
-    /**
-     * get the request id for tracking purposes 
-     * @return the request id
-     */
-    public String getRequestId() {
-        return requestId;
-    }
-
-    /**
-     * Set the request id.
-     * @param requestId the id.
-     */
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
-    @Override
-    public int hashCode() {
-        return requestId != null ? requestId.hashCode() : 0;
-    }
-
-    /**
-     * if the param is a response, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object; t
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Response)) {
-            return false;
+    void setExtendedInformation(String key, Object value) {
+        if (extendedInformation == null) {
+            extendedInformation = new HashMap<>();
         }
-
-        Response that = (Response) o;
-        return requestId != null ? requestId.equals(that.getRequestId()) : that.requestId == null;
+        extendedInformation.put(key, value);
     }
 }

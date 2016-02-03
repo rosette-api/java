@@ -27,13 +27,9 @@ public final class LinkedEntitiesResponse extends Response {
 
     /**
      * constructor for {@code LinkedEntityResponse}
-     * @param requestId request id
      * @param entities list of resolved entities
      */
-    public LinkedEntitiesResponse(
-            String requestId,
-            List<LinkedEntity> entities) {
-        super(requestId);
+    public LinkedEntitiesResponse(List<LinkedEntity> entities) {
         this.entities = entities;
     }
 
@@ -62,7 +58,6 @@ public final class LinkedEntitiesResponse extends Response {
         }
 
         LinkedEntitiesResponse that = (LinkedEntitiesResponse) o;
-        return super.equals(o)
-                && entities != null ? entities.equals(that.getEntities()) : entities == that.getEntities();
+        return entities != null ? entities.equals(that.getEntities()) : entities == that.getEntities();
     }
 }

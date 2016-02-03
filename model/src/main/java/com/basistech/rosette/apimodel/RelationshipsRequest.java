@@ -23,7 +23,7 @@ import com.basistech.util.LanguageCode;
  */
 public final class RelationshipsRequest extends Request {
 
-    private RelationshipOptions options;
+    private RelationshipsOptions options;
 
     /**
      * Constructor for {@code RelationsipsRequest}
@@ -31,18 +31,16 @@ public final class RelationshipsRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
-     * @param unit input unit code
      * @param options relationship options
      */
-    public RelationshipsRequest(
+    protected RelationshipsRequest(
             LanguageCode language,
-            String content,
+            Object content,
             String contentUri,
             String contentType,
-            InputUnit unit,
-            RelationshipOptions options
+            RelationshipsOptions options
     ) {
-        super(language, content, contentUri, contentType, unit);
+        super(language, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -73,7 +71,7 @@ public final class RelationshipsRequest extends Request {
      * get the relationship options
      * @return the relationship options
      */
-    public RelationshipOptions getOptions() {
+    public RelationshipsOptions getOptions() {
         return options;
     }
 
@@ -81,8 +79,23 @@ public final class RelationshipsRequest extends Request {
      * set the relationship options
      * @param options the relationship options
      */
-    public void setOptions(RelationshipOptions options) {
+    public void setOptions(RelationshipsOptions options) {
         this.options = options;
+    }
+
+    /**
+     * Fluent builder class for {@link RelationshipsRequest}.
+     */
+    public static class Builder extends Request.Builder<RelationshipsRequest, RelationshipsOptions, RelationshipsRequest.Builder> {
+        @Override
+        protected Builder getThis() {
+            return this;
+        }
+
+        @Override
+        public RelationshipsRequest build() {
+            return new RelationshipsRequest(language, content, contentUri, contentType, options);
+        }
     }
 
 }
