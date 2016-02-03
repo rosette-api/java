@@ -18,6 +18,9 @@ package com.basistech.rosette.api;
 
 import com.basistech.rosette.apimodel.ErrorResponse;
 
+import com.google.common.base.Objects;
+
+
 public class RosetteAPIException extends Exception {
 
     private final int httpStatusCode;
@@ -40,8 +43,10 @@ public class RosetteAPIException extends Exception {
     }
 
     public String toString() {
-        return this.getClass().getSimpleName() + " http status code: " + httpStatusCode
-                + ", code: " + code + ", message: " + message;
+        return Objects.toStringHelper(this).add("http status code", httpStatusCode)
+                .add("code", code)
+                .add("message", message)
+                .toString();
     }
 
     public int getHttpStatusCode() {
