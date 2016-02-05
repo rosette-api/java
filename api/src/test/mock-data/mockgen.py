@@ -5,22 +5,24 @@
 
 import argparse
 import csv
-import feedparser
 import glob
 import io
 import json
 import os
+
+import feedparser
 import requests
 import sys
 
 DOC_ENDPOINTS = ["language", "morphology/complete", "entities", "entities/linked", "categories", "sentiment"]
-RNT_ENDPOINTS = ["translated-name"]
-RNI_ENDPOINTS = ["matched-name"]
+RNT_ENDPOINTS = ["name-translation"]
+RNI_ENDPOINTS = ["name-similarity"]
 GNEWS_LANGS = {"eng": "ned=us&hl=en-US",
                "zho": "ned=cn&hl=zh-CN",
                "ara": "ned=ar_me&hl=ar",
                "spa": "ned=es_mx&hl=es",
                "fra": "ned=fr&hl=fr"}
+
 
 def capture(req, endpoints, filename_prefix):
     for endpoint in endpoints:
@@ -38,8 +40,6 @@ def capture(req, endpoints, filename_prefix):
             req_file.write(json.dumps(req, ensure_ascii=False, indent=2, sort_keys=True, encoding="utf8"))
             resp_file.write(json.dumps(resp.json(), ensure_ascii=False, indent=2, sort_keys=True, encoding="utf8"))
             resp_status_file.write(unicode(resp.status_code))
-            req_file.close()
-            resp_file.close()
         print "created mock req/resp files for %s" % (filename_prefix + "-" + endpoint)
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
@@ -63,15 +63,13 @@ for f in files:
 # store some info
 resp = requests.get(args.endpoint + "/info", headers=headers)
 if resp.status_code != 200:
-    print "info call failed - abord"
+    print "info call failed - abort"
     sys.exit(1)
 else:
     with io.open("response/info.json", "w", encoding="utf8") as resp_file,\
-        io.open("response/info.status", "w", encoding="utf8") as resp_status_file:
+         io.open("response/info.status", "w", encoding="utf8") as resp_status_file:
         resp_file.write(json.dumps(resp.json(), ensure_ascii=False, indent=2, sort_keys=True, encoding="utf8"))
         resp_status_file.write(unicode(resp.status_code))
-        resp_file.close()
-        resp_status_file.clse()
 
 # deal with local docs
 with open("source/doc-strings.tsv", "r") as tsvfile:
@@ -84,17 +82,12 @@ with open("source/doc-strings.tsv", "r") as tsvfile:
             filename_prefix = row["language"]
         else:
             filename_prefix = "xxx"
-        if row["unit"]:
-            req["unit"] = row["unit"]
-            filename_prefix += "-" + row["unit"]
-        else:
-            filename_prefix += "-null"
+        filename_prefix += "-doc"
         if row["content"]:
             req["content"] = row["content"]
         else:
             continue
         capture(req, DOC_ENDPOINTS, filename_prefix)
-    tsvfile.close()
 
 # deal with URLs
 for key in GNEWS_LANGS.keys():
@@ -113,7 +106,6 @@ with open("source/rnt.tsv", "r") as tsvfile:
         i += 1
         filename_prefix = "rnt-" + str(i)
         capture(row, RNT_ENDPOINTS, filename_prefix)
-    tsvfile.close()
 
 # deal with RNI
 with open("source/rni.tsv", "r") as tsvfile:
@@ -134,5 +126,4 @@ with open("source/rni.tsv", "r") as tsvfile:
                 print "bad column heading %s - abort" % column_name
                 sys.exit(1)
         capture({"name1": name1, "name2": name2}, RNI_ENDPOINTS, filename_prefix)
-    tsvfile.close()
 

@@ -27,13 +27,11 @@ public final class ConstantsResponse extends Response {
 
     /**
      * Constructor for {@code ConstantsResponse}
-     * @param requestId request id
      * @param version Rosette API endpoint version
      * @param build Rosette API endpoint build
      * @param support support (reserved for future feature)
      */
-    public ConstantsResponse(String requestId, String version, String build, Object support) {
-        super(requestId);
+    public ConstantsResponse(String version, String build, Object support) {
         this.version = version;
         this.build = build;
         this.support = support;
@@ -65,8 +63,7 @@ public final class ConstantsResponse extends Response {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (version != null ? version.hashCode() : 0);
+        int result = version != null ? version.hashCode() : 0;
         result = 31 * result + (build != null ? build.hashCode() : 0);
         result = 31 * result + (support != null ? support.hashCode() : 0);
         return result;
@@ -84,8 +81,7 @@ public final class ConstantsResponse extends Response {
         }
 
         ConstantsResponse that = (ConstantsResponse) o;
-        return super.equals(o)
-                && version != null ? version.equals(that.getVersion()) : that.version == null
+        return version != null ? version.equals(that.getVersion()) : that.version == null
                 && build != null ? build.equals(that.getBuild()) : that.build == null
                 && support != null ? support.equals(that.getSupport()) : that.support == null;
     }

@@ -20,14 +20,16 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
          <artifactId>rosette-api-java-binding</artifactId>
-        <version>0.7.103-SNAPSHOT</version>
+        <version>0.9.101-SNAPSHOT</version>
     </parent>
     <artifactId>rosette-api</artifactId>
     <name>rosette-api</name>
     <packaging>bundle</packaging>
     <description>Rosette API Communications</description>
     <properties>
-      <mockserver-version>3.10.2</mockserver-version>
+        <mockserver-version>3.10.2</mockserver-version>
+        <skip-mockserver>false</skip-mockserver>
+        <http-components-version>4.4.1</http-components-version>
     </properties>
     <dependencies>
       <dependency>
@@ -49,6 +51,26 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${http-components-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${http-components-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>16.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
@@ -63,11 +85,6 @@
           <artifactId>mockserver-core</artifactId>
           <version>${mockserver-version}</version>
           <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
           <groupId>commons-io</groupId>
@@ -108,6 +125,7 @@
                 <configuration>
                     <serverPort>${mockServerClient.port}</serverPort>
                     <logLevel>WARN</logLevel>
+                    <skip>${skip-mockserver}</skip>
                 </configuration>
                 <executions>
                     <execution>
@@ -146,4 +164,24 @@
             </testResource>
         </testResources>
     </build>
+    <profiles>
+        <profile>
+            <id>skip-mockserver-tests</id>
+            <properties>
+                <skip-mockserver>true</skip-mockserver>
+            </properties>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <configuration>
+                                <skip>true</skip>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -31,18 +31,16 @@ public final class EntitiesRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
-     * @param unit input unit code
      * @param options entity extraction options
      */
-    public EntitiesRequest(
+    protected EntitiesRequest(
             LanguageCode language,
-            String content,
+            Object content,
             String contentUri,
             String contentType,
-            InputUnit unit,
             EntitiesOptions options
     ) {
-        super(language, content, contentUri, contentType, unit);
+        super(language, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -54,13 +52,6 @@ public final class EntitiesRequest extends Request {
         return options;
     }
 
-    /**
-     * set the entity extraction options
-     * @param options the entity extraction options
-     */
-    public void setOptions(EntitiesOptions options) {
-        this.options = options;
-    }
 
     @Override
     public int hashCode() {
@@ -83,5 +74,20 @@ public final class EntitiesRequest extends Request {
         EntitiesRequest that = (EntitiesRequest) o;
         return super.equals(o)
                 && options != null ? getOptions().equals(that.getOptions()) : that.options == null;
+    }
+
+    /**
+     * Fluent builder class for {@link EntitiesRequest}.
+     */
+    public static class Builder extends Request.Builder<EntitiesRequest, EntitiesOptions, EntitiesRequest.Builder> {
+        @Override
+        protected Builder getThis() {
+            return this;
+        }
+
+        @Override
+        public EntitiesRequest build() {
+            return new EntitiesRequest(language, content, contentUri, contentType, options);
+        }
     }
 }

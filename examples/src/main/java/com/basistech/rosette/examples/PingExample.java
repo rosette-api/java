@@ -34,7 +34,7 @@ public final class PingExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         PingResponse response = rosetteApi.ping();
         System.out.println(responseToJson(response));
     }

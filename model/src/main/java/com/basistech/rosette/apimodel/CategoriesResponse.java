@@ -27,12 +27,9 @@ public final class CategoriesResponse extends Response {
     
     /**
      * Constructor for {@code CategoriesResponse}
-     * @param requestId request id
      * @param categories list of categories
      */
-    public CategoriesResponse(String requestId,
-                              List<Category> categories) {
-        super(requestId);
+    public CategoriesResponse(List<Category> categories) {
         this.categories = categories;
     }
 
@@ -46,9 +43,7 @@ public final class CategoriesResponse extends Response {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (categories != null ? categories.hashCode() : 0);
-        return result;
+        return categories != null ? categories.hashCode() : 0;
     }
 
     /**
@@ -63,7 +58,6 @@ public final class CategoriesResponse extends Response {
         }
 
         CategoriesResponse that = (CategoriesResponse) o;
-        return super.equals(o)
-                && categories != null ? categories.equals(that.getCategories()) : that.categories == null;
+        return categories != null ? categories.equals(that.getCategories()) : that.categories == null;
     }
 }

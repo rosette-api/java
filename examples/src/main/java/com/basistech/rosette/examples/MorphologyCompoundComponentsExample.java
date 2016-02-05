@@ -15,6 +15,7 @@
 */
 package com.basistech.rosette.examples;
 
+import com.basistech.rosette.api.MorphologicalFeature;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.MorphologyResponse;
@@ -34,11 +35,11 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String morphology_compound_components_data = "Rechtsschutzversicherungsgesellschaften";
+        String morphologyCompoundComponentsData = "Rechtsschutzversicherungsgesellschaften";
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.COMPOUND_COMPONENTS,
-                morphology_compound_components_data, null, null);
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.COMPOUND_COMPONENTS,
+                morphologyCompoundComponentsData, null, null);
         System.out.println(responseToJson(response));
     }
 }

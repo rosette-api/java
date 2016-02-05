@@ -27,14 +27,9 @@ public final class RelationshipsResponse extends Response {
 
     /**
      * Constructor for {@code EntitiesResponse}
-     * @param requestId request id
      * @param relationships list of extracted relationships
      */
-    public RelationshipsResponse(
-            String requestId,
-            List<Relationship> relationships
-    ) {
-        super(requestId);
+    public RelationshipsResponse(List<Relationship> relationships) {
         this.relationships = relationships;
     }
 
@@ -48,9 +43,7 @@ public final class RelationshipsResponse extends Response {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (relationships != null ? relationships.hashCode() : 0);
-        return result;
+        return relationships != null ? relationships.hashCode() : 0;
     }
 
     /**
@@ -65,7 +58,6 @@ public final class RelationshipsResponse extends Response {
         }
 
         RelationshipsResponse that = (RelationshipsResponse) o;
-        return super.equals(o)
-                && relationships != null ? relationships.equals(that.getRelationships()) : that.relationships == null;
+        return relationships != null ? relationships.equals(that.getRelationships()) : that.relationships == null;
     }
 }

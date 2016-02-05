@@ -30,7 +30,6 @@ public final class PingResponse extends Response {
      * @param time ping response timestamp
      */
     public PingResponse(String message, long time) {
-        super(null);
         this.message = message;
         this.time = time;
     }
@@ -70,8 +69,7 @@ public final class PingResponse extends Response {
         }
 
         PingResponse that = (PingResponse) o;
-        return super.equals(o)
-                && message != null ? message.equals(that.getMessage()) : that.message == null
+        return message != null ? message.equals(that.getMessage()) : that.message == null
                 && time == that.getTime();
     }
 }

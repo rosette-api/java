@@ -25,7 +25,6 @@ import java.util.List;
 public class LinkedEntityResponseMixin extends BaseMixin {
     @JsonCreator
     public LinkedEntityResponseMixin(
-            @JsonProperty("requestId") String requestId,
             @JsonProperty("entities") List<LinkedEntity> entities
     ) {
         //

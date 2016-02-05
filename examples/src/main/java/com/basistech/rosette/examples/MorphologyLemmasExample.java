@@ -15,6 +15,7 @@
 */
 package com.basistech.rosette.examples;
 
+import com.basistech.rosette.api.MorphologicalFeature;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.MorphologyResponse;
@@ -34,11 +35,11 @@ public final class MorphologyLemmasExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String morphology_lemmas_data = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon";
+        String morphologyLemmasData = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon";
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty());
-        MorphologyResponse response = rosetteApi.getMorphology(RosetteAPI.MorphologicalFeature.LEMMAS,
-                morphology_lemmas_data, null, null);
+        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.LEMMAS,
+                morphologyLemmasData, null, null);
         System.out.println(responseToJson(response));
     }
 }

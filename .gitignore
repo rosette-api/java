@@ -18,4 +18,4 @@ target
 .idea/*
 *.iml
 *~
-
+build.log

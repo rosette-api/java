@@ -27,8 +27,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  */
 public abstract class ExampleBase {
     private static final String KEY_PROP_NAME = "rosette.api.key";
+    private static final String URL_PROP_NAME = "rosette.api.altUrl";
     private static final String USAGE_STR = "Usage: java -cp rosette-api-examples.jar:lib/rosette-api-manifest.jar "
-            + "-D" + KEY_PROP_NAME + "=<required_api_key> ";
+            + "-D" + KEY_PROP_NAME + "=<required_api_key> " + "-D" + URL_PROP_NAME + "=<optional_alternate_url> ";
 
     /**
      * Gets api key using system property {@value #KEY_PROP_NAME}
@@ -40,6 +41,17 @@ public abstract class ExampleBase {
             System.exit(1);
         }
         return apiKeyStr.trim();
+    }
+
+    /**
+     * Gets alternate url using system property {@value #URL_PROP_NAME}
+     */
+    protected String getAltUrlFromSystemProperty() {
+        String altUrlStr = System.getProperty(URL_PROP_NAME);
+        if (altUrlStr == null || altUrlStr.trim().length() < 1) {
+            altUrlStr = "https://api.rosette.com/rest/v1";
+        }
+        return altUrlStr.trim();
     }
 
     /**

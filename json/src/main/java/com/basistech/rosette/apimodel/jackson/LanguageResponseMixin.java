@@ -25,7 +25,6 @@ import java.util.List;
 public class LanguageResponseMixin extends BaseMixin {
     @JsonCreator
     public LanguageResponseMixin(
-            @JsonProperty("requestId") String requestId,
             @JsonProperty("languageDetections") List<LanguageDetectionResult> languageDetections
     ) {
         //

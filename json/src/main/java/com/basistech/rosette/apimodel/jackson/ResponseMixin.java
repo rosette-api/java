@@ -16,15 +16,19 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@JsonIgnoreProperties("timers")
-public class ResponseMixin extends BaseMixin {
+import java.util.Map;
 
-    @JsonCreator
-    public ResponseMixin(@JsonProperty("requestId") String requestId) {
-        //
-    }
+/**
+ * Jackson mixin for responses.
+ */
+public abstract class ResponseMixin extends BaseMixin {
+
+    @JsonIgnore
+    Map<String, Object> extendedInformation;
+
+    @JsonAnySetter
+    abstract void setExtendedInformation(String key, Object value);
 }

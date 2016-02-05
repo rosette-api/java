@@ -31,18 +31,16 @@ public final class SentimentRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
-     * @param unit input unit code
      * @param options sentiment options
      */
-    public SentimentRequest(
+    protected SentimentRequest(
             LanguageCode language,
-            String content,
+            Object content,
             String contentUri,
             String contentType,
-            InputUnit unit,
             SentimentOptions options
     ) {
-        super(language, content, contentUri, contentType, unit);
+        super(language, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -83,5 +81,20 @@ public final class SentimentRequest extends Request {
         SentimentRequest that = (SentimentRequest) o;
         return super.equals(o)
                 && options != null ? options.equals(that.getOptions()) : that.options == null;
+    }
+
+    /**
+     * Fluent builder class for {@link MorphologyRequest}.
+     */
+    public static class Builder extends Request.Builder<SentimentRequest, SentimentOptions, SentimentRequest.Builder> {
+        @Override
+        protected Builder getThis() {
+            return this;
+        }
+
+        @Override
+        public SentimentRequest build() {
+            return new SentimentRequest(language, content, contentUri, contentType, options);
+        }
     }
 }

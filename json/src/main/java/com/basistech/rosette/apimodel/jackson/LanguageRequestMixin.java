@@ -16,7 +16,6 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.InputUnit;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,12 +23,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class LanguageRequestMixin extends BaseMixin {
     @JsonCreator
     public LanguageRequestMixin(
-            @JsonProperty("content") String content,
+            @JsonProperty("content") Object content,
             @JsonProperty("contentUri") String contentUri,
             @JsonProperty("contentType") String contentType,
-            @JsonProperty("unit") InputUnit unit,
-            @JsonProperty("options") LanguageOptions options
-    ) {
+            @JsonProperty("options") LanguageOptions options) {
         //
     }
 }

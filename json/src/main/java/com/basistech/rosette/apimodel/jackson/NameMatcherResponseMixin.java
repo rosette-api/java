@@ -16,16 +16,12 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.NameMatchingResult;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class NameMatcherResponseMixin extends BaseMixin {
     @JsonCreator
-    protected NameMatcherResponseMixin(
-            @JsonProperty("requestId") String requestId,
-            @JsonProperty("result") NameMatchingResult result
-    ) {
+    protected NameMatcherResponseMixin(@JsonProperty("score") Double score) {
         //
     }
 }

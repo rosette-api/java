@@ -36,7 +36,6 @@ public final class InfoResponse extends Response {
      * @param versionChecked client version checked
      */
     public InfoResponse(String name, String version, String buildNumber, String buildTime, Boolean versionChecked) {
-        super(null);
         this.name = name;
         this.version = version;
         this.buildNumber = buildNumber;
@@ -106,8 +105,7 @@ public final class InfoResponse extends Response {
         }
 
         InfoResponse that = (InfoResponse) o;
-        return super.equals(o)
-                && name != null ? name.equals(that.getName()) : that.name == null
+        return name != null ? name.equals(that.getName()) : that.name == null
                 && version != null ? version.equals(that.getVersion()) : that.version == null
                 && buildNumber != null ? buildNumber.equals(that.getBuildNumber()) : that.buildNumber == null
                 && buildTime != null ? buildTime.equals(that.getBuildTime()) : that.buildTime == null
