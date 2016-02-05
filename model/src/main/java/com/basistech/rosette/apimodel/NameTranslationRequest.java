@@ -23,7 +23,7 @@ import com.basistech.util.TransliterationScheme;
 import javax.validation.constraints.NotNull;
 
 /**
- * Class that represents the data from a name translation request
+ * A request to translate a name.
  */
 public final class NameTranslationRequest {
     @NotNull
@@ -34,9 +34,7 @@ public final class NameTranslationRequest {
     private LanguageCode sourceLanguageOfUse;
     @NotNull
     private LanguageCode targetLanguage;
-    @NotNull
     private ISO15924 targetScript;
-    @NotNull
     private TransliterationScheme targetScheme;
 
     /**
