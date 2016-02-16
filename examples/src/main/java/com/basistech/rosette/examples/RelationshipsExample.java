@@ -34,7 +34,7 @@ public final class RelationshipsExample extends ExampleBase {
     }
 
     private void run() throws IOException, RosetteAPIException {
-        String relationshipsTextData = "Bill Murray is in the new Ghostbusters film!";
+        String relationshipsTextData = "The Ghostbusters movie was filmed in Boston.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         RelationshipsResponse response = rosetteApi.getRelationships(relationshipsTextData, null, null);
