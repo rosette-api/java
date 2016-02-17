@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2016 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 package com.basistech.rosette.apimodel;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -49,8 +48,8 @@ public final class SentimentResponse extends Response {
             return false;
         }
         SentimentResponse that = (SentimentResponse) o;
-        return Objects.equals(document, that.document) &&
-                Objects.equals(entities, that.entities);
+        return Objects.equals(document, that.document)
+                && Objects.equals(entities, that.entities);
     }
 
     @Override
