@@ -97,12 +97,12 @@ public class RosetteAPITest extends AbstractTest {
 
         String statusFilename = testFilename.replace(".json", ".status");
         try (InputStream bodyStream = new FileInputStream("src/test/mock-data/response/" + testFilename)) {
-            responseStr = IOUtils.toString(bodyStream, UTF_8);
+            responseStr = IOUtils.toString(bodyStream, "UTF-8");
             int statusCode = 200;
 
             File statusFile = new File("src/test/mock-data/response", statusFilename);
             if (statusFile.exists()) {
-                String statusStr = FileUtils.readFileToString(statusFile, UTF_8).trim();
+                String statusStr = FileUtils.readFileToString(statusFile, "UTF-8").trim();
                 statusCode = Integer.parseInt(statusStr);
             }
             mockServer = new MockServerClient("localhost", serverPort);
