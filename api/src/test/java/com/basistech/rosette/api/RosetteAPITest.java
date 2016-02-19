@@ -37,7 +37,6 @@ import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.util.LanguageCode;
-import com.google.common.base.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
@@ -98,12 +97,12 @@ public class RosetteAPITest extends AbstractTest {
 
         String statusFilename = testFilename.replace(".json", ".status");
         try (InputStream bodyStream = new FileInputStream("src/test/mock-data/response/" + testFilename)) {
-            responseStr = IOUtils.toString(bodyStream, Charsets.UTF_8);
+            responseStr = IOUtils.toString(bodyStream, UTF_8);
             int statusCode = 200;
 
             File statusFile = new File("src/test/mock-data/response", statusFilename);
             if (statusFile.exists()) {
-                String statusStr = FileUtils.readFileToString(statusFile, Charsets.UTF_8).trim();
+                String statusStr = FileUtils.readFileToString(statusFile, UTF_8).trim();
                 statusCode = Integer.parseInt(statusStr);
             }
             mockServer = new MockServerClient("localhost", serverPort);
