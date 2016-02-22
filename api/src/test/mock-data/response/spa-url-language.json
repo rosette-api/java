@@ -1,24 +1,24 @@
 {
   "languageDetections": [
     {
-      "confidence": 0.034891549992284165, 
+      "confidence": 0.03582379977551897, 
       "language": "spa"
     }, 
     {
-      "confidence": 0.015822027492132573, 
+      "confidence": 0.018636470957013707, 
       "language": "cat"
     }, 
     {
-      "confidence": 0.014183087048021736, 
+      "confidence": 0.014458484238832447, 
       "language": "por"
     }, 
     {
-      "confidence": 0.009989990297605056, 
-      "language": "ron"
+      "confidence": 0.010211159946219683, 
+      "language": "fra"
     }, 
     {
-      "confidence": 0.008597333530815487, 
-      "language": "fra"
+      "confidence": 0.0098262923631105, 
+      "language": "ron"
     }
   ]
 }

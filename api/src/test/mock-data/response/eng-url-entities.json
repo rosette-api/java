@@ -2,27 +2,619 @@
   "entities": [
     {
       "confidence": 0.0, 
-      "count": 1, 
+      "count": 9, 
       "indocChainId": 0, 
-      "mention": "Clinton", 
-      "normalized": "Clinton", 
+      "mention": "Dalton", 
+      "normalized": "Dalton", 
       "type": "PERSON"
     }, 
     {
       "confidence": 0.0, 
-      "count": 1, 
+      "count": 4, 
+      "indocChainId": 0, 
+      "mention": "Jason Dalton", 
+      "normalized": "Jason Dalton", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 4, 
+      "indocChainId": 30, 
+      "mention": "Kalamazoo", 
+      "normalized": "Kalamazoo", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 4, 
+      "indocChainId": 34, 
+      "mention": "Uber", 
+      "normalized": "Uber", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 4, 
+      "indocChainId": 39, 
+      "mention": "Dalton", 
+      "normalized": "Dalton", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 3, 
       "indocChainId": 1, 
-      "mention": "Sanders", 
-      "normalized": "Sanders", 
+      "mention": "Facebook", 
+      "normalized": "Facebook", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 3, 
+      "indocChainId": 14, 
+      "mention": "Kalamazoo, Mich.", 
+      "normalized": "Kalamazoo, Mich.", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 3, 
+      "indocChainId": 54, 
+      "mention": "Battle Creek", 
+      "normalized": "Battle Creek", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 10, 
+      "mention": "Detroit Free Press", 
+      "normalized": "Detroit Free Press", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 12, 
+      "mention": "Kalamazoo, Michigan", 
+      "normalized": "Kalamazoo, Michigan", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 15, 
+      "mention": "Andraya Croft", 
+      "normalized": "Andraya Croft", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 16, 
+      "mention": "The Detroit Free Press", 
+      "normalized": "The Detroit Free Press", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 28, 
+      "mention": "Kalamazoo County", 
+      "normalized": "Kalamazoo County", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 55, 
+      "mention": "Nye", 
+      "normalized": "Nye", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 55, 
+      "mention": "Mary Jo Nye", 
+      "normalized": "Mary Jo Nye", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 56, 
+      "mention": "Brown", 
+      "normalized": "Brown", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 83, 
+      "mention": "Mellen", 
+      "normalized": "Mellen", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 98, 
+      "mention": "President", 
+      "normalized": "President", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 99, 
+      "mention": "Obama", 
+      "normalized": "Obama", 
       "type": "PERSON"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 2, 
+      "indocChainId": 3, 
+      "mention": "USATODAY.com", 
+      "normalized": "USATODAY.com", 
+      "type": "IDENTIFIER:URL"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 4, 
+      "mention": "http://usat.ly/1TAlAs8", 
+      "normalized": "http://usat.ly/1TAlAs8", 
+      "type": "IDENTIFIER:URL"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 7, 
+      "mention": "John Bacon", 
+      "normalized": "John Bacon", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 8, 
+      "mention": "USA TODAY", 
+      "normalized": "USA TODAY", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 9, 
+      "mention": "Katrease Stafford", 
+      "normalized": "Katrease Stafford", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 13, 
+      "mention": "Seelye Auto Group", 
+      "normalized": "Seelye Auto Group", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 20, 
+      "mention": "judge", 
+      "normalized": "judge", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 22, 
+      "mention": "Michigan", 
+      "normalized": "Michigan", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 26, 
+      "mention": "Kia", 
+      "normalized": "Kia", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 31, 
+      "mention": "Prosecutor", 
+      "normalized": "Prosecutor", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 32, 
+      "mention": "Jeff", 
+      "normalized": "Jeff", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 39, 
+      "mention": "Carole Dalton", 
+      "normalized": "Carole Dalton", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 39, 
+      "mention": "Carole", 
+      "normalized": "Carole", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 40, 
+      "mention": "Raymond James", 
+      "normalized": "Raymond James", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 41, 
+      "mention": "Kalamazoo Valley Community College", 
+      "normalized": "Kalamazoo Valley Community College", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 42, 
+      "mention": "Sally Pardo", 
+      "normalized": "Sally Pardo", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 45, 
+      "mention": "Tyler Smith", 
+      "normalized": "Tyler Smith", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 45, 
+      "mention": "Tyler", 
+      "normalized": "Tyler", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 46, 
+      "mention": "Richard", 
+      "normalized": "Richard", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 47, 
+      "mention": "Mattawan Consolidated Schools", 
+      "normalized": "Mattawan Consolidated Schools", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 48, 
+      "mention": "superintendent", 
+      "normalized": "superintendent", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 49, 
+      "mention": "Robin Buckler", 
+      "normalized": "Robin Buckler", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 51, 
+      "mention": "Buchler", 
+      "normalized": "Buchler", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 52, 
+      "mention": "Mary LouÂ Nye", 
+      "normalized": "Mary LouÂ Nye", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 53, 
+      "mention": "Baroda, Mich.", 
+      "normalized": "Baroda, Mich.", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 56, 
+      "mention": "Dorothy Brown", 
+      "normalized": "Dorothy Brown", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 57, 
+      "mention": "Hawthorne", 
+      "normalized": "Hawthorne", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 57, 
+      "mention": "BarbaraÂ Hawthorne", 
+      "normalized": "BarbaraÂ Hawthorne", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 58, 
+      "mention": "Mary Lou NyeÂ", 
+      "normalized": "Mary Lou NyeÂ", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 58, 
+      "mention": "Mary Lou", 
+      "normalized": "Mary Lou", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 59, 
+      "mention": "Carol Dinges", 
+      "normalized": "Carol Dinges", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 61, 
+      "mention": "Mary Jo NyeÂ", 
+      "normalized": "Mary Jo NyeÂ", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 62, 
+      "mention": "Chevrolet", 
+      "normalized": "Chevrolet", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 64, 
+      "mention": "English", 
+      "normalized": "English", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 65, 
+      "mention": "Tara Egnatuk", 
+      "normalized": "Tara Egnatuk", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 66, 
+      "mention": "assistant director", 
+      "normalized": "assistant director", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 71, 
+      "mention": "Daniel Arnold", 
+      "normalized": "Daniel Arnold", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 73, 
+      "mention": "mlive.com", 
+      "normalized": "mlive.com", 
+      "type": "IDENTIFIER:URL"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 75, 
+      "mention": "Cruze", 
+      "normalized": "Cruze", 
+      "type": "PRODUCT"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 76, 
+      "mention": "Kellogg Co.", 
+      "normalized": "Kellogg Co.", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 77, 
+      "mention": "Â Kellogg", 
+      "normalized": "Â Kellogg", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 77, 
+      "mention": "Kellogg", 
+      "normalized": "Kellogg", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 78, 
+      "mention": "CEO", 
+      "normalized": "CEO", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 79, 
+      "mention": "John Bryant", 
+      "normalized": "John Bryant", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 79, 
+      "mention": "Bryant", 
+      "normalized": "Bryant", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 80, 
+      "mention": "Barbara Hawthorne", 
+      "normalized": "Barbara Hawthorne", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 83, 
+      "mention": "Matt Mellen", 
+      "normalized": "Matt Mellen", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 84, 
+      "mention": "WWMT", 
+      "normalized": "WWMT", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 88, 
+      "mention": "Chevy", 
+      "normalized": "Chevy", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 95, 
+      "mention": "Joe Sullivan", 
+      "normalized": "Joe Sullivan", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 96, 
+      "mention": "chief security officer", 
+      "normalized": "chief security officer", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 102, 
+      "mention": "U.S.", 
+      "normalized": "U.S.", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 103, 
+      "mention": "governors", 
+      "normalized": "governors", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 104, 
       "mention": "Washington", 
       "normalized": "Washington", 
       "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 105, 
+      "mention": "mayor", 
+      "normalized": "mayor", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 106, 
+      "mention": "police chief", 
+      "normalized": "police chief", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 108, 
+      "mention": "Jennifer Bowman", 
+      "normalized": "Jennifer Bowman", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 110, 
+      "mention": "Centerpoint Church", 
+      "normalized": "Centerpoint Church", 
+      "type": "ORGANIZATION"
     }
   ]
 }

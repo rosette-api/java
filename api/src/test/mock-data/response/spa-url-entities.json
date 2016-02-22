@@ -3,50 +3,146 @@
     {
       "confidence": 0.0, 
       "count": 3, 
-      "indocChainId": 1, 
-      "mention": "Banxico", 
-      "normalized": "Banxico", 
+      "indocChainId": 8, 
+      "mention": "Emma Coronel", 
+      "normalized": "Emma Coronel", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 5, 
+      "mention": "Guzmán", 
+      "normalized": "Guzmán", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 9, 
+      "mention": "Comisión Nacional de Derechos Humanos", 
+      "normalized": "Comisión Nacional de Derechos Humanos", 
       "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 0, 
-      "mention": "México", 
-      "normalized": "México", 
-      "type": "LOCATION"
+      "mention": "El Universal | Lunes 22 Febrero", 
+      "normalized": "El Universal | Lunes 22 Febrero", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 1, 
+      "mention": "El Universal", 
+      "normalized": "El Universal", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 2, 
+      "mention": "El Chapo\nCiudad de México", 
+      "normalized": "El Chapo Ciudad de México", 
+      "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 3, 
-      "mention": "Getty", 
-      "normalized": "Getty", 
+      "mention": "José Refugio Domínguez", 
+      "normalized": "José Refugio Domínguez", 
       "type": "PERSON"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 4, 
-      "mention": "Comisión de Cambios", 
-      "normalized": "Comisión de Cambios", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 5, 
-      "mention": "CIUDAD DE MÉXICO", 
-      "normalized": "CIUDAD DE MÉXICO", 
-      "type": "ORGANIZATION"
+      "mention": "Joaquín", 
+      "normalized": "Joaquín", 
+      "type": "PERSON"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 6, 
-      "mention": "Banco de México", 
-      "normalized": "Banco de México", 
+      "mention": "Ciro Gómez Leyva", 
+      "normalized": "Ciro Gómez Leyva", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 7, 
+      "mention": "Sinaloa", 
+      "normalized": "Sinaloa", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 9, 
+      "mention": "CNDH", 
+      "normalized": "CNDH", 
       "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "juez", 
+      "normalized": "juez", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 11, 
+      "mention": "Tercero de Distrito", 
+      "normalized": "Tercero de Distrito", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 12, 
+      "mention": "El Chapo", 
+      "normalized": "El Chapo", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 14, 
+      "mention": "Centro Federal de Rehabilitación Social", 
+      "normalized": "Centro Federal de Rehabilitación Social", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 15, 
+      "mention": "Cefereso", 
+      "normalized": "Cefereso", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 16, 
+      "mention": "Almoloya", 
+      "normalized": "Almoloya", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 20, 
+      "mention": "Almira", 
+      "normalized": "Almira", 
+      "type": "PERSON"
     }
   ]
 }

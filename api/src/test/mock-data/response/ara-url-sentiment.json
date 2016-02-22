@@ -1,5 +1,4 @@
 {
   "code": "unsupportedLanguage", 
-  "message": "ARABIC is not supported by Rosette Sentiment Analyzer", 
-  "stack": null
+  "message": "Unsupported language: Arabic"
 }

@@ -1,23 +1,23 @@
 {
   "languageDetections": [
     {
-      "confidence": 0.10025794580616221, 
+      "confidence": 0.10132799190929165, 
       "language": "ara"
     }, 
     {
-      "confidence": 0.04616934873921186, 
+      "confidence": 0.04378492269419554, 
       "language": "pus"
     }, 
     {
-      "confidence": 0.039137035166829315, 
+      "confidence": 0.03643808212936239, 
       "language": "fas"
     }, 
     {
-      "confidence": 0.030480538802205803, 
+      "confidence": 0.030547971478248614, 
       "language": "urd"
     }, 
     {
-      "confidence": 0.02296375575089682, 
+      "confidence": 0.01904754072445347, 
       "language": "kur"
     }
   ]

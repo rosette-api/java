@@ -1,34 +1,40 @@
 {
   "entities": [
     {
-      "confidence": 0.1699630580022847, 
-      "entityId": "Q96", 
-      "indocChainId": 0, 
-      "mention": "México"
-    }, 
-    {
-      "confidence": 0.7626766773813667, 
-      "entityId": "Q806208", 
+      "confidence": 0.32076594639408873, 
+      "entityId": "Q1324688", 
       "indocChainId": 1, 
-      "mention": "Banxico"
+      "mention": "El Universal"
     }, 
     {
-      "confidence": 0.15580002982890145, 
-      "entityId": "Q2919540", 
-      "indocChainId": 3, 
-      "mention": "Getty"
+      "confidence": 0.14637945863558022, 
+      "entityId": "Q456321", 
+      "indocChainId": 4, 
+      "mention": "Joaquín"
     }, 
     {
-      "confidence": 0.40571102338241527, 
-      "entityId": "Q6826206", 
-      "indocChainId": 5, 
-      "mention": "CIUDAD DE MÉXICO"
-    }, 
-    {
-      "confidence": 0.7804263794843455, 
-      "entityId": "Q806208", 
+      "confidence": 0.8029934207689083, 
+      "entityId": "Q5694509", 
       "indocChainId": 6, 
-      "mention": "Banco de México"
+      "mention": "Ciro Gómez Leyva"
+    }, 
+    {
+      "confidence": 0.517608802000472, 
+      "entityId": "Q80252", 
+      "indocChainId": 7, 
+      "mention": "Sinaloa"
+    }, 
+    {
+      "confidence": 0.6771678756508986, 
+      "entityId": "Q5779179", 
+      "indocChainId": 9, 
+      "mention": "Comisión Nacional de Derechos Humanos"
+    }, 
+    {
+      "confidence": 0.46069704653277166, 
+      "entityId": "Q2450443", 
+      "indocChainId": 16, 
+      "mention": "Almoloya"
     }
   ]
 }

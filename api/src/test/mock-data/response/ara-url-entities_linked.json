@@ -1,118 +1,82 @@
 {
   "entities": [
     {
-      "confidence": 0.667712864174646, 
-      "entityId": "Q1546", 
+      "confidence": 0.5278435023224861, 
+      "entityId": "Q858", 
       "indocChainId": 0, 
-      "mention": "آيوا"
+      "mention": "سوريا"
     }, 
     {
-      "confidence": 0.7201198079722657, 
-      "entityId": "Q22686", 
-      "indocChainId": 9, 
-      "mention": "دونالد ترامب"
+      "confidence": 0.5321605726363173, 
+      "entityId": "Q159", 
+      "indocChainId": 2, 
+      "mention": "روسيا"
     }, 
     {
-      "confidence": 0.3996739210344437, 
-      "entityId": "Q29468", 
-      "indocChainId": 13, 
-      "mention": "الجمهوريون"
-    }, 
-    {
-      "confidence": 0.2779446540440955, 
-      "entityId": "Q2570643", 
-      "indocChainId": 19, 
-      "mention": "مجلس الشيوخ"
-    }, 
-    {
-      "confidence": 0.5659996295644975, 
-      "entityId": "Q1439", 
-      "indocChainId": 21, 
-      "mention": "تكساس"
-    }, 
-    {
-      "confidence": 0.4967389079216065, 
-      "entityId": "Q812", 
-      "indocChainId": 24, 
-      "mention": "فلوريدا"
-    }, 
-    {
-      "confidence": 0.474816482378984, 
-      "entityId": "Q29468", 
-      "indocChainId": 31, 
-      "mention": "الجمهوريين"
-    }, 
-    {
-      "confidence": 0.7296432344282298, 
-      "entityId": "Q186068", 
-      "indocChainId": 45, 
-      "mention": "فوكس نيوز"
-    }, 
-    {
-      "confidence": 0.9464004969581655, 
-      "entityId": "Q76", 
-      "indocChainId": 58, 
-      "mention": "باراك أوباما"
-    }, 
-    {
-      "confidence": 0.609847471336826, 
-      "entityId": "Q207", 
-      "indocChainId": 71, 
-      "mention": "جورج بوش"
-    }, 
-    {
-      "confidence": 0.6798451262305159, 
-      "entityId": "Q158813", 
-      "indocChainId": 72, 
-      "mention": "مايك هوكابي"
-    }, 
-    {
-      "confidence": 0.8511351289289357, 
-      "entityId": "Q155985", 
-      "indocChainId": 73, 
-      "mention": "ريك سانتوروم"
-    }, 
-    {
-      "confidence": 0.705441928596071, 
-      "entityId": "Q759", 
-      "indocChainId": 77, 
-      "mention": "نيوهامبشير"
-    }, 
-    {
-      "confidence": 0.7555821961752025, 
-      "entityId": "Q29468", 
-      "indocChainId": 80, 
-      "mention": "الحزب الجمهوري"
-    }, 
-    {
-      "confidence": 0.6538417439497141, 
-      "entityId": "Q11690", 
-      "indocChainId": 93, 
-      "mention": "وول ستريت"
-    }, 
-    {
-      "confidence": 0.8561413468778017, 
-      "entityId": "Q35525", 
-      "indocChainId": 104, 
-      "mention": "البيت الأبيض"
-    }, 
-    {
-      "confidence": 0.7099615589086752, 
-      "entityId": "Q759", 
-      "indocChainId": 108, 
-      "mention": "نيوهامبشر"
-    }, 
-    {
-      "confidence": 0.49012379251781385, 
-      "entityId": "Q29552", 
-      "indocChainId": 109, 
-      "mention": "الديموقراطيين"
-    }, 
-    {
-      "confidence": 0.5958389303068974, 
+      "confidence": 0.6797327200442077, 
       "entityId": "Q30", 
-      "indocChainId": 117, 
-      "mention": "أميركا"
+      "indocChainId": 4, 
+      "mention": "الولايات المتحدة"
+    }, 
+    {
+      "confidence": 0.8424548794693568, 
+      "entityId": "Q22316", 
+      "indocChainId": 8, 
+      "mention": "جون كيري"
+    }, 
+    {
+      "confidence": 0.7745349574131992, 
+      "entityId": "Q58217", 
+      "indocChainId": 10, 
+      "mention": "سيرغي لافروف"
+    }, 
+    {
+      "confidence": 0.7351052434612249, 
+      "entityId": "Q32748", 
+      "indocChainId": 12, 
+      "mention": "جبهة النصرة"
+    }, 
+    {
+      "confidence": 0.5825984376063831, 
+      "entityId": "Q1726", 
+      "indocChainId": 13, 
+      "mention": "ميونيخ"
+    }, 
+    {
+      "confidence": 0.5776150483002451, 
+      "entityId": "Q131301", 
+      "indocChainId": 16, 
+      "mention": "حمص"
+    }, 
+    {
+      "confidence": 0.5245513116612747, 
+      "entityId": "Q3766", 
+      "indocChainId": 17, 
+      "mention": "دمشق"
+    }, 
+    {
+      "confidence": 0.8845986016327922, 
+      "entityId": "Q44329", 
+      "indocChainId": 28, 
+      "mention": "بشار الأسد"
+    }, 
+    {
+      "confidence": 0.4278721621141972, 
+      "entityId": "Q41183", 
+      "indocChainId": 31, 
+      "mention": "حلب"
+    }, 
+    {
+      "confidence": 0.7585867957171675, 
+      "entityId": "Q1065", 
+      "indocChainId": 38, 
+      "mention": "لأمم المتحدة"
+    }, 
+    {
+      "confidence": 0.7243555107609166, 
+      "entityId": "Q47488", 
+      "indocChainId": 42, 
+      "mention": "محكمة الجنايات الدولية"
     }
   ]
 }

@@ -1,139 +1,139 @@
 {
   "entities": [
     {
-      "confidence": 0.9030392014196905, 
+      "confidence": 0.8802795548561408, 
       "entityId": "Q41117", 
       "indocChainId": 0, 
       "mention": "김일성"
     }, 
     {
-      "confidence": 0.8995685250374412, 
+      "confidence": 0.8751861210485232, 
       "entityId": "Q41117", 
       "indocChainId": 1, 
       "mention": "金日成"
     }, 
     {
-      "confidence": 0.4368724921308365, 
+      "confidence": 0.4272365242033509, 
       "entityId": "Q884", 
       "indocChainId": 2, 
       "mention": "한국"
     }, 
     {
-      "confidence": 0.37773224356015606, 
+      "confidence": 0.3886208816645399, 
       "entityId": "Q81126", 
       "indocChainId": 3, 
       "mention": "만주"
     }, 
     {
-      "confidence": 0.6601543432470545, 
+      "confidence": 0.6549690507473528, 
       "entityId": "Q707629", 
       "indocChainId": 5, 
       "mention": "조선인민혁명군"
     }, 
     {
-      "confidence": 0.7656897700697718, 
+      "confidence": 0.7563096828089738, 
       "entityId": "Q423", 
       "indocChainId": 6, 
       "mention": "조선민주주의인민공화국"
     }, 
     {
-      "confidence": 0.4371508627720488, 
+      "confidence": 0.39076345631009024, 
       "entityId": "Q41117", 
       "indocChainId": 8, 
       "mention": "김성주"
     }, 
     {
-      "confidence": 0.07709397180704397, 
+      "confidence": 0.07376795566676654, 
       "entityId": "Q1741576", 
       "indocChainId": 10, 
       "mention": "金聖柱"
     }, 
     {
-      "confidence": 0.5090963011706465, 
+      "confidence": 0.507435228552116, 
       "entityId": "Q495876", 
       "indocChainId": 12, 
       "mention": "조선로동당 중앙위원회"
     }, 
     {
-      "confidence": 0.838060545256833, 
+      "confidence": 0.8323905521176216, 
       "entityId": "Q884", 
       "indocChainId": 16, 
       "mention": "대한민국"
     }, 
     {
-      "confidence": 0.566428903213416, 
+      "confidence": 0.5773449516033567, 
       "entityId": "Q109380", 
       "indocChainId": 19, 
       "mention": "평안남도"
     }, 
     {
-      "confidence": 0.6701123263640776, 
+      "confidence": 0.6745760117087101, 
       "entityId": "Q196271", 
       "indocChainId": 20, 
       "mention": "대동군"
     }, 
     {
-      "confidence": 0.566993293034775, 
+      "confidence": 0.5687621503975444, 
       "entityId": "Q18808", 
       "indocChainId": 22, 
       "mention": "평양"
     }, 
     {
-      "confidence": 0.9557178963182491, 
+      "confidence": 0.9386614880824982, 
       "entityId": "Q489279", 
       "indocChainId": 24, 
       "mention": "김형직"
     }, 
     {
-      "confidence": 0.9557178963182491, 
+      "confidence": 0.9386614880824982, 
       "entityId": "Q489279", 
       "indocChainId": 25, 
       "mention": "金亨稷"
     }, 
     {
-      "confidence": 0.8291221996104692, 
+      "confidence": 0.79883199812955, 
       "entityId": "Q709975", 
       "indocChainId": 26, 
       "mention": "강반석"
     }, 
     {
-      "confidence": 0.41658476398026845, 
+      "confidence": 0.4219921026058561, 
       "entityId": "Q42140", 
       "indocChainId": 28, 
       "mention": "전주"
     }, 
     {
-      "confidence": 0.6918055560823805, 
+      "confidence": 0.6792383197745228, 
       "entityId": "Q41157", 
       "indocChainId": 30, 
       "mention": "전라북도"
     }, 
     {
-      "confidence": 0.7327513304910209, 
+      "confidence": 0.7295320685867954, 
       "entityId": "Q17", 
       "indocChainId": 35, 
       "mention": "일본"
     }, 
     {
-      "confidence": 0.5393119623408688, 
+      "confidence": 0.5444427195225453, 
       "entityId": "Q50250", 
       "indocChainId": 46, 
       "mention": "성주"
     }, 
     {
-      "confidence": 0.5981320308874905, 
+      "confidence": 0.5908362836301936, 
       "entityId": "Q50250", 
       "indocChainId": 47, 
       "mention": "성주"
     }, 
     {
-      "confidence": 0.5095986820328051, 
+      "confidence": 0.5177743800569374, 
       "entityId": "Q3055296", 
       "indocChainId": 50, 
       "mention": "무송"
     }, 
     {
-      "confidence": 0.37933624796189996, 
+      "confidence": 0.3766325235749189, 
       "entityId": "Q148", 
       "indocChainId": 62, 
       "mention": "중국"

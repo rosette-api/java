@@ -2,427 +2,227 @@
   "entities": [
     {
       "confidence": 0.0, 
-      "count": 15, 
-      "indocChainId": 9, 
-      "mention": "ترامب", 
-      "normalized": "ترامب", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 14, 
-      "indocChainId": 10, 
-      "mention": "كروز", 
-      "normalized": "كروز", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 13, 
+      "count": 6, 
       "indocChainId": 0, 
-      "mention": "آيوا", 
-      "normalized": "آيوا", 
+      "mention": "سوريا", 
+      "normalized": "سوريا", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
-      "count": 5, 
-      "indocChainId": 11, 
-      "mention": "روبيو", 
-      "normalized": "روبيو", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
       "count": 4, 
-      "indocChainId": 1, 
-      "mention": "الأميركية", 
-      "normalized": "الأميركية", 
+      "indocChainId": 22, 
+      "mention": "السوري", 
+      "normalized": "السوري", 
       "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
-      "count": 4, 
-      "indocChainId": 19, 
-      "mention": "مجلس الشيوخ", 
-      "normalized": "مجلس الشيوخ", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
       "count": 3, 
-      "indocChainId": 4, 
-      "mention": "هافينغتون بوست", 
-      "normalized": "هافينغتون بوست", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 3, 
-      "indocChainId": 10, 
-      "mention": "تيد كروز", 
-      "normalized": "تيد كروز", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 3, 
-      "indocChainId": 15, 
-      "mention": "الإنجيليين", 
-      "normalized": "الإنجيليين", 
+      "indocChainId": 11, 
+      "mention": "الإسلامية", 
+      "normalized": "الإسلامية", 
       "type": "RELIGION"
     }, 
     {
       "confidence": 0.0, 
-      "count": 3, 
-      "indocChainId": 77, 
-      "mention": "نيوهامبشير", 
-      "normalized": "نيوهامبشير", 
+      "count": 2, 
+      "indocChainId": 2, 
+      "mention": "وروسيا", 
+      "normalized": "روسيا", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 2, 
-      "indocChainId": 11, 
-      "mention": "ماركو روبيو", 
-      "normalized": "ماركو روبيو", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 13, 
-      "mention": "الجمهوريون", 
-      "normalized": "الجمهوريون", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 21, 
-      "mention": "تكساس", 
-      "normalized": "تكساس", 
+      "indocChainId": 4, 
+      "mention": "الولايات المتحدة", 
+      "normalized": "الولايات المتحدة", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 2, 
-      "indocChainId": 24, 
-      "mention": "فلوريدا", 
-      "normalized": "فلوريدا", 
-      "type": "LOCATION"
+      "indocChainId": 6, 
+      "mention": "وزير الخارجية", 
+      "normalized": "وزير الخارجية", 
+      "type": "TITLE"
     }, 
     {
       "confidence": 0.0, 
       "count": 2, 
-      "indocChainId": 31, 
-      "mention": "الجمهوريين", 
-      "normalized": "الجمهوريين", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 32, 
-      "mention": "المحافظين", 
-      "normalized": "المحافظين", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 80, 
-      "mention": "الحزب الجمهوري", 
-      "normalized": "الحزب الجمهوري", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 83, 
-      "mention": "للحزب الجمهوري", 
-      "normalized": "لحزب الجمهوري", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 97, 
-      "mention": "كروز", 
-      "normalized": "كروز", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 109, 
-      "mention": "الديموقراطيين", 
-      "normalized": "الديموقراطيين", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 5, 
-      "mention": "عربي", 
-      "normalized": "عربي", 
+      "indocChainId": 7, 
+      "mention": "الأمريكي", 
+      "normalized": "الأمريكي", 
       "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
-      "count": 1, 
+      "count": 2, 
       "indocChainId": 8, 
-      "mention": "الجمهوري", 
-      "normalized": "الجمهوري", 
-      "type": "ORGANIZATION"
+      "mention": "جون كيري", 
+      "normalized": "جون كيري", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 1, 
+      "mention": "أمريكا", 
+      "normalized": "أمريكا", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 2, 
+      "mention": "روسيا", 
+      "normalized": "روسيا", 
+      "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 9, 
-      "mention": "دونالد ترامب", 
-      "normalized": "دونالد ترامب", 
+      "mention": "الروسي", 
+      "normalized": "الروسي", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 10, 
+      "mention": "سيرغي لافروف", 
+      "normalized": "سيرغي لافروف", 
       "type": "PERSON"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 11, 
-      "mention": "وماركو روبيو", 
-      "normalized": "ماركو روبيو", 
-      "type": "PERSON"
+      "indocChainId": 12, 
+      "mention": "جبهة النصرة", 
+      "normalized": "جبهة النصرة", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 13, 
+      "mention": "ميونيخ", 
+      "normalized": "ميونيخ", 
+      "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 14, 
-      "mention": "المسيحيين", 
-      "normalized": "المسيحيين", 
-      "type": "RELIGION"
+      "mention": "الألمانية", 
+      "normalized": "الألمانية", 
+      "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 16, 
-      "mention": "مسيحياً", 
-      "normalized": "مسيحياً", 
-      "type": "RELIGION"
+      "mention": "حمص", 
+      "normalized": "حمص", 
+      "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 17, 
-      "mention": "إنجيلياً", 
-      "normalized": "إنجيلياً", 
-      "type": "RELIGION"
+      "mention": "ودمشق", 
+      "normalized": "دمشق", 
+      "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 20, 
-      "mention": "الأميركي", 
-      "normalized": "الأميركي", 
+      "indocChainId": 26, 
+      "mention": "الرئيس", 
+      "normalized": "الرئيس", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 28, 
+      "mention": "بشار الأسد", 
+      "normalized": "بشار الأسد", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 28, 
+      "mention": "الأسد", 
+      "normalized": "الأسد", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 30, 
+      "mention": "روسية", 
+      "normalized": "روسية", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 31, 
+      "mention": "حلب", 
+      "normalized": "حلب", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 32, 
+      "mention": "الأكراد", 
+      "normalized": "الأكراد", 
       "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 33, 
-      "mention": "ريك تايلر", 
-      "normalized": "ريك تايلر", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 42, 
-      "mention": "الكندية", 
-      "normalized": "الكندية", 
+      "mention": "التركية", 
+      "normalized": "التركية", 
       "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 45, 
-      "mention": "فوكس نيوز", 
-      "normalized": "فوكس نيوز", 
+      "indocChainId": 37, 
+      "mention": "لجنة التحقيق الدولية المستقلة", 
+      "normalized": "لجنة التحقيق الدولية المستقلة", 
       "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 46, 
-      "mention": "مديريها", 
-      "normalized": "مديريها", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 47, 
-      "mention": "ميغان كيلي", 
-      "normalized": "ميغان كيلي", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 52, 
-      "mention": "للمسيحيين", 
-      "normalized": "لمسيحيين", 
-      "type": "RELIGION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 55, 
-      "mention": "للإنجيليين", 
-      "normalized": "لإنجيليين", 
-      "type": "RELIGION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 58, 
-      "mention": "باراك أوباما", 
-      "normalized": "باراك أوباما", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 58, 
-      "mention": "أوباما", 
-      "normalized": "أوباما", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 60, 
-      "mention": "الإنجيلي", 
-      "normalized": "الإنجيلي", 
-      "type": "RELIGION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 68, 
-      "mention": "ومديرو", 
-      "normalized": "مديرو", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 71, 
-      "mention": "جورج بوش", 
-      "normalized": "جورج بوش", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 72, 
-      "mention": "ومايك هوكابي", 
-      "normalized": "مايك هوكابي", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 73, 
-      "mention": "وريك سانتوروم", 
-      "normalized": "ريك سانتوروم", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 75, 
-      "mention": "تلك القاعدة", 
-      "normalized": "تلك القاعدة", 
+      "indocChainId": 38, 
+      "mention": "للأمم المتحدة", 
+      "normalized": "لأمم المتحدة", 
       "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 90, 
-      "mention": "هاكابي", 
-      "normalized": "هاكابي", 
-      "type": "PERSON"
+      "indocChainId": 41, 
+      "mention": "السورية", 
+      "normalized": "السورية", 
+      "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 93, 
-      "mention": "وول ستريت", 
-      "normalized": "وول ستريت", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 95, 
-      "mention": "برنستون", 
-      "normalized": "برنستون", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 97, 
-      "mention": "صالح كروز", 
-      "normalized": "صالح كروز", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 100, 
-      "mention": "النواب", 
-      "normalized": "النواب", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 102, 
-      "mention": "جمهوري", 
-      "normalized": "جمهوري", 
+      "indocChainId": 42, 
+      "mention": "محكمة الجنايات الدولية", 
+      "normalized": "محكمة الجنايات الدولية", 
       "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 104, 
-      "mention": "بالبيت الأبيض", 
-      "normalized": "البيت الأبيض", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 108, 
-      "mention": "نيوهامبشر", 
-      "normalized": "نيوهامبشر", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 113, 
-      "mention": "وواشنطن", 
-      "normalized": "واشنطن", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 117, 
-      "mention": "ولأميركا", 
-      "normalized": "أميركا", 
-      "type": "LOCATION"
     }
   ]
 }

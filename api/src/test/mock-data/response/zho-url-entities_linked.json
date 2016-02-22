@@ -1,76 +1,34 @@
 {
   "entities": [
     {
-      "confidence": 0.5547979577082905, 
-      "entityId": "Q204839", 
-      "indocChainId": 0, 
-      "mention": "新华网"
-    }, 
-    {
-      "confidence": 0.5813473303122828, 
-      "entityId": "Q956", 
-      "indocChainId": 1, 
-      "mention": "北京"
-    }, 
-    {
-      "confidence": 0.925120139453568, 
+      "confidence": 0.8923558845240507, 
       "entityId": "Q15031", 
-      "indocChainId": 2, 
+      "indocChainId": 0, 
       "mention": "习近平"
     }, 
     {
-      "confidence": 0.7884097155026737, 
-      "entityId": "Q57052", 
-      "indocChainId": 4, 
-      "mention": "江西"
+      "confidence": 0.2786306001259887, 
+      "entityId": "Q50963", 
+      "indocChainId": 3, 
+      "mention": "党中央"
     }, 
     {
-      "confidence": 0.7163112921614337, 
-      "entityId": "Q1326780", 
-      "indocChainId": 7, 
-      "mention": "井冈山"
-    }, 
-    {
-      "confidence": 0.9403184898105232, 
-      "entityId": "Q5816", 
-      "indocChainId": 10, 
-      "mention": "毛泽东"
-    }, 
-    {
-      "confidence": 0.8916823421617911, 
-      "entityId": "Q22513", 
-      "indocChainId": 11, 
-      "mention": "朱德"
-    }, 
-    {
-      "confidence": 0.894702765773334, 
-      "entityId": "Q1036830", 
-      "indocChainId": 12, 
-      "mention": "中国工农红军"
-    }, 
-    {
-      "confidence": 0.2852934391233523, 
+      "confidence": 0.2407104798954382, 
       "entityId": "Q148", 
-      "indocChainId": 13, 
+      "indocChainId": 4, 
       "mention": "中国"
     }, 
     {
-      "confidence": 0.9077856323061664, 
-      "entityId": "Q148", 
-      "indocChainId": 15, 
-      "mention": "中华人民共和国"
+      "confidence": 0.6043973343797281, 
+      "entityId": "Q10872857", 
+      "indocChainId": 6, 
+      "mention": "全国政协"
     }, 
     {
-      "confidence": 0.37745241160260995, 
-      "entityId": "Q1156920", 
-      "indocChainId": 38, 
-      "mention": "罗霄"
-    }, 
-    {
-      "confidence": 0.6502943103874071, 
-      "entityId": "Q16923591", 
-      "indocChainId": 41, 
-      "mention": "茅坪"
+      "confidence": 0.7850459155917332, 
+      "entityId": "Q204839", 
+      "indocChainId": 7, 
+      "mention": "新华社"
     }
   ]
 }

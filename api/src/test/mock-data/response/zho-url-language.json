@@ -1,24 +1,24 @@
 {
   "languageDetections": [
     {
-      "confidence": 0.03790142157847032, 
+      "confidence": 0.056914989315858366, 
       "language": "zho"
     }, 
     {
-      "confidence": 0.020905331930731297, 
+      "confidence": 0.020160333660796503, 
       "language": "zho"
     }, 
     {
-      "confidence": 0.003526360514899962, 
+      "confidence": 0.004031140126022126, 
       "language": "jpn"
     }, 
     {
-      "confidence": 0.0001427576104618966, 
-      "language": "lav"
+      "confidence": 1.8724568932260155e-05, 
+      "language": "slk"
     }, 
     {
-      "confidence": 0.0, 
-      "language": "ara"
+      "confidence": 1.3168302331223458e-05, 
+      "language": "tur"
     }
   ]
 }

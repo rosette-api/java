@@ -1,19 +1,19 @@
 {
   "entities": [
     {
-      "confidence": 0.6444653673841131, 
+      "confidence": 0.6191439548350202, 
       "entityId": "Q30", 
       "indocChainId": 0, 
       "mention": "U.S."
     }, 
     {
-      "confidence": 0.19055167471207682, 
+      "confidence": 0.1883195998298547, 
       "entityId": "Q796", 
       "indocChainId": 1, 
       "mention": "Iraq"
     }, 
     {
-      "confidence": 0.16975852243267725, 
+      "confidence": 0.16953509200793812, 
       "entityId": "Q889", 
       "indocChainId": 2, 
       "mention": "Afghanistan"

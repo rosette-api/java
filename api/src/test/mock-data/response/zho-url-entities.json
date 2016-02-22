@@ -2,128 +2,16 @@
   "entities": [
     {
       "confidence": 0.0, 
-      "count": 10, 
-      "indocChainId": 3, 
-      "mention": "总书记", 
-      "normalized": "总书记", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 9, 
-      "indocChainId": 2, 
+      "count": 1, 
+      "indocChainId": 0, 
       "mention": "习近平", 
       "normalized": "习近平", 
       "type": "PERSON"
     }, 
     {
       "confidence": 0.0, 
-      "count": 7, 
-      "indocChainId": 7, 
-      "mention": "井冈山", 
-      "normalized": "井冈山", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 4, 
-      "indocChainId": 10, 
-      "mention": "毛泽东", 
-      "normalized": "毛泽东", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 3, 
-      "indocChainId": 13, 
-      "mention": "中国", 
-      "normalized": "中国", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 11, 
-      "mention": "朱德", 
-      "normalized": "朱德", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 0, 
-      "mention": "新华网", 
-      "normalized": "新华网", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 1, 
-      "mention": "北京", 
-      "normalized": "北京", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 2, 
-      "mention": "近平", 
-      "normalized": "近平", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 4, 
-      "mention": "江西", 
-      "normalized": "江西", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 12, 
-      "mention": "中国工农红军", 
-      "normalized": "中国工农红军", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 15, 
-      "mention": "中华人民共和国", 
-      "normalized": "中华人民共和国", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 22, 
-      "mention": "中共湘赣边界", 
-      "normalized": "中共湘赣边界", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 25, 
-      "mention": "听说毛泽东", 
-      "normalized": "听说毛泽东", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 30, 
-      "mention": "茅坪村", 
-      "normalized": "茅坪村", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 32, 
       "mention": "同志", 
       "normalized": "同志", 
       "type": "TITLE"
@@ -131,18 +19,50 @@
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 38, 
-      "mention": "罗霄", 
-      "normalized": "罗霄", 
-      "type": "PERSON"
+      "indocChainId": 2, 
+      "mention": "总书记", 
+      "normalized": "总书记", 
+      "type": "TITLE"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 41, 
-      "mention": "茅坪", 
-      "normalized": "茅坪", 
+      "indocChainId": 3, 
+      "mention": "党中央", 
+      "normalized": "党中央", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 4, 
+      "mention": "中国", 
+      "normalized": "中国", 
       "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 5, 
+      "mention": "十二届全国人大", 
+      "normalized": "十二届全国人大", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 6, 
+      "mention": "全国政协", 
+      "normalized": "全国政协", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 7, 
+      "mention": "新华社", 
+      "normalized": "新华社", 
+      "type": "ORGANIZATION"
     }
   ]
 }
