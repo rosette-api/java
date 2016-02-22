@@ -47,31 +47,30 @@ if [ ! -z ${API_KEY} ]; then
     cd /java/examples
 	if [ ! -z ${FILENAME} ]; then
 	    if [ ! -z ${ALT_URL} ]; then
-            echo -e "\n---------- ${FILENAME} start -------------"
-            mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${FILENAME}" -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL}
-            echo "---------- ${FILENAME} end -------------"
+                echo -e "\n---------- ${FILENAME} start -------------"
+                mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${FILENAME}" -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL}
+                echo "---------- ${FILENAME} end -------------"
 	    else
-            echo -e "\n---------- ${FILENAME} start -------------"
-            mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${FILENAME}" -Drosette.api.key=${API_KEY}
-            echo "---------- ${FILENAME} end -------------"
+                echo -e "\n---------- ${FILENAME} start -------------"
+                mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${FILENAME}" -Drosette.api.key=${API_KEY}
+                echo "---------- ${FILENAME} end -------------"
    	    fi
 	elif [ ! -z ${ALT_URL} ]; then
-        for file in /java/examples/src/main/java/com/basistech/rosette/examples/*.java; do
-            filename=$(basename "$file")
-            filename="${filename%.*}"
-            echo -e "\n---------- ${filename} start -------------"
-    	    mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 
-            echo "---------- ${filename} end -------------"
-        done
+            for file in /java/examples/src/main/java/com/basistech/rosette/examples/*.java; do
+                filename=$(basename "$file")
+                filename="${filename%.*}"
+                echo -e "\n---------- ${filename} start -------------"
+    	        mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 
+                echo "---------- ${filename} end -------------"
+            done
 	else
-        for file in /java/examples/src/main/java/com/basistech/rosette/examples/*.java; do
-            filename=$(basename "$file")
-            filename="${filename%.*}"
-            echo -e "\n---------- ${filename} start -------------"
-            mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY} 
-            echo "---------- ${filename} end -------------"
-        done
-    fi
+            for file in /java/examples/src/main/java/com/basistech/rosette/examples/*.java; do
+                filename=$(basename "$file")
+                filename="${filename%.*}"
+                echo -e "\n---------- ${filename} start -------------"
+                mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY}                echo "---------- ${filename} end -------------"
+            done
+        fi
 else 
     HELP
 fi
