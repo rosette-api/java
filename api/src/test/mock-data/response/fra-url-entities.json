@@ -2,354 +2,186 @@
   "entities": [
     {
       "confidence": 0.0, 
-      "count": 12, 
-      "indocChainId": 0, 
-      "mention": "Boris Johnson", 
-      "normalized": "Boris Johnson", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
       "count": 6, 
-      "indocChainId": 4, 
-      "mention": "maire", 
-      "normalized": "maire", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 6, 
-      "indocChainId": 5, 
-      "mention": "Londres", 
-      "normalized": "Londres", 
+      "indocChainId": 1, 
+      "mention": "France", 
+      "normalized": "France", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
-      "count": 6, 
-      "indocChainId": 6, 
-      "mention": "Premier ministre", 
-      "normalized": "Premier ministre", 
-      "type": "TITLE"
+      "count": 3, 
+      "indocChainId": 4, 
+      "mention": "Mars", 
+      "normalized": "Mars", 
+      "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
-      "count": 4, 
-      "indocChainId": 12, 
+      "count": 3, 
+      "indocChainId": 7, 
+      "mention": "Pays-Bas", 
+      "normalized": "Pays-Bas", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 0, 
+      "mention": "Europe", 
+      "normalized": "Europe", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 3, 
+      "mention": "Snickers", 
+      "normalized": "Snickers", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 6, 
+      "mention": "Allemagne", 
+      "normalized": "Allemagne", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 16, 
+      "mention": "Veghel", 
+      "normalized": "Veghel", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 8, 
       "mention": "Royaume-Uni", 
       "normalized": "Royaume-Uni", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
-      "count": 4, 
-      "indocChainId": 47, 
-      "mention": "David Cameron", 
-      "normalized": "David Cameron", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 3, 
-      "indocChainId": 0, 
-      "mention": "Johnson", 
-      "normalized": "Johnson", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 3, 
-      "indocChainId": 10, 
-      "mention": "UE", 
-      "normalized": "UE", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 3, 
-      "indocChainId": 29, 
-      "mention": "Daily Telegraph", 
-      "normalized": "Daily Telegraph", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 20, 
-      "mention": "Cameron", 
-      "normalized": "Cameron", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 23, 
-      "mention": "chancelier", 
-      "normalized": "chancelier", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 32, 
-      "mention": "chef", 
-      "normalized": "chef", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 62, 
-      "mention": "Bruxelles", 
-      "normalized": "Bruxelles", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 76, 
-      "mention": "député", 
-      "normalized": "député", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 0, 
-      "mention": "Boris", 
-      "normalized": "Boris", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 2, 
-      "mention": "Paris", 
-      "normalized": "Paris", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 3, 
-      "mention": "Frédéric Stucin", 
-      "normalized": "Frédéric Stucin", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 9, 
-      "mention": "Sauveur", 
-      "normalized": "Sauveur", 
+      "mention": "Belgique", 
+      "normalized": "Belgique", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 13, 
-      "mention": "Union européenne", 
-      "normalized": "Union européenne", 
+      "indocChainId": 10, 
+      "mention": "Italie", 
+      "normalized": "Italie", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 19, 
-      "mention": "Dave", 
-      "normalized": "Dave", 
-      "type": "PERSON"
+      "indocChainId": 11, 
+      "mention": "Espagne", 
+      "normalized": "Espagne", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 12, 
+      "mention": "AFP Eline Bijveld", 
+      "normalized": "AFP Eline Bijveld", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 21, 
+      "mention": "Rhin", 
+      "normalized": "Rhin", 
+      "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 22, 
-      "mention": "Osborne", 
-      "normalized": "Osborne", 
+      "mention": "Uncle Ben's", 
+      "normalized": "Uncle Ben's", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 23, 
+      "mention": "Kraft Foods", 
+      "normalized": "Kraft Foods", 
       "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 24, 
-      "mention": "ministre des Finances", 
-      "normalized": "ministre des Finances", 
-      "type": "TITLE"
+      "mention": "Nestlé", 
+      "normalized": "Nestlé", 
+      "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 25, 
-      "mention": "ministre de la Justice", 
-      "normalized": "ministre de la Justice", 
-      "type": "TITLE"
+      "indocChainId": 28, 
+      "mention": "Haguenau", 
+      "normalized": "Haguenau", 
+      "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 26, 
-      "mention": "Michael Gove", 
-      "normalized": "Michael Gove", 
-      "type": "PERSON"
+      "indocChainId": 29, 
+      "mention": "Alsace", 
+      "normalized": "Alsace", 
+      "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 31, 
-      "mention": "Nigel Farage", 
-      "normalized": "Nigel Farage", 
-      "type": "PERSON"
+      "indocChainId": 30, 
+      "mention": "Viersen", 
+      "normalized": "Viersen", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 32, 
+      "mention": "Pologne", 
+      "normalized": "Pologne", 
+      "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 33, 
-      "mention": "Ukip", 
-      "normalized": "Ukip", 
+      "mention": "Ikea", 
+      "normalized": "Ikea", 
       "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 34, 
-      "mention": "George Galloway", 
-      "normalized": "George Galloway", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 34, 
-      "mention": "George", 
-      "normalized": "George", 
-      "type": "PERSON"
+      "mention": "McDonald's", 
+      "normalized": "McDonald's", 
+      "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 35, 
-      "mention": "parti anticapitaliste Respect", 
-      "normalized": "parti anticapitaliste Respect", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 41, 
-      "mention": "Union", 
-      "normalized": "Union", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 47, 
-      "mention": "David", 
-      "normalized": "David", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 47, 
-      "mention": "Cameron", 
-      "normalized": "Cameron", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 50, 
-      "mention": "Downing Street", 
-      "normalized": "Downing Street", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 55, 
-      "mention": "parti tory", 
-      "normalized": "parti tory", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 59, 
-      "mention": "New York", 
-      "normalized": "New York", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 60, 
-      "mention": "Empire ottoman", 
-      "normalized": "Empire ottoman", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 64, 
-      "mention": "Eton College", 
-      "normalized": "Eton College", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 66, 
-      "mention": "université d’Oxford", 
-      "normalized": "université d’Oxford", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 68, 
-      "mention": "ministres", 
-      "normalized": "ministres", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 69, 
-      "mention": "Bullingdon Club", 
-      "normalized": "Bullingdon Club", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 71, 
-      "mention": "Times", 
-      "normalized": "Times", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 74, 
-      "mention": "Commission européenne", 
-      "normalized": "Commission européenne", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 75, 
-      "mention": "The Spectator", 
-      "normalized": "The Spectator", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 85, 
-      "mention": "Europe", 
-      "normalized": "Europe", 
+      "mention": "Japon", 
+      "normalized": "Japon", 
       "type": "LOCATION"
     }
   ]

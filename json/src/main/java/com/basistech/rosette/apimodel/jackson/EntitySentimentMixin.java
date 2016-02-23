@@ -28,7 +28,7 @@ public abstract class EntitySentimentMixin {
     public EntitySentimentMixin(@JsonProperty("mention") String mention,
                                 @JsonProperty("type") String type,
                                 @JsonProperty("entityId") String entityId,
-                                @JsonProperty("label") Label label) {
-
+                                @JsonProperty("sentiment") Label sentiment) {
+        //
     }
 }

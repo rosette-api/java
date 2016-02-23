@@ -7,32 +7,32 @@
   "entities": [
     {
       "entityId": "Q30", 
-      "label": {
+      "mention": "U.S.", 
+      "sentiment": {
         "confidence": 0.4441185061900165, 
         "explanations": [], 
         "label": "neu"
       }, 
-      "mention": "U.S.", 
       "type": "LOCATION"
     }, 
     {
       "entityId": "Q796", 
-      "label": {
+      "mention": "Iraq", 
+      "sentiment": {
         "confidence": 0.5430461330525177, 
         "explanations": [], 
         "label": "neu"
       }, 
-      "mention": "Iraq", 
       "type": "LOCATION"
     }, 
     {
       "entityId": "Q889", 
-      "label": {
+      "mention": "Afghanistan", 
+      "sentiment": {
         "confidence": 0.5961770818070375, 
         "explanations": [], 
         "label": "neu"
       }, 
-      "mention": "Afghanistan", 
       "type": "LOCATION"
     }
   ]

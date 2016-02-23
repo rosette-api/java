@@ -3,143 +3,199 @@
     {
       "confidence": 0.0, 
       "count": 6, 
-      "indocChainId": 0, 
+      "indocChainId": 3, 
+      "mention": "لبنان", 
+      "normalized": "لبنان", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 4, 
+      "indocChainId": 5, 
+      "mention": "حزب الله", 
+      "normalized": "حزب الله", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 3, 
+      "indocChainId": 6, 
+      "mention": "اللبنانية", 
+      "normalized": "اللبنانية", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 3, 
+      "indocChainId": 9, 
+      "mention": "الرياض", 
+      "normalized": "الرياض", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 3, 
+      "indocChainId": 14, 
+      "mention": "وزارة الخارجية", 
+      "normalized": "وزارة الخارجية", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 4, 
+      "mention": "السعوديون", 
+      "normalized": "السعوديون", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 12, 
+      "mention": "اللبناني", 
+      "normalized": "اللبناني", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 17, 
+      "mention": "بيروت", 
+      "normalized": "بيروت", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 2, 
+      "indocChainId": 33, 
       "mention": "سوريا", 
       "normalized": "سوريا", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
-      "count": 4, 
-      "indocChainId": 22, 
-      "mention": "السوري", 
-      "normalized": "السوري", 
-      "type": "NATIONALITY"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 3, 
-      "indocChainId": 11, 
-      "mention": "الإسلامية", 
-      "normalized": "الإسلامية", 
-      "type": "RELIGION"
-    }, 
-    {
-      "confidence": 0.0, 
       "count": 2, 
-      "indocChainId": 2, 
-      "mention": "وروسيا", 
-      "normalized": "روسيا", 
+      "indocChainId": 36, 
+      "mention": "ايران", 
+      "normalized": "ايران", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 2, 
-      "indocChainId": 4, 
-      "mention": "الولايات المتحدة", 
-      "normalized": "الولايات المتحدة", 
+      "indocChainId": 41, 
+      "mention": "طهران", 
+      "normalized": "طهران", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 2, 
-      "indocChainId": 6, 
-      "mention": "وزير الخارجية", 
-      "normalized": "وزير الخارجية", 
-      "type": "TITLE"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 7, 
-      "mention": "الأمريكي", 
-      "normalized": "الأمريكي", 
-      "type": "NATIONALITY"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 2, 
-      "indocChainId": 8, 
-      "mention": "جون كيري", 
-      "normalized": "جون كيري", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 1, 
-      "mention": "أمريكا", 
-      "normalized": "أمريكا", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 2, 
-      "mention": "روسيا", 
-      "normalized": "روسيا", 
-      "type": "LOCATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 9, 
-      "mention": "الروسي", 
-      "normalized": "الروسي", 
+      "indocChainId": 42, 
+      "mention": "السعودي", 
+      "normalized": "السعودي", 
       "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 10, 
-      "mention": "سيرغي لافروف", 
-      "normalized": "سيرغي لافروف", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 12, 
-      "mention": "جبهة النصرة", 
-      "normalized": "جبهة النصرة", 
+      "indocChainId": 0, 
+      "mention": "BBC", 
+      "normalized": "BBC", 
       "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 13, 
-      "mention": "ميونيخ", 
-      "normalized": "ميونيخ", 
+      "indocChainId": 1, 
+      "mention": "Arabic\nالسعودية", 
+      "normalized": "Arabic السعودية", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 2, 
+      "mention": "والامارات", 
+      "normalized": "الامارات", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 14, 
-      "mention": "الألمانية", 
-      "normalized": "الألمانية", 
+      "indocChainId": 2, 
+      "mention": "الامارات", 
+      "normalized": "الامارات", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 3, 
+      "mention": "للبنان", 
+      "normalized": "لبنان", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 5, 
+      "mention": "بحزب الله", 
+      "normalized": "حزب الله", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 7, 
+      "mention": "السعوديين", 
+      "normalized": "السعوديين", 
       "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 16, 
-      "mention": "حمص", 
-      "normalized": "حمص", 
-      "type": "LOCATION"
+      "indocChainId": 13, 
+      "mention": "وكالة الانباء السعودية", 
+      "normalized": "وكالة الانباء السعودية", 
+      "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 17, 
-      "mention": "ودمشق", 
-      "normalized": "دمشق", 
-      "type": "LOCATION"
+      "indocChainId": 21, 
+      "mention": "وكالة الانباء الاماراتية", 
+      "normalized": "وكالة الانباء الاماراتية", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 24, 
+      "mention": "سعودي", 
+      "normalized": "سعودي", 
+      "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 26, 
+      "mention": "لبنانية", 
+      "normalized": "لبنانية", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 30, 
+      "mention": "الجمهورية اللبنانية", 
+      "normalized": "الجمهورية اللبنانية", 
+      "type": "LOCATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 34, 
       "mention": "الرئيس", 
       "normalized": "الرئيس", 
       "type": "TITLE"
@@ -147,81 +203,89 @@
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 28, 
-      "mention": "بشار الأسد", 
-      "normalized": "بشار الأسد", 
+      "indocChainId": 35, 
+      "mention": "بشار الاسد", 
+      "normalized": "بشار الاسد", 
       "type": "PERSON"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 28, 
-      "mention": "الأسد", 
-      "normalized": "الأسد", 
-      "type": "PERSON"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 30, 
-      "mention": "روسية", 
-      "normalized": "روسية", 
+      "indocChainId": 39, 
+      "mention": "ايرانيين", 
+      "normalized": "ايرانيين", 
       "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 31, 
-      "mention": "حلب", 
-      "normalized": "حلب", 
+      "indocChainId": 40, 
+      "mention": "السفارة السعودية", 
+      "normalized": "السفارة السعودية", 
+      "type": "ORGANIZATION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 43, 
+      "mention": "الشيعي", 
+      "normalized": "الشيعي", 
+      "type": "RELIGION"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 44, 
+      "mention": "نمر النمر", 
+      "normalized": "نمر النمر", 
+      "type": "PERSON"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 47, 
+      "mention": "رئيس", 
+      "normalized": "رئيس", 
+      "type": "TITLE"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 51, 
+      "mention": "العربية", 
+      "normalized": "العربية", 
+      "type": "NATIONALITY"
+    }, 
+    {
+      "confidence": 0.0, 
+      "count": 1, 
+      "indocChainId": 53, 
+      "mention": "مشهد", 
+      "normalized": "مشهد", 
       "type": "LOCATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 32, 
-      "mention": "الأكراد", 
-      "normalized": "الأكراد", 
+      "indocChainId": 54, 
+      "mention": "الايرانية", 
+      "normalized": "الايرانية", 
       "type": "NATIONALITY"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 33, 
-      "mention": "التركية", 
-      "normalized": "التركية", 
-      "type": "NATIONALITY"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 37, 
-      "mention": "لجنة التحقيق الدولية المستقلة", 
-      "normalized": "لجنة التحقيق الدولية المستقلة", 
+      "indocChainId": 55, 
+      "mention": "جامعة الدول العربية", 
+      "normalized": "جامعة الدول العربية", 
       "type": "ORGANIZATION"
     }, 
     {
       "confidence": 0.0, 
       "count": 1, 
-      "indocChainId": 38, 
-      "mention": "للأمم المتحدة", 
-      "normalized": "لأمم المتحدة", 
-      "type": "ORGANIZATION"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 41, 
-      "mention": "السورية", 
-      "normalized": "السورية", 
-      "type": "NATIONALITY"
-    }, 
-    {
-      "confidence": 0.0, 
-      "count": 1, 
-      "indocChainId": 42, 
-      "mention": "محكمة الجنايات الدولية", 
-      "normalized": "محكمة الجنايات الدولية", 
+      "indocChainId": 56, 
+      "mention": "منظمة التعاون الاسلامي", 
+      "normalized": "منظمة التعاون الاسلامي", 
       "type": "ORGANIZATION"
     }
   ]

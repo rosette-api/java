@@ -26,13 +26,13 @@ public class EntitySentiment {
     private final String mention;
     private final String type;
     private final String entityId;
-    private final Label label;
+    private final Label sentiment;
 
-    public EntitySentiment(String mention, String type, String entityId, Label label) {
+    public EntitySentiment(String mention, String type, String entityId, Label sentiment) {
         this.mention = mention;
         this.type = type;
         this.entityId = entityId;
-        this.label = label;
+        this.sentiment = sentiment;
     }
 
     public String getMention() {
@@ -47,8 +47,8 @@ public class EntitySentiment {
         return entityId;
     }
 
-    public Label getLabel() {
-        return label;
+    public Label getSentiment() {
+        return sentiment;
     }
 
     @Override
@@ -63,11 +63,11 @@ public class EntitySentiment {
         return Objects.equals(mention, that.mention)
                 && Objects.equals(type, that.type)
                 && Objects.equals(entityId, that.entityId)
-                && Objects.equals(label, that.label);
+                && Objects.equals(sentiment, that.sentiment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mention, type, entityId, label);
+        return Objects.hash(mention, type, entityId, sentiment);
     }
 }

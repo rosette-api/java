@@ -1,153 +1,21 @@
 {
   "entities": [
     {
-      "confidence": 0.78699107983757, 
-      "entityId": "Q355", 
-      "indocChainId": 1, 
-      "mention": "Facebook"
-    }, 
-    {
-      "confidence": 0.9397365738202426, 
-      "entityId": "Q39681", 
-      "indocChainId": 8, 
-      "mention": "USA TODAY"
-    }, 
-    {
-      "confidence": 0.7435643232703197, 
-      "entityId": "Q601669", 
-      "indocChainId": 10, 
-      "mention": "Detroit Free Press"
-    }, 
-    {
-      "confidence": 0.6858210153068666, 
-      "entityId": "Q167155", 
-      "indocChainId": 12, 
-      "mention": "Kalamazoo, Michigan"
-    }, 
-    {
-      "confidence": 0.48107358921089977, 
-      "entityId": "Q167155", 
-      "indocChainId": 14, 
-      "mention": "Kalamazoo, Mich."
-    }, 
-    {
-      "confidence": 0.7686396976807073, 
-      "entityId": "Q601669", 
-      "indocChainId": 16, 
-      "mention": "The Detroit Free Press"
-    }, 
-    {
-      "confidence": 0.23500035181416745, 
-      "entityId": "Q1166", 
-      "indocChainId": 22, 
-      "mention": "Michigan"
-    }, 
-    {
-      "confidence": 0.48169908672651274, 
-      "entityId": "Q35349", 
-      "indocChainId": 26, 
-      "mention": "Kia"
-    }, 
-    {
-      "confidence": 0.7703494089505403, 
-      "entityId": "Q137509", 
-      "indocChainId": 28, 
-      "mention": "Kalamazoo County"
-    }, 
-    {
-      "confidence": 0.2623458696597114, 
-      "entityId": "Q167155", 
-      "indocChainId": 30, 
-      "mention": "Kalamazoo"
-    }, 
-    {
-      "confidence": 0.3623857588753512, 
-      "entityId": "Q780442", 
-      "indocChainId": 34, 
-      "mention": "Uber"
-    }, 
-    {
-      "confidence": 0.6233339524499656, 
-      "entityId": "Q7298901", 
-      "indocChainId": 40, 
-      "mention": "Raymond James"
-    }, 
-    {
-      "confidence": 0.7158357025330953, 
-      "entityId": "Q6350423", 
-      "indocChainId": 41, 
-      "mention": "Kalamazoo Valley Community College"
-    }, 
-    {
-      "confidence": 0.36624777281608556, 
-      "entityId": "Q1716348", 
-      "indocChainId": 45, 
-      "mention": "Tyler Smith"
-    }, 
-    {
-      "confidence": 0.5827266780971384, 
-      "entityId": "Q2921241", 
-      "indocChainId": 53, 
-      "mention": "Baroda, Mich."
-    }, 
-    {
-      "confidence": 0.3486262021627453, 
-      "entityId": "Q810998", 
-      "indocChainId": 54, 
-      "mention": "Battle Creek"
-    }, 
-    {
-      "confidence": 0.5269726328867905, 
-      "entityId": "Q1246280", 
-      "indocChainId": 55, 
-      "mention": "Mary Jo Nye"
-    }, 
-    {
-      "confidence": 0.539554475001639, 
-      "entityId": "Q29570", 
-      "indocChainId": 62, 
-      "mention": "Chevrolet"
-    }, 
-    {
-      "confidence": 0.7368802633948711, 
-      "entityId": "Q856897", 
-      "indocChainId": 76, 
-      "mention": "Kellogg Co."
-    }, 
-    {
-      "confidence": 0.21857222466410156, 
-      "entityId": "Q6217570", 
-      "indocChainId": 79, 
-      "mention": "John Bryant"
-    }, 
-    {
-      "confidence": 0.7590552877140531, 
-      "entityId": "Q7957379", 
-      "indocChainId": 84, 
-      "mention": "WWMT"
-    }, 
-    {
-      "confidence": 0.6686385795682692, 
-      "entityId": "Q29570", 
-      "indocChainId": 88, 
-      "mention": "Chevy"
-    }, 
-    {
-      "confidence": 0.31317741673197724, 
+      "confidence": 0.34773210202691446, 
       "entityId": "Q76", 
-      "indocChainId": 99, 
+      "indocChainId": 0, 
       "mention": "Obama"
     }, 
     {
-      "confidence": 0.8115880205245964, 
-      "entityId": "Q30", 
-      "indocChainId": 102, 
-      "mention": "U.S."
+      "confidence": 0.3848310577155907, 
+      "entityId": "Q208035", 
+      "indocChainId": 1, 
+      "mention": "Guantanamo Bay"
     }, 
     {
-      "confidence": 0.020515671733727064, 
-      "entityId": "Q1223", 
-      "indocChainId": 104, 
+      "confidence": 0.021874076835034832, 
+      "entityId": "Q1088831", 
+      "indocChainId": 2, 
       "mention": "Washington"
     }
   ]
