@@ -46,7 +46,7 @@ if [ ! -z ${API_KEY} ]; then
     mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
     cd /java/examples
     if [ ! -z ${FILENAME} ]; then
-	if [ ! -z ${ALT_URL} ]; then
+        if [ ! -z ${ALT_URL} ]; then
             echo -e "\n---------- ${FILENAME} start -------------"
             mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${FILENAME}" -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL}
             echo "---------- ${FILENAME} end -------------"
@@ -60,7 +60,7 @@ if [ ! -z ${API_KEY} ]; then
             filename=$(basename "$file")
             filename="${filename%.*}"
             echo -e "\n---------- ${filename} start -------------"
-    	    mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 
+            mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 
             echo "---------- ${filename} end -------------"
         done
     else
@@ -68,7 +68,8 @@ if [ ! -z ${API_KEY} ]; then
             filename=$(basename "$file")
             filename="${filename%.*}"
             echo -e "\n---------- ${filename} start -------------"
-            mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY}                echo "---------- ${filename} end -------------"
+            mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY}                
+            echo "---------- ${filename} end -------------"
         done
     fi
 else 
