@@ -32,7 +32,7 @@ public abstract class ExampleBase {
             + "-D" + KEY_PROP_NAME + "=<required_api_key> " + "-D" + URL_PROP_NAME + "=<optional_alternate_url> ";
 
     /**
-     * Gets api key using system property {@value #KEY_PROP_NAME}
+     * @return api key using system property {@value #KEY_PROP_NAME}
      */
     protected String getApiKeyFromSystemProperty() {
         String apiKeyStr = System.getProperty(KEY_PROP_NAME);
@@ -44,7 +44,7 @@ public abstract class ExampleBase {
     }
 
     /**
-     * Gets alternate url using system property {@value #URL_PROP_NAME}
+     * @return alternate url using system property {@value #URL_PROP_NAME}
      */
     protected String getAltUrlFromSystemProperty() {
         String altUrlStr = System.getProperty(URL_PROP_NAME);
@@ -56,6 +56,7 @@ public abstract class ExampleBase {
 
     /**
      * Prints out how to run the program
+     * @param commandClass the class to use in the usage message.
      */
     protected static void showUsage(Class<? extends ExampleBase> commandClass) {
         System.err.println(USAGE_STR + commandClass.getName());
@@ -65,6 +66,7 @@ public abstract class ExampleBase {
      * Converts a response to JSON string
      *
      * @param response {@link com.basistech.rosette.apimodel.Response Response} from RosetteAPI
+     * @return the json string.
      */
     protected static String responseToJson(Response response) throws JsonProcessingException {
         ObjectMapper mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
