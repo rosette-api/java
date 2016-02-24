@@ -34,9 +34,7 @@ public final class NameTranslationRequest {
     private LanguageCode sourceLanguageOfUse;
     @NotNull
     private LanguageCode targetLanguage;
-    @NotNull
     private ISO15924 targetScript;
-    @NotNull
     private TransliterationScheme targetScheme;
 
     /**
