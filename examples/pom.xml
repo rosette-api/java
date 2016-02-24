@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
         <artifactId>rosette-api-java-binding</artifactId>
-        <version>0.9.102</version>
+        <version>0.9.103-SNAPSHOT</version>
     </parent>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-examples</artifactId>
