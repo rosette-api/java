@@ -67,6 +67,7 @@ public abstract class ExampleBase {
      *
      * @param response {@link com.basistech.rosette.apimodel.Response Response} from RosetteAPI
      * @return the json string.
+     * @throws JsonProcessingException if the Jackson library throws an error serializing.
      */
     protected static String responseToJson(Response response) throws JsonProcessingException {
         ObjectMapper mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
