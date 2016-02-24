@@ -40,8 +40,8 @@ public final class SentimentOptions {
     }
 
     /**
-     * Set the maximum number of explanation tokens to return. The default is none.
-     * @param explanationCount the number of tokens.
+     * Set the maximum number of explanation strings to return. The default is none.
+     * @param explanationCount the number of strings.
      */
     public void setExplanationCount(Integer explanationCount) {
         this.explanationCount = explanationCount;
