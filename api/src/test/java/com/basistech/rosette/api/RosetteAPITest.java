@@ -403,7 +403,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifySentiment(SentimentResponse response) throws IOException {
         SentimentResponse goldResponse = mapper.readValue(responseStr, SentimentResponse.class);
-        // this is rather lame.
+        // this is minimal.
         assertNotNull(response.getEntities());
         assertEquals(response.getEntities().size(), goldResponse.getEntities().size());
     }

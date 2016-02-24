@@ -26,15 +26,26 @@ public final class SentimentResponse extends Response {
     private final Label document;
     private final Collection<EntitySentiment> entities;
 
+    /**
+     *
+     * @param document The sentiment information for the entire document.
+     * @param entities The sentiment information for the entities detected in the document.
+     */
     public SentimentResponse(Label document, Collection<EntitySentiment> entities) {
         this.document = document;
         this.entities = entities;
     }
 
+    /**
+     * @return the whole-document sentiment.
+     */
     public Label getDocument() {
         return document;
     }
 
+    /**
+     * @return the information for individual entities.
+     */
     public Collection<EntitySentiment> getEntities() {
         return entities;
     }

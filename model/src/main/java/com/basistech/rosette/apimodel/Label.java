@@ -19,8 +19,10 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 
 /**
- * Sentiment Analysis and Categorization return labels.
- * For Sentiment, these are items like 'positive' or 'negative';
+ * Sentiment Analysis and Categorization return labels. A label is
+ * a category name, a confidence value, and some 'explanation' tokens
+ * that contributed to the determination.
+ * For Sentiment, the label strings are items like 'pos' or 'neg';
  * for Categorization, 'sports' or 'news'.
  */
 public final class Label {

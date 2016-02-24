@@ -28,6 +28,13 @@ public class EntitySentiment {
     private final String entityId;
     private final Label sentiment;
 
+    /**
+     *
+     * @param mention the text of the entity.
+     * @param type the entity type (e.g. PERSON)
+     * @param entityId the global unique ID for the entity, such as a Wikidata QID.
+     * @param sentiment the sentiment information.
+     */
     public EntitySentiment(String mention, String type, String entityId, Label sentiment) {
         this.mention = mention;
         this.type = type;
@@ -35,18 +42,30 @@ public class EntitySentiment {
         this.sentiment = sentiment;
     }
 
+    /**
+     * @return the mention text.
+     */
     public String getMention() {
         return mention;
     }
 
+    /**
+     * @return the type (e.g. PERSON).
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * @return the global unique ID for the entity, such as a Wikidata QID.
+     */
     public String getEntityId() {
         return entityId;
     }
 
+    /**
+     * @return the sentiment information.
+     */
     public Label getSentiment() {
         return sentiment;
     }
