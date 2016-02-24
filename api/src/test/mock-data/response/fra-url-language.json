@@ -1,23 +1,23 @@
 {
   "languageDetections": [
     {
-      "confidence": 0.03643794906326059, 
+      "confidence": 0.034311066676906976, 
       "language": "fra"
     }, 
     {
-      "confidence": 0.008639712234555508, 
+      "confidence": 0.011794604796825148, 
       "language": "cat"
     }, 
     {
-      "confidence": 0.007723888802536383, 
+      "confidence": 0.010436044556915491, 
       "language": "spa"
     }, 
     {
-      "confidence": 0.0072035224128488284, 
+      "confidence": 0.00834383682347728, 
       "language": "ron"
     }, 
     {
-      "confidence": 0.006663702012601025, 
+      "confidence": 0.008255285785545685, 
       "language": "por"
     }
   ]

@@ -1,20 +1,20 @@
 {
   "entities": [
     {
-      "confidence": 0.03308595059026086, 
-      "entityId": "Q1515068", 
+      "confidence": 0.34773210202691446, 
+      "entityId": "Q76", 
       "indocChainId": 0, 
-      "mention": "Clinton"
+      "mention": "Obama"
     }, 
     {
-      "confidence": 0.10974050995425431, 
-      "entityId": "Q359442", 
+      "confidence": 0.3848310577155907, 
+      "entityId": "Q208035", 
       "indocChainId": 1, 
-      "mention": "Sanders"
+      "mention": "Guantanamo Bay"
     }, 
     {
-      "confidence": 0.022475867822031235, 
-      "entityId": "Q56149", 
+      "confidence": 0.021874076835034832, 
+      "entityId": "Q1088831", 
       "indocChainId": 2, 
       "mention": "Washington"
     }

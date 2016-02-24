@@ -1,12 +1,39 @@
 {
-  "sentiment": [
+  "document": {
+    "confidence": 0.5061395422807821, 
+    "explanations": [], 
+    "label": "neg"
+  }, 
+  "entities": [
     {
-      "confidence": 0.5524176033801617, 
-      "label": "pos"
+      "entityId": "Q30", 
+      "mention": "U.S.", 
+      "sentiment": {
+        "confidence": 0.4441185061900165, 
+        "explanations": [], 
+        "label": "neu"
+      }, 
+      "type": "LOCATION"
     }, 
     {
-      "confidence": 0.44758239661983845, 
-      "label": "neg"
+      "entityId": "Q796", 
+      "mention": "Iraq", 
+      "sentiment": {
+        "confidence": 0.5430461330525177, 
+        "explanations": [], 
+        "label": "neu"
+      }, 
+      "type": "LOCATION"
+    }, 
+    {
+      "entityId": "Q889", 
+      "mention": "Afghanistan", 
+      "sentiment": {
+        "confidence": 0.5961770818070375, 
+        "explanations": [], 
+        "label": "neu"
+      }, 
+      "type": "LOCATION"
     }
   ]
 }

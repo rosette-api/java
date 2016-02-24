@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2016 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,12 +16,19 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.rosette.apimodel.Label;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SentimentOptionsMixin  extends BaseMixin {
+/**
+ *
+ */
+public abstract class EntitySentimentMixin {
     @JsonCreator
-    protected SentimentOptionsMixin(@JsonProperty("explain") Boolean explain) {
+    public EntitySentimentMixin(@JsonProperty("mention") String mention,
+                                @JsonProperty("type") String type,
+                                @JsonProperty("entityId") String entityId,
+                                @JsonProperty("sentiment") Label sentiment) {
         //
     }
 }

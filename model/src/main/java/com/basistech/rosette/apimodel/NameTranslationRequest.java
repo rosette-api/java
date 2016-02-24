@@ -165,6 +165,9 @@ public final class NameTranslationRequest {
                 && targetScheme != null ? targetScheme.equals(that.getTargetScheme()) : that.targetScheme == null;
     }
 
+    /**
+     * Fluent builder class for {@link NameTranslationRequest}.
+     */
     public static class Builder {
         private String name;
         private String entityType;
@@ -175,49 +178,105 @@ public final class NameTranslationRequest {
         private ISO15924 targetScript;
         private TransliterationScheme targetScheme;
 
-        public Builder(String name, LanguageCode targetLanguage, ISO15924 targetScript, TransliterationScheme targetScheme) {
+        public Builder(String name, LanguageCode targetLanguage) {
             this.name = name;
             this.targetLanguage = targetLanguage;
-            this.targetScript = targetScript;
-            this.targetScheme = targetScheme;
         }
 
+        /**
+         * Specify the target script.
+         * @param targetScript the script.
+         * @return this.
+         */
+        public Builder targetScript(ISO15924 targetScript) {
+            this.targetScript = targetScript;
+            return this;
+        }
+
+        /**
+         * Specify the transliteration scheme.
+         * The default depends on the source and target languages.
+         * @param targetScheme the scheme.
+         * @return this.
+         */
+        public Builder targetScheme(TransliterationScheme targetScheme) {
+            this.targetScheme = targetScheme;
+            return this;
+        }
+
+        /**
+         * Specify the type of name (e.g. PERSON, ORGANIZATION).
+         * By default, the translation does not take a type into account.
+         * @param entityType the type.
+         * @return this.
+         */
         public Builder entityType(String entityType) {
             this.entityType = entityType;
             return this;
         }
 
+        /**
+         * @return the entity type.
+         */
         public String entityType() {
             return entityType;
         }
 
+        /**
+         * Specify the script of the source name. By default, this is auto-detected.
+         * @param sourceScript the script.
+         * @return this.
+         */
         public Builder sourceScript(ISO15924 sourceScript) {
             this.sourceScript = sourceScript;
             return this;
         }
 
+        /**
+         * @return the source script.
+         */
         public ISO15924 sourceScript() {
             return sourceScript;
         }
 
+        /**
+         * Specify the source language of use.  By default, this is auto-detected.
+         * @param sourceLanguageOfUse the language.
+         * @return this.
+         */
         public Builder sourceLanguageOfUse(LanguageCode sourceLanguageOfUse) {
             this.sourceLanguageOfUse = sourceLanguageOfUse;
             return this;
         }
 
+        /**
+         * @return the source language of use.
+         */
         public LanguageCode sourceLanguageOfUse() {
             return sourceLanguageOfUse;
         }
 
+        /**
+         * Specify the source language of origin. By default, it is the same
+         * as the source language of use.
+         * @param sourceLanguageOfOrigin     the language.
+         * @return this.
+         */
         public Builder sourceLanguageOfOrigin(LanguageCode sourceLanguageOfOrigin) {
             this.sourceLanguageOfOrigin = sourceLanguageOfOrigin;
             return this;
         }
 
+        /**
+         * @return the source language of use.
+         */
         public LanguageCode sourceLanguageOfOrigin() {
             return sourceLanguageOfOrigin;
         }
 
+        /**
+         * @return the request object.
+         */
         public NameTranslationRequest build() {
             return new NameTranslationRequest(name, entityType, sourceScript, sourceLanguageOfOrigin,
                     sourceLanguageOfUse, targetLanguage, targetScript, targetScheme);

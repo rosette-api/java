@@ -23,13 +23,13 @@ import java.util.List;
  **/
 public final class CategoriesResponse extends Response {
 
-    private final List<Category> categories;
+    private final List<Label> categories;
     
     /**
      * Constructor for {@code CategoriesResponse}
      * @param categories list of categories
      */
-    public CategoriesResponse(List<Category> categories) {
+    public CategoriesResponse(List<Label> categories) {
         this.categories = categories;
     }
 
@@ -37,7 +37,7 @@ public final class CategoriesResponse extends Response {
      * get the list of categories
      * @return the list of categories
      */
-    public List<Category> getCategories() {
+    public List<Label> getCategories() {
         return categories;
     }
 

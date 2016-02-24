@@ -21,9 +21,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class SentimentMixin extends BaseMixin {
+public class LabelMixin extends BaseMixin {
     @JsonCreator
-    protected SentimentMixin(
+    public LabelMixin(
             @JsonProperty("label") String label,
             @JsonProperty("confidence") Double confidence,
             @JsonProperty("explanations") List<String> explanations

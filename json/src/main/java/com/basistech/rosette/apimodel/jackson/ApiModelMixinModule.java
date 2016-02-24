@@ -20,7 +20,8 @@ import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.CategoriesOptions;
 import com.basistech.rosette.apimodel.CategoriesRequest;
 import com.basistech.rosette.apimodel.CategoriesResponse;
-import com.basistech.rosette.apimodel.Category;
+import com.basistech.rosette.apimodel.EntitySentiment;
+import com.basistech.rosette.apimodel.Label;
 import com.basistech.rosette.apimodel.ConstantsResponse;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesRequest;
@@ -52,7 +53,6 @@ import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.SentencesRequest;
 import com.basistech.rosette.apimodel.SentencesResponse;
-import com.basistech.rosette.apimodel.Sentiment;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
@@ -74,7 +74,7 @@ public class ApiModelMixinModule extends EnumModule {
     public void setupModule(SetupContext context) {
         super.setupModule(context);
         context.setMixInAnnotations(Response.class, ResponseMixin.class);
-        context.setMixInAnnotations(Category.class, CategoryMixin.class);
+        context.setMixInAnnotations(Label.class, LabelMixin.class);
         context.setMixInAnnotations(CategoriesOptions.class, CategoriesOptionsMixin.class);
         context.setMixInAnnotations(CategoriesRequest.class, CategoriesRequestMixin.class);
         context.setMixInAnnotations(CategoriesResponse.class, CategoriesResponseMixin.class);
@@ -82,6 +82,7 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(EntitiesOptions.class, EntityOptionsMixin.class);
         context.setMixInAnnotations(EntitiesRequest.class, EntityRequestMixin.class);
         context.setMixInAnnotations(EntitiesResponse.class, EntityResponseMixin.class);
+        context.setMixInAnnotations(EntitySentiment.class, EntitySentimentMixin.class);
         context.setMixInAnnotations(ErrorResponse.class, ErrorResponseMixin.class);
         context.setMixInAnnotations(Entity.class, ExtractedEntityMixin.class);
         context.setMixInAnnotations(InfoResponse.class, InfoResponseMixin.class);
@@ -104,8 +105,6 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(Request.class, RequestMixin.class);
         context.setMixInAnnotations(SentencesRequest.class, SentencesRequestMixin.class);
         context.setMixInAnnotations(SentencesResponse.class, SentencesResponseMixin.class);
-        context.setMixInAnnotations(Sentiment.class, SentimentMixin.class);
-        context.setMixInAnnotations(SentimentOptions.class, SentimentOptionsMixin.class);
         context.setMixInAnnotations(SentimentRequest.class, SentimentRequestMixin.class);
         context.setMixInAnnotations(SentimentResponse.class, SentimentResponseMixin.class);
         context.setMixInAnnotations(TokensResponse.class, TokenResponseMixin.class);

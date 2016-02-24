@@ -1,37 +1,37 @@
 {
   "entities": [
     {
-      "confidence": 0.6977891306683627, 
+      "confidence": 0.6892290282735442, 
       "entityId": "Q155649", 
       "indocChainId": 0, 
       "mention": "Richard Holbrooke"
     }, 
     {
-      "confidence": 0.5212749980432544, 
+      "confidence": 0.5461756419093019, 
       "entityId": "Q76", 
       "indocChainId": 1, 
       "mention": "Obama"
     }, 
     {
-      "confidence": 0.35415249891581835, 
+      "confidence": 0.36385601467328577, 
       "entityId": "Q889", 
       "indocChainId": 2, 
       "mention": "Afghanistan"
     }, 
     {
-      "confidence": 0.5422590579724849, 
+      "confidence": 0.5442871655267161, 
       "entityId": "Q153317", 
       "indocChainId": 4, 
       "mention": "Inde"
     }, 
     {
-      "confidence": 0.7079006699255742, 
+      "confidence": 0.7114130215910187, 
       "entityId": "Q159", 
       "indocChainId": 5, 
       "mention": "Russie"
     }, 
     {
-      "confidence": 0.6723197926121129, 
+      "confidence": 0.675335309236899, 
       "entityId": "Q43", 
       "indocChainId": 6, 
       "mention": "Turquie"

@@ -1,12 +1,19 @@
 {
-  "sentiment": [
+  "document": {
+    "confidence": 0.8571296319875414, 
+    "explanations": [], 
+    "label": "pos"
+  }, 
+  "entities": [
     {
-      "confidence": 0.6329035634057169, 
-      "label": "pos"
-    }, 
-    {
-      "confidence": 0.36709643659428315, 
-      "label": "neg"
+      "entityId": "Q76", 
+      "mention": "Obama", 
+      "sentiment": {
+        "confidence": 0.5059616098625916, 
+        "explanations": [], 
+        "label": "neg"
+      }, 
+      "type": "PERSON"
     }
   ]
 }

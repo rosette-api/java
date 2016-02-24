@@ -19,9 +19,13 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 
 /**
- * model for categorization
+ * Sentiment Analysis and Categorization return labels. A label is
+ * a category name, a confidence value, and some 'explanation' tokens
+ * that contributed to the determination.
+ * For Sentiment, the label strings are items like 'pos' or 'neg';
+ * for Categorization, 'sports' or 'news'.
  */
-public final class Category {
+public final class Label {
 
     private final String label;
     private final Double confidence;
@@ -33,31 +37,29 @@ public final class Category {
      * @param confidence confidence score (0.0-1.0)
      * @param explanations list of input text elements
      */
-    public Category(String label, Double confidence, List<String> explanations) {
+    public Label(String label, Double confidence, List<String> explanations) {
         this.label = label;
         this.confidence = confidence;
         this.explanations = explanations;
     }
 
     /**
-     * get the label for contextual category
-     * @return the label
+     * @return the label.
      */
     public String getLabel() {
         return label;
     }
 
     /**
-     * get the confidence score (0.0-1.0)
-     * @return the confidence score
+     * @return the confidence score  (0.0-1.0)
      */
     public Double getConfidence() {
         return confidence;
     }
 
     /**
-     * get the list of text elements contributing to identification of this category
-     * @return the list of text elements
+     * get the list of explanation strings contributing to this label.
+     * @return the list of strings.
      */
     public List<String> getExplanations() {
         return explanations;
@@ -66,10 +68,8 @@ public final class Category {
     @Override
     public int hashCode() {
         int result;
-        long temp;
         result = label != null ? label.hashCode() : 0;
-        temp = Double.doubleToLongBits(confidence);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (confidence != null ? confidence.hashCode() : 0);
         result = 31 * result + (explanations != null ? explanations.hashCode() : 0);
         return result;
     }
@@ -81,11 +81,11 @@ public final class Category {
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Category)) {
+        if (!(o instanceof Label)) {
             return false;
         }
 
-        Category that = (Category) o;
+        Label that = (Label) o;
         return label != null ? label.equals(that.label) : that.label == null
                 && confidence.equals(that.confidence)
                 && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;

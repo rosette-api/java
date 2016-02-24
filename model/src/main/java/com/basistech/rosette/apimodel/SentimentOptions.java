@@ -16,62 +16,51 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.Objects;
+
 /**
- * Sentiment options
+ * Sentiment options.
  */
 public final class SentimentOptions {
 
-    private Boolean explain;
+    private Integer explanationCount;
 
     /**
      * Create a set of sentiment analysis options with default values.
-     * Note that {@code null} is used to represent defaults.
      */
     public SentimentOptions() {
         //
     }
 
     /**
-     * constructor for {@code SentimentOptions}
-     * @param explain whether to return explanation strings for the sentiment results returned
+     * @return the maximum number of explanation tokens to return.
      */
-    public SentimentOptions(Boolean explain) {
-        this.explain = explain;
+    public Integer getExplanationCount() {
+        return explanationCount;
     }
 
     /**
-     * get whether to return explanation strings for the sentiment results returned
-     * @return whether to return explanation strings for the sentiment results returned
+     * Set the maximum number of explanation strings to return. The default is none.
+     * @param explanationCount the number of strings.
      */
-    public Boolean getExplain() {
-        return explain;
+    public void setExplanationCount(Integer explanationCount) {
+        this.explanationCount = explanationCount;
     }
 
-    /**
-     * set whether to return explanation strings for the sentiment results returned
-     * @param explain whether to return explanation strings for the sentiment results returned
-     */
-    public void setExplain(Boolean explain) {
-        this.explain = explain;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SentimentOptions that = (SentimentOptions) o;
+        return Objects.equals(explanationCount, that.explanationCount);
     }
 
     @Override
     public int hashCode() {
-        return explain != null ? explain.hashCode() : 0;
-    }
-
-    /**
-     * if the param is a {@code SentimentOptions}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof SentimentOptions)) {
-            return false;
-        }
-
-        SentimentOptions that = (SentimentOptions) o;
-        return explain != null ? explain.equals(that.getExplain()) : that.explain == null;
+        return Objects.hash(explanationCount);
     }
 }

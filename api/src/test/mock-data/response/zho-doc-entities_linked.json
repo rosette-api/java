@@ -1,25 +1,25 @@
 {
   "entities": [
     {
-      "confidence": 0.6949560733691127, 
+      "confidence": 0.6620266821092224, 
       "entityId": "Q649", 
       "indocChainId": 0, 
       "mention": "莫斯科"
     }, 
     {
-      "confidence": 0.7645325196951835, 
+      "confidence": 0.7797434415502373, 
       "entityId": "Q15029", 
       "indocChainId": 1, 
       "mention": "胡锦涛"
     }, 
     {
-      "confidence": 0.5655680165708669, 
+      "confidence": 0.530801632474906, 
       "entityId": "Q159", 
       "indocChainId": 2, 
       "mention": "俄罗斯"
     }, 
     {
-      "confidence": 0.7658509751114932, 
+      "confidence": 0.694478090308637, 
       "entityId": "Q23530", 
       "indocChainId": 4, 
       "mention": "梅德韦杰夫"

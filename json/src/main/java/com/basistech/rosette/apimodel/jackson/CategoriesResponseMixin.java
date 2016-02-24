@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.Category;
+import com.basistech.rosette.apimodel.Label;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class CategoriesResponseMixin extends BaseMixin {
     @JsonCreator
-    public CategoriesResponseMixin(@JsonProperty("categories") List<Category> categories) {
+    public CategoriesResponseMixin(@JsonProperty("categories") List<Label> categories) {
         //
     }
 }

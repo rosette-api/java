@@ -19,9 +19,7 @@ import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
-import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
-import com.basistech.util.TransliterationScheme;
 
 import java.io.IOException;
 
@@ -40,8 +38,8 @@ public final class TranslatedNameExample extends ExampleBase {
 
     private void run() throws IOException, RosetteAPIException {
         String translatedNameData = "معمر محمد أبو منيار القذاف";
-        NameTranslationRequest request = new NameTranslationRequest.Builder(translatedNameData,
-                LanguageCode.ENGLISH, ISO15924.Latn, TransliterationScheme.BASIS).build();
+        NameTranslationRequest request = new NameTranslationRequest.Builder(translatedNameData, LanguageCode.ENGLISH)
+                .build();
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         NameTranslationResponse response = rosetteApi.translateName(request);
