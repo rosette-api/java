@@ -53,7 +53,6 @@ import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.SentencesRequest;
 import com.basistech.rosette.apimodel.SentencesResponse;
-import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.TokensResponse;
