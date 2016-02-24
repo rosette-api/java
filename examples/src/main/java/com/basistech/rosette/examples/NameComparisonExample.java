@@ -34,6 +34,7 @@ public final class NameComparisonExample extends ExampleBase {
             new NameComparisonExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

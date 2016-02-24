@@ -30,6 +30,7 @@ public final class PingExample extends ExampleBase {
             new PingExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

@@ -33,6 +33,7 @@ public final class CategoriesExample extends ExampleBase {
             new CategoriesExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

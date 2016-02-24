@@ -31,6 +31,7 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
             new MorphologyCompoundComponentsExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

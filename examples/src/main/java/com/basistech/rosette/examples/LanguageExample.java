@@ -30,6 +30,7 @@ public final class LanguageExample extends ExampleBase {
             new LanguageExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 
