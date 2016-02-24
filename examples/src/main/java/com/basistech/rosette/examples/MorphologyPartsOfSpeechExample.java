@@ -31,6 +31,7 @@ public final class MorphologyPartsOfSpeechExample extends ExampleBase {
             new MorphologyPartsOfSpeechExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

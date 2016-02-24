@@ -30,6 +30,7 @@ public final class SentencesExample extends ExampleBase {
             new SentencesExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

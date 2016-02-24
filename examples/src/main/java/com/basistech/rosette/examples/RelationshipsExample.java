@@ -30,6 +30,7 @@ public final class RelationshipsExample extends ExampleBase {
             new RelationshipsExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

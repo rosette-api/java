@@ -31,6 +31,7 @@ public final class MorphologyHanReadingsExample extends ExampleBase {
             new MorphologyHanReadingsExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

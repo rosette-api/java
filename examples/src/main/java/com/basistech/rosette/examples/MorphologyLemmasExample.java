@@ -31,6 +31,7 @@ public final class MorphologyLemmasExample extends ExampleBase {
             new MorphologyLemmasExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

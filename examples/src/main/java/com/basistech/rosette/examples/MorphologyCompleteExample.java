@@ -31,6 +31,7 @@ public final class MorphologyCompleteExample extends ExampleBase {
             new MorphologyCompleteExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

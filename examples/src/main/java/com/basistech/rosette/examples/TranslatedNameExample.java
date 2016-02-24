@@ -34,6 +34,7 @@ public final class TranslatedNameExample extends ExampleBase {
             new TranslatedNameExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

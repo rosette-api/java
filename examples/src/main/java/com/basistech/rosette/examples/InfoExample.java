@@ -30,6 +30,7 @@ public final class InfoExample extends ExampleBase {
             new InfoExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

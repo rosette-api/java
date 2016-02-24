@@ -30,6 +30,7 @@ public final class TokensExample extends ExampleBase {
             new TokensExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 

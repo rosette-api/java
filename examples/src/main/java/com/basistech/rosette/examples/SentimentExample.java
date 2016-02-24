@@ -36,6 +36,7 @@ public final class SentimentExample extends ExampleBase {
             new SentimentExample().run();
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 
