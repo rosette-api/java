@@ -105,7 +105,6 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(Request.class, RequestMixin.class);
         context.setMixInAnnotations(SentencesRequest.class, SentencesRequestMixin.class);
         context.setMixInAnnotations(SentencesResponse.class, SentencesResponseMixin.class);
-        context.setMixInAnnotations(SentimentOptions.class, SentimentOptionsMixin.class);
         context.setMixInAnnotations(SentimentRequest.class, SentimentRequestMixin.class);
         context.setMixInAnnotations(SentimentResponse.class, SentimentResponseMixin.class);
         context.setMixInAnnotations(TokensResponse.class, TokenResponseMixin.class);
