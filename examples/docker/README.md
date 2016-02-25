@@ -2,7 +2,7 @@
 # Docker Image for Java Examples
 ---
 ### Summary
-To simplify the running of the Java examples, the Dockerfile will build an image and install the rosette-api library from the *local development source*.
+To simplify the running of the Java examples, the Dockerfile will build an image and install the rosette-api library from the *published source*.
 
 ### Basic Usage
 Build the docker image, e.g. `docker build -t basistech/java:1.1 .`
