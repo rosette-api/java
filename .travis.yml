@@ -5,4 +5,7 @@ jdk:
 - oraclejdk7
 - openjdk7
 
-# hmm
+# suggested by travis support.
+sudo: required
+dist: precise
+group: edge
