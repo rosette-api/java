@@ -909,6 +909,9 @@ public class RosetteAPI implements Closeable {
      */
     private <T extends Response> T sendGetRequest(String urlStr, Class<T> clazz) throws IOException, RosetteAPIException {
         HttpGet get = new HttpGet(urlStr);
+        if (key != null) {
+            get.setHeader("user_key", key);
+        }
         HttpResponse httpResponse = httpClient.execute(get);
         return getResponse(httpResponse, clazz);
     }
