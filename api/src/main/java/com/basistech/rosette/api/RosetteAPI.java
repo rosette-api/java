@@ -91,7 +91,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 public class RosetteAPI implements Closeable {
 
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
-    public static final String BINDING_VERSION = "0.7";
+    public static final String BINDING_VERSION = "0.10";
 
     public static final String LANGUAGE_SERVICE_PATH = "/language";
     public static final String MORPHOLOGY_SERVICE_PATH = "/morphology";
