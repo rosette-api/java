@@ -151,4 +151,26 @@
             </plugin>
         </plugins>
     </reporting>
+    <profiles>
+        <profile>
+            <id>internal-release</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.sonatype.plugins</groupId>
+                            <artifactId>nexus-staging-maven-plugin</artifactId>
+                            <version>${nexus-staging-plugin-version}</version>
+                            <extensions>true</extensions>
+                            <configuration>
+                                <serverId>basistech.repo</serverId>
+                                <nexusUrl>http://nexus.basistech.net:8081/nexus/</nexusUrl>
+                                <stagingProfileId>1dd11ca8866422</stagingProfileId>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 </project>
