@@ -1030,7 +1030,7 @@ public final class RosetteAPI {
         if (key == null) {
             key = "";
         }
-        httpUrlConnection.setRequestProperty("user_key", key);
+        httpUrlConnection.setRequestProperty("X-RosetteAPI-Key", key);
         httpUrlConnection.setRequestProperty("Content-Type", "application/json");
         httpUrlConnection.setRequestProperty("Accept-Encoding", "gzip");
         return httpUrlConnection;
