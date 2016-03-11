@@ -910,7 +910,7 @@ public class RosetteAPI implements Closeable {
     private <T extends Response> T sendGetRequest(String urlStr, Class<T> clazz) throws IOException, RosetteAPIException {
         HttpGet get = new HttpGet(urlStr);
         if (key != null) {
-            get.setHeader("user_key", key);
+            get.setHeader("X-RosetteAPI-Key", key);
         }
         HttpResponse httpResponse = httpClient.execute(get);
         return getResponse(httpResponse, clazz);
@@ -951,7 +951,7 @@ public class RosetteAPI implements Closeable {
 
         if (key != null) {
             // for internal testing, there might be no key.
-            post.setHeader("user_key", key);
+            post.setHeader("X-RosetteAPI-Key", key);
         }
         post.setHeader("Accept-Encoding", "gzip");
 
