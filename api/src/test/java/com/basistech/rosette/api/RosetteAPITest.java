@@ -27,8 +27,8 @@ import com.basistech.rosette.apimodel.LinkedEntitiesRequest;
 import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
 import com.basistech.rosette.apimodel.MorphologyRequest;
 import com.basistech.rosette.apimodel.MorphologyResponse;
-import com.basistech.rosette.apimodel.NameComparisonRequest;
-import com.basistech.rosette.apimodel.NameComparisonResponse;
+import com.basistech.rosette.apimodel.NameSimilarityRequest;
+import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.RelationshipsRequest;
@@ -143,23 +143,23 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-matched-name.json"))) {
             return;
         }
-        NameComparisonRequest request = readValueNameMatcher();
+        NameSimilarityRequest request = readValueNameMatcher();
         try {
-            NameComparisonResponse response = api.matchName(request);
+            NameSimilarityResponse response = api.getNameSimilarity(request);
             verifyNameMatcher(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
         }
     }
 
-    private void verifyNameMatcher(NameComparisonResponse response) throws IOException {
-        NameComparisonResponse goldResponse = mapper.readValue(responseStr, NameComparisonResponse.class);
+    private void verifyNameMatcher(NameSimilarityResponse response) throws IOException {
+        NameSimilarityResponse goldResponse = mapper.readValue(responseStr, NameSimilarityResponse.class);
         assertEquals(goldResponse.getScore(),response.getScore(), 0.0);
     }
 
-    private NameComparisonRequest readValueNameMatcher() throws IOException {
+    private NameSimilarityRequest readValueNameMatcher() throws IOException {
         File input = new File("src/test/mock-data/request", testFilename);
-        return mapper.readValue(input, NameComparisonRequest.class);
+        return mapper.readValue(input, NameSimilarityRequest.class);
     }
 
     @Test
@@ -169,7 +169,7 @@ public class RosetteAPITest extends AbstractTest {
         }
         NameTranslationRequest request = readValueNameTranslation();
         try {
-            NameTranslationResponse response = api.translateName(request);
+            NameTranslationResponse response = api.getNameTranslation(request);
             verifyNameTranslation(response);
         } catch (RosetteAPIException e) {
             verifyException(e);

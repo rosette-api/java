@@ -17,23 +17,23 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Response data model for name matcher
+ * Response data model for comparison of two names.
  */
-public final class NameComparisonResponse extends Response {
+public final class NameSimilarityResponse extends Response {
 
     private final Double score;
 
     /**
      * Constructor for {@code NameMatchingResponse}
-     * @param score the match score.
+     * @param score the similarity score.
      */
-    public NameComparisonResponse(Double score) {
+    public NameSimilarityResponse(Double score) {
         this.score = score;
     }
 
     /**
-     * Gets the name matcher result
-     * @return name matcher result
+     * Gets the name similarity result
+     * @return name similarity result
      */
     public Double getScore() {
         return score;
@@ -44,18 +44,13 @@ public final class NameComparisonResponse extends Response {
         return score != null ? score.hashCode() : 0;
     }
 
-    /**
-     * if the param is a {@code NameMatchingResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof NameComparisonResponse)) {
+        if (!(o instanceof NameSimilarityResponse)) {
             return false;
         }
 
-        NameComparisonResponse that = (NameComparisonResponse) o;
+        NameSimilarityResponse that = (NameSimilarityResponse) o;
         return score != null ? score.equals(that.getScore()) : that.score == null;
     }
 }
