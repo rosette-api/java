@@ -19,11 +19,11 @@ package com.basistech.rosette.apimodel;
 import javax.validation.constraints.NotNull;
 
 /**
- * Class that represents a name matcher request.
+ * Request object for name-similarity.
  *
- * Request to match 2 names.
+ * Request to compare 2 names.
  */
-public final class NameComparisonRequest {
+public final class NameSimilarityRequest {
 
     @NotNull
     private Name name1;
@@ -35,7 +35,7 @@ public final class NameComparisonRequest {
      * @param name1 First name to be matched against second name
      * @param name2 Second name to be matched against first name
      */
-    public NameComparisonRequest(Name name1,
+    public NameSimilarityRequest(Name name1,
                                  Name name2) {
         this.name1 = name1;
         this.name2 = name2;
@@ -87,11 +87,11 @@ public final class NameComparisonRequest {
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof NameComparisonRequest)) {
+        if (!(o instanceof NameSimilarityRequest)) {
             return false;
         }
 
-        NameComparisonRequest that = (NameComparisonRequest) o;
+        NameSimilarityRequest that = (NameSimilarityRequest) o;
         return name1 != null ? name1.equals(that.getName1()) : that.name1 == null
                 && name2 != null ? name2.equals(that.getName1()) : that.name2 == null;
     }

@@ -18,20 +18,20 @@ package com.basistech.rosette.examples;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Name;
-import com.basistech.rosette.apimodel.NameComparisonRequest;
-import com.basistech.rosette.apimodel.NameComparisonResponse;
+import com.basistech.rosette.apimodel.NameSimilarityRequest;
+import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 
 import java.io.IOException;
 
 /**
- * Example which demonstrates the name matching api.
+ * Example which demonstrates name similarity.
  */
-public final class NameComparisonExample extends ExampleBase {
+public final class NameSimilarityExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            new NameComparisonExample().run();
+            new NameSimilarityExample().run();
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
@@ -44,7 +44,7 @@ public final class NameComparisonExample extends ExampleBase {
         Name name1 = new Name(matchedNameData1, "PERSON", ISO15924.Zyyy, LanguageCode.ENGLISH);
         Name name2 = new Name(matchedNameData2);
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        NameComparisonResponse response = rosetteApi.matchName(new NameComparisonRequest(name1, name2));
+        NameSimilarityResponse response = rosetteApi.getNameSimilarity(new NameSimilarityRequest(name1, name2));
         System.out.println(responseToJson(response));
     }
 }

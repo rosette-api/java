@@ -26,10 +26,10 @@ import java.io.IOException;
 /**
  * Example which demonstrates the name translation api.
  */
-public final class TranslatedNameExample extends ExampleBase {
+public final class NameTranslationExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            new TranslatedNameExample().run();
+            new NameTranslationExample().run();
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
@@ -42,7 +42,7 @@ public final class TranslatedNameExample extends ExampleBase {
                 .build();
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        NameTranslationResponse response = rosetteApi.translateName(request);
+        NameTranslationResponse response = rosetteApi.getNameTranslation(request);
         System.out.println(responseToJson(response));
     }
 }

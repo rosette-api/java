@@ -32,8 +32,8 @@ import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyRequest;
 import com.basistech.rosette.apimodel.MorphologyResponse;
-import com.basistech.rosette.apimodel.NameComparisonRequest;
-import com.basistech.rosette.apimodel.NameComparisonResponse;
+import com.basistech.rosette.apimodel.NameSimilarityRequest;
+import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.PingResponse;
@@ -211,24 +211,24 @@ public class RosetteAPI implements Closeable {
     /**
      * Matches 2 names and returns a score in NameMatchingResponse.
      *
-     * @param request NameMatchingRequest contains 2 names.
-     * @return NameMatchingResponse
+     * @param request request object with the names.
+     * @return response
      * @throws RosetteAPIException Rosette specific exception
      * @throws IOException         General IO exception
      */
-    public NameComparisonResponse matchName(NameComparisonRequest request) throws RosetteAPIException, IOException {
-        return sendPostRequest(request, urlBase + NAME_SIMILARITY_SERVICE_PATH, NameComparisonResponse.class);
+    public NameSimilarityResponse getNameSimilarity(NameSimilarityRequest request) throws RosetteAPIException, IOException {
+        return sendPostRequest(request, urlBase + NAME_SIMILARITY_SERVICE_PATH, NameSimilarityResponse.class);
     }
 
     /**
      * Translates a name into the target language specified in NameTranslationRequest.
      *
      * @param request NameTranslationRequest contains the name to be translated and the target language.
-     * @return NameTranslationResponse
+     * @return the response.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
-    public NameTranslationResponse translateName(NameTranslationRequest request)
+    public NameTranslationResponse getNameTranslation(NameTranslationRequest request)
             throws RosetteAPIException, IOException {
         return sendPostRequest(request, urlBase + NAME_TRANSLATION_SERVICE_PATH, NameTranslationResponse.class);
     }
