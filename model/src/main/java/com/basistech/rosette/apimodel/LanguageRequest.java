@@ -30,15 +30,17 @@ public final class LanguageRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
+     * @param genre genre
      * @param options languages detection options
      */
     protected LanguageRequest(
+            String genre,
             Object content,
             String contentUri,
             String contentType,
             LanguageOptions options
     ) {
-        super(null, content, contentUri, contentType);
+        super(null, genre, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -92,7 +94,7 @@ public final class LanguageRequest extends Request {
 
         @Override
         public LanguageRequest build() {
-            return new LanguageRequest(content, contentUri, contentType, options);
+            return new LanguageRequest(genre, content, contentUri, contentType, options);
         }
     }
 }

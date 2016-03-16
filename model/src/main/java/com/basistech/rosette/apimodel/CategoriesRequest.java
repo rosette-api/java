@@ -31,16 +31,18 @@ public final class CategoriesRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
+     * @param genre genre
      * @param options categorization options
       */
     protected CategoriesRequest(
             LanguageCode language,
+            String genre,
             Object content,
             String contentUri,
             String contentType,
             CategoriesOptions options
     ) {
-        super(language, content, contentUri, contentType);
+        super(language, genre, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -86,7 +88,7 @@ public final class CategoriesRequest extends Request {
 
         @Override
         public CategoriesRequest build() {
-            return new CategoriesRequest(language, content, contentUri, contentType, options);
+            return new CategoriesRequest(language, genre, content, contentUri, contentType, options);
         }
     }
 }

@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class LanguageRequestMixin extends BaseMixin {
     @JsonCreator
     public LanguageRequestMixin(
+            @JsonProperty("genre") String genre,
             @JsonProperty("content") Object content,
             @JsonProperty("contentUri") String contentUri,
             @JsonProperty("contentType") String contentType,

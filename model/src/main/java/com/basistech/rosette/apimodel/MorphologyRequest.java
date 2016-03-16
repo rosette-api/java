@@ -32,15 +32,17 @@ public final class MorphologyRequest extends Request {
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
      * @param options morphology options
+     * @param genre genre
      */
     protected MorphologyRequest(
             LanguageCode language,
+            String genre,
             Object content,
             String contentUri,
             String contentType,
             MorphologyOptions options
     ) {
-        super(language, content, contentUri, contentType);
+        super(language, genre, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -92,7 +94,7 @@ public final class MorphologyRequest extends Request {
 
         @Override
         public MorphologyRequest build() {
-            return new MorphologyRequest(language, content, contentUri, contentType, options);
+            return new MorphologyRequest(language, genre, content, contentUri, contentType, options);
         }
     }
 }

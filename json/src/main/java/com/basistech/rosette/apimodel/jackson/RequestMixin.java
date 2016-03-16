@@ -36,9 +36,11 @@ public abstract class RequestMixin extends BaseMixin {
     @JsonCreator
     protected RequestMixin(
             @JsonProperty("language") LanguageCode language,
+            @JsonProperty("genre") String genre,
             @JsonProperty("content") Object content,
             @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType) {
+            @JsonProperty("contentType") String contentType
+            ) {
         //
     }
 
