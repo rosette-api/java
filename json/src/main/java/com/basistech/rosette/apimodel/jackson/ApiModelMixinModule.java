@@ -83,7 +83,7 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(EntitiesResponse.class, EntityResponseMixin.class);
         context.setMixInAnnotations(EntitySentiment.class, EntitySentimentMixin.class);
         context.setMixInAnnotations(ErrorResponse.class, ErrorResponseMixin.class);
-        context.setMixInAnnotations(Entity.class, ExtractedEntityMixin.class);
+        context.setMixInAnnotations(Entity.class, EntityMixin.class);
         context.setMixInAnnotations(InfoResponse.class, InfoResponseMixin.class);
         context.setMixInAnnotations(LanguageDetectionResult.class, LanguageDetectionResultMixin.class);
         context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);

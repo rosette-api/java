@@ -26,7 +26,6 @@ public final class Entity {
     private final String mention;
     private final String normalized;
     private final int count;
-    private final Double confidence;
 
     /**
      * constructor for {@code Entity}
@@ -35,22 +34,19 @@ public final class Entity {
      * @param mention mention text
      * @param normalized normalized mention text
      * @param count mention count
-     * @param confidence confidence
      */
     public Entity(
             int indocChainId,
             String type,
             String mention,
             String normalized,
-            int count,
-            Double confidence
+            int count
     ) {
         this.indocChainId = indocChainId;
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
         this.count = count;
-        this.confidence = confidence;
     }
 
     /**
@@ -93,25 +89,14 @@ public final class Entity {
         return count;
     }
 
-    /**
-     * get the confidence 
-     * @return the confidence
-     */
-    public Double getConfidence() {
-        return confidence;
-    }
-
     @Override
     public int hashCode() {
         int result;
-        long temp;
         result = indocChainId;
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (mention != null ? mention.hashCode() : 0);
         result = 31 * result + (normalized != null ? normalized.hashCode() : 0);
         result = 31 * result + count;
-        temp = Double.doubleToLongBits(confidence);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -131,7 +116,6 @@ public final class Entity {
                 && type != null ? type.equals(that.getType()) : that.type == null
                 && mention != null ? mention.equals(that.getMention()) : that.mention == null
                 && normalized != null ? normalized.equals(that.getNormalized()) : that.normalized == null
-                && count == that.getCount()
-                && confidence.equals(that.getConfidence());
+                && count == that.getCount();
     }
 }
