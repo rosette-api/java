@@ -19,15 +19,14 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ExtractedEntityMixin extends BaseMixin {
+public class EntityMixin extends BaseMixin {
     @JsonCreator
-    public ExtractedEntityMixin(
+    public EntityMixin(
             @JsonProperty("indocChainId") int indocChainId,
             @JsonProperty("type") String type,
             @JsonProperty("mention") String mention,
             @JsonProperty("normalized") String normalized,
-            @JsonProperty("count") int count,
-            @JsonProperty("confidence") Double confidence
+            @JsonProperty("count") int count
     ) {
         //
     }

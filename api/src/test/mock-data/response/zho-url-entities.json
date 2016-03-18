@@ -1,7 +1,6 @@
 {
   "entities": [
     {
-      "confidence": 0.0, 
       "count": 5, 
       "indocChainId": 8, 
       "mention": "中央", 
@@ -9,7 +8,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 3, 
       "indocChainId": 9, 
       "mention": "深化改革领导小组", 
@@ -17,7 +15,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 0, 
       "mention": "习近平", 
@@ -25,7 +22,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 30, 
       "mention": "同志", 
@@ -33,7 +29,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 1, 
       "mention": "新华社", 
@@ -41,7 +36,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 2, 
       "mention": "北京", 
@@ -49,7 +43,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 3, 
       "mention": "中共中央", 
@@ -57,7 +50,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 4, 
       "mention": "总书记", 
@@ -65,7 +57,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 5, 
       "mention": "国家主席", 
@@ -73,7 +64,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 6, 
       "mention": "中央军委", 
@@ -81,7 +71,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 7, 
       "mention": "主席", 
@@ -89,7 +78,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 10, 
       "mention": "组长", 
@@ -97,7 +85,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 13, 
       "mention": "中共中央政治局", 
@@ -105,7 +92,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 14, 
       "mention": "常委", 
@@ -113,7 +99,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 17, 
       "mention": "副组长", 
@@ -121,7 +106,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 18, 
       "mention": "李克强", 
@@ -129,7 +113,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 19, 
       "mention": "刘云山", 
@@ -137,7 +120,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 20, 
       "mention": "张高丽", 
@@ -145,7 +127,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 21, 
       "mention": "全国人大常委会法工委", 
@@ -153,7 +134,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 22, 
       "mention": "科技部", 
@@ -161,7 +141,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 23, 
       "mention": "公安部", 
@@ -169,7 +148,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 24, 
       "mention": "上海市", 
@@ -177,7 +155,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 25, 
       "mention": "湖北省", 
@@ -185,7 +162,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 26, 
       "mention": "福建省", 
@@ -193,7 +169,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 27, 
       "mention": "浙江省", 
@@ -201,7 +176,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 28, 
       "mention": "开化县", 
@@ -209,7 +183,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 29, 
       "mention": "根", 

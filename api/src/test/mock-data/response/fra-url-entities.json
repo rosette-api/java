@@ -1,7 +1,6 @@
 {
   "entities": [
     {
-      "confidence": 0.0, 
       "count": 6, 
       "indocChainId": 1, 
       "mention": "France", 
@@ -9,7 +8,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 3, 
       "indocChainId": 4, 
       "mention": "Mars", 
@@ -17,7 +15,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 3, 
       "indocChainId": 7, 
       "mention": "Pays-Bas", 
@@ -25,7 +22,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 0, 
       "mention": "Europe", 
@@ -33,7 +29,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 3, 
       "mention": "Snickers", 
@@ -41,7 +36,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 6, 
       "mention": "Allemagne", 
@@ -49,7 +43,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 16, 
       "mention": "Veghel", 
@@ -57,7 +50,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 8, 
       "mention": "Royaume-Uni", 
@@ -65,7 +57,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 9, 
       "mention": "Belgique", 
@@ -73,7 +64,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 10, 
       "mention": "Italie", 
@@ -81,7 +71,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 11, 
       "mention": "Espagne", 
@@ -89,7 +78,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 12, 
       "mention": "AFP Eline Bijveld", 
@@ -97,7 +85,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 21, 
       "mention": "Rhin", 
@@ -105,7 +92,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 22, 
       "mention": "Uncle Ben's", 
@@ -113,7 +99,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 23, 
       "mention": "Kraft Foods", 
@@ -121,7 +106,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 24, 
       "mention": "Nestlé", 
@@ -129,7 +113,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 28, 
       "mention": "Haguenau", 
@@ -137,7 +120,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 29, 
       "mention": "Alsace", 
@@ -145,7 +127,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 30, 
       "mention": "Viersen", 
@@ -153,7 +134,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 32, 
       "mention": "Pologne", 
@@ -161,7 +141,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 33, 
       "mention": "Ikea", 
@@ -169,7 +148,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 34, 
       "mention": "McDonald's", 
@@ -177,7 +155,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 35, 
       "mention": "Japon", 

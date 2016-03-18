@@ -1,7 +1,6 @@
 {
   "entities": [
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 0, 
       "mention": "Obama", 
@@ -9,7 +8,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 1, 
       "mention": "Guantanamo Bay", 
@@ -17,7 +15,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 2, 
       "mention": "Washington", 

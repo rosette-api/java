@@ -1,7 +1,6 @@
 {
   "entities": [
     {
-      "confidence": 0.0, 
       "count": 4, 
       "indocChainId": 0, 
       "mention": "김일성의", 
@@ -9,7 +8,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 2, 
       "mention": "한국의", 
@@ -17,7 +15,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 3, 
       "mention": "만주", 
@@ -25,7 +22,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 13, 
       "mention": "총비서로", 
@@ -33,7 +29,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 20, 
       "mention": "대동군", 
@@ -41,7 +36,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 2, 
       "indocChainId": 24, 
       "mention": "김형직", 
@@ -49,7 +43,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 0, 
       "mention": "김일성은", 
@@ -57,7 +50,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 0, 
       "mention": "김일성으로", 
@@ -65,7 +57,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 0, 
       "mention": "김일성", 
@@ -73,7 +64,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 1, 
       "mention": "金日成", 
@@ -81,7 +71,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 1, 
       "mention": "金成", 
@@ -89,7 +78,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 3, 
       "mention": "만주로", 
@@ -97,7 +85,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 4, 
       "mention": "조선혁명군", 
@@ -105,7 +92,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 5, 
       "mention": "조선인민혁명군으로", 
@@ -113,7 +99,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 6, 
       "mention": "조선민주주의인민공화국의", 
@@ -121,7 +106,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 7, 
       "mention": "총리", 
@@ -129,7 +113,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 8, 
       "mention": "김성주", 
@@ -137,7 +120,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 10, 
       "mention": "金聖柱", 
@@ -145,7 +127,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 12, 
       "mention": "조선로동당 중앙위원회", 
@@ -153,7 +134,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 14, 
       "mention": "당중앙위원회", 
@@ -161,7 +141,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 16, 
       "mention": "대한민국에서는", 
@@ -169,7 +148,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 17, 
       "mention": "한국전쟁을", 
@@ -177,7 +155,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 19, 
       "mention": "평안남도", 
@@ -185,7 +162,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 21, 
       "mention": "고평면", 
@@ -193,7 +169,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 22, 
       "mention": "평양으로", 
@@ -201,7 +176,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 22, 
       "mention": "평양", 
@@ -209,7 +183,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 23, 
       "mention": "만경대", 
@@ -217,7 +190,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 24, 
       "mention": "김형직이", 
@@ -225,7 +197,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 25, 
       "mention": "金亨稷", 
@@ -233,7 +204,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 26, 
       "mention": "강반석", 
@@ -241,7 +211,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 28, 
       "mention": "전주", 
@@ -249,7 +218,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 29, 
       "mention": "김씨", 
@@ -257,7 +225,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 30, 
       "mention": "전라북도", 
@@ -265,7 +232,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 32, 
       "mention": "김응우는", 
@@ -273,7 +239,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 33, 
       "mention": "셔먼", 
@@ -281,7 +246,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 34, 
       "mention": "만경대라는", 
@@ -289,7 +253,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 35, 
       "mention": "일본", 
@@ -297,7 +260,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 37, 
       "mention": "기독교", 
@@ -305,7 +267,6 @@
       "type": "RELIGION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 38, 
       "mention": "장로교", 
@@ -313,7 +274,6 @@
       "type": "RELIGION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 39, 
       "mention": "강돈욱도", 
@@ -321,7 +281,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 39, 
       "mention": "강돈욱", 
@@ -329,7 +288,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 40, 
       "mention": "칠골교회의", 
@@ -337,7 +295,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 42, 
       "mention": "강진석", 
@@ -345,7 +302,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 43, 
       "mention": "康晋錫", 
@@ -353,7 +309,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 45, 
       "mention": "김보현이", 
@@ -361,7 +316,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 46, 
       "mention": "성주", 
@@ -369,7 +323,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 47, 
       "mention": "성주", 
@@ -377,7 +330,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 49, 
       "mention": "지린성(吉林省", 
@@ -385,7 +337,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 50, 
       "mention": "무송", 
@@ -393,7 +344,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 54, 
       "mention": "용산면", 
@@ -401,7 +351,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 55, 
       "mention": "칠골에", 
@@ -409,7 +358,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 56, 
       "mention": "창덕학교의", 
@@ -417,7 +365,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 56, 
       "mention": "창덕학교는", 
@@ -425,7 +372,6 @@
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 60, 
       "mention": "교감과 교장을", 
@@ -433,7 +379,6 @@
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 62, 
       "mention": "중국", 

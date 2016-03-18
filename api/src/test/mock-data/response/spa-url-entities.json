@@ -1,7 +1,6 @@
 {
   "entities": [
     {
-      "confidence": 0.0, 
       "count": 3, 
       "indocChainId": 1, 
       "mention": "INEGI", 
@@ -9,7 +8,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 0, 
       "mention": "Instituto Nacional de Estadística y Geografía", 
@@ -17,7 +15,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 2, 
       "mention": "BofA", 
@@ -25,7 +22,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 3, 
       "mention": "México", 
@@ -33,7 +29,6 @@
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 6, 
       "mention": "Secretaría de Hacienda y Crédito Público", 
@@ -41,7 +36,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 6, 
       "mention": "SHCP", 
@@ -49,7 +43,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 8, 
       "mention": "Banco de México", 
@@ -57,7 +50,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 9, 
       "mention": "Banxico", 
@@ -65,7 +57,6 @@
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
       "count": 1, 
       "indocChainId": 10, 
       "mention": "Notimex", 

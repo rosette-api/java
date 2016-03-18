@@ -1,64 +1,56 @@
 {
   "entities": [
     {
-      "confidence": 0.0, 
-      "count": 2, 
+      "count": 2,
       "indocChainId": 0, 
       "mention": "دبي", 
       "normalized": "دبي", 
       "type": "LOCATION"
     }, 
     {
-      "confidence": 0.0, 
-      "count": 1, 
+      "count": 1,
       "indocChainId": 1, 
       "mention": "أميركي", 
       "normalized": "أميركي", 
       "type": "NATIONALITY"
     }, 
     {
-      "confidence": 0.0, 
-      "count": 1, 
+      "count": 1,
       "indocChainId": 2, 
       "mention": "الشيخ", 
       "normalized": "الشيخ", 
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
-      "count": 1, 
+      "count": 1,
       "indocChainId": 3, 
       "mention": "محمد بن راشد آل مكتوم", 
       "normalized": "محمد بن راشد آل مكتوم", 
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
-      "count": 1, 
+      "count": 1,
       "indocChainId": 5, 
       "mention": "Samsung C", 
       "normalized": "Samsung C", 
       "type": "ORGANIZATION"
     }, 
     {
-      "confidence": 0.0, 
-      "count": 1, 
+      "count": 1,
       "indocChainId": 6, 
       "mention": "روبرت بوث", 
       "normalized": "روبرت بوث", 
       "type": "PERSON"
     }, 
     {
-      "confidence": 0.0, 
-      "count": 1, 
+      "count": 1,
       "indocChainId": 7, 
       "mention": "المدير التنفيذي", 
       "normalized": "المدير التنفيذي", 
       "type": "TITLE"
     }, 
     {
-      "confidence": 0.0, 
-      "count": 1, 
+      "count": 1,
       "indocChainId": 8, 
       "mention": "الإماراتية", 
       "normalized": "الإماراتية", 
