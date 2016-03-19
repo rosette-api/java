@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rosette-api/java.svg?branch=master)](https://travis-ci.org/rosette-api/java)
+
 Java client binding for Rosette API
 ==================================
 
