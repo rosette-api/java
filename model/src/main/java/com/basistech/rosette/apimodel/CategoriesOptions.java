@@ -23,7 +23,6 @@ import javax.validation.constraints.Min;
  */
 public final class CategoriesOptions {
 
-    private Boolean explain;
     @Min(1)
     private Integer numCategories;
 
@@ -37,39 +36,20 @@ public final class CategoriesOptions {
 
     /**
      * constructor for {@code CategoriesOptions}
-     * @param explain whether to return explanation strings for each category returned
      * @param numCategories max number of categories
      */
     public CategoriesOptions(
-            Boolean explain,
             Integer numCategories
     ) {
-        this.explain = explain;
         this.numCategories = numCategories;
     }
     
-    /**
-     * get whether to return explanation strings for each category returned 
-     * @return whether to return explanation strings
-     */
-    public Boolean getExplain() {
-        return explain;
-    }
-
     /**
      * get max number of categories 
      * @return number of categories
      */
     public Integer getNumCategories() {
         return numCategories;
-    }
-
-    /**
-     * set whether to return explanation strings for each category returned
-     * @param explain whether to return explanation strings
-     */
-    public void setExplain(Boolean explain) {
-        this.explain = explain;
     }
 
     /**
@@ -81,7 +61,7 @@ public final class CategoriesOptions {
     }
 
     public int hashCode() {
-        int result = explain != null ? explain.hashCode() : 0;
+        int result = this.hashCode();
         result = 31 * result + (numCategories != null ? numCategories.hashCode() : 0);
         return result;
     }
@@ -98,7 +78,6 @@ public final class CategoriesOptions {
         }
 
         CategoriesOptions that = (CategoriesOptions) o;
-        return explain != null ? explain.equals(that.getExplain()) : that.explain == null
-                && numCategories != null ? numCategories.equals(that.getNumCategories()) : that.numCategories == null;
+        return numCategories != null ? numCategories.equals(that.getNumCategories()) : that.numCategories == null;
     }
 }

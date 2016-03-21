@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public final class CategoriesOptionsMixin extends BaseMixin {
     @JsonCreator
     private CategoriesOptionsMixin(
-            @JsonProperty("explain") Boolean explain,
             @JsonProperty("numCategories") Integer numCategories
     ) {
         //

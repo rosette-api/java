@@ -16,11 +16,9 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.List;
-
 /**
  * Sentiment Analysis and Categorization return labels. A label is
- * a category name, a confidence value, and some 'explanation' tokens
+ * a category name, a confidence value,
  * that contributed to the determination.
  * For Sentiment, the label strings are items like 'pos' or 'neg';
  * for Categorization, 'sports' or 'news'.
@@ -29,18 +27,15 @@ public final class Label {
 
     private final String label;
     private final Double confidence;
-    private final List<String> explanations;
-    
+
     /**
      * Constructor for {@code Category}
      * @param label label for contextual category
      * @param confidence confidence score (0.0-1.0)
-     * @param explanations list of input text elements
      */
-    public Label(String label, Double confidence, List<String> explanations) {
+    public Label(String label, Double confidence) {
         this.label = label;
         this.confidence = confidence;
-        this.explanations = explanations;
     }
 
     /**
@@ -57,20 +52,11 @@ public final class Label {
         return confidence;
     }
 
-    /**
-     * get the list of explanation strings contributing to this label.
-     * @return the list of strings.
-     */
-    public List<String> getExplanations() {
-        return explanations;
-    }
-
     @Override
     public int hashCode() {
         int result;
         result = label != null ? label.hashCode() : 0;
         result = 31 * result + (confidence != null ? confidence.hashCode() : 0);
-        result = 31 * result + (explanations != null ? explanations.hashCode() : 0);
         return result;
     }
 
@@ -87,7 +73,6 @@ public final class Label {
 
         Label that = (Label) o;
         return label != null ? label.equals(that.label) : that.label == null
-                && confidence.equals(that.confidence)
-                && explanations != null ? explanations.equals(that.getExplanations()) : that.explanations == null;
+                && confidence.equals(that.confidence);
     }
 }
