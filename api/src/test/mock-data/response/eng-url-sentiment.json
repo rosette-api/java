@@ -1,7 +1,6 @@
 {
   "document": {
     "confidence": 0.8571296319875414, 
-    "explanations": [], 
     "label": "pos"
   }, 
   "entities": [
@@ -10,7 +9,6 @@
       "mention": "Obama", 
       "sentiment": {
         "confidence": 0.5059616098625916, 
-        "explanations": [], 
         "label": "neg"
       }, 
       "type": "PERSON"

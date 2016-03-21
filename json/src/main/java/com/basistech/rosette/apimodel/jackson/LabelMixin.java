@@ -19,14 +19,11 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
-
 public class LabelMixin extends BaseMixin {
     @JsonCreator
     public LabelMixin(
             @JsonProperty("label") String label,
-            @JsonProperty("confidence") Double confidence,
-            @JsonProperty("explanations") List<String> explanations
+            @JsonProperty("confidence") Double confidence
     ) {
         //
     }

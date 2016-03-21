@@ -16,51 +16,15 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Objects;
-
 /**
  * Sentiment options.
  */
 public final class SentimentOptions {
-
-    private Integer explanationCount;
 
     /**
      * Create a set of sentiment analysis options with default values.
      */
     public SentimentOptions() {
         //
-    }
-
-    /**
-     * @return the maximum number of explanation tokens to return.
-     */
-    public Integer getExplanationCount() {
-        return explanationCount;
-    }
-
-    /**
-     * Set the maximum number of explanation strings to return. The default is none.
-     * @param explanationCount the number of strings.
-     */
-    public void setExplanationCount(Integer explanationCount) {
-        this.explanationCount = explanationCount;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        SentimentOptions that = (SentimentOptions) o;
-        return Objects.equals(explanationCount, that.explanationCount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(explanationCount);
     }
 }

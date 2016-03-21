@@ -1,7 +1,6 @@
 {
   "document": {
     "confidence": 0.5061395422807821, 
-    "explanations": [], 
     "label": "neg"
   }, 
   "entities": [
@@ -10,7 +9,6 @@
       "mention": "U.S.", 
       "sentiment": {
         "confidence": 0.4441185061900165, 
-        "explanations": [], 
         "label": "neu"
       }, 
       "type": "LOCATION"
@@ -20,7 +18,6 @@
       "mention": "Iraq", 
       "sentiment": {
         "confidence": 0.5430461330525177, 
-        "explanations": [], 
         "label": "neu"
       }, 
       "type": "LOCATION"
@@ -30,7 +27,6 @@
       "mention": "Afghanistan", 
       "sentiment": {
         "confidence": 0.5961770818070375, 
-        "explanations": [], 
         "label": "neu"
       }, 
       "type": "LOCATION"
