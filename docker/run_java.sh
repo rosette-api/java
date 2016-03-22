@@ -55,11 +55,26 @@ function checkAPI {
     fi  
 }
 
+function runExample() {
+    echo -e "\n---------- ${1} start -------------\n"
+    if [ ! -z ${ALT_URL} ]; then
+        result="$(mvn exec:java -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 2>&1 )"
+    else
+        result="$(mvn exec:java -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} 2&>1 )"
+    fi
+    if [[ $result == *"Exception"* ]]; then
+        retcode=1
+    fi
+    echo ${result}
+    echo -e "\n---------- ${1} end -------------\n"
+}
+
 #Copy the mounted content in /source to current WORKDIR
 cp -r -u /source/* .
 
 #Set the global return code.  If any of the examples fails, this will be set to 1 for the exit
 retcode=0
+result=""
 
 #Run the examples
 
@@ -68,16 +83,7 @@ if [ ! -z ${API_KEY} ]; then
     mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
     cd /java/examples
     if [ ! -z ${FILENAME} ]; then
-        echo -e "\n---------- ${FILENAME} start -------------"
-        if [ ! -z ${ALT_URL} ]; then
-            mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${FILENAME}" -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL}
-        else
-            mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${FILENAME}" -Drosette.api.key=${API_KEY}
-        fi
-        if [ $? -gt 0 ]; then
-            retcode=1
-        fi
-        echo "---------- ${FILENAME} end -------------"
+        runExample ${FILENAME}
     else
         for file in /java/examples/src/main/java/com/basistech/rosette/examples/*.java; do
             filename=$(basename "$file")
@@ -85,16 +91,7 @@ if [ ! -z ${API_KEY} ]; then
             if [ "${filename}" = "ExampleBase" ]; then
                 continue
             fi
-            echo -e "\n---------- ${filename} start -------------"
-            if [ ! -z ${ALT_URL} ]; then
-                mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 
-            else
-                mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.${filename}" -Drosette.api.key=${API_KEY}            
-            fi
-            if [ $? -gt 0 ]; then
-                retcode=1
-            fi
-            echo "---------- ${filename} end -------------"
+            runExample ${filename}
         done
     fi
 else 
