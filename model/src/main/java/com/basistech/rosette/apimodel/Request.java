@@ -43,13 +43,16 @@ import java.io.InputStream;
  * for plain text, and an {@link java.io.InputStream} for binary data. {@link Request.Builder}
  * provides several alternative methods for setting this information.
  *
+ * This class includes a 'genre' field. If no genre is specified, then the system
+ * applies generic processing. Valid values for genre are specified in the API documentation.
  */
 public abstract class Request {
 
-    private LanguageCode language;
-    private Object content;
-    private String contentUri;
-    private String contentType;
+    private final LanguageCode language;
+    private final Object content;
+    private final String contentUri;
+    private final String contentType;
+    private final String genre;
 
     /**
      * Constructor for {@code Request}
@@ -60,6 +63,7 @@ public abstract class Request {
      */
     protected Request(
             LanguageCode language,
+            String genre,
             Object content,
             String contentUri,
             String contentType) {
@@ -67,6 +71,7 @@ public abstract class Request {
         this.content = content;
         this.contentUri = contentUri;
         this.contentType = contentType;
+        this.genre = genre;
     }
 
     /**
@@ -121,12 +126,21 @@ public abstract class Request {
         return contentType;
     }
 
+    /**
+     * get the genre.
+     * @return the genre.
+     */
+    public String getGenre() {
+        return genre;
+    }
+
     @Override
     public int hashCode() {
         int result = language != null ? language.hashCode() : 0;
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (contentUri != null ? contentUri.hashCode() : 0);
         result = 31 * result + (contentType != null ? contentType.hashCode() : 0);
+        result = 31 * result + (genre != null ? genre.hashCode() : 0);
         return result;
     }
 
@@ -145,7 +159,8 @@ public abstract class Request {
         return language != null ? language.equals(that.getLanguage()) : that.language == null
                 && content != null ? content.equals(that.content) : that.content == null
                 && contentUri != null ? contentUri.equals(that.getContentUri()) : that.contentUri == null
-                && contentType != null ? contentType.equals(that.getContentType()) : that.contentType == null;
+                && contentType != null ? contentType.equals(that.getContentType()) : that.contentType == null
+                && genre != null ? genre.equals(that.getGenre()) : that.genre == null;
     }
 
     /**
@@ -157,6 +172,7 @@ public abstract class Request {
         protected Object content;
         protected String contentUri;
         protected String contentType;
+        protected String genre;
         protected O options;
 
         protected abstract B getThis();
@@ -268,6 +284,15 @@ public abstract class Request {
          */
         public O options() {
             return options;
+        }
+
+        public B genre(String genre) {
+            this.genre = genre;
+            return getThis();
+        }
+
+        public String genre() {
+            return genre;
         }
 
         /**

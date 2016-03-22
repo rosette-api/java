@@ -34,9 +34,10 @@ public class SentencesRequest extends Request {
      * @param content     raw data
      * @param contentUri  uri pointing to the data
      * @param contentType byte array of data
+     * @param genre genre
      */
-    protected SentencesRequest(LanguageCode language, Object content, String contentUri, String contentType) {
-        super(language, content, contentUri, contentType);
+    protected SentencesRequest(LanguageCode language, String genre, Object content, String contentUri, String contentType) {
+        super(language, genre, content, contentUri, contentType);
     }
 
     /**
@@ -50,7 +51,7 @@ public class SentencesRequest extends Request {
 
         @Override
         public SentencesRequest build() {
-            return new SentencesRequest(language, content, contentUri, contentType);
+            return new SentencesRequest(language, genre, content, contentUri, contentType);
         }
     }
 

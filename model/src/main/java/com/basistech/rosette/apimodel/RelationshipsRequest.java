@@ -31,16 +31,18 @@ public final class RelationshipsRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
+     * @param genre genre
      * @param options relationship options
      */
     protected RelationshipsRequest(
             LanguageCode language,
+            String genre,
             Object content,
             String contentUri,
             String contentType,
             RelationshipsOptions options
     ) {
-        super(language, content, contentUri, contentType);
+        super(language, genre, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -94,7 +96,7 @@ public final class RelationshipsRequest extends Request {
 
         @Override
         public RelationshipsRequest build() {
-            return new RelationshipsRequest(language, content, contentUri, contentType, options);
+            return new RelationshipsRequest(language, genre, content, contentUri, contentType, options);
         }
     }
 

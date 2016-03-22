@@ -25,6 +25,7 @@ public class CategoriesRequestMixin extends BaseMixin {
     @JsonCreator
     public CategoriesRequestMixin(
             @JsonProperty("language") LanguageCode language,
+            @JsonProperty("genre") String genre,
             @JsonProperty("content") Object content,
             @JsonProperty("contentUri") String contentUri,
             @JsonProperty("contentType") String contentType,

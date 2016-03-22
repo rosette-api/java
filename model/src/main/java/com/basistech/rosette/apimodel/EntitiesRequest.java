@@ -31,16 +31,18 @@ public final class EntitiesRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
+     * @param genre the genre
      * @param options entity extraction options
      */
     protected EntitiesRequest(
             LanguageCode language,
+            String genre,
             Object content,
             String contentUri,
             String contentType,
             EntitiesOptions options
     ) {
-        super(language, content, contentUri, contentType);
+        super(language, genre, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -87,7 +89,7 @@ public final class EntitiesRequest extends Request {
 
         @Override
         public EntitiesRequest build() {
-            return new EntitiesRequest(language, content, contentUri, contentType, options);
+            return new EntitiesRequest(language, genre, content, contentUri, contentType, options);
         }
     }
 }

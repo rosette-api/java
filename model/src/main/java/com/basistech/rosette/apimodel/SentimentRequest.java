@@ -32,15 +32,17 @@ public final class SentimentRequest extends Request {
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
      * @param options sentiment options
+     * @param genre genre
      */
     protected SentimentRequest(
             LanguageCode language,
+            String genre,
             Object content,
             String contentUri,
             String contentType,
             SentimentOptions options
     ) {
-        super(language, content, contentUri, contentType);
+        super(language, genre, content, contentUri, contentType);
         this.options = options;
     }
 
@@ -94,7 +96,7 @@ public final class SentimentRequest extends Request {
 
         @Override
         public SentimentRequest build() {
-            return new SentimentRequest(language, content, contentUri, contentType, options);
+            return new SentimentRequest(language, genre, content, contentUri, contentType, options);
         }
     }
 }

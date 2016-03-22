@@ -29,13 +29,15 @@ public final class LinkedEntitiesRequest extends Request {
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
+     * @param genre genre
      */
     protected LinkedEntitiesRequest(
             LanguageCode language,
+            String genre,
             Object content,
             String contentUri,
             String contentType) {
-        super(language, content, contentUri, contentType);
+        super(language, genre, content, contentUri, contentType);
     }
 
     @Override
@@ -68,7 +70,7 @@ public final class LinkedEntitiesRequest extends Request {
 
         @Override
         public LinkedEntitiesRequest build() {
-            return new LinkedEntitiesRequest(language, content, contentUri, contentType);
+            return new LinkedEntitiesRequest(language, genre, content, contentUri, contentType);
         }
     }
 }

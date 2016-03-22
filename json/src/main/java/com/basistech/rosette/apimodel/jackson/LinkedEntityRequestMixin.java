@@ -21,12 +21,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LinkedEntityRequestMixin extends BaseMixin {
+    //CHECKSTYLE:OFF
     @JsonCreator
     protected LinkedEntityRequestMixin(
             @JsonProperty("language") LanguageCode language,
+            @JsonProperty("genre") String genre,
             @JsonProperty("content") Object content,
             @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType) {
+            @JsonProperty("contentType") String contentType
+            ) {
         //
     }
+    //CHECKSTYLE:ON
 }
