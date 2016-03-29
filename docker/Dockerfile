@@ -3,7 +3,14 @@ MAINTAINER Fiona Hasanaj
 ENV TZ=America/New_York
 
 # install necessary software
-RUN apt-get -y update && apt-get install -y vim  && apt-get install -y git
+RUN apt-get -yqq update \
+    && apt-get install -y --force-yes --no-install-recommends\
+    curl \
+    ca-certificates \
+    git \
+    jq \
+    iputils-ping \
+    vim
 
 # copy over the necessary files
 COPY run_java.sh /java/run_java.sh 
