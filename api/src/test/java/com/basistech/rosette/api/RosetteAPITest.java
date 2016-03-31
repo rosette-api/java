@@ -44,6 +44,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockserver.client.server.MockServerClient;
+import org.mockserver.matchers.Times;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
@@ -112,7 +113,10 @@ public class RosetteAPITest extends AbstractTest {
                                     .withBody("Invalid path; '//'")
                                     .withStatusCode(404)
                     );
-
+            mockServer.when(HttpRequest.request().withPath("^(?!//).+"), Times.exactly(1)).respond(HttpResponse.response()
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(INFO_REPONSE, StandardCharsets.UTF_8)
+                    .withStatusCode(200));
             if (responseStr.length() > 200) {  // test gzip if response is somewhat big
                 mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
@@ -131,7 +135,7 @@ public class RosetteAPITest extends AbstractTest {
                 .respond(HttpResponse.response()
                     .withStatusCode(200)
                     .withHeader("Content-Type", "application/json")
-                    .withBody("{ \"buildNumber\": \"6bafb29d\", \"buildTime\": \"2015.10.08_10:19:26\", \"name\": \"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }", StandardCharsets.UTF_8));
+                    .withBody(INFO_REPONSE, StandardCharsets.UTF_8));
 
             String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
             api = new RosetteAPI("my-key-123", mockServiceUrl);
