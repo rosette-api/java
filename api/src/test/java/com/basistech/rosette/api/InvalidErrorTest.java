@@ -16,13 +16,11 @@
 
 package com.basistech.rosette.api;
 
-import com.basistech.util.LanguageCode;
 import org.junit.Test;
 import org.mockserver.client.server.MockServerClient;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
-import java.io.IOException;
 
 public class InvalidErrorTest extends AbstractTest {
 
@@ -36,10 +34,9 @@ public class InvalidErrorTest extends AbstractTest {
                                 .withStatusCode(404)
                 );
         String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest//v1";
-        RosetteAPI api = new RosetteAPI("my-key-123", mockServiceUrl);
         boolean exceptional = false;
         try {
-            api.getCategories("Nothing to see here", LanguageCode.AFRIKAANS, null);
+            new RosetteAPI("my-key-123", mockServiceUrl);
         } catch (RosetteAPIException e) {
             exceptional = true;
             assertEquals("invalidErrorResponse", e.getCode());
