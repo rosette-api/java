@@ -80,6 +80,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.zip.GZIPInputStream;
 
 import static java.net.HttpURLConnection.HTTP_OK;
@@ -124,7 +125,7 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         General IO exception
      */
     public RosetteAPI(String key) throws IOException, RosetteAPIException {
-        this(key, null);
+        this(key, DEFAULT_URL_BASE);
     }
 
     /**
@@ -137,18 +138,17 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         General IO exception
      */
     public RosetteAPI(String key, String alternateUrl) throws IOException, RosetteAPIException {
+        Objects.requireNonNull(alternateUrl, "alternateUrl cannot be null");
         urlBase = alternateUrl;
-        if (urlBase == null) {
-            checkVersionCompatibility();
-        } else {
-            if (urlBase.endsWith("/")) {
-                urlBase = urlBase.substring(0, urlBase.length() - 1);
-            }
+        if (urlBase.endsWith("/")) {
+            urlBase = urlBase.substring(0, urlBase.length() - 1);
         }
         this.key = key;
         this.failureRetries = 1;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
         httpClient = HttpClients.createDefault();
+
+        checkVersionCompatibility();
     }
 
     /**

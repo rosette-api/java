@@ -30,6 +30,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.zip.GZIPOutputStream;
 
 public abstract class AbstractTest extends Assert {
+    public static final String INFO_REPONSE = "{ \"buildNumber\": \"6bafb29d\", \"buildTime\": \"2015.10.08_10:19:26\", \"name\": "
+            + "\"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }";
     protected static int serverPort;
     protected static ObjectMapper mapper;
 
