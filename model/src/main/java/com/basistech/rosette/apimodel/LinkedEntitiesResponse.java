@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * Simple api response data model for entity resolver 
  */
+@Deprecated
 public final class LinkedEntitiesResponse extends Response {
 
     private final List<LinkedEntity> entities;

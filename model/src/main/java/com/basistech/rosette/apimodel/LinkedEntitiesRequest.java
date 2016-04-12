@@ -21,6 +21,7 @@ import com.basistech.util.LanguageCode;
 /**
  * Class that represents the data from an entity resolution request
  */
+@Deprecated
 public final class LinkedEntitiesRequest extends Request {
 
     /**
