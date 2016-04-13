@@ -97,6 +97,10 @@ public class RosetteAPI implements Closeable {
     public static final String LANGUAGE_SERVICE_PATH = "/language";
     public static final String MORPHOLOGY_SERVICE_PATH = "/morphology";
     public static final String ENTITIES_SERVICE_PATH = "/entities";
+    /**
+     * @deprecated merged into the {@link #ENTITIES_SERVICE_PATH}.
+     */
+    @Deprecated
     public static final String ENTITIES_LINKED_SERVICE_PATH = "/entities/linked";
     public static final String CATEGORIES_SERVICE_PATH = "/categories";
     public static final String RELATIONSHIPS_SERVICE_PATH = "/relationships";
@@ -461,7 +465,9 @@ public class RosetteAPI implements Closeable {
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
+     * @deprecated Merged into {@link #getEntities(String, LanguageCode, EntitiesOptions)}.
      */
+    @Deprecated
     public LinkedEntitiesResponse getLinkedEntities(InputStream inputStream,
                                                     String contentType,
                                                     LanguageCode language)
@@ -485,7 +491,9 @@ public class RosetteAPI implements Closeable {
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
+     * @deprecated Merged into {@link #getLinkedEntities(URL, LanguageCode)}.
      */
+    @Deprecated
     public LinkedEntitiesResponse getLinkedEntities(URL url, LanguageCode language)
             throws RosetteAPIException, IOException {
         LinkedEntitiesRequest request = new LinkedEntitiesRequest.Builder()
