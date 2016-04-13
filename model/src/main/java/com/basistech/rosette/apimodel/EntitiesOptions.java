@@ -16,158 +16,60 @@
 
 package com.basistech.rosette.apimodel;
 
-import javax.validation.constraints.Min;
-import java.util.EnumSet;
+import java.util.Objects;
 
 /**
  * Entity extraction options
  */
 public final class EntitiesOptions {
 
-    public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(true, 8, EnumSet.allOf(ExtractionMethod.class), false, false);
-
-    private Boolean resolveNamedEntities;
-    @Min(1)
-    private Integer maxEntityTokens;
-    private EnumSet<ExtractionMethod> extractionMethods;
-    private Boolean allowPartialGazetteerMatches;
-    private Boolean redactorPreferLength;
-
-    /**
-     * Create a set of entity extraction options with default values.
-     * Note that {@code null} is used to represent defaults.
-     */
-    public EntitiesOptions() {
-        //
-    }
+    public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(false);
+    private Boolean linkEntities;
 
     /**
      * Constructor for {@code EntitiesOptions}
-     * @param resolveNamedEntities resolve in-document named entities
-     * @param maxEntityTokens max number of tokens allowed in an entity
-     * @param extractionMethods get the set of active extraction methods
-     * @param allowPartialGazetteerMatches whether to allow partial gazetteer matches
-     * @param redactorPreferLength whether to prefer length over weights for redaction
      */
-    public EntitiesOptions(
-            Boolean resolveNamedEntities,
-            Integer maxEntityTokens,
-            EnumSet<ExtractionMethod> extractionMethods,
-            Boolean allowPartialGazetteerMatches,
-            Boolean redactorPreferLength) {
-        this.resolveNamedEntities = resolveNamedEntities;
-        this.maxEntityTokens = maxEntityTokens;
-        this.extractionMethods = extractionMethods;
-        this.allowPartialGazetteerMatches = allowPartialGazetteerMatches;
-        this.redactorPreferLength = redactorPreferLength;
+    protected EntitiesOptions(Boolean linkEntities) {
+        this.linkEntities = linkEntities;
     }
 
-    /**
-     * get the resolve in-document named entities
-     * @return the resolve in-document named entities
-     */
-    public Boolean getResolveNamedEntities() {
-        return resolveNamedEntities;
-    }
-
-    /**
-     * get the max number of tokens allowed in an entity
-     * @return the max number of tokens allowed in an entity
-     */
-    public Integer getMaxEntityTokens() {
-        return maxEntityTokens;
-    }
-
-    /**
-     * get the set of active extraction methods
-     * @return the set of active extraction methods
-     */
-    public EnumSet<ExtractionMethod> getExtractionMethods() {
-        return extractionMethods;
-    }
-
-    /**
-     * get whether to allow partial gazetteer matches 
-     * @return whether to allow partial gazetteer matches
-     */
-    public Boolean getAllowPartialGazetteerMatches() {
-        return allowPartialGazetteerMatches;
-    }
-
-    /**
-     * get whether to prefer length over weights for redaction 
-     * @return whether to prefer length over weights for redaction
-     */
-    public Boolean getRedactorPreferLength() {
-        return redactorPreferLength;
-    }
-
-    /**
-     * set the resolve in-document named entities
-     * @param resolveNamedEntities the resolve in-document named entities
-     */
-    public void setResolveNamedEntities(Boolean resolveNamedEntities) {
-        this.resolveNamedEntities = resolveNamedEntities;
-    }
-
-    /**
-     * set the max number of tokens allowed in an entity
-     * @param maxEntityTokens the max number of tokens allowed in an entity
-     */
-    public void setMaxEntityTokens(Integer maxEntityTokens) {
-        this.maxEntityTokens = maxEntityTokens;
-    }
-
-    /**
-     * set the set of active extraction methods
-     * @param extractionMethods the set of active extraction methods
-     */
-    public void setExtractionMethods(EnumSet<ExtractionMethod> extractionMethods) {
-        this.extractionMethods = extractionMethods;
-    }
-
-    /**
-     * set whether to allow partial gazetteer matches
-     * @param allowPartialGazetteerMatches whether to allow partial gazetteer matches
-     */
-    public void setAllowPartialGazetteerMatches(Boolean allowPartialGazetteerMatches) {
-        this.allowPartialGazetteerMatches = allowPartialGazetteerMatches;
-    }
-
-    /**
-     * set whether to prefer length over weights for redaction
-     * @param redactorPreferLength whether to prefer length over weights for redaction
-     */
-    public void setRedactorPreferLength(Boolean redactorPreferLength) {
-        this.redactorPreferLength = redactorPreferLength;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        EntitiesOptions that = (EntitiesOptions) o;
+        return Objects.equals(linkEntities, that.linkEntities);
     }
 
     @Override
     public int hashCode() {
-        int result = resolveNamedEntities != null ? resolveNamedEntities.hashCode() : 0;
-        result = 31 * result + (maxEntityTokens != null ? maxEntityTokens.hashCode() : 0);
-        result = 31 * result + (extractionMethods != null ? extractionMethods.hashCode() : 0);
-        result = 31 * result + (allowPartialGazetteerMatches != null ? allowPartialGazetteerMatches.hashCode() : 0);
-        result = 31 * result + (redactorPreferLength != null ? redactorPreferLength.hashCode() : 0);
-        return result;
+        return Objects.hash(linkEntities);
     }
 
-    /**
-     * if the param is a {@code EntitiesOptions}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof EntitiesOptions)) {
-            return false;
+    public static class Builder {
+        private Boolean linkEntities;
+
+        public Builder() {
+            //
         }
 
-        EntitiesOptions that = (EntitiesOptions) o;
-        return resolveNamedEntities != null ? resolveNamedEntities.equals(that.getResolveNamedEntities()) : that.resolveNamedEntities == null
-                && maxEntityTokens != null ? maxEntityTokens.equals(that.getMaxEntityTokens()) : that.maxEntityTokens == null
-                && extractionMethods != null ? extractionMethods.equals(that.getExtractionMethods()) : that.extractionMethods == null
-                && allowPartialGazetteerMatches != null ? allowPartialGazetteerMatches.equals(that.getAllowPartialGazetteerMatches()) : that.allowPartialGazetteerMatches == null
-                && redactorPreferLength != null ? redactorPreferLength.equals(that.getRedactorPreferLength()) : that.redactorPreferLength == null;
+        /**
+         * Request entity linking. If the value is {@code true}, then the the endpoint will link entities to the
+         * knowledge base. If {@code false}, not. If {@code null}, the endpoint will perform default processing.
+         * @param linkEntities whether to link.
+         * @return this.
+         */
+        public Builder linkEntities(Boolean linkEntities) {
+            this.linkEntities = linkEntities;
+            return this;
+        }
+
+        public EntitiesOptions build() {
+            return new EntitiesOptions(linkEntities);
+        }
     }
 }

@@ -26,6 +26,7 @@ public final class Entity {
     private final String mention;
     private final String normalized;
     private final int count;
+    private final String entityId;
 
     /**
      * constructor for {@code Entity}
@@ -34,19 +35,22 @@ public final class Entity {
      * @param mention mention text
      * @param normalized normalized mention text
      * @param count mention count
+     * @param entityId if the entity was linked, the ID from the knowledge base.
      */
     public Entity(
             int indocChainId,
             String type,
             String mention,
             String normalized,
-            int count
+            int count,
+            String entityId
     ) {
         this.indocChainId = indocChainId;
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
         this.count = count;
+        this.entityId = entityId;
     }
 
     /**
@@ -89,6 +93,10 @@ public final class Entity {
         return count;
     }
 
+    public String getEntityId() {
+        return entityId;
+    }
+
     @Override
     public int hashCode() {
         int result;
@@ -97,6 +105,7 @@ public final class Entity {
         result = 31 * result + (mention != null ? mention.hashCode() : 0);
         result = 31 * result + (normalized != null ? normalized.hashCode() : 0);
         result = 31 * result + count;
+        result = 31 * result + (entityId != null ? entityId.hashCode() : 0);
         return result;
     }
 
@@ -116,6 +125,7 @@ public final class Entity {
                 && type != null ? type.equals(that.getType()) : that.type == null
                 && mention != null ? mention.equals(that.getMention()) : that.mention == null
                 && normalized != null ? normalized.equals(that.getNormalized()) : that.normalized == null
+                && entityId != null ? entityId.equals(that.entityId) : that.entityId == null
                 && count == that.getCount();
     }
 }
