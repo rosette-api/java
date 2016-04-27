@@ -57,6 +57,7 @@ public abstract class Request {
     /**
      * Constructor for {@code Request}
      * @param language language code
+     * @param genre document genre, e.g. "social-media"
      * @param content raw data
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data

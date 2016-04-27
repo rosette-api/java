@@ -28,6 +28,8 @@ public final class EntitiesOptions {
 
     /**
      * Constructor for {@code EntitiesOptions}
+     *
+     * @param linkEntities perform entity linking in addition to extraction
      */
     protected EntitiesOptions(Boolean linkEntities) {
         this.linkEntities = linkEntities;
