@@ -19,14 +19,19 @@ package com.basistech.rosette.api;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.http.HttpHeaders;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockserver.client.server.MockServerClient;
 import org.mockserver.junit.MockServerRule;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
+
+import com.basistech.rosette.apimodel.Response;
 
 public class BasicTest extends AbstractTest {
     private RosetteAPI api;
@@ -45,8 +50,8 @@ public class BasicTest extends AbstractTest {
         return serverPort;
     }
 
-    @Test
-    public void testHeaders() throws Exception {
+    @Before
+    public void setup() {
         // for version check call
         mockServer.when(HttpRequest.request()
                 .withMethod("POST")
@@ -55,7 +60,10 @@ public class BasicTest extends AbstractTest {
                         .withHeader("Content-Type", "application/json")
                         .withStatusCode(200)
                         .withBody("{\"name\": \"Rosette API\", \"version\": \"1.1\", \"versionChecked\": true}", StandardCharsets.UTF_8));
-        // for the actual ping test
+    }
+
+    @Test
+    public void testHeaders() throws Exception {
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/ping")
@@ -68,5 +76,24 @@ public class BasicTest extends AbstractTest {
         api = new RosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
         api.addCustomHeader("X-Foo", "Bar");
         api.ping();
+    }
+
+    @Test
+    public void testExtendedInfo() throws Exception {
+        mockServer.when(HttpRequest.request()
+                .withMethod("GET")
+                .withPath("/rest/v1/ping"))
+                .respond(HttpResponse.response()
+                        .withStatusCode(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withHeader("X-Foo", "Bar")
+                        .withHeader("X-FooMulti", "Bar1", "Bar2")
+                        .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
+        api = new RosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
+        Response resp = api.ping();
+        assertEquals("Bar", resp.getExtendedInformation().get("X-Foo"));
+        Set<Object> foos = (Set<Object>)resp.getExtendedInformation().get("X-FooMulti");
+        assertTrue(foos.contains("Bar1"));
+        assertTrue(foos.contains("Bar2"));
     }
 }

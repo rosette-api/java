@@ -84,10 +84,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.Set;
 import java.util.zip.GZIPInputStream;
 
 import static java.net.HttpURLConnection.HTTP_OK;
@@ -981,7 +984,9 @@ public class RosetteAPI implements Closeable {
     private <T extends Response> T sendGetRequest(String urlStr, Class<T> clazz) throws IOException, RosetteAPIException {
         HttpGet get = new HttpGet(urlStr);
         HttpResponse httpResponse = httpClient.execute(get);
-        return getResponse(httpResponse, clazz);
+        T resp = getResponse(httpResponse, clazz);
+        responseHeadersToExtendedInformation(resp, httpResponse);
+        return resp;
     }
 
     /**
@@ -1029,6 +1034,7 @@ public class RosetteAPI implements Closeable {
                 if (ridHeader != null && ridHeader.getValue() != null) {
                     LOG.debug("Request ID " + ridHeader.getValue());
                 }
+                responseHeadersToExtendedInformation(resp, response);
                 return resp;
             } catch (RosetteAPIException e) {
                 // only 5xx errors are worthy retrying, others throw right away
@@ -1044,6 +1050,24 @@ public class RosetteAPI implements Closeable {
             }
         }
         throw lastException;
+    }
+
+    private <T extends Response> void responseHeadersToExtendedInformation(T resp, HttpResponse response) {
+        for (Header header : response.getAllHeaders()) {
+            if (resp.getExtendedInformation() != null
+                    && resp.getExtendedInformation().containsKey(header.getName())) {
+                Set<Object> currentSetValue;
+                if (resp.getExtendedInformation().get(header.getName()) instanceof Set) {
+                    currentSetValue = (Set<Object>) resp.getExtendedInformation().get(header.getName());
+                } else {
+                    currentSetValue = new HashSet<>(Arrays.asList(resp.getExtendedInformation().get(header.getName())));
+                }
+                currentSetValue.add(header.getValue());
+                resp.setExtendedInformation(header.getName(), currentSetValue);
+            } else {
+                resp.setExtendedInformation(header.getName(), header.getValue());
+            }
+        }
     }
 
     private void setupPlainRequest(final Object request, final ObjectWriter finalWriter, HttpPost post) {
