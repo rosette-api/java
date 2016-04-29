@@ -56,7 +56,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
+import org.apache.http.annotation.Immutable;
+import org.apache.http.annotation.ThreadSafe;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -70,6 +73,7 @@ import org.apache.http.entity.mime.content.AbstractContentBody;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,7 +84,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Properties;
+import java.util.Set;
 import java.util.zip.GZIPInputStream;
 
 import static java.net.HttpURLConnection.HTTP_OK;
@@ -89,10 +99,14 @@ import static java.net.HttpURLConnection.HTTP_OK;
  * You can use the RosetteAPI to access Rosette API endpoints.
  * RosetteAPI is thread-safe and immutable.
  */
+@ThreadSafe
+@Immutable
 public class RosetteAPI implements Closeable {
 
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
-    public static final String BINDING_VERSION = "0.10";
+    public static final String SERVICE_NAME = "RosetteAPI";
+    public static final String BINDING_VERSION = getVersion();
+    public static final String USER_AGENT_STR = SERVICE_NAME + "-Java/" + BINDING_VERSION;
 
     public static final String LANGUAGE_SERVICE_PATH = "/language";
     public static final String MORPHOLOGY_SERVICE_PATH = "/morphology";
@@ -120,6 +134,7 @@ public class RosetteAPI implements Closeable {
     private int failureRetries;
     private ObjectMapper mapper;
     private CloseableHttpClient httpClient;
+    private List<Header> customHeaders;
 
     /**
      * Constructs a Rosette API instance using an API key.
@@ -143,16 +158,31 @@ public class RosetteAPI implements Closeable {
      */
     public RosetteAPI(String key, String alternateUrl) throws IOException, RosetteAPIException {
         Objects.requireNonNull(alternateUrl, "alternateUrl cannot be null");
+        this.key = key;
         urlBase = alternateUrl;
         if (urlBase.endsWith("/")) {
             urlBase = urlBase.substring(0, urlBase.length() - 1);
         }
-        this.key = key;
         this.failureRetries = 1;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-        httpClient = HttpClients.createDefault();
+        customHeaders = new ArrayList<>();
+        initHttpClient();
 
         checkVersionCompatibility();
+    }
+
+    /**
+     *
+     * @return version of the binding
+     */
+    private static String getVersion() {
+        Properties properties = new Properties();
+        try (InputStream ins = RosetteAPI.class.getClassLoader().getResourceAsStream("version.properties")) {
+            properties.load(ins);
+        } catch (IOException e) {
+            // should not happen
+        }
+        return properties.getProperty("version", "undefined");
     }
 
     /**
@@ -171,6 +201,42 @@ public class RosetteAPI implements Closeable {
      */
     public void setAPIKey(String key) {
         this.key = key;
+    }
+
+    /**
+     *
+     */
+    private void initHttpClient() {
+        List<Header> defaultHeaders = new ArrayList<>();
+        defaultHeaders.add(new BasicHeader(HttpHeaders.USER_AGENT, USER_AGENT_STR));
+        defaultHeaders.add(new BasicHeader(HttpHeaders.ACCEPT_ENCODING, "gzip"));
+        if (key != null) {
+            defaultHeaders.add(new BasicHeader("X-RosetteAPI-Key", key));
+        }
+        if (customHeaders.size() > 0) {
+            defaultHeaders.addAll(customHeaders);
+        }
+        httpClient = HttpClients.custom().setDefaultHeaders(defaultHeaders).build();
+    }
+
+    /**
+     * Add a custom HTTP header to pass to Rosette API.
+     *
+     * @param name header name
+     * @param value header value
+     */
+    public void addCustomHeader(String name, String value) {
+        addCustomHeader(new BasicHeader(name, value));
+    }
+
+    /**
+     * Add a custom HTTP header to pass to Rosette API.
+     *
+     * @param header header
+     */
+    public void addCustomHeader(Header header) {
+        customHeaders.add(header);
+        initHttpClient();
     }
 
     /**
@@ -917,11 +983,10 @@ public class RosetteAPI implements Closeable {
      */
     private <T extends Response> T sendGetRequest(String urlStr, Class<T> clazz) throws IOException, RosetteAPIException {
         HttpGet get = new HttpGet(urlStr);
-        if (key != null) {
-            get.setHeader("X-RosetteAPI-Key", key);
-        }
         HttpResponse httpResponse = httpClient.execute(get);
-        return getResponse(httpResponse, clazz);
+        T resp = getResponse(httpResponse, clazz);
+        responseHeadersToExtendedInformation(resp, httpResponse);
+        return resp;
     }
 
     /**
@@ -957,12 +1022,6 @@ public class RosetteAPI implements Closeable {
             setupPlainRequest(request, finalWriter, post);
         }
 
-        if (key != null) {
-            // for internal testing, there might be no key.
-            post.setHeader("X-RosetteAPI-Key", key);
-        }
-        post.setHeader("Accept-Encoding", "gzip");
-
         RosetteAPIException lastException = null;
         int numRetries = this.failureRetries;
         while (numRetries-- > 0) {
@@ -975,6 +1034,7 @@ public class RosetteAPI implements Closeable {
                 if (ridHeader != null && ridHeader.getValue() != null) {
                     LOG.debug("Request ID " + ridHeader.getValue());
                 }
+                responseHeadersToExtendedInformation(resp, response);
                 return resp;
             } catch (RosetteAPIException e) {
                 // only 5xx errors are worthy retrying, others throw right away
@@ -990,6 +1050,24 @@ public class RosetteAPI implements Closeable {
             }
         }
         throw lastException;
+    }
+
+    private <T extends Response> void responseHeadersToExtendedInformation(T resp, HttpResponse response) {
+        for (Header header : response.getAllHeaders()) {
+            if (resp.getExtendedInformation() != null
+                    && resp.getExtendedInformation().containsKey(header.getName())) {
+                Set<Object> currentSetValue;
+                if (resp.getExtendedInformation().get(header.getName()) instanceof Set) {
+                    currentSetValue = (Set<Object>) resp.getExtendedInformation().get(header.getName());
+                } else {
+                    currentSetValue = new HashSet<>(Arrays.asList(resp.getExtendedInformation().get(header.getName())));
+                }
+                currentSetValue.add(header.getValue());
+                resp.setExtendedInformation(header.getName(), currentSetValue);
+            } else {
+                resp.setExtendedInformation(header.getName(), header.getValue());
+            }
+        }
     }
 
     private void setupPlainRequest(final Object request, final ObjectWriter finalWriter, HttpPost post) {
@@ -1090,7 +1168,7 @@ public class RosetteAPI implements Closeable {
     private <T extends Response> T getResponse(HttpResponse httpResponse, Class<T> clazz)
             throws IOException, RosetteAPIException {
         int status = httpResponse.getStatusLine().getStatusCode();
-        String encoding = headerValueOrNull(httpResponse.getFirstHeader("Content-Encoding"));
+        String encoding = headerValueOrNull(httpResponse.getFirstHeader(HttpHeaders.CONTENT_ENCODING));
         try (
                 InputStream stream = httpResponse.getEntity().getContent();
                 InputStream inputStream = "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream) {
@@ -1098,7 +1176,7 @@ public class RosetteAPI implements Closeable {
             if (HTTP_OK != status) {
                 String ecHeader = headerValueOrNull(httpResponse.getFirstHeader("X-RosetteAPI-Status-Code"));
                 String emHeader = headerValueOrNull(httpResponse.getFirstHeader("X-RosetteAPI-Status-Message"));
-                String responseContentType = headerValueOrNull(httpResponse.getFirstHeader("Content-Type"));
+                String responseContentType = headerValueOrNull(httpResponse.getFirstHeader(HttpHeaders.CONTENT_TYPE));
                 if ("application/json".equals(responseContentType)) {
                     ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
                     if (ridHeader != null) {

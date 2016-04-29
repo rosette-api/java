@@ -30,7 +30,7 @@ public abstract class Response {
         return extendedInformation;
     }
 
-    void setExtendedInformation(String key, Object value) {
+    public void setExtendedInformation(String key, Object value) {
         if (extendedInformation == null) {
             extendedInformation = new HashMap<>();
         }
