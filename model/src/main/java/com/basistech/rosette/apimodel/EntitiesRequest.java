@@ -81,7 +81,7 @@ public final class EntitiesRequest extends Request {
     /**
      * Fluent builder class for {@link EntitiesRequest}.
      */
-    public static class Builder extends Request.Builder<EntitiesRequest, EntitiesOptions, EntitiesRequest.Builder> {
+    public static class Builder extends BaseBuilder<EntitiesRequest, EntitiesOptions, Builder> {
         @Override
         protected Builder getThis() {
             return this;

@@ -43,7 +43,7 @@ public class SentencesRequest extends Request {
     /**
      * Fluent builder class for {@link SentencesRequest}.
      */
-    public static class Builder extends Request.Builder<SentencesRequest, Void, SentencesRequest.Builder> {
+    public static class Builder extends BaseBuilder<SentencesRequest, Void, Builder> {
         @Override
         protected Builder getThis() {
             return this;
