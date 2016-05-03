@@ -15,6 +15,8 @@
 */
 package com.basistech.rosette.apimodel.jackson.batch;
 
+import com.basistech.rosette.apimodel.NameSimilarityRequest;
+import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.Request;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public abstract class BatchRequestItemMixin {
     @JsonCreator
     public BatchRequestItemMixin(@JsonProperty("endpoint") String endpoint,
-                                 @JsonProperty("request") Request request) {
+                                 @JsonProperty("documentRequest") Request documentRequest,
+                                 @JsonProperty("nameTranslationRequest") NameTranslationRequest nameTranslationRequest,
+                                 @JsonProperty("nameSimilarityRequest") NameSimilarityRequest nameSimilarityRequest) {
         //
     }
 

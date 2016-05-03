@@ -15,6 +15,8 @@
 */
 package com.basistech.rosette.apimodel.batch;
 
+import com.basistech.rosette.apimodel.NameSimilarityRequest;
+import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.Request;
 
 /**
@@ -28,18 +30,38 @@ import com.basistech.rosette.apimodel.Request;
  */
 public class BatchRequestItem {
     private final String endpoint;
-    private final Request request;
+    //TODO: make this, well, 'Object', or an empty abstract class, and set up polymorphism.
+    private final Request documentRequest;
+    private final NameTranslationRequest nameTranslationRequest;
+    private final NameSimilarityRequest nameSimilarityRequest;
 
-    public BatchRequestItem(String endpoint, Request request) {
+    /**
+     * Create an item.
+     * @param endpoint the endpoint
+     * @param documentRequest the request- for a document-processing endpoint.
+     * @param nameTranslationRequest the request for name translation.
+     * @param nameSimilarityRequest the request for a name similarity request.
+     */
+    public BatchRequestItem(String endpoint, Request documentRequest, NameTranslationRequest nameTranslationRequest, NameSimilarityRequest nameSimilarityRequest) {
         this.endpoint = endpoint;
-        this.request = request;
+        this.documentRequest = documentRequest;
+        this.nameTranslationRequest = nameTranslationRequest;
+        this.nameSimilarityRequest = nameSimilarityRequest;
     }
 
     public String getEndpoint() {
         return endpoint;
     }
 
-    public Request getRequest() {
-        return request;
+    public Request getDocumentRequest() {
+        return documentRequest;
+    }
+
+    public NameTranslationRequest getNameTranslationRequest() {
+        return nameTranslationRequest;
+    }
+
+    public NameSimilarityRequest getNameSimilarityRequest() {
+        return nameSimilarityRequest;
     }
 }
