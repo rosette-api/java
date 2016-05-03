@@ -86,7 +86,7 @@ public final class MorphologyRequest extends Request {
     /**
      * Fluent builder class for {@link MorphologyRequest}.
      */
-    public static class Builder extends Request.Builder<MorphologyRequest, MorphologyOptions, MorphologyRequest.Builder> {
+    public static class Builder extends BaseBuilder<MorphologyRequest, MorphologyOptions, Builder> {
         @Override
         protected Builder getThis() {
             return this;

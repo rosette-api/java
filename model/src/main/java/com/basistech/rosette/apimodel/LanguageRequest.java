@@ -83,10 +83,10 @@ public final class LanguageRequest extends Request {
 
     /**
      * Fluent builder class for {@link LanguageRequest}.
-     * Note that calls to {@link com.basistech.rosette.apimodel.Request.Builder#language(LanguageCode)}
+     * Note that calls to {@link BaseBuilder#language(LanguageCode)}
      * will be ignored.
      */
-    public static class Builder extends Request.Builder<LanguageRequest, LanguageOptions, LanguageRequest.Builder> {
+    public static class Builder extends BaseBuilder<LanguageRequest, LanguageOptions, Builder> {
         @Override
         protected Builder getThis() {
             return this;

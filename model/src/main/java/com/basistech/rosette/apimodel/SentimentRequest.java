@@ -88,7 +88,7 @@ public final class SentimentRequest extends Request {
     /**
      * Fluent builder class for {@link MorphologyRequest}.
      */
-    public static class Builder extends Request.Builder<SentimentRequest, SentimentOptions, SentimentRequest.Builder> {
+    public static class Builder extends BaseBuilder<SentimentRequest, SentimentOptions, Builder> {
         @Override
         protected Builder getThis() {
             return this;

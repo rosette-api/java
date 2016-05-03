@@ -80,7 +80,7 @@ public final class CategoriesRequest extends Request {
     /**
      * Fluent builder class for {@link CategoriesRequest}.
      */
-    public static class Builder extends Request.Builder<CategoriesRequest, CategoriesOptions, CategoriesRequest.Builder> {
+    public static class Builder extends BaseBuilder<CategoriesRequest, CategoriesOptions, Builder> {
         @Override
         protected Builder getThis() {
             return this;

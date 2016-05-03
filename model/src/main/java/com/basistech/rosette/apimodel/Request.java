@@ -40,13 +40,13 @@ import java.io.InputStream;
  *     returned by the server for downloaded data.</li>
  * </ol>
  * In this object the 'content' item is an {@link Object}; it contains a {@link String}
- * for plain text, and an {@link java.io.InputStream} for binary data. {@link Request.Builder}
+ * for plain text, and an {@link java.io.InputStream} for binary data. {@link BaseBuilder}
  * provides several alternative methods for setting this information.
  *
  * This class includes a 'genre' field. If no genre is specified, then the system
  * applies generic processing. Valid values for genre are specified in the API documentation.
  */
-public abstract class Request {
+public class Request {
 
     private final LanguageCode language;
     private final Object content;
@@ -62,7 +62,7 @@ public abstract class Request {
      * @param contentUri uri pointing to the data
      * @param contentType byte array of data
      */
-    protected Request(
+    public Request(
             LanguageCode language,
             String genre,
             Object content,
@@ -165,10 +165,13 @@ public abstract class Request {
     }
 
     /**
-     * Base class for builders for the request objects.
+     * Base class for builders for the request objects. This class is only useful to construct
+     * specific subtypes, it can't be used to construct 'plain' Request objects.
      * @param <T> The type of the request object.
+     * @param <O> The option class.
+     * @param <B> the builder subclass.
      */
-    public abstract static class Builder<T extends Request, O, B extends Builder<T, O, B>> {
+    public abstract static class BaseBuilder<T extends Request, O, B extends BaseBuilder<T, O, B>> {
         protected LanguageCode language;
         protected Object content;
         protected String contentUri;
@@ -302,4 +305,20 @@ public abstract class Request {
          */
         public abstract T build();
     }
+
+    /**
+     * Fluent builder class for {@link Request} objects.
+     */
+    public static class Builder extends BaseBuilder<Request, Void, Builder> {
+        @Override
+        protected Builder getThis() {
+            return this;
+        }
+
+        @Override
+        public Request build() {
+            return new Request(language, genre, content, contentUri, contentType);
+        }
+    }
+
 }
