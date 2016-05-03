@@ -97,6 +97,10 @@ public class ModelTest {
             if (className.endsWith("Builder")) {
                 continue;
             }
+            if (className.contains(".batch.")) {
+                // there are polymorphism issues in here for this test strategy.
+                continue;
+            }
 
             Class c = Class.forName(className);
             if (Modifier.isAbstract(c.getModifiers())) {
