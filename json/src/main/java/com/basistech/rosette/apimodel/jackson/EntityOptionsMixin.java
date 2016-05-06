@@ -16,20 +16,13 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.ExtractionMethod;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.EnumSet;
 
 public final class EntityOptionsMixin extends BaseMixin {
     @JsonCreator
     private EntityOptionsMixin(
-            @JsonProperty("resolveNamedEntities") Boolean resolveNamedEntities,
-            @JsonProperty("maxEntityTokens") Integer maxEntityTokens,
-            @JsonProperty("processors") EnumSet<ExtractionMethod> extractionMethods,
-            @JsonProperty("allowPartialGazetteerMatches") Boolean allowPartialGazetteerMatches,
-            @JsonProperty("redactorPreferLength") Boolean redactorPreferLength
+            @JsonProperty("linkEntities") Boolean linkEntities
     ) {
         //
     }
