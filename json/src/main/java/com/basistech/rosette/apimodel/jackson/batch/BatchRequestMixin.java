@@ -23,7 +23,8 @@ public abstract class BatchRequestMixin {
     @JsonCreator
     public BatchRequestMixin(@JsonProperty("batchId") String batchId,
                              @JsonProperty("completionCallbackUrl") String completionCallbackUrl,
-                             @JsonProperty("items") BatchRequestItem[] items) {
+                             @JsonProperty("items") BatchRequestItem[] items,
+                             @JsonProperty("batchOutputUrl") String batchOutputUrl) {
         //
     }
 }

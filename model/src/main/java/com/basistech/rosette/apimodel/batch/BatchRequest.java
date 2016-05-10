@@ -26,11 +26,14 @@ public class BatchRequest {
     private final String completionCallbackUrl;
     // Define the items that make up the batch.
     private final BatchRequestItem[] items;
+    // URL to output the batch results
+    private final String batchOutputUrl;
 
-    public BatchRequest(String batchId, String completionCallbackUrl, BatchRequestItem[] items) {
+    public BatchRequest(String batchId, String completionCallbackUrl, BatchRequestItem[] items, String batchOutputUrl) {
         this.batchId = batchId;
         this.completionCallbackUrl = completionCallbackUrl;
         this.items = items;
+        this.batchOutputUrl = batchOutputUrl;
     }
 
     public String getBatchId() {
@@ -43,5 +46,9 @@ public class BatchRequest {
 
     public BatchRequestItem[] getItems() {
         return items;
+    }
+
+    public String getBatchOutputUrl() {
+        return batchOutputUrl;
     }
 }
