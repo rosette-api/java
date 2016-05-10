@@ -63,7 +63,7 @@ public final class LinkedEntitiesRequest extends Request {
     /**
      * Fluent builder class for {@link LinkedEntitiesRequest}.
      */
-    public static class Builder extends Request.Builder<LinkedEntitiesRequest, Void, LinkedEntitiesRequest.Builder> {
+    public static class Builder extends BaseBuilder<LinkedEntitiesRequest, Void, Builder> {
         @Override
         protected Builder getThis() {
             return this;

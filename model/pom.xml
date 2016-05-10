@@ -49,7 +49,7 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
                   <instructions>
-                    <Export-Package>com.basistech.rosette.apimodel</Export-Package>
+                    <Export-Package>com.basistech.rosette.apimodel,com.basistech.rosette.apimodel.batch</Export-Package>
                   </instructions>
                 </configuration>
             </plugin>
