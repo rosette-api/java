@@ -20,15 +20,15 @@ import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.CategoriesOptions;
 import com.basistech.rosette.apimodel.CategoriesRequest;
 import com.basistech.rosette.apimodel.CategoriesResponse;
-import com.basistech.rosette.apimodel.EntitySentiment;
-import com.basistech.rosette.apimodel.Label;
 import com.basistech.rosette.apimodel.ConstantsResponse;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesRequest;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.Entity;
+import com.basistech.rosette.apimodel.EntitySentiment;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InfoResponse;
+import com.basistech.rosette.apimodel.Label;
 import com.basistech.rosette.apimodel.LanguageDetectionResult;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageRequest;
@@ -56,6 +56,12 @@ import com.basistech.rosette.apimodel.SentencesResponse;
 import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.TokensResponse;
+import com.basistech.rosette.apimodel.batch.BatchRequest;
+import com.basistech.rosette.apimodel.batch.BatchRequestItem;
+import com.basistech.rosette.apimodel.batch.BatchResponse;
+import com.basistech.rosette.apimodel.jackson.batch.BatchRequestItemMixin;
+import com.basistech.rosette.apimodel.jackson.batch.BatchRequestMixin;
+import com.basistech.rosette.apimodel.jackson.batch.BatchResponseMixin;
 import com.basistech.util.jackson.EnumModule;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
@@ -116,6 +122,10 @@ public class ApiModelMixinModule extends EnumModule {
         SimpleSerializers keySerializers = new SimpleSerializers();
         keySerializers.addSerializer(new AccuracyModeSerializer());
         context.addKeySerializers(keySerializers);
+
+        context.setMixInAnnotations(BatchRequest.class, BatchRequestMixin.class);
+        context.setMixInAnnotations(BatchRequestItem.class, BatchRequestItemMixin.class);
+        context.setMixInAnnotations(BatchResponse.class, BatchResponseMixin.class);
     }
 
     /**
