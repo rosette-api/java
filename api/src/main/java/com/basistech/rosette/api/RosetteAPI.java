@@ -124,6 +124,7 @@ public class RosetteAPI implements Closeable {
     public static final String TOKENS_SERVICE_PATH = "/tokens";
     public static final String SENTENCES_SERVICE_PATH = "/sentences";
     public static final String INFO_SERVICE_PATH = "/info";
+    public static final String VERSION_CHECK_PATH = "/info?clientVersion=" + BINDING_VERSION;
     public static final String PING_SERVICE_PATH = "/ping";
 
     private static final Logger LOG = LoggerFactory.getLogger(RosetteAPI.class);
@@ -166,6 +167,8 @@ public class RosetteAPI implements Closeable {
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
         customHeaders = new ArrayList<>();
         initHttpClient();
+
+        checkVersionCompatibility();
     }
 
     /**
@@ -207,10 +210,10 @@ public class RosetteAPI implements Closeable {
         List<Header> defaultHeaders = new ArrayList<>();
         defaultHeaders.add(new BasicHeader(HttpHeaders.USER_AGENT, USER_AGENT_STR));
         defaultHeaders.add(new BasicHeader(HttpHeaders.ACCEPT_ENCODING, "gzip"));
-        defaultHeaders.add(new BasicHeader("X-RosetteAPI-Binding", "java"));
-        defaultHeaders.add(new BasicHeader("X-RosetteAPI-Binding-Version", BINDING_VERSION));
         if (key != null) {
             defaultHeaders.add(new BasicHeader("X-RosetteAPI-Key", key));
+            defaultHeaders.add(new BasicHeader("X-RosetteAPI-Binding", "java"));
+            defaultHeaders.add(new BasicHeader("X-RosetteAPI-Binding-Version", BINDING_VERSION));
         }
         if (customHeaders.size() > 0) {
             defaultHeaders.addAll(customHeaders);
@@ -247,6 +250,23 @@ public class RosetteAPI implements Closeable {
      */
     public InfoResponse info() throws IOException, RosetteAPIException {
         return sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);
+    }
+
+    /**
+     * Checks binding version compatiblity against the Rosette API server
+     *
+     * @return boolean true if compatible
+     * @throws IOException
+     * @throws RosetteAPIException
+     */
+    private boolean checkVersionCompatibility() throws IOException, RosetteAPIException {
+        InfoResponse response = sendPostRequest("{ body: 'version check' }", urlBase + VERSION_CHECK_PATH, InfoResponse.class);
+        if (!response.isVersionChecked()) {
+            ErrorResponse errResponse = new ErrorResponse("incompatibleVersion",
+                    "The server version is not compatible with binding version " + BINDING_VERSION);
+            throw new RosetteAPIException(200, errResponse);
+        }
+        return true;
     }
 
     /**
