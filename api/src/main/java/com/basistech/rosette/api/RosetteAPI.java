@@ -124,7 +124,7 @@ public class RosetteAPI implements Closeable {
     public static final String TOKENS_SERVICE_PATH = "/tokens";
     public static final String SENTENCES_SERVICE_PATH = "/sentences";
     public static final String INFO_SERVICE_PATH = "/info";
-    public static final String VERSION_CHECK_PATH = "/info?clientVersion=" + BINDING_VERSION;
+    //public static final String VERSION_CHECK_PATH = "/info?clientVersion=" + BINDING_VERSION;
     public static final String PING_SERVICE_PATH = "/ping";
 
     private static final Logger LOG = LoggerFactory.getLogger(RosetteAPI.class);
@@ -258,7 +258,7 @@ public class RosetteAPI implements Closeable {
      * @return boolean true if compatible
      * @throws IOException
      * @throws RosetteAPIException
-     */
+     *//*
     private boolean checkVersionCompatibility() throws IOException, RosetteAPIException {
         InfoResponse response = sendPostRequest("{ body: 'version check' }", urlBase + VERSION_CHECK_PATH, InfoResponse.class);
         if (!response.isVersionChecked()) {
@@ -267,7 +267,7 @@ public class RosetteAPI implements Closeable {
             throw new RosetteAPIException(200, errResponse);
         }
         return true;
-    }
+    }*/
 
     /**
      * Pings the Rosette API for a response indicting that the service is available.
