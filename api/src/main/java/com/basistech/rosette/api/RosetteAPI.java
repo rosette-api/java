@@ -168,7 +168,7 @@ public class RosetteAPI implements Closeable {
         customHeaders = new ArrayList<>();
         initHttpClient();
 
-        checkVersionCompatibility();
+        //checkVersionCompatibility();
     }
 
     /**
