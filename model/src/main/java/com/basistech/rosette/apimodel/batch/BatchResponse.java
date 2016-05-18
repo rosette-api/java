@@ -15,7 +15,9 @@
 */
 package com.basistech.rosette.apimodel.batch;
 
-public class BatchResponse {
+import com.basistech.rosette.apimodel.Response;
+
+public class BatchResponse extends Response {
     // URL to output the batch results
     private final String batchOutputUrl;
     // progress checking endpoint/url
