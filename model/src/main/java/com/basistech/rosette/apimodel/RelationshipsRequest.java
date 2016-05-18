@@ -88,7 +88,7 @@ public final class RelationshipsRequest extends Request {
     /**
      * Fluent builder class for {@link RelationshipsRequest}.
      */
-    public static class Builder extends Request.Builder<RelationshipsRequest, RelationshipsOptions, RelationshipsRequest.Builder> {
+    public static class Builder extends BaseBuilder<RelationshipsRequest, RelationshipsOptions, Builder> {
         @Override
         protected Builder getThis() {
             return this;
