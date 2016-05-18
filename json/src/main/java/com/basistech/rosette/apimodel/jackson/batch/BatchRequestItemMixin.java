@@ -26,7 +26,8 @@ public abstract class BatchRequestItemMixin {
     public BatchRequestItemMixin(@JsonProperty("endpoint") String endpoint,
                                  @JsonProperty("documentRequest") Request documentRequest,
                                  @JsonProperty("nameTranslationRequest") NameTranslationRequest nameTranslationRequest,
-                                 @JsonProperty("nameSimilarityRequest") NameSimilarityRequest nameSimilarityRequest) {
+                                 @JsonProperty("nameSimilarityRequest") NameSimilarityRequest nameSimilarityRequest,
+                                 @JsonProperty("id") String id) {
         //
     }
 

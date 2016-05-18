@@ -34,6 +34,7 @@ public class BatchRequestItem {
     private final Request documentRequest;
     private final NameTranslationRequest nameTranslationRequest;
     private final NameSimilarityRequest nameSimilarityRequest;
+    private final String id;
 
     /**
      * Create an item.
@@ -41,12 +42,14 @@ public class BatchRequestItem {
      * @param documentRequest the request- for a document-processing endpoint.
      * @param nameTranslationRequest the request for name translation.
      * @param nameSimilarityRequest the request for a name similarity request.
+     * @param id
      */
-    public BatchRequestItem(String endpoint, Request documentRequest, NameTranslationRequest nameTranslationRequest, NameSimilarityRequest nameSimilarityRequest) {
+    public BatchRequestItem(String endpoint, Request documentRequest, NameTranslationRequest nameTranslationRequest, NameSimilarityRequest nameSimilarityRequest, String id) {
         this.endpoint = endpoint;
         this.documentRequest = documentRequest;
         this.nameTranslationRequest = nameTranslationRequest;
         this.nameSimilarityRequest = nameSimilarityRequest;
+        this.id = id;
     }
 
     public String getEndpoint() {
@@ -63,5 +66,9 @@ public class BatchRequestItem {
 
     public NameSimilarityRequest getNameSimilarityRequest() {
         return nameSimilarityRequest;
+    }
+
+    public String getId() {
+        return id;
     }
 }
