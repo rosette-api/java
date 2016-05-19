@@ -1,4 +1,5 @@
 {
+  "type": "NameSimilarityRequest",
   "name1": {
     "entityType": "PERSON", 
     "language": "eng", 

@@ -16,18 +16,12 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.LanguageOptions;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LanguageRequestMixin extends BaseMixin {
+public class NameSimilarityResponseMixin extends BaseMixin {
     @JsonCreator
-    public LanguageRequestMixin(
-            @JsonProperty("genre") String genre,
-            @JsonProperty("content") Object content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType,
-            @JsonProperty("options") LanguageOptions options) {
+    protected NameSimilarityResponseMixin(@JsonProperty("score") Double score) {
         //
     }
 }

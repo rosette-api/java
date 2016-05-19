@@ -18,12 +18,19 @@ package com.basistech.rosette.apimodel.jackson;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-public final class EntityOptionsMixin extends BaseMixin {
+import com.basistech.util.PartOfSpeechTagSet;
+
+@JsonTypeName("MorphologyOptions")
+public abstract class MorphologyOptionsMixin extends OptionsMixin {
     @JsonCreator
-    private EntityOptionsMixin(
-            @JsonProperty("linkEntities") Boolean linkEntities
+    protected MorphologyOptionsMixin(
+            @JsonProperty("disambiguate") Boolean disambiguate,
+            @JsonProperty("query") Boolean query,
+            @JsonProperty("partOfSpeechTagSet") PartOfSpeechTagSet partOfSpeechTagSet
     ) {
         //
     }
+
 }

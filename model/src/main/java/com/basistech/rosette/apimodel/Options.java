@@ -14,14 +14,8 @@
 * limitations under the License.
 */
 
-package com.basistech.rosette.apimodel.jackson;
+package com.basistech.rosette.apimodel;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class NameMatcherResponseMixin extends BaseMixin {
-    @JsonCreator
-    protected NameMatcherResponseMixin(@JsonProperty("score") Double score) {
-        //
-    }
+public abstract class Options {
+    //
 }

@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
  *
  * Request to compare 2 names.
  */
-public final class NameSimilarityRequest {
+public final class NameSimilarityRequest extends Request {
 
     @NotNull
     private Name name1;

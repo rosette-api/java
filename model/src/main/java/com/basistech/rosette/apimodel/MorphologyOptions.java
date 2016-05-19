@@ -21,7 +21,7 @@ import com.basistech.util.PartOfSpeechTagSet;
 /**
  * Morphology options
  */
-public final class MorphologyOptions {
+public final class MorphologyOptions extends Options {
 
     private Boolean disambiguate;
     private Boolean query;
@@ -60,7 +60,7 @@ public final class MorphologyOptions {
     }
 
     /**
-     * Request query processing. Linguistics analysis may change its behavior
+     * DocumentRequest query processing. Linguistics analysis may change its behavior
      * to reflect the fact that query input is often not in full sentences;
      * Typically, this disables disambiguation.
      * @return request query processing
@@ -78,7 +78,7 @@ public final class MorphologyOptions {
     }
 
     /**
-     * Request query processing. Linguistics analysis may change its behavior
+     * DocumentRequest query processing. Linguistics analysis may change its behavior
      * to reflect the fact that query input is often not in full sentences;
      * typically, this disables disambiguation
      * @param query request query processing

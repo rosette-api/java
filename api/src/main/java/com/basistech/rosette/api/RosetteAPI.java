@@ -17,20 +17,16 @@
 package com.basistech.rosette.api;
 
 import com.basistech.rosette.apimodel.CategoriesOptions;
-import com.basistech.rosette.apimodel.CategoriesRequest;
 import com.basistech.rosette.apimodel.CategoriesResponse;
+import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
-import com.basistech.rosette.apimodel.EntitiesRequest;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InfoResponse;
 import com.basistech.rosette.apimodel.LanguageOptions;
-import com.basistech.rosette.apimodel.LanguageRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
-import com.basistech.rosette.apimodel.LinkedEntitiesRequest;
 import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
 import com.basistech.rosette.apimodel.MorphologyOptions;
-import com.basistech.rosette.apimodel.MorphologyRequest;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
@@ -38,18 +34,15 @@ import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.PingResponse;
 import com.basistech.rosette.apimodel.RelationshipsOptions;
-import com.basistech.rosette.apimodel.RelationshipsRequest;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
-import com.basistech.rosette.apimodel.SentencesRequest;
 import com.basistech.rosette.apimodel.SentencesResponse;
 import com.basistech.rosette.apimodel.SentimentOptions;
-import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.TokensResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
-import com.basistech.rosette.apimodel.jackson.RequestMixin;
+import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -317,7 +310,7 @@ public class RosetteAPI implements Closeable {
     public LanguageResponse getLanguage(InputStream inputStream, String contentType, LanguageOptions options)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        LanguageRequest request = new LanguageRequest.Builder().contentBytes(bytes, contentType)
+        Request request = new DocumentRequest.Builder().contentBytes(bytes, contentType)
                 .options(options).build();
         return sendPostRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
@@ -333,7 +326,7 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
     public LanguageResponse getLanguage(URL url, LanguageOptions options) throws RosetteAPIException, IOException {
-        LanguageRequest request = new LanguageRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .contentUri(url.toString())
                 .options(options)
                 .build();
@@ -352,7 +345,7 @@ public class RosetteAPI implements Closeable {
      */
     public LanguageResponse getLanguage(String content, LanguageOptions options)
             throws RosetteAPIException, IOException {
-        LanguageRequest request = new LanguageRequest.Builder().content(content)
+        Request request = new DocumentRequest.Builder().content(content)
                 .options(options).build();
         return sendPostRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
@@ -377,7 +370,7 @@ public class RosetteAPI implements Closeable {
                                             LanguageCode language, MorphologyOptions options)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        MorphologyRequest request = new MorphologyRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentBytes(bytes, contentType)
                 .options(options)
@@ -402,7 +395,7 @@ public class RosetteAPI implements Closeable {
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, URL url,
                                             LanguageCode language,
                                             MorphologyOptions options) throws RosetteAPIException, IOException {
-        MorphologyRequest request = new MorphologyRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentUri(url.toString())
                 .options(options)
@@ -427,7 +420,7 @@ public class RosetteAPI implements Closeable {
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, String content,
                                             LanguageCode language, MorphologyOptions options)
             throws RosetteAPIException, IOException {
-        MorphologyRequest request = new MorphologyRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
                 .options(options)
@@ -459,7 +452,7 @@ public class RosetteAPI implements Closeable {
                                         LanguageCode language, EntitiesOptions options)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        EntitiesRequest request = new EntitiesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentBytes(bytes, contentType)
                 .options(options)
@@ -485,7 +478,7 @@ public class RosetteAPI implements Closeable {
      */
     public EntitiesResponse getEntities(URL url, LanguageCode language, EntitiesOptions options)
             throws RosetteAPIException, IOException {
-        EntitiesRequest request = new EntitiesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentUri(url.toString())
                 .options(options)
@@ -511,7 +504,7 @@ public class RosetteAPI implements Closeable {
      */
     public EntitiesResponse getEntities(String content, LanguageCode language, EntitiesOptions options)
             throws RosetteAPIException, IOException {
-        EntitiesRequest request = new EntitiesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
                 .options(options)
@@ -539,7 +532,7 @@ public class RosetteAPI implements Closeable {
                                                     LanguageCode language)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        LinkedEntitiesRequest request = new LinkedEntitiesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentBytes(bytes, contentType)
                 .build();
@@ -562,7 +555,7 @@ public class RosetteAPI implements Closeable {
     @Deprecated
     public LinkedEntitiesResponse getLinkedEntities(URL url, LanguageCode language)
             throws RosetteAPIException, IOException {
-        LinkedEntitiesRequest request = new LinkedEntitiesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentUri(url.toString())
                 .build();
@@ -583,7 +576,7 @@ public class RosetteAPI implements Closeable {
      */
     public LinkedEntitiesResponse getLinkedEntities(String content, LanguageCode language)
             throws RosetteAPIException, IOException {
-        LinkedEntitiesRequest request = new LinkedEntitiesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
                 .build();
@@ -609,7 +602,7 @@ public class RosetteAPI implements Closeable {
                                             LanguageCode language, CategoriesOptions options)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        CategoriesRequest request = new CategoriesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentBytes(bytes, contentType)
                 .options(options)
@@ -632,7 +625,7 @@ public class RosetteAPI implements Closeable {
      */
     public CategoriesResponse getCategories(URL url, LanguageCode language, CategoriesOptions options)
             throws RosetteAPIException, IOException {
-        CategoriesRequest request = new CategoriesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentUri(url.toString())
                 .options(options)
@@ -655,7 +648,7 @@ public class RosetteAPI implements Closeable {
      */
     public CategoriesResponse getCategories(String content, LanguageCode language, CategoriesOptions options)
             throws RosetteAPIException, IOException {
-        CategoriesRequest request = new CategoriesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
                 .options(options)
@@ -686,7 +679,7 @@ public class RosetteAPI implements Closeable {
      */
     public RelationshipsResponse getRelationships(String content, LanguageCode language, RelationshipsOptions options)
             throws RosetteAPIException, IOException {
-        RelationshipsRequest request = new RelationshipsRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
                 .options(options)
@@ -721,7 +714,7 @@ public class RosetteAPI implements Closeable {
                                                   LanguageCode language, RelationshipsOptions options)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        RelationshipsRequest request = new RelationshipsRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentBytes(bytes, contentType)
                 .options(options)
@@ -752,7 +745,7 @@ public class RosetteAPI implements Closeable {
      */
     public RelationshipsResponse getRelationships(URL url, LanguageCode language, RelationshipsOptions options)
             throws RosetteAPIException, IOException {
-        RelationshipsRequest request = new RelationshipsRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentUri(url.toString())
                 .options(options)
@@ -778,7 +771,7 @@ public class RosetteAPI implements Closeable {
                                           LanguageCode language, SentimentOptions options)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        SentimentRequest request = new SentimentRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentBytes(bytes, contentType)
                 .options(options)
@@ -800,7 +793,7 @@ public class RosetteAPI implements Closeable {
      */
     public SentimentResponse getSentiment(URL url, LanguageCode language, SentimentOptions options)
             throws RosetteAPIException, IOException {
-        SentimentRequest request = new SentimentRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentUri(url.toString())
                 .options(options)
@@ -822,7 +815,7 @@ public class RosetteAPI implements Closeable {
      */
     public SentimentResponse getSentiment(String content, LanguageCode language, SentimentOptions options)
             throws RosetteAPIException, IOException {
-        SentimentRequest request = new SentimentRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
                 .options(options)
@@ -843,7 +836,7 @@ public class RosetteAPI implements Closeable {
     public TokensResponse getTokens(InputStream inputStream, String contentType, LanguageCode language)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        MorphologyRequest request = new MorphologyRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentBytes(bytes, contentType)
                 .build();
@@ -860,7 +853,7 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
     public TokensResponse getTokens(URL url, LanguageCode language) throws RosetteAPIException, IOException {
-        MorphologyRequest request = new MorphologyRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentUri(url.toString())
                 .build();
@@ -877,7 +870,7 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
     public TokensResponse getTokens(String content, LanguageCode language) throws RosetteAPIException, IOException {
-        MorphologyRequest request = new MorphologyRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
                 .build();
@@ -899,7 +892,7 @@ public class RosetteAPI implements Closeable {
                                           LanguageCode language)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        SentencesRequest request = new SentencesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentBytes(bytes, contentType)
                 .build();
@@ -916,7 +909,7 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
     public SentencesResponse getSentences(URL url, LanguageCode language) throws RosetteAPIException, IOException {
-        SentencesRequest request = new SentencesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentUri(url.toString())
                 .build();
@@ -934,7 +927,7 @@ public class RosetteAPI implements Closeable {
      */
     public SentencesResponse getSentences(String content, LanguageCode language)
             throws RosetteAPIException, IOException {
-        SentencesRequest request = new SentencesRequest.Builder()
+        Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
                 .build();
@@ -1004,10 +997,10 @@ public class RosetteAPI implements Closeable {
             throws RosetteAPIException, IOException {
         ObjectWriter writer = mapper.writer().without(JsonGenerator.Feature.AUTO_CLOSE_TARGET);
         boolean notPlainText = false;
-        if (request instanceof Request) {
-            Object rawContent = ((Request) request).getRawContent();
+        if (request instanceof DocumentRequest) {
+            Object rawContent = ((DocumentRequest) request).getRawContent();
             if (rawContent instanceof String) {
-                writer = writer.withView(RequestMixin.Views.Content.class);
+                writer = writer.withView(DocumentRequestMixin.Views.Content.class);
             } else if (rawContent != null) {
                 notPlainText = true;
             }
@@ -1017,7 +1010,7 @@ public class RosetteAPI implements Closeable {
         HttpPost post = new HttpPost(urlStr);
         //TODO: add compression!
         if (notPlainText) {
-            setupMultipartRequest((Request) request, finalWriter, post);
+            setupMultipartRequest((DocumentRequest) request, finalWriter, post);
         } else {
             setupPlainRequest(request, finalWriter, post);
         }
@@ -1030,9 +1023,9 @@ public class RosetteAPI implements Closeable {
                 response = httpClient.execute(post);
 
                 T resp = getResponse(response, clazz);
-                Header ridHeader = response.getFirstHeader("X-RosetteAPI-Request-Id");
+                Header ridHeader = response.getFirstHeader("X-RosetteAPI-DocumentRequest-Id");
                 if (ridHeader != null && ridHeader.getValue() != null) {
-                    LOG.debug("Request ID " + ridHeader.getValue());
+                    LOG.debug("DocumentRequest ID " + ridHeader.getValue());
                 }
                 responseHeadersToExtendedInformation(resp, response);
                 return resp;
@@ -1101,7 +1094,7 @@ public class RosetteAPI implements Closeable {
         });
     }
 
-    private void setupMultipartRequest(final Request request, final ObjectWriter finalWriter, HttpPost post) {
+    private void setupMultipartRequest(final DocumentRequest request, final ObjectWriter finalWriter, HttpPost post) {
 
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         builder.setMimeSubtype("mixed");
@@ -1172,7 +1165,7 @@ public class RosetteAPI implements Closeable {
         try (
                 InputStream stream = httpResponse.getEntity().getContent();
                 InputStream inputStream = "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream) {
-            String ridHeader = headerValueOrNull(httpResponse.getFirstHeader("X-RosetteAPI-Request-Id"));
+            String ridHeader = headerValueOrNull(httpResponse.getFirstHeader("X-RosetteAPI-DocumentRequest-Id"));
             if (HTTP_OK != status) {
                 String ecHeader = headerValueOrNull(httpResponse.getFirstHeader("X-RosetteAPI-Status-Code"));
                 String emHeader = headerValueOrNull(httpResponse.getFirstHeader("X-RosetteAPI-Status-Message"));
@@ -1180,7 +1173,7 @@ public class RosetteAPI implements Closeable {
                 if ("application/json".equals(responseContentType)) {
                     ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
                     if (ridHeader != null) {
-                        LOG.debug("Request ID " + ridHeader);
+                        LOG.debug("DocumentRequest ID " + ridHeader);
                     }
                     if (ecHeader != null) {
                         errorResponse.setCode(ecHeader);

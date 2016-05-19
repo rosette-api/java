@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 /**
  * Relationship extraction options
  */
-public final class RelationshipsOptions {
+public final class RelationshipsOptions extends Options {
 
     private AccuracyMode accuracyMode;
 

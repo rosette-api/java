@@ -18,8 +18,10 @@ package com.basistech.rosette.apimodel.jackson;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-public final class CategoriesOptionsMixin extends BaseMixin {
+@JsonTypeName("CategoriesOptions")
+public abstract class CategoriesOptionsMixin extends OptionsMixin {
     @JsonCreator
     private CategoriesOptionsMixin(
             @JsonProperty("numCategories") Integer numCategories

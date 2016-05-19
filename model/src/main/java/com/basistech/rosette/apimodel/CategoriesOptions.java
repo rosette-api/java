@@ -21,7 +21,7 @@ import javax.validation.constraints.Min;
 /**
  * Categorization options 
  */
-public final class CategoriesOptions {
+public final class CategoriesOptions extends Options {
 
     @Min(1)
     private Integer numCategories;

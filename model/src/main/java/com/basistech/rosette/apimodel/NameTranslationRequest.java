@@ -25,7 +25,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Class that represents the data from a name translation request
  */
-public final class NameTranslationRequest {
+public final class NameTranslationRequest extends Request {
     @NotNull
     private String name;
     private String entityType;

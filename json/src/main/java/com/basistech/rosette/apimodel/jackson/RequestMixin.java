@@ -16,44 +16,21 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.util.LanguageCode;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import java.io.InputStream;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.NameSimilarityRequest;
+import com.basistech.rosette.apimodel.NameTranslationRequest;
 
-//CHECKSTYLE:OFF
-public abstract class RequestMixin extends BaseMixin {
-
-    public static class Views {
-        public static class Content {
-            //
-        }
-    }
-
-    @JsonCreator
-    protected RequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("genre") String genre,
-            @JsonProperty("content") Object content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType
-            ) {
-        //
-    }
-
-    @JsonIgnore
-    public abstract Object getRawContent();
-
-    @JsonIgnore
-    public abstract InputStream getContentBytes();
-
-    // the content type goes onto the wire as part of the multipart request.
-    @JsonIgnore
-    public abstract String getContentType();
-
-    @JsonView(Views.Content.class)
-    public abstract String getContent();
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+              include = JsonTypeInfo.As.PROPERTY,
+              property = "type",
+              defaultImpl = DocumentRequest.class)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = DocumentRequest.class, name = "DocumentRequest"),
+        @JsonSubTypes.Type(value = NameSimilarityRequest.class, name = "NameSimilarityRequest"),
+        @JsonSubTypes.Type(value = NameTranslationRequest.class, name = "NameTranslationRequest")})
+public abstract class RequestMixin {
+    //
 }
