@@ -103,7 +103,8 @@ import static java.net.HttpURLConnection.HTTP_OK;
 @Immutable
 public class RosetteAPI implements Closeable {
 
-    public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
+    //public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
+    public static final String DEFAULT_URL_BASE = "http://seuss.basistech.net:8181/rest/v1";
     public static final String SERVICE_NAME = "RosetteAPI";
     public static final String BINDING_VERSION = getVersion();
     public static final String USER_AGENT_STR = SERVICE_NAME + "-Java/" + BINDING_VERSION;
@@ -124,7 +125,6 @@ public class RosetteAPI implements Closeable {
     public static final String TOKENS_SERVICE_PATH = "/tokens";
     public static final String SENTENCES_SERVICE_PATH = "/sentences";
     public static final String INFO_SERVICE_PATH = "/info";
-    //public static final String VERSION_CHECK_PATH = "/info?clientVersion=" + BINDING_VERSION;
     public static final String PING_SERVICE_PATH = "/ping";
 
     private static final Logger LOG = LoggerFactory.getLogger(RosetteAPI.class);
@@ -251,23 +251,6 @@ public class RosetteAPI implements Closeable {
     public InfoResponse info() throws IOException, RosetteAPIException {
         return sendGetRequest(urlBase + INFO_SERVICE_PATH, InfoResponse.class);
     }
-
-    /**
-     * Checks binding version compatiblity against the Rosette API server
-     *
-     * @return boolean true if compatible
-     * @throws IOException
-     * @throws RosetteAPIException
-     *//*
-    private boolean checkVersionCompatibility() throws IOException, RosetteAPIException {
-        InfoResponse response = sendPostRequest("{ body: 'version check' }", urlBase + VERSION_CHECK_PATH, InfoResponse.class);
-        if (!response.isVersionChecked()) {
-            ErrorResponse errResponse = new ErrorResponse("incompatibleVersion",
-                    "The server version is not compatible with binding version " + BINDING_VERSION);
-            throw new RosetteAPIException(200, errResponse);
-        }
-        return true;
-    }*/
 
     /**
      * Pings the Rosette API for a response indicting that the service is available.
