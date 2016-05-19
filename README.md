@@ -26,15 +26,15 @@ If you prefer to build from source, please use an appropriate release tag.
 Basic Usage
 -----------
 
-See [examples](examples/src/main/java/com/basistech/rosette/examples)
+To check out more examples, see [examples](examples/src/main/java/com/basistech/rosette/examples)
 
 API Documentation
 -----------------
 
-See [documentation](http://rosette-api.github.io/java)
+Check out the [documentation](http://rosette-api.github.io/java)
 
 Additional Information
 ----------------------
 
-Visit [Rosette API site](https://developer.rosette.com)
+For more, visit [Rosette API site](https://developer.rosette.com)
 
