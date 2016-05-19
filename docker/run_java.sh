@@ -95,7 +95,8 @@ cp -r -n /source/* .
 
 if [ ! -z ${API_KEY} ]; then
     checkAPI
-    mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+    #mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+    mvn install -Dmaven.javadoc.skip=true -B -V
     cd /java/examples
     if [ ! -z ${FILENAME} ]; then
         runExample ${FILENAME}
