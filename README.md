@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/rosette-api/java.svg?branch=master)](https://travis-ci.org/rosette-api/java)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.basistech.rosette/rosette-api-java-binding/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.basistech.rosette/rosette-api-java-binding)
 
 Java client binding for Rosette API
 ==================================
@@ -12,7 +13,7 @@ If you use Maven, include this dependency in your `pom.xml`:
 <dependency>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api</artifactId>
-    <version>0.8.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
