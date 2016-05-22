@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 /**
  * Sentiment options.
  */
-public final class SentimentOptions {
+public final class SentimentOptions extends Options {
 
     /**
      * Create a set of sentiment analysis options with default values.

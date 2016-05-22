@@ -20,10 +20,12 @@ import com.basistech.rosette.apimodel.LanguageWeight;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.Set;
 
-public class LanguageOptionsMixin extends BaseMixin {
+@JsonTypeName("LanguageOptions")
+public class LanguageOptionsMixin extends OptionsMixin {
     @JsonCreator
     protected LanguageOptionsMixin(
             @JsonProperty("minValidChars") Integer minValidChars,

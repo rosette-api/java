@@ -16,21 +16,13 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.RelationshipsOptions;
-import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-public class RelationshipsRequestMixin {
+@JsonTypeName("SentimentOptions")
+public abstract class SentimentOptionsMixin extends OptionsMixin {
     @JsonCreator
-    public RelationshipsRequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("genre") String genre,
-            @JsonProperty("content") Object content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType,
-            @JsonProperty("options") RelationshipsOptions options
-    ) {
+    protected SentimentOptionsMixin() {
         //
     }
 

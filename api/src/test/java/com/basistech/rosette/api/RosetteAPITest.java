@@ -16,25 +16,19 @@
 
 package com.basistech.rosette.api;
 
-import com.basistech.rosette.apimodel.CategoriesRequest;
 import com.basistech.rosette.apimodel.CategoriesResponse;
-import com.basistech.rosette.apimodel.EntitiesRequest;
+import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
-import com.basistech.rosette.apimodel.LanguageRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
-import com.basistech.rosette.apimodel.LinkedEntitiesRequest;
 import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
-import com.basistech.rosette.apimodel.MorphologyRequest;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
-import com.basistech.rosette.apimodel.RelationshipsRequest;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
-import com.basistech.rosette.apimodel.SentimentRequest;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.util.LanguageCode;
 import org.apache.commons.io.FileUtils;
@@ -123,7 +117,7 @@ public class RosetteAPITest extends AbstractTest {
                                 .withHeader("Content-Type", "application/json")
                                 .withHeader("Content-Encoding", "gzip")
                                 .withStatusCode(statusCode).withBody(gzip(responseStr)));
-                
+
             } else {
                 mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
@@ -200,7 +194,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-language.json") && testFilename.contains("-doc-"))) {
             return;
         }
-        Request request = readValue(LanguageRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             LanguageResponse response = api.getLanguage(request.getContent(), null);
             verifyLanguage(response);
@@ -214,7 +208,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-language.json") && testFilename.contains("-url-"))) {
             return;
         }
-        Request request = readValue(LanguageRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             LanguageResponse response = api.getLanguage(new URL(request.getContentUri()), null);
             verifyLanguage(response);
@@ -228,7 +222,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-morphology_complete.json") && testFilename.contains("-doc-"))) {
             return;
         }
-        Request request = readValue(MorphologyRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE,
                     request.getContent(), null, null);
@@ -248,7 +242,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-morphology_complete.json") && testFilename.contains("-url-"))) {
             return;
         }
-        Request request = readValue(MorphologyRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE,
                     new URL(request.getContentUri()), null, null);
@@ -263,7 +257,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-entities.json") && testFilename.contains("-doc-"))) {
             return;
         }
-        Request request = readValue(EntitiesRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             EntitiesResponse response = api.getEntities(request.getContent(), null, null);
             verifyEntity(response);
@@ -282,7 +276,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-entities.json") && testFilename.contains("-url-"))) {
             return;
         }
-        Request request = readValue(EntitiesRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             EntitiesResponse response = api.getEntities(new URL(request.getContentUri()), null, null);
             verifyEntity(response);
@@ -296,7 +290,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-entities_linked.json") && testFilename.contains("-doc-"))) {
             return;
         }
-        Request request = readValue(LinkedEntitiesRequest.class);
+         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             LinkedEntitiesResponse response = api.getLinkedEntities(request.getContent(), null);
             verifyLinkedEntity(response);
@@ -315,7 +309,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-entities_linked.json") && testFilename.contains("-url-"))) {
             return;
         }
-        Request request = readValue(LinkedEntitiesRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             LinkedEntitiesResponse response = api.getLinkedEntities(new URL(request.getContentUri()), null);
             verifyLinkedEntity(response);
@@ -329,7 +323,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-categories.json") && testFilename.contains("-doc-"))) {
             return;
         }
-        Request request = readValue(CategoriesRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             CategoriesResponse response = api.getCategories(request.getContent(), null, null);
             verifyCategory(response);
@@ -349,7 +343,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-categories.json") && testFilename.contains("-url-"))) {
             return;
         }
-        Request request = readValue(CategoriesRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             CategoriesResponse response = api.getCategories(new URL(request.getContentUri()), null, null);
             verifyCategory(response);
@@ -363,7 +357,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-doc-"))) {
             return;
         }
-        Request request = readValue(RelationshipsRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             RelationshipsResponse response = api.getRelationships(request.getContent(), language, null);
             verifyRelationships(response);
@@ -382,7 +376,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-url-"))) {
             return;
         }
-        Request request = readValue(RelationshipsRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             RelationshipsResponse response = api.getRelationships(new URL(request.getContentUri()), language, null);
             verifyRelationships(response);
@@ -396,7 +390,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-sentiment.json") && testFilename.contains("-doc-"))) {
             return;
         }
-        Request request = readValue(SentimentRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             SentimentResponse response = api.getSentiment(request.getContent(), language, null);
             verifySentiment(response);
@@ -417,7 +411,7 @@ public class RosetteAPITest extends AbstractTest {
         if (!(testFilename.endsWith("-sentiment.json") && testFilename.contains("-url-"))) {
             return;
         }
-        Request request = readValue(SentimentRequest.class);
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             SentimentResponse response = api.getSentiment(new URL(request.getContentUri()), language, null);
             verifySentiment(response);
@@ -435,6 +429,4 @@ public class RosetteAPITest extends AbstractTest {
         ErrorResponse goldResponse = mapper.readValue(responseStr, ErrorResponse.class);
         assertEquals(goldResponse.getCode(), e.getCode());
     }
-
-
 }

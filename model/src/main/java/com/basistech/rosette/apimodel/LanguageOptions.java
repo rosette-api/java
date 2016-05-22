@@ -27,7 +27,7 @@ import java.util.Set;
 /**
  * Languages detection options 
  */
-public final class LanguageOptions {
+public final class LanguageOptions extends Options {
 
     @Min(1)
     private Integer minValidChars;

@@ -1,5 +1,5 @@
 /*
-* Copyright 2016 Basis Technology Corp.
+* Copyright 2014 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,25 +13,51 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.MorphologyOptions;
+import com.basistech.rosette.apimodel.Options;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonView;
 
-/**
- *
- */
-public class MorphologyRequestMixin extends BaseMixin {
+import java.io.InputStream;
+
+//CHECKSTYLE:OFF
+@JsonTypeName("DocumentRequest")
+public abstract class DocumentRequestMixin extends BaseMixin {
+
+    public static class Views {
+        public static class Content {
+            //
+        }
+    }
+
     @JsonCreator
-    protected MorphologyRequestMixin(
+    protected DocumentRequestMixin(
             @JsonProperty("language") LanguageCode language,
             @JsonProperty("genre") String genre,
             @JsonProperty("content") Object content,
             @JsonProperty("contentUri") String contentUri,
             @JsonProperty("contentType") String contentType,
-            @JsonProperty("options") MorphologyOptions options) {
+            @JsonProperty("options") Options options
+            ) {
         //
     }
+
+    @JsonIgnore
+    public abstract Object getRawContent();
+
+    @JsonIgnore
+    public abstract InputStream getContentBytes();
+
+    // the content type goes onto the wire as part of the multipart request.
+    @JsonIgnore
+    public abstract String getContentType();
+
+    @JsonView(Views.Content.class)
+    public abstract String getContent();
 }

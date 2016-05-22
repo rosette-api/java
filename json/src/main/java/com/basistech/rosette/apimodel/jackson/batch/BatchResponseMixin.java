@@ -15,13 +15,16 @@
 */
 package com.basistech.rosette.apimodel.jackson.batch;
 
+import java.net.URL;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public abstract class BatchResponseMixin {
     @JsonCreator
-    public BatchResponseMixin(@JsonProperty("batchOutputUrl") String batchOutputUrl,
-                              @JsonProperty("batchCheckProgressUrl") String batchCheckProgressUrl) {
+    public BatchResponseMixin(@JsonProperty("id") String id,
+                              @JsonProperty("batchOutputUrl") URL batchOutputUrl,
+                              @JsonProperty("batchCheckProgressUrl") URL batchCheckProgressUrl) {
         //
     }
 }

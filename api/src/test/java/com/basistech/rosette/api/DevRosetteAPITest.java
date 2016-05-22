@@ -14,8 +14,9 @@
 
 package com.basistech.rosette.api;
 
+import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.MorphologyOptions;
-import com.basistech.rosette.apimodel.MorphologyRequest;
+import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.TokensResponse;
 import com.basistech.util.LanguageCode;
 import com.basistech.util.PartOfSpeechTagSet;
@@ -52,7 +53,7 @@ public class DevRosetteAPITest {
     @Test
     public void multipart() throws Exception {
         // this assumes that the server has the mock version of the components.
-        MorphologyRequest morphologyRequest = new MorphologyRequest.Builder()
+        Request morphologyRequest = new DocumentRequest.Builder()
                 .language(LanguageCode.ENGLISH)
                 .options(new MorphologyOptions(false, false, PartOfSpeechTagSet.upt16))
                 .contentBytes("This is the cereal shot from 1 gun .".getBytes(Charsets.UTF_8), "text/plain;charset=utf-8")
@@ -65,7 +66,7 @@ public class DevRosetteAPITest {
     @Test
     public void simple() throws Exception {
         // this assumes that the server has the mock version of the components.
-        MorphologyRequest morphologyRequest = new MorphologyRequest.Builder()
+        Request morphologyRequest = new DocumentRequest.Builder()
                 .language(LanguageCode.ENGLISH)
                 .options(new MorphologyOptions(false, false, PartOfSpeechTagSet.upt16))
                 .content("This is the cereal shot from 1 gun .")
@@ -74,6 +75,4 @@ public class DevRosetteAPITest {
         assertEquals(9, response.getTokens().size());
         assertEquals("one", response.getTokens().get(6));
     }
-
-
 }

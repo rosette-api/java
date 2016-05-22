@@ -23,9 +23,9 @@ import com.basistech.util.TransliterationScheme;
 import javax.validation.constraints.NotNull;
 
 /**
- * Class that represents the data from a name translation request
+ * Request for name translation.
  */
-public final class NameTranslationRequest {
+public final class NameTranslationRequest extends Request {
     @NotNull
     private String name;
     private String entityType;

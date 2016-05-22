@@ -15,24 +15,41 @@
 */
 package com.basistech.rosette.apimodel.batch;
 
+import java.net.URL;
+
 import com.basistech.rosette.apimodel.Response;
 
-public class BatchResponse extends Response {
-    // URL to output the batch results
-    private final String batchOutputUrl;
+public final class BatchResponse extends Response {
+    // batch id
+    private final String id;
+    // URL where the batch results will be stored
+    private final URL batchOutputUrl;
     // progress checking endpoint/url
-    private final String batchCheckProgressUrl;
+    private final URL batchCheckProgressUrl;
 
-    public BatchResponse(String batchOutputUrl, String batchCheckProgressUrl) {
+    /**
+     * A response returned upon successful submission of a batch in which
+     * contains a URL for progress checking and another specifies the output location.
+     *
+     * @param id ID of the batch
+     * @param batchOutputUrl the URL of the processing results
+     * @param batchCheckProgressUrl the URL that can be used to check batch progress
+     */
+    public BatchResponse(String id, URL batchOutputUrl, URL batchCheckProgressUrl) {
+        this.id = id;
         this.batchOutputUrl = batchOutputUrl;
         this.batchCheckProgressUrl = batchCheckProgressUrl;
     }
 
-    public String getBatchOutputUrl() {
+    public String getId() {
+        return id;
+    }
+
+    public URL getBatchOutputUrl() {
         return batchOutputUrl;
     }
 
-    public String getBatchCheckProgressUrl() {
+    public URL getBatchCheckProgressUrl() {
         return batchCheckProgressUrl;
     }
 }

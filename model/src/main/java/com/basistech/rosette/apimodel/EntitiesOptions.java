@@ -21,7 +21,7 @@ import java.util.Objects;
 /**
  * Entity extraction options
  */
-public final class EntitiesOptions {
+public final class EntitiesOptions extends Options {
 
     public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(false);
     private Boolean linkEntities;
@@ -60,7 +60,7 @@ public final class EntitiesOptions {
         }
 
         /**
-         * Request entity linking. If the value is {@code true}, then the the endpoint will link entities to the
+         * DocumentRequest entity linking. If the value is {@code true}, then the the endpoint will link entities to the
          * knowledge base. If {@code false}, not. If {@code null}, the endpoint will perform default processing.
          * @param linkEntities whether to link.
          * @return this.
