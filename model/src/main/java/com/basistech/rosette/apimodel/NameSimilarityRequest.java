@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Request object for name-similarity.
  *
- * Request to compare 2 names.
+ * This class carries the two names to compare.
  */
 public final class NameSimilarityRequest extends Request {
 

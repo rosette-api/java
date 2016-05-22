@@ -16,6 +16,9 @@
 
 package com.basistech.rosette.apimodel;
 
+/**
+ * Common base class of all requests.
+ */
 public abstract class Request {
     private String profileId;
 

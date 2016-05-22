@@ -24,11 +24,11 @@ import java.io.InputStream;
 /**
  * This class represents the common information for all document processing requests to the Rosette API.
  * Most applications do not use this class directly; the methods of the {@code RosetteAPI} class
- * create request objects. More complex applications may create objects of the subclasses
- * of this class for themselves via the fluent Builder classes.
+ * create request objects. More complex applications may create objects of
+ * this class for themselves via the {@link DocumentRequest.Builder}.
  * <br>
  * On the wire, a request is a json object. All the endpoints accept the same set of items,
- * represented here, that describe the input document text.
+ * represented here, that describe the input document.
  * <br>
  * Applications specify the text to process in three ways:
  * <ol>
@@ -40,7 +40,7 @@ import java.io.InputStream;
  *     returned by the server for downloaded data.</li>
  * </ol>
  * In this object the 'content' item is an {@link Object}; it contains a {@link String}
- * for plain text, and an {@link java.io.InputStream} for binary data. {@link BaseBuilder}
+ * for plain text, or an {@link java.io.InputStream} for binary data. {@link BaseBuilder}
  * provides several alternative methods for setting this information.
  *
  * This class includes a 'genre' field. If no genre is specified, then the system
@@ -331,7 +331,7 @@ public class DocumentRequest<O extends Options> extends Request {
 
         @Override
         public DocumentRequest build() {
-            return new DocumentRequest(language, genre, content, contentUri, contentType, options);
+            return new DocumentRequest<>(language, genre, content, contentUri, contentType, options);
         }
     }
 

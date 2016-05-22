@@ -47,6 +47,7 @@ import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.common.io.ByteStreams;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
@@ -70,15 +71,14 @@ import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -550,7 +550,7 @@ public class RosetteAPI implements Closeable {
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
-     * @deprecated Merged into {@link #getLinkedEntities(URL, LanguageCode)}.
+     * @deprecated Merged into {@link #getEntities(InputStream, String, LanguageCode, EntitiesOptions)}
      */
     @Deprecated
     public LinkedEntitiesResponse getLinkedEntities(URL url, LanguageCode language)
@@ -574,6 +574,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
+    @SuppressWarnings("deprecation")
     public LinkedEntitiesResponse getLinkedEntities(String content, LanguageCode language)
             throws RosetteAPIException, IOException {
         Request request = new DocumentRequest.Builder()
@@ -1045,6 +1046,7 @@ public class RosetteAPI implements Closeable {
         throw lastException;
     }
 
+    @SuppressWarnings("unchecked")
     private <T extends Response> void responseHeadersToExtendedInformation(T resp, HttpResponse response) {
         for (Header header : response.getAllHeaders()) {
             if (resp.getExtendedInformation() != null
@@ -1053,7 +1055,7 @@ public class RosetteAPI implements Closeable {
                 if (resp.getExtendedInformation().get(header.getName()) instanceof Set) {
                     currentSetValue = (Set<Object>) resp.getExtendedInformation().get(header.getName());
                 } else {
-                    currentSetValue = new HashSet<>(Arrays.asList(resp.getExtendedInformation().get(header.getName())));
+                    currentSetValue = new HashSet<>(Collections.singletonList(resp.getExtendedInformation().get(header.getName())));
                 }
                 currentSetValue.add(header.getValue());
                 resp.setExtendedInformation(header.getName(), currentSetValue);
@@ -1101,7 +1103,7 @@ public class RosetteAPI implements Closeable {
         builder.setMode(HttpMultipartMode.STRICT);
 
         FormBodyPartBuilder partBuilder = FormBodyPartBuilder.create("request",
-                // go around a circle to avoid the charset.
+                // Make sure we're not mislead by someone who puts a charset into the mime type.
                 new AbstractContentBody(ContentType.parse(ContentType.APPLICATION_JSON.getMimeType())) {
                     @Override
                     public String getFilename() {
@@ -1207,18 +1209,7 @@ public class RosetteAPI implements Closeable {
      * @throws IOException
      */
     private static byte[] getBytes(InputStream is) throws IOException {
-        int len;
-        int size = 1024;
-        byte[] buf;
-
-        try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
-            buf = new byte[size];
-            while ((len = is.read(buf, 0, size)) != -1) {
-                bos.write(buf, 0, len);
-            }
-            buf = bos.toByteArray();
-            return buf;
-        }
+        return ByteStreams.toByteArray(is);
     }
 
     @Override
