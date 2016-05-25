@@ -32,11 +32,11 @@ public final class BatchRequest {
     // Define the items that make up the batch.
     private final List<BatchRequestItem> items;
     // URL to output the batch results
-    private final URL batchOutputUrl;
+    private final String batchOutputUrl;
 
     public static class BatchRequestBuilder {
         private List<BatchRequestItem> items;
-        private URL batchOutputUrl;
+        private String batchOutputUrl;
         private URL completionCallbackUrl;
 
         public BatchRequestBuilder() {
@@ -104,7 +104,7 @@ public final class BatchRequest {
          * @param batchOutputUrl AWS S3 URL where results will be saved
          * @return BatchRequestBuilder
          */
-        public BatchRequestBuilder withBatchOutputUrl(URL batchOutputUrl) {
+        public BatchRequestBuilder withBatchOutputUrl(String batchOutputUrl) {
             this.batchOutputUrl = batchOutputUrl;
             return this;
         }
@@ -128,7 +128,7 @@ public final class BatchRequest {
         }
     }
 
-    private BatchRequest(String batchId, List<BatchRequestItem>items, URL completionCallbackUrl, URL batchOutputUrl) {
+    private BatchRequest(String batchId, List<BatchRequestItem>items, URL completionCallbackUrl, String batchOutputUrl) {
         this.batchId = batchId;
         this.completionCallbackUrl = completionCallbackUrl;
         this.items = items;
@@ -147,7 +147,7 @@ public final class BatchRequest {
         return items;
     }
 
-    public URL getBatchOutputUrl() {
+    public String getBatchOutputUrl() {
         return batchOutputUrl;
     }
 }
