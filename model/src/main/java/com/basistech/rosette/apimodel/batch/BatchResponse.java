@@ -15,17 +15,15 @@
 */
 package com.basistech.rosette.apimodel.batch;
 
-import java.net.URL;
-
 import com.basistech.rosette.apimodel.Response;
 
 public final class BatchResponse extends Response {
     // batch id
     private final String id;
     // URL where the batch results will be stored
-    private final URL batchOutputUrl;
+    private final String batchOutputUrl;
     // progress checking endpoint/url
-    private final URL batchCheckProgressUrl;
+    private final String batchCheckProgressUrl;
 
     /**
      * A response returned upon successful submission of a batch in which
@@ -35,7 +33,7 @@ public final class BatchResponse extends Response {
      * @param batchOutputUrl the URL of the processing results
      * @param batchCheckProgressUrl the URL that can be used to check batch progress
      */
-    public BatchResponse(String id, URL batchOutputUrl, URL batchCheckProgressUrl) {
+    public BatchResponse(String id, String batchOutputUrl, String batchCheckProgressUrl) {
         this.id = id;
         this.batchOutputUrl = batchOutputUrl;
         this.batchCheckProgressUrl = batchCheckProgressUrl;
@@ -45,11 +43,11 @@ public final class BatchResponse extends Response {
         return id;
     }
 
-    public URL getBatchOutputUrl() {
+    public String getBatchOutputUrl() {
         return batchOutputUrl;
     }
 
-    public URL getBatchCheckProgressUrl() {
+    public String getBatchCheckProgressUrl() {
         return batchCheckProgressUrl;
     }
 }
