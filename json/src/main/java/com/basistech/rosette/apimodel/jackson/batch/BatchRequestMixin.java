@@ -15,7 +15,6 @@
 */
 package com.basistech.rosette.apimodel.jackson.batch;
 
-import java.net.URL;
 import java.util.List;
 
 import com.basistech.rosette.apimodel.batch.BatchRequestItem;
@@ -26,8 +25,8 @@ public abstract class BatchRequestMixin {
     @JsonCreator
     public BatchRequestMixin(@JsonProperty("batchId") String batchId,
                              @JsonProperty("items") List<BatchRequestItem> items,
-                             @JsonProperty("completionCallbackUrl") URL completionCallbackUrl,
-                             @JsonProperty("batchOutputUrl") URL batchOutputUrl) {
+                             @JsonProperty("completionCallbackUrl") String completionCallbackUrl,
+                             @JsonProperty("batchOutputUrl") String batchOutputUrl) {
         //
     }
 }
