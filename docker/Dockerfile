@@ -23,4 +23,4 @@ WORKDIR java
 VOLUME ["/source"]
 
 # allow interactive bash inside docker container
-CMD ./run_java.sh $API_KEY $FILENAME $ALT_URL; /bin/bash
+CMD ./run_java.sh $API_KEY $FILENAME $ALT_URL
