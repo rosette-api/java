@@ -16,26 +16,25 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.Objects;
+
 /**
  * An entity mention found in a document.
- * The /entities endpoint returns a collection of entities. Each
- * entity is uniquely identified by its representation in the text
- * (the {@code }mention}_ and its entity ID from the knowledge base.
- * If there is no entity id available, mentions with the same string
- * are distinguished by type. If there are multiple occurrences of the same
- * string in the document, they are combined, and counted with the {@code count} field.
+ * The /entities endpoint returns a collection of entity mentions.
  */
-public final class Entity {
+public final class EntityMention {
 
     private final Integer indocChainId;
     private final String type;
     private final String mention;
     private final String normalized;
-    private final int count;
+    private final Integer count;
     private final String entityId;
+    private final Integer startOffset;
+    private final Integer endOffset;
 
     /**
-     * constructor for {@code Entity}
+     * constructor for {@code EntityMention}
      * @param indocChainId in-document entity chain id
      * @param type entity type
      * @param mention mention text
@@ -44,13 +43,15 @@ public final class Entity {
      * @param entityId if the entity was linked, the ID from the knowledge base.
      */
     @Deprecated
-    public Entity(
+    public EntityMention(
             Integer indocChainId,
             String type,
             String mention,
             String normalized,
-            int count,
-            String entityId
+            Integer count,
+            String entityId,
+            Integer startOffset,
+            Integer endOffset
     ) {
         this.indocChainId = indocChainId;
         this.type = type;
@@ -58,29 +59,34 @@ public final class Entity {
         this.normalized = normalized;
         this.count = count;
         this.entityId = entityId;
+        this.startOffset = startOffset;
+        this.endOffset = endOffset;
     }
 
     /**
-     * constructor for {@code Entity}
+     * constructor for {@code EntityMention}
      * @param type entity type
      * @param mention mention text
      * @param normalized normalized mention text
-     * @param count mention count
      * @param entityId if the entity was linked, the ID from the knowledge base.
      */
-    public Entity(
+    public EntityMention(
             String type,
             String mention,
             String normalized,
-            int count,
-            String entityId
+            String entityId,
+            int startOffset,
+            int endOffset
+
     ) {
         this.indocChainId = null;
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
-        this.count = count;
         this.entityId = entityId;
+        this.startOffset = startOffset;
+        this.endOffset = endOffset;
+        this.count = null;
     }
 
     /**
@@ -120,43 +126,50 @@ public final class Entity {
      * get the mention count 
      * @return the mention count
      */
-    public int getCount() {
+    @Deprecated
+    public Integer getCount() {
         return count;
     }
 
+    /**
+     * get the entity knowledge base ID.
+     * @return the ID of this entity. If this entity was linked to a knowledge base,
+     * the resulting string will begin with 'Q'. If it was not linked to a knowledge base,
+     * it will begin with a 'T'. 'T' identifiers represent intra-document co-references.
+     */
     public String getEntityId() {
         return entityId;
     }
 
-    @Override
-    public int hashCode() {
-        int result;
-        result = indocChainId != null ? indocChainId.hashCode() : 0;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (mention != null ? mention.hashCode() : 0);
-        result = 31 * result + (normalized != null ? normalized.hashCode() : 0);
-        result = 31 * result + count;
-        result = 31 * result + (entityId != null ? entityId.hashCode() : 0);
-        return result;
+    public Integer getStartOffset() {
+        return startOffset;
     }
 
-    /**
-     * if the param is a {@code Entity}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
+    public Integer getEndOffset() {
+        return endOffset;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Entity)) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
+        EntityMention that = (EntityMention) o;
+        return Objects.equals(indocChainId, that.indocChainId)
+                && Objects.equals(type, that.type)
+                && Objects.equals(mention, that.mention)
+                && Objects.equals(normalized, that.normalized)
+                && Objects.equals(count, that.count)
+                && Objects.equals(entityId, that.entityId)
+                && Objects.equals(startOffset, that.startOffset)
+                && Objects.equals(endOffset, that.endOffset);
+    }
 
-        Entity that = (Entity) o;
-        return indocChainId != null ? indocChainId.equals(that.getIndocChainId()) : that.indocChainId == null
-                && type != null ? type.equals(that.getType()) : that.type == null
-                && mention != null ? mention.equals(that.getMention()) : that.mention == null
-                && normalized != null ? normalized.equals(that.getNormalized()) : that.normalized == null
-                && entityId != null ? entityId.equals(that.entityId) : that.entityId == null
-                && count == that.getCount();
+    @Override
+    public int hashCode() {
+        return Objects.hash(indocChainId, type, mention, normalized, count, entityId, startOffset, endOffset);
     }
 }
