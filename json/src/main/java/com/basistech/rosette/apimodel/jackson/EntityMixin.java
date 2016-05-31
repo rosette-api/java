@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class EntityMixin extends BaseMixin {
     @JsonCreator
     public EntityMixin(
-            @JsonProperty("indocChainId") int indocChainId,
+            @JsonProperty("indocChainId") Integer indocChainId,
             @JsonProperty("type") String type,
             @JsonProperty("mention") String mention,
             @JsonProperty("normalized") String normalized,
