@@ -75,8 +75,8 @@ public final class EntityMention {
             String mention,
             String normalized,
             String entityId,
-            int startOffset,
-            int endOffset
+            Integer startOffset,
+            Integer endOffset
 
     ) {
         this.indocChainId = null;
