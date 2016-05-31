@@ -17,11 +17,17 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Entity extracted by the entity extractor
+ * An entity mention found in a document.
+ * The /entities endpoint returns a collection of entities. Each
+ * entity is uniquely identified by its representation in the text
+ * (the {@code }mention}_ and its entity ID from the knowledge base.
+ * If there is no entity id available, mentions with the same string
+ * are distinguished by type. If there are multiple occurrences of the same
+ * string in the document, they are combined, and counted with the {@code count} field.
  */
 public final class Entity {
 
-    private final int indocChainId;
+    private final Integer indocChainId;
     private final String type;
     private final String mention;
     private final String normalized;
@@ -37,8 +43,9 @@ public final class Entity {
      * @param count mention count
      * @param entityId if the entity was linked, the ID from the knowledge base.
      */
+    @Deprecated
     public Entity(
-            int indocChainId,
+            Integer indocChainId,
             String type,
             String mention,
             String normalized,
@@ -54,10 +61,34 @@ public final class Entity {
     }
 
     /**
+     * constructor for {@code Entity}
+     * @param type entity type
+     * @param mention mention text
+     * @param normalized normalized mention text
+     * @param count mention count
+     * @param entityId if the entity was linked, the ID from the knowledge base.
+     */
+    public Entity(
+            String type,
+            String mention,
+            String normalized,
+            int count,
+            String entityId
+    ) {
+        this.indocChainId = null;
+        this.type = type;
+        this.mention = mention;
+        this.normalized = normalized;
+        this.count = count;
+        this.entityId = entityId;
+    }
+
+    /**
      * get the in-document entity chain id 
      * @return the id
      */
-    public int getIndocChainId() {
+    @Deprecated
+    public Integer getIndocChainId() {
         return indocChainId;
     }
 
@@ -100,7 +131,7 @@ public final class Entity {
     @Override
     public int hashCode() {
         int result;
-        result = indocChainId;
+        result = indocChainId != null ? indocChainId.hashCode() : 0;
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (mention != null ? mention.hashCode() : 0);
         result = 31 * result + (normalized != null ? normalized.hashCode() : 0);
@@ -121,7 +152,7 @@ public final class Entity {
         }
 
         Entity that = (Entity) o;
-        return indocChainId == that.getIndocChainId()
+        return indocChainId != null ? indocChainId.equals(that.getIndocChainId()) : that.indocChainId == null
                 && type != null ? type.equals(that.getType()) : that.type == null
                 && mention != null ? mention.equals(that.getMention()) : that.mention == null
                 && normalized != null ? normalized.equals(that.getNormalized()) : that.normalized == null
