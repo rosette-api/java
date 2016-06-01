@@ -17,7 +17,7 @@
 package com.basistech.rosette.apimodel;
 
 /**
- * Entity linked against a knowledge base (default is Wikipedia)
+ * EntityMention linked against a knowledge base (default is Wikipedia)
  */
 @Deprecated
 public final class LinkedEntity {

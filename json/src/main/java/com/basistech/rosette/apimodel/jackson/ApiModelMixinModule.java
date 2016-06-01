@@ -22,7 +22,7 @@ import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.ConstantsResponse;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
-import com.basistech.rosette.apimodel.Entity;
+import com.basistech.rosette.apimodel.EntityMention;
 import com.basistech.rosette.apimodel.EntitySentiment;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InfoResponse;
@@ -59,6 +59,7 @@ import com.basistech.rosette.apimodel.jackson.batch.BatchRequestItemMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchRequestMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchResponseMixin;
 import com.basistech.util.jackson.EnumModule;
+import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
 
@@ -72,7 +73,7 @@ public class ApiModelMixinModule extends EnumModule {
         super();
     }
 
-    public void setupModule(SetupContext context) {
+    public void setupModule(Module.SetupContext context) {
         super.setupModule(context);
         context.setMixInAnnotations(Response.class, ResponseMixin.class);
         context.setMixInAnnotations(Label.class, LabelMixin.class);
@@ -83,7 +84,7 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(EntitiesResponse.class, EntityResponseMixin.class);
         context.setMixInAnnotations(EntitySentiment.class, EntitySentimentMixin.class);
         context.setMixInAnnotations(ErrorResponse.class, ErrorResponseMixin.class);
-        context.setMixInAnnotations(Entity.class, EntityMixin.class);
+        context.setMixInAnnotations(EntityMention.class, EntityMentionMixin.class);
         context.setMixInAnnotations(InfoResponse.class, InfoResponseMixin.class);
         context.setMixInAnnotations(LanguageDetectionResult.class, LanguageDetectionResultMixin.class);
         context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);

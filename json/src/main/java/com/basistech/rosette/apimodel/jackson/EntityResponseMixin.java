@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.Entity;
+import com.basistech.rosette.apimodel.EntityMention;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -25,7 +25,7 @@ import java.util.List;
 public class EntityResponseMixin extends BaseMixin {
     @JsonCreator
     public EntityResponseMixin(
-            @JsonProperty("entities") List<Entity> entities
+            @JsonProperty("entities") List<EntityMention> entities
     ) {
         //
     }
