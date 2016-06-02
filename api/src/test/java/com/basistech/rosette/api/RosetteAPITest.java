@@ -113,10 +113,6 @@ public class RosetteAPITest extends AbstractTest {
                                     .withBody("Invalid path; '//'")
                                     .withStatusCode(404)
                     );
-            mockServer.when(HttpRequest.request().withPath("^(?!//).+"), Times.exactly(1)).respond(HttpResponse.response()
-                    .withHeader("Content-Type", "application/json")
-                    .withBody(INFO_REPONSE, StandardCharsets.UTF_8)
-                    .withStatusCode(200));
             if (responseStr.length() > 200) {  // test gzip if response is somewhat big
                 mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
