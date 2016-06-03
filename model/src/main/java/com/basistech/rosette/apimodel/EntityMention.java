@@ -69,6 +69,8 @@ public final class EntityMention {
      * @param mention mention text
      * @param normalized normalized mention text
      * @param entityId if the entity was linked, the ID from the knowledge base.
+     * @param startOffset the offset, in UTF-16 characters, of the mention in the original text
+     * @param endOffset the offset, in UTF-16 characters, of the end of the mention in the original text
      */
     public EntityMention(
             String type,
@@ -141,10 +143,16 @@ public final class EntityMention {
         return entityId;
     }
 
+    /**
+     * @return the offset, in UTF-16 characters, of the start of the mention in the text.
+     */
     public Integer getStartOffset() {
         return startOffset;
     }
 
+    /**
+     * @return the offset, in UTF-16 characters, of the end of the mention in the text.
+     */
     public Integer getEndOffset() {
         return endOffset;
     }
