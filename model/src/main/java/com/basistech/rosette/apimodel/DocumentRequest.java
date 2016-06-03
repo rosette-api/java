@@ -323,14 +323,14 @@ public class DocumentRequest<O extends Options> extends Request {
     /**
      * Fluent builder class for {@link DocumentRequest} objects.
      */
-    public static class Builder extends BaseBuilder<DocumentRequest, Options, Builder> {
+    public static class Builder<O extends Options> extends BaseBuilder<DocumentRequest, O, Builder<O>> {
         @Override
-        protected Builder getThis() {
+        protected Builder<O> getThis() {
             return this;
         }
 
         @Override
-        public DocumentRequest build() {
+        public DocumentRequest<O> build() {
             return new DocumentRequest<>(language, genre, content, contentUri, contentType, options);
         }
     }
