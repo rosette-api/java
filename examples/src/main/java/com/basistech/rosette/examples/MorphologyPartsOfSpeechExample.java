@@ -40,7 +40,7 @@ public final class MorphologyPartsOfSpeechExample extends ExampleBase {
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.PARTS_OF_SPEECH,
-                morphologyPartsOfSpeechData, null, null);
+                morphologyPartsOfSpeechData);
         System.out.println(responseToJson(response));
     }
 }
