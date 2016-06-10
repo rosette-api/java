@@ -40,7 +40,7 @@ public final class MorphologyHanReadingsExample extends ExampleBase {
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.HAN_READINGS,
-                morphologyHanReadingsData, null, null);
+                morphologyHanReadingsData);
         System.out.println(responseToJson(response));
     }
 }
