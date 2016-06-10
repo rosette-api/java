@@ -38,8 +38,8 @@ public final class NameTranslationExample extends ExampleBase {
 
     private void run() throws IOException, RosetteAPIException {
         String translatedNameData = "معمر محمد أبو منيار القذاف";
-        NameTranslationRequest request = new NameTranslationRequest.Builder(translatedNameData, LanguageCode.ENGLISH)
-                .build();
+        //NameTranslationRequest request = new NameTranslationRequest.Builder(translatedNameData, LanguageCode.ENGLISH)
+        //.build();
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         rosetteApi.setLanguage(LanguageCode.ENGLISH);
