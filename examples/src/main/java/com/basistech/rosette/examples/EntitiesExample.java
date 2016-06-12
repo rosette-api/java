@@ -39,6 +39,13 @@ public final class EntitiesExample extends ExampleBase {
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         rosetteApi.setLanguage(null + "");
         rosetteApi.setOptions(null);
+        rosetteApi.setGenre("social-media");
+        /*
+        to improve performance, if you don't need the QID, configure an EntitesOptions
+        EntitiesOptions option = new EntitiesOptions(false);
+        rosetteAPi.setOptions(option);
+        */
+
         EntitiesResponse response = rosetteApi.getEntities(entitiesTextData);
         System.out.println(responseToJson(response));
     }
