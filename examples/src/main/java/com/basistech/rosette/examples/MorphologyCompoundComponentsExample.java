@@ -39,7 +39,6 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
         String morphologyCompoundComponentsData = "Rechtsschutzversicherungsgesellschaften";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        rosetteApi.setLanguage(null + "");
         rosetteApi.setOptions(null);
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.COMPOUND_COMPONENTS,
                 morphologyCompoundComponentsData);

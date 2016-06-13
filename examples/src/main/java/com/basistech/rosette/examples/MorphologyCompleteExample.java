@@ -40,7 +40,6 @@ public final class MorphologyCompleteExample extends ExampleBase {
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         rosetteApi.setOptions(null);
-        rosetteApi.setLanguage(null + "");
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.COMPLETE,
                 morphologyCompleteData);
         System.out.println(responseToJson(response));

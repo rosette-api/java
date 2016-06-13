@@ -214,7 +214,6 @@ public class RosetteAPITest extends AbstractTest {
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             api.setOptions(null);
-            api.setLanguage(null+"");
             MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE, request.getContent());
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
@@ -235,7 +234,6 @@ public class RosetteAPITest extends AbstractTest {
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
             api.setOptions(null);
-            api.setLanguage(null+"");
             MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE, new URL(request.getContentUri()));
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
@@ -250,7 +248,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setLanguage(null+"");
             api.setOptions(null);
             EntitiesResponse response = api.getEntities(request.getContent());
             verifyEntity(response);
@@ -271,7 +268,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setLanguage(null+"");
             api.setOptions(null);
             EntitiesResponse response = api.getEntities(new URL(request.getContentUri()));
             verifyEntity(response);
@@ -320,7 +316,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setLanguage(null+"");
             api.setOptions(null);
             CategoriesResponse response = api.getCategories(request.getContent());
             verifyCategory(response);
@@ -342,7 +337,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setLanguage(null+"");
             api.setOptions(null);
             CategoriesResponse response = api.getCategories(new URL(request.getContentUri()));
             verifyCategory(response);
