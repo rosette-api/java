@@ -183,7 +183,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            //LanguageResponse response = api.getLanguage(request.getContent(), null);
             api.setOptions(null);
             LanguageResponse response = api.getLanguage(request.getContent());
             verifyLanguage(response);
@@ -199,7 +198,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            //LanguageResponse response = api.getLanguage(new URL(request.getContentUri()), null);
             api.setOptions(null);
             LanguageResponse response = api.getLanguage(new URL(request.getContentUri()));
             verifyLanguage(response);
@@ -215,8 +213,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            //MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE,
-            //        request.getContent(), null, null);
             api.setOptions(null);
             api.setLanguage(null+"");
             MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE, request.getContent());
@@ -240,8 +236,6 @@ public class RosetteAPITest extends AbstractTest {
         try {
             api.setOptions(null);
             api.setLanguage(null+"");
-            //MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE,
-            //        new URL(request.getContentUri()), null, null);
             MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE, new URL(request.getContentUri()));
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
@@ -258,7 +252,6 @@ public class RosetteAPITest extends AbstractTest {
         try {
             api.setLanguage(null+"");
             api.setOptions(null);
-            //EntitiesResponse response = api.getEntities(request.getContent(), null, null);
             EntitiesResponse response = api.getEntities(request.getContent());
             verifyEntity(response);
         } catch (RosetteAPIException e) {
@@ -278,7 +271,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            //EntitiesResponse response = api.getEntities(new URL(request.getContentUri()), null, null);
             api.setLanguage(null+"");
             api.setOptions(null);
             EntitiesResponse response = api.getEntities(new URL(request.getContentUri()));
@@ -328,7 +320,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            //CategoriesResponse response = api.getCategories(request.getContent(), null, null);
             api.setLanguage(null+"");
             api.setOptions(null);
             CategoriesResponse response = api.getCategories(request.getContent());
@@ -354,7 +345,6 @@ public class RosetteAPITest extends AbstractTest {
             api.setLanguage(null+"");
             api.setOptions(null);
             CategoriesResponse response = api.getCategories(new URL(request.getContentUri()));
-            //CategoriesResponse response = api.getCategories(new URL(request.getContentUri()), null, null);
             verifyCategory(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -371,7 +361,6 @@ public class RosetteAPITest extends AbstractTest {
             api.setLanguage(language);
             api.setOptions(null);
             RelationshipsResponse response = api.getRelationships(request.getContent());
-            //RelationshipsResponse response = api.getRelationships(request.getContent(), language, null);
             verifyRelationships(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -393,7 +382,6 @@ public class RosetteAPITest extends AbstractTest {
             api.setLanguage(language);
             api.setOptions(null);
             RelationshipsResponse response = api.getRelationships(new URL(request.getContentUri()));
-            //RelationshipsResponse response = api.getRelationships(new URL(request.getContentUri()), language, null);
             verifyRelationships(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -410,7 +398,6 @@ public class RosetteAPITest extends AbstractTest {
             api.setOptions(null);
             api.setLanguage(language);
             SentimentResponse response = api.getSentiment(request.getContent());
-            //SentimentResponse response = api.getSentiment(request.getContent(), language, null);
             verifySentiment(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -434,7 +421,6 @@ public class RosetteAPITest extends AbstractTest {
             api.setLanguage(language);
             api.setOptions(null);
             SentimentResponse response = api.getSentiment(new URL(request.getContentUri()));
-            //SentimentResponse response = api.getSentiment(new URL(request.getContentUri()), language, null);
             verifySentiment(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
