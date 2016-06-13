@@ -218,8 +218,7 @@ public class RosetteAPI implements Closeable {
      * @param language String to be converted to LanguageCode
      */
     public void setLanguage(String language) {
-        this.language =  LanguageCode.ISO639IsValid(language) ? LanguageCode.lookupByISO639(language)
-                : LanguageCode.UNKNOWN;
+        this.language =  LanguageCode.lookupByISO639(language);
         apiBuilder.language(this.language);
     }
 
