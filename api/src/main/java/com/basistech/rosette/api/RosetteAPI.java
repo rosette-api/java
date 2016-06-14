@@ -53,7 +53,6 @@ import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
-import org.apache.http.annotation.Immutable;
 import org.apache.http.annotation.ThreadSafe;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -91,10 +90,9 @@ import static java.net.HttpURLConnection.HTTP_OK;
 
 /**
  * You can use the RosetteAPI to access Rosette API endpoints.
- * RosetteAPI is thread-safe and immutable.
+ * RosetteAPI is thread-safe.
  */
 @ThreadSafe
-@Immutable
 public class RosetteAPI implements Closeable {
 
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
