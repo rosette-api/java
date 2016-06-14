@@ -30,8 +30,6 @@ public final class EntityMention {
     private final String normalized;
     private final Integer count;
     private final String entityId;
-    private final Integer startOffset;
-    private final Integer endOffset;
 
     /**
      * constructor for {@code EntityMention}
@@ -49,9 +47,7 @@ public final class EntityMention {
             String mention,
             String normalized,
             Integer count,
-            String entityId,
-            Integer startOffset,
-            Integer endOffset
+            String entityId
     ) {
         this.indocChainId = indocChainId;
         this.type = type;
@@ -59,8 +55,6 @@ public final class EntityMention {
         this.normalized = normalized;
         this.count = count;
         this.entityId = entityId;
-        this.startOffset = startOffset;
-        this.endOffset = endOffset;
     }
 
     /**
@@ -69,25 +63,18 @@ public final class EntityMention {
      * @param mention mention text
      * @param normalized normalized mention text
      * @param entityId if the entity was linked, the ID from the knowledge base.
-     * @param startOffset the offset, in UTF-16 characters, of the mention in the original text
-     * @param endOffset the offset, in UTF-16 characters, of the end of the mention in the original text
      */
     public EntityMention(
             String type,
             String mention,
             String normalized,
-            String entityId,
-            Integer startOffset,
-            Integer endOffset
-
+            String entityId
     ) {
         this.indocChainId = null;
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
         this.entityId = entityId;
-        this.startOffset = startOffset;
-        this.endOffset = endOffset;
         this.count = null;
     }
 
@@ -143,20 +130,6 @@ public final class EntityMention {
         return entityId;
     }
 
-    /**
-     * @return the offset, in UTF-16 characters, of the start of the mention in the text.
-     */
-    public Integer getStartOffset() {
-        return startOffset;
-    }
-
-    /**
-     * @return the offset, in UTF-16 characters, of the end of the mention in the text.
-     */
-    public Integer getEndOffset() {
-        return endOffset;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -171,13 +144,11 @@ public final class EntityMention {
                 && Objects.equals(mention, that.mention)
                 && Objects.equals(normalized, that.normalized)
                 && Objects.equals(count, that.count)
-                && Objects.equals(entityId, that.entityId)
-                && Objects.equals(startOffset, that.startOffset)
-                && Objects.equals(endOffset, that.endOffset);
+                && Objects.equals(entityId, that.entityId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(indocChainId, type, mention, normalized, count, entityId, startOffset, endOffset);
+        return Objects.hash(indocChainId, type, mention, normalized, count, entityId);
     }
 }
