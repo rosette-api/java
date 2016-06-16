@@ -23,13 +23,13 @@ import java.util.List;
  */
 public final class EntitiesResponse extends Response {
 
-    private final List<EntityMention> entities;
+    private final List<Entity> entities;
     
     /**
      * Constructor for {@code EntitiesResponse}
      * @param entities list of extracted entities
      */
-    public EntitiesResponse(List<EntityMention> entities) {
+    public EntitiesResponse(List<Entity> entities) {
         this.entities = entities;
     }
 
@@ -37,7 +37,7 @@ public final class EntitiesResponse extends Response {
      * get the list of extracted entities
      * @return the list of extracted entities
      */
-    public List<EntityMention> getEntities() {
+    public List<Entity> getEntities() {
         return entities;
     }
 

@@ -19,9 +19,9 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class EntityMentionMixin extends BaseMixin {
+public class EntityMixin extends BaseMixin {
     @JsonCreator
-    public EntityMentionMixin(
+    public EntityMixin(
             @JsonProperty("indocChainId") Integer indocChainId,
             @JsonProperty("type") String type,
             @JsonProperty("mention") String mention,

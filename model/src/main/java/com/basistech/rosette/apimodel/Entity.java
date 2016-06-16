@@ -22,7 +22,7 @@ import java.util.Objects;
  * An entity mention found in a document.
  * The /entities endpoint returns a collection of entity mentions.
  */
-public final class EntityMention {
+public final class Entity {
 
     private final Integer indocChainId;
     private final String type;
@@ -32,7 +32,7 @@ public final class EntityMention {
     private final String entityId;
 
     /**
-     * constructor for {@code EntityMention}
+     * constructor for {@code Entity}
      * @param indocChainId in-document entity chain id
      * @param type entity type
      * @param mention mention text
@@ -41,7 +41,7 @@ public final class EntityMention {
      * @param entityId if the entity was linked, the ID from the knowledge base.
      */
     @Deprecated
-    public EntityMention(
+    public Entity(
             Integer indocChainId,
             String type,
             String mention,
@@ -58,24 +58,26 @@ public final class EntityMention {
     }
 
     /**
-     * constructor for {@code EntityMention}
+     * constructor for {@code Entity}
      * @param type entity type
      * @param mention mention text
      * @param normalized normalized mention text
      * @param entityId if the entity was linked, the ID from the knowledge base.
+     * @param count mention count
      */
-    public EntityMention(
+    public Entity(
             String type,
             String mention,
             String normalized,
-            String entityId
+            String entityId,
+            Integer count
     ) {
         this.indocChainId = null;
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
         this.entityId = entityId;
-        this.count = null;
+        this.count = count;
     }
 
     /**
@@ -138,7 +140,7 @@ public final class EntityMention {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityMention that = (EntityMention) o;
+        Entity that = (Entity) o;
         return Objects.equals(indocChainId, that.indocChainId)
                 && Objects.equals(type, that.type)
                 && Objects.equals(mention, that.mention)

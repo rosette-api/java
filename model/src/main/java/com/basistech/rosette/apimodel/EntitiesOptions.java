@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 import java.util.Objects;
 
 /**
- * EntityMention extraction options
+ * Entity extraction options
  */
 public final class EntitiesOptions extends Options {
 

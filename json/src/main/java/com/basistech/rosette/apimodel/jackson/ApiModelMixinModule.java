@@ -22,7 +22,7 @@ import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.ConstantsResponse;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
-import com.basistech.rosette.apimodel.EntityMention;
+import com.basistech.rosette.apimodel.Entity;
 import com.basistech.rosette.apimodel.EntitySentiment;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InfoResponse;
@@ -84,7 +84,7 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(EntitiesResponse.class, EntityResponseMixin.class);
         context.setMixInAnnotations(EntitySentiment.class, EntitySentimentMixin.class);
         context.setMixInAnnotations(ErrorResponse.class, ErrorResponseMixin.class);
-        context.setMixInAnnotations(EntityMention.class, EntityMentionMixin.class);
+        context.setMixInAnnotations(Entity.class, EntityMixin.class);
         context.setMixInAnnotations(InfoResponse.class, InfoResponseMixin.class);
         context.setMixInAnnotations(LanguageDetectionResult.class, LanguageDetectionResultMixin.class);
         context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);

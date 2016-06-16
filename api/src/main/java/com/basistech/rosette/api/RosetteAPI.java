@@ -442,7 +442,7 @@ public class RosetteAPI implements Closeable {
      * @param inputStream Input stream of file.
      * @param contentType the content type of the data (e.g. text/html)
      * @param language    Language of input if known (see {@link LanguageCode}), or null.
-     * @param options     EntityMention options.
+     * @param options     Entity options.
      * @return EntitiesResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
@@ -471,7 +471,7 @@ public class RosetteAPI implements Closeable {
      *
      * @param url      URL containing the data.
      * @param language Language of input if known (see {@link LanguageCode}), or null.
-     * @param options  EntityMention options.
+     * @param options  Entity options.
      * @return EntitiesResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
@@ -497,7 +497,7 @@ public class RosetteAPI implements Closeable {
      *
      * @param content  String containing the data.
      * @param language Language of input if known (see {@link LanguageCode}), or null.
-     * @param options  EntityMention options.
+     * @param options  Entity options.
      * @return EntitiesResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
