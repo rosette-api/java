@@ -63,19 +63,21 @@ public final class EntityMention {
      * @param mention mention text
      * @param normalized normalized mention text
      * @param entityId if the entity was linked, the ID from the knowledge base.
+     * @param count mention count
      */
     public EntityMention(
             String type,
             String mention,
             String normalized,
-            String entityId
+            String entityId,
+            Integer count
     ) {
         this.indocChainId = null;
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
         this.entityId = entityId;
-        this.count = null;
+        this.count = count;
     }
 
     /**
@@ -115,7 +117,6 @@ public final class EntityMention {
      * get the mention count 
      * @return the mention count
      */
-    @Deprecated
     public Integer getCount() {
         return count;
     }

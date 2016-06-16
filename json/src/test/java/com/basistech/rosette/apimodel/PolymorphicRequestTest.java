@@ -33,19 +33,16 @@ public class PolymorphicRequestTest extends Assert {
 
     @Test
     public void testRequestTypes() throws Exception {
-        String json = "{\"content\": \"what is my type\", \"type\": \"DocumentRequest\"}";
-        Request request = mapper.readValue(json, Request.class);
+        String json = "{\"content\": \"what is my type\"}";
+        Request request = mapper.readValue(json, DocumentRequest.class);
         assertTrue(request instanceof DocumentRequest);
 
-        String serialized = mapper.writeValueAsString(request);
-        assertTrue(serialized.contains("\"DocumentRequest\""));
-
-        json = "{\"name1\": {\"text\": \"Joe\"}, \"name2\": {\"text\": \"Geo\"}, \"type\": \"NameSimilarityRequest\"}";
-        request = mapper.readValue(json, Request.class);
+        json = "{\"name1\": {\"text\": \"Joe\"}, \"name2\": {\"text\": \"Geo\"}}";
+        request = mapper.readValue(json, NameSimilarityRequest.class);
         assertTrue(request instanceof NameSimilarityRequest);
 
-        json = "{\"name\": \"Joe\", \"targetLanguage\": \"ara\", \"type\": \"NameTranslationRequest\"}";
-        request = mapper.readValue(json, Request.class);
+        json = "{\"name\": \"Joe\", \"targetLanguage\": \"ara\"}";
+        request = mapper.readValue(json, NameTranslationRequest.class);
         assertTrue(request instanceof NameTranslationRequest);
 
     }

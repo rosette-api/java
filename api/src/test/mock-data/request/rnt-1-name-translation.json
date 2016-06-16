@@ -1,6 +1,5 @@
 {
-  "type": "NameTranslationRequest",
-  "entityType": "PERSON", 
+  "entityType": "PERSON",
   "name": "毛泽东", 
   "sourceLanguageOfOrigin": "zho", 
   "sourceLanguageOfUse": "zho", 
