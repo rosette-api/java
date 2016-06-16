@@ -22,7 +22,7 @@ import java.util.Objects;
  * An entity mention found in a document.
  * The /entities endpoint returns a collection of entity mentions.
  */
-public final class Entity {
+public final class EntityMention {
 
     private final Integer indocChainId;
     private final String type;
@@ -32,7 +32,7 @@ public final class Entity {
     private final String entityId;
 
     /**
-     * constructor for {@code Entity}
+     * constructor for {@code EntityMention}
      * @param indocChainId in-document entity chain id
      * @param type entity type
      * @param mention mention text
@@ -41,7 +41,7 @@ public final class Entity {
      * @param entityId if the entity was linked, the ID from the knowledge base.
      */
     @Deprecated
-    public Entity(
+    public EntityMention(
             Integer indocChainId,
             String type,
             String mention,
@@ -58,14 +58,14 @@ public final class Entity {
     }
 
     /**
-     * constructor for {@code Entity}
+     * constructor for {@code EntityMention}
      * @param type entity type
      * @param mention mention text
      * @param normalized normalized mention text
      * @param entityId if the entity was linked, the ID from the knowledge base.
      * @param count mention count
      */
-    public Entity(
+    public EntityMention(
             String type,
             String mention,
             String normalized,
@@ -139,7 +139,7 @@ public final class Entity {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Entity that = (Entity) o;
+        EntityMention that = (EntityMention) o;
         return Objects.equals(indocChainId, that.indocChainId)
                 && Objects.equals(type, that.type)
                 && Objects.equals(mention, that.mention)
