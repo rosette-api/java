@@ -127,7 +127,6 @@ public class RosetteAPI implements Closeable {
     private LanguageCode language;
     private Options options;
     private String genre;
-    private DocumentRequest.Builder apiBuilder;
     private ObjectMapper mapper;
     private CloseableHttpClient httpClient;
     private List<Header> customHeaders;
@@ -163,7 +162,6 @@ public class RosetteAPI implements Closeable {
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
         customHeaders = new ArrayList<>();
         initHttpClient();
-        apiBuilder = new DocumentRequest.Builder();
         checkVersionCompatibility();
     }
 
@@ -207,7 +205,6 @@ public class RosetteAPI implements Closeable {
      */
     public void setLanguage(LanguageCode language) {
         this.language = language;
-        apiBuilder.language(language);
     }
 
     /**
@@ -217,7 +214,6 @@ public class RosetteAPI implements Closeable {
      */
     public void setLanguage(String language) {
         this.language =  LanguageCode.lookupByISO639(language);
-        apiBuilder.language(this.language);
     }
 
     /**
@@ -236,7 +232,6 @@ public class RosetteAPI implements Closeable {
      */
     public void setGenre(String genre) {
         this.genre = genre;
-        apiBuilder.genre(genre);
     }
 
     /**
@@ -255,7 +250,6 @@ public class RosetteAPI implements Closeable {
      */
     public void setOptions(Options o) {
         this.options = o;
-        apiBuilder.options(o);
     }
 
     /**
@@ -361,27 +355,10 @@ public class RosetteAPI implements Closeable {
      * @return the response.
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
-     *
-     * @deprecated replaced by getNameTranslation(String)
      */
-    @Deprecated
     public NameTranslationResponse getNameTranslation(NameTranslationRequest request)
             throws RosetteAPIException, IOException {
         return sendPostRequest(request, urlBase + NAME_TRANSLATION_SERVICE_PATH, NameTranslationResponse.class);
-    }
-
-    /**
-     * Translates a name into the target language specified by the API object.
-     *
-     * @param content Name to be translated.
-     *
-     * @return translated name
-     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
-     * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
-     */
-    public NameTranslationResponse getNameTranslation(String content) throws RosetteAPIException, IOException {
-        apiBuilder.content(content);
-        return sendPostRequest(apiBuilder.build(), urlBase + NAME_TRANSLATION_SERVICE_PATH, NameTranslationResponse.class);
     }
 
     /**
@@ -420,8 +397,9 @@ public class RosetteAPI implements Closeable {
      */
     public LanguageResponse getLanguage(InputStream inputStream, String contentType) throws RosetteAPIException, IOException {
         byte[]  bytes = getBytes(inputStream);
-        apiBuilder.contentBytes(bytes, contentType);
-        return sendPostRequest(apiBuilder.build(), urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
+        Request request = new DocumentRequest.Builder().contentBytes(bytes, contentType)
+                .options(options).build();
+        return sendPostRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
@@ -456,8 +434,11 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
     public LanguageResponse getLanguage(URL url) throws RosetteAPIException, IOException {
-        apiBuilder.contentUri(url.toString());
-        return sendPostRequest(apiBuilder.build(), urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .contentUri(url.toString())
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
@@ -492,8 +473,9 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
     public LanguageResponse getLanguage(String content) throws RosetteAPIException, IOException {
-        apiBuilder.content(content);
-        return sendPostRequest(apiBuilder.build(), urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
+        Request request = new DocumentRequest.Builder().content(content)
+                .options(options).build();
+        return sendPostRequest(request, urlBase + LANGUAGE_SERVICE_PATH, LanguageResponse.class);
     }
 
     /**
@@ -544,8 +526,12 @@ public class RosetteAPI implements Closeable {
                                             String contentType)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        apiBuilder.contentBytes(bytes, contentType);
-        return sendPostRequest(apiBuilder.build(), urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentBytes(bytes, contentType)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
                 MorphologyResponse.class);
     }
 
@@ -589,8 +575,12 @@ public class RosetteAPI implements Closeable {
      */
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, URL url)
             throws RosetteAPIException, IOException {
-        apiBuilder.contentUri(url.toString());
-        return sendPostRequest(apiBuilder.build(), urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentUri(url.toString())
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
                 MorphologyResponse.class);
     }
 
@@ -634,8 +624,12 @@ public class RosetteAPI implements Closeable {
      */
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, String content)
             throws RosetteAPIException, IOException {
-        apiBuilder.content(content);
-        return sendPostRequest(apiBuilder.build(), urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .content(content)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + MORPHOLOGY_SERVICE_PATH + "/" + morphologicalFeature.toString(),
                 MorphologyResponse.class);
     }
 
@@ -690,8 +684,12 @@ public class RosetteAPI implements Closeable {
     public EntitiesResponse getEntities(InputStream inputStream, String contentType)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        apiBuilder.contentBytes(bytes, contentType);
-        return sendPostRequest(apiBuilder.build(), urlBase + ENTITIES_SERVICE_PATH, EntitiesResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentBytes(bytes, contentType)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntitiesResponse.class);
     }
 
 
@@ -740,8 +738,12 @@ public class RosetteAPI implements Closeable {
      */
     public EntitiesResponse getEntities(URL url)
             throws RosetteAPIException, IOException {
-        apiBuilder.contentUri(url.toString());
-        return sendPostRequest(apiBuilder.build(), urlBase + ENTITIES_SERVICE_PATH, EntitiesResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentUri(url.toString())
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntitiesResponse.class);
     }
 
     /**
@@ -789,8 +791,12 @@ public class RosetteAPI implements Closeable {
      */
     public EntitiesResponse getEntities(String content)
             throws RosetteAPIException, IOException {
-        apiBuilder.content(content);
-        return sendPostRequest(apiBuilder.build(), urlBase + ENTITIES_SERVICE_PATH, EntitiesResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .content(content)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + ENTITIES_SERVICE_PATH, EntitiesResponse.class);
     }
 
     /**
@@ -911,8 +917,12 @@ public class RosetteAPI implements Closeable {
                                             String contentType)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        apiBuilder.contentBytes(bytes, contentType);
-        return sendPostRequest(apiBuilder.build(), urlBase + CATEGORIES_SERVICE_PATH, CategoriesResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentBytes(bytes, contentType)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoriesResponse.class);
     }
 
     /**
@@ -955,8 +965,12 @@ public class RosetteAPI implements Closeable {
      */
     public CategoriesResponse getCategories(URL url)
             throws RosetteAPIException, IOException {
-        apiBuilder.contentUri(url.toString());
-        return sendPostRequest(apiBuilder.build(), urlBase + CATEGORIES_SERVICE_PATH, CategoriesResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentUri(url.toString())
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoriesResponse.class);
     }
 
     /**
@@ -999,8 +1013,12 @@ public class RosetteAPI implements Closeable {
      */
     public CategoriesResponse getCategories(String content)
             throws RosetteAPIException, IOException {
-        apiBuilder.content(content);
-        return sendPostRequest(apiBuilder.build(), urlBase + CATEGORIES_SERVICE_PATH, CategoriesResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .content(content)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + CATEGORIES_SERVICE_PATH, CategoriesResponse.class);
     }
 
     /**
@@ -1058,8 +1076,12 @@ public class RosetteAPI implements Closeable {
      */
     public RelationshipsResponse getRelationships(String content)
             throws RosetteAPIException, IOException {
-        apiBuilder.content(content);
-        return sendPostRequest(apiBuilder.build(), urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .content(content)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
     }
 
     /**
@@ -1123,8 +1145,12 @@ public class RosetteAPI implements Closeable {
                                                   String contentType)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        apiBuilder.contentBytes(bytes, contentType);
-        return sendPostRequest(apiBuilder.build(), urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentBytes(bytes, contentType)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
     }
 
     /**
@@ -1182,8 +1208,12 @@ public class RosetteAPI implements Closeable {
      */
     public RelationshipsResponse getRelationships(URL url)
             throws RosetteAPIException, IOException {
-        apiBuilder.contentUri(url.toString());
-        return sendPostRequest(apiBuilder.build(), urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentUri(url.toString())
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + RELATIONSHIPS_SERVICE_PATH, RelationshipsResponse.class);
     }
 
     /**
@@ -1231,8 +1261,12 @@ public class RosetteAPI implements Closeable {
                                           String contentType)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        apiBuilder.contentBytes(bytes, contentType);
-        return sendPostRequest(apiBuilder.build(), urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentBytes(bytes, contentType)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -1273,8 +1307,12 @@ public class RosetteAPI implements Closeable {
      */
     public SentimentResponse getSentiment(URL url)
             throws RosetteAPIException, IOException {
-        apiBuilder.contentUri(url.toString());
-        return sendPostRequest(apiBuilder.build(), urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentUri(url.toString())
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -1315,8 +1353,12 @@ public class RosetteAPI implements Closeable {
      */
     public SentimentResponse getSentiment(String content)
             throws RosetteAPIException, IOException {
-        apiBuilder.content(content);
-        return sendPostRequest(apiBuilder.build(), urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .content(content)
+                .options(options)
+                .build();
+        return sendPostRequest(request, urlBase + SENTIMENT_SERVICE_PATH, SentimentResponse.class);
     }
 
     /**
@@ -1355,8 +1397,11 @@ public class RosetteAPI implements Closeable {
     public TokensResponse getTokens(InputStream inputStream, String contentType)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        apiBuilder.contentBytes(bytes, contentType);
-        return sendPostRequest(apiBuilder.build(), urlBase + TOKENS_SERVICE_PATH, TokensResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentBytes(bytes, contentType)
+                .build();
+        return sendPostRequest(request, urlBase + TOKENS_SERVICE_PATH, TokensResponse.class);
     }
 
     /**
@@ -1388,8 +1433,11 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
     public TokensResponse getTokens(URL url) throws RosetteAPIException, IOException {
-        apiBuilder.contentUri(url.toString());
-        return sendPostRequest(apiBuilder.build(), urlBase + TOKENS_SERVICE_PATH, TokensResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentUri(url.toString())
+                .build();
+        return sendPostRequest(request, urlBase + TOKENS_SERVICE_PATH, TokensResponse.class);
     }
 
     /**
@@ -1421,8 +1469,11 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
     public TokensResponse getTokens(String content) throws RosetteAPIException, IOException {
-        apiBuilder.content(content);
-        return sendPostRequest(apiBuilder.build(), urlBase + TOKENS_SERVICE_PATH, TokensResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .content(content)
+                .build();
+        return sendPostRequest(request, urlBase + TOKENS_SERVICE_PATH, TokensResponse.class);
     }
 
     /**
@@ -1463,8 +1514,11 @@ public class RosetteAPI implements Closeable {
                                           String contentType)
             throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
-        apiBuilder.contentBytes(bytes, contentType);
-        return sendPostRequest(apiBuilder.build(), urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentBytes(bytes, contentType)
+                .build();
+        return sendPostRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
     }
 
     /**
@@ -1496,8 +1550,11 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication of JSON serialization/deserialization error.
      */
     public SentencesResponse getSentences(URL url) throws RosetteAPIException, IOException {
-        apiBuilder.contentUri(url.toString());
-        return sendPostRequest(apiBuilder.build(), urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .contentUri(url.toString())
+                .build();
+        return sendPostRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
     }
 
     /**
@@ -1531,8 +1588,11 @@ public class RosetteAPI implements Closeable {
      */
     public SentencesResponse getSentences(String content)
             throws RosetteAPIException, IOException {
-        apiBuilder.content(content);
-        return sendPostRequest(apiBuilder.build(), urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
+        Request request = new DocumentRequest.Builder()
+                .language(language)
+                .content(content)
+                .build();
+        return sendPostRequest(request, urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
     }
 
     /**
