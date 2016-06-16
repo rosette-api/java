@@ -16,29 +16,6 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
-import com.basistech.rosette.apimodel.CategoriesOptions;
-import com.basistech.rosette.apimodel.EntitiesOptions;
-import com.basistech.rosette.apimodel.LanguageOptions;
-import com.basistech.rosette.apimodel.MorphologyOptions;
-import com.basistech.rosette.apimodel.RelationshipsOptions;
-import com.basistech.rosette.apimodel.SentimentOptions;
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = CategoriesOptions.class, name = "CategoriesOptions"),
-        @JsonSubTypes.Type(value = EntitiesOptions.class, name = "EntitiesOptions"),
-        @JsonSubTypes.Type(value = LanguageOptions.class, name = "LanguageOptions"),
-        @JsonSubTypes.Type(value = MorphologyOptions.class, name = "MorphologyOptions"),
-        @JsonSubTypes.Type(value = RelationshipsOptions.class, name = "RelationshipsOptions"),
-        @JsonSubTypes.Type(value = SentimentOptions.class, name = "SentimentOptions")
-    })
 public abstract class OptionsMixin extends BaseMixin {
     //
 }
