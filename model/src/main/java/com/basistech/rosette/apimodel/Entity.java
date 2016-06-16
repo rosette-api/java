@@ -117,7 +117,6 @@ public final class Entity {
      * get the mention count 
      * @return the mention count
      */
-    @Deprecated
     public Integer getCount() {
         return count;
     }
