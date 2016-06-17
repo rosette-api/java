@@ -45,7 +45,10 @@ public final class SentimentExample extends ExampleBase {
         File file = createTempDataFile(sentimentFileFata);
         FileInputStream inputStream = new FileInputStream(file);
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
         SentimentResponse response = rosetteApi.getSentiment(inputStream, "text/html");
         inputStream.close();
         System.out.println(responseToJson(response));

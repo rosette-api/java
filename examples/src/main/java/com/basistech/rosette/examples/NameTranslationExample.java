@@ -41,7 +41,10 @@ public final class NameTranslationExample extends ExampleBase {
         NameTranslationRequest request = new NameTranslationRequest.Builder(translatedNameData, LanguageCode.ENGLISH)
                 .build();
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
         NameTranslationResponse response = rosetteApi.getNameTranslation(request);
         System.out.println(responseToJson(response));
     }

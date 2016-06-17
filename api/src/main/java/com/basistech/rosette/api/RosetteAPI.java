@@ -71,10 +71,7 @@ import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -165,6 +162,25 @@ public class RosetteAPI implements Closeable {
         checkVersionCompatibility();
     }
 
+    private RosetteAPI(String key, String alternateUrl, int failureRetries,
+                       LanguageCode language, String genre, Options options)
+                        throws IOException, RosetteAPIException {
+        Objects.requireNonNull(alternateUrl, "alternateUrl cannot be null");
+        this.key = key;
+        this.language = language;
+        this.genre = genre;
+        this.options = options;
+        urlBase = alternateUrl;
+        if (urlBase.endsWith("/")) {
+            urlBase = urlBase.substring(0, urlBase.length() - 1);
+        }
+        this.failureRetries = failureRetries;
+        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        customHeaders = new ArrayList<>();
+        initHttpClient();
+        checkVersionCompatibility();
+    }
+
     /**
      * Returns the version of the binding.
      *
@@ -181,39 +197,12 @@ public class RosetteAPI implements Closeable {
     }
 
     /**
-     * Sets the number of retries in case of failure (default is one).
+     * Return failure retries.
      *
-     * @param failureRetries number of retries
+     * @return failure retries
      */
-    public void setFailureRetries(int failureRetries) {
-        this.failureRetries = failureRetries >= 0 ? failureRetries : 1;
-    }
-
-    /**
-     * Sets the Rosette API key.
-     *
-     * @param key Rosette API key
-     */
-    public void setAPIKey(String key) {
-        this.key = key;
-    }
-
-    /**
-     * Sets the language code.
-     *
-     * @param language LanguageCode passed by user
-     */
-    public void setLanguage(LanguageCode language) {
-        this.language = language;
-    }
-
-    /**
-     * Sets the language code.
-     *
-     * @param language String to be converted to LanguageCode
-     */
-    public void setLanguage(String language) {
-        this.language =  LanguageCode.lookupByISO639(language);
+    public int getFailureRetries() {
+        return failureRetries;
     }
 
     /**
@@ -226,30 +215,12 @@ public class RosetteAPI implements Closeable {
     }
 
     /**
-     * Sets the genre.
-     *
-     * @param genre genre (i.e. social-media)
-     */
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    /**
      * Returns the genre.
      *
      * @return genre if being used by API
      */
     public String getGenre() {
         return genre;
-    }
-
-    /**
-     * Sets the options for the specific search.
-     *
-     * @param o object of Options subclass for the particular search
-     */
-    public void setOptions(Options o) {
-        this.options = o;
     }
 
     /**
@@ -1799,5 +1770,84 @@ public class RosetteAPI implements Closeable {
                 .language(language)
                 .genre(genre)
                 .options(options);
+    }
+
+    /**
+     * Base class for builders for the request objects. This class is only useful to construct
+     * specific subtypes, it can't be used to construct 'plain' DocumentRequest objects.
+     * @param <T> The type of the request object.
+     * @param <O> The option class.
+     * @param <B> the builder subclass.
+     */
+    public abstract static class BaseBuilder<T extends RosetteAPI, O extends Options, B extends BaseBuilder<T, O, B>> {
+        protected LanguageCode language;
+        protected String genre;
+        protected O options;
+        protected String key;
+        protected String urlBase = DEFAULT_URL_BASE;
+        protected int failureRetries = 1;
+
+        protected abstract B getThis();
+
+        /**
+         * Set the language of the input.
+         * @param language the language.
+         * @return this
+         */
+        public B language(LanguageCode language) {
+            this.language = language;
+            return getThis();
+        }
+
+        /**
+         * Set the options for this request.
+         * @param options the options.
+         * @return this.
+         */
+        public B options(O options) {
+            this.options = options;
+            return getThis();
+        }
+
+        public B genre(String genre) {
+            this.genre = genre;
+            return getThis();
+        }
+
+        public B apiKey(String key) {
+            this.key = key;
+            return getThis();
+        }
+
+        public B alternateUrl(String url) {
+            this.urlBase = url;
+            return getThis();
+        }
+
+        public B failureRetries(int retries) {
+            this.failureRetries = retries;
+            return getThis();
+        }
+
+        /**
+         * Construct the request object.
+         * @return the request object.
+         */
+        public abstract RosetteAPI build() throws IOException, RosetteAPIException;
+    }
+
+    /**
+     * Fluent builder class for {@link DocumentRequest} objects.
+     */
+    public static class Builder<O extends Options> extends BaseBuilder<RosetteAPI, O, Builder<O>> {
+        @Override
+        protected Builder<O> getThis() {
+            return this;
+        }
+
+        @Override
+        public RosetteAPI build() throws IOException, RosetteAPIException {
+            return new RosetteAPI(key, urlBase, failureRetries, language, genre, options);
+        }
     }
 }

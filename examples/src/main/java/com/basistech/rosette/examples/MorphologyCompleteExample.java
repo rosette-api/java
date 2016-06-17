@@ -38,8 +38,10 @@ public final class MorphologyCompleteExample extends ExampleBase {
     private void run() throws IOException, RosetteAPIException {
         String morphologyCompleteData = "The quick brown fox jumped over the lazy dog. Yes he did.";
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        rosetteApi.setOptions(null);
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.COMPLETE,
                 morphologyCompleteData);
         System.out.println(responseToJson(response));

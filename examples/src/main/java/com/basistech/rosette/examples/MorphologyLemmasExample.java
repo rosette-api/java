@@ -37,8 +37,10 @@ public final class MorphologyLemmasExample extends ExampleBase {
 
     private void run() throws IOException, RosetteAPIException {
         String morphologyLemmasData = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon";
-
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.LEMMAS,
                 morphologyLemmasData);
         System.out.println(responseToJson(response));

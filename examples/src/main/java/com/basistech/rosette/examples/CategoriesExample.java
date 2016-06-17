@@ -39,8 +39,10 @@ public final class CategoriesExample extends ExampleBase {
 
     private void run() throws IOException, RosetteAPIException {
         String categoriesUrlData = "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/";
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        rosetteApi.setOptions(null);
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                .apiKey(getApiKeyFromSystemProperty())
+                                .alternateUrl(getAltUrlFromSystemProperty())
+                                .build();
         CategoriesResponse response = rosetteApi.getCategories(categoriesUrlData);
         System.out.println(responseToJson(response));
     }

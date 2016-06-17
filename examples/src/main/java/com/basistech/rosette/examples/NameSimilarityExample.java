@@ -43,7 +43,10 @@ public final class NameSimilarityExample extends ExampleBase {
         String matchedNameData2 = "迈克尔·杰克逊";
         Name name1 = new Name(matchedNameData1, "PERSON", ISO15924.Zyyy, LanguageCode.ENGLISH);
         Name name2 = new Name(matchedNameData2);
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
         NameSimilarityResponse response = rosetteApi.getNameSimilarity(new NameSimilarityRequest(name1, name2));
         System.out.println(responseToJson(response));
     }
