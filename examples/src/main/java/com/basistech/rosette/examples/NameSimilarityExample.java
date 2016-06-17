@@ -18,7 +18,6 @@ package com.basistech.rosette.examples;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Name;
-import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;

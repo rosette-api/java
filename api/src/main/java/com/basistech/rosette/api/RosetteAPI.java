@@ -1828,7 +1828,7 @@ public class RosetteAPI implements Closeable {
         protected String key;
         protected String urlBase = DEFAULT_URL_BASE;
         protected int failureRetries = 1;
-        protected CloseableHttpClient httpClient = null;
+        protected CloseableHttpClient httpClient;
 
         protected abstract B getThis();
 
