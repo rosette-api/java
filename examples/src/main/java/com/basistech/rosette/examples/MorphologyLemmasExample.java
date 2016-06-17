@@ -41,6 +41,8 @@ public final class MorphologyLemmasExample extends ExampleBase {
                                     .apiKey(getApiKeyFromSystemProperty())
                                     .alternateUrl(getAltUrlFromSystemProperty())
                                     .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.LEMMAS,
                 morphologyLemmasData);
         System.out.println(responseToJson(response));

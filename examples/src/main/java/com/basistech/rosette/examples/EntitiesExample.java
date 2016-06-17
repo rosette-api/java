@@ -45,6 +45,8 @@ public final class EntitiesExample extends ExampleBase {
         EntitiesOptions option = new EntitiesOptions(false);
         rosetteAPi.options(option).build();
         */
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         EntitiesResponse response = rosetteApi.getEntities(entitiesTextData);
         System.out.println(responseToJson(response));
     }

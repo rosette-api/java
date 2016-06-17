@@ -43,6 +43,8 @@ public final class CategoriesExample extends ExampleBase {
                                 .apiKey(getApiKeyFromSystemProperty())
                                 .alternateUrl(getAltUrlFromSystemProperty())
                                 .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         CategoriesResponse response = rosetteApi.getCategories(categoriesUrlData);
         System.out.println(responseToJson(response));
     }

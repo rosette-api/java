@@ -41,6 +41,8 @@ public final class RelationshipsExample extends ExampleBase {
                                     .apiKey(getApiKeyFromSystemProperty())
                                     .alternateUrl(getAltUrlFromSystemProperty())
                                     .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         RelationshipsResponse response = rosetteApi.getRelationships(relationshipsTextData);
         System.out.println(responseToJson(response));
     }

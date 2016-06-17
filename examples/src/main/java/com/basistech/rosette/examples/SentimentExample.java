@@ -49,6 +49,8 @@ public final class SentimentExample extends ExampleBase {
                                     .apiKey(getApiKeyFromSystemProperty())
                                     .alternateUrl(getAltUrlFromSystemProperty())
                                     .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         SentimentResponse response = rosetteApi.getSentiment(inputStream, "text/html");
         inputStream.close();
         System.out.println(responseToJson(response));

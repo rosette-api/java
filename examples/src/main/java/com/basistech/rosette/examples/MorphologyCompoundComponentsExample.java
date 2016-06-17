@@ -41,6 +41,8 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
                                     .apiKey(getApiKeyFromSystemProperty())
                                     .alternateUrl(getAltUrlFromSystemProperty())
                                     .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.COMPOUND_COMPONENTS,
                 morphologyCompoundComponentsData);
         System.out.println(responseToJson(response));

@@ -41,6 +41,8 @@ public final class TokensExample extends ExampleBase {
                                     .apiKey(getApiKeyFromSystemProperty())
                                     .alternateUrl(getAltUrlFromSystemProperty())
                                     .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         TokensResponse response = rosetteApi.getTokens(tokensData);
         System.out.println(responseToJson(response));
     }

@@ -47,7 +47,9 @@ public final class NameSimilarityExample extends ExampleBase {
                                     .apiKey(getApiKeyFromSystemProperty())
                                     .alternateUrl(getAltUrlFromSystemProperty())
                                     .build();
-        NameSimilarityResponse response = rosetteApi.getNameSimilarity(new NameSimilarityRequest(name1, name2));
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
+        NameSimilarityResponse response = rosetteApi.getNameSimilarity(name1, name2);
         System.out.println(responseToJson(response));
     }
 }

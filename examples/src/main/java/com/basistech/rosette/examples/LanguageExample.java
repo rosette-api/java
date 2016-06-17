@@ -41,6 +41,8 @@ public final class LanguageExample extends ExampleBase {
                                     .apiKey(getApiKeyFromSystemProperty())
                                     .alternateUrl(getAltUrlFromSystemProperty())
                                     .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         LanguageResponse response = rosetteApi.getLanguage(languageData);
         System.out.println(responseToJson(response));
     }
