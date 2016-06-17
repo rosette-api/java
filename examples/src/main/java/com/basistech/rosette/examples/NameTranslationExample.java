@@ -17,8 +17,8 @@ package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
-import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
+import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.util.LanguageCode;
 
 import java.io.IOException;

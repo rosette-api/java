@@ -40,7 +40,7 @@ public final class MorphologyLemmasExample extends ExampleBase {
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.LEMMAS,
-                morphologyLemmasData, null, null);
+                morphologyLemmasData);
         System.out.println(responseToJson(response));
     }
 }

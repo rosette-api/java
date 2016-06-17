@@ -39,8 +39,9 @@ public final class MorphologyCompleteExample extends ExampleBase {
         String morphologyCompleteData = "The quick brown fox jumped over the lazy dog. Yes he did.";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        rosetteApi.setOptions(null);
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.COMPLETE,
-                morphologyCompleteData, null, null);
+                morphologyCompleteData);
         System.out.println(responseToJson(response));
     }
 }

@@ -37,7 +37,15 @@ public final class EntitiesExample extends ExampleBase {
         String entitiesTextData = "Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS";
 
         RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        EntitiesResponse response = rosetteApi.getEntities(entitiesTextData, null, null);
+        rosetteApi.setOptions(null);
+        rosetteApi.setGenre("social-media");
+        /*
+        to improve performance, if you don't need the QID, configure an EntitesOptions
+        EntitiesOptions option = new EntitiesOptions(false);
+        rosetteAPi.setOptions(option);
+        */
+
+        EntitiesResponse response = rosetteApi.getEntities(entitiesTextData);
         System.out.println(responseToJson(response));
     }
 }
