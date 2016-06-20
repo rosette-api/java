@@ -37,6 +37,7 @@ public final class BatchRequest {
         private List<BatchRequestItem> items;
         private String batchOutputUrl;
         private String completionCallbackUrl;
+        private String id = UUID.randomUUID().toString();
 
         public BatchRequestBuilder() {
             //
@@ -122,8 +123,19 @@ public final class BatchRequest {
             return this;
         }
 
+        /**
+         * A Unique id for this batch request. This method is for internal use, customers should
+         * not call this and allow the default to be used.
+         * @param id an ID string.
+         * @return this.
+         */
+        public BatchRequestBuilder withId(String id) {
+            this.id = id;
+            return this;
+        }
+
         public BatchRequest build() {
-            return new BatchRequest(UUID.randomUUID().toString(), items, completionCallbackUrl, batchOutputUrl);
+            return new BatchRequest(id, items, completionCallbackUrl, batchOutputUrl);
         }
     }
 
