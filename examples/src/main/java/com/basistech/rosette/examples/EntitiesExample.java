@@ -18,6 +18,7 @@ package com.basistech.rosette.examples;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.EntitiesResponse;
+import com.basistech.rosette.apimodel.EntitiesOptions;
 
 import java.io.IOException;
 
@@ -35,18 +36,19 @@ public final class EntitiesExample extends ExampleBase {
 
     private void run() throws IOException, RosetteAPIException {
         String entitiesTextData = "Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS";
-
         RosetteAPI rosetteApi = new RosetteAPI.Builder()
                                 .apiKey(getApiKeyFromSystemProperty())
                                 .alternateUrl(getAltUrlFromSystemProperty())
                                 .build();
         /*
-        to improve performance, if you don't need the QID, configure an EntitesOptions
-        EntitiesOptions option = new EntitiesOptions(false);
-        rosetteAPi.options(option).build();
+        to improve performance, if you don't need the QID, configure an EntitiesOptions
+        EntitiesOptions option = new EntitiesOptions.Builder()
+                                    .linkEntities(false)
+                                    .build();
+        rosetteApi.options(option);
         */
         //The api object creates an http client, but to provide your own:
-        //api.httpClient(CloseableHttpClient)
+        //rosetteApi.httpClient(CloseableHttpClient)
         EntitiesResponse response = rosetteApi.getEntities(entitiesTextData);
         System.out.println(responseToJson(response));
     }
