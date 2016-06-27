@@ -1877,8 +1877,8 @@ public class RosetteAPI implements Closeable {
          * @return this
          */
         public Builder alternateUrl(String url) {
-            if(url!=null) {
-            this.urlBase = url;
+            if (url != null) {
+                this.urlBase = url;
             }
             return getThis();
         }
