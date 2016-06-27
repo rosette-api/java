@@ -178,7 +178,7 @@ public class RosetteAPI implements Closeable {
      * Constructs a Rosette API instance using the builder syntax.
      *
      * @param key            Rosette API key
-     * @param url   Alternate Rosette API URL
+     * @param urlToCall   Alternate Rosette API URL
      * @param failureRetries Number of times to retry in case of failure; default 1
      * @param language       source language
      * @param genre          genre (ex "social-media")
@@ -186,16 +186,15 @@ public class RosetteAPI implements Closeable {
      * @throws IOException          General IO exception
      * @throws RosetteAPIException  Problem with the API request
      */
-    private RosetteAPI(String key, String url, int failureRetries,
+    private RosetteAPI(String key, String urlToCall, int failureRetries,
                        LanguageCode language, String genre, Options options,
                        CloseableHttpClient httpClient)
                         throws IOException, RosetteAPIException {
-        Objects.requireNonNull(url, "alternateUrl cannot be null");
         this.key = key;
         this.language = language;
         this.genre = genre;
         this.options = options;
-        urlBase = url.trim().replaceAll("/+$", "");
+        urlBase = urlToCall.trim().replaceAll("/+$", "");
         this.failureRetries = failureRetries;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
         customHeaders = new ArrayList<>();
@@ -1878,7 +1877,9 @@ public class RosetteAPI implements Closeable {
          * @return this
          */
         public Builder alternateUrl(String url) {
+            if(url!=null) {
             this.urlBase = url;
+            }
             return getThis();
         }
 
