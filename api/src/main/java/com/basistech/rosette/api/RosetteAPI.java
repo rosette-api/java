@@ -73,7 +73,10 @@ import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -175,7 +178,7 @@ public class RosetteAPI implements Closeable {
      * Constructs a Rosette API instance using the builder syntax.
      *
      * @param key            Rosette API key
-     * @param alternateUrl   Alternate Rosette API URL
+     * @param url   Alternate Rosette API URL
      * @param failureRetries Number of times to retry in case of failure; default 1
      * @param language       source language
      * @param genre          genre (ex "social-media")
@@ -183,19 +186,16 @@ public class RosetteAPI implements Closeable {
      * @throws IOException          General IO exception
      * @throws RosetteAPIException  Problem with the API request
      */
-    private RosetteAPI(String key, String alternateUrl, int failureRetries,
+    private RosetteAPI(String key, String url, int failureRetries,
                        LanguageCode language, String genre, Options options,
                        CloseableHttpClient httpClient)
                         throws IOException, RosetteAPIException {
-        Objects.requireNonNull(alternateUrl, "alternateUrl cannot be null");
+        Objects.requireNonNull(url, "alternateUrl cannot be null");
         this.key = key;
         this.language = language;
         this.genre = genre;
         this.options = options;
-        urlBase = alternateUrl;
-        if (urlBase.endsWith("/")) {
-            urlBase = urlBase.substring(0, urlBase.length() - 1);
-        }
+        urlBase = url.trim().replaceAll("/+$", "");
         this.failureRetries = failureRetries;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
         customHeaders = new ArrayList<>();
@@ -345,7 +345,7 @@ public class RosetteAPI implements Closeable {
      */
     @Deprecated
     public NameSimilarityResponse getNameSimilarity(NameSimilarityRequest request) throws RosetteAPIException, IOException {
-        return sendPostRequest(request, urlBase + NAME_SIMILARITY_SERVICE_PATH, NameSimilarityResponse.class);
+        return getNameSimilarity(request.getName1(), request.getName2());
     }
 
     /**
@@ -1817,27 +1817,27 @@ public class RosetteAPI implements Closeable {
     }
 
     /**
-     * Base class for builders for the request objects.
-     * @param <O> The option class.
-     * @param <B> the builder subclass.
+     * Builder class for the RosetteAPI object.
      */
-    public abstract static class BaseBuilder<O extends Options, B extends BaseBuilder<O, B>> {
+    public static class Builder {
         protected LanguageCode language;
         protected String genre;
-        protected O options;
+        protected Options options;
         protected String key;
         protected String urlBase = DEFAULT_URL_BASE;
         protected int failureRetries = 1;
         protected CloseableHttpClient httpClient;
 
-        protected abstract B getThis();
+        protected Builder getThis() {
+            return this;
+        }
 
         /**
          * Set the language of the input.
          * @param language the language.
          * @return this
          */
-        public B language(LanguageCode language) {
+        public Builder language(LanguageCode language) {
             this.language = language;
             return getThis();
         }
@@ -1847,7 +1847,7 @@ public class RosetteAPI implements Closeable {
          * @param options the options.
          * @return this
          */
-        public B options(O options) {
+        public Builder options(Options options) {
             this.options = options;
             return getThis();
         }
@@ -1857,7 +1857,7 @@ public class RosetteAPI implements Closeable {
          * @param genre genre (ex: social-media)
          * @return this
          */
-        public B genre(String genre) {
+        public Builder genre(String genre) {
             this.genre = genre;
             return getThis();
         }
@@ -1867,7 +1867,7 @@ public class RosetteAPI implements Closeable {
          * @param key apiKey
          * @return this
          */
-        public B apiKey(String key) {
+        public Builder apiKey(String key) {
             this.key = key;
             return getThis();
         }
@@ -1877,7 +1877,7 @@ public class RosetteAPI implements Closeable {
          * @param url alternative url
          * @return this
          */
-        public B alternateUrl(String url) {
+        public Builder alternateUrl(String url) {
             this.urlBase = url;
             return getThis();
         }
@@ -1887,7 +1887,7 @@ public class RosetteAPI implements Closeable {
          * @param retries number of retries
          * @return this
          */
-        public B failureRetries(int retries) {
+        public Builder failureRetries(int retries) {
             this.failureRetries = retries;
             return getThis();
         }
@@ -1897,28 +1897,15 @@ public class RosetteAPI implements Closeable {
          * @param client CloseableHttpClient
          * @return this
          */
-        public B httpClient(CloseableHttpClient client) {
+        public Builder httpClient(CloseableHttpClient client) {
             this.httpClient = client;
             return getThis();
         }
 
         /**
-         * Construct the request object.
-         * @return the request object.
+         * Construct the api object.
+         * @return the api object.
          */
-        public abstract RosetteAPI build() throws IOException, RosetteAPIException;
-    }
-
-    /**
-     * Fluent builder class for {@link DocumentRequest} objects.
-     */
-    public static class Builder<O extends Options> extends BaseBuilder<O, Builder<O>> {
-        @Override
-        protected Builder<O> getThis() {
-            return this;
-        }
-
-        @Override
         public RosetteAPI build() throws IOException, RosetteAPIException {
             return new RosetteAPI(key, urlBase, failureRetries, language, genre, options, httpClient);
         }

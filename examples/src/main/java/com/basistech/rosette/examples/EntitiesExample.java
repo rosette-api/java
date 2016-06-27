@@ -18,7 +18,7 @@ package com.basistech.rosette.examples;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.EntitiesResponse;
-import com.basistech.rosette.apimodel.EntitiesOptions;
+//import com.basistech.rosette.apimodel.EntitiesOptions;
 
 import java.io.IOException;
 
