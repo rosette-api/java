@@ -18,7 +18,6 @@ package com.basistech.rosette.examples;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.EntitiesResponse;
-//import com.basistech.rosette.apimodel.EntitiesOptions;
 
 import java.io.IOException;
 
@@ -40,15 +39,6 @@ public final class EntitiesExample extends ExampleBase {
                                 .apiKey(getApiKeyFromSystemProperty())
                                 .alternateUrl(getAltUrlFromSystemProperty())
                                 .build();
-        /*
-        to improve performance, if you don't need the QID, configure an EntitiesOptions
-        EntitiesOptions option = new EntitiesOptions.Builder()
-                                    .linkEntities(false)
-                                    .build();
-        rosetteApi.options(option);
-        */
-        //The api object creates an http client, but to provide your own:
-        //rosetteApi.httpClient(CloseableHttpClient)
         EntitiesResponse response = rosetteApi.getEntities(entitiesTextData);
         System.out.println(responseToJson(response));
     }
