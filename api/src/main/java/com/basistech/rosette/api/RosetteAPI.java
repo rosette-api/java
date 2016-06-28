@@ -56,6 +56,7 @@ import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.annotation.Immutable;
 import org.apache.http.annotation.ThreadSafe;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -188,7 +189,7 @@ public class RosetteAPI implements Closeable {
      */
     private RosetteAPI(String key, String urlToCall, int failureRetries,
                        LanguageCode language, String genre, Options options,
-                       CloseableHttpClient httpClient)
+                       HttpClient httpClient)
                         throws IOException, RosetteAPIException {
         this.key = key;
         this.language = language;
@@ -198,14 +199,28 @@ public class RosetteAPI implements Closeable {
         this.failureRetries = failureRetries;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
         customHeaders = new ArrayList<>();
+        setUpHttpClient(httpClient);
+    }
+
+    /**
+     * @param httpClient user provided http client
+     * @throws IOException
+     */
+    private void setUpHttpClient(HttpClient httpClient) throws IOException {
         if (httpClient == null) {
             initHttpClient();
         } else {
-            this.httpClient = httpClient;
+            try {
+                this.httpClient = (CloseableHttpClient) httpClient;
+            } catch (Exception e) {
+                initHttpClient();
+            }
         }
-        checkVersionCompatibility();
+        CloseableHttpResponse response = this.httpClient.execute(new HttpPost(urlBase));
+        if (response != null) {
+            response.close();
+        }
     }
-
     /**
      * Returns the version of the binding.
      *
@@ -1825,7 +1840,7 @@ public class RosetteAPI implements Closeable {
         protected String key;
         protected String urlBase = DEFAULT_URL_BASE;
         protected int failureRetries = 1;
-        protected CloseableHttpClient httpClient;
+        protected HttpClient httpClient;
 
         protected Builder getThis() {
             return this;
@@ -1898,7 +1913,7 @@ public class RosetteAPI implements Closeable {
          * @param client CloseableHttpClient
          * @return this
          */
-        public Builder httpClient(CloseableHttpClient client) {
+        public Builder httpClient(HttpClient client) {
             this.httpClient = client;
             return getThis();
         }
