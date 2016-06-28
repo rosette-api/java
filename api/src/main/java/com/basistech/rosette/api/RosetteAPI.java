@@ -132,7 +132,7 @@ public class RosetteAPI implements Closeable {
     private Options options;
     private String genre;
     private ObjectMapper mapper;
-    private CloseableHttpClient httpClient;
+    private HttpClient httpClient;
     private List<Header> customHeaders;
 
     /**
@@ -210,15 +210,13 @@ public class RosetteAPI implements Closeable {
         if (httpClient == null) {
             initHttpClient();
         } else {
-            try {
-                this.httpClient = (CloseableHttpClient) httpClient;
-            } catch (Exception e) {
-                initHttpClient();
-            }
+            this.httpClient = httpClient;
         }
-        CloseableHttpResponse response = this.httpClient.execute(new HttpPost(urlBase));
+        HttpResponse response = this.httpClient.execute(new HttpPost(urlBase));
         if (response != null) {
-            response.close();
+            if (response instanceof CloseableHttpResponse) {
+                ((CloseableHttpResponse)response).close();
+            }
         }
     }
     /**
@@ -1625,7 +1623,7 @@ public class RosetteAPI implements Closeable {
         RosetteAPIException lastException = null;
         int numRetries = this.failureRetries;
         while (numRetries-- > 0) {
-            CloseableHttpResponse response = null;
+            HttpResponse response = null;
             try {
                 response = httpClient.execute(post);
 
@@ -1645,7 +1643,9 @@ public class RosetteAPI implements Closeable {
                 }
             } finally {
                 if (response != null) {
-                    response.close();
+                    if (response instanceof CloseableHttpResponse) {
+                        ((CloseableHttpResponse)response).close();
+                    }
                 }
             }
         }
@@ -1820,7 +1820,9 @@ public class RosetteAPI implements Closeable {
 
     @Override
     public void close() throws IOException {
-        httpClient.close();
+        if (httpClient instanceof CloseableHttpClient) {
+            ((CloseableHttpClient)httpClient).close();
+        }
     }
 
     private DocumentRequest.BaseBuilder getDocumentRequestBuilder() throws IOException {
