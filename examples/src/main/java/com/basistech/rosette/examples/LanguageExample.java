@@ -37,8 +37,12 @@ public final class LanguageExample extends ExampleBase {
     private void run() throws IOException, RosetteAPIException {
         String languageData = "Por favor Señorita, says the man.";
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        rosetteApi.setOptions(null);
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         LanguageResponse response = rosetteApi.getLanguage(languageData);
         System.out.println(responseToJson(response));
     }

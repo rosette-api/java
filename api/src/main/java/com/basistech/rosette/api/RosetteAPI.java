@@ -28,6 +28,7 @@ import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
+import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
@@ -53,7 +54,9 @@ import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
+import org.apache.http.annotation.Immutable;
 import org.apache.http.annotation.ThreadSafe;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -90,8 +93,9 @@ import static java.net.HttpURLConnection.HTTP_OK;
 
 /**
  * You can use the RosetteAPI to access Rosette API endpoints.
- * RosetteAPI is thread-safe.
+ * RosetteAPI is thread-safe and immutable.
  */
+@Immutable
 @ThreadSafe
 public class RosetteAPI implements Closeable {
 
@@ -128,7 +132,7 @@ public class RosetteAPI implements Closeable {
     private Options options;
     private String genre;
     private ObjectMapper mapper;
-    private CloseableHttpClient httpClient;
+    private HttpClient httpClient;
     private List<Header> customHeaders;
 
     /**
@@ -137,7 +141,10 @@ public class RosetteAPI implements Closeable {
      * @param key Rosette API key
      * @throws RosetteAPIException If the service is not compatible with the version of the binding.
      * @throws IOException         General IO exception
+     *
+     * @deprecated use RosetteAPI.Builder class
      */
+    @Deprecated
     public RosetteAPI(String key) throws IOException, RosetteAPIException {
         this(key, DEFAULT_URL_BASE);
     }
@@ -150,7 +157,10 @@ public class RosetteAPI implements Closeable {
      * @param alternateUrl Alternate Rosette API URL
      * @throws RosetteAPIException If the service is not compatible with the version of the binding.
      * @throws IOException         General IO exception
+     *
+     * @deprecated use RosetteAPI.Builder class
      */
+    @Deprecated
     public RosetteAPI(String key, String alternateUrl) throws IOException, RosetteAPIException {
         Objects.requireNonNull(alternateUrl, "alternateUrl cannot be null");
         this.key = key;
@@ -165,6 +175,50 @@ public class RosetteAPI implements Closeable {
         checkVersionCompatibility();
     }
 
+    /**
+     * Constructs a Rosette API instance using the builder syntax.
+     *
+     * @param key            Rosette API key
+     * @param urlToCall   Alternate Rosette API URL
+     * @param failureRetries Number of times to retry in case of failure; default 1
+     * @param language       source language
+     * @param genre          genre (ex "social-media")
+     * @param options        options for the request
+     * @throws IOException          General IO exception
+     * @throws RosetteAPIException  Problem with the API request
+     */
+    private RosetteAPI(String key, String urlToCall, int failureRetries,
+                       LanguageCode language, String genre, Options options,
+                       HttpClient httpClient)
+                        throws IOException, RosetteAPIException {
+        this.key = key;
+        this.language = language;
+        this.genre = genre;
+        this.options = options;
+        urlBase = urlToCall.trim().replaceAll("/+$", "");
+        this.failureRetries = failureRetries;
+        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        customHeaders = new ArrayList<>();
+        setUpHttpClient(httpClient);
+    }
+
+    /**
+     * @param httpClient user provided http client
+     * @throws IOException
+     */
+    private void setUpHttpClient(HttpClient httpClient) throws IOException {
+        if (httpClient == null) {
+            initHttpClient();
+        } else {
+            this.httpClient = httpClient;
+        }
+        HttpResponse response = this.httpClient.execute(new HttpPost(urlBase));
+        if (response != null) {
+            if (response instanceof CloseableHttpResponse) {
+                ((CloseableHttpResponse)response).close();
+            }
+        }
+    }
     /**
      * Returns the version of the binding.
      *
@@ -181,39 +235,12 @@ public class RosetteAPI implements Closeable {
     }
 
     /**
-     * Sets the number of retries in case of failure (default is one).
+     * Return failure retries.
      *
-     * @param failureRetries number of retries
+     * @return failure retries
      */
-    public void setFailureRetries(int failureRetries) {
-        this.failureRetries = failureRetries >= 0 ? failureRetries : 1;
-    }
-
-    /**
-     * Sets the Rosette API key.
-     *
-     * @param key Rosette API key
-     */
-    public void setAPIKey(String key) {
-        this.key = key;
-    }
-
-    /**
-     * Sets the language code.
-     *
-     * @param language LanguageCode passed by user
-     */
-    public void setLanguage(LanguageCode language) {
-        this.language = language;
-    }
-
-    /**
-     * Sets the language code.
-     *
-     * @param language String to be converted to LanguageCode
-     */
-    public void setLanguage(String language) {
-        this.language =  LanguageCode.lookupByISO639(language);
+    public int getFailureRetries() {
+        return failureRetries;
     }
 
     /**
@@ -226,30 +253,12 @@ public class RosetteAPI implements Closeable {
     }
 
     /**
-     * Sets the genre.
-     *
-     * @param genre genre (i.e. social-media)
-     */
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    /**
      * Returns the genre.
      *
      * @return genre if being used by API
      */
     public String getGenre() {
         return genre;
-    }
-
-    /**
-     * Sets the options for the specific search.
-     *
-     * @param o object of Options subclass for the particular search
-     */
-    public void setOptions(Options o) {
-        this.options = o;
     }
 
     /**
@@ -339,12 +348,29 @@ public class RosetteAPI implements Closeable {
     /**
      * Matches 2 names and returns a score in NameMatchingResponse.
      *
-     * @param request request object with the names.
+     * @param request request
+     * @return response
+     * @throws RosetteAPIException Rosette specific exception
+     * @throws IOException         General IO exception
+     *
+     * @deprecated replaced by {@link #getNameSimilarity(Name, Name) getNameSimilarity}
+     */
+    @Deprecated
+    public NameSimilarityResponse getNameSimilarity(NameSimilarityRequest request) throws RosetteAPIException, IOException {
+        return getNameSimilarity(request.getName1(), request.getName2());
+    }
+
+    /**
+     * Matches 2 names and returns a score in NameMatchingResponse.
+     *
+     * @param nameOne first name
+     * @param nameTwo second name
      * @return response
      * @throws RosetteAPIException Rosette specific exception
      * @throws IOException         General IO exception
      */
-    public NameSimilarityResponse getNameSimilarity(NameSimilarityRequest request) throws RosetteAPIException, IOException {
+    public NameSimilarityResponse getNameSimilarity(Name nameOne, Name nameTwo) throws RosetteAPIException, IOException {
+        NameSimilarityRequest request = new NameSimilarityRequest(nameOne, nameTwo);
         return sendPostRequest(request, urlBase + NAME_SIMILARITY_SERVICE_PATH, NameSimilarityResponse.class);
     }
 
@@ -372,7 +398,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated Replaced by getLanguage(InputStream, String)
+     * @deprecated Replaced by {@link #getLanguage(InputStream, String) getLanguage}
      */
     @Deprecated
     public LanguageResponse getLanguage(InputStream inputStream, String contentType, LanguageOptions options)
@@ -411,7 +437,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated Replaced by getLanguage(URL)
+     * @deprecated Replaced by {@link #getLanguage(URL) getLanguage}
      */
     @Deprecated
     public LanguageResponse getLanguage(URL url, LanguageOptions options) throws RosetteAPIException, IOException {
@@ -447,7 +473,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated Replaced by getLanguage(String)
+     * @deprecated Replaced by {@link #getLanguage(String) getLanguage}
      */
     @Deprecated
     public LanguageResponse getLanguage(String content, LanguageOptions options)
@@ -487,7 +513,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getMorphology(inputStream, contentType, MorphologicalFeature)
+     * @deprecated replaced by {@link #getMorphology(MorphologicalFeature, InputStream, String) getMorphology}
      */
     @Deprecated
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature,
@@ -539,7 +565,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getMorphology(URL, MorphologicalFeature)
+     * @deprecated replaced by {@link #getMorphology(MorphologicalFeature, URL) getMorphology}
      */
     @Deprecated
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, URL url,
@@ -584,7 +610,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getMorphology(String, MorphologicalFeature)
+     * @deprecated replaced by {@link #getMorphology(MorphologicalFeature, String) getMorphology}
      */
     @Deprecated
     public MorphologyResponse getMorphology(MorphologicalFeature morphologicalFeature, String content,
@@ -634,7 +660,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaces by getEntities(InputStream, String)
+     * @deprecated replaces by {@link #getEntities(InputStream, String) getEntities}
      */
     @Deprecated
     public EntitiesResponse getEntities(InputStream inputStream,
@@ -688,7 +714,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getEntities(URL)
+     * @deprecated replaced by {@link #getEntities(URL) getEntities}
      */
     @Deprecated
     public EntitiesResponse getEntities(URL url, LanguageCode language, EntitiesOptions options)
@@ -737,7 +763,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getEntities(String)
+     * @deprecated replaced by {@link #getEntities(String) getEntities}
      */
     @Deprecated
     public EntitiesResponse getEntities(String content, LanguageCode language, EntitiesOptions options)
@@ -782,6 +808,7 @@ public class RosetteAPI implements Closeable {
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
+     *
      * @deprecated Merged into {@link #getEntities(String, LanguageCode, EntitiesOptions)}.
      */
     @Deprecated
@@ -808,6 +835,7 @@ public class RosetteAPI implements Closeable {
      * @return LinkedEntityResponse
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
+     *
      * @deprecated Merged into {@link #getEntities(InputStream, String, LanguageCode, EntitiesOptions)}
      */
     @Deprecated
@@ -856,7 +884,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getCategories(InputStream, String)
+     * @deprecated replaced by {@link #getCategories(InputStream, String) getCategories}
      */
     @Deprecated
     public CategoriesResponse getCategories(InputStream inputStream,
@@ -905,7 +933,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated Replaced by getCategories(URL)
+     * @deprecated Replaced by {@link #getCategories(URL) getCategories}
      */
     @Deprecated
     public CategoriesResponse getCategories(URL url, LanguageCode language, CategoriesOptions options)
@@ -949,7 +977,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getCategories(String)
+     * @deprecated replaced by {@link #getCategories(String) getCategories}
      */
     @Deprecated
     public CategoriesResponse getCategories(String content, LanguageCode language, CategoriesOptions options)
@@ -1001,7 +1029,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getRelationships(String)
+     * @deprecated replaced by {@link #getRelationships(String) getRelationships}
      */
     @Deprecated
     public RelationshipsResponse getRelationships(String content, LanguageCode language, RelationshipsOptions options)
@@ -1015,7 +1043,6 @@ public class RosetteAPI implements Closeable {
     }
 
     /**
-     *
      * Returns each relationship extracted from the input. Request object uses API attributes rather than parameters.
      * <p>
      * The response is a list of extracted relationships. A relationship contains
@@ -1061,7 +1088,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error
      *
-     * @deprecated Replaced by getRelationships(InputStream, String)
+     * @deprecated Replaced by {@link #getRelationships(InputStream, String) getRelationships}
      */
     @Deprecated
     public RelationshipsResponse getRelationships(InputStream inputStream,
@@ -1125,7 +1152,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error
      *
-     * @deprecated replaced getRelationships(URL)
+     * @deprecated replaced {@link #getRelationships(URL) getRelationships}
      */
     @Deprecated
     public RelationshipsResponse getRelationships(URL url, LanguageCode language, RelationshipsOptions options)
@@ -1176,7 +1203,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getSentiment(InputStream, String)
+     * @deprecated replaced by {@link #getSentiment(InputStream, String) getSentiment}
      */
     @Deprecated
     public SentimentResponse getSentiment(InputStream inputStream,
@@ -1224,7 +1251,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getSentiment(URL)
+     * @deprecated replaced by {@link #getSentiment(URL) getSentiment}
      */
     @Deprecated
     public SentimentResponse getSentiment(URL url, LanguageCode language, SentimentOptions options)
@@ -1266,7 +1293,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getSentiment(String)
+     * @deprecated replaced by {@link #getSentiment(String) getSentiment}
      */
     @Deprecated
     public SentimentResponse getSentiment(String content, LanguageCode language, SentimentOptions options)
@@ -1306,7 +1333,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getTokens(InputStream, String)
+     * @deprecated replaced by {@link #getTokens(InputStream, String) getTokens}
      */
     @Deprecated
     public TokensResponse getTokens(InputStream inputStream, String contentType, LanguageCode language)
@@ -1345,7 +1372,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getTokens(URL)
+     * @deprecated replaced by {@link #getTokens(URL) getTokens}
      */
     @Deprecated
     public TokensResponse getTokens(URL url, LanguageCode language) throws RosetteAPIException, IOException {
@@ -1378,7 +1405,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getTokens(String)
+     * @deprecated replaced by {@link #getTokens(String) getTokens}
      */
     @Deprecated
     public TokensResponse getTokens(String content, LanguageCode language) throws RosetteAPIException, IOException {
@@ -1412,7 +1439,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getSentences(InputStream, String)
+     * @deprecated replaced by {@link #getSentences(InputStream, String) getSentences}
      */
     @Deprecated
     public SentencesResponse getSentences(InputStream inputStream,
@@ -1453,7 +1480,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getSentences(URL)
+     * @deprecated replaced by {@link #getSentences(URL) getSentences}
      */
     @Deprecated
     public SentencesResponse getSentences(URL url, LanguageCode language) throws RosetteAPIException, IOException {
@@ -1486,7 +1513,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      *
-     * @deprecated replaced by getSentences(String)
+     * @deprecated replaced by {@link #getSentences(String) getSentences}
      */
     @Deprecated
     public SentencesResponse getSentences(String content, LanguageCode language)
@@ -1596,7 +1623,7 @@ public class RosetteAPI implements Closeable {
         RosetteAPIException lastException = null;
         int numRetries = this.failureRetries;
         while (numRetries-- > 0) {
-            CloseableHttpResponse response = null;
+            HttpResponse response = null;
             try {
                 response = httpClient.execute(post);
 
@@ -1616,7 +1643,9 @@ public class RosetteAPI implements Closeable {
                 }
             } finally {
                 if (response != null) {
-                    response.close();
+                    if (response instanceof CloseableHttpResponse) {
+                        ((CloseableHttpResponse)response).close();
+                    }
                 }
             }
         }
@@ -1791,7 +1820,9 @@ public class RosetteAPI implements Closeable {
 
     @Override
     public void close() throws IOException {
-        httpClient.close();
+        if (httpClient instanceof CloseableHttpClient) {
+            ((CloseableHttpClient)httpClient).close();
+        }
     }
 
     private DocumentRequest.BaseBuilder getDocumentRequestBuilder() throws IOException {
@@ -1799,5 +1830,102 @@ public class RosetteAPI implements Closeable {
                 .language(language)
                 .genre(genre)
                 .options(options);
+    }
+
+    /**
+     * Builder class for the RosetteAPI object.
+     */
+    public static class Builder {
+        protected LanguageCode language;
+        protected String genre;
+        protected Options options;
+        protected String key;
+        protected String urlBase = DEFAULT_URL_BASE;
+        protected int failureRetries = 1;
+        protected HttpClient httpClient;
+
+        protected Builder getThis() {
+            return this;
+        }
+
+        /**
+         * Set the language of the input.
+         * @param language the language.
+         * @return this
+         */
+        public Builder language(LanguageCode language) {
+            this.language = language;
+            return getThis();
+        }
+
+        /**
+         * Set the options for this request.
+         * @param options the options.
+         * @return this
+         */
+        public Builder options(Options options) {
+            this.options = options;
+            return getThis();
+        }
+
+        /**
+         * Set the genre of the request.
+         * @param genre genre (ex: social-media)
+         * @return this
+         */
+        public Builder genre(String genre) {
+            this.genre = genre;
+            return getThis();
+        }
+
+        /**
+         * Set the apiKey for the requests
+         * @param key apiKey
+         * @return this
+         */
+        public Builder apiKey(String key) {
+            this.key = key;
+            return getThis();
+        }
+
+        /**
+         * Sets an alternative url for testing purposes
+         * @param url alternative url
+         * @return this
+         */
+        public Builder alternateUrl(String url) {
+            if (url != null) {
+                this.urlBase = url;
+            }
+            return getThis();
+        }
+
+        /**
+         * Set failure retries, default 1
+         * @param retries number of retries
+         * @return this
+         */
+        public Builder failureRetries(int retries) {
+            this.failureRetries = retries;
+            return getThis();
+        }
+
+        /**
+         * User can provide their own http client
+         * @param client CloseableHttpClient
+         * @return this
+         */
+        public Builder httpClient(HttpClient client) {
+            this.httpClient = client;
+            return getThis();
+        }
+
+        /**
+         * Construct the api object.
+         * @return the api object.
+         */
+        public RosetteAPI build() throws IOException, RosetteAPIException {
+            return new RosetteAPI(key, urlBase, failureRetries, language, genre, options, httpClient);
+        }
     }
 }

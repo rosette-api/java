@@ -18,7 +18,6 @@ package com.basistech.rosette.examples;
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.Name;
-import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
@@ -43,8 +42,13 @@ public final class NameSimilarityExample extends ExampleBase {
         String matchedNameData2 = "迈克尔·杰克逊";
         Name name1 = new Name(matchedNameData1, "PERSON", ISO15924.Zyyy, LanguageCode.ENGLISH);
         Name name2 = new Name(matchedNameData2);
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
-        NameSimilarityResponse response = rosetteApi.getNameSimilarity(new NameSimilarityRequest(name1, name2));
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
+        NameSimilarityResponse response = rosetteApi.getNameSimilarity(name1, name2);
         System.out.println(responseToJson(response));
     }
 }

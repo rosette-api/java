@@ -37,8 +37,12 @@ public final class MorphologyHanReadingsExample extends ExampleBase {
 
     private void run() throws IOException, RosetteAPIException {
         String morphologyHanReadingsData = "北京大学生物系主任办公室内部会议";
-
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.HAN_READINGS,
                 morphologyHanReadingsData);
         System.out.println(responseToJson(response));

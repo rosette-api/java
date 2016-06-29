@@ -119,7 +119,10 @@ public class RosetteAPITest extends AbstractTest {
                     .withBody(INFO_REPONSE, StandardCharsets.UTF_8));
 
             String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
-            api = new RosetteAPI("my-key-123", mockServiceUrl);
+            api = new RosetteAPI.Builder()
+                    .apiKey("my-key-123")
+                    .alternateUrl(mockServiceUrl)
+                    .build();
         }
     }
 
@@ -183,7 +186,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setOptions(null);
             LanguageResponse response = api.getLanguage(request.getContent());
             verifyLanguage(response);
         } catch (RosetteAPIException e) {
@@ -198,7 +200,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setOptions(null);
             LanguageResponse response = api.getLanguage(new URL(request.getContentUri()));
             verifyLanguage(response);
         } catch (RosetteAPIException e) {
@@ -213,7 +214,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setOptions(null);
             MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE, request.getContent());
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
@@ -233,7 +233,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setOptions(null);
             MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE, new URL(request.getContentUri()));
             verifyMorphology(response);
         } catch (RosetteAPIException e) {
@@ -248,7 +247,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setOptions(null);
             EntitiesResponse response = api.getEntities(request.getContent());
             verifyEntity(response);
         } catch (RosetteAPIException e) {
@@ -268,7 +266,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setOptions(null);
             EntitiesResponse response = api.getEntities(new URL(request.getContentUri()));
             verifyEntity(response);
         } catch (RosetteAPIException e) {
@@ -316,7 +313,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setOptions(null);
             CategoriesResponse response = api.getCategories(request.getContent());
             verifyCategory(response);
         } catch (RosetteAPIException e) {
@@ -337,7 +333,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setOptions(null);
             CategoriesResponse response = api.getCategories(new URL(request.getContentUri()));
             verifyCategory(response);
         } catch (RosetteAPIException e) {
@@ -352,9 +347,13 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setLanguage(language);
-            api.setOptions(null);
-            RelationshipsResponse response = api.getRelationships(request.getContent());
+            String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
+            RosetteAPI apiWithLanguage = new RosetteAPI.Builder()
+                                            .apiKey("my-key-123")
+                                            .alternateUrl(mockServiceUrl)
+                                            .language(language)
+                                            .build();
+            RelationshipsResponse response = apiWithLanguage.getRelationships(request.getContent());
             verifyRelationships(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -373,9 +372,13 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setLanguage(language);
-            api.setOptions(null);
-            RelationshipsResponse response = api.getRelationships(new URL(request.getContentUri()));
+            String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
+            RosetteAPI apiWithLanguage = new RosetteAPI.Builder()
+                    .apiKey("my-key-123")
+                    .alternateUrl(mockServiceUrl)
+                    .language(language)
+                    .build();
+            RelationshipsResponse response = apiWithLanguage.getRelationships(new URL(request.getContentUri()));
             verifyRelationships(response);
         } catch (RosetteAPIException e) {
             verifyException(e);
@@ -389,8 +392,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setOptions(null);
-            api.setLanguage(language);
             SentimentResponse response = api.getSentiment(request.getContent());
             verifySentiment(response);
         } catch (RosetteAPIException e) {
@@ -412,8 +413,6 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            api.setLanguage(language);
-            api.setOptions(null);
             SentimentResponse response = api.getSentiment(new URL(request.getContentUri()));
             verifySentiment(response);
         } catch (RosetteAPIException e) {
