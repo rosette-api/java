@@ -54,9 +54,11 @@ import com.basistech.rosette.apimodel.TokensResponse;
 import com.basistech.rosette.apimodel.batch.BatchRequest;
 import com.basistech.rosette.apimodel.batch.BatchRequestItem;
 import com.basistech.rosette.apimodel.batch.BatchResponse;
+import com.basistech.rosette.apimodel.batch.BatchStatusResponse;
 import com.basistech.rosette.apimodel.jackson.batch.BatchRequestItemMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchRequestMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchResponseMixin;
+import com.basistech.rosette.apimodel.jackson.batch.BatchStatusResponseMixin;
 import com.basistech.util.jackson.EnumModule;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -117,6 +119,8 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(BatchRequest.class, BatchRequestMixin.class);
         context.setMixInAnnotations(BatchRequestItem.class, BatchRequestItemMixin.class);
         context.setMixInAnnotations(BatchResponse.class, BatchResponseMixin.class);
+
+        context.setMixInAnnotations(BatchStatusResponse.class, BatchStatusResponseMixin.class);
     }
 
     /**
