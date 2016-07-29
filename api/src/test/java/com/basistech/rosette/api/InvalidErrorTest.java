@@ -32,11 +32,13 @@ public class InvalidErrorTest extends AbstractTest {
                 .respond(HttpResponse.response()
                                 .withBody("Invalid path; '//'")
                                 .withStatusCode(404)
+                                .withHeader("X-RosetteApi-Concurrency", "5")
                 );
         String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest//v1";
         boolean exceptional = false;
         try {
-            new RosetteAPI("my-key-123", mockServiceUrl);
+            RosetteAPI api = new RosetteAPI("my-key-123", mockServiceUrl);
+            api.getLanguage("sample text", null);
         } catch (RosetteAPIException e) {
             exceptional = true;
             assertEquals("invalidErrorResponse", e.getCode());
