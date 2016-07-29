@@ -70,6 +70,7 @@ import org.apache.http.entity.mime.content.AbstractContentBody;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -133,6 +134,7 @@ public class RosetteAPI implements Closeable {
     private ObjectMapper mapper;
     private HttpClient httpClient;
     private List<Header> customHeaders;
+    private int maxSockets = 1;
 
     /**
      * Constructs a Rosette API instance using an API key.
@@ -283,7 +285,10 @@ public class RosetteAPI implements Closeable {
         if (customHeaders.size() > 0) {
             defaultHeaders.addAll(customHeaders);
         }
-        httpClient = HttpClients.custom().setDefaultHeaders(defaultHeaders).build();
+
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+        cm.setMaxTotal(maxSockets);
+        httpClient = HttpClients.custom().setConnectionManager(cm).setDefaultHeaders(defaultHeaders).build();
     }
 
     /**
@@ -1753,6 +1758,12 @@ public class RosetteAPI implements Closeable {
             throws IOException, RosetteAPIException {
         int status = httpResponse.getStatusLine().getStatusCode();
         String encoding = headerValueOrNull(httpResponse.getFirstHeader(HttpHeaders.CONTENT_ENCODING));
+        try {
+            int concurrencyHeader = Integer.parseInt(headerValueOrNull(httpResponse.getFirstHeader("X-RosetteApi-Concurrency")));
+            maxSockets = concurrencyHeader;
+        } catch (NumberFormatException e) {
+            throw e;
+        }
         try (
                 InputStream stream = httpResponse.getEntity().getContent();
                 InputStream inputStream = "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream) {

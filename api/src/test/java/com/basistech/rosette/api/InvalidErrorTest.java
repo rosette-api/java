@@ -31,6 +31,7 @@ public class InvalidErrorTest extends AbstractTest {
                 .when(HttpRequest.request().withPath(".*/{2,}.*"))
                 .respond(HttpResponse.response()
                                 .withBody("Invalid path; '//'")
+                                .withHeader("X-RosetteApi-Concurrency", "5")
                                 .withStatusCode(404)
                 );
         String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest//v1";

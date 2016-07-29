@@ -93,18 +93,21 @@ public class RosetteAPITest extends AbstractTest {
                     .respond(HttpResponse.response()
                                     .withBody("Invalid path; '//'")
                                     .withStatusCode(404)
+                                    .withHeader("X-RosetteApi-Concurrency", "5")
                     );
             if (responseStr.length() > 200) {  // test gzip if response is somewhat big
                 mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
                                 .withHeader("Content-Type", "application/json")
                                 .withHeader("Content-Encoding", "gzip")
+                                .withHeader("X-RosetteApi-Concurrency", "5")
                                 .withStatusCode(statusCode).withBody(gzip(responseStr)));
 
             } else {
                 mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
                                 .withHeader("Content-Type", "application/json")
+                                .withHeader("X-RosetteApi-Concurrency", "5")
                                 .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
             }
             mockServer.when(HttpRequest.request()
@@ -112,6 +115,7 @@ public class RosetteAPITest extends AbstractTest {
                 .respond(HttpResponse.response()
                     .withStatusCode(200)
                     .withHeader("Content-Type", "application/json")
+                    .withHeader("X-RosetteApi-Concurrency", "5")
                     .withBody(INFO_REPONSE, StandardCharsets.UTF_8));
 
             String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";

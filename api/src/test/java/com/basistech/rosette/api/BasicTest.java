@@ -58,6 +58,7 @@ public class BasicTest extends AbstractTest {
                 .withPath("/rest/v1/info"))
                 .respond(HttpResponse.response()
                         .withHeader("Content-Type", "application/json")
+                        .withHeader("X-RosetteApi-Concurrency", "5")
                         .withStatusCode(200)
                         .withBody("{\"name\": \"Rosette API\", \"version\": \"1.1\", \"versionChecked\": true}", StandardCharsets.UTF_8));
     }
@@ -71,6 +72,7 @@ public class BasicTest extends AbstractTest {
                 .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR))
                 .respond(HttpResponse.response()
                         .withHeader("Content-Type", "application/json")
+                        .withHeader("X-RosetteApi-Concurrency", "5")
                         .withStatusCode(200)
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
         api = new RosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
@@ -88,6 +90,7 @@ public class BasicTest extends AbstractTest {
                         .withHeader("Content-Type", "application/json")
                         .withHeader("X-Foo", "Bar")
                         .withHeader("X-FooMulti", "Bar1", "Bar2")
+                        .withHeader("X-RosetteApi-Concurrency", "5")
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
         api = new RosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
         Response resp = api.ping();
