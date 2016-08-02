@@ -1774,7 +1774,7 @@ public class RosetteAPI implements Closeable {
                     LOG.warn(String.format("Concurrency max value 100, received %s, setting to 100", Integer.toString(concurrencyHeader)));
                     concurrencyHeader = 100;
                 }
-                if (allowSocketChange&& concurrencyHeader != maxSockets) {
+                if (allowSocketChange && concurrencyHeader != maxSockets) {
                     maxSockets = concurrencyHeader;
                     initHttpClient();
                 }
