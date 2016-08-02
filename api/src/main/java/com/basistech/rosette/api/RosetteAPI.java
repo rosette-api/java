@@ -135,6 +135,8 @@ public class RosetteAPI implements Closeable {
     private HttpClient httpClient;
     private List<Header> customHeaders;
     private int maxSockets = 1;
+    // set in initHttpClient. We don't mess with a user-specified client.
+    private boolean allowSocketChange;
 
     /**
      * Constructs a Rosette API instance using an API key.
@@ -210,6 +212,7 @@ public class RosetteAPI implements Closeable {
         if (httpClient == null) {
             initHttpClient();
         } else {
+            allowSocketChange = false;
             this.httpClient = httpClient;
         }
         HttpResponse response = this.httpClient.execute(new HttpPost(urlBase));
@@ -289,6 +292,8 @@ public class RosetteAPI implements Closeable {
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
         cm.setMaxTotal(maxSockets);
         httpClient = HttpClients.custom().setConnectionManager(cm).setDefaultHeaders(defaultHeaders).build();
+
+        allowSocketChange = true;
     }
 
     /**
@@ -1758,12 +1763,21 @@ public class RosetteAPI implements Closeable {
             throws IOException, RosetteAPIException {
         int status = httpResponse.getStatusLine().getStatusCode();
         String encoding = headerValueOrNull(httpResponse.getFirstHeader(HttpHeaders.CONTENT_ENCODING));
-        try {
-            int concurrencyHeader = Integer.parseInt(headerValueOrNull(httpResponse.getFirstHeader("X-RosetteApi-Concurrency")));
-            maxSockets = concurrencyHeader;
-        } catch (NumberFormatException e) {
-            throw e;
+        String connectionConcurrency = headerValueOrNull(httpResponse.getFirstHeader("X-RosetteApi-Concurrency"));
+        if (connectionConcurrency != null) {
+            try {
+                int concurrencyHeader = Integer.parseInt(connectionConcurrency);
+                if (allowSocketChange && concurrencyHeader != maxSockets) {
+                    maxSockets = concurrencyHeader;
+                    initHttpClient();
+                }
+            } catch (NumberFormatException e) {
+                throw new RuntimeException(
+                        String.format("Error converting X-RosetteApi-Concurrency (%s) to a number", connectionConcurrency),
+                        e.getCause());
+            }
         }
+
         try (
                 InputStream stream = httpResponse.getEntity().getContent();
                 InputStream inputStream = "gzip".equalsIgnoreCase(encoding) ? new GZIPInputStream(stream) : stream) {
