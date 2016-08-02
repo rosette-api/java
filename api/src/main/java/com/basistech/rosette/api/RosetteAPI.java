@@ -1767,14 +1767,19 @@ public class RosetteAPI implements Closeable {
         if (connectionConcurrency != null) {
             try {
                 int concurrencyHeader = Integer.parseInt(connectionConcurrency);
-                if (allowSocketChange && concurrencyHeader != maxSockets) {
+                if (concurrencyHeader <= 0) {
+                    LOG.warn(String.format("Non positive concurrency value received (%s), setting to 1", Integer.toString(concurrencyHeader)));
+                    concurrencyHeader = 1;
+                } else if (concurrencyHeader > 100) {
+                    LOG.warn(String.format("Concurrency max value 100, received %s, setting to 100", Integer.toString(concurrencyHeader)));
+                    concurrencyHeader = 100;
+                }
+                if (allowSocketChange&& concurrencyHeader != maxSockets) {
                     maxSockets = concurrencyHeader;
                     initHttpClient();
                 }
             } catch (NumberFormatException e) {
-                throw new RuntimeException(
-                        String.format("Error converting X-RosetteApi-Concurrency (%s) to a number", connectionConcurrency),
-                        e.getCause());
+                LOG.error(String.format("Error converting X-RosetteApi-Concurrency (%s) to a number", connectionConcurrency));
             }
         }
 
