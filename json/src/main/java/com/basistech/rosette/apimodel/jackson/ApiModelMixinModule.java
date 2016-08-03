@@ -50,6 +50,7 @@ import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.SentencesResponse;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentResponse;
+import com.basistech.rosette.apimodel.TextVectorsResponse;
 import com.basistech.rosette.apimodel.TokensResponse;
 import com.basistech.rosette.apimodel.batch.BatchRequest;
 import com.basistech.rosette.apimodel.batch.BatchRequestItem;
@@ -121,6 +122,7 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(BatchResponse.class, BatchResponseMixin.class);
 
         context.setMixInAnnotations(BatchStatusResponse.class, BatchStatusResponseMixin.class);
+        context.setMixInAnnotations(TextVectorsResponse.class, TextVectorsResponseMixin.class);
     }
 
     /**
