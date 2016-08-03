@@ -71,7 +71,7 @@ public class BasicTest extends AbstractTest {
     // an indirect way to show that connection pooling works
     // with concurrent connections = 1, the time to complete requests becomes serial
     // so: run several requests in threads, assert that they're executed serially
-    // then, an info call returns "X-RosetteApi-Concurrency" = 5
+    // then set concurrent connections = 5,
     // run several requests again, showing they're executed in parallel
     @Test
     public void testMultipleConnections() throws IOException, RosetteAPIException, InterruptedException {
@@ -82,7 +82,6 @@ public class BasicTest extends AbstractTest {
                 .withPath("/rest/v1/ping")
                 .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR))
                 .respond(HttpResponse.response()
-                        .withHeader("X-RosetteApi-Concurrency", "1")
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
                         .withStatusCode(200)
                         .withDelay(new Delay(SECONDS, delayTime)));
@@ -107,29 +106,9 @@ public class BasicTest extends AbstractTest {
 
         assert d2.getTime() - d1.getTime() > delayTime * numConnections * 1000; // at least as long as the delay in the request
 
-        mockServer.clear(HttpRequest.request()
-                .withMethod("GET")
-                .withPath("/rest/v1/ping")
-                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR));
-
-        // "after" case - first call to info sets concurrent connections to 5, allowing parallel connections, and faster execution
-        mockServer.when(HttpRequest.request()
-                .withMethod("GET")
-                .withPath("/rest/v1/ping")
-                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR))
-                .respond(HttpResponse.response()
-                        .withHeader("X-RosetteApi-Concurrency", Integer.toString(numConnections))
-                        .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
-                        .withStatusCode(200)
-                        .withDelay(new Delay(SECONDS, delayTime)));
-        mockServer.when(HttpRequest.request()
-                .withPath("/rest/v1/info"))
-                .respond(HttpResponse.response()
-                        .withStatusCode(200)
-                        .withHeader("X-RosetteApi-Concurrency", "5")
-                        .withBody(INFO_REPONSE, StandardCharsets.UTF_8));
-        api.info();
-
+        api = new RosetteAPI.Builder().apiKey("foo-key")
+                .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort))
+                .withConcurrentConnections(numConnections).build();
         d1 = new Date();
 
         pingers = new ArrayList<>();
@@ -160,8 +139,12 @@ public class BasicTest extends AbstractTest {
                         .withHeader("X-RosetteApi-Concurrency", "5")
                         .withStatusCode(200)
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
-        api = new RosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
-        api.addCustomHeader("X-Foo", "Bar");
+
+        api = new RosetteAPI.Builder()
+                .apiKey("foo-key")
+                .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort))
+                .withCustomHeader("X-Foo", "Bar")
+                .build();
         api.ping();
     }
 

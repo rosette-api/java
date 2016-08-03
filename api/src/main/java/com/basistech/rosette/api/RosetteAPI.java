@@ -69,6 +69,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.AbstractContentBody;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
@@ -125,7 +126,6 @@ public class RosetteAPI implements Closeable {
 
     private static final Logger LOG = LoggerFactory.getLogger(RosetteAPI.class);
 
-    private String key;
     private String urlBase = DEFAULT_URL_BASE;
     private int failureRetries;
     private LanguageCode language;
@@ -133,10 +133,8 @@ public class RosetteAPI implements Closeable {
     private String genre;
     private ObjectMapper mapper;
     private HttpClient httpClient;
-    private List<Header> customHeaders;
-    private int maxSockets = 1;
-    // set in initHttpClient. We don't mess with a user-specified client.
-    private boolean allowSocketChange;
+    private List<Header> defaultHeaders;
+    private boolean closeClientOnClose;
 
     /**
      * Constructs a Rosette API instance using an API key.
@@ -166,15 +164,16 @@ public class RosetteAPI implements Closeable {
     @Deprecated
     public RosetteAPI(String key, String alternateUrl) throws IOException, RosetteAPIException {
         Objects.requireNonNull(alternateUrl, "alternateUrl cannot be null");
-        this.key = key;
         urlBase = alternateUrl;
         if (urlBase.endsWith("/")) {
             urlBase = urlBase.substring(0, urlBase.length() - 1);
         }
         this.failureRetries = 1;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-        customHeaders = new ArrayList<>();
-        initHttpClient();
+
+        initHeaders(key);
+        httpClient = HttpClients.createDefault();
+        closeClientOnClose = true;
     }
 
     /**
@@ -191,37 +190,31 @@ public class RosetteAPI implements Closeable {
      */
     private RosetteAPI(String key, String urlToCall, int failureRetries,
                        LanguageCode language, String genre, Options options,
-                       HttpClient httpClient)
+                       HttpClient httpClient, boolean closeClientOnClose)
                         throws IOException, RosetteAPIException {
-        this.key = key;
         this.language = language;
         this.genre = genre;
         this.options = options;
         urlBase = urlToCall.trim().replaceAll("/+$", "");
         this.failureRetries = failureRetries;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-        customHeaders = new ArrayList<>();
-        setUpHttpClient(httpClient);
+        this.httpClient = httpClient;
+        this.closeClientOnClose = closeClientOnClose;
+
+        initHeaders(key);
     }
 
-    /**
-     * @param httpClient user provided http client
-     * @throws IOException
-     */
-    private void setUpHttpClient(HttpClient httpClient) throws IOException {
-        if (httpClient == null) {
-            initHttpClient();
-        } else {
-            allowSocketChange = false;
-            this.httpClient = httpClient;
-        }
-        HttpResponse response = this.httpClient.execute(new HttpPost(urlBase));
-        if (response != null) {
-            if (response instanceof CloseableHttpResponse) {
-                ((CloseableHttpResponse)response).close();
-            }
+    private void initHeaders(String key) {
+        defaultHeaders = new ArrayList<>();
+        defaultHeaders.add(new BasicHeader(HttpHeaders.USER_AGENT, USER_AGENT_STR));
+        defaultHeaders.add(new BasicHeader(HttpHeaders.ACCEPT_ENCODING, "gzip"));
+        if (key != null) {
+            defaultHeaders.add(new BasicHeader("X-RosetteAPI-Key", key));
+            defaultHeaders.add(new BasicHeader("X-RosetteAPI-Binding", "java"));
+            defaultHeaders.add(new BasicHeader("X-RosetteAPI-Binding-Version", BINDING_VERSION));
         }
     }
+
     /**
      * Returns the version of the binding.
      *
@@ -271,49 +264,6 @@ public class RosetteAPI implements Closeable {
      */
     public Options getOptions() {
         return options;
-    }
-
-    /**
-     *
-     */
-    private void initHttpClient() {
-        List<Header> defaultHeaders = new ArrayList<>();
-        defaultHeaders.add(new BasicHeader(HttpHeaders.USER_AGENT, USER_AGENT_STR));
-        defaultHeaders.add(new BasicHeader(HttpHeaders.ACCEPT_ENCODING, "gzip"));
-        if (key != null) {
-            defaultHeaders.add(new BasicHeader("X-RosetteAPI-Key", key));
-            defaultHeaders.add(new BasicHeader("X-RosetteAPI-Binding", "java"));
-            defaultHeaders.add(new BasicHeader("X-RosetteAPI-Binding-Version", BINDING_VERSION));
-        }
-        if (customHeaders.size() > 0) {
-            defaultHeaders.addAll(customHeaders);
-        }
-
-        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
-        cm.setMaxTotal(maxSockets);
-        httpClient = HttpClients.custom().setConnectionManager(cm).setDefaultHeaders(defaultHeaders).build();
-
-        allowSocketChange = true;
-    }
-
-    /**
-     * Add a custom HTTP header to pass to Rosette API.
-     *
-     * @param name header name
-     * @param value header value
-     */
-    public void addCustomHeader(String name, String value) {
-        addCustomHeader(new BasicHeader(name, value));
-    }
-
-    /**
-     * Add a custom HTTP header to pass to Rosette API.
-     *
-     * @param header header
-     */
-    public void addCustomHeader(Header header) {
-        customHeaders.add(header);
-        initHttpClient();
     }
 
     /**
@@ -1574,6 +1524,9 @@ public class RosetteAPI implements Closeable {
      */
     private <T extends Response> T sendGetRequest(String urlStr, Class<T> clazz) throws IOException, RosetteAPIException {
         HttpGet get = new HttpGet(urlStr);
+        for (Header header : defaultHeaders) {
+            get.addHeader(header);
+        }
         HttpResponse httpResponse = httpClient.execute(get);
         T resp = getResponse(httpResponse, clazz);
         responseHeadersToExtendedInformation(resp, httpResponse);
@@ -1606,6 +1559,9 @@ public class RosetteAPI implements Closeable {
         final ObjectWriter finalWriter = writer;
 
         HttpPost post = new HttpPost(urlStr);
+        for (Header header : defaultHeaders) {
+            post.addHeader(header);
+        }
         //TODO: add compression!
         if (notPlainText) {
             setupMultipartRequest((DocumentRequest) request, finalWriter, post);
@@ -1763,25 +1719,6 @@ public class RosetteAPI implements Closeable {
             throws IOException, RosetteAPIException {
         int status = httpResponse.getStatusLine().getStatusCode();
         String encoding = headerValueOrNull(httpResponse.getFirstHeader(HttpHeaders.CONTENT_ENCODING));
-        String connectionConcurrency = headerValueOrNull(httpResponse.getFirstHeader("X-RosetteApi-Concurrency"));
-        if (connectionConcurrency != null) {
-            try {
-                int concurrencyHeader = Integer.parseInt(connectionConcurrency);
-                if (concurrencyHeader <= 0) {
-                    LOG.warn(String.format("Non positive concurrency value received (%s), setting to 1", Integer.toString(concurrencyHeader)));
-                    concurrencyHeader = 1;
-                } else if (concurrencyHeader > 100) {
-                    LOG.warn(String.format("Concurrency max value 100, received %s, setting to 100", Integer.toString(concurrencyHeader)));
-                    concurrencyHeader = 100;
-                }
-                if (allowSocketChange && concurrencyHeader != maxSockets) {
-                    maxSockets = concurrencyHeader;
-                    initHttpClient();
-                }
-            } catch (NumberFormatException e) {
-                LOG.error(String.format("Error converting X-RosetteApi-Concurrency (%s) to a number", connectionConcurrency));
-            }
-        }
 
         try (
                 InputStream stream = httpResponse.getEntity().getContent();
@@ -1833,7 +1770,8 @@ public class RosetteAPI implements Closeable {
 
     @Override
     public void close() throws IOException {
-        if (httpClient instanceof CloseableHttpClient) {
+        if (closeClientOnClose
+                && httpClient instanceof CloseableHttpClient) {
             ((CloseableHttpClient)httpClient).close();
         }
     }
@@ -1856,6 +1794,8 @@ public class RosetteAPI implements Closeable {
         protected String urlBase = DEFAULT_URL_BASE;
         protected int failureRetries = 1;
         protected HttpClient httpClient;
+        private List<Header> customHeaders = new ArrayList<>();
+        private int concurrentConnections = 1;
 
         protected Builder getThis() {
             return this;
@@ -1924,7 +1864,8 @@ public class RosetteAPI implements Closeable {
         }
 
         /**
-         * User can provide their own http client
+         * User can provide their own http client.
+         *
          * @param client CloseableHttpClient
          * @return this
          */
@@ -1934,11 +1875,68 @@ public class RosetteAPI implements Closeable {
         }
 
         /**
+         * Add a custom HTTP header to pass to Rosette API.
+         * This option will be ignored if the user provides an HttpClient object.
+         *
+         * @param name header name
+         * @param value header value
+         */
+        public Builder withCustomHeader(String name, String value) {
+            customHeaders.add(new BasicHeader(name, value));
+            return getThis();
+        }
+
+        /**
+         * Add a custom HTTP header to pass to Rosette API.
+         * This option will be ignored if the user provides an HttpClient object.
+         *
+         * @param header header
+         */
+        public Builder withCustomHeader(Header header) {
+            customHeaders.add(header);
+            return getThis();
+        }
+
+        /**
+         * Set maximum concurrent connections of the httpClient.
+         * This option will be ignored if the user provides an HttpClient object.
+         *
+         * @param concurrentConnections Maximum concurrent connections
+         */
+        public Builder withConcurrentConnections(int concurrentConnections) {
+            if (concurrentConnections <= 0) {
+                LOG.warn(String.format("Non positive concurrency value received (%s), setting to 1", Integer.toString(concurrentConnections)));
+                concurrentConnections = 1;
+            } else if (concurrentConnections > 100) {
+                LOG.warn(String.format("Concurrency max value 100, received %s, setting to 100", Integer.toString(concurrentConnections)));
+                concurrentConnections = 100;
+            }
+            this.concurrentConnections = concurrentConnections;
+            return getThis();
+        }
+
+        /**
          * Construct the api object.
+         *
          * @return the api object.
          */
         public RosetteAPI build() throws IOException, RosetteAPIException {
-            return new RosetteAPI(key, urlBase, failureRetries, language, genre, options, httpClient);
+            boolean userSuppliedClient = true;
+            if (httpClient == null) {
+                HttpClientBuilder builder = HttpClients.custom();
+
+                PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+                cm.setMaxTotal(concurrentConnections);
+                builder.setConnectionManager(cm);
+
+                if (customHeaders.size() > 0) {
+                    builder.setDefaultHeaders(customHeaders);
+                }
+
+                httpClient = builder.build();
+                userSuppliedClient = false;
+            }
+            return new RosetteAPI(key, urlBase, failureRetries, language, genre, options, httpClient, !userSuppliedClient);
         }
     }
 }
