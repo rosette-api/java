@@ -20,6 +20,7 @@ import com.basistech.rosette.apimodel.*;
 import com.basistech.util.LanguageCode;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpHeaders;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -88,26 +89,28 @@ public class RosetteAPITest extends AbstractTest {
                 statusCode = Integer.parseInt(statusStr);
             }
             mockServer = new MockServerClient("localhost", serverPort);
-            mockServer.reset()
-                    .when(HttpRequest.request().withPath(".*/{2,}.*"))
+            mockServer.reset();
+            mockServer.when(HttpRequest.request()
+                    .withMethod("GET")
+                    .withPath("/rest/v1/ping")
+                    .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR))
                     .respond(HttpResponse.response()
-                                    .withBody("Invalid path; '//'")
-                                    .withStatusCode(404)
-                                    .withHeader("X-RosetteApi-Concurrency", "5")
-                    );
+                            .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
+                            .withStatusCode(200)
+                            .withHeader("X-RosetteAPI-Concurrency", "5"));
             if (responseStr.length() > 200) {  // test gzip if response is somewhat big
                 mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
                                 .withHeader("Content-Type", "application/json")
                                 .withHeader("Content-Encoding", "gzip")
-                                .withHeader("X-RosetteApi-Concurrency", "5")
+                                .withHeader("X-RosetteAPI-Concurrency", "5")
                                 .withStatusCode(statusCode).withBody(gzip(responseStr)));
 
             } else {
                 mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                         .respond(HttpResponse.response()
                                 .withHeader("Content-Type", "application/json")
-                                .withHeader("X-RosetteApi-Concurrency", "5")
+                                .withHeader("X-RosetteAPI-Concurrency", "5")
                                 .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
             }
             mockServer.when(HttpRequest.request()
@@ -115,7 +118,7 @@ public class RosetteAPITest extends AbstractTest {
                 .respond(HttpResponse.response()
                     .withStatusCode(200)
                     .withHeader("Content-Type", "application/json")
-                    .withHeader("X-RosetteApi-Concurrency", "5")
+                    .withHeader("X-RosetteAPI-Concurrency", "5")
                     .withBody(INFO_REPONSE, StandardCharsets.UTF_8));
 
             String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";

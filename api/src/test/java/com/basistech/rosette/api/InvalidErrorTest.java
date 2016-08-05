@@ -16,10 +16,13 @@
 
 package com.basistech.rosette.api;
 
+import org.apache.http.HttpHeaders;
 import org.junit.Test;
 import org.mockserver.client.server.MockServerClient;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
+
+import java.nio.charset.StandardCharsets;
 
 
 public class InvalidErrorTest extends AbstractTest {
@@ -31,9 +34,17 @@ public class InvalidErrorTest extends AbstractTest {
                 .when(HttpRequest.request().withPath(".*/{2,}.*"))
                 .respond(HttpResponse.response()
                                 .withBody("Invalid path; '//'")
-                                .withHeader("X-RosetteApi-Concurrency", "5")
+                                .withHeader("X-RosetteAPI-Concurrency", "5")
                                 .withStatusCode(404)
                 );
+        mockServer.when(HttpRequest.request()
+                .withMethod("GET")
+                .withPath("/rest/v1/ping")
+                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR))
+                .respond(HttpResponse.response()
+                        .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
+                        .withStatusCode(200)
+                        .withHeader("X-RosetteAPI-Concurrency", "5"));
         String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest//v1";
         boolean exceptional = false;
         try {
