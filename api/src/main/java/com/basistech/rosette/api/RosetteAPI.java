@@ -232,8 +232,6 @@ public class RosetteAPI implements Closeable {
             return;
         }
 
-        this.additionalHeaders = new ArrayList<>();
-
         if (response.getExtendedInformation().get("X-RosetteAPI-Concurrency") != null) {
             connectionConcurrency = Integer.parseInt((String) response.getExtendedInformation().get("X-RosetteAPI-Concurrency"));
             if (connectionConcurrency <= 0) {
@@ -244,6 +242,7 @@ public class RosetteAPI implements Closeable {
                 connectionConcurrency = 100;
             }
         } else {
+            this.additionalHeaders = new ArrayList<>();
             // httpClient stays as is
             return;
         }
@@ -253,6 +252,7 @@ public class RosetteAPI implements Closeable {
         builder.setConnectionManager(cm);
         builder.setDefaultHeaders(this.additionalHeaders);
         httpClient = builder.build();
+        this.additionalHeaders = new ArrayList<>();
     }
 
     private void initHeaders(String key, List<Header> additionalHeaders) {
@@ -1933,6 +1933,7 @@ public class RosetteAPI implements Closeable {
          *
          * @param name header name
          * @param value header value
+         * @return this
          */
         public Builder withCustomHeader(String name, String value) {
             customHeaders.add(new BasicHeader(name, value));
@@ -1944,6 +1945,7 @@ public class RosetteAPI implements Closeable {
          * This option will be ignored if the user provides an HttpClient object.
          *
          * @param header header
+         * @return this
          */
         public Builder withCustomHeader(Header header) {
             customHeaders.add(header);
@@ -1953,6 +1955,8 @@ public class RosetteAPI implements Closeable {
         /**
          * Construct the api object.
          *
+         * @throws IOException
+         * @throws RosetteAPIException
          * @return the api object.
          */
         public RosetteAPI build() throws IOException, RosetteAPIException {
