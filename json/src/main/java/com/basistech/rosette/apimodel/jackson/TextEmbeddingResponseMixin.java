@@ -21,9 +21,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class TextVectorsResponseMixin extends BaseMixin {
+public class TextEmbeddingResponseMixin extends BaseMixin {
     @JsonCreator
-    public TextVectorsResponseMixin(@JsonProperty("vectors") List<Double> vectors) {
+    public TextEmbeddingResponseMixin(@JsonProperty("embedding") List<Double> embedding) {
         //
     }
 }
