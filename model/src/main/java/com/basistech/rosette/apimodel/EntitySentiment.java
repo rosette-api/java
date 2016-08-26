@@ -22,42 +22,74 @@ import java.util.Objects;
 /**
  * Per-entity sentiment info.
  */
-public class EntitySentiment {
-    private final String mention;
+public final class EntitySentiment {
     private final String type;
+    private final String mention;
+    private final String normalized;
+    private final Integer count;
     private final String entityId;
     private final Label sentiment;
 
-    /**
-     *
-     * @param mention the text of the entity.
-     * @param type the entity type (e.g. PERSON)
-     * @param entityId the global unique ID for the entity, such as a Wikidata QID.
+     /**
+     * constructor for {@code EntitySentiment}
+     * @param type entity type
+     * @param mention mention text
+     * @param normalized normalized mention text
+     * @param count mention count
+     * @param entityId if the entity was linked, the ID from the knowledge base.
      * @param sentiment the sentiment information.
      */
-    public EntitySentiment(String mention, String type, String entityId, Label sentiment) {
-        this.mention = mention;
+    public EntitySentiment(String type,
+                           String mention,
+                           String normalized,
+                           Integer count,
+                           String entityId,
+                           Label sentiment) {
         this.type = type;
+        this.mention = mention;
+        this.normalized = normalized;
+        this.count = count;
         this.entityId = entityId;
         this.sentiment = sentiment;
     }
 
     /**
-     * @return the mention text.
-     */
-    public String getMention() {
-        return mention;
-    }
-
-    /**
-     * @return the type (e.g. PERSON).
+     * get the entity type
+     * @return the entity type
      */
     public String getType() {
         return type;
     }
 
     /**
-     * @return the global unique ID for the entity, such as a Wikidata QID.
+     * get the mention text
+     * @return the mention text
+     */
+    public String getMention() {
+        return mention;
+    }
+
+    /**
+     * get the normalized mention text
+     * @return the normalized mention text
+     */
+    public String getNormalized() {
+        return normalized;
+    }
+
+    /**
+     * get the mention count
+     * @return the mention count
+     */
+    public Integer getCount() {
+        return count;
+    }
+
+    /**
+     * get the entity knowledge base ID.
+     * @return the ID of this entity. If this entity was linked to a knowledge base,
+     * the resulting string will begin with 'Q'. If it was not linked to a knowledge base,
+     * it will begin with a 'T'. 'T' identifiers represent intra-document co-references.
      */
     public String getEntityId() {
         return entityId;
@@ -79,14 +111,16 @@ public class EntitySentiment {
             return false;
         }
         EntitySentiment that = (EntitySentiment) o;
-        return Objects.equals(mention, that.mention)
-                && Objects.equals(type, that.type)
+        return Objects.equals(type, that.type)
+                && Objects.equals(mention, that.mention)
+                && Objects.equals(normalized, that.normalized)
+                && Objects.equals(count, that.count)
                 && Objects.equals(entityId, that.entityId)
                 && Objects.equals(sentiment, that.sentiment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mention, type, entityId, sentiment);
+        return Objects.hash(type, mention, normalized, count, entityId, sentiment);
     }
 }
