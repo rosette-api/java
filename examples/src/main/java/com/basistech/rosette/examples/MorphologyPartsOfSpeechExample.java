@@ -38,9 +38,14 @@ public final class MorphologyPartsOfSpeechExample extends ExampleBase {
     private void run() throws IOException, RosetteAPIException {
         String morphologyPartsOfSpeechData = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon";
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.PARTS_OF_SPEECH,
-                morphologyPartsOfSpeechData, null, null);
+                morphologyPartsOfSpeechData);
         System.out.println(responseToJson(response));
     }
 }

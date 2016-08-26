@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2016 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,22 +13,16 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
-package com.basistech.rosette.apimodel.jackson;
+package com.basistech.rosette.apimodel.jackson.batch;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class EntityMixin extends BaseMixin {
+public abstract class BatchResponseMixin {
     @JsonCreator
-    public EntityMixin(
-            @JsonProperty("indocChainId") int indocChainId,
-            @JsonProperty("type") String type,
-            @JsonProperty("mention") String mention,
-            @JsonProperty("normalized") String normalized,
-            @JsonProperty("count") int count,
-            @JsonProperty("entityId") String entityId
-    ) {
+    public BatchResponseMixin(@JsonProperty("id") String id,
+                              @JsonProperty("batchOutputUrl") String batchOutputUrl,
+                              @JsonProperty("batchCheckProgressUrl") String batchCheckProgressUrl) {
         //
     }
 }

@@ -14,18 +14,8 @@
 * limitations under the License.
 */
 
-package com.basistech.rosette.apimodel.jackson;
+package com.basistech.rosette.apimodel;
 
-import com.basistech.rosette.apimodel.Name;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class NameMatcherRequestMixin extends BaseMixin {
-    @JsonCreator
-    protected NameMatcherRequestMixin(
-            @JsonProperty("name1") Name name1,
-            @JsonProperty("name2") Name name2
-    ) {
-        //
-    }
+public abstract class Options {
+    //
 }

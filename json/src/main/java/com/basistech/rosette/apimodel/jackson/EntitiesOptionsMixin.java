@@ -16,21 +16,16 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-public class LinkedEntityRequestMixin extends BaseMixin {
-    //CHECKSTYLE:OFF
+@JsonTypeName("EntitiesOptions")
+public final class EntitiesOptionsMixin extends OptionsMixin {
     @JsonCreator
-    protected LinkedEntityRequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("genre") String genre,
-            @JsonProperty("content") Object content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType
-            ) {
+    private EntitiesOptionsMixin(
+            @JsonProperty("linkEntities") Boolean linkEntities
+    ) {
         //
     }
-    //CHECKSTYLE:ON
 }

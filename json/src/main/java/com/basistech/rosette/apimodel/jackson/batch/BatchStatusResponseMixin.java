@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2016 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,25 +13,15 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+package com.basistech.rosette.apimodel.jackson.batch;
 
-package com.basistech.rosette.apimodel.jackson;
-
-import com.basistech.rosette.apimodel.RelationshipsOptions;
-import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RelationshipsRequestMixin {
+public abstract class BatchStatusResponseMixin {
     @JsonCreator
-    public RelationshipsRequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("genre") String genre,
-            @JsonProperty("content") Object content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType,
-            @JsonProperty("options") RelationshipsOptions options
-    ) {
+    public BatchStatusResponseMixin(@JsonProperty("batchId") String batchId,
+                                    @JsonProperty("progress") float progress) {
         //
     }
-
 }

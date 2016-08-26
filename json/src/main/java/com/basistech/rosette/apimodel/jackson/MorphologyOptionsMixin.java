@@ -16,21 +16,21 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.SentimentOptions;
-import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-public class SentimentRequestMixin extends BaseMixin {
+import com.basistech.util.PartOfSpeechTagSet;
+
+@JsonTypeName("MorphologyOptions")
+public abstract class MorphologyOptionsMixin extends OptionsMixin {
     @JsonCreator
-    protected SentimentRequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("genre") String genre,
-            @JsonProperty("content") Object content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType,
-            @JsonProperty("options") SentimentOptions options
+    protected MorphologyOptionsMixin(
+            @JsonProperty("disambiguate") Boolean disambiguate,
+            @JsonProperty("query") Boolean query,
+            @JsonProperty("partOfSpeechTagSet") PartOfSpeechTagSet partOfSpeechTagSet
     ) {
         //
     }
+
 }

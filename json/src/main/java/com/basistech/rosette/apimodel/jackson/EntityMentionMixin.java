@@ -19,9 +19,16 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class NameMatcherResponseMixin extends BaseMixin {
+public class EntityMentionMixin extends BaseMixin {
     @JsonCreator
-    protected NameMatcherResponseMixin(@JsonProperty("score") Double score) {
+    public EntityMentionMixin(
+            @JsonProperty("indocChainId") Integer indocChainId,
+            @JsonProperty("type") String type,
+            @JsonProperty("mention") String mention,
+            @JsonProperty("normalized") String normalized,
+            @JsonProperty("count") Integer count,
+            @JsonProperty("entityId") String entityId
+    ) {
         //
     }
 }

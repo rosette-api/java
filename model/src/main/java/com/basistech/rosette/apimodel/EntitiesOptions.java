@@ -19,9 +19,9 @@ package com.basistech.rosette.apimodel;
 import java.util.Objects;
 
 /**
- * Entity extraction options
+ * EntityMention extraction options
  */
-public final class EntitiesOptions {
+public final class EntitiesOptions extends Options {
 
     public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(false);
     private Boolean linkEntities;
@@ -29,10 +29,17 @@ public final class EntitiesOptions {
     /**
      * Constructor for {@code EntitiesOptions}
      *
-     * @param linkEntities perform entity linking in addition to extraction
+     * @param linkEntities perform entity linking in addition to extraction.
      */
     protected EntitiesOptions(Boolean linkEntities) {
         this.linkEntities = linkEntities;
+    }
+
+    /**
+     * @return the linkEntities flag.
+     */
+    public Boolean getLinkEntities() {
+        return linkEntities;
     }
 
     @Override
@@ -60,7 +67,7 @@ public final class EntitiesOptions {
         }
 
         /**
-         * Request entity linking. If the value is {@code true}, then the the endpoint will link entities to the
+         * DocumentRequest entity linking. If the value is {@code true}, then the the endpoint will link entities to the
          * knowledge base. If {@code false}, not. If {@code null}, the endpoint will perform default processing.
          * @param linkEntities whether to link.
          * @return this.

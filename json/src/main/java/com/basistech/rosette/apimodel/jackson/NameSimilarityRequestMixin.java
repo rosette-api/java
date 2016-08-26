@@ -16,20 +16,18 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.EntitiesOptions;
-import com.basistech.util.LanguageCode;
+import com.basistech.rosette.apimodel.Name;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-public class EntityRequestMixin extends BaseMixin {
+@JsonTypeName("NameSimilarityRequest")
+public class NameSimilarityRequestMixin extends BaseMixin {
     @JsonCreator
-    public EntityRequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("genre") String genre,
-            @JsonProperty("content") Object content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType,
-            @JsonProperty("options") EntitiesOptions options) {
+    protected NameSimilarityRequestMixin(
+            @JsonProperty("name1") Name name1,
+            @JsonProperty("name2") Name name2
+    ) {
         //
     }
 }

@@ -19,8 +19,10 @@ package com.basistech.rosette.apimodel.jackson;
 import com.basistech.rosette.apimodel.AccuracyMode;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-public class RelationshipsOptionsMixin extends BaseMixin {
+@JsonTypeName("RelationshipsOptions")
+public class RelationshipsOptionsMixin extends OptionsMixin {
     @JsonCreator
     protected RelationshipsOptionsMixin(
             @JsonProperty("accuracyMode") AccuracyMode accuracyMode

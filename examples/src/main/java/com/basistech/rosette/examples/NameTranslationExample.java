@@ -17,8 +17,8 @@ package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.RosetteAPI;
 import com.basistech.rosette.api.RosetteAPIException;
-import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
+import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.util.LanguageCode;
 
 import java.io.IOException;
@@ -41,7 +41,12 @@ public final class NameTranslationExample extends ExampleBase {
         NameTranslationRequest request = new NameTranslationRequest.Builder(translatedNameData, LanguageCode.ENGLISH)
                 .build();
 
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+        RosetteAPI rosetteApi = new RosetteAPI.Builder()
+                                    .apiKey(getApiKeyFromSystemProperty())
+                                    .alternateUrl(getAltUrlFromSystemProperty())
+                                    .build();
+        //The api object creates an http client, but to provide your own:
+        //api.httpClient(CloseableHttpClient)
         NameTranslationResponse response = rosetteApi.getNameTranslation(request);
         System.out.println(responseToJson(response));
     }

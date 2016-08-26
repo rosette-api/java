@@ -50,7 +50,7 @@ function runExample() {
     if [ ! -z ${ALT_URL} ]; then
         result="$(mvn exec:java -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 2>&1 )"
     else
-        result="$(mvn exec:java -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} 2&>1 )"
+        result="$(mvn exec:java -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} 2>&1 )"
     fi
     if [[ $result == *"Exception"* ]]; then
         retcode=1

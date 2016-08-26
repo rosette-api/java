@@ -21,7 +21,9 @@ import com.basistech.util.LanguageCode;
 import com.basistech.util.TransliterationScheme;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
+@JsonTypeName("NameTranslationRequest")
 public class NameTranslationRequestMixin extends BaseMixin {
     @JsonCreator
     protected NameTranslationRequestMixin(

@@ -16,18 +16,48 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.LanguageOptions;
+import com.basistech.rosette.apimodel.Options;
+import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonView;
 
-public class LanguageRequestMixin extends BaseMixin {
+import java.io.InputStream;
+
+//CHECKSTYLE:OFF
+@JsonTypeName("DocumentRequest")
+public abstract class DocumentRequestMixin extends BaseMixin {
+
+    public static class Views {
+        public static class Content {
+            //
+        }
+    }
+
     @JsonCreator
-    public LanguageRequestMixin(
+    protected DocumentRequestMixin(
+            @JsonProperty("language") LanguageCode language,
             @JsonProperty("genre") String genre,
             @JsonProperty("content") Object content,
             @JsonProperty("contentUri") String contentUri,
             @JsonProperty("contentType") String contentType,
-            @JsonProperty("options") LanguageOptions options) {
+            @JsonProperty("options") Options options
+            ) {
         //
     }
+
+    @JsonIgnore
+    public abstract Object getRawContent();
+
+    @JsonIgnore
+    public abstract InputStream getContentBytes();
+
+    // the content type goes onto the wire as part of the multipart request.
+    @JsonIgnore
+    public abstract String getContentType();
+
+    @JsonView(Views.Content.class)
+    public abstract String getContent();
 }

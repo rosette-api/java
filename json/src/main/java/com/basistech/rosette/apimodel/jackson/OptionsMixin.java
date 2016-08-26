@@ -16,14 +16,6 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public final class EntityOptionsMixin extends BaseMixin {
-    @JsonCreator
-    private EntityOptionsMixin(
-            @JsonProperty("linkEntities") Boolean linkEntities
-    ) {
-        //
-    }
+public abstract class OptionsMixin extends BaseMixin {
+    //
 }
