@@ -42,6 +42,7 @@ import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.SentencesResponse;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentResponse;
+import com.basistech.rosette.apimodel.TextEmbeddingResponse;
 import com.basistech.rosette.apimodel.TokensResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
@@ -121,6 +122,7 @@ public class RosetteAPI implements Closeable {
     public static final String NAME_SIMILARITY_SERVICE_PATH = "/name-similarity";
     public static final String TOKENS_SERVICE_PATH = "/tokens";
     public static final String SENTENCES_SERVICE_PATH = "/sentences";
+    public static final String TEXT_EMBEDDING_SERVICE_PATH = "/text-embedding";
     public static final String INFO_SERVICE_PATH = "/info";
     public static final String PING_SERVICE_PATH = "/ping";
 
@@ -1534,6 +1536,32 @@ public class RosetteAPI implements Closeable {
             throws RosetteAPIException, IOException {
         DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
         return sendPostRequest(documentRequestBuilder.content(content).build(), urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
+    }
+
+    /**
+     * Returns the average text embedding for the input
+     *
+     * @param url URL containing the data.
+     * @return The response contains the embedding.
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
+     * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
+     */
+    public TextEmbeddingResponse getTextEmbedding(URL url) throws IOException, RosetteAPIException {
+        DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
+        return sendPostRequest(documentRequestBuilder.contentUri(url.toString()).build(), urlBase + TEXT_EMBEDDING_SERVICE_PATH, TextEmbeddingResponse.class);
+    }
+
+    /**
+     * Returns the average text embedding for the input
+     *
+     * @param content String containing the data.
+     * @return The response contains the embedding.
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
+     * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
+     */
+    public TextEmbeddingResponse getTextEmbedding(String content) throws IOException, RosetteAPIException {
+        DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
+        return sendPostRequest(documentRequestBuilder.content(content).build(), urlBase + TEXT_EMBEDDING_SERVICE_PATH, TextEmbeddingResponse.class);
     }
 
     /**

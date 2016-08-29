@@ -19,45 +19,45 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 
 /** 
- * Simple api response data model for text vector
+ * Simple api response data model for text embedding
  */
-public final class TextVectorsResponse extends Response {
+public final class TextEmbeddingResponse extends Response {
 
-    private final List<Double> vectors;
+    private final List<Double> embedding;
 
     /**
-     * constructor for {@code TextVectorsResponse}
-     * @param vectors list of vectors
+     * constructor for {@code TextEmbeddingResponse}
+     * @param embedding list of embedding
      */
-    public TextVectorsResponse(List<Double> vectors) {
-        this.vectors = vectors;
+    public TextEmbeddingResponse(List<Double> embedding) {
+        this.embedding = embedding;
     }
 
     /**
-     * get the list of vectors
-     * @return the list of vectors
+     * get the list of embedding
+     * @return the list of embedding
      */
-    public List<Double> getVectors() {
-        return vectors;
+    public List<Double> getEmbedding() {
+        return embedding;
     }
 
     @Override
     public int hashCode() {
-        return vectors != null ? vectors.hashCode() : 0;
+        return embedding != null ? embedding.hashCode() : 0;
     }
 
     /**
-     * if the param is a {@code TextVectorsResponse}, compare contents for equality
+     * if the param is a {@code TextEmbeddingResponse}, compare contents for equality
      * @param o the object
      * @return whether or not the param object is equal to this object
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof TextVectorsResponse)) {
+        if (!(o instanceof TextEmbeddingResponse)) {
             return false;
         }
 
-        TextVectorsResponse that = (TextVectorsResponse) o;
-        return vectors != null ? vectors.equals(that.getVectors()) : that.vectors == null;
+        TextEmbeddingResponse that = (TextEmbeddingResponse) o;
+        return embedding != null ? embedding.equals(that.getEmbedding()) : that.embedding == null;
     }
 }
