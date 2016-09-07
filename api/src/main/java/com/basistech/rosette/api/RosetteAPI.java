@@ -1757,6 +1757,16 @@ public class RosetteAPI implements Closeable {
                     }
                     if (ecHeader != null) {
                         errorResponse.setCode(ecHeader);
+                        if (429 == status) {
+                            String concurrencyMessage = "Concurrency limit exceeded. "
+                                    + "This could be caused if multiple processes are making Rosette API calls in parallel, "
+                                    + "or if your httpClient is configured with higher concurrency than your plan allows.";
+                            if (emHeader == null) {
+                                emHeader = concurrencyMessage;
+                            } else {
+                                emHeader = concurrencyMessage + System.lineSeparator() + emHeader;
+                            }
+                        }
                     }
                     if (emHeader != null) {
                         errorResponse.setMessage(emHeader);
@@ -1770,7 +1780,7 @@ public class RosetteAPI implements Closeable {
                     } else {
                         errorContent = "(no body)";
                     }
-                    // something not from us at al
+                    // something not from us at all
                     throw new RosetteAPIException(status, new ErrorResponse("invalidErrorResponse", errorContent));
                 }
             } else {
