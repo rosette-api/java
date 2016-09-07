@@ -1759,7 +1759,7 @@ public class RosetteAPI implements Closeable {
                         errorResponse.setCode(ecHeader);
                     }
                     if (429 == status) {
-                        String concurrencyMessage = "Concurrency limit exceeded. "
+                        String concurrencyMessage = "You have exceeded your plan's limit on concurrent calls. "
                                 + "This could be caused if multiple processes are making Rosette API calls in parallel, "
                                 + "or if your httpClient is configured with higher concurrency than your plan allows.";
                         if (emHeader == null) {
