@@ -48,7 +48,7 @@ public final class NameTranslationRequest extends Request {
      * @param targetScript target script code
      * @param targetScheme target transliteration scheme
      */
-    protected NameTranslationRequest(String name,
+    public NameTranslationRequest(String name,
                                   String entityType,
                                   ISO15924 sourceScript,
                                   LanguageCode sourceLanguageOfOrigin,

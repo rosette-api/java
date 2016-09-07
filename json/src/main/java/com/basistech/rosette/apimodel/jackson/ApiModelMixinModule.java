@@ -64,6 +64,7 @@ import com.basistech.util.jackson.EnumModule;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
+import com.fasterxml.jackson.databind.MapperFeature;
 
 /**
  * Jackson module to configure Json serialization and deserialization for the
@@ -133,6 +134,7 @@ public class ApiModelMixinModule extends EnumModule {
      */
     public static ObjectMapper setupObjectMapper(ObjectMapper mapper) {
         final ApiModelMixinModule module = new ApiModelMixinModule();
+        mapper.disable(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS);
         mapper.registerModule(module);
         return mapper;
     }
