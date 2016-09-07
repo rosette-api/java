@@ -136,7 +136,7 @@ public class RosetteAPI implements Closeable {
     private ObjectMapper mapper;
     private HttpClient httpClient;
     private List<Header> additionalHeaders;
-    private int connectionConcurrency = 1;
+    private int connectionConcurrency = 2;
     private boolean closeClientOnClose = true;
 
     /**
@@ -191,7 +191,8 @@ public class RosetteAPI implements Closeable {
      */
     private RosetteAPI(String key, String urlToCall, int failureRetries,
                        LanguageCode language, String genre, Options options,
-                       HttpClient httpClient, List<Header> additionalHeaders)
+                       HttpClient httpClient, List<Header> additionalHeaders,
+                       int connectionConcurrency)
                         throws IOException, RosetteAPIException {
         this.language = language;
         this.genre = genre;
@@ -199,6 +200,7 @@ public class RosetteAPI implements Closeable {
         urlBase = urlToCall.trim().replaceAll("/+$", "");
         this.failureRetries = failureRetries;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        this.connectionConcurrency = connectionConcurrency;
 
         if (httpClient == null) {
             initClient(key, additionalHeaders);
@@ -219,40 +221,6 @@ public class RosetteAPI implements Closeable {
         initHeaders(key, additionalHeaders);
         builder.setDefaultHeaders(this.additionalHeaders);
 
-        httpClient = builder.build();
-
-        PingResponse response = null;
-        try {
-            response = ping();
-        } catch (IOException e) {
-            LOG.error("Failed to fetch concurrency info from server. Defaulting to 1");
-            LOG.error(e.getMessage());
-            return;
-        } catch (RosetteAPIException e) {
-            LOG.error("Failed to fetch concurrency info from server. Defaulting to 1");
-            LOG.error(e.getMessage());
-            return;
-        }
-
-        if (response.getExtendedInformation().get("X-RosetteAPI-Concurrency") != null) {
-            connectionConcurrency = Integer.parseInt((String) response.getExtendedInformation().get("X-RosetteAPI-Concurrency"));
-            if (connectionConcurrency <= 0) {
-                LOG.warn(String.format("Non positive concurrency value received (%s), setting to 1", Integer.toString(connectionConcurrency)));
-                connectionConcurrency = 1;
-            } else if (connectionConcurrency > 100) {
-                LOG.warn(String.format("Concurrency max value 100, received %s, setting to 100", Integer.toString(connectionConcurrency)));
-                connectionConcurrency = 100;
-            }
-        } else {
-            this.additionalHeaders = new ArrayList<>();
-            // httpClient stays as is
-            return;
-        }
-
-        builder = HttpClients.custom();
-        cm.setMaxTotal(connectionConcurrency);
-        builder.setConnectionManager(cm);
-        builder.setDefaultHeaders(this.additionalHeaders);
         httpClient = builder.build();
         this.additionalHeaders = new ArrayList<>();
     }
@@ -1818,6 +1786,16 @@ public class RosetteAPI implements Closeable {
                     if (ecHeader != null) {
                         errorResponse.setCode(ecHeader);
                     }
+                    if (429 == status) {
+                        String concurrencyMessage = "You have exceeded your plan's limit on concurrent calls. "
+                                + "This could be caused by multiple processes or threads making Rosette API calls in parallel, "
+                                + "or if your httpClient is configured with higher concurrency than your plan allows.";
+                        if (emHeader == null) {
+                            emHeader = concurrencyMessage;
+                        } else {
+                            emHeader = concurrencyMessage + System.lineSeparator() + emHeader;
+                        }
+                    }
                     if (emHeader != null) {
                         errorResponse.setMessage(emHeader);
                     }
@@ -1830,7 +1808,7 @@ public class RosetteAPI implements Closeable {
                     } else {
                         errorContent = "(no body)";
                     }
-                    // something not from us at al
+                    // something not from us at all
                     throw new RosetteAPIException(status, new ErrorResponse("invalidErrorResponse", errorContent));
                 }
             } else {
@@ -1875,6 +1853,7 @@ public class RosetteAPI implements Closeable {
         protected String key;
         protected String urlBase = DEFAULT_URL_BASE;
         protected int failureRetries = 1;
+        protected int connectionConcurrency = 2;
         protected HttpClient httpClient;
         private List<Header> customHeaders = new ArrayList<>();
 
@@ -1981,6 +1960,17 @@ public class RosetteAPI implements Closeable {
         }
 
         /**
+         * Set the maximum number of concurrent connections for a RosetteAPI object.
+         *
+         * @param connectionConcurrency
+         * @return this
+         */
+        public Builder connectionConcurrency(int connectionConcurrency) {
+            this.connectionConcurrency = connectionConcurrency;
+            return getThis();
+        }
+
+        /**
          * Construct the api object.
          *
          * @throws IOException
@@ -1988,7 +1978,7 @@ public class RosetteAPI implements Closeable {
          * @return the api object.
          */
         public RosetteAPI build() throws IOException, RosetteAPIException {
-            return new RosetteAPI(key, urlBase, failureRetries, language, genre, options, httpClient, customHeaders);
+            return new RosetteAPI(key, urlBase, failureRetries, language, genre, options, httpClient, customHeaders, connectionConcurrency);
         }
     }
 }

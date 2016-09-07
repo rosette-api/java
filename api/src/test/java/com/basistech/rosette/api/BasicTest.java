@@ -69,25 +69,6 @@ public class BasicTest extends AbstractTest {
     public void testMultipleConnections() throws IOException, RosetteAPIException, InterruptedException {
         int delayTime = 3;
         int numConnections = 5;
-        mockServer.when(HttpRequest.request()
-                .withMethod("GET")
-                .withPath("/rest/v1/ping")
-                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR)
-                .withHeader("X-RosetteAPI-Key", "user-account-with-concurrency-5"))
-                .respond(HttpResponse.response()
-                        .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
-                        .withStatusCode(200)
-                        .withHeader("X-RosetteAPI-Concurrency", "5"));
-
-        mockServer.when(HttpRequest.request()
-                .withMethod("GET")
-                .withPath("/rest/v1/ping")
-                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR)
-                .withHeader("X-RosetteAPI-Key", "user-account-with-concurrency-1"))
-                .respond(HttpResponse.response()
-                        .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
-                        .withStatusCode(200)
-                        .withHeader("X-RosetteAPI-Concurrency", "1"));
 
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
@@ -99,10 +80,8 @@ public class BasicTest extends AbstractTest {
                         .withStatusCode(200)
                         .withDelay(new Delay(SECONDS, delayTime)));
 
-
-
         // "before" case - send off (numConnections) requests, expect them to run serially
-        api = new RosetteAPI.Builder().apiKey("user-account-with-concurrency-1")
+        api = new RosetteAPI.Builder().connectionConcurrency(1)
                 .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort)).build();
 
         Date d1 = new Date();
@@ -121,7 +100,7 @@ public class BasicTest extends AbstractTest {
 
         assert d2.getTime() - d1.getTime() > delayTime * numConnections * 1000; // at least as long as the delay in the request
 
-        api = new RosetteAPI.Builder().apiKey("user-account-with-concurrency-5")
+        api = new RosetteAPI.Builder().connectionConcurrency(numConnections)
                 .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort))
                 .build();
         d1 = new Date();
