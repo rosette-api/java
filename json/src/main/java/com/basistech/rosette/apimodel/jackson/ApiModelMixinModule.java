@@ -20,6 +20,8 @@ import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.CategoriesOptions;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.ConstantsResponse;
+import com.basistech.rosette.apimodel.DependencyData;
+import com.basistech.rosette.apimodel.DependencyParserResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
@@ -124,6 +126,9 @@ public class ApiModelMixinModule extends EnumModule {
 
         context.setMixInAnnotations(BatchStatusResponse.class, BatchStatusResponseMixin.class);
         context.setMixInAnnotations(TextEmbeddingResponse.class, TextEmbeddingResponseMixin.class);
+
+        context.setMixInAnnotations(DependencyParserResponse.class, DependencyParserResponseMixin.class);
+        context.setMixInAnnotations(DependencyData.class, DependencyDataMixin.class);
     }
 
     /**
