@@ -31,6 +31,7 @@ public class RelationshipsMixin extends BaseMixin {
             @JsonProperty("temporals") List<String> temporals,
             @JsonProperty("locatives") List<String> locatives,
             @JsonProperty("adjuncts") List<String> adjuncts,
+            @JsonProperty("context") List<String> context,
             @JsonProperty("confidence") Double confidence
     ) {
         //

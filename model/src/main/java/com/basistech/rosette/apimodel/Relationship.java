@@ -30,6 +30,7 @@ public final class Relationship {
     private final List<String> temporals;
     private final List<String> locatives;
     private final List<String> adjuncts;
+    private final List<String> context;
     private final Double confidence;
 
     /**
@@ -41,6 +42,7 @@ public final class Relationship {
      * @param temporals relationship temporals
      * @param locatives relationship locatives
      * @param adjuncts relationship adjuncts
+     * @param context relationship contexts
      * @param confidence  a measure of quality of relationship extraction
      */
     public Relationship(
@@ -51,6 +53,7 @@ public final class Relationship {
             List<String> temporals,
             List<String> locatives,
             List<String> adjuncts,
+            List<String> context,
             Double confidence) {
         this.predicate = predicate;
         this.arg1 = arg1;
@@ -59,6 +62,7 @@ public final class Relationship {
         this.temporals = temporals;
         this.locatives = locatives;
         this.adjuncts = adjuncts;
+        this.context = context;
         this.confidence = confidence;
     }
 
@@ -73,6 +77,7 @@ public final class Relationship {
         result = 31 * result + (temporals != null ? temporals.hashCode() : 0);
         result = 31 * result + (locatives != null ? locatives.hashCode() : 0);
         result = 31 * result + (adjuncts != null ? adjuncts.hashCode() : 0);
+        result = 31 * result + (context != null ? context.hashCode() : 0);
         temp = Double.doubleToLongBits(confidence);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
@@ -97,6 +102,7 @@ public final class Relationship {
                 && temporals != null ? temporals.equals(that.getTemporals()) : that.temporals == null
                 && locatives != null ? locatives.equals(that.getLocatives()) : that.locatives == null
                 && adjuncts != null ? adjuncts.equals(that.getAdjuncts()) : that.adjuncts == null
+                && context != null ? context.equals(that.getContext()) : that.context == null
                 && confidence == that.getConfidence();
     }
 
@@ -151,6 +157,14 @@ public final class Relationship {
      */
     public List<String> getAdjuncts() {
         return adjuncts;
+    }
+
+    /**
+     * get a list of context
+     * @return a list of context
+     */
+    public List<String> getContext() {
+        return context;
     }
 
     /**
