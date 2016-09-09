@@ -18,15 +18,14 @@ package com.basistech.rosette.apimodel;
 
 import java.util.Objects;
 
-// TODO - Move this to Java binding
-public class DependencyData {
+public class Dependency {
     private final String dependencyType;
     private final int governorTokenIndex;
     private final int dependencyTokenIndex;
 
-    public DependencyData(String dependencyType,
-                          Integer governorTokenIndex,
-                          Integer dependencyTokenIndex) {
+    public Dependency(String dependencyType,
+                      Integer governorTokenIndex,
+                      Integer dependencyTokenIndex) {
         this.dependencyType = dependencyType;
         this.governorTokenIndex = governorTokenIndex;
         this.dependencyTokenIndex = dependencyTokenIndex;
@@ -48,7 +47,7 @@ public class DependencyData {
         if (this == o) {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
-            DependencyData that = (DependencyData)o;
+            Dependency that = (Dependency)o;
             return Objects.equals(this.governorTokenIndex, that.governorTokenIndex)
                     && Objects.equals(this.dependencyTokenIndex, that.dependencyTokenIndex)
                     && Objects.equals(this.dependencyType, that.dependencyType);

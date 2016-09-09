@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.DependencyData;
+import com.basistech.rosette.apimodel.Dependency;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class DependencyParserResponseMixin extends BaseMixin {
     @JsonCreator
-    public DependencyParserResponseMixin(@JsonProperty("dependencies") List<DependencyData> dependencies,
+    public DependencyParserResponseMixin(@JsonProperty("dependencies") List<Dependency> dependencies,
                                         @JsonProperty("tokens") List<String> tokens) {
         //
     }

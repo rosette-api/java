@@ -19,18 +19,17 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 import java.util.Objects;
 
-// TODO - move this to Java binding
 public class DependencyParserResponse extends Response {
-    private final List<DependencyData> dependencies;
+    private final List<Dependency> dependencies;
     private final List<String> tokens;
 
-    public DependencyParserResponse(List<DependencyData> dependencies,
+    public DependencyParserResponse(List<Dependency> dependencies,
                                     List<String> tokens) {
         this.dependencies = dependencies;
         this.tokens = tokens;
     }
 
-    public List<DependencyData> getDependencies() {
+    public List<Dependency> getDependencies() {
         return this.dependencies;
     }
 
