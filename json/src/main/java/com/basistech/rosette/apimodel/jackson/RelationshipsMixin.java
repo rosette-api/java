@@ -16,6 +16,9 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.rosette.apimodel.RelationshipAdjunct;
+import com.basistech.rosette.apimodel.RelationshipArgument;
+import com.basistech.rosette.apimodel.RelationshipPredicate;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,14 +27,13 @@ import java.util.List;
 public class RelationshipsMixin extends BaseMixin {
     @JsonCreator
     public RelationshipsMixin(
-            @JsonProperty("predicate") String predicate,
-            @JsonProperty("arg1") String arg1,
-            @JsonProperty("arg2") String arg2,
-            @JsonProperty("arg3") String arg3,
-            @JsonProperty("temporals") List<String> temporals,
-            @JsonProperty("locatives") List<String> locatives,
-            @JsonProperty("adjuncts") List<String> adjuncts,
-            @JsonProperty("context") List<String> context,
+            @JsonProperty("predicate") RelationshipPredicate predicate,
+            @JsonProperty("arg1") RelationshipArgument arg1,
+            @JsonProperty("arg2") RelationshipArgument arg2,
+            @JsonProperty("arg3") RelationshipArgument arg3,
+            @JsonProperty("adjuncts") List<RelationshipAdjunct> adjuncts,
+            @JsonProperty("arguableSource") String arguableSource,
+            @JsonProperty("context") String context,
             @JsonProperty("confidence") Double confidence
     ) {
         //
