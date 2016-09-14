@@ -19,11 +19,11 @@ package com.basistech.rosette.apimodel.jackson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DependencyDataMixin extends BaseMixin {
+public class DependencyMixin extends BaseMixin {
     @JsonCreator
-    public DependencyDataMixin(@JsonProperty("dependencyType") String dependencyType,
-                          @JsonProperty("governorTokenIndex") Integer governorTokenIndex,
-                          @JsonProperty("dependencyTokenIndex") Integer dependencyTokenIndex) {
+    public DependencyMixin(@JsonProperty("dependencyType") String dependencyType,
+                           @JsonProperty("governorTokenIndex") Integer governorTokenIndex,
+                           @JsonProperty("dependencyTokenIndex") Integer dependencyTokenIndex) {
         //
     }
 }
