@@ -19,12 +19,12 @@ package com.basistech.rosette.apimodel;
 import java.util.List;
 import java.util.Objects;
 
-public class DependencyResponse extends Response {
+public class DependenciesResponse extends Response {
     private final List<Dependency> dependencies;
     private final List<String> tokens;
 
-    public DependencyResponse(List<Dependency> dependencies,
-                              List<String> tokens) {
+    public DependenciesResponse(List<Dependency> dependencies,
+                                List<String> tokens) {
         this.dependencies = dependencies;
         this.tokens = tokens;
     }
@@ -38,10 +38,10 @@ public class DependencyResponse extends Response {
     }
 
     public boolean equals(Object o) {
-        if (!(o instanceof DependencyResponse)) {
+        if (!(o instanceof DependenciesResponse)) {
             return false;
         } else {
-            DependencyResponse that = (DependencyResponse) o;
+            DependenciesResponse that = (DependenciesResponse) o;
             return Objects.equals(this.dependencies, that.dependencies)
                     && Objects.equals(this.tokens, that.tokens);
         }
