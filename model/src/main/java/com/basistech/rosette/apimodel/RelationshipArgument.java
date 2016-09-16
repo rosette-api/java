@@ -26,6 +26,13 @@ public class RelationshipArgument extends RelationshipComponent {
 
     private final String argumentId;
 
+    /**
+     * constructor for {@code RelationshipArgument}
+     * @param label label
+     * @param startOffset start offset
+     * @param endOffset end offset
+     * @param argumentId
+     */
     public RelationshipArgument(
             String label,
             int startOffset,

@@ -27,15 +27,23 @@ public class RelationshipAdjunct extends RelationshipComponent {
     private final String adjunctId;
     private final String type;
 
+    /**
+     * constructor for {@code RelationshipAdjunct}
+     * @param label label
+     * @param startOffset start offset
+     * @param endOffset end offset
+     * @param adjunctId adjunct id
+     * @param type type
+     */
     public RelationshipAdjunct(
             String label,
             int startOffset,
             int endOffset,
-            String predicateId,
+            String adjunctId,
             String type
     ) {
         super(label, startOffset, endOffset);
-        this.adjunctId = predicateId;
+        this.adjunctId = adjunctId;
         this.type = type;
     }
 

@@ -26,6 +26,13 @@ public class RelationshipPredicate extends RelationshipComponent {
 
     private final String predicateId;
 
+    /**
+     * constructor for {@code RelationshipPredicate}
+     * @param label label
+     * @param startOffset start offset
+     * @param endOffset end offset
+     * @param predicateId predicate id
+     */
     public RelationshipPredicate(
             String label,
             int startOffset,

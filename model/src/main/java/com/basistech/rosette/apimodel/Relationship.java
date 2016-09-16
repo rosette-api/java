@@ -28,7 +28,7 @@ public final class Relationship {
     private final RelationshipArgument arg2;
     private final RelationshipArgument arg3;
     private final List<RelationshipAdjunct> adjuncts;
-    private final String arguableSource;
+    private final String source;
     private final String context;
     private final Double confidence;
 
@@ -39,6 +39,7 @@ public final class Relationship {
      * @param arg2 relationship argument 2
      * @param arg3 relationship argument 3
      * @param adjuncts relationship adjuncts
+     * @param source relationship argument type
      * @param context relationship context
      * @param confidence  a measure of quality of relationship extraction
      */
@@ -48,7 +49,7 @@ public final class Relationship {
             RelationshipArgument arg2,
             RelationshipArgument arg3,
             List<RelationshipAdjunct> adjuncts,
-            String arguableSource,
+            String source,
             String context,
             Double confidence) {
         this.predicate = predicate;
@@ -56,7 +57,7 @@ public final class Relationship {
         this.arg2 = arg2;
         this.arg3 = arg3;
         this.adjuncts = adjuncts;
-        this.arguableSource = arguableSource;
+        this.source = source;
         this.context = context;
         this.confidence = confidence;
     }
@@ -70,6 +71,7 @@ public final class Relationship {
         result = 31 * result + (arg2 != null ? arg2.hashCode() : 0);
         result = 31 * result + (arg3 != null ? arg3.hashCode() : 0);
         result = 31 * result + (adjuncts != null ? adjuncts.hashCode() : 0);
+        result = 31 * result + (source != null ? source.hashCode() : 0);
         result = 31 * result + (context != null ? context.hashCode() : 0);
         temp = Double.doubleToLongBits(confidence);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -93,6 +95,7 @@ public final class Relationship {
                 && arg2 != null ? arg2.equals(that.getArg2()) : that.arg2 == null
                 && arg3 != null ? arg3.equals(that.getArg3()) : that.arg3 == null
                 && adjuncts != null ? adjuncts.equals(that.getAdjuncts()) : that.adjuncts == null
+                && source != null ? source.equals(that.getSource()) : that.source == null
                 && context != null ? context.equals(that.getContext()) : that.context == null
                 && confidence == that.getConfidence();
     }
@@ -134,8 +137,12 @@ public final class Relationship {
         return adjuncts;
     }
 
-    public String getArguableSource() {
-        return arguableSource;
+    /**
+     * get the source
+     * @return source
+     */
+    public String getSource() {
+        return source;
     }
 
     /**

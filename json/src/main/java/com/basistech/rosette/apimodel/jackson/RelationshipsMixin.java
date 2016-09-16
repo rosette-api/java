@@ -32,7 +32,7 @@ public class RelationshipsMixin extends BaseMixin {
             @JsonProperty("arg2") RelationshipArgument arg2,
             @JsonProperty("arg3") RelationshipArgument arg3,
             @JsonProperty("adjuncts") List<RelationshipAdjunct> adjuncts,
-            @JsonProperty("arguableSource") String arguableSource,
+            @JsonProperty("source") String source,
             @JsonProperty("context") String context,
             @JsonProperty("confidence") Double confidence
     ) {
