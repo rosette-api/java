@@ -23,13 +23,13 @@ import java.util.List;
  */
 public final class Relationship {
 
-    private final String predicate;
-    private final String arg1;
-    private final String arg2;
-    private final String arg3;
-    private final List<String> temporals;
-    private final List<String> locatives;
-    private final List<String> adjuncts;
+    private final RelationshipPredicate predicate;
+    private final RelationshipArgument arg1;
+    private final RelationshipArgument arg2;
+    private final RelationshipArgument arg3;
+    private final List<RelationshipAdjunct> adjuncts;
+    private final String source;
+    private final String context;
     private final Double confidence;
 
     /**
@@ -38,27 +38,27 @@ public final class Relationship {
      * @param arg1 relationship argument 1
      * @param arg2 relationship argument 2
      * @param arg3 relationship argument 3
-     * @param temporals relationship temporals
-     * @param locatives relationship locatives
      * @param adjuncts relationship adjuncts
+     * @param source relationship argument type
+     * @param context relationship context
      * @param confidence  a measure of quality of relationship extraction
      */
     public Relationship(
-            String predicate,
-            String arg1,
-            String arg2,
-            String arg3,
-            List<String> temporals,
-            List<String> locatives,
-            List<String> adjuncts,
+            RelationshipPredicate predicate,
+            RelationshipArgument arg1,
+            RelationshipArgument arg2,
+            RelationshipArgument arg3,
+            List<RelationshipAdjunct> adjuncts,
+            String source,
+            String context,
             Double confidence) {
         this.predicate = predicate;
         this.arg1 = arg1;
         this.arg2 = arg2;
         this.arg3 = arg3;
-        this.temporals = temporals;
-        this.locatives = locatives;
         this.adjuncts = adjuncts;
+        this.source = source;
+        this.context = context;
         this.confidence = confidence;
     }
 
@@ -70,9 +70,9 @@ public final class Relationship {
         result = 31 * result + (arg1 != null ? arg1.hashCode() : 0);
         result = 31 * result + (arg2 != null ? arg2.hashCode() : 0);
         result = 31 * result + (arg3 != null ? arg3.hashCode() : 0);
-        result = 31 * result + (temporals != null ? temporals.hashCode() : 0);
-        result = 31 * result + (locatives != null ? locatives.hashCode() : 0);
         result = 31 * result + (adjuncts != null ? adjuncts.hashCode() : 0);
+        result = 31 * result + (source != null ? source.hashCode() : 0);
+        result = 31 * result + (context != null ? context.hashCode() : 0);
         temp = Double.doubleToLongBits(confidence);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
@@ -94,9 +94,9 @@ public final class Relationship {
                 && arg1 != null ? arg1.equals(that.getArg1()) : that.arg1 == null
                 && arg2 != null ? arg2.equals(that.getArg2()) : that.arg2 == null
                 && arg3 != null ? arg3.equals(that.getArg3()) : that.arg3 == null
-                && temporals != null ? temporals.equals(that.getTemporals()) : that.temporals == null
-                && locatives != null ? locatives.equals(that.getLocatives()) : that.locatives == null
                 && adjuncts != null ? adjuncts.equals(that.getAdjuncts()) : that.adjuncts == null
+                && source != null ? source.equals(that.getSource()) : that.source == null
+                && context != null ? context.equals(that.getContext()) : that.context == null
                 && confidence == that.getConfidence();
     }
 
@@ -104,53 +104,53 @@ public final class Relationship {
      * get the relationship predicate
      * @return the relationship predicate
      */
-    public String getPredicate() {
+    public RelationshipPredicate getPredicate() {
         return predicate;
     }
 
     /**
      * @return the first arg.
      */
-    public String getArg1() {
+    public RelationshipArgument getArg1() {
         return arg1;
     }
 
     /**
      * @return the second arg.
      */
-    public String getArg2() {
+    public RelationshipArgument getArg2() {
         return arg2;
     }
 
     /**
      * @return the third arg.
      */
-    public String getArg3() {
+    public RelationshipArgument getArg3() {
         return arg3;
-    }
-
-    /**
-     * get a list of temporals
-     * @return a list of temporals
-     */
-    public List<String> getTemporals() {
-        return temporals;
-    }
-
-    /**
-     * get a list of locatives
-     * @return a list of locatives
-     */
-    public List<String> getLocatives() {
-        return locatives;
     }
 
     /**
      * get a list of adjuncts
      * @return a list of adjuncts
      */
-    public List<String> getAdjuncts() {
+    public List<RelationshipAdjunct> getAdjuncts() {
         return adjuncts;
+    }
+
+    /**
+     * get the source
+     * @return source
+     */
+    public String getSource() {
+        return source;
+    }
+
+    /**
+     * get the context
+     * @return context
+     */
+    public String getContext() {
+        return context;
     }
 
     /**
