@@ -25,12 +25,16 @@ public class RelationshipsMixin extends BaseMixin {
     @JsonCreator
     public RelationshipsMixin(
             @JsonProperty("predicate") String predicate,
+            @JsonProperty("predicateId") String predicateId,
             @JsonProperty("arg1") String arg1,
+            @JsonProperty("arg1Id") String arg1Id,
             @JsonProperty("arg2") String arg2,
+            @JsonProperty("arg2Id") String arg2Id,
             @JsonProperty("arg3") String arg3,
-            @JsonProperty("temporals") List<String> temporals,
-            @JsonProperty("locatives") List<String> locatives,
+            @JsonProperty("arg3Id") String arg3Id,
             @JsonProperty("adjuncts") List<String> adjuncts,
+            @JsonProperty("context") String context,
+            @JsonProperty("source") String source,
             @JsonProperty("confidence") Double confidence
     ) {
         //
