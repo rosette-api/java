@@ -97,9 +97,11 @@ import static java.net.HttpURLConnection.HTTP_OK;
 /**
  * You can use the RosetteAPI to access Rosette API endpoints.
  * RosetteAPI is thread-safe and immutable.
+ * @deprecated this class has been replaced by {@link HttpRosetteAPI}.
  */
 @Immutable
 @ThreadSafe
+@Deprecated
 public class RosetteAPI implements Closeable {
 
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
