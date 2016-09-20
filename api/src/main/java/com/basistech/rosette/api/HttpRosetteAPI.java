@@ -95,7 +95,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
      *                     of the Rosette API.
      * @throws HttpRosetteAPIException If the service is not compatible with the version of the binding.
      */
-    public HttpRosetteAPI(String key) throws HttpRosetteAPIException {
+    HttpRosetteAPI(String key) throws HttpRosetteAPIException {
         this(key, DEFAULT_URL_BASE);
     }
 
@@ -109,7 +109,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
      * @throws HttpRosetteAPIException If the service is not compatible with the version of the binding.
      *
      */
-    public HttpRosetteAPI(String key, String alternateUrl) throws HttpRosetteAPIException {
+    HttpRosetteAPI(String key, String alternateUrl) throws HttpRosetteAPIException {
         if (alternateUrl != null) {
             urlBase = alternateUrl;
             if (urlBase.endsWith("/")) {
@@ -136,7 +136,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
      *                              default value: 2.
      * @throws HttpRosetteAPIException  Problem with the API request
      */
-    private HttpRosetteAPI(String key, String urlToCall, Integer failureRetries,
+    HttpRosetteAPI(String key, String urlToCall, Integer failureRetries,
                        CloseableHttpClient httpClient, List<Header> additionalHeaders,
                        Integer connectionConcurrency) throws HttpRosetteAPIException {
         urlBase = urlToCall.trim().replaceAll("/+$", "");
@@ -531,6 +531,9 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
         }
     }
 
+    /**
+     * Builder for HttpRosetteAPI objects.
+     */
     public static class Builder {
         private String key;
         private String url;
@@ -539,36 +542,80 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
         private CloseableHttpClient httpClient;
         private List<Header> additionalHeaders = new ArrayList<>();
 
+        /**
+         * Specify the API key. This is required for use with the public API, and
+         * not necessary with on-premise deployments.
+         * @param key the key string.
+         * @return this.
+         */
         public Builder key(String key) {
             this.key = key;
             return this;
         }
 
+        /**
+         * Specify the URL for the service. This is required for use with on-premise
+         * deployments, but should not be called for uses of the public API.
+         * @param url the URL.
+         * @return this.
+         */
         public Builder url(String url) {
             this.url = url;
             return this;
         }
 
+        /**
+         * How many times to retry 5xx errors from the service. Some 5xx errors
+         * result from transient infrastructure problems.
+         * @param failureRetries the number of retries. The default is 1.
+         * @return this.
+         */
         public Builder failureRetries(Integer failureRetries) {
             this.failureRetries = failureRetries;
             return this;
         }
 
+        /**
+         * The maximum number of concurrent requests that may be in progress.
+         * The default value is 2. For the public API, you should only specify
+         * a larger value if you have signed up for a plan that allows for
+         * more concurrency.
+         * @param concurrency the number of concurrent connections. The default is 2.
+         * @return this.
+         */
         public Builder connectionConcurrency(Integer concurrency) {
             this.concurrency = concurrency;
             return this;
         }
 
+        /**
+         * The Apache HTTP components client object to use for communications with the service.
+         * If this is not called (or is null), {@link HttpRosetteAPI} will create a client object.
+         * @param httpClient the client object.
+         * @return this.
+         */
         public Builder httpClient(CloseableHttpClient httpClient) {
             this.httpClient = httpClient;
             return this;
         }
 
+        /**
+         * Specify an additional header value to include in all requests. This can be helpful for
+         * use with corporate proxies, or as directed by Basis Technology customer engineering.
+         * @param name the header name.
+         * @param value the header value.
+         * @return this.
+         */
         public Builder additionalHeader(String name, String value) {
             additionalHeaders.add(new BasicHeader(name, value));
             return this;
         }
 
+        /**
+         * Build the API object.
+         * @return the new API object.
+         * @throws HttpRosetteAPIException for some error encountered.
+         */
         public HttpRosetteAPI build() throws HttpRosetteAPIException {
             return new HttpRosetteAPI(key, url, failureRetries, httpClient, additionalHeaders, concurrency);
         }
