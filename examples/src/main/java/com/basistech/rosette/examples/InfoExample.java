@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.InfoResponse;
 
 import java.io.IOException;
@@ -34,7 +33,7 @@ public final class InfoExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
+    private void run() throws IOException {
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                                 .key(getApiKeyFromSystemProperty())
                                 .url(getAltUrlFromSystemProperty())

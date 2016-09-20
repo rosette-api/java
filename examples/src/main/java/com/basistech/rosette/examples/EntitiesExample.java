@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
 import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
@@ -36,7 +35,7 @@ public final class EntitiesExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
+    private void run() throws IOException {
         String entitiesTextData = "Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS";
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                                 .key(getApiKeyFromSystemProperty())
