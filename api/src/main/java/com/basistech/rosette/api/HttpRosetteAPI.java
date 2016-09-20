@@ -17,6 +17,8 @@ package com.basistech.rosette.api;
 
 import com.basistech.rosette.RosetteRuntimeException;
 import com.basistech.rosette.apimodel.AbstractRosetteAPI;
+import com.basistech.rosette.apimodel.AdmRequest;
+import com.basistech.rosette.apimodel.AdmResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InfoResponse;
@@ -61,7 +63,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.Future;
@@ -90,11 +91,11 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
     /**
      * Constructs a Rosette API instance using an API key.
      *
-     * @param key Rosette API key
+     * @param key Rosette API key. This may be null for use with an on-premise deployment
+     *                     of the Rosette API.
      * @throws HttpRosetteAPIException If the service is not compatible with the version of the binding.
-     * @throws IOException         General IO exception
      */
-    public HttpRosetteAPI(String key) throws IOException, HttpRosetteAPIException {
+    public HttpRosetteAPI(String key) throws HttpRosetteAPIException {
         this(key, DEFAULT_URL_BASE);
     }
 
@@ -102,17 +103,18 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
      * Constructs a Rosette API instance using an API key and accepts an
      * alternate URL for testing purposes.
      *
-     * @param key          Rosette API key
-     * @param alternateUrl Alternate Rosette API URL
+     * @param key          Rosette API key. This may be null for use with an on-premise deployment
+     *                     of the Rosette API.
+     * @param alternateUrl Alternate Rosette API URL. {@code null} uses the default.
      * @throws HttpRosetteAPIException If the service is not compatible with the version of the binding.
-     * @throws IOException         General IO exception
      *
      */
-    public HttpRosetteAPI(String key, String alternateUrl) throws IOException, HttpRosetteAPIException {
-        Objects.requireNonNull(alternateUrl, "alternateUrl cannot be null");
-        urlBase = alternateUrl;
-        if (urlBase.endsWith("/")) {
-            urlBase = urlBase.substring(0, urlBase.length() - 1);
+    public HttpRosetteAPI(String key, String alternateUrl) throws HttpRosetteAPIException {
+        if (alternateUrl != null) {
+            urlBase = alternateUrl;
+            if (urlBase.endsWith("/")) {
+                urlBase = urlBase.substring(0, urlBase.length() - 1);
+            }
         }
         this.failureRetries = 1;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
@@ -123,20 +125,30 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
     /**
      * Constructs a Rosette API instance using the builder syntax.
      *
-     * @param key            Rosette API key
-     * @param urlToCall   Alternate Rosette API URL
-     * @param failureRetries Number of times to retry in case of failure; default 1
-     * @throws IOException          General IO exception
+     * @param key            Rosette API key. This may be null for use with an on-premise deployment
+     *                     of the Rosette API.
+     * @param urlToCall   Alternate Rosette API URL. {@code null} uses the default, public, URL.
+     * @param failureRetries Number of times to retry in case of failure; {@code null} uses the
+     *                       default value: 1.
+     * @param connectionConcurrency Number of concurrent connections. Pass this if have subscribed
+     *                              to a plan that supports enhanced concurrency, or if you are using
+     *                              an on-premise deployment of the Rosette API. {@code null} uses the
+     *                              default value: 2.
      * @throws HttpRosetteAPIException  Problem with the API request
      */
-    private HttpRosetteAPI(String key, String urlToCall, int failureRetries,
+    private HttpRosetteAPI(String key, String urlToCall, Integer failureRetries,
                        CloseableHttpClient httpClient, List<Header> additionalHeaders,
-                       int connectionConcurrency)
-            throws IOException, HttpRosetteAPIException {
+                       Integer connectionConcurrency) throws HttpRosetteAPIException {
         urlBase = urlToCall.trim().replaceAll("/+$", "");
-        this.failureRetries = failureRetries;
+        if (failureRetries != null) {
+            this.failureRetries = failureRetries;
+        }
+
+        if (connectionConcurrency != null) {
+            this.connectionConcurrency = connectionConcurrency;
+        }
+
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-        this.connectionConcurrency = connectionConcurrency;
 
         if (httpClient == null) {
             initClient(key, additionalHeaders);
@@ -304,7 +316,14 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
             } else if (rawContent != null) {
                 notPlainText = true;
             }
+        } else if (request instanceof AdmRequest) {
+            throw new UnsupportedOperationException("Adm requests are not supported.");
         }
+
+        if (AdmResponse.class.isAssignableFrom(clazz)) {
+            throw new UnsupportedOperationException("Adm responses are not supported.");
+        }
+
         final ObjectWriter finalWriter = writer;
 
         HttpPost post = new HttpPost(urlStr);
@@ -509,6 +528,49 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
     public void close() throws IOException {
         if (closeClientOnClose) {
             httpClient.close();
+        }
+    }
+
+    public static class Builder {
+        private String key;
+        private String url;
+        private Integer failureRetries;
+        private Integer concurrency;
+        private CloseableHttpClient httpClient;
+        private List<Header> additionalHeaders = new ArrayList<>();
+
+        public Builder key(String key) {
+            this.key = key;
+            return this;
+        }
+
+        public Builder url(String url) {
+            this.url = url;
+            return this;
+        }
+
+        public Builder failureRetries(Integer failureRetries) {
+            this.failureRetries = failureRetries;
+            return this;
+        }
+
+        public Builder connectionConcurrency(Integer concurrency) {
+            this.concurrency = concurrency;
+            return this;
+        }
+
+        public Builder httpClient(CloseableHttpClient httpClient) {
+            this.httpClient = httpClient;
+            return this;
+        }
+
+        public Builder additionalHeader(String name, String value) {
+            additionalHeaders.add(new BasicHeader(name, value));
+            return this;
+        }
+
+        public HttpRosetteAPI build() throws HttpRosetteAPIException {
+            return new HttpRosetteAPI(key, url, failureRetries, httpClient, additionalHeaders, concurrency);
         }
     }
 }

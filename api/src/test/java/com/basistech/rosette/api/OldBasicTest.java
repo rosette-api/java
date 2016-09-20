@@ -37,8 +37,8 @@ import java.util.Set;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public class BasicTest extends AbstractTest {
-    private HttpRosetteAPI api;
+public class OldBasicTest extends AbstractTest {
+    private RosetteAPI api;
 
     @Rule
     public MockServerRule mockServerRule = new MockServerRule(this, getFreePort());
@@ -66,7 +66,7 @@ public class BasicTest extends AbstractTest {
     // then set concurrent connections = 5,
     // run several requests again, showing they're executed in parallel
     @Test
-    public void testMultipleConnections() throws IOException, InterruptedException {
+    public void testMultipleConnections() throws IOException, RosetteAPIException, InterruptedException {
         int delayTime = 3;
         int numConnections = 5;
 
@@ -81,8 +81,8 @@ public class BasicTest extends AbstractTest {
                         .withDelay(new Delay(SECONDS, delayTime)));
 
         // "before" case - send off (numConnections) requests, expect them to run serially
-        api = new HttpRosetteAPI.Builder().connectionConcurrency(1)
-                .url(String.format("http://localhost:%d/rest/v1", serverPort)).build();
+        api = new RosetteAPI.Builder().connectionConcurrency(1)
+                .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort)).build();
 
         Date d1 = new Date();
 
@@ -100,8 +100,8 @@ public class BasicTest extends AbstractTest {
 
         assert d2.getTime() - d1.getTime() > delayTime * numConnections * 1000; // at least as long as the delay in the request
 
-        api = new HttpRosetteAPI.Builder().connectionConcurrency(numConnections)
-                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+        api = new RosetteAPI.Builder().connectionConcurrency(numConnections)
+                .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort))
                 .build();
         d1 = new Date();
 
@@ -134,10 +134,10 @@ public class BasicTest extends AbstractTest {
                         .withStatusCode(200)
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
 
-        api = new HttpRosetteAPI.Builder()
-                .key("foo-key")
-                .url(String.format("http://localhost:%d/rest/v1", serverPort))
-                .additionalHeader("X-Foo", "Bar")
+        api = new RosetteAPI.Builder()
+                .apiKey("foo-key")
+                .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort))
+                .withCustomHeader("X-Foo", "Bar")
                 .build();
         api.ping();
     }
@@ -154,18 +154,18 @@ public class BasicTest extends AbstractTest {
                         .withHeader("X-FooMulti", "Bar1", "Bar2")
                         .withHeader("X-RosetteAPI-Concurrency", "5")
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
-        api = new HttpRosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
+        api = new RosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
         Response resp = api.ping();
         assertEquals("Bar", resp.getExtendedInformation().get("X-Foo"));
-        Set<?> foos = (Set)resp.getExtendedInformation().get("X-FooMulti");
+        Set<Object> foos = (Set<Object>)resp.getExtendedInformation().get("X-FooMulti");
         assertTrue(foos.contains("Bar1"));
         assertTrue(foos.contains("Bar2"));
     }
 
     private class ApiPinger extends Thread {
-        HttpRosetteAPI api1;
+        RosetteAPI api1;
 
-        public ApiPinger(HttpRosetteAPI api) throws IOException {
+        public ApiPinger(RosetteAPI api) throws IOException, RosetteAPIException {
             this.api1 = api;
         }
 
@@ -174,7 +174,9 @@ public class BasicTest extends AbstractTest {
             try {
                 api1.info();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
+            } catch (RosetteAPIException e) {
+                e.printStackTrace();
             }
         }
     }
