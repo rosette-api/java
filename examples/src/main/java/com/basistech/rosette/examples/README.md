@@ -17,7 +17,6 @@ Otherwise you can compile and run these examples by hand:
 | Base64InputExample.java                     | Entities using base64 encoded string
 | CategoriesExample.java                      | Gets the category of a document at a URL
 | EntitiesExample.java                        | Extracts entities
-| EntitiesLinkedExample.java                  | Gets linked (to Wikidata) entities
 | InfoExample.java                            | Gets information about Rosette API
 | LanguageExample.java                        | Detects language
 | MatchedNameExample.java                     | Matches two names for similarity comparison
