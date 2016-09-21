@@ -18,7 +18,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.4.6</version>
+    <version>1.4.7-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
@@ -31,7 +31,7 @@
     <scm>
         <connection>scm:git:git@github.com:rosette-api/java.git</connection>
         <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
-      <tag>rosette-api-java-binding-1.4.6</tag>
+      <tag>HEAD</tag>
   </scm>
     <description>
         This is the Java binding for the Rosette API. The classes in
