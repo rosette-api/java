@@ -20,11 +20,10 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
         <artifactId>rosette-api-java-binding</artifactId>
-        <version>1.4.5-SNAPSHOT</version>
+        <version>1.4.8-SNAPSHOT</version>
     </parent>
     <artifactId>rosette-api-json</artifactId>
     <name>rosette-api-json</name>
-    <packaging>bundle</packaging>
     <description>Rosette API JSON module</description>
     <dependencies>
         <dependency>
@@ -70,8 +69,17 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
+                <groupId>biz.aQute.bnd</groupId>
+                <artifactId>bnd-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -25,7 +25,6 @@ import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InfoResponse;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageResponse;
-import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
@@ -97,9 +96,12 @@ import static java.net.HttpURLConnection.HTTP_OK;
 /**
  * You can use the RosetteAPI to access Rosette API endpoints.
  * RosetteAPI is thread-safe and immutable.
+ * @deprecated this class has been replaced by {@link HttpRosetteAPI}.
  */
 @Immutable
 @ThreadSafe
+@Deprecated
+@SuppressWarnings({"deprecation", "unchecked"})
 public class RosetteAPI implements Closeable {
 
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
@@ -779,7 +781,7 @@ public class RosetteAPI implements Closeable {
      * @deprecated Merged into {@link #getEntities(String, LanguageCode, EntitiesOptions)}.
      */
     @Deprecated
-    public LinkedEntitiesResponse getLinkedEntities(InputStream inputStream,
+    public com.basistech.rosette.apimodel.LinkedEntitiesResponse getLinkedEntities(InputStream inputStream,
                                                     String contentType,
                                                     LanguageCode language)
             throws RosetteAPIException, IOException {
@@ -788,7 +790,7 @@ public class RosetteAPI implements Closeable {
                 .language(language)
                 .contentBytes(bytes, contentType)
                 .build();
-        return sendPostRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntitiesResponse.class);
+        return sendPostRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, com.basistech.rosette.apimodel.LinkedEntitiesResponse.class);
     }
 
     /**
@@ -806,13 +808,13 @@ public class RosetteAPI implements Closeable {
      * @deprecated Merged into {@link #getEntities(InputStream, String, LanguageCode, EntitiesOptions)}
      */
     @Deprecated
-    public LinkedEntitiesResponse getLinkedEntities(URL url, LanguageCode language)
+    public com.basistech.rosette.apimodel.LinkedEntitiesResponse getLinkedEntities(URL url, LanguageCode language)
             throws RosetteAPIException, IOException {
         Request request = new DocumentRequest.Builder()
                 .language(language)
                 .contentUri(url.toString())
                 .build();
-        return sendPostRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntitiesResponse.class);
+        return sendPostRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, com.basistech.rosette.apimodel.LinkedEntitiesResponse.class);
     }
 
     /**
@@ -828,13 +830,13 @@ public class RosetteAPI implements Closeable {
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
     @SuppressWarnings("deprecation")
-    public LinkedEntitiesResponse getLinkedEntities(String content, LanguageCode language)
+    public com.basistech.rosette.apimodel.LinkedEntitiesResponse getLinkedEntities(String content, LanguageCode language)
             throws RosetteAPIException, IOException {
         Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
                 .build();
-        return sendPostRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, LinkedEntitiesResponse.class);
+        return sendPostRequest(request, urlBase + ENTITIES_LINKED_SERVICE_PATH, com.basistech.rosette.apimodel.LinkedEntitiesResponse.class);
     }
 
     /**

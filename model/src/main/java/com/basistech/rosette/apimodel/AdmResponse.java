@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2016 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,19 +14,21 @@
 * limitations under the License.
 */
 
-package com.basistech.rosette.apimodel.jackson;
+package com.basistech.rosette.apimodel;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.basistech.rosette.dm.AnnotatedText;
 
-import java.util.List;
+/**
+ * An {@link AnnotatedText} response from a document-processing endpoint.
+ */
+public class AdmResponse extends Response {
+    private final AnnotatedText text;
 
-@SuppressWarnings("deprecation")
-public class LinkedEntityResponseMixin extends BaseMixin {
-    @JsonCreator
-    public LinkedEntityResponseMixin(
-            @JsonProperty("entities") List<com.basistech.rosette.apimodel.LinkedEntity> entities
-    ) {
-        //
+    public AdmResponse(AnnotatedText text) {
+        this.text = text;
+    }
+
+    public AnnotatedText getText() {
+        return text;
     }
 }

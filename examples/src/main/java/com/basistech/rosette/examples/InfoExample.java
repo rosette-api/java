@@ -15,8 +15,7 @@
 */
 package com.basistech.rosette.examples;
 
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.apimodel.InfoResponse;
 
 import java.io.IOException;
@@ -34,14 +33,14 @@ public final class InfoExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                .apiKey(getApiKeyFromSystemProperty())
-                                .alternateUrl(getAltUrlFromSystemProperty())
+    private void run() throws IOException {
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                                .key(getApiKeyFromSystemProperty())
+                                .url(getAltUrlFromSystemProperty())
                                 .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        InfoResponse response = rosetteApi.getInfo();
+        InfoResponse response = rosetteApi.info();
         System.out.println(responseToJson(response));
     }
 }

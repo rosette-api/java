@@ -15,8 +15,7 @@
 */
 package com.basistech.rosette.examples;
 
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.apimodel.PingResponse;
 
 import java.io.IOException;
@@ -34,8 +33,8 @@ public final class PingExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
-        RosetteAPI rosetteApi = new RosetteAPI(getApiKeyFromSystemProperty(), getAltUrlFromSystemProperty());
+    private void run() throws IOException {
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder().key(getApiKeyFromSystemProperty()).url(getAltUrlFromSystemProperty()).build();
         PingResponse response = rosetteApi.ping();
         System.out.println(responseToJson(response));
     }

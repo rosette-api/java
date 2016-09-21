@@ -15,8 +15,10 @@
 */
 package com.basistech.rosette.examples;
 
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.api.HttpRosetteAPI;
+import com.basistech.rosette.apimodel.AbstractRosetteAPI;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageResponse;
 
 import java.io.IOException;
@@ -34,16 +36,17 @@ public final class LanguageExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
+    private void run() throws IOException {
         String languageData = "Por favor Señorita, says the man.";
 
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                    .apiKey(getApiKeyFromSystemProperty())
-                                    .alternateUrl(getAltUrlFromSystemProperty())
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                                    .key(getApiKeyFromSystemProperty())
+                                    .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        LanguageResponse response = rosetteApi.getLanguage(languageData);
+        DocumentRequest<LanguageOptions> request = new DocumentRequest.Builder<LanguageOptions>().content(languageData).build();
+        LanguageResponse response = rosetteApi.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
         System.out.println(responseToJson(response));
     }
 }
