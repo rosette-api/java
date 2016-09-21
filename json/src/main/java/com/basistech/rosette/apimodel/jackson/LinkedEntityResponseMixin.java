@@ -16,16 +16,16 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.LinkedEntity;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class LinkedEntityResponseMixin extends BaseMixin {
     @JsonCreator
     public LinkedEntityResponseMixin(
-            @JsonProperty("entities") List<LinkedEntity> entities
+            @JsonProperty("entities") List<com.basistech.rosette.apimodel.LinkedEntity> entities
     ) {
         //
     }

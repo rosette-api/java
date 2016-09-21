@@ -16,7 +16,20 @@
 
 package com.basistech.rosette.api;
 
-import com.basistech.rosette.apimodel.*;
+import com.basistech.rosette.apimodel.AbstractRosetteAPI;
+import com.basistech.rosette.apimodel.CategoriesResponse;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.EntitiesResponse;
+import com.basistech.rosette.apimodel.ErrorResponse;
+import com.basistech.rosette.apimodel.LanguageResponse;
+import com.basistech.rosette.apimodel.MorphologyResponse;
+import com.basistech.rosette.apimodel.NameSimilarityRequest;
+import com.basistech.rosette.apimodel.NameSimilarityResponse;
+import com.basistech.rosette.apimodel.NameTranslationRequest;
+import com.basistech.rosette.apimodel.NameTranslationResponse;
+import com.basistech.rosette.apimodel.RelationshipsResponse;
+import com.basistech.rosette.apimodel.Request;
+import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.util.LanguageCode;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -26,7 +39,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockserver.client.server.MockServerClient;
-import org.mockserver.matchers.Times;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
@@ -35,7 +47,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -46,9 +57,8 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class RosetteAPITest extends AbstractTest {
     private final String testFilename;
-    private RosetteAPI api;
+    private HttpRosetteAPI api;
     private String responseStr;
-    private LanguageCode language;
     private MockServerClient mockServer;
 
     public RosetteAPITest(String filename) {
@@ -71,13 +81,7 @@ public class RosetteAPITest extends AbstractTest {
 
 
     @Before
-    public void setUp() throws IOException, InterruptedException, RosetteAPIException {
-        try {
-            language = LanguageCode.lookupByISO639(testFilename.substring(0, 3));
-        } catch (IllegalArgumentException e) {
-            language = LanguageCode.UNKNOWN;
-        }
-
+    public void setUp() throws Exception {
         String statusFilename = testFilename.replace(".json", ".status");
         try (InputStream bodyStream = new FileInputStream("src/test/mock-data/response/" + testFilename)) {
             responseStr = IOUtils.toString(bodyStream, "UTF-8");
@@ -93,7 +97,7 @@ public class RosetteAPITest extends AbstractTest {
             mockServer.when(HttpRequest.request()
                     .withMethod("GET")
                     .withPath("/rest/v1/ping")
-                    .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR))
+                    .withHeader(HttpHeaders.USER_AGENT, HttpRosetteAPI.USER_AGENT_STR))
                     .respond(HttpResponse.response()
                             .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
                             .withStatusCode(200)
@@ -122,9 +126,9 @@ public class RosetteAPITest extends AbstractTest {
                     .withBody(INFO_REPONSE, StandardCharsets.UTF_8));
 
             String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
-            api = new RosetteAPI.Builder()
-                    .apiKey("my-key-123")
-                    .alternateUrl(mockServiceUrl)
+            api = new HttpRosetteAPI.Builder()
+                    .key("my-key-123")
+                    .url(mockServiceUrl)
                     .build();
         }
     }
@@ -136,9 +140,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         NameSimilarityRequest request = readValueNameMatcher();
         try {
-            NameSimilarityResponse response = api.getNameSimilarity(request);
+            NameSimilarityResponse response = api.perform(AbstractRosetteAPI.NAME_SIMILARITY_SERVICE_PATH, request, NameSimilarityResponse.class);
             verifyNameMatcher(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -160,9 +164,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         NameTranslationRequest request = readValueNameTranslation();
         try {
-            NameTranslationResponse response = api.getNameTranslation(request);
+            NameTranslationResponse response = api.perform(AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
             verifyNameTranslation(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -189,9 +193,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            LanguageResponse response = api.getLanguage(request.getContent());
+            LanguageResponse response = api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
             verifyLanguage(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -203,9 +207,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            LanguageResponse response = api.getLanguage(new URL(request.getContentUri()));
+            LanguageResponse response = api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
             verifyLanguage(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -217,9 +221,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE, request.getContent());
+            MorphologyResponse response = api.perform(AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
             verifyMorphology(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -236,9 +240,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            MorphologyResponse response = api.getMorphology(MorphologicalFeature.COMPLETE, new URL(request.getContentUri()));
+            MorphologyResponse response = api.perform(AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
             verifyMorphology(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -250,9 +254,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            EntitiesResponse response = api.getEntities(request.getContent());
+            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
             verifyEntity(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -269,42 +273,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            EntitiesResponse response = api.getEntities(new URL(request.getContentUri()));
+            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
             verifyEntity(response);
-        } catch (RosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-     @Test
-    public void testGetLinkedEntity() throws IOException {
-        if (!(testFilename.endsWith("-entities_linked.json") && testFilename.contains("-doc-"))) {
-            return;
-        }
-         DocumentRequest<?> request = readValue(DocumentRequest.class);
-        try {
-            LinkedEntitiesResponse response = api.getLinkedEntities(request.getContent(), null);
-            verifyLinkedEntity(response);
-        } catch (RosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    private void verifyLinkedEntity(LinkedEntitiesResponse response) throws IOException {
-        LinkedEntitiesResponse goldResponse = mapper.readValue(responseStr, LinkedEntitiesResponse.class);
-        assertEquals(response.getEntities().size(), goldResponse.getEntities().size());
-    }
-
-    @Test
-    public void testGetLinkedEntityURL() throws IOException {
-        if (!(testFilename.endsWith("-entities_linked.json") && testFilename.contains("-url-"))) {
-            return;
-        }
-        DocumentRequest<?> request = readValue(DocumentRequest.class);
-        try {
-            LinkedEntitiesResponse response = api.getLinkedEntities(new URL(request.getContentUri()), null);
-            verifyLinkedEntity(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -316,9 +287,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            CategoriesResponse response = api.getCategories(request.getContent());
+            CategoriesResponse response = api.perform(AbstractRosetteAPI.CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
             verifyCategory(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -336,13 +307,14 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            CategoriesResponse response = api.getCategories(new URL(request.getContentUri()));
+            CategoriesResponse response = api.perform(AbstractRosetteAPI.CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
             verifyCategory(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
 
+    // THERE ARE NO REL FILENAMES!
     @Test
     public void testGetRelationships() throws IOException {
         if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-doc-"))) {
@@ -350,15 +322,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
-            RosetteAPI apiWithLanguage = new RosetteAPI.Builder()
-                                            .apiKey("my-key-123")
-                                            .alternateUrl(mockServiceUrl)
-                                            .language(language)
-                                            .build();
-            RelationshipsResponse response = apiWithLanguage.getRelationships(request.getContent());
+            RelationshipsResponse response = api.perform(AbstractRosetteAPI.RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
             verifyRelationships(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -375,15 +341,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
-            RosetteAPI apiWithLanguage = new RosetteAPI.Builder()
-                    .apiKey("my-key-123")
-                    .alternateUrl(mockServiceUrl)
-                    .language(language)
-                    .build();
-            RelationshipsResponse response = apiWithLanguage.getRelationships(new URL(request.getContentUri()));
+            RelationshipsResponse response = api.perform(AbstractRosetteAPI.RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
             verifyRelationships(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -395,9 +355,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            SentimentResponse response = api.getSentiment(request.getContent());
+            SentimentResponse response = api.perform(AbstractRosetteAPI.SENTENCES_SERVICE_PATH, request, SentimentResponse.class);
             verifySentiment(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -416,9 +376,9 @@ public class RosetteAPITest extends AbstractTest {
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            SentimentResponse response = api.getSentiment(new URL(request.getContentUri()));
+            SentimentResponse response = api.perform(AbstractRosetteAPI.SENTENCES_SERVICE_PATH, request, SentimentResponse.class);
             verifySentiment(response);
-        } catch (RosetteAPIException e) {
+        } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
@@ -428,8 +388,8 @@ public class RosetteAPITest extends AbstractTest {
         return mapper.readValue(input, clazz);
     }
 
-    private void verifyException(RosetteAPIException e) throws IOException {
+    private void verifyException(HttpRosetteAPIException e) throws IOException {
         ErrorResponse goldResponse = mapper.readValue(responseStr, ErrorResponse.class);
-        assertEquals(goldResponse.getCode(), e.getCode());
+        assertEquals(goldResponse.getCode(), e.getErrorResponse().getCode());
     }
 }

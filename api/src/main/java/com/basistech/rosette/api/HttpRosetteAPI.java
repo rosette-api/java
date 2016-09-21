@@ -81,7 +81,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
     public static final String USER_AGENT_STR = SERVICE_NAME + "-Java/" + BINDING_VERSION;
     private static final Logger LOG = LoggerFactory.getLogger(HttpRosetteAPI.class);
     private String urlBase = DEFAULT_URL_BASE;
-    private int failureRetries;
+    private int failureRetries = 1;
     private ObjectMapper mapper;
     private CloseableHttpClient httpClient;
     private List<Header> additionalHeaders;
@@ -140,7 +140,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
                        CloseableHttpClient httpClient, List<Header> additionalHeaders,
                        Integer connectionConcurrency) throws HttpRosetteAPIException {
         urlBase = urlToCall.trim().replaceAll("/+$", "");
-        if (failureRetries != null) {
+        if (failureRetries != null && failureRetries >= 1) {
             this.failureRetries = failureRetries;
         }
 
@@ -166,7 +166,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
      */
     private static String getVersion() {
         Properties properties = new Properties();
-        try (InputStream ins = RosetteAPI.class.getClassLoader().getResourceAsStream("version.properties")) {
+        try (InputStream ins = HttpRosetteAPI.class.getClassLoader().getResourceAsStream("version.properties")) {
             properties.load(ins);
         } catch (IOException e) {
             // should not happen
@@ -516,7 +516,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
                         errorContent = "(no body)";
                     }
                     // something not from us at all
-                    throw new HttpRosetteAPIException(new ErrorResponse("invalidErrorResponse", errorContent), status);
+                    throw new HttpRosetteAPIException("Invalid error response (not json)", new ErrorResponse("invalidErrorResponse", errorContent), status);
                 }
             } else {
                 return mapper.readValue(inputStream, clazz);

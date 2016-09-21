@@ -37,6 +37,7 @@ import java.util.Set;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+@SuppressWarnings("deprecation")
 public class OldBasicTest extends AbstractTest {
     private RosetteAPI api;
 
@@ -157,7 +158,7 @@ public class OldBasicTest extends AbstractTest {
         api = new RosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
         Response resp = api.ping();
         assertEquals("Bar", resp.getExtendedInformation().get("X-Foo"));
-        Set<Object> foos = (Set<Object>)resp.getExtendedInformation().get("X-FooMulti");
+        Set<?> foos = (Set)resp.getExtendedInformation().get("X-FooMulti");
         assertTrue(foos.contains("Bar1"));
         assertTrue(foos.contains("Bar2"));
     }

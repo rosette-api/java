@@ -34,8 +34,6 @@ import com.basistech.rosette.apimodel.LanguageDetectionResult;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.LanguageWeight;
-import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
-import com.basistech.rosette.apimodel.LinkedEntity;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
@@ -72,6 +70,7 @@ import com.fasterxml.jackson.databind.module.SimpleSerializers;
  * Jackson module to configure Json serialization and deserialization for the
  * Rosette API model.
  */
+@SuppressWarnings("deprecation")
 public class ApiModelMixinModule extends AnnotatedDataModelModule {
 
     public ApiModelMixinModule() {
@@ -95,8 +94,8 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);
         context.setMixInAnnotations(LanguageResponse.class, LanguageResponseMixin.class);
         context.setMixInAnnotations(LanguageWeight.class, LanguageWeightMixin.class);
-        context.setMixInAnnotations(LinkedEntity.class, LinkedEntityMixin.class);
-        context.setMixInAnnotations(LinkedEntitiesResponse.class, LinkedEntityResponseMixin.class);
+        context.setMixInAnnotations(com.basistech.rosette.apimodel.LinkedEntity.class, LinkedEntityMixin.class);
+        context.setMixInAnnotations(com.basistech.rosette.apimodel.LinkedEntitiesResponse.class, LinkedEntityResponseMixin.class);
         context.setMixInAnnotations(MorphologyOptions.class, MorphologyOptionsMixin.class);
         context.setMixInAnnotations(MorphologyResponse.class, MorphologyResponseMixin.class);
         context.setMixInAnnotations(Name.class, NameMixin.class);

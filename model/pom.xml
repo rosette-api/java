@@ -35,11 +35,6 @@
             <version>1.1.0.Final</version>
         </dependency>
         <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.10</version>
-        </dependency>
-        <dependency>
             <groupId>com.basistech</groupId>
             <artifactId>adm-model</artifactId>
             <version>2.1.2</version>
