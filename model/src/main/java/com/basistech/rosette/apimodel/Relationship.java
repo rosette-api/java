@@ -32,7 +32,7 @@ public final class Relationship {
     private final String arg3;
     private final String arg3Id;
     private final List<String> adjuncts;
-    private final String context;
+    private final String modality;
     private final String source;
     private final Double confidence;
 
@@ -47,7 +47,7 @@ public final class Relationship {
      * @param arg3 relationship argument 3
      * @param arg3Id
      * @param adjuncts relationship adjuncts
-     * @param context
+     * @param modality
      * @param source
      * @param confidence  a measure of quality of relationship extraction
      */
@@ -61,7 +61,7 @@ public final class Relationship {
             String arg3,
             String arg3Id,
             List<String> adjuncts,
-            String context,
+            String modality,
             String source,
             Double confidence) {
         this.predicate = predicate;
@@ -73,7 +73,7 @@ public final class Relationship {
         this.arg3 = arg3;
         this.arg3Id = arg3Id;
         this.adjuncts = adjuncts;
-        this.context = context;
+        this.modality = modality;
         this.source = source;
         this.confidence = confidence;
     }
@@ -91,7 +91,7 @@ public final class Relationship {
         result = 31 * result + (arg3 != null ? arg3.hashCode() : 0);
         result = 31 * result + (arg3Id != null ? arg3Id.hashCode() : 0);
         result = 31 * result + (adjuncts != null ? adjuncts.hashCode() : 0);
-        result = 31 * result + (context != null ? context.hashCode() : 0);
+        result = 31 * result + (modality != null ? modality.hashCode() : 0);
         result = 31 * result + (source != null ? source.hashCode() : 0);
         temp = Double.doubleToLongBits(confidence);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -120,7 +120,7 @@ public final class Relationship {
                 && arg3Id != null ? arg3Id.equals(that.getArg3Id()) : that.arg3Id == null
                 && adjuncts != null ? adjuncts.equals(that.getAdjuncts()) : that.adjuncts == null
                 && source != null ? source.equals(that.getSource()) : that.source == null
-                && context != null ? context.equals(that.getContext()) : that.context == null
+                && modality != null ? modality.equals(that.getModality()) : that.modality == null
                 && confidence == that.getConfidence();
     }
 
@@ -177,8 +177,8 @@ public final class Relationship {
         return adjuncts;
     }
 
-    public String getContext() {
-        return context;
+    public String getModality() {
+        return modality;
     }
 
     public String getSource() {
