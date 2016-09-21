@@ -18,12 +18,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.2-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
         <version>0.1.2</version>
-        <relativePath />
+        <relativePath/>
     </parent>
     <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
@@ -31,8 +31,7 @@
     <scm>
         <connection>scm:git:git@github.com:rosette-api/java.git</connection>
         <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
-      <tag>rosette-api-java-binding-1.4.2</tag>
-  </scm>
+    </scm>
     <description>
         This is the Java binding for the Rosette API. The classes in
         here help Java applications to communicate with the Rosette API.
