@@ -267,7 +267,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
      * This method always throws UnsupportedOperationException.
      */
     @Override
-    public <RequestType, ResponseType  extends Response> Future<ResponseType> performAsync(String endpoint, RequestType request, Class<ResponseType> responseClass) throws HttpRosetteAPIException {
+    public <RequestType extends Request, ResponseType extends Response> Future<ResponseType> performAsync(String endpoint, RequestType request, Class<ResponseType> responseClass) throws HttpRosetteAPIException {
         throw new UnsupportedOperationException("Asynchronous operations are not yet supported");
     }
 

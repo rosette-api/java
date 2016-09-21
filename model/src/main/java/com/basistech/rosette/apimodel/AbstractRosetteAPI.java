@@ -59,5 +59,5 @@ public abstract class AbstractRosetteAPI {
      * @return a {@link Future} for the response.
      * @throws CommonRosetteAPIException for an error.
      */
-    public abstract <RequestType, ResponseType  extends Response> Future<ResponseType> performAsync(String endpoint, RequestType request, Class<ResponseType> responseClass) throws CommonRosetteAPIException;
+    public abstract <RequestType extends Request, ResponseType extends Response> Future<ResponseType> performAsync(String endpoint, RequestType request, Class<ResponseType> responseClass) throws CommonRosetteAPIException;
 }
