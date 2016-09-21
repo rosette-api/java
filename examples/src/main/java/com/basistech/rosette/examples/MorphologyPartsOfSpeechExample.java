@@ -15,9 +15,11 @@
 */
 package com.basistech.rosette.examples;
 
+import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.api.MorphologicalFeature;
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.apimodel.AbstractRosetteAPI;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 
 import java.io.IOException;
@@ -35,17 +37,17 @@ public final class MorphologyPartsOfSpeechExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
+    private void run() throws IOException {
         String morphologyPartsOfSpeechData = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon";
 
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                    .apiKey(getApiKeyFromSystemProperty())
-                                    .alternateUrl(getAltUrlFromSystemProperty())
-                                    .build();
-        //The api object creates an http client, but to provide your own:
-        //api.httpClient(CloseableHttpClient)
-        MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.PARTS_OF_SPEECH,
-                morphologyPartsOfSpeechData);
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                .key(getApiKeyFromSystemProperty())
+                .url(getAltUrlFromSystemProperty())
+                .build();
+        DocumentRequest<MorphologyOptions> request = new DocumentRequest.Builder<MorphologyOptions>().content(morphologyPartsOfSpeechData)
+                .build();
+        MorphologyResponse response = rosetteApi.perform(AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.PARTS_OF_SPEECH,
+                request, MorphologyResponse.class);
         System.out.println(responseToJson(response));
     }
 }

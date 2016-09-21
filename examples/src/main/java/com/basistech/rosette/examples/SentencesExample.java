@@ -15,8 +15,9 @@
 */
 package com.basistech.rosette.examples;
 
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.api.HttpRosetteAPI;
+import com.basistech.rosette.apimodel.AbstractRosetteAPI;
+import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.SentencesResponse;
 
 import java.io.IOException;
@@ -34,16 +35,18 @@ public final class SentencesExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
+    private void run() throws IOException {
         String sentencesData = "This land is your land. This land is my land\nFrom California to the New York island;\nFrom the red wood forest to the Gulf Stream waters\n\nThis land was made for you and Me.\n\nAs I was walking that ribbon of highway,\nI saw above me that endless skyway:\nI saw below me that golden valley:\nThis land was made for you and me.";
 
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                    .apiKey(getApiKeyFromSystemProperty())
-                                    .alternateUrl(getAltUrlFromSystemProperty())
-                                    .build();
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                .key(getApiKeyFromSystemProperty())
+                .url(getAltUrlFromSystemProperty())
+                .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        SentencesResponse response = rosetteApi.getSentences(sentencesData);
+        // When no options, use <?>.
+        DocumentRequest<?> request = new DocumentRequest.Builder<>().content(sentencesData).build();
+        SentencesResponse response = rosetteApi.perform(AbstractRosetteAPI.SENTENCES_SERVICE_PATH, request, SentencesResponse.class);
         System.out.println(responseToJson(response));
     }
 }
