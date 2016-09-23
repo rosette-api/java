@@ -14,7 +14,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
   -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -24,18 +23,17 @@
     </parent>
     <artifactId>rosette-api</artifactId>
     <name>rosette-api</name>
-    <packaging>bundle</packaging>
     <description>Rosette API Communications</description>
     <properties>
         <mockserver-version>3.10.2</mockserver-version>
         <skip-mockserver>false</skip-mockserver>
-        <http-components-version>4.4.1</http-components-version>
+        <http-components-version>4.5.2</http-components-version>
     </properties>
     <dependencies>
-      <dependency>
-        <groupId>com.basistech</groupId>
-        <artifactId>common-api</artifactId>
-      </dependency>
+        <dependency>
+            <groupId>com.basistech</groupId>
+            <artifactId>common-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
             <artifactId>rosette-api-model</artifactId>
@@ -75,16 +73,16 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-          <groupId>org.mock-server</groupId>
-          <artifactId>mockserver-client-java</artifactId>
-          <version>${mockserver-version}</version>
-          <scope>test</scope>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-client-java</artifactId>
+            <version>${mockserver-version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
-          <groupId>org.mock-server</groupId>
-          <artifactId>mockserver-core</artifactId>
-          <version>${mockserver-version}</version>
-          <scope>test</scope>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-core</artifactId>
+            <version>${mockserver-version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mock-server</groupId>
@@ -93,17 +91,26 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-          <groupId>commons-io</groupId>
-          <artifactId>commons-io</artifactId>
-          <version>2.4</version>
-          <scope>test</scope>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
-      <plugins>
+        <plugins>
             <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
+                <groupId>biz.aQute.bnd</groupId>
+                <artifactId>bnd-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

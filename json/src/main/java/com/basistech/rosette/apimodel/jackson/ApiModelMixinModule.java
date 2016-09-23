@@ -20,8 +20,8 @@ import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.CategoriesOptions;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.ConstantsResponse;
-import com.basistech.rosette.apimodel.Dependency;
 import com.basistech.rosette.apimodel.DependenciesResponse;
+import com.basistech.rosette.apimodel.Dependency;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
@@ -34,8 +34,6 @@ import com.basistech.rosette.apimodel.LanguageDetectionResult;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.LanguageWeight;
-import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
-import com.basistech.rosette.apimodel.LinkedEntity;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
@@ -62,17 +60,18 @@ import com.basistech.rosette.apimodel.jackson.batch.BatchRequestItemMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchRequestMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchResponseMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchStatusResponseMixin;
-import com.basistech.util.jackson.EnumModule;
+import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
-import com.fasterxml.jackson.databind.MapperFeature;
 
 /**
  * Jackson module to configure Json serialization and deserialization for the
  * Rosette API model.
  */
-public class ApiModelMixinModule extends EnumModule {
+@SuppressWarnings("deprecation")
+public class ApiModelMixinModule extends AnnotatedDataModelModule {
 
     public ApiModelMixinModule() {
         super();
@@ -95,8 +94,8 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);
         context.setMixInAnnotations(LanguageResponse.class, LanguageResponseMixin.class);
         context.setMixInAnnotations(LanguageWeight.class, LanguageWeightMixin.class);
-        context.setMixInAnnotations(LinkedEntity.class, LinkedEntityMixin.class);
-        context.setMixInAnnotations(LinkedEntitiesResponse.class, LinkedEntityResponseMixin.class);
+        context.setMixInAnnotations(com.basistech.rosette.apimodel.LinkedEntity.class, LinkedEntityMixin.class);
+        context.setMixInAnnotations(com.basistech.rosette.apimodel.LinkedEntitiesResponse.class, LinkedEntityResponseMixin.class);
         context.setMixInAnnotations(MorphologyOptions.class, MorphologyOptionsMixin.class);
         context.setMixInAnnotations(MorphologyResponse.class, MorphologyResponseMixin.class);
         context.setMixInAnnotations(Name.class, NameMixin.class);

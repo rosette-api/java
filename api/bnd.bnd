@@ -1,0 +1,2 @@
+Bundle-Version: ${osgi-version}
+Export-Package: com.basistech.rosette.api

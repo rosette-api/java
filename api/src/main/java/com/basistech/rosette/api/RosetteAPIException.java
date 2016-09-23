@@ -20,7 +20,10 @@ import com.basistech.rosette.apimodel.ErrorResponse;
 
 import com.google.common.base.Objects;
 
-
+/**
+ * Exception thrown by the obsolete {@link RosetteAPI}.
+ */
+@Deprecated
 public class RosetteAPIException extends Exception {
 
     private final int httpStatusCode;

@@ -15,8 +15,10 @@
 */
 package com.basistech.rosette.examples;
 
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.api.HttpRosetteAPI;
+import com.basistech.rosette.apimodel.AbstractRosetteAPI;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 
 import java.io.IOException;
@@ -33,13 +35,14 @@ public final class EntitiesExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
+    private void run() throws IOException {
         String entitiesTextData = "Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS";
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                .apiKey(getApiKeyFromSystemProperty())
-                                .alternateUrl(getAltUrlFromSystemProperty())
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                                .key(getApiKeyFromSystemProperty())
+                                .url(getAltUrlFromSystemProperty())
                                 .build();
-        EntitiesResponse response = rosetteApi.getEntities(entitiesTextData);
+        DocumentRequest<EntitiesOptions> request = new DocumentRequest.Builder<EntitiesOptions>().content(entitiesTextData).build();
+        EntitiesResponse response = rosetteApi.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
         System.out.println(responseToJson(response));
     }
 }
