@@ -18,8 +18,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.basistech.rosette</groupId>
-        <artifactId>rosette-api-java-binding</artifactId>
-        <version>1.4.9-SNAPSHOT</version>
+         <artifactId>rosette-api-java-binding</artifactId>
+        <version>1.4.10-SNAPSHOT</version>
     </parent>
     <artifactId>rosette-api</artifactId>
     <name>rosette-api</name>
