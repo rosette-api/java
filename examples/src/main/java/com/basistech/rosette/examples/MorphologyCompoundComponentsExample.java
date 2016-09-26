@@ -17,7 +17,6 @@ package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.api.MorphologicalFeature;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
@@ -49,7 +48,7 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
         DocumentRequest<MorphologyOptions> request = new DocumentRequest.Builder<MorphologyOptions>().content(morphologyCompoundComponentsData)
                 .language(LanguageCode.GERMAN) // example of specifying the language.
                 .build();
-        MorphologyResponse response = rosetteApi.perform(AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPOUND_COMPONENTS,
+        MorphologyResponse response = rosetteApi.perform(HttpRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPOUND_COMPONENTS,
                 request, MorphologyResponse.class);
 
         System.out.println(responseToJson(response));

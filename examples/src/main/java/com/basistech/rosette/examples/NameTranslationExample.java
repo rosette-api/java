@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.util.LanguageCode;
@@ -47,7 +46,7 @@ public final class NameTranslationExample extends ExampleBase {
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        NameTranslationResponse response = rosetteApi.perform(AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
+        NameTranslationResponse response = rosetteApi.perform(HttpRosetteAPI.NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
         System.out.println(responseToJson(response));
     }
 }

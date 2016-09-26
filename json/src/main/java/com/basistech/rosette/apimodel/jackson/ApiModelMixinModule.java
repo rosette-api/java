@@ -139,6 +139,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
     public static ObjectMapper setupObjectMapper(ObjectMapper mapper) {
         final ApiModelMixinModule module = new ApiModelMixinModule();
         mapper.disable(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS);
+        mapper.registerModule(new AnnotatedDataModelModule());
         mapper.registerModule(module);
         return mapper;
     }

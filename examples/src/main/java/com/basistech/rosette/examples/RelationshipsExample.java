@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
@@ -46,7 +45,7 @@ public final class RelationshipsExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         DocumentRequest<LanguageOptions> request = new DocumentRequest.Builder<LanguageOptions>().content(relationshipsTextData).build();
-        RelationshipsResponse response = rosetteApi.perform(AbstractRosetteAPI.RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
+        RelationshipsResponse response = rosetteApi.perform(HttpRosetteAPI.RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
         System.out.println(responseToJson(response));
     }
 }

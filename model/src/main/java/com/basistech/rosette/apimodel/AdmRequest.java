@@ -23,6 +23,7 @@ import com.basistech.util.LanguageCode;
  * input in a {@link AnnotatedText} object.
  */
 public class AdmRequest<O extends Options> extends Request {
+    public static final String ADM_CONTENT_TYPE = "model/vnd.rosette.annotated-data-model";
     private final AnnotatedText text;
     private final O options;
     private final String genre;

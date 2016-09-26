@@ -16,7 +16,6 @@
 package com.basistech.rosette.api;
 
 import com.basistech.rosette.RosetteRuntimeException;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.AdmResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
@@ -27,6 +26,8 @@ import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
+import com.basistech.rosette.dm.AnnotatedText;
+
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -38,6 +39,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.AbstractHttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.FormBodyPartBuilder;
@@ -58,6 +60,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -260,6 +263,28 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
             return sendPostRequest(request, urlBase + endpoint, responseClass);
         } catch (IOException e) {
             throw new RosetteRuntimeException("IO Exception communicating with the Rosette API", e);
+        } catch (URISyntaxException e) {
+            throw new RosetteRuntimeException("Invalid URI", e);
+        }
+    }
+
+    /**
+     *
+     * @param endpoint which endpoint.
+     * @param request the data for the request.
+     * @param <RequestType> the type of the request object.
+     * @return the response, {@link com.basistech.rosette.dm.AnnotatedText}.
+     * @throws HttpRosetteAPIException for an error returned from the Rosette API.
+     * @throws RosetteRuntimeException for other errors, such as communications problems with HTTP.
+     */
+    @Override
+    public <RequestType extends Request> AnnotatedText perform(String endpoint, RequestType request) throws HttpRosetteAPIException {
+        try {
+            return sendPostRequest(request, urlBase + endpoint, AnnotatedText.class);
+        } catch (IOException e) {
+            throw new RosetteRuntimeException("IO Exception communicating with the Rosette API", e);
+        } catch (URISyntaxException e) {
+            throw new RosetteRuntimeException("Invalid URI", e);
         }
     }
 
@@ -306,7 +331,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
      * @return Response
      * @throws IOException
      */
-    private <T extends Response> T sendPostRequest(Object request, String urlStr, Class<T> clazz) throws IOException {
+    private <T extends Object> T sendPostRequest(Object request, String urlStr, Class<T> clazz) throws IOException, URISyntaxException {
         ObjectWriter writer = mapper.writer().without(JsonGenerator.Feature.AUTO_CLOSE_TARGET);
         boolean notPlainText = false;
         if (request instanceof DocumentRequest) {
@@ -317,22 +342,26 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
                 notPlainText = true;
             }
         } else if (request instanceof AdmRequest) {
-            throw new UnsupportedOperationException("Adm requests are not supported.");
+            notPlainText = true;
         }
 
+        URIBuilder uriBuilder = new URIBuilder(urlStr);
+
         if (AdmResponse.class.isAssignableFrom(clazz)) {
-            throw new UnsupportedOperationException("Adm responses are not supported.");
+            //TODO: change output=rosette to Accept: model/vnd.rosette.annotated-data-model header
+            uriBuilder.addParameter("output", "rosette");
         }
 
         final ObjectWriter finalWriter = writer;
 
-        HttpPost post = new HttpPost(urlStr);
+        HttpPost post = new HttpPost(uriBuilder.build());
         for (Header header : additionalHeaders) {
             post.addHeader(header);
         }
+
         //TODO: add compression!
         if (notPlainText) {
-            setupMultipartRequest((DocumentRequest) request, finalWriter, post);
+            setupMultipartRequest((Request) request, finalWriter, post);
         } else {
             setupPlainRequest(request, finalWriter, post);
         }
@@ -346,7 +375,9 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
                 if (ridHeader != null && ridHeader.getValue() != null) {
                     LOG.debug("DocumentRequest ID " + ridHeader.getValue());
                 }
-                responseHeadersToExtendedInformation(resp, response);
+                if (resp instanceof Response) {
+                    responseHeadersToExtendedInformation((Response)resp, response);
+                }
                 return resp;
             } catch (HttpRosetteAPIException e) {
                 // only 5xx errors are worthy retrying, others throw right away
@@ -410,8 +441,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
         });
     }
 
-    private void setupMultipartRequest(final DocumentRequest request, final ObjectWriter finalWriter, HttpPost post) {
-
+    private void setupMultipartRequest(final Request request, final ObjectWriter finalWriter, HttpPost post) throws IOException {
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         builder.setMimeSubtype("mixed");
         builder.setMode(HttpMultipartMode.STRICT);
@@ -446,12 +476,23 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
 
         builder.addPart(partBuilder.build());
 
-        partBuilder = FormBodyPartBuilder.create("content", new InputStreamBody(request.getContentBytes(), ContentType.parse(request.getContentType())));
+        InputStreamBody insBody;
+        if (request instanceof DocumentRequest) {
+            DocumentRequest docReq = (DocumentRequest) request;
+            insBody = new InputStreamBody(docReq.getContentBytes(), ContentType.parse(docReq.getContentType()));
+        } else if (request instanceof AdmRequest) {
+            AdmRequest admReq = (AdmRequest) request;
+            ObjectWriter writer = mapper.writer().without(JsonGenerator.Feature.AUTO_CLOSE_TARGET);
+            DocumentRequest docReq = new DocumentRequest.Builder<>().content(writer.writeValueAsString(admReq.getText())).build();
+            insBody = new InputStreamBody(docReq.getContentBytes(), ContentType.parse(AdmRequest.ADM_CONTENT_TYPE));
+        } else {
+            throw new UnsupportedOperationException("Unsupported request type for multipart processing");
+        }
+        partBuilder = FormBodyPartBuilder.create("content", insBody);
         partBuilder.setField(MIME.CONTENT_DISPOSITION, "inline;name=\"content\"");
         partBuilder.setField("Content-ID", "content");
         builder.addPart(partBuilder.build());
         builder.setCharset(StandardCharsets.UTF_8);
-
         HttpEntity entity = builder.build();
         post.setEntity(entity);
     }
@@ -473,7 +514,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
      * @return Response
      * @throws IOException
      */
-    private <T extends Response> T getResponse(HttpResponse httpResponse, Class<T> clazz) throws IOException, HttpRosetteAPIException {
+    private <T extends Object> T getResponse(HttpResponse httpResponse, Class<T> clazz) throws IOException, HttpRosetteAPIException {
         int status = httpResponse.getStatusLine().getStatusCode();
         String encoding = headerValueOrNull(httpResponse.getFirstHeader(HttpHeaders.CONTENT_ENCODING));
 

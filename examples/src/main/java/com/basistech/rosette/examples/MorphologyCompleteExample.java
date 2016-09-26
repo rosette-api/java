@@ -17,7 +17,6 @@ package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.api.MorphologicalFeature;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
@@ -47,7 +46,7 @@ public final class MorphologyCompleteExample extends ExampleBase {
         DocumentRequest<MorphologyOptions> request = new DocumentRequest.Builder<MorphologyOptions>().content(morphologyCompleteData).build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        MorphologyResponse response = rosetteApi.perform(AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
+        MorphologyResponse response = rosetteApi.perform(HttpRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
         System.out.println(responseToJson(response));
     }
 }
