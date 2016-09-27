@@ -47,6 +47,7 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MIME;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.AbstractContentBody;
+import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -476,15 +477,16 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
 
         builder.addPart(partBuilder.build());
 
-        InputStreamBody insBody;
+        AbstractContentBody insBody;
         if (request instanceof DocumentRequest) {
             DocumentRequest docReq = (DocumentRequest) request;
             insBody = new InputStreamBody(docReq.getContentBytes(), ContentType.parse(docReq.getContentType()));
         } else if (request instanceof AdmRequest) {
+            //TODO: smile?
             AdmRequest admReq = (AdmRequest) request;
             ObjectWriter writer = mapper.writer().without(JsonGenerator.Feature.AUTO_CLOSE_TARGET);
-            DocumentRequest docReq = new DocumentRequest.Builder<>().content(writer.writeValueAsString(admReq.getText())).build();
-            insBody = new InputStreamBody(docReq.getContentBytes(), ContentType.parse(AdmRequest.ADM_CONTENT_TYPE));
+            byte[] json = writer.writeValueAsBytes(admReq.getText());
+            insBody = new ByteArrayBody(json, ContentType.parse(AdmRequest.ADM_CONTENT_TYPE), null);
         } else {
             throw new UnsupportedOperationException("Unsupported request type for multipart processing");
         }
