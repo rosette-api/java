@@ -16,7 +16,12 @@
 
 package com.basistech.rosette.api;
 
+import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import com.basistech.rosette.dm.AnnotatedText;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
 import org.junit.Before;
 import org.junit.Rule;
@@ -28,12 +33,15 @@ import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -140,6 +148,25 @@ public class BasicTest extends AbstractTest {
                 .additionalHeader("X-Foo", "Bar")
                 .build();
         api.ping();
+    }
+
+    @Test
+    public void testAdm() throws Exception {
+        try (InputStream reqIns = getClass().getResourceAsStream("/adm-req.json");
+             InputStream respIns = getClass().getResourceAsStream("/adm-resp.json")) {
+            mockServer.when(HttpRequest.request()
+                    .withMethod("POST")
+                    .withPath("/rest/v1/entities"))
+                    .respond(HttpResponse.response()
+                            .withStatusCode(200)
+                            .withHeader("Content-Type", "application/json")
+                            .withBody(IOUtils.toString(respIns, "UTF-8")));
+            api = new HttpRosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
+            AnnotatedText testData = ApiModelMixinModule.setupObjectMapper(
+                    new ObjectMapper()).readValue(reqIns, AnnotatedText.class);
+            AnnotatedText resp = api.perform(HttpRosetteAPI.ENTITIES_SERVICE_PATH, new AdmRequest<>(testData, null, null, null));
+            assertEquals("Q100", resp.getEntities().get(0).getEntityId());
+        }
     }
 
     @Test

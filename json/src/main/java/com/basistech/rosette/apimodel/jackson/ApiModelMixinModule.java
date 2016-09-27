@@ -61,7 +61,6 @@ import com.basistech.rosette.apimodel.jackson.batch.BatchRequestMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchResponseMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchStatusResponseMixin;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
@@ -138,7 +137,6 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
      */
     public static ObjectMapper setupObjectMapper(ObjectMapper mapper) {
         final ApiModelMixinModule module = new ApiModelMixinModule();
-        mapper.disable(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS);
         mapper.registerModule(module);
         return mapper;
     }

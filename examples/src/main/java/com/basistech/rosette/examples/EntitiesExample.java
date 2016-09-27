@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
@@ -42,7 +41,7 @@ public final class EntitiesExample extends ExampleBase {
                                 .url(getAltUrlFromSystemProperty())
                                 .build();
         DocumentRequest<EntitiesOptions> request = new DocumentRequest.Builder<EntitiesOptions>().content(entitiesTextData).build();
-        EntitiesResponse response = rosetteApi.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
+        EntitiesResponse response = rosetteApi.perform(HttpRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
         System.out.println(responseToJson(response));
     }
 }

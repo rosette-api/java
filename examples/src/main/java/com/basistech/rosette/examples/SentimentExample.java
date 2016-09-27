@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentResponse;
@@ -53,7 +52,7 @@ public final class SentimentExample extends ExampleBase {
             //api.httpClient(CloseableHttpClient)
             // When no options, use <?>.
             DocumentRequest<SentimentOptions> request = new DocumentRequest.Builder<SentimentOptions>().contentBytes(inputStream, "text/html").build();
-            SentimentResponse response = rosetteApi.perform(AbstractRosetteAPI.SENTIMENT_SERVICE_PATH, request, SentimentResponse.class);
+            SentimentResponse response = rosetteApi.perform(HttpRosetteAPI.SENTIMENT_SERVICE_PATH, request, SentimentResponse.class);
             System.out.println(responseToJson(response));
         }
 

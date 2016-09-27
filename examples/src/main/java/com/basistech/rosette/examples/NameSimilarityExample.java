@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
@@ -50,7 +49,7 @@ public final class NameSimilarityExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         NameSimilarityRequest request = new NameSimilarityRequest(name1, name2);
-        NameSimilarityResponse response = rosetteApi.perform(AbstractRosetteAPI.NAME_SIMILARITY_SERVICE_PATH, request, NameSimilarityResponse.class);
+        NameSimilarityResponse response = rosetteApi.perform(HttpRosetteAPI.NAME_SIMILARITY_SERVICE_PATH, request, NameSimilarityResponse.class);
         System.out.println(responseToJson(response));
     }
 }

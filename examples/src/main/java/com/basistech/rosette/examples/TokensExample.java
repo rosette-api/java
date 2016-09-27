@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.TokensResponse;
 
@@ -46,7 +45,7 @@ public final class TokensExample extends ExampleBase {
         //api.httpClient(CloseableHttpClient)
         // When no options, use <?>.
         DocumentRequest<?> request = new DocumentRequest.Builder<>().content(tokensData).build();
-        TokensResponse response = rosetteApi.perform(AbstractRosetteAPI.TOKENS_SERVICE_PATH, request, TokensResponse.class);
+        TokensResponse response = rosetteApi.perform(HttpRosetteAPI.TOKENS_SERVICE_PATH, request, TokensResponse.class);
         System.out.println(responseToJson(response));
     }
 }

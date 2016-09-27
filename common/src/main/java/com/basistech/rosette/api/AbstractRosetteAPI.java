@@ -14,9 +14,14 @@
 * limitations under the License.
 */
 
-package com.basistech.rosette.apimodel;
+package com.basistech.rosette.api;
 
 import java.util.concurrent.Future;
+
+import com.basistech.rosette.apimodel.CommonRosetteAPIException;
+import com.basistech.rosette.apimodel.Request;
+import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.dm.AnnotatedText;
 
 /**
  * This class defines the common API to Rosette, whether over HTTP or other integration mechanisms.
@@ -48,6 +53,16 @@ public abstract class AbstractRosetteAPI {
      * @throws CommonRosetteAPIException for an error.
      */
     public abstract <RequestType extends Request, ResponseType extends Response> ResponseType perform(String endpoint, RequestType request, Class<ResponseType> responseClass) throws CommonRosetteAPIException;
+
+    /**
+     * Perform a request to an endpoint of the Rosette API.
+     * @param endpoint which endpoint.
+     * @param request the data for the request.
+     * @param <RequestType> The class of the request object for this endpoint.
+     * @return the response, {@link com.basistech.rosette.dm.AnnotatedText}.
+     * @throws CommonRosetteAPIException for an error.
+     */
+    public abstract <RequestType extends Request> AnnotatedText perform(String endpoint, RequestType request) throws CommonRosetteAPIException;
 
     /**
      * Start an asynchronous request to an endpoint of the Rosette API.

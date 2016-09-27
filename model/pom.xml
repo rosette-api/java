@@ -37,7 +37,6 @@
         <dependency>
             <groupId>com.basistech</groupId>
             <artifactId>adm-model</artifactId>
-            <version>2.1.2</version>
         </dependency>
     </dependencies>
     <build>

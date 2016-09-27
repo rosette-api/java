@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.TextEmbeddingResponse;
 
@@ -46,7 +45,7 @@ public final class TextEmbeddingExample extends ExampleBase {
         //api.httpClient(CloseableHttpClient)
         // When no options, use <?>.
         DocumentRequest<?> request = new DocumentRequest.Builder<>().content(embeddingsData).build();
-        TextEmbeddingResponse response = rosetteApi.perform(AbstractRosetteAPI.TEXT_EMBEDDING_SERVICE_PATH, request, TextEmbeddingResponse.class);
+        TextEmbeddingResponse response = rosetteApi.perform(HttpRosetteAPI.TEXT_EMBEDDING_SERVICE_PATH, request, TextEmbeddingResponse.class);
         System.out.println(responseToJson(response));
     }
 }

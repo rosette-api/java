@@ -16,7 +16,6 @@
 package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.SentencesResponse;
 
@@ -46,7 +45,7 @@ public final class SentencesExample extends ExampleBase {
         //api.httpClient(CloseableHttpClient)
         // When no options, use <?>.
         DocumentRequest<?> request = new DocumentRequest.Builder<>().content(sentencesData).build();
-        SentencesResponse response = rosetteApi.perform(AbstractRosetteAPI.SENTENCES_SERVICE_PATH, request, SentencesResponse.class);
+        SentencesResponse response = rosetteApi.perform(HttpRosetteAPI.SENTENCES_SERVICE_PATH, request, SentencesResponse.class);
         System.out.println(responseToJson(response));
     }
 }

@@ -16,7 +16,6 @@
 
 package com.basistech.rosette.api;
 
-import com.basistech.rosette.apimodel.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import org.apache.http.HttpHeaders;
