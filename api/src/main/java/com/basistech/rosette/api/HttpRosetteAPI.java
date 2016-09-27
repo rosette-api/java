@@ -332,7 +332,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
      * @return Response
      * @throws IOException
      */
-    private <T extends Object> T sendPostRequest(Object request, String urlStr, Class<T> clazz) throws IOException, URISyntaxException {
+    private <T> T sendPostRequest(Object request, String urlStr, Class<T> clazz) throws IOException, URISyntaxException {
         ObjectWriter writer = mapper.writer().without(JsonGenerator.Feature.AUTO_CLOSE_TARGET);
         boolean notPlainText = false;
         if (request instanceof DocumentRequest) {
