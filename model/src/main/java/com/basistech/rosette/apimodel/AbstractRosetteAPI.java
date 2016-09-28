@@ -34,6 +34,7 @@ public abstract class AbstractRosetteAPI {
     public static final String TOKENS_SERVICE_PATH = "/tokens";
     public static final String SENTENCES_SERVICE_PATH = "/sentences";
     public static final String TEXT_EMBEDDING_SERVICE_PATH = "/text-embedding";
+    public static final String SYNTAX_DEPENDENCIES_SERVICE_PATH = "/syntax/dependencies";
     public static final String INFO_SERVICE_PATH = "/info";
     public static final String PING_SERVICE_PATH = "/ping";
 
