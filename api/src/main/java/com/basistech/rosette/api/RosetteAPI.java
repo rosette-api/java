@@ -1533,29 +1533,6 @@ public class RosetteAPI implements Closeable {
     }
 
     /**
-     * Identifies syntactic dependencies.
-     *
-     * @param inputStream Input stream of file.
-     * @param contentType the content type of the file (e.g. text/html).
-     * @param language    Language of input if known (see {@link LanguageCode}), or null.
-     * @return The response contains a list of syntactic dependencies.
-     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
-     * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
-     *
-     * @deprecated replaced by {@link #getSyntaxDependencies(InputStream, String) getSyntaxDependencies}
-     */
-    @Deprecated
-    public SyntaxDependenciesResponse getSyntaxDependencies(InputStream inputStream, String contentType, LanguageCode language)
-            throws RosetteAPIException, IOException {
-        byte[] bytes = getBytes(inputStream);
-        Request request = new DocumentRequest.Builder()
-                .language(language)
-                .contentBytes(bytes, contentType)
-                .build();
-        return sendPostRequest(request, urlBase + SYNTAX_DEPENDENCIES_PATH, SyntaxDependenciesResponse.class);
-    }
-
-    /**
      * Identifies syntactic dependencies. Request object is built from the API object rather than from parameters.
      *
      * @param inputStream Input stream of file.
@@ -1572,26 +1549,6 @@ public class RosetteAPI implements Closeable {
     }
 
     /**
-     * Identifies syntactic dependencies.
-     *
-     * @param url      URL containing the data.
-     * @param language Language of input if known (see {@link LanguageCode}), or null.
-     * @return The response contains a list of syntactic dependencies.
-     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
-     * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
-     *
-     * @deprecated replaced by {@link #getSyntaxDependencies(URL) getSyntaxDependencies}
-     */
-    @Deprecated
-    public SyntaxDependenciesResponse getSyntaxDependencies(URL url, LanguageCode language) throws RosetteAPIException, IOException {
-        Request request = new DocumentRequest.Builder()
-                .language(language)
-                .contentUri(url.toString())
-                .build();
-        return sendPostRequest(request, urlBase + SYNTAX_DEPENDENCIES_PATH, SyntaxDependenciesResponse.class);
-    }
-
-    /**
      * Identifies syntactic dependencies. Request object is built from the API object rather than from parameters.
      *
      * @param url URL containing the data.
@@ -1602,26 +1559,6 @@ public class RosetteAPI implements Closeable {
     public SyntaxDependenciesResponse getSyntaxDependencies(URL url) throws RosetteAPIException, IOException {
         DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
         return sendPostRequest(documentRequestBuilder.contentUri(url.toString()).build(), urlBase + SYNTAX_DEPENDENCIES_PATH, SyntaxDependenciesResponse.class);
-    }
-
-    /**
-     * Identifies syntactic dependencies.
-     *
-     * @param content  String containing the data.
-     * @param language Language of input if known (see {@link LanguageCode}), or null.
-     * @return The response contains a list of syntactic dependencies.
-     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
-     * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
-     *
-     * @deprecated replaced by {@link #getSyntaxDependencies(String) getSyntaxDependencies}
-     */
-    @Deprecated
-    public SyntaxDependenciesResponse getSyntaxDependencies(String content, LanguageCode language) throws RosetteAPIException, IOException {
-        Request request = new DocumentRequest.Builder()
-                .language(language)
-                .content(content)
-                .build();
-        return sendPostRequest(request, urlBase + SYNTAX_DEPENDENCIES_PATH, SyntaxDependenciesResponse.class);
     }
 
     /**
