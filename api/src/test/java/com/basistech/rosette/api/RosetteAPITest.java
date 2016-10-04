@@ -29,7 +29,8 @@ import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentResponse;
-
+import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
+import com.basistech.util.LanguageCode;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
@@ -308,6 +309,40 @@ public class RosetteAPITest extends AbstractTest {
         try {
             CategoriesResponse response = api.perform(AbstractRosetteAPI.CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
             verifyCategory(response);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+    @Test
+    public void testGetSyntaxDependencies() throws IOException {
+        if (!(testFilename.endsWith("-syntax_dependencies.json") && testFilename.contains("-doc-"))) {
+            return;
+        }
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
+        try {
+            SyntaxDependenciesResponse response = api.perform(AbstractRosetteAPI.SYNTAX_DEPENDENCIES_SERVICE_PATH, request, SyntaxDependenciesResponse.class);
+            verifySyntaxDependency(response);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+
+    private void verifySyntaxDependency(SyntaxDependenciesResponse response) throws IOException {
+        SyntaxDependenciesResponse goldResponse = mapper.readValue(responseStr, SyntaxDependenciesResponse.class);
+        assertEquals(response.getDependencies().size(), goldResponse.getDependencies().size());
+    }
+
+    @Test
+    public void testGetSyntaxDependenciesURL() throws IOException {
+        if (!(testFilename.endsWith("-syntax_dependencies.json") && testFilename.contains("-url-"))) {
+            return;
+        }
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
+        try {
+            SyntaxDependenciesResponse response = api.perform(AbstractRosetteAPI.SYNTAX_DEPENDENCIES_SERVICE_PATH, request, SyntaxDependenciesResponse.class);
+            verifySyntaxDependency(response);
         } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }

@@ -15,12 +15,11 @@
 */
 
 package com.basistech.rosette.apimodel.jackson;
-
 import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.CategoriesOptions;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.ConstantsResponse;
-import com.basistech.rosette.apimodel.DependenciesResponse;
+import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
 import com.basistech.rosette.apimodel.Dependency;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
@@ -125,7 +124,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(BatchStatusResponse.class, BatchStatusResponseMixin.class);
         context.setMixInAnnotations(TextEmbeddingResponse.class, TextEmbeddingResponseMixin.class);
 
-        context.setMixInAnnotations(DependenciesResponse.class, DependenciesResponseMixin.class);
+        context.setMixInAnnotations(SyntaxDependenciesResponse.class, DependenciesResponseMixin.class);
         context.setMixInAnnotations(Dependency.class, DependencyMixin.class);
     }
 

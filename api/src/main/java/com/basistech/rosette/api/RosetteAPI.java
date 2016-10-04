@@ -42,6 +42,7 @@ import com.basistech.rosette.apimodel.SentencesResponse;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.TextEmbeddingResponse;
+import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
 import com.basistech.rosette.apimodel.TokensResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
@@ -125,6 +126,7 @@ public class RosetteAPI implements Closeable {
     public static final String TOKENS_SERVICE_PATH = "/tokens";
     public static final String SENTENCES_SERVICE_PATH = "/sentences";
     public static final String TEXT_EMBEDDING_SERVICE_PATH = "/text-embedding";
+    public static final String SYNTAX_DEPENDENCIES_PATH = "/syntax/dependencies";
     public static final String INFO_SERVICE_PATH = "/info";
     public static final String PING_SERVICE_PATH = "/ping";
 
@@ -1432,9 +1434,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a problem with communication or JSON serialization/deserialization.
      */
-    public SentencesResponse getSentences(InputStream inputStream,
-                                          String contentType)
-            throws RosetteAPIException, IOException {
+    public SentencesResponse getSentences(InputStream inputStream, String contentType) throws RosetteAPIException, IOException {
         byte[] bytes = getBytes(inputStream);
         DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
         return sendPostRequest(documentRequestBuilder.contentBytes(bytes, contentType).build(), urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
@@ -1485,8 +1485,7 @@ public class RosetteAPI implements Closeable {
      * @deprecated replaced by {@link #getSentences(String) getSentences}
      */
     @Deprecated
-    public SentencesResponse getSentences(String content, LanguageCode language)
-            throws RosetteAPIException, IOException {
+    public SentencesResponse getSentences(String content, LanguageCode language) throws RosetteAPIException, IOException {
         Request request = new DocumentRequest.Builder()
                 .language(language)
                 .content(content)
@@ -1502,8 +1501,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
-    public SentencesResponse getSentences(String content)
-            throws RosetteAPIException, IOException {
+    public SentencesResponse getSentences(String content) throws RosetteAPIException, IOException {
         DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
         return sendPostRequest(documentRequestBuilder.content(content).build(), urlBase + SENTENCES_SERVICE_PATH, SentencesResponse.class);
     }
@@ -1532,6 +1530,48 @@ public class RosetteAPI implements Closeable {
     public TextEmbeddingResponse getTextEmbedding(String content) throws IOException, RosetteAPIException {
         DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
         return sendPostRequest(documentRequestBuilder.content(content).build(), urlBase + TEXT_EMBEDDING_SERVICE_PATH, TextEmbeddingResponse.class);
+    }
+
+    /**
+     * Identifies syntactic dependencies. Request object is built from the API object rather than from parameters.
+     *
+     * @param inputStream Input stream of file.
+     * @param contentType The content type of the file (e.g. text/html).
+     * @return The response contains a list of syntactic dependencies.
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
+     * @throws IOException         - If there is a problem with communication or JSON serialization/deserialization.
+     */
+    public SyntaxDependenciesResponse getSyntaxDependencies(InputStream inputStream, String contentType)
+            throws RosetteAPIException, IOException {
+        byte[] bytes = getBytes(inputStream);
+        DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
+        return sendPostRequest(documentRequestBuilder.contentBytes(bytes, contentType).build(), urlBase + SYNTAX_DEPENDENCIES_PATH, SyntaxDependenciesResponse.class);
+    }
+
+    /**
+     * Identifies syntactic dependencies. Request object is built from the API object rather than from parameters.
+     *
+     * @param url URL containing the data.
+     * @return The response contains a list of syntactic dependencies.
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
+     * @throws IOException         - If there is a communication of JSON serialization/deserialization error.
+     */
+    public SyntaxDependenciesResponse getSyntaxDependencies(URL url) throws RosetteAPIException, IOException {
+        DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
+        return sendPostRequest(documentRequestBuilder.contentUri(url.toString()).build(), urlBase + SYNTAX_DEPENDENCIES_PATH, SyntaxDependenciesResponse.class);
+    }
+
+    /**
+     * Identifies syntactic dependencies. Request object is built from the API object rather than from parameters.
+     *
+     * @param content String containing the data.
+     * @return The response contains a list of syntactic dependencies.
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
+     * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
+     */
+    public SyntaxDependenciesResponse getSyntaxDependencies(String content) throws RosetteAPIException, IOException {
+        DocumentRequest.BaseBuilder documentRequestBuilder = getDocumentRequestBuilder();
+        return sendPostRequest(documentRequestBuilder.content(content).build(), urlBase + SYNTAX_DEPENDENCIES_PATH, SyntaxDependenciesResponse.class);
     }
 
     /**
