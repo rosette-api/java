@@ -23,7 +23,7 @@ public class DependencyMixin extends BaseMixin {
     @JsonCreator
     public DependencyMixin(@JsonProperty("dependencyType") String dependencyType,
                            @JsonProperty("governorTokenIndex") Integer governorTokenIndex,
-                           @JsonProperty("dependencyTokenIndex") Integer dependencyTokenIndex) {
+                           @JsonProperty("dependentTokenIndex") Integer dependentTokenIndex) {
         //
     }
 }

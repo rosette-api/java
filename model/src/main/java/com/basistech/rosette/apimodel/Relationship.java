@@ -34,7 +34,6 @@ public final class Relationship {
     private final String arg3Id;
     private final List<String> adjuncts;
     private final Set<String> modalities;
-    private final String source;
     private final Double confidence;
 
     /**
@@ -49,7 +48,6 @@ public final class Relationship {
      * @param arg3Id
      * @param adjuncts relationship adjuncts
      * @param modalities
-     * @param source
      * @param confidence  a measure of quality of relationship extraction
      */
     public Relationship(
@@ -63,7 +61,6 @@ public final class Relationship {
             String arg3Id,
             List<String> adjuncts,
             Set<String> modalities,
-            String source,
             Double confidence) {
         this.predicate = predicate;
         this.predicateId = predicateId;
@@ -75,7 +72,6 @@ public final class Relationship {
         this.arg3Id = arg3Id;
         this.adjuncts = adjuncts;
         this.modalities = modalities;
-        this.source = source;
         this.confidence = confidence;
     }
 
@@ -93,7 +89,6 @@ public final class Relationship {
         result = 31 * result + (arg3Id != null ? arg3Id.hashCode() : 0);
         result = 31 * result + (adjuncts != null ? adjuncts.hashCode() : 0);
         result = 31 * result + (modalities != null ? modalities.hashCode() : 0);
-        result = 31 * result + (source != null ? source.hashCode() : 0);
         temp = Double.doubleToLongBits(confidence);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
@@ -120,7 +115,6 @@ public final class Relationship {
                 && arg3 != null ? arg3.equals(that.getArg3()) : that.arg3 == null
                 && arg3Id != null ? arg3Id.equals(that.getArg3Id()) : that.arg3Id == null
                 && adjuncts != null ? adjuncts.equals(that.getAdjuncts()) : that.adjuncts == null
-                && source != null ? source.equals(that.getSource()) : that.source == null
                 && modalities != null ? modalities.equals(that.getModalities()) : that.modalities == null
                 && confidence == that.getConfidence();
     }
@@ -196,13 +190,6 @@ public final class Relationship {
      */
     public Set<String> getModalities() {
         return modalities;
-    }
-
-    /**
-     * @return source
-     */
-    public String getSource() {
-        return source;
     }
 
     /**

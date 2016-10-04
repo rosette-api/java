@@ -21,22 +21,22 @@ import java.util.Objects;
 public class Dependency {
     private final String dependencyType;
     private final int governorTokenIndex;
-    private final int dependencyTokenIndex;
+    private final int dependentTokenIndex;
 
     public Dependency(String dependencyType,
                       Integer governorTokenIndex,
-                      Integer dependencyTokenIndex) {
+                      Integer dependentTokenIndex) {
         this.dependencyType = dependencyType;
         this.governorTokenIndex = governorTokenIndex;
-        this.dependencyTokenIndex = dependencyTokenIndex;
+        this.dependentTokenIndex = dependentTokenIndex;
     }
 
     public Integer getGovernorTokenIndex() {
         return governorTokenIndex;
     }
 
-    public Integer getDependencyTokenIndex() {
-        return dependencyTokenIndex;
+    public Integer getDependentTokenIndex() {
+        return dependentTokenIndex;
     }
 
     public String getDependencyType() {
@@ -49,7 +49,7 @@ public class Dependency {
         } else if (o != null && this.getClass() == o.getClass()) {
             Dependency that = (Dependency)o;
             return Objects.equals(this.governorTokenIndex, that.governorTokenIndex)
-                    && Objects.equals(this.dependencyTokenIndex, that.dependencyTokenIndex)
+                    && Objects.equals(this.dependentTokenIndex, that.dependentTokenIndex)
                     && Objects.equals(this.dependencyType, that.dependencyType);
         } else {
             return false;
@@ -57,6 +57,6 @@ public class Dependency {
     }
 
     public int hashCode() {
-        return Objects.hash(this.governorTokenIndex, this.dependencyTokenIndex, this.dependencyType);
+        return Objects.hash(this.governorTokenIndex, this.dependentTokenIndex, this.dependencyType);
     }
 }
