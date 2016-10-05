@@ -35,7 +35,7 @@ public final class SyntaxDependenciesExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        String syntaxDependenciesData = "Sony Pictures is planning to shoot a good portion of the new \"Ghostbusters\" in Boston as well.";
+        String syntaxDependenciesData = "Yoshinori Ohsumi, a Japanese cell biologist, was awarded the Nobel Prize in Physiology or Medicine on Monday.";
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                                 .key(getApiKeyFromSystemProperty())
                                 .url(getAltUrlFromSystemProperty())

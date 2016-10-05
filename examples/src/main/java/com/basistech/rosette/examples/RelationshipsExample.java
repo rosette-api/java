@@ -37,7 +37,7 @@ public final class RelationshipsExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        String relationshipsTextData = "The Ghostbusters movie was filmed in Boston.";
+        String relationshipsTextData = "Bill Gates, Microsoft's former CEO, is a philanthropist.";
 
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
