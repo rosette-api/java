@@ -57,7 +57,6 @@ import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -77,7 +76,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 /**
  * Access to the RosetteAPI via HTTP.
  */
-public class HttpRosetteAPI extends AbstractRosetteAPI implements Closeable {
+public class HttpRosetteAPI extends AbstractRosetteAPI {
 
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
     public static final String SERVICE_NAME = "RosetteAPI";

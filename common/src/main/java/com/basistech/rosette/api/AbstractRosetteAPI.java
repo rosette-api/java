@@ -26,7 +26,7 @@ import com.basistech.rosette.dm.AnnotatedText;
 /**
  * This class defines the common API to Rosette, whether over HTTP or other integration mechanisms.
  */
-public abstract class AbstractRosetteAPI {
+public abstract class AbstractRosetteAPI implements AutoCloseable {
 
     public static final String LANGUAGE_SERVICE_PATH = "/language";
     public static final String MORPHOLOGY_SERVICE_PATH = "/morphology";
