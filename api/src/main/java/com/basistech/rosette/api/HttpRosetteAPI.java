@@ -16,6 +16,7 @@
 package com.basistech.rosette.api;
 
 import com.basistech.rosette.RosetteRuntimeException;
+import com.basistech.rosette.api.common.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.AdmResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;

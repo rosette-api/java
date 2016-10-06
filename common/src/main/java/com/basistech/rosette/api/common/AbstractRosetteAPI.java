@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.basistech.rosette.api;
+package com.basistech.rosette.api.common;
 
 import java.util.concurrent.Future;
 
