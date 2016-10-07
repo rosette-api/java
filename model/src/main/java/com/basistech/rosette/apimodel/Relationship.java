@@ -33,6 +33,8 @@ public final class Relationship {
     private final String arg3;
     private final String arg3Id;
     private final List<String> adjuncts;
+    private final List<String> locatives;
+    private final List<String> temporals;
     private final Set<String> modalities;
     private final Double confidence;
 
@@ -60,6 +62,8 @@ public final class Relationship {
             String arg3,
             String arg3Id,
             List<String> adjuncts,
+            List<String> locatives,
+            List<String> temporals,
             Set<String> modalities,
             Double confidence) {
         this.predicate = predicate;
@@ -71,6 +75,8 @@ public final class Relationship {
         this.arg3 = arg3;
         this.arg3Id = arg3Id;
         this.adjuncts = adjuncts;
+        this.locatives = locatives;
+        this.temporals = temporals;
         this.modalities = modalities;
         this.confidence = confidence;
     }
@@ -88,6 +94,8 @@ public final class Relationship {
         result = 31 * result + (arg3 != null ? arg3.hashCode() : 0);
         result = 31 * result + (arg3Id != null ? arg3Id.hashCode() : 0);
         result = 31 * result + (adjuncts != null ? adjuncts.hashCode() : 0);
+        result = 31 * result + (locatives != null ? locatives.hashCode() : 0);
+        result = 31 * result + (temporals != null ? temporals.hashCode() : 0);
         result = 31 * result + (modalities != null ? modalities.hashCode() : 0);
         temp = Double.doubleToLongBits(confidence);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -115,6 +123,8 @@ public final class Relationship {
                 && arg3 != null ? arg3.equals(that.getArg3()) : that.arg3 == null
                 && arg3Id != null ? arg3Id.equals(that.getArg3Id()) : that.arg3Id == null
                 && adjuncts != null ? adjuncts.equals(that.getAdjuncts()) : that.adjuncts == null
+                && locatives != null ? locatives.equals(that.getLocatives()) : that.locatives == null
+                && temporals != null ? temporals.equals(that.getTemporals()) : that.temporals == null
                 && modalities != null ? modalities.equals(that.getModalities()) : that.modalities == null
                 && confidence == that.getConfidence();
     }
@@ -183,6 +193,22 @@ public final class Relationship {
      */
     public List<String> getAdjuncts() {
         return adjuncts;
+    }
+
+    /**
+     * get a list of locatives
+     * @return a list of locatives
+     */
+    public List<String> getLocatives() {
+        return locatives;
+    }
+
+    /**
+     * get a list of temporals
+     * @return a list of temporals
+     */
+    public List<String> getTemporals() {
+        return temporals;
     }
 
     /**
