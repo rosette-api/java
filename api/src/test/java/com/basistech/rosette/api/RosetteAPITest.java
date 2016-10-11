@@ -31,7 +31,7 @@ import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
-import com.basistech.util.LanguageCode;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
@@ -332,7 +332,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifySyntaxDependency(SyntaxDependenciesResponse response) throws IOException {
         SyntaxDependenciesResponse goldResponse = mapper.readValue(responseStr, SyntaxDependenciesResponse.class);
-        assertEquals(response.getDependencies().size(), goldResponse.getDependencies().size());
+        assertEquals(response.getSentenceWithDependencies().size(), goldResponse.getSentenceWithDependencies().size());
     }
 
     @Test

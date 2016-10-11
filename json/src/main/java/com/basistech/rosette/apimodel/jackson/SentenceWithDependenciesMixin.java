@@ -22,10 +22,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class DependenciesResponseMixin extends BaseMixin {
+public class SentenceWithDependenciesMixin {
     @JsonCreator
-    public DependenciesResponseMixin(@JsonProperty("dependencies") List<Dependency> dependencies,
-                                     @JsonProperty("tokens") List<String> tokens) {
+    public SentenceWithDependenciesMixin(
+            @JsonProperty("startOffset") Integer startOffset,
+            @JsonProperty("endOffset") Integer endOffset,
+            @JsonProperty("dependencies") List<Dependency> dependencies
+    ) {
         //
     }
 }
