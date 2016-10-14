@@ -24,7 +24,7 @@ import java.util.List;
 
 public class SyntaxDependenciesResponseMixin extends BaseMixin {
     @JsonCreator
-    public SyntaxDependenciesResponseMixin(@JsonProperty("sentenceWithDependencies") List<SentenceWithDependencies> sentenceWithDependencies,
+    public SyntaxDependenciesResponseMixin(@JsonProperty("sentences") List<SentenceWithDependencies> sentences,
                                            @JsonProperty("tokens") List<String> tokens) {
         //
     }
