@@ -332,7 +332,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifySyntaxDependency(SyntaxDependenciesResponse response) throws IOException {
         SyntaxDependenciesResponse goldResponse = mapper.readValue(responseStr, SyntaxDependenciesResponse.class);
-        assertEquals(response.getSentenceWithDependencies().size(), goldResponse.getSentenceWithDependencies().size());
+        assertEquals(response.getSentences().size(), goldResponse.getSentences().size());
     }
 
     @Test

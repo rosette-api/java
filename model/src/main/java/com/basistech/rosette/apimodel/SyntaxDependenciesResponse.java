@@ -20,17 +20,17 @@ import java.util.List;
 import java.util.Objects;
 
 public class SyntaxDependenciesResponse extends Response {
-    private final List<SentenceWithDependencies> sentenceWithDependencies;
+    private final List<SentenceWithDependencies> sentences;
     private final List<String> tokens;
 
-    public SyntaxDependenciesResponse(List<SentenceWithDependencies> sentenceWithDependencies,
+    public SyntaxDependenciesResponse(List<SentenceWithDependencies> sentences,
                                       List<String> tokens) {
-        this.sentenceWithDependencies = sentenceWithDependencies;
+        this.sentences = sentences;
         this.tokens = tokens;
     }
 
-    public List<SentenceWithDependencies> getSentenceWithDependencies() {
-        return this.sentenceWithDependencies;
+    public List<SentenceWithDependencies> getSentences() {
+        return this.sentences;
     }
 
     public List<String> getTokens() {
@@ -42,13 +42,13 @@ public class SyntaxDependenciesResponse extends Response {
             return false;
         } else {
             SyntaxDependenciesResponse that = (SyntaxDependenciesResponse) o;
-            return Objects.equals(this.sentenceWithDependencies, that.sentenceWithDependencies)
+            return Objects.equals(this.sentences, that.sentences)
                     && Objects.equals(this.tokens, that.tokens);
         }
     }
 
     public int hashCode() {
-        return Objects.hash(this.sentenceWithDependencies, this.tokens);
+        return Objects.hash(this.sentences, this.tokens);
     }
 
 }
