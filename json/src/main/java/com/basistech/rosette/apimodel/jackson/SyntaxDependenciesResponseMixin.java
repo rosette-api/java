@@ -16,16 +16,16 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.Dependency;
+import com.basistech.rosette.apimodel.SentenceWithDependencies;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class DependenciesResponseMixin extends BaseMixin {
+public class SyntaxDependenciesResponseMixin extends BaseMixin {
     @JsonCreator
-    public DependenciesResponseMixin(@JsonProperty("dependencies") List<Dependency> dependencies,
-                                     @JsonProperty("tokens") List<String> tokens) {
+    public SyntaxDependenciesResponseMixin(@JsonProperty("sentences") List<SentenceWithDependencies> sentences,
+                                           @JsonProperty("tokens") List<String> tokens) {
         //
     }
 }
