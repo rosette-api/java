@@ -25,8 +25,8 @@ import java.util.List;
 public class SentenceWithDependenciesMixin {
     @JsonCreator
     public SentenceWithDependenciesMixin(
-            @JsonProperty("startOffset") Integer startOffset,
-            @JsonProperty("endOffset") Integer endOffset,
+            @JsonProperty("startTokenIndex") Integer startTokenIndex,
+            @JsonProperty("endTokenIndex") Integer endTokenIndex,
             @JsonProperty("dependencies") List<Dependency> dependencies
     ) {
         //
