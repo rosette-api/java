@@ -20,22 +20,22 @@ import java.util.List;
 import java.util.Objects;
 
 public class SentenceWithDependencies {
-    private final Integer startOffset;
-    private final Integer endOffset;
+    private final Integer startTokenIndex;
+    private final Integer endTokenIndex;
     private final List<Dependency> dependencies;
 
     public SentenceWithDependencies(Integer startOffset, Integer endOffset, List<Dependency> dependencies) {
-        this.startOffset = startOffset;
-        this.endOffset = endOffset;
+        this.startTokenIndex = startOffset;
+        this.endTokenIndex = endOffset;
         this.dependencies = dependencies;
     }
 
-    public Integer getStartOffset() {
-        return startOffset;
+    public Integer getStartTokenIndex() {
+        return startTokenIndex;
     }
 
-    public Integer getEndOffset() {
-        return endOffset;
+    public Integer getEndTokenIndex() {
+        return endTokenIndex;
     }
 
     public List<Dependency> getDependencies() {
@@ -47,8 +47,8 @@ public class SentenceWithDependencies {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
             SentenceWithDependencies that = (SentenceWithDependencies)o;
-            return Objects.equals(this.startOffset, that.startOffset)
-                    && Objects.equals(this.endOffset, that.endOffset)
+            return Objects.equals(this.startTokenIndex, that.startTokenIndex)
+                    && Objects.equals(this.endTokenIndex, that.endTokenIndex)
                     && Objects.equals(this.dependencies, that.dependencies);
         } else {
             return false;
@@ -56,6 +56,6 @@ public class SentenceWithDependencies {
     }
 
     public int hashCode() {
-        return Objects.hash(this.startOffset, this.endOffset, this.dependencies);
+        return Objects.hash(this.startTokenIndex, this.endTokenIndex, this.dependencies);
     }
 }
