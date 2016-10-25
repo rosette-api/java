@@ -19,7 +19,7 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
         <artifactId>rosette-api-java-binding</artifactId>
-        <version>1.5.3-SNAPSHOT</version>
+        <version>1.5.3</version>
     </parent>
     <artifactId>rosette-api-common</artifactId>
     <name>rosette-api-common</name>
