@@ -16,6 +16,9 @@
 
 package com.basistech.rosette.api;
 
+import com.basistech.rosette.api.common.AbstractRosetteAPI;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.LanguageResponse;
 import org.apache.http.HttpHeaders;
 import org.junit.Test;
 import org.mockserver.client.server.MockServerClient;
@@ -40,7 +43,7 @@ public class InvalidErrorTest extends AbstractTest {
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/ping")
-                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR))
+                .withHeader(HttpHeaders.USER_AGENT, HttpRosetteAPI.USER_AGENT_STR))
                 .respond(HttpResponse.response()
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
                         .withStatusCode(200)
@@ -48,13 +51,13 @@ public class InvalidErrorTest extends AbstractTest {
         String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest//v1";
         boolean exceptional = false;
         try {
-            RosetteAPI api = new RosetteAPI("my-key-123", mockServiceUrl);
-            api.getLanguage("sample text", null);
-        } catch (RosetteAPIException e) {
+            HttpRosetteAPI api = new HttpRosetteAPI.Builder().key("my-key-123").url(mockServiceUrl).build();
+            api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, new DocumentRequest.Builder<>().content("sample text").build(), LanguageResponse.class);
+        } catch (HttpRosetteAPIException e) {
             exceptional = true;
-            assertEquals("invalidErrorResponse", e.getCode());
-            assertEquals(404, e.getHttpStatusCode());
-            assertNotNull(e.getMessage());
+            assertEquals("invalidErrorResponse", e.getErrorResponse().getCode());
+            assertEquals(Integer.valueOf(404), e.getHttpStatusCode());
+            assertNotNull(e.getErrorResponse().getMessage());
         }
         assertTrue(exceptional);
     }

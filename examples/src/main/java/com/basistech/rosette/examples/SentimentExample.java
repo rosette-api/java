@@ -15,17 +15,17 @@
 */
 package com.basistech.rosette.examples;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
-
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.api.HttpRosetteAPI;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentResponse;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Example which demonstrates the sentiment api.
@@ -40,30 +40,30 @@ public final class SentimentExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
-        String sentimentFileFata = "<html><head><title>New Ghostbusters Film</title></head><body><p>Original Ghostbuster Dan Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new all-female Ghostbusters cast, telling The Hollywood Reporter, “The Aykroyd family is delighted by this inheritance of the Ghostbusters torch by these most magnificent women in comedy.”</p></body></html>";
-        File file = createTempDataFile(sentimentFileFata);
-        FileInputStream inputStream = new FileInputStream(file);
+    private void run() throws IOException {
+        // the temp file substitutes for an actual disk file.
+        String sentimentFileData = "<html><head><title>New Ghostbusters Film</title></head><body><p>Original Ghostbuster Dan Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new all-female Ghostbusters cast, telling The Hollywood Reporter, “The Aykroyd family is delighted by this inheritance of the Ghostbusters torch by these most magnificent women in comedy.”</p></body></html>";
+        try (InputStream inputStream = Files.newInputStream(createTempDataFile(sentimentFileData))) {
+            HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                    .key(getApiKeyFromSystemProperty())
+                    .url(getAltUrlFromSystemProperty())
+                    .build();
+            //The api object creates an http client, but to provide your own:
+            //api.httpClient(CloseableHttpClient)
+            // When no options, use <?>.
+            DocumentRequest<SentimentOptions> request = new DocumentRequest.Builder<SentimentOptions>().contentBytes(inputStream, "text/html").build();
+            SentimentResponse response = rosetteApi.perform(HttpRosetteAPI.SENTIMENT_SERVICE_PATH, request, SentimentResponse.class);
+            System.out.println(responseToJson(response));
+        }
 
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                    .apiKey(getApiKeyFromSystemProperty())
-                                    .alternateUrl(getAltUrlFromSystemProperty())
-                                    .build();
-        //The api object creates an http client, but to provide your own:
-        //api.httpClient(CloseableHttpClient)
-        SentimentResponse response = rosetteApi.getSentiment(inputStream, "text/html");
-        inputStream.close();
-        System.out.println(responseToJson(response));
     }
 
-    private static File createTempDataFile(String data) throws IOException {
-        File file = File.createTempFile("rosette-", "-api");
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(file), StandardCharsets.UTF_8
-        ));
-        bw.write(data);
-        bw.close();
-        file.deleteOnExit();
+    private static Path createTempDataFile(String data) throws IOException {
+        Path file = Files.createTempFile("example.", ".html");
+        try (Writer writer = Files.newBufferedWriter(file, StandardCharsets.US_ASCII)) {
+            writer.write(data);
+        }
+        file.toFile().deleteOnExit();
         return file;
     }
 }

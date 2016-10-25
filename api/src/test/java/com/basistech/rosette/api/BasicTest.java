@@ -16,7 +16,12 @@
 
 package com.basistech.rosette.api;
 
+import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import com.basistech.rosette.dm.AnnotatedText;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
 import org.junit.Before;
 import org.junit.Rule;
@@ -28,6 +33,7 @@ import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -35,10 +41,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class BasicTest extends AbstractTest {
-    private RosetteAPI api;
+    private HttpRosetteAPI api;
 
     @Rule
     public MockServerRule mockServerRule = new MockServerRule(this, getFreePort());
@@ -66,44 +74,23 @@ public class BasicTest extends AbstractTest {
     // then set concurrent connections = 5,
     // run several requests again, showing they're executed in parallel
     @Test
-    public void testMultipleConnections() throws IOException, RosetteAPIException, InterruptedException {
+    public void testMultipleConnections() throws IOException, InterruptedException {
         int delayTime = 3;
         int numConnections = 5;
-        mockServer.when(HttpRequest.request()
-                .withMethod("GET")
-                .withPath("/rest/v1/ping")
-                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR)
-                .withHeader("X-RosetteAPI-Key", "user-account-with-concurrency-5"))
-                .respond(HttpResponse.response()
-                        .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
-                        .withStatusCode(200)
-                        .withHeader("X-RosetteAPI-Concurrency", "5"));
-
-        mockServer.when(HttpRequest.request()
-                .withMethod("GET")
-                .withPath("/rest/v1/ping")
-                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR)
-                .withHeader("X-RosetteAPI-Key", "user-account-with-concurrency-1"))
-                .respond(HttpResponse.response()
-                        .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
-                        .withStatusCode(200)
-                        .withHeader("X-RosetteAPI-Concurrency", "1"));
 
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/info")
-                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR))
+                .withHeader(HttpHeaders.USER_AGENT, HttpRosetteAPI.USER_AGENT_STR))
                 .respond(HttpResponse.response()
                         .withHeader("Content-Type", "application/json")
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
                         .withStatusCode(200)
                         .withDelay(new Delay(SECONDS, delayTime)));
 
-
-
         // "before" case - send off (numConnections) requests, expect them to run serially
-        api = new RosetteAPI.Builder().apiKey("user-account-with-concurrency-1")
-                .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort)).build();
+        api = new HttpRosetteAPI.Builder().connectionConcurrency(1)
+                .url(String.format("http://localhost:%d/rest/v1", serverPort)).build();
 
         Date d1 = new Date();
 
@@ -121,8 +108,8 @@ public class BasicTest extends AbstractTest {
 
         assert d2.getTime() - d1.getTime() > delayTime * numConnections * 1000; // at least as long as the delay in the request
 
-        api = new RosetteAPI.Builder().apiKey("user-account-with-concurrency-5")
-                .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort))
+        api = new HttpRosetteAPI.Builder().connectionConcurrency(numConnections)
+                .url(String.format("http://localhost:%d/rest/v1", serverPort))
                 .build();
         d1 = new Date();
 
@@ -148,19 +135,38 @@ public class BasicTest extends AbstractTest {
                 .withMethod("GET")
                 .withPath("/rest/v1/ping")
                 .withHeader("X-Foo", "Bar")
-                .withHeader(HttpHeaders.USER_AGENT, RosetteAPI.USER_AGENT_STR))
+                .withHeader(HttpHeaders.USER_AGENT, HttpRosetteAPI.USER_AGENT_STR))
                 .respond(HttpResponse.response()
                         .withHeader("Content-Type", "application/json")
                         .withHeader("X-RosetteAPI-Concurrency", "5")
                         .withStatusCode(200)
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
 
-        api = new RosetteAPI.Builder()
-                .apiKey("foo-key")
-                .alternateUrl(String.format("http://localhost:%d/rest/v1", serverPort))
-                .withCustomHeader("X-Foo", "Bar")
+        api = new HttpRosetteAPI.Builder()
+                .key("foo-key")
+                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                .additionalHeader("X-Foo", "Bar")
                 .build();
         api.ping();
+    }
+
+    @Test
+    public void testAdm() throws Exception {
+        try (InputStream reqIns = getClass().getResourceAsStream("/adm-req.json");
+             InputStream respIns = getClass().getResourceAsStream("/adm-resp.json")) {
+            mockServer.when(HttpRequest.request()
+                    .withMethod("POST")
+                    .withPath("/rest/v1/entities"))
+                    .respond(HttpResponse.response()
+                            .withStatusCode(200)
+                            .withHeader("Content-Type", "application/json")
+                            .withBody(IOUtils.toString(respIns, "UTF-8")));
+            api = new HttpRosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
+            AnnotatedText testData = ApiModelMixinModule.setupObjectMapper(
+                    new ObjectMapper()).readValue(reqIns, AnnotatedText.class);
+            AnnotatedText resp = api.perform(HttpRosetteAPI.ENTITIES_SERVICE_PATH, new AdmRequest<>(testData, null, null, null));
+            assertEquals("Q100", resp.getEntities().get(0).getEntityId());
+        }
     }
 
     @Test
@@ -175,18 +181,18 @@ public class BasicTest extends AbstractTest {
                         .withHeader("X-FooMulti", "Bar1", "Bar2")
                         .withHeader("X-RosetteAPI-Concurrency", "5")
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
-        api = new RosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
+        api = new HttpRosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
         Response resp = api.ping();
         assertEquals("Bar", resp.getExtendedInformation().get("X-Foo"));
-        Set<Object> foos = (Set<Object>)resp.getExtendedInformation().get("X-FooMulti");
+        Set<?> foos = (Set)resp.getExtendedInformation().get("X-FooMulti");
         assertTrue(foos.contains("Bar1"));
         assertTrue(foos.contains("Bar2"));
     }
 
     private class ApiPinger extends Thread {
-        RosetteAPI api1;
+        HttpRosetteAPI api1;
 
-        public ApiPinger(RosetteAPI api) throws IOException, RosetteAPIException {
+        public ApiPinger(HttpRosetteAPI api) throws IOException {
             this.api1 = api;
         }
 
@@ -195,9 +201,7 @@ public class BasicTest extends AbstractTest {
             try {
                 api1.info();
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (RosetteAPIException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
     }

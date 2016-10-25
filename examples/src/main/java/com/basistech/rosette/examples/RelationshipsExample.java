@@ -15,8 +15,9 @@
 */
 package com.basistech.rosette.examples;
 
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.api.HttpRosetteAPI;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 
 import java.io.IOException;
@@ -34,16 +35,17 @@ public final class RelationshipsExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
-        String relationshipsTextData = "The Ghostbusters movie was filmed in Boston.";
+    private void run() throws IOException {
+        String relationshipsTextData = "Bill Gates, Microsoft's former CEO, is a philanthropist.";
 
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                    .apiKey(getApiKeyFromSystemProperty())
-                                    .alternateUrl(getAltUrlFromSystemProperty())
-                                    .build();
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                .key(getApiKeyFromSystemProperty())
+                .url(getAltUrlFromSystemProperty())
+                .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        RelationshipsResponse response = rosetteApi.getRelationships(relationshipsTextData);
+        DocumentRequest<LanguageOptions> request = new DocumentRequest.Builder<LanguageOptions>().content(relationshipsTextData).build();
+        RelationshipsResponse response = rosetteApi.perform(HttpRosetteAPI.RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
         System.out.println(responseToJson(response));
     }
 }

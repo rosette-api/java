@@ -20,6 +20,7 @@ import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.CategoriesOptions;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.ConstantsResponse;
+import com.basistech.rosette.apimodel.Dependency;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
@@ -32,8 +33,6 @@ import com.basistech.rosette.apimodel.LanguageDetectionResult;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.LanguageWeight;
-import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
-import com.basistech.rosette.apimodel.LinkedEntity;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
@@ -47,9 +46,11 @@ import com.basistech.rosette.apimodel.Relationship;
 import com.basistech.rosette.apimodel.RelationshipsOptions;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.SentenceWithDependencies;
 import com.basistech.rosette.apimodel.SentencesResponse;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentResponse;
+import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
 import com.basistech.rosette.apimodel.TextEmbeddingResponse;
 import com.basistech.rosette.apimodel.TokensResponse;
 import com.basistech.rosette.apimodel.batch.BatchRequest;
@@ -60,7 +61,7 @@ import com.basistech.rosette.apimodel.jackson.batch.BatchRequestItemMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchRequestMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchResponseMixin;
 import com.basistech.rosette.apimodel.jackson.batch.BatchStatusResponseMixin;
-import com.basistech.util.jackson.EnumModule;
+import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
@@ -69,7 +70,8 @@ import com.fasterxml.jackson.databind.module.SimpleSerializers;
  * Jackson module to configure Json serialization and deserialization for the
  * Rosette API model.
  */
-public class ApiModelMixinModule extends EnumModule {
+@SuppressWarnings("deprecation")
+public class ApiModelMixinModule extends AnnotatedDataModelModule {
 
     public ApiModelMixinModule() {
         super();
@@ -92,8 +94,8 @@ public class ApiModelMixinModule extends EnumModule {
         context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);
         context.setMixInAnnotations(LanguageResponse.class, LanguageResponseMixin.class);
         context.setMixInAnnotations(LanguageWeight.class, LanguageWeightMixin.class);
-        context.setMixInAnnotations(LinkedEntity.class, LinkedEntityMixin.class);
-        context.setMixInAnnotations(LinkedEntitiesResponse.class, LinkedEntityResponseMixin.class);
+        context.setMixInAnnotations(com.basistech.rosette.apimodel.LinkedEntity.class, LinkedEntityMixin.class);
+        context.setMixInAnnotations(com.basistech.rosette.apimodel.LinkedEntitiesResponse.class, LinkedEntityResponseMixin.class);
         context.setMixInAnnotations(MorphologyOptions.class, MorphologyOptionsMixin.class);
         context.setMixInAnnotations(MorphologyResponse.class, MorphologyResponseMixin.class);
         context.setMixInAnnotations(Name.class, NameMixin.class);
@@ -123,6 +125,10 @@ public class ApiModelMixinModule extends EnumModule {
 
         context.setMixInAnnotations(BatchStatusResponse.class, BatchStatusResponseMixin.class);
         context.setMixInAnnotations(TextEmbeddingResponse.class, TextEmbeddingResponseMixin.class);
+
+        context.setMixInAnnotations(SyntaxDependenciesResponse.class, SyntaxDependenciesResponseMixin.class);
+        context.setMixInAnnotations(SentenceWithDependencies.class, SentenceWithDependenciesMixin.class);
+        context.setMixInAnnotations(Dependency.class, DependencyMixin.class);
     }
 
     /**

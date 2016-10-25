@@ -15,9 +15,10 @@
 */
 package com.basistech.rosette.examples;
 
+import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.api.MorphologicalFeature;
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 
 import java.io.IOException;
@@ -35,17 +36,17 @@ public final class MorphologyCompleteExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
+    private void run() throws IOException {
         String morphologyCompleteData = "The quick brown fox jumped over the lazy dog. Yes he did.";
 
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                    .apiKey(getApiKeyFromSystemProperty())
-                                    .alternateUrl(getAltUrlFromSystemProperty())
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                                    .key(getApiKeyFromSystemProperty())
+                                    .url(getAltUrlFromSystemProperty())
                                     .build();
+        DocumentRequest<MorphologyOptions> request = new DocumentRequest.Builder<MorphologyOptions>().content(morphologyCompleteData).build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.COMPLETE,
-                morphologyCompleteData);
+        MorphologyResponse response = rosetteApi.perform(HttpRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
         System.out.println(responseToJson(response));
     }
 }

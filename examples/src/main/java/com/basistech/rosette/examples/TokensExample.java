@@ -15,8 +15,8 @@
 */
 package com.basistech.rosette.examples;
 
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.api.HttpRosetteAPI;
+import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.TokensResponse;
 
 import java.io.IOException;
@@ -34,16 +34,18 @@ public final class TokensExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
+    private void run() throws IOException {
         String tokensData = "北京大学生物系主任办公室内部会议";
 
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                    .apiKey(getApiKeyFromSystemProperty())
-                                    .alternateUrl(getAltUrlFromSystemProperty())
-                                    .build();
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                .key(getApiKeyFromSystemProperty())
+                .url(getAltUrlFromSystemProperty())
+                .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        TokensResponse response = rosetteApi.getTokens(tokensData);
+        // When no options, use <?>.
+        DocumentRequest<?> request = new DocumentRequest.Builder<>().content(tokensData).build();
+        TokensResponse response = rosetteApi.perform(HttpRosetteAPI.TOKENS_SERVICE_PATH, request, TokensResponse.class);
         System.out.println(responseToJson(response));
     }
 }

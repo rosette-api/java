@@ -15,8 +15,8 @@
 */
 package com.basistech.rosette.examples;
 
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.api.HttpRosetteAPI;
+import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.TextEmbeddingResponse;
 
 import java.io.IOException;
@@ -34,16 +34,18 @@ public final class TextEmbeddingExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
-        String textData = "Show me the text embeddings!";
+    private void run() throws IOException {
+        String embeddingsData = "Cambridge, Massachusetts";
 
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                    .apiKey(getApiKeyFromSystemProperty())
-                                    .alternateUrl(getAltUrlFromSystemProperty())
-                                    .build();
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                .key(getApiKeyFromSystemProperty())
+                .url(getAltUrlFromSystemProperty())
+                .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        TextEmbeddingResponse response = rosetteApi.getTextEmbedding(textData);
+        // When no options, use <?>.
+        DocumentRequest<?> request = new DocumentRequest.Builder<>().content(embeddingsData).build();
+        TextEmbeddingResponse response = rosetteApi.perform(HttpRosetteAPI.TEXT_EMBEDDING_SERVICE_PATH, request, TextEmbeddingResponse.class);
         System.out.println(responseToJson(response));
     }
 }

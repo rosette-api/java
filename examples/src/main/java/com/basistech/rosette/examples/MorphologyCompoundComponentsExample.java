@@ -15,10 +15,12 @@
 */
 package com.basistech.rosette.examples;
 
+import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.api.MorphologicalFeature;
-import com.basistech.rosette.api.RosetteAPI;
-import com.basistech.rosette.api.RosetteAPIException;
+import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
+import com.basistech.util.LanguageCode;
 
 import java.io.IOException;
 
@@ -35,16 +37,20 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
         }
     }
 
-    private void run() throws IOException, RosetteAPIException {
+    private void run() throws IOException {
         String morphologyCompoundComponentsData = "Rechtsschutzversicherungsgesellschaften";
-        RosetteAPI rosetteApi = new RosetteAPI.Builder()
-                                    .apiKey(getApiKeyFromSystemProperty())
-                                    .alternateUrl(getAltUrlFromSystemProperty())
+        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+                                    .key(getApiKeyFromSystemProperty())
+                                    .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        MorphologyResponse response = rosetteApi.getMorphology(MorphologicalFeature.COMPOUND_COMPONENTS,
-                morphologyCompoundComponentsData);
+        DocumentRequest<MorphologyOptions> request = new DocumentRequest.Builder<MorphologyOptions>().content(morphologyCompoundComponentsData)
+                .language(LanguageCode.GERMAN) // example of specifying the language.
+                .build();
+        MorphologyResponse response = rosetteApi.perform(HttpRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPOUND_COMPONENTS,
+                request, MorphologyResponse.class);
+
         System.out.println(responseToJson(response));
     }
 }

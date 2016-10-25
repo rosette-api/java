@@ -14,6 +14,7 @@
 
 package com.basistech.rosette.api;
 
+import com.basistech.rosette.api.common.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.Request;
@@ -38,11 +39,11 @@ public class DevRosetteAPITest {
     private static final String URL = "http://localhost:8181/rest/v1";
     private static final String KEY = null;
 
-    private RosetteAPI api;
+    private HttpRosetteAPI api;
 
     @Before
     public void before() throws Exception {
-        api = new RosetteAPI(KEY, URL);
+        api = new HttpRosetteAPI.Builder().key(KEY).url(URL).build();
     }
 
     @After
@@ -53,12 +54,12 @@ public class DevRosetteAPITest {
     @Test
     public void multipart() throws Exception {
         // this assumes that the server has the mock version of the components.
-        Request morphologyRequest = new DocumentRequest.Builder()
+        Request morphologyRequest = new DocumentRequest.Builder<>()
                 .language(LanguageCode.ENGLISH)
                 .options(new MorphologyOptions(false, false, PartOfSpeechTagSet.upt16))
                 .contentBytes("This is the cereal shot from 1 gun .".getBytes(Charsets.UTF_8), "text/plain;charset=utf-8")
                 .build();
-        TokensResponse response = api.doRequest(RosetteAPI.TOKENS_SERVICE_PATH, morphologyRequest, TokensResponse.class);
+        TokensResponse response = api.perform(AbstractRosetteAPI.TOKENS_SERVICE_PATH, morphologyRequest, TokensResponse.class);
         assertEquals(9, response.getTokens().size());
         assertEquals("one", response.getTokens().get(6));
     }
@@ -66,12 +67,12 @@ public class DevRosetteAPITest {
     @Test
     public void simple() throws Exception {
         // this assumes that the server has the mock version of the components.
-        Request morphologyRequest = new DocumentRequest.Builder()
+        Request morphologyRequest = new DocumentRequest.Builder<>()
                 .language(LanguageCode.ENGLISH)
                 .options(new MorphologyOptions(false, false, PartOfSpeechTagSet.upt16))
                 .content("This is the cereal shot from 1 gun .")
                 .build();
-        TokensResponse response = api.doRequest(RosetteAPI.TOKENS_SERVICE_PATH, morphologyRequest, TokensResponse.class);
+        TokensResponse response = api.perform(AbstractRosetteAPI.TOKENS_SERVICE_PATH, morphologyRequest, TokensResponse.class);
         assertEquals(9, response.getTokens().size());
         assertEquals("one", response.getTokens().get(6));
     }

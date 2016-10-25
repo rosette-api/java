@@ -20,17 +20,23 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Set;
 
 public class RelationshipsMixin extends BaseMixin {
     @JsonCreator
     public RelationshipsMixin(
             @JsonProperty("predicate") String predicate,
+            @JsonProperty("predicateId") String predicateId,
             @JsonProperty("arg1") String arg1,
+            @JsonProperty("arg1Id") String arg1Id,
             @JsonProperty("arg2") String arg2,
+            @JsonProperty("arg2Id") String arg2Id,
             @JsonProperty("arg3") String arg3,
-            @JsonProperty("temporals") List<String> temporals,
-            @JsonProperty("locatives") List<String> locatives,
+            @JsonProperty("arg3Id") String arg3Id,
             @JsonProperty("adjuncts") List<String> adjuncts,
+            @JsonProperty("locatives") List<String> locatives,
+            @JsonProperty("temporals") List<String> temporals,
+            @JsonProperty("modalities") Set<String> modalities,
             @JsonProperty("confidence") Double confidence
     ) {
         //

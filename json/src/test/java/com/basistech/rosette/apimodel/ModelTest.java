@@ -75,9 +75,15 @@ public class ModelTest {
             InstantiationException, IOException {
         Reflections reflections = new Reflections(this.getClass().getPackage().getName(), new SubTypesScanner(false));
 
-        Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf(Object.class);
+        Set<Class<?>> allClasses = reflections.getSubTypesOf(Object.class);
         for (Object clazz : allClasses) {
             String className = ((Class) clazz).getName();
+            if (className.contains("com.basistech.rosette.dm")) {
+                continue;
+            }
+            if (className.contains("Adm")) {
+                continue; // these are too hard.
+            }
             if (className.endsWith(".ModelTest")) {
                 continue;
             }
@@ -209,7 +215,8 @@ public class ModelTest {
             }
             break;
         }
-        case "String": {
+        case "String":
+        case "CharSequence":{
             o = "foo";
             break;
         }
