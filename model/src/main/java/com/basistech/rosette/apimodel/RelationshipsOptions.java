@@ -76,8 +76,8 @@ public final class RelationshipsOptions extends Options {
             return false;
         }
         RelationshipsOptions that = (RelationshipsOptions) o;
-        return discoveryMode == that.discoveryMode
-            && accuracyMode == that.accuracyMode;
+        return accuracyMode == that.accuracyMode
+            && Objects.equals(discoveryMode, that.discoveryMode);
     }
 
     @Override
