@@ -34,17 +34,14 @@ public final class RelationshipsOptions extends Options {
         //
     }
 
-    public RelationshipsOptions(boolean discoveryMode) {
-        this.discoveryMode = discoveryMode;
-    }
-
     /**
      * constructor for {@code RelationshipOptions}
      * @param accuracyMode   accuracyMode to use for relationship extraction
+     * @param discoveryMode  discoveryMode to use for relationship extraction
      */
-    public RelationshipsOptions(
-            AccuracyMode accuracyMode) {
+    public RelationshipsOptions(AccuracyMode accuracyMode, Boolean discoveryMode) {
         this.accuracyMode = accuracyMode;
+        this.discoveryMode = discoveryMode;
     }
 
     /**
@@ -90,9 +87,20 @@ public final class RelationshipsOptions extends Options {
 
     public static class Builder {
         private Boolean discoveryMode;
+        private AccuracyMode accuracyMode;
 
         public Builder() {
             //
+        }
+
+        /**
+         * DocumentRequest accuracy mode for the relationship endpoint.
+         * @param accuracyMode {@link AccuracyMode} to use.
+         * @return this.
+         */
+        public RelationshipsOptions.Builder accuracyMode(AccuracyMode accuracyMode) {
+            this.accuracyMode = accuracyMode;
+            return this;
         }
 
 
@@ -108,7 +116,7 @@ public final class RelationshipsOptions extends Options {
         }
 
         public RelationshipsOptions build() {
-            return new RelationshipsOptions(discoveryMode);
+            return new RelationshipsOptions(accuracyMode, discoveryMode);
         }
     }
 
