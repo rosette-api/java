@@ -60,7 +60,7 @@ public final class SentimentExample extends ExampleBase {
 
     private static Path createTempDataFile(String data) throws IOException {
         Path file = Files.createTempFile("example.", ".html");
-        try (Writer writer = Files.newBufferedWriter(file, StandardCharsets.US_ASCII)) {
+        try (Writer writer = Files.newBufferedWriter(file, StandardCharsets.UTF_8)) {
             writer.write(data);
         }
         file.toFile().deleteOnExit();
