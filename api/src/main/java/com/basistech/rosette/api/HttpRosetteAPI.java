@@ -142,7 +142,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     HttpRosetteAPI(String key, String urlToCall, Integer failureRetries,
                        CloseableHttpClient httpClient, List<Header> additionalHeaders,
                        Integer connectionConcurrency) throws HttpRosetteAPIException {
-        urlBase = urlToCall.trim().replaceAll("/+$", "");
+        urlBase = urlToCall == null ? urlBase : urlToCall.trim().replaceAll("/+$", "");
         if (failureRetries != null && failureRetries >= 1) {
             this.failureRetries = failureRetries;
         }
