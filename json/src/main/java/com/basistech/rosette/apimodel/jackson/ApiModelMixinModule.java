@@ -36,6 +36,8 @@ import com.basistech.rosette.apimodel.LanguageWeight;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
+import com.basistech.rosette.apimodel.NameDeduplicationRequest;
+import com.basistech.rosette.apimodel.NameDeduplicationResponse;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
@@ -99,6 +101,8 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(MorphologyOptions.class, MorphologyOptionsMixin.class);
         context.setMixInAnnotations(MorphologyResponse.class, MorphologyResponseMixin.class);
         context.setMixInAnnotations(Name.class, NameMixin.class);
+        context.setMixInAnnotations(NameDeduplicationRequest.class, NameDeduplicationRequestMixin.class);
+        context.setMixInAnnotations(NameDeduplicationResponse.class, NameDeduplicationResponseMixin.class);
         context.setMixInAnnotations(NameSimilarityRequest.class, NameSimilarityRequestMixin.class);
         context.setMixInAnnotations(NameSimilarityResponse.class, NameSimilarityResponseMixin.class);
         context.setMixInAnnotations(NameTranslationRequest.class, NameTranslationRequestMixin.class);

@@ -34,6 +34,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     public static final String CATEGORIES_SERVICE_PATH = "/categories";
     public static final String RELATIONSHIPS_SERVICE_PATH = "/relationships";
     public static final String SENTIMENT_SERVICE_PATH = "/sentiment";
+    public static final String NAME_DEDUPLICATION_SERVICE_PATH = "/name-deduplication";
     public static final String NAME_TRANSLATION_SERVICE_PATH = "/name-translation";
     public static final String NAME_SIMILARITY_SERVICE_PATH = "/name-similarity";
     public static final String TOKENS_SERVICE_PATH = "/tokens";

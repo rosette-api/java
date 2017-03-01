@@ -426,4 +426,6 @@ public class RosetteAPITest extends AbstractTest {
         ErrorResponse goldResponse = mapper.readValue(responseStr, ErrorResponse.class);
         assertEquals(goldResponse.getCode(), e.getErrorResponse().getCode());
     }
+
+    //todo add tests here for name dedup
 }

@@ -45,5 +45,6 @@ public class PolymorphicRequestTest extends Assert {
         request = mapper.readValue(json, NameTranslationRequest.class);
         assertTrue(request instanceof NameTranslationRequest);
 
+        //todo need to add for NameDeduplicationRequest?
     }
 }
