@@ -37,6 +37,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -429,6 +430,7 @@ public class RosetteAPITest extends AbstractTest {
         assertEquals(goldResponse.getCode(), e.getErrorResponse().getCode());
     }
 
+    @Ignore
     @Test
     public void testNameDeduplication() throws IOException {
         if (!(testFilename.endsWith("-name-deduplication.json"))) {
