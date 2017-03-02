@@ -139,7 +139,7 @@ public class ModelTest {
                 }
                 String json = writer.writeValueAsString(o1);
                 // deserialize
-                Object o2 = mapper.readValue(json, (Class<?>) clazz);
+                Object o2 = mapper.readValue(json, (Class<? extends Object>) clazz);
                 // verify
                 assertEquals(o1, o2);
             }

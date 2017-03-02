@@ -10,6 +10,7 @@ key=$1
 read -d '' examples <<EOF
 com.basistech.rosette.examples.CategoriesExample
 com.basistech.rosette.examples.EntitiesExample
+com.basistech.rosette.examples.EntitiesLinkedExample
 com.basistech.rosette.examples.InfoExample
 com.basistech.rosette.examples.LanguageExample
 com.basistech.rosette.examples.MorphologyCompleteExample
@@ -24,8 +25,6 @@ com.basistech.rosette.examples.PingExample
 com.basistech.rosette.examples.RelationshipsExample
 com.basistech.rosette.examples.SentencesExample
 com.basistech.rosette.examples.SentimentExample
-com.basistech.rosette.examples.SyntaxDependenciesExample
-com.basistech.rosette.examples.TextEmbeddingExample
 com.basistech.rosette.examples.TokensExample
 EOF
 

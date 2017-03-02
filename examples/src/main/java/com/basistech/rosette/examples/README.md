@@ -14,6 +14,7 @@ Otherwise you can compile and run these examples by hand:
  
 | File Name                                   | Description
 | -------------                               |------------- 
+| Base64InputExample.java                     | Entities using base64 encoded string
 | CategoriesExample.java                      | Gets the category of a document at a URL
 | EntitiesExample.java                        | Extracts entities
 | InfoExample.java                            | Gets information about Rosette API
@@ -23,12 +24,10 @@ Otherwise you can compile and run these examples by hand:
 | MorphologyHanReadingsExample.java           | Gets the Chinese/Han readings
 | MorphologyLemmasExample.java                | Gets the lemmas
 | MorphologyPartsOfSpeechExample.java         | Gets the part-of-speech tags
+| NameDeduplicationExample.java               | Gets a list of cluster IDs given a list of names
 | NameSimilarityExample.java                  | Matches two names and produces a match score
 | NameTranslationExample.java                 | Translates a name
 | PingExample.java                            | Pings the Rosette API to check for availability
-| RelationshipsExample.java                   | Demonstrates the entity extraction api.
 | SentencesExample.java                       | Gets the sentences
 | SentimentExample.java                       | Gets the sentiment of a local file
-| SyntaxDependenciesExample.java              | Demonstrates the syntax dependencies endpoint
-| TextEmbeddingExample.java                   | Demonstrates text embeddings
-| TokensExample.java                          | Gets the tokens
+| TokenExample.java                           | Gets the tokens

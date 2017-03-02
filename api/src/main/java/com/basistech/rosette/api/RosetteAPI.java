@@ -28,6 +28,7 @@ import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
+import com.basistech.rosette.apimodel.NameDeduplicationResponse;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
@@ -121,6 +122,7 @@ public class RosetteAPI implements Closeable {
     public static final String CATEGORIES_SERVICE_PATH = "/categories";
     public static final String RELATIONSHIPS_SERVICE_PATH = "/relationships";
     public static final String SENTIMENT_SERVICE_PATH = "/sentiment";
+    public static final String NAME_DEDUPLICATION_SERVICE_PATH = "/name-deduplication";
     public static final String NAME_TRANSLATION_SERVICE_PATH = "/name-translation";
     public static final String NAME_SIMILARITY_SERVICE_PATH = "/name-similarity";
     public static final String TOKENS_SERVICE_PATH = "/tokens";
@@ -356,6 +358,20 @@ public class RosetteAPI implements Closeable {
     public NameTranslationResponse getNameTranslation(NameTranslationRequest request)
             throws RosetteAPIException, IOException {
         return sendPostRequest(request, urlBase + NAME_TRANSLATION_SERVICE_PATH, NameTranslationResponse.class);
+    }
+
+    /**
+     * Returns a list of cluster IDs to be used in deduplication from a list of names specified in
+     * NameDeduplicationRequest.
+     *
+     * @param request NameDeduplication contains the names to be deduplicated and the score threshold.
+     * @return the response.
+     * @throws RosetteAPIException - If there is a problem with the Rosette API request.
+     * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
+     */
+    public NameDeduplicationResponse getNameDeduplication(NameTranslationRequest request)
+            throws RosetteAPIException, IOException {
+        return sendPostRequest(request, urlBase + NAME_DEDUPLICATION_SERVICE_PATH, NameDeduplicationResponse.class);
     }
 
     /**

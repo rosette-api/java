@@ -1,0 +1,7 @@
+{
+  "names": [
+    {"text": "Joe"},
+    {"text": "Smith"}
+  ],
+  "threshold": 0.8
+}
