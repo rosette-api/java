@@ -42,7 +42,7 @@ public final class NameDeduplicationExample extends ExampleBase {
         names.add(new Name("Johnathan Smith"));
         names.add(new Name("Fred Jones"));
 
-        double threshold = 0.8;
+        double threshold = 0.75;
 
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
