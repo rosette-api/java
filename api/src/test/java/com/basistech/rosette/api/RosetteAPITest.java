@@ -430,13 +430,11 @@ public class RosetteAPITest extends AbstractTest {
         assertEquals(goldResponse.getCode(), e.getErrorResponse().getCode());
     }
 
-    @Ignore
     @Test
     public void testNameDeduplication() throws IOException {
         if (!(testFilename.endsWith("-name-deduplication.json"))) {
             return;
         }
-        System.out.println("DEDUPLICATE NAME HAPPENING");
         NameDeduplicationRequest request = readValueNameDeduplication();
         try {
             NameDeduplicationResponse response = api.perform(AbstractRosetteAPI.NAME_DEDUPLICATION_SERVICE_PATH,
@@ -449,9 +447,6 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyNameDeduplication(NameDeduplicationResponse response) throws IOException {
         NameDeduplicationResponse goldResponse = mapper.readValue(responseStr, NameDeduplicationResponse.class);
-        for (String str : response.getResults()) {
-            System.out.println("Result: " + str);
-        }
         assertEquals(goldResponse.getResults(),response.getResults());
     }
 
