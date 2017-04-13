@@ -28,6 +28,7 @@ import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
+import com.basistech.rosette.apimodel.NameDeduplicationRequest;
 import com.basistech.rosette.apimodel.NameDeduplicationResponse;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
@@ -369,7 +370,7 @@ public class RosetteAPI implements Closeable {
      * @throws RosetteAPIException - If there is a problem with the Rosette API request.
      * @throws IOException         - If there is a communication or JSON serialization/deserialization error.
      */
-    public NameDeduplicationResponse getNameDeduplication(NameTranslationRequest request)
+    public NameDeduplicationResponse getNameDeduplication(NameDeduplicationRequest request)
             throws RosetteAPIException, IOException {
         return sendPostRequest(request, urlBase + NAME_DEDUPLICATION_SERVICE_PATH, NameDeduplicationResponse.class);
     }

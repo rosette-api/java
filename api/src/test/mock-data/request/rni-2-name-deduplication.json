@@ -1,0 +1,7 @@
+{
+  "names": [
+    {"text": "Joe", "entityType":"PERSON", "script":"Latn", "language":"eng"},
+    {"text": "Smith", "entityType":"PERSON", "script":"Latn", "language":"eng"}
+  ],
+  "threshold": 0.8
+}

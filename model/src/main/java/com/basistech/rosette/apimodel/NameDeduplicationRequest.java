@@ -71,7 +71,7 @@ public final class NameDeduplicationRequest extends Request {
      * Sets the threshold
      * @param threshold the threshold.
      */
-    public void setName2(double threshold) {
+    public void setThreshold(double threshold) {
         this.threshold = threshold;
     }
 
