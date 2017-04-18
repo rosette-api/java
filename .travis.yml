@@ -7,5 +7,5 @@ jdk:
 
 # suggested by travis support.
 sudo: required
-dist: precise
+dist: trusty 
 group: edge
