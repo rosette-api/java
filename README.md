@@ -38,4 +38,3 @@ Additional environment settings:
 
 ## Additional Information ##
 For more, visit [Rosette API site](https://developer.rosette.com)
-
