@@ -23,6 +23,8 @@ import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.MorphologyResponse;
+import com.basistech.rosette.apimodel.NameDeduplicationRequest;
+import com.basistech.rosette.apimodel.NameDeduplicationResponse;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
@@ -425,5 +427,30 @@ public class RosetteAPITest extends AbstractTest {
     private void verifyException(HttpRosetteAPIException e) throws IOException {
         ErrorResponse goldResponse = mapper.readValue(responseStr, ErrorResponse.class);
         assertEquals(goldResponse.getCode(), e.getErrorResponse().getCode());
+    }
+
+    @Test
+    public void testNameDeduplication() throws IOException {
+        if (!(testFilename.endsWith("-name-deduplication.json"))) {
+            return;
+        }
+        NameDeduplicationRequest request = readValueNameDeduplication();
+        try {
+            NameDeduplicationResponse response = api.perform(AbstractRosetteAPI.NAME_DEDUPLICATION_SERVICE_PATH,
+                    request, NameDeduplicationResponse.class);
+            verifyNameDeduplication(response);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+    private void verifyNameDeduplication(NameDeduplicationResponse response) throws IOException {
+        NameDeduplicationResponse goldResponse = mapper.readValue(responseStr, NameDeduplicationResponse.class);
+        assertEquals(goldResponse.getResults(),response.getResults());
+    }
+
+    private NameDeduplicationRequest readValueNameDeduplication() throws IOException {
+        File input = new File("src/test/mock-data/request", testFilename);
+        return mapper.readValue(input, NameDeduplicationRequest.class);
     }
 }

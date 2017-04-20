@@ -19,14 +19,15 @@ Otherwise you can compile and run these examples by hand:
 | EntitiesExample.java                        | Extracts entities
 | InfoExample.java                            | Gets information about Rosette API
 | LanguageExample.java                        | Detects language
-| MatchedNameExample.java                     | Matches two names for similarity comparison
 | MorphologyCompleteExample.java              | Gets the complete morphological analysis
 | MorphologyCompoundComponentsExample.java    | Gets the de-compounded words
 | MorphologyHanReadingsExample.java           | Gets the Chinese/Han readings
 | MorphologyLemmasExample.java                | Gets the lemmas
 | MorphologyPartsOfSpeechExample.java         | Gets the part-of-speech tags
+| NameDeduplicationExample.java               | Gets a list of cluster IDs given a list of names
+| NameSimilarityExample.java                  | Matches two names and produces a match score
+| NameTranslationExample.java                 | Translates a name
 | PingExample.java                            | Pings the Rosette API to check for availability
 | SentencesExample.java                       | Gets the sentences
 | SentimentExample.java                       | Gets the sentiment of a local file
 | TokenExample.java                           | Gets the tokens
-| TranslatedNameExample.java                  | Transliterates a name
