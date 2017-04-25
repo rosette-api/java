@@ -1,5 +1,5 @@
 /*
-* Copyright 2016 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     public static final String SENTENCES_SERVICE_PATH = "/sentences";
     public static final String TEXT_EMBEDDING_SERVICE_PATH = "/text-embedding";
     public static final String SYNTAX_DEPENDENCIES_SERVICE_PATH = "/syntax/dependencies";
+    public static final String TRANSLITERATION_SERVICE_PATH = "/transliteration";
     public static final String INFO_SERVICE_PATH = "/info";
     public static final String PING_SERVICE_PATH = "/ping";
 
