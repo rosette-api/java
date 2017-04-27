@@ -50,6 +50,7 @@ import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.io.ByteStreams;
@@ -180,7 +181,7 @@ public class RosetteAPI implements Closeable {
         }
         this.failureRetries = 1;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-
+        mapper.configure(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS, false);
         initClient(key, null);
     }
 
@@ -207,6 +208,7 @@ public class RosetteAPI implements Closeable {
         urlBase = urlToCall.trim().replaceAll("/+$", "");
         this.failureRetries = failureRetries;
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        mapper.configure(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS, false);
         this.connectionConcurrency = connectionConcurrency;
 
         if (httpClient == null) {
