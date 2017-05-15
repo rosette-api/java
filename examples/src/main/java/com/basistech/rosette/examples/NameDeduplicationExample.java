@@ -22,6 +22,7 @@ import com.basistech.rosette.apimodel.NameDeduplicationResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Example which demonstrates name deduplication.
@@ -37,11 +38,12 @@ public final class NameDeduplicationExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        ArrayList<Name> names = new ArrayList<>();
-        names.add(new Name("John Smith"));
-        names.add(new Name("Johnathan Smith"));
-        names.add(new Name("Fred Jones"));
+        String nameDedupeData = "John Smith,Johnathon Smith,Fred Jones";
 
+        ArrayList<Name> names = new ArrayList<>();
+        for (String name: new ArrayList<String>(Arrays.asList(nameDedupeData.split(",")))) {
+            names.add(new Name(name));
+        }
         double threshold = 0.75;
 
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
