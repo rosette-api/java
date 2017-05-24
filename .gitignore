@@ -9,6 +9,7 @@ mockserver*log
 **/.DS_Store
 */tests/mock-data
 classpath
+.classpath
 .checkstyle
 .ruleset
 .pmd
@@ -19,3 +20,4 @@ target
 *.iml
 *~
 build.log
+.vscode/**
