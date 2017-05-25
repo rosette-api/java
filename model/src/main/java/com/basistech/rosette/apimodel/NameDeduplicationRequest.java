@@ -17,7 +17,6 @@
 package com.basistech.rosette.apimodel;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
