@@ -17,6 +17,7 @@
 package com.basistech.rosette.apimodel;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,16 +30,15 @@ public final class NameDeduplicationRequest extends Request {
 
     @NotNull
     private List<Name> names;
-    @NotNull
-    private double threshold;
+    private Double threshold;
 
     /**
      * Constructor for {@code NameMatchingRequest}
      * @param names List of names to be deduplicated
-     * @param threshold score threshold used to tune the strictness of the clustering algorithm
+     * @param threshold score threshold used to tune the strictness of the clustering algorithm. Can be null for default threshold.
      */
     public NameDeduplicationRequest(List<Name> names,
-                                    double threshold) {
+                                    Double threshold) {
         this.names = names;
         this.threshold = threshold;
     }
@@ -55,7 +55,7 @@ public final class NameDeduplicationRequest extends Request {
      * Gets the threshold
      * @return the threshold
      */
-    public double getThreshold() {
+    public Double getThreshold() {
         return threshold;
     }
 
@@ -71,7 +71,7 @@ public final class NameDeduplicationRequest extends Request {
      * Sets the threshold
      * @param threshold the threshold.
      */
-    public void setThreshold(double threshold) {
+    public void setThreshold(Double threshold) {
         this.threshold = threshold;
     }
 
@@ -94,7 +94,10 @@ public final class NameDeduplicationRequest extends Request {
             return false;
         }
         NameDeduplicationRequest that = (NameDeduplicationRequest) o;
-        return Double.compare(that.threshold, threshold) == 0
-                && Objects.equals(names, that.names);
+
+        boolean sameThresh = (that.threshold == null || threshold == null) ? that.threshold == threshold
+                                                                           : Double.compare(that.threshold, threshold) == 0;
+
+        return sameThresh && Objects.equals(names, that.names);
     }
 }

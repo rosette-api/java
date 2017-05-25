@@ -28,7 +28,7 @@ public class NameDeduplicationRequestMixin extends BaseMixin {
     @JsonCreator
     protected NameDeduplicationRequestMixin(
             @JsonProperty("names") List<Name> names,
-            @JsonProperty("threshold") double threshold
+            @JsonProperty("threshold") Double threshold
     ) {
         //
     }
