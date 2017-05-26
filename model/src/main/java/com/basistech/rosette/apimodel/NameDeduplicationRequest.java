@@ -43,6 +43,14 @@ public final class NameDeduplicationRequest extends Request {
     }
 
     /**
+     * Constructor for {@code NameMatchingRequest}
+     * @param names List of names to be deduplicated
+     */
+    public NameDeduplicationRequest(List<Name> names) {
+        this.names = names;
+    }
+
+    /**
      * Gets the names
      * @return the names
      */
