@@ -31,6 +31,7 @@ public class EntitySentimentMixin extends BaseMixin {
             @JsonProperty("normalized") String normalized,
             @JsonProperty("count") Integer count,
             @JsonProperty("entityId") String entityId,
+            @JsonProperty("confidence") Double confidence,
             @JsonProperty("sentiment") Label sentiment) {
         //
     }
