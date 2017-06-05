@@ -30,6 +30,7 @@ public final class EntityMention {
     private final String normalized;
     private final Integer count;
     private final String entityId;
+    private final Double confidence;
 
     /**
      * constructor for {@code EntityMention}
@@ -47,7 +48,8 @@ public final class EntityMention {
             String mention,
             String normalized,
             Integer count,
-            String entityId
+            String entityId,
+            Double confidence
     ) {
         this.indocChainId = indocChainId;
         this.type = type;
@@ -55,6 +57,7 @@ public final class EntityMention {
         this.normalized = normalized;
         this.count = count;
         this.entityId = entityId;
+        this.confidence = confidence;
     }
 
     /**
@@ -70,7 +73,8 @@ public final class EntityMention {
             String mention,
             String normalized,
             String entityId,
-            Integer count
+            Integer count,
+            Double confidence
     ) {
         this.indocChainId = null;
         this.type = type;
@@ -78,6 +82,7 @@ public final class EntityMention {
         this.normalized = normalized;
         this.entityId = entityId;
         this.count = count;
+        this.confidence = confidence;
     }
 
     /**
@@ -131,6 +136,14 @@ public final class EntityMention {
         return entityId;
     }
 
+    /**
+     * get the confidence score for the entity.
+     * @return the confidence score  (0.0-1.0)
+     */
+    public Double getConfidence() {
+        return confidence;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -145,11 +158,12 @@ public final class EntityMention {
                 && Objects.equals(mention, that.mention)
                 && Objects.equals(normalized, that.normalized)
                 && Objects.equals(count, that.count)
-                && Objects.equals(entityId, that.entityId);
+                && Objects.equals(entityId, that.entityId)
+                && Objects.equals(confidence, that.confidence);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(indocChainId, type, mention, normalized, count, entityId);
+        return Objects.hash(indocChainId, type, mention, normalized, count, entityId, confidence);
     }
 }
