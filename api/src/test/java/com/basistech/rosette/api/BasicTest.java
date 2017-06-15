@@ -161,7 +161,10 @@ public class BasicTest extends AbstractTest {
                             .withStatusCode(200)
                             .withHeader("Content-Type", "application/json")
                             .withBody(IOUtils.toString(respIns, "UTF-8")));
-            api = new HttpRosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
+            api = new HttpRosetteAPI.Builder()
+                    .key("foo-key")
+                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .build();
             AnnotatedText testData = ApiModelMixinModule.setupObjectMapper(
                     new ObjectMapper()).readValue(reqIns, AnnotatedText.class);
             AnnotatedText resp = api.perform(HttpRosetteAPI.ENTITIES_SERVICE_PATH, new AdmRequest<>(testData, null, null, null));
