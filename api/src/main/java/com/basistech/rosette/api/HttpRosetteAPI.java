@@ -29,7 +29,6 @@ import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
 import com.basistech.rosette.dm.AnnotatedText;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.io.ByteStreams;
@@ -153,7 +152,6 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         }
 
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-        mapper.configure(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS, false);
         if (httpClient == null) {
             initClient(key, additionalHeaders);
         } else {
