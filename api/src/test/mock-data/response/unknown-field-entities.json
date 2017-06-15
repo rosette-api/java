@@ -1,0 +1,40 @@
+{
+  "entities": [
+    {
+      "count": 2,
+      "indocChainId": 0,
+      "mention": "U.S.",
+      "normalized": "U.S.",
+      "type": "LOCATION",
+      "some-future-field": "foo"
+    },
+    {
+      "count": 1,
+      "indocChainId": 1,
+      "mention": "Iraq",
+      "normalized": "Iraq",
+      "type": "LOCATION"
+    },
+    {
+      "count": 1,
+      "indocChainId": 2,
+      "mention": "Afghanistan",
+      "normalized": "Afghanistan",
+      "type": "LOCATION"
+    },
+    {
+      "count": 1,
+      "indocChainId": 3,
+      "mention": "commander in chief",
+      "normalized": "commander in chief",
+      "type": "TITLE"
+    },
+    {
+      "count": 1,
+      "indocChainId": 4,
+      "mention": "American",
+      "normalized": "American",
+      "type": "NATIONALITY"
+    }
+  ]
+}

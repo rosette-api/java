@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.api;
 
+import com.basistech.rosette.RosetteRuntimeException;
 import com.basistech.rosette.api.common.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
@@ -33,6 +34,7 @@ import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
@@ -62,6 +64,8 @@ public class RosetteAPITest extends AbstractTest {
     private HttpRosetteAPI api;
     private String responseStr;
     private MockServerClient mockServer;
+    private String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
+
 
     public RosetteAPITest(String filename) {
         testFilename = filename;
@@ -127,7 +131,6 @@ public class RosetteAPITest extends AbstractTest {
                     .withHeader("X-RosetteAPI-Concurrency", "5")
                     .withBody(INFO_REPONSE, StandardCharsets.UTF_8));
 
-            String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
             api = new HttpRosetteAPI.Builder()
                     .key("my-key-123")
                     .url(mockServiceUrl)
@@ -260,6 +263,39 @@ public class RosetteAPITest extends AbstractTest {
             verifyEntity(response);
         } catch (HttpRosetteAPIException e) {
             verifyException(e);
+        }
+    }
+
+    @Test
+    public void testIgnoredUnknownField() throws IOException {
+        if ("unknown-field-entities.json".equals(testFilename)) {
+            DocumentRequest<?> request = readValue(DocumentRequest.class);
+            try {
+                EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
+                verifyEntity(response);
+            } catch (HttpRosetteAPIException e) {
+                verifyException(e);
+            }
+        }
+    }
+
+    @Test
+    public void testNonIgnoredUnknownField() throws IOException {
+        if ("unknown-field-entities.json".equals(testFilename)) {
+            DocumentRequest<?> request = readValue(DocumentRequest.class);
+            HttpRosetteAPI tmpApi = new HttpRosetteAPI.Builder()
+                    .key("my-key-123")
+                    .url(mockServiceUrl)
+                    .onlyAcceptKnownFields(true)
+                    .build();
+            try {
+                tmpApi.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
+            } catch (RosetteRuntimeException e) {
+                if (e.getCause() instanceof UnrecognizedPropertyException) {
+                    return;
+                }
+            }
+            fail("Unknown field is ignored when it shouldn't be ");
         }
     }
 
