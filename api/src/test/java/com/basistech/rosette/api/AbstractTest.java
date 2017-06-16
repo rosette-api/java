@@ -17,6 +17,7 @@
 package com.basistech.rosette.api;
 
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
@@ -41,6 +42,7 @@ public abstract class AbstractTest extends Assert {
         String clientPort = Resources.toString(url, Charsets.UTF_8);
         serverPort = Integer.parseInt(clientPort);
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     protected static byte[] gzip(String text) throws IOException {

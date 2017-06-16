@@ -184,7 +184,10 @@ public class BasicTest extends AbstractTest {
                         .withHeader("X-FooMulti", "Bar1", "Bar2")
                         .withHeader("X-RosetteAPI-Concurrency", "5")
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
-        api = new HttpRosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
+        api = new HttpRosetteAPI.Builder()
+                .key("foo-key")
+                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                .build();
         Response resp = api.ping();
         assertEquals("Bar", resp.getExtendedInformation().get("X-Foo"));
         Set<?> foos = (Set)resp.getExtendedInformation().get("X-FooMulti");

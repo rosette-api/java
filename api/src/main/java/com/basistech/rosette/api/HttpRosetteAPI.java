@@ -29,6 +29,7 @@ import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
 import com.basistech.rosette.dm.AnnotatedText;
 
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.io.ByteStreams;
@@ -91,38 +92,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     private int connectionConcurrency = 2;
     private boolean closeClientOnClose = true;
 
-    /**
-     * Constructs a Rosette API instance using an API key.
-     *
-     * @param key Rosette API key. This may be null for use with an on-premise deployment
-     *                     of the Rosette API.
-     * @throws HttpRosetteAPIException If the service is not compatible with the version of the binding.
-     */
-    HttpRosetteAPI(String key) throws HttpRosetteAPIException {
-        this(key, DEFAULT_URL_BASE);
-    }
-
-    /**
-     * Constructs a Rosette API instance using an API key and accepts an
-     * alternate URL for testing purposes.
-     *
-     * @param key          Rosette API key. This may be null for use with an on-premise deployment
-     *                     of the Rosette API.
-     * @param alternateUrl Alternate Rosette API URL. {@code null} uses the default.
-     * @throws HttpRosetteAPIException If the service is not compatible with the version of the binding.
-     *
-     */
-    HttpRosetteAPI(String key, String alternateUrl) throws HttpRosetteAPIException {
-        if (alternateUrl != null) {
-            urlBase = alternateUrl;
-            if (urlBase.endsWith("/")) {
-                urlBase = urlBase.substring(0, urlBase.length() - 1);
-            }
-        }
-        this.failureRetries = 1;
-        mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-
-        initClient(key, null);
+    private HttpRosetteAPI() {
+        // use builder
     }
 
     /**
@@ -141,7 +112,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      */
     HttpRosetteAPI(String key, String urlToCall, Integer failureRetries,
                        CloseableHttpClient httpClient, List<Header> additionalHeaders,
-                       Integer connectionConcurrency) throws HttpRosetteAPIException {
+                       Integer connectionConcurrency, boolean onlyAcceptKnownFields) throws HttpRosetteAPIException {
         urlBase = urlToCall == null ? urlBase : urlToCall.trim().replaceAll("/+$", "");
         if (failureRetries != null && failureRetries >= 1) {
             this.failureRetries = failureRetries;
@@ -152,6 +123,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         }
 
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, onlyAcceptKnownFields);
         if (httpClient == null) {
             initClient(key, additionalHeaders);
         } else {
@@ -582,6 +554,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         private Integer concurrency;
         private CloseableHttpClient httpClient;
         private List<Header> additionalHeaders = new ArrayList<>();
+        private boolean onlyAcceptKnownFields;
 
         /**
          * Specify the API key. This is required for use with the public API, and
@@ -653,12 +626,29 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         }
 
         /**
+         * Only process the response from server if all fields are recognized. If set and a new
+         * field is returned in the response, exception will be thrown.
+         *
+         * @return this.
+         */
+        public Builder onlyAcceptKnownFields(boolean onlyAcceptKnownFields) {
+            this.onlyAcceptKnownFields = onlyAcceptKnownFields;
+            return this;
+        }
+
+        /**
          * Build the API object.
          * @return the new API object.
          * @throws HttpRosetteAPIException for some error encountered.
          */
         public HttpRosetteAPI build() throws HttpRosetteAPIException {
-            return new HttpRosetteAPI(key, url, failureRetries, httpClient, additionalHeaders, concurrency);
+            return new HttpRosetteAPI(key,
+                                      url,
+                                      failureRetries,
+                                      httpClient,
+                                      additionalHeaders,
+                                      concurrency,
+                                      onlyAcceptKnownFields);
         }
     }
 }
