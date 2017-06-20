@@ -16,15 +16,64 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.Objects;
+
 /**
  * Sentiment options.
  */
 public final class SentimentOptions extends Options {
+    public static final SentimentOptions DEGAULT_OPTIONS = new SentimentOptions(false);
+    private Boolean calculateEntityConfidence;
 
     /**
-     * Create a set of sentiment analysis options with default values.
+     * Constructor for {@code SentimentOptions}
+     *
+     * @param calculateEntityConfidence return confidence score for the entities.
      */
-    public SentimentOptions() {
-        //
+    protected SentimentOptions(Boolean calculateEntityConfidence) {
+        this.calculateEntityConfidence = calculateEntityConfidence;
+    }
+
+    /**
+     * @return the calculateEntityConfidence flag.
+     */
+    public Boolean getCalculateEntityConfidence() {
+        return calculateEntityConfidence;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SentimentOptions that = (SentimentOptions)o;
+        return Objects.equals(this.calculateEntityConfidence, that.calculateEntityConfidence);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(calculateEntityConfidence);
+    }
+
+    public static class Builder {
+        private Boolean calculateEntityConfidence;
+
+        /**
+         * DocumentRequest calculate entity confidence score. If the value is {@code true}, then the endpoint will
+         * return confidence scores. If {@code false} or {@code null}, not.
+         * @param calculateEntityConfidence whether to get entity confidence score.
+         * @return this.
+         */
+        public Builder calculateEntityConfidence(Boolean calculateEntityConfidence) {
+            this.calculateEntityConfidence = calculateEntityConfidence;
+            return this;
+        }
+
+        public SentimentOptions build() {
+            return new SentimentOptions(calculateEntityConfidence);
+        }
     }
 }
