@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public final class EntitiesOptionsMixin extends OptionsMixin {
     @JsonCreator
     private EntitiesOptionsMixin(
+            @JsonProperty("calculateConfidence") Boolean calculateConfidence,
             @JsonProperty("linkEntities") Boolean linkEntities
     ) {
         //

@@ -17,12 +17,15 @@
 package com.basistech.rosette.apimodel.jackson;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @JsonTypeName("SentimentOptions")
 public abstract class SentimentOptionsMixin extends OptionsMixin {
     @JsonCreator
-    protected SentimentOptionsMixin() {
+    protected SentimentOptionsMixin(
+            @JsonProperty("calculateEntityConfidence") Boolean calculateEntityConfidence
+    ) {
         //
     }
 
