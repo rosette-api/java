@@ -24,7 +24,7 @@ import java.util.Objects;
 public final class EntitiesOptions extends Options {
 
     public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(false, true);
-    private Boolean calculatConfidence;
+    private Boolean calculateConfidence;
     private Boolean linkEntities;
 
     /**
@@ -34,7 +34,7 @@ public final class EntitiesOptions extends Options {
      * @param linkEntities perform entity linking in addition to extraction.
      */
     protected EntitiesOptions(Boolean calculateConfidence, Boolean linkEntities) {
-        this.calculatConfidence = calculateConfidence;
+        this.calculateConfidence = calculateConfidence;
         this.linkEntities = linkEntities;
     }
 
@@ -48,8 +48,8 @@ public final class EntitiesOptions extends Options {
     /**
      * @return the calculatConfidence flag.
      */
-    public Boolean getCalculatConfidence() {
-        return calculatConfidence;
+    public Boolean getCalculateConfidence() {
+        return calculateConfidence;
     }
 
     @Override
@@ -62,12 +62,12 @@ public final class EntitiesOptions extends Options {
         }
         EntitiesOptions that = (EntitiesOptions) o;
         return Objects.equals(linkEntities, that.linkEntities)
-                && Objects.equals(calculatConfidence, that.calculatConfidence);
+                && Objects.equals(calculateConfidence, that.calculateConfidence);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calculatConfidence, linkEntities);
+        return Objects.hash(calculateConfidence, linkEntities);
     }
 
     public static class Builder {
