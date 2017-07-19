@@ -42,6 +42,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     public static final String TEXT_EMBEDDING_SERVICE_PATH = "/text-embedding";
     public static final String SYNTAX_DEPENDENCIES_SERVICE_PATH = "/syntax/dependencies";
     public static final String TRANSLITERATION_SERVICE_PATH = "/transliteration";
+    public static final String TOPICS_SERVICE_PATH = "/topics";
     public static final String INFO_SERVICE_PATH = "/info";
     public static final String PING_SERVICE_PATH = "/ping";
 
