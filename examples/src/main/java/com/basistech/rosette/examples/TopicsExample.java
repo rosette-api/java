@@ -31,7 +31,7 @@ public class TopicsExample extends ExampleBase {
     }
 
     private void run() throws Exception {
-        String sampleData = "Bayonetta.  Bayonetta.  Bayonetta.  Bayonetta.  Bayonetta.";
+        String sampleData = "Original Ghostbuster Dan Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new all-female Ghostbusters cast, telling The Hollywood Reporter, “The Aykroyd family is delighted by this inheritance of the Ghostbusters torch by these most magnificent women in comedy.";
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
