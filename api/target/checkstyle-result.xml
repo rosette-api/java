@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.12.1">
+<file name="/publish/java/api/src/main/java/com/basistech/rosette/api/RosetteAPIException.java">
+</file>
+<file name="/publish/java/api/src/main/java/com/basistech/rosette/api/HttpRosetteAPI.java">
+</file>
+<file name="/publish/java/api/src/main/java/com/basistech/rosette/api/HttpRosetteAPIException.java">
+</file>
+<file name="/publish/java/api/src/main/java/com/basistech/rosette/api/RosetteAPI.java">
+</file>
+<file name="/publish/java/api/src/main/java/com/basistech/rosette/api/MorphologicalFeature.java">
+</file>
+<file name="/publish/java/api/src/main/resources/version.properties">
+</file>
+</checkstyle>

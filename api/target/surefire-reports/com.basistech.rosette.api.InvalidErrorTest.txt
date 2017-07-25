@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.basistech.rosette.api.InvalidErrorTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.705 sec - in com.basistech.rosette.api.InvalidErrorTest

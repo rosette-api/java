@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1500990806192
+Bundle-ManifestVersion: 2
+Bundle-Name: rosette-api-json
+Bundle-SymbolicName: rosette-api-json
+Bundle-Version: 1.7.4.201707251353
+Created-By: 1.8.0_121 (Oracle Corporation)
+Export-Package: com.basistech.rosette.apimodel.jackson;uses:="com.basi
+ stech.rosette.apimodel,com.basistech.rosette.dm,com.basistech.rosette
+ .dm.jackson,com.basistech.util,com.fasterxml.jackson.annotation,com.f
+ asterxml.jackson.core,com.fasterxml.jackson.databind,com.fasterxml.ja
+ ckson.databind.annotation,com.fasterxml.jackson.databind.deser.std";v
+ ersion="1.7.4",com.basistech.rosette.apimodel.jackson.batch;uses:="co
+ m.basistech.rosette.apimodel,com.basistech.rosette.apimodel.batch,com
+ .fasterxml.jackson.annotation";version="1.7.4"
+Import-Package: com.basistech.rosette.apimodel;version="[1.7,2)",com.b
+ asistech.rosette.apimodel.batch;version="[1.7,2)",com.basistech.roset
+ te.apimodel.jackson.batch,com.basistech.rosette.dm;version="[2.2,3)",
+ com.basistech.rosette.dm.jackson;version="[2.2,3)",com.basistech.util
+ ;version="[36.0,37)",com.fasterxml.jackson.annotation;version="[2.6,3
+ )",com.fasterxml.jackson.core;version="[2.6,3)",com.fasterxml.jackson
+ .databind;version="[2.6,3)",com.fasterxml.jackson.databind.annotation
+ ;version="[2.6,3)",com.fasterxml.jackson.databind.deser.std;version="
+ [2.6,3)",com.fasterxml.jackson.databind.module;version="[2.6,3)",com.
+ fasterxml.jackson.databind.ser;version="[2.6,3)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-3.2.0.201605172007

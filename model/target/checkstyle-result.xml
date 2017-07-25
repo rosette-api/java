@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.12.1">
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/batch/BatchResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/batch/BatchRequest.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/batch/BatchStatusResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/batch/BatchRequestItem.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/ConstantsResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/TransliterationResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/AdmRequest.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/SentimentResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/LinkedEntity.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/LanguageDetectionResult.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/ErrorResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/PingResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/SentencesResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/DocumentRequest.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/SentenceWithDependencies.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/Response.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/NameSimilarityResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/TransliterationOptions.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/NameSimilarityRequest.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/EntitiesResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/package-info.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/Request.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/Name.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/EntitiesOptions.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/RelationshipsResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/SentimentOptions.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/EntitySentiment.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/EntityMention.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/MorphologyResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/MorphologyOptions.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/NameTranslationRequest.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/Options.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/TokensResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/Dependency.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/TextEmbeddingResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/LanguageResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/AdmResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/LanguageWeight.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/CommonRosetteAPIException.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/Relationship.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/LanguageOptions.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/RelationshipsOptions.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/SyntaxDependenciesResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/CategoriesOptions.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/AccuracyMode.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/CategoriesResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/NameDeduplicationRequest.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/NameDeduplicationResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/LinkedEntitiesResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/NameTranslationResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/InfoResponse.java">
+</file>
+<file name="/publish/java/model/src/main/java/com/basistech/rosette/apimodel/Label.java">
+</file>
+</checkstyle>

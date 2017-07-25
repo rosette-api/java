@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.12.1">
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/RelationshipsExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/TextEmbeddingExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/MorphologyLemmasExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/TokensExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/TransliterationExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/CategoriesExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/MorphologyCompleteExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/NameSimilarityExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/MorphologyPartsOfSpeechExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/EntitiesExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/NameDeduplicationExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/SentimentExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/MorphologyCompoundComponentsExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/PingExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/SyntaxDependenciesExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/ExampleBase.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/NameTranslationExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/LanguageExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/SentencesExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/InfoExample.java">
+</file>
+<file name="/publish/java/examples/src/main/java/com/basistech/rosette/examples/MorphologyHanReadingsExample.java">
+</file>
+</checkstyle>
