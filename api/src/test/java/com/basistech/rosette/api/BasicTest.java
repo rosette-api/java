@@ -161,7 +161,10 @@ public class BasicTest extends AbstractTest {
                             .withStatusCode(200)
                             .withHeader("Content-Type", "application/json")
                             .withBody(IOUtils.toString(respIns, "UTF-8")));
-            api = new HttpRosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
+            api = new HttpRosetteAPI.Builder()
+                    .key("foo-key")
+                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .build();
             AnnotatedText testData = ApiModelMixinModule.setupObjectMapper(
                     new ObjectMapper()).readValue(reqIns, AnnotatedText.class);
             AnnotatedText resp = api.perform(HttpRosetteAPI.ENTITIES_SERVICE_PATH, new AdmRequest<>(testData, null, null, null));
@@ -181,7 +184,10 @@ public class BasicTest extends AbstractTest {
                         .withHeader("X-FooMulti", "Bar1", "Bar2")
                         .withHeader("X-RosetteAPI-Concurrency", "5")
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
-        api = new HttpRosetteAPI("foo-key", String.format("http://localhost:%d/rest/v1", serverPort));
+        api = new HttpRosetteAPI.Builder()
+                .key("foo-key")
+                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                .build();
         Response resp = api.ping();
         assertEquals("Bar", resp.getExtendedInformation().get("X-Foo"));
         Set<?> foos = (Set)resp.getExtendedInformation().get("X-FooMulti");

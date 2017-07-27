@@ -28,6 +28,7 @@ public final class EntitySentiment {
     private final String normalized;
     private final Integer count;
     private final String entityId;
+    private final Double confidence;
     private final Label sentiment;
 
     /**
@@ -37,6 +38,7 @@ public final class EntitySentiment {
      * @param normalized normalized mention text
      * @param count mention count
      * @param entityId if the entity was linked, the ID from the knowledge base.
+     * @param confidence entity confidence.
      * @param sentiment the sentiment information.
      */
     public EntitySentiment(String type,
@@ -44,12 +46,14 @@ public final class EntitySentiment {
                            String normalized,
                            Integer count,
                            String entityId,
+                           Double confidence,
                            Label sentiment) {
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
         this.count = count;
         this.entityId = entityId;
+        this.confidence = confidence;
         this.sentiment = sentiment;
     }
 
@@ -96,6 +100,14 @@ public final class EntitySentiment {
     }
 
     /**
+     * get the entity confidence
+     * @return the entity confidence
+     */
+    public Double getConfidence() {
+        return confidence;
+    }
+
+    /**
      * @return the sentiment information.
      */
     public Label getSentiment() {
@@ -116,11 +128,12 @@ public final class EntitySentiment {
                 && Objects.equals(normalized, that.normalized)
                 && Objects.equals(count, that.count)
                 && Objects.equals(entityId, that.entityId)
+                && Objects.equals(confidence, that.confidence)
                 && Objects.equals(sentiment, that.sentiment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, mention, normalized, count, entityId, sentiment);
+        return Objects.hash(type, mention, normalized, count, entityId, confidence, sentiment);
     }
 }

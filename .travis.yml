@@ -2,10 +2,12 @@ language: java
 script: mvn verify
 jdk:
 - oraclejdk8
-- oraclejdk7
+- openjdk7
 - openjdk8
 
 # suggested by travis support.
 sudo: required
-dist: trusty 
-group: edge
+dist: trusty
+group:
+
+sudo: required

@@ -23,15 +23,18 @@ import java.util.Objects;
  */
 public final class EntitiesOptions extends Options {
 
-    public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(false);
+    public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(false, true);
+    private Boolean calculateConfidence;
     private Boolean linkEntities;
 
     /**
      * Constructor for {@code EntitiesOptions}
      *
+     * @param calculateConfidence return confidence score for the extraction.
      * @param linkEntities perform entity linking in addition to extraction.
      */
-    protected EntitiesOptions(Boolean linkEntities) {
+    protected EntitiesOptions(Boolean calculateConfidence, Boolean linkEntities) {
+        this.calculateConfidence = calculateConfidence;
         this.linkEntities = linkEntities;
     }
 
@@ -40,6 +43,13 @@ public final class EntitiesOptions extends Options {
      */
     public Boolean getLinkEntities() {
         return linkEntities;
+    }
+
+    /**
+     * @return the calculatConfidence flag.
+     */
+    public Boolean getCalculateConfidence() {
+        return calculateConfidence;
     }
 
     @Override
@@ -51,19 +61,32 @@ public final class EntitiesOptions extends Options {
             return false;
         }
         EntitiesOptions that = (EntitiesOptions) o;
-        return Objects.equals(linkEntities, that.linkEntities);
+        return Objects.equals(linkEntities, that.linkEntities)
+                && Objects.equals(calculateConfidence, that.calculateConfidence);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(linkEntities);
+        return Objects.hash(calculateConfidence, linkEntities);
     }
 
     public static class Builder {
+        private Boolean calculateConfidence;
         private Boolean linkEntities;
 
         public Builder() {
             //
+        }
+
+        /**
+         * DocumentRequest calculate confidence score. If the value is {@code true}, then the endpoint will
+         * return confidence scores. If {@code false} or {@code null}, not.
+         * @param calculateConfidence whether to get confidence score.
+         * @return this.
+         */
+        public Builder calculateConfidence(Boolean calculateConfidence) {
+            this.calculateConfidence = calculateConfidence;
+            return this;
         }
 
         /**
@@ -78,7 +101,7 @@ public final class EntitiesOptions extends Options {
         }
 
         public EntitiesOptions build() {
-            return new EntitiesOptions(linkEntities);
+            return new EntitiesOptions(calculateConfidence, linkEntities);
         }
     }
 }

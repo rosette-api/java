@@ -18,7 +18,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.5.10-SNAPSHOT</version>
+    <version>1.7.5-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
@@ -64,12 +64,12 @@
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>adm-model</artifactId>
-                <version>2.2.1</version>
+                <version>2.3.0</version>
             </dependency>
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>adm-json</artifactId>
-                <version>2.2.1</version>
+                <version>2.3.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
