@@ -154,7 +154,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyNameMatcher(NameSimilarityResponse response) throws IOException {
         NameSimilarityResponse goldResponse = mapper.readValue(responseStr, NameSimilarityResponse.class);
-        assertEquals(goldResponse.getScore(),response.getScore(), 0.0);
+        assertEquals(goldResponse.getScore(), response.getScore(), 0.0);
     }
 
     private NameSimilarityRequest readValueNameMatcher() throws IOException {
@@ -482,7 +482,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyNameDeduplication(NameDeduplicationResponse response) throws IOException {
         NameDeduplicationResponse goldResponse = mapper.readValue(responseStr, NameDeduplicationResponse.class);
-        assertEquals(goldResponse.getResults(),response.getResults());
+        assertEquals(goldResponse.getResults(), response.getResults());
     }
 
     private NameDeduplicationRequest readValueNameDeduplication() throws IOException {

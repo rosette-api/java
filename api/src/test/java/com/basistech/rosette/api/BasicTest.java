@@ -48,9 +48,9 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class BasicTest extends AbstractTest {
     private HttpRosetteAPI api;
 
+    private MockServerClient mockServer;
     @Rule
     public MockServerRule mockServerRule = new MockServerRule(this, getFreePort());
-    private MockServerClient mockServer;
 
     private static int getFreePort() {
         try (ServerSocket socket = new ServerSocket(0)) {
@@ -198,7 +198,7 @@ public class BasicTest extends AbstractTest {
     private class ApiPinger extends Thread {
         HttpRosetteAPI api1;
 
-        public ApiPinger(HttpRosetteAPI api) throws IOException {
+        ApiPinger(HttpRosetteAPI api) throws IOException {
             this.api1 = api;
         }
 

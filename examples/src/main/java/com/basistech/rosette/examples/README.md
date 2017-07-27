@@ -6,7 +6,7 @@ Each example class can be run independently.
 If you use Maven, everything should have been setup and you can start running the examples using `mvn exec:java`.
 Otherwise you can compile and run these examples by hand:
 
-- make sure you have JRE 1.7, verify by `java -version`
+- make sure you have JRE 1.7+, verify by `java -version`
 - download <TODO: nexus url>
 - `cd src/main/java/com/basistech/rosette/examples`
 - `javac -cp .:<path-to-rosette-api-jar-file> *.java`
@@ -14,7 +14,6 @@ Otherwise you can compile and run these examples by hand:
  
 | File Name                                   | Description
 | -------------                               |------------- 
-| Base64InputExample.java                     | Entities using base64 encoded string
 | CategoriesExample.java                      | Gets the category of a document at a URL
 | EntitiesExample.java                        | Extracts entities
 | InfoExample.java                            | Gets information about Rosette API
@@ -30,4 +29,7 @@ Otherwise you can compile and run these examples by hand:
 | PingExample.java                            | Pings the Rosette API to check for availability
 | SentencesExample.java                       | Gets the sentences
 | SentimentExample.java                       | Gets the sentiment of a local file
+| SyntaxDependenciesExample.java              | Gets syntactical dependencies
 | TokenExample.java                           | Gets the tokens
+| TopicsExample.java                          | Gets topics
+| TransliterationExample.java                 | Gets transliteration

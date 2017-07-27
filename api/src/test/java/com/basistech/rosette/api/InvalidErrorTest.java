@@ -36,9 +36,9 @@ public class InvalidErrorTest extends AbstractTest {
         mockServer.reset()
                 .when(HttpRequest.request().withPath(".*/{2,}.*"))
                 .respond(HttpResponse.response()
-                                .withBody("Invalid path; '//'")
-                                .withHeader("X-RosetteAPI-Concurrency", "5")
-                                .withStatusCode(404)
+                            .withBody("Invalid path; '//'")
+                            .withHeader("X-RosetteAPI-Concurrency", "5")
+                            .withStatusCode(404)
                 );
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
