@@ -46,11 +46,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class BasicTest extends AbstractTest {
-    private HttpRosetteAPI api;
 
-    private MockServerClient mockServer;
     @Rule
     public MockServerRule mockServerRule = new MockServerRule(this, getFreePort());
+    private MockServerClient mockServer;
+    private HttpRosetteAPI api;
 
     private static int getFreePort() {
         try (ServerSocket socket = new ServerSocket(0)) {
