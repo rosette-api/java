@@ -2,7 +2,7 @@ node {
     def SOURCEDIR = pwd()
     def TEST_CONTAINER = 'examples/java-test'
     def DOCKERFILE_DIR = './examples/docker'
-    def PUBLISHED_VERSION = '1.7.3
+    def PUBLISHED_VERSION = '1.7.3'
     try {
         stage("Clean up") {
             step([$class: 'WsCleanup'])
