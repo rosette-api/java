@@ -2,6 +2,7 @@ node {
     def SOURCEDIR = pwd()
     def TEST_CONTAINER = 'examples/java-test'
     def DOCKERFILE_DIR = './examples/docker'
+    def PUBLISHED_VERSION = '1.7.3
     try {
         stage("Clean up") {
             step([$class: 'WsCleanup'])
@@ -16,7 +17,7 @@ node {
         }
         stage("Run Examples") {
             withEnv(["API_KEY=${env.ROSETTE_API_KEY}", "ALT_URL=${env.BINDING_TEST_URL}"]) {
-                sh "docker run --rm -e API_KEY=${API_KEY} -e ALT_URL=${ALT_URL} -v ${SOURCEDIR}:/source ${TEST_CONTAINER}"
+                sh "docker run --rm -e API_KEY=${API_KEY} -e ALT_URL=${ALT_URL} -e VERSION=${PUBLISHED_VERSION} -v ${SOURCEDIR}:/source ${TEST_CONTAINER}"
             }
         }
         slack(true)
