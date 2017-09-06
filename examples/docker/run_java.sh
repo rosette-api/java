@@ -14,7 +14,7 @@ function checkAPI {
     if [ ! -z $match ]; then
         echo -e "\nInvalid Rosette API Key"
         exit 1
-    fi  
+    fi
 }
 
 function cleanURL() {
@@ -34,22 +34,22 @@ function validateURL() {
     if [ "${match}" = "" ]; then
         echo -e "\n${ping_url} server not responding\n"
         exit 1
-    fi  
+    fi
 }
 
 function runExample() {
     echo -e "\n---------- ${1} start -------------\n"
     if [ ! -z ${ALT_URL} ]; then
-        result="$(mvn exec:java -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 2>&1 )"
+        result="$(mvn exec:java -B -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 2>&1 )"
     else
-        result="$(mvn exec:java -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} 2&>1 )"
+        result="$(mvn exec:java -B -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} 2&>1 )"
     fi
     if [[ $result == *"Exception"* ]]; then
         retcode=1
     fi
     echo "${result}"
     echo -e "\n---------- ${1} end -------------\n"
-    for err in "${errors[@]}"; do 
+    for err in "${errors[@]}"; do
         if [[ ${result} == *"${err}"* ]]; then
             retcode=1
         fi
@@ -100,7 +100,7 @@ assignVersion examples.pom.xml
 
 if [ ! -z ${API_KEY} ]; then
     checkAPI
-    mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -pl examples -pl examples   
+    mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -pl examples -pl examples
     cd /java/examples
     if [ ! -z ${FILENAME} ]; then
         runExample ${FILENAME}
@@ -114,7 +114,7 @@ if [ ! -z ${API_KEY} ]; then
             runExample ${filename}
         done
     fi
-else 
+else
     usage
 fi
 
