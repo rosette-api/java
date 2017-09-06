@@ -17,17 +17,16 @@
 package com.basistech.rosette.apimodel.jackson;
 
 import com.basistech.rosette.apimodel.LanguageDetectionResult;
-import com.basistech.rosette.apimodel.RegionDetectionResult;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class LanguageResponseMixin extends BaseMixin {
+public class RegionDetectionResultMixin extends BaseMixin {
     @JsonCreator
-    public LanguageResponseMixin(
-            @JsonProperty("languageDetections") List<LanguageDetectionResult> languageDetections,
-            @JsonProperty("regionalDetections") List<RegionDetectionResult> regionalDetections
+    public RegionDetectionResultMixin(
+            @JsonProperty("region") String region,
+            @JsonProperty("languages") List<LanguageDetectionResult> languages
     ) {
         //
     }
