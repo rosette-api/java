@@ -108,7 +108,7 @@ if [ ! -z ${API_KEY} ]; then
         for file in /java/examples/src/main/java/com/basistech/rosette/examples/*.java; do
             filename=$(basename "$file")
             filename="${filename%.*}"
-            if [ "${filename}" = "ExampleBase" ]; then
+            if [ "${filename}" = "ExampleBase" -o "${filename}" = "HttpClientSingleton" ]; then
                 continue
             fi
             runExample ${filename}
