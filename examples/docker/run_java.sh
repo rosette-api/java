@@ -14,7 +14,7 @@ function checkAPI {
     if [ ! -z $match ]; then
         echo -e "\nInvalid Rosette API Key"
         exit 1
-    fi  
+    fi
 }
 
 function cleanURL() {
@@ -34,22 +34,22 @@ function validateURL() {
     if [ "${match}" = "" ]; then
         echo -e "\n${ping_url} server not responding\n"
         exit 1
-    fi  
+    fi
 }
 
 function runExample() {
     echo -e "\n---------- ${1} start -------------\n"
     if [ ! -z ${ALT_URL} ]; then
-        result="$(mvn exec:java -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 2>&1 )"
+        result="$(mvn exec:java -B -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} -Drosette.api.altUrl=${ALT_URL} 2>&1 )"
     else
-        result="$(mvn exec:java -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} 2&>1 )"
+        result="$(mvn exec:java -B -Dexec.mainClass=com.basistech.rosette.examples.${1} -Drosette.api.key=${API_KEY} 2&>1 )"
     fi
     if [[ $result == *"Exception"* ]]; then
         retcode=1
     fi
     echo "${result}"
     echo -e "\n---------- ${1} end -------------\n"
-    for err in "${errors[@]}"; do 
+    for err in "${errors[@]}"; do
         if [[ ${result} == *"${err}"* ]]; then
             retcode=1
         fi
@@ -58,6 +58,10 @@ function runExample() {
 
 # Updates the given pom files to use the publish version
 function assignVersion() {
+    if [ -z ${VERSION} ]; then
+        echo "VERSION must be specified"
+        usage
+    fi
     sed -i "s|\(<version>\).*SNAPSHOT\(</version>\)|\1${VERSION}\2|" ${1}
 }
 #------------------ Functions End ------------------------------------------------
@@ -94,13 +98,13 @@ cp -r -n /source/examples .
 cp /source/examples/docker/main/pom.xml .
 
 assignVersion pom.xml
-assignVersion examples.pom.xml
+assignVersion examples/pom.xml
 
 #Run the examples
 
 if [ ! -z ${API_KEY} ]; then
     checkAPI
-    mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -pl examples -pl examples   
+    mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -pl examples -pl examples
     cd /java/examples
     if [ ! -z ${FILENAME} ]; then
         runExample ${FILENAME}
@@ -108,13 +112,13 @@ if [ ! -z ${API_KEY} ]; then
         for file in /java/examples/src/main/java/com/basistech/rosette/examples/*.java; do
             filename=$(basename "$file")
             filename="${filename%.*}"
-            if [ "${filename}" = "ExampleBase" ]; then
+            if [ "${filename}" = "ExampleBase" -o "${filename}" = "HttpClientSingleton" ]; then
                 continue
             fi
             runExample ${filename}
         done
     fi
-else 
+else
     usage
 fi
 
