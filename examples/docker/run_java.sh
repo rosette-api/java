@@ -58,6 +58,10 @@ function runExample() {
 
 # Updates the given pom files to use the publish version
 function assignVersion() {
+    if [ -z ${VERSION} ]; then
+        echo "VERSION must be specified"
+        usage
+    fi
     sed -i "s|\(<version>\).*SNAPSHOT\(</version>\)|\1${VERSION}\2|" ${1}
 }
 #------------------ Functions End ------------------------------------------------
@@ -94,7 +98,7 @@ cp -r -n /source/examples .
 cp /source/examples/docker/main/pom.xml .
 
 assignVersion pom.xml
-assignVersion examples.pom.xml
+assignVersion examples/pom.xml
 
 #Run the examples
 
