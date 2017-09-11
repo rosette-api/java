@@ -20,6 +20,9 @@ import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.TopicsResponse;
 import com.basistech.util.LanguageCode;
 
+/**
+ *
+ */
 public class TopicsExample extends ExampleBase {
     public static void main(String[] args) {
         try {
