@@ -10,11 +10,18 @@ If you use Maven, include this dependency in your `pom.xml`:
 <dependency>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api</artifactId>
-    <version>1.7.1</version>
+    <version>${rosette.api.java.binding.version}</version>
 </dependency>
 ```
 
+where `${rosette.api.java.binding.version}` is the [latest version available from Maven Central](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.basistech.rosette%22%20AND%20a%3A%22rosette-api%22).
+
 The version will change as new versions of the binding are released. Note that versions of the form `x.y.Nxx`, where `N` is greater than 100, are internal testing versions; do not use them without consultation with Basis Technology Corp.
+
+If the version you are using is not the latest from Maven Central. Please check for its
+[**compatibilty with api.rosette.com**](https://developer.rosette.com/features-and-functions?java).
+If you have an on-premise version of Rosette API server, please contact support for binding
+compatibility with your installation.
 
 The source code on the master branch is the current state of development; it is not recommended for general use.
 If you prefer to build from source, please use an appropriate release tag.
