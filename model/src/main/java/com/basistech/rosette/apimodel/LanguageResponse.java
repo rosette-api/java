@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,26 +25,51 @@ import java.util.List;
 public final class LanguageResponse extends Response {
 
     private final List<LanguageDetectionResult> languageDetections;
+    private final List<RegionDetectionResult> regionalDetections;
 
     /**
      * constructor for {@code LanguageResponse}
-     * @param languageDetections list of detected languages
+     * @param languageDetections list of detected whole-document languages
      */
     public LanguageResponse(List<LanguageDetectionResult> languageDetections) {
-        this.languageDetections = languageDetections;
+        this(languageDetections, new ArrayList<RegionDetectionResult>());
     }
 
     /**
-     * get the list of detected languages
-     * @return the list of detected languages
+     * constructor for {@code LanguageResponse}
+     * @param languageDetections list of detected whole-document languages
+     * @param regionalDetections list of detected language regions
+     */
+    public LanguageResponse(
+            List<LanguageDetectionResult> languageDetections,
+            List<RegionDetectionResult> regionalDetections
+    ) {
+        this.languageDetections = languageDetections;
+        this.regionalDetections = regionalDetections;
+    }
+
+    /**
+     * get the list of detected whole-document languages
+     * @return the list of detected whole-document languages
      */
     public List<LanguageDetectionResult> getLanguageDetections() {
         return languageDetections;
     }
 
+    /**
+     * get the list of detected language regions
+     * @return the list of detected language regions
+     */
+    public List<RegionDetectionResult> getRegionalDetections() {
+        return regionalDetections;
+    }
+
     @Override
     public int hashCode() {
-        return languageDetections != null ? languageDetections.hashCode() : 0;
+        int result;
+        result = languageDetections != null ? languageDetections.hashCode() : 0;
+        result = 31 * result + (regionalDetections != null ? regionalDetections.hashCode() : 0);
+        return result;
     }
 
     /**
@@ -58,6 +84,7 @@ public final class LanguageResponse extends Response {
         }
 
         LanguageResponse that = (LanguageResponse) o;
-        return languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null;
+        return languageDetections != null ? languageDetections.equals(that.getLanguageDetections()) : that.languageDetections == null
+                && regionalDetections != null ? regionalDetections.equals(that.getRegionalDetections()) : that.regionalDetections == null;
     }
 }

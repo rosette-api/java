@@ -147,14 +147,14 @@
                         <id>process-test-classes</id>
                         <phase>process-test-classes</phase>
                         <goals>
-                            <goal>start</goal>
+                            <goal>runForked</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>verify</id>
                         <phase>verify</phase>
                         <goals>
-                            <goal>stop</goal>
+                            <goal>stopForked</goal>
                         </goals>
                     </execution>
                 </executions>
