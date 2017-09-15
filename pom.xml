@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2015 Basis Technology Corp.
+  Copyright 2017 Basis Technology Corp.
  
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
-  -->
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
@@ -22,7 +22,7 @@
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
-        <version>0.1.2</version>
+        <version>1.1.4</version>
         <relativePath />
     </parent>
     <packaging>pom</packaging>
@@ -179,24 +179,4 @@
             </plugin>
         </plugins>
     </reporting>
-    <profiles>
-        <profile>
-            <id>internal-release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${nexus-staging-plugin-version}</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>basistech.repo</serverId>
-                            <nexusUrl>http://nexus.basistech.net:8081/nexus/</nexusUrl>
-                            <stagingProfileId>1dd11ca8866422</stagingProfileId>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

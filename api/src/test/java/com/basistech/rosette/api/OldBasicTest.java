@@ -39,11 +39,11 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 @SuppressWarnings("deprecation")
 public class OldBasicTest extends AbstractTest {
-    private RosetteAPI api;
 
     @Rule
     public MockServerRule mockServerRule = new MockServerRule(this, getFreePort());
     private MockServerClient mockServer;
+    private RosetteAPI api;
 
     private static int getFreePort() {
         try (ServerSocket socket = new ServerSocket(0)) {
@@ -166,7 +166,7 @@ public class OldBasicTest extends AbstractTest {
     private class ApiPinger extends Thread {
         RosetteAPI api1;
 
-        public ApiPinger(RosetteAPI api) throws IOException, RosetteAPIException {
+        ApiPinger(RosetteAPI api) throws IOException, RosetteAPIException {
             this.api1 = api;
         }
 

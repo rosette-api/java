@@ -175,6 +175,7 @@ public class ModelTest {
         return o;
     }
 
+    //CHECKSTYLE:OFF
     private Object createObjectForType(Class<?> type, Type genericParameterType) throws IllegalAccessException,
             InstantiationException, InvocationTargetException {
         Object o = null;
@@ -216,7 +217,7 @@ public class ModelTest {
             break;
         }
         case "String":
-        case "CharSequence":{
+        case "CharSequence": {
             o = "foo";
             break;
         }
@@ -292,6 +293,7 @@ public class ModelTest {
         }
         return o;
     }
+    //CHECKSTYLE:ON
 
     private boolean isListString(ParameterizedType parameterizedType) {
         return List.class.equals(parameterizedType.getRawType())
