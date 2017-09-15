@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import java.util.Set;
 public class LanguageOptionsMixin extends OptionsMixin {
     @JsonCreator
     protected LanguageOptionsMixin(
+            @JsonProperty("multilingual") Boolean multilingual,
             @JsonProperty("minValidChars") Integer minValidChars,
             @JsonProperty("profileDepth") Integer profileDepth,
             @JsonProperty("ambiguityThreshold") Double ambiguityThreshold,

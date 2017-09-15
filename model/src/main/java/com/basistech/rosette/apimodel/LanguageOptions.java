@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import java.util.Set;
  */
 public final class LanguageOptions extends Options {
 
+    private Boolean multilingual;
     @Min(1)
     private Integer minValidChars;
     @Min(1)
@@ -55,9 +56,11 @@ public final class LanguageOptions extends Options {
      */
     public LanguageOptions() {
     }
-    
+
     /**
-     * constructor for {@code LanguageOptions} 
+     * constructor for {@code LanguageOptions}, using the default value
+     * for whether to detect language regions and the specified value
+     * for everything else
      * @param minValidChars minimum number of valid characters required for identification
      * @param profileDepth number of n-grams to consider in detection
      * @param ambiguityThreshold number of n-gram distance ambiguity threshold
@@ -88,6 +91,14 @@ public final class LanguageOptions extends Options {
         this.encodingHint = encodingHint;
         this.encodingHintWeight = encodingHintWeight;
         this.languageWeightAdjustments = languageWeightAdjustments;
+    }
+
+    /**
+     * get whether to detect language regions
+     * @return whether to detect language regions
+     */
+    public Boolean getMultilingual() {
+        return multilingual;
     }
 
     /**
@@ -168,6 +179,14 @@ public final class LanguageOptions extends Options {
      */
     public Set<LanguageWeight> getLanguageWeightAdjustments() {
         return languageWeightAdjustments;
+    }
+
+    /**
+     * set whether to detect language regions
+     * @param multilingual
+     */
+    public void setMultilingual(Boolean multilingual) {
+        this.multilingual = multilingual;
     }
 
     /**
@@ -268,7 +287,8 @@ public final class LanguageOptions extends Options {
 
     @Override
     public int hashCode() {
-        int result = minValidChars != null ? minValidChars.hashCode() : 0;
+        int result = multilingual != null ? multilingual.hashCode() : 0;
+        result = 31 * result + (minValidChars != null ? minValidChars.hashCode() : 0);
         result = 31 * result + (profileDepth != null ? profileDepth.hashCode() : 0);
         result = 31 * result + (ambiguityThreshold != null ? ambiguityThreshold.hashCode() : 0);
         result = 31 * result + (invalidityThreshold != null ? invalidityThreshold.hashCode() : 0);
@@ -292,7 +312,8 @@ public final class LanguageOptions extends Options {
         }
 
         LanguageOptions that = (LanguageOptions) o;
-        return minValidChars != null ? minValidChars.equals(that.getMinValidChars()) : that.minValidChars == null
+        return multilingual != null ? multilingual.equals(that.getMultilingual()) : that.multilingual == null
+                && minValidChars != null ? minValidChars.equals(that.getMinValidChars()) : that.minValidChars == null
                 && profileDepth != null ? profileDepth.equals(that.getProfileDepth()) : that.profileDepth == null
                 && ambiguityThreshold != null ? ambiguityThreshold.equals(that.getAmbiguityThreshold()) : that.ambiguityThreshold == null
                 && invalidityThreshold != null ? invalidityThreshold.equals(that.getInvalidityThreshold()) : that.invalidityThreshold == null
