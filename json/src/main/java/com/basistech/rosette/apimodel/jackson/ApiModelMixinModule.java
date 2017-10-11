@@ -59,6 +59,7 @@ import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
 import com.basistech.rosette.apimodel.TextEmbeddingResponse;
 import com.basistech.rosette.apimodel.TokensResponse;
+import com.basistech.rosette.apimodel.TopicsOptions;
 import com.basistech.rosette.apimodel.TopicsResponse;
 import com.basistech.rosette.apimodel.TransliterationOptions;
 import com.basistech.rosette.apimodel.TransliterationResponse;
@@ -128,6 +129,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(Options.class, OptionsMixin.class);
         context.setMixInAnnotations(TransliterationOptions.class, TransliterationOptionsMixin.class);
         context.setMixInAnnotations(TransliterationResponse.class, TransliterationResponseMixin.class);
+        context.setMixInAnnotations(TopicsOptions.class, TopicsOptionsMixin.class);
         context.setMixInAnnotations(TopicsResponse.class, TopicsResponseMixin.class);
         context.setMixInAnnotations(Keyphrase.class, KeyphraseMixin.class);
         context.setMixInAnnotations(Concept.class, ConceptMixin.class);
