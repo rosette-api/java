@@ -5,7 +5,11 @@
       "indocChainId": 0, 
       "mention": "Samsung", 
       "normalized": "Samsung", 
-      "type": "ORGANIZATION"
+      "type": "ORGANIZATION",
+      "mentionOffsets": [
+        {"startOffset": 15, "endOffset": 22},
+        {"startOffset": 88, "endOffset": 95}
+      ]
     }
   ]
 }
