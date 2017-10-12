@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,20 +16,61 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
+import java.util.List;
 
 /**
  * An entity mention found in a document.
  * The /entities endpoint returns a collection of entity mentions.
  */
-public final class EntityMention {
+@SuppressWarnings("PMD")
+@Getter @EqualsAndHashCode
+public class EntityMention {
 
+    /**
+     * in-document entity chain id
+     * @return the id
+     */
+    @Deprecated
     private final Integer indocChainId;
+
+    /**
+     * @return the entity type
+     */
     private final String type;
+
+    /**
+     * @return the entity mention text
+     */
     private final String mention;
+
+    /**
+     * @return the normalized entity mention text
+     */
     private final String normalized;
+
+    /**
+     * @return the entity mention count
+     */
     private final Integer count;
+
+    /**
+     * @return the list of offsets for all mentions
+     */
+    private final List<MentionOffsets> mentionOffsets;
+
+    /**
+     * @return the ID of this entity. If this entity was linked to a knowledge base,
+     * the resulting string will begin with 'Q'. If it was not linked to a knowledge base,
+     * it will begin with a 'T'. 'T' identifiers represent intra-document co-references.
+     */
     private final String entityId;
+
+    /**
+     * @return the confidence score for the entity (0.0-1.0)
+     */
     private final Double confidence;
 
     /**
@@ -51,13 +92,7 @@ public final class EntityMention {
             String entityId,
             Double confidence
     ) {
-        this.indocChainId = indocChainId;
-        this.type = type;
-        this.mention = mention;
-        this.normalized = normalized;
-        this.count = count;
-        this.entityId = entityId;
-        this.confidence = confidence;
+        this(type, mention, normalized, count, null, entityId, confidence);
     }
 
     /**
@@ -68,6 +103,7 @@ public final class EntityMention {
      * @param entityId if the entity was linked, the ID from the knowledge base.
      * @param count mention count
      */
+    @Deprecated
     public EntityMention(
             String type,
             String mention,
@@ -76,94 +112,35 @@ public final class EntityMention {
             Integer count,
             Double confidence
     ) {
+        this(type, mention, normalized, count, null, entityId, confidence);
+    }
+
+    /**
+     * constructor for {@code EntityMention}
+     * @param type entity type
+     * @param mention mention text
+     * @param normalized normalized mention text
+     * @param entityId if the entity was linked, the ID from the knowledge base.
+     * @param count mention count
+     * @param mentionOffsets list of mention offsets
+     * @param confidence entity extraction confidence score
+     */
+    public EntityMention(
+            String type,
+            String mention,
+            String normalized,
+            Integer count,
+            List<MentionOffsets> mentionOffsets,
+            String entityId,
+            Double confidence
+    ) {
         this.indocChainId = null;
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
         this.entityId = entityId;
         this.count = count;
+        this.mentionOffsets = mentionOffsets;
         this.confidence = confidence;
-    }
-
-    /**
-     * get the in-document entity chain id 
-     * @return the id
-     */
-    @Deprecated
-    public Integer getIndocChainId() {
-        return indocChainId;
-    }
-
-    /**
-     * get the entity type 
-     * @return the entity type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * get the mention text 
-     * @return the mention text
-     */
-    public String getMention() {
-        return mention;
-    }
-
-    /**
-     * get the normalized mention text 
-     * @return the normalized mention text
-     */
-    public String getNormalized() {
-        return normalized;
-    }
-
-    /**
-     * get the mention count 
-     * @return the mention count
-     */
-    public Integer getCount() {
-        return count;
-    }
-
-    /**
-     * get the entity knowledge base ID.
-     * @return the ID of this entity. If this entity was linked to a knowledge base,
-     * the resulting string will begin with 'Q'. If it was not linked to a knowledge base,
-     * it will begin with a 'T'. 'T' identifiers represent intra-document co-references.
-     */
-    public String getEntityId() {
-        return entityId;
-    }
-
-    /**
-     * get the confidence score for the entity.
-     * @return the confidence score  (0.0-1.0)
-     */
-    public Double getConfidence() {
-        return confidence;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        EntityMention that = (EntityMention) o;
-        return Objects.equals(indocChainId, that.indocChainId)
-                && Objects.equals(type, that.type)
-                && Objects.equals(mention, that.mention)
-                && Objects.equals(normalized, that.normalized)
-                && Objects.equals(count, that.count)
-                && Objects.equals(entityId, that.entityId)
-                && Objects.equals(confidence, that.confidence);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(indocChainId, type, mention, normalized, count, entityId, confidence);
     }
 }
