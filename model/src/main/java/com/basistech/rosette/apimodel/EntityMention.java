@@ -25,6 +25,7 @@ import java.util.List;
  * An entity mention found in a document.
  * The /entities endpoint returns a collection of entity mentions.
  */
+@SuppressWarnings("PMD")
 @Getter @EqualsAndHashCode
 public class EntityMention {
 

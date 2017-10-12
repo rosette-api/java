@@ -22,6 +22,7 @@ import lombok.Getter;
 /**
  * The start and end offset/index for a given mention in a string of text
  */
+@SuppressWarnings("PMD")
 @Getter @EqualsAndHashCode
 public class MentionOffsets {
 

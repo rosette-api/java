@@ -25,6 +25,7 @@ import java.util.List;
 /**
  * Per-entity sentiment info.
  */
+@SuppressWarnings("PMD")
 @Getter @EqualsAndHashCode
 public final class EntitySentiment extends EntityMention {
 
