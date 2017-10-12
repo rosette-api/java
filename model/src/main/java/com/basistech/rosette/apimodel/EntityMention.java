@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -29,6 +30,7 @@ public final class EntityMention {
     private final String mention;
     private final String normalized;
     private final Integer count;
+    private final List<MentionOffsets> mentionOffsets;
     private final String entityId;
     private final Double confidence;
     private final Double salience;
@@ -59,6 +61,7 @@ public final class EntityMention {
         this.mention = mention;
         this.normalized = normalized;
         this.count = count;
+        this.mentionOffsets = null;
         this.entityId = entityId;
         this.confidence = confidence;
         this.salience = null;
@@ -86,6 +89,7 @@ public final class EntityMention {
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
+        this.mentionOffsets = null;
         this.entityId = entityId;
         this.count = count;
         this.confidence = confidence;
@@ -116,6 +120,7 @@ public final class EntityMention {
         this.type = type;
         this.mention = mention;
         this.normalized = normalized;
+        this.mentionOffsets = null;
         this.entityId = entityId;
         this.count = count;
         this.confidence = confidence;
@@ -140,6 +145,7 @@ public final class EntityMention {
         String mention,
         String normalized,
         Integer count,
+        List<MentionOffsets> mentionOffsets,
         String entityId,
         Double confidence,
         Double salience,
@@ -150,6 +156,7 @@ public final class EntityMention {
         this.mention = mention;
         this.normalized = normalized;
         this.count = count;
+        this.mentionOffsets = mentionOffsets;
         this.entityId = entityId;
         this.confidence = confidence;
         this.salience = salience;
@@ -157,7 +164,7 @@ public final class EntityMention {
     }
 
     /**
-     * get the in-document entity chain id 
+     * get the in-document entity chain id
      * @return the id
      */
     @Deprecated
@@ -166,7 +173,7 @@ public final class EntityMention {
     }
 
     /**
-     * get the entity type 
+     * get the entity type
      * @return the entity type
      */
     public String getType() {
@@ -174,7 +181,7 @@ public final class EntityMention {
     }
 
     /**
-     * get the mention text 
+     * get the mention text
      * @return the mention text
      */
     public String getMention() {
@@ -182,7 +189,7 @@ public final class EntityMention {
     }
 
     /**
-     * get the normalized mention text 
+     * get the normalized mention text
      * @return the normalized mention text
      */
     public String getNormalized() {
@@ -190,11 +197,19 @@ public final class EntityMention {
     }
 
     /**
-     * get the mention count 
+     * get the mention count
      * @return the mention count
      */
     public Integer getCount() {
         return count;
+    }
+
+    /**
+     * get the offsets for all mentions of an entity
+     * @return offsets for all mentions of an entity
+     */
+    public List<MentionOffsets> getMentionOffsets() {
+        return mentionOffsets;
     }
 
     /**
@@ -245,6 +260,7 @@ public final class EntityMention {
                 && Objects.equals(mention, that.mention)
                 && Objects.equals(normalized, that.normalized)
                 && Objects.equals(count, that.count)
+                && Objects.equals(mentionOffsets, that.mentionOffsets)
                 && Objects.equals(entityId, that.entityId)
                 && Objects.equals(confidence, that.confidence)
                 && Objects.equals(salience, that.salience)
@@ -253,6 +269,6 @@ public final class EntityMention {
 
     @Override
     public int hashCode() {
-        return Objects.hash(indocChainId, type, mention, normalized, count, entityId, confidence, salience, linkingConfidence);
+        return Objects.hash(indocChainId, type, mention, normalized, count, mentionOffsets, entityId, confidence, salience, linkingConfidence);
     }
 }
