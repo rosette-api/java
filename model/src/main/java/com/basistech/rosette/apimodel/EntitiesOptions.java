@@ -23,8 +23,9 @@ import java.util.Objects;
  */
 public final class EntitiesOptions extends Options {
 
-    public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(false, true);
+    public static final EntitiesOptions DEFAULT_OPTIONS = new EntitiesOptions(false, false, true);
     private Boolean calculateConfidence;
+    private Boolean calculateSalience;
     private Boolean linkEntities;
 
     /**
@@ -33,8 +34,9 @@ public final class EntitiesOptions extends Options {
      * @param calculateConfidence return confidence score for the extraction.
      * @param linkEntities perform entity linking in addition to extraction.
      */
-    protected EntitiesOptions(Boolean calculateConfidence, Boolean linkEntities) {
+    protected EntitiesOptions(Boolean calculateConfidence, Boolean calculateSalience, Boolean linkEntities) {
         this.calculateConfidence = calculateConfidence;
+        this.calculateSalience = calculateSalience;
         this.linkEntities = linkEntities;
     }
 
@@ -52,6 +54,13 @@ public final class EntitiesOptions extends Options {
         return calculateConfidence;
     }
 
+    /**
+     * @return the calculateSalience flag.
+     */
+    public Boolean getCalculateSalience() {
+        return calculateSalience;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -62,16 +71,18 @@ public final class EntitiesOptions extends Options {
         }
         EntitiesOptions that = (EntitiesOptions) o;
         return Objects.equals(linkEntities, that.linkEntities)
-                && Objects.equals(calculateConfidence, that.calculateConfidence);
+                && Objects.equals(calculateConfidence, that.calculateConfidence)
+                && Objects.equals(calculateSalience, that.calculateSalience);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calculateConfidence, linkEntities);
+        return Objects.hash(calculateConfidence, calculateSalience, linkEntities);
     }
 
     public static class Builder {
         private Boolean calculateConfidence;
+        private Boolean calculateSalience;
         private Boolean linkEntities;
 
         public Builder() {
@@ -90,6 +101,17 @@ public final class EntitiesOptions extends Options {
         }
 
         /**
+         * DocumentRequest calculate salience score. If the value is {@code true}, then the endpoint will
+         * return salience scores. If {@code false} or {@code null}, not.
+         * @param calculateSalience whether to get salience score.
+         * @return this.
+         */
+        public Builder calculateSalience(Boolean calculateSalience) {
+            this.calculateSalience = calculateSalience;
+            return this;
+        }
+
+        /**
          * DocumentRequest entity linking. If the value is {@code true}, then the the endpoint will link entities to the
          * knowledge base. If {@code false}, not. If {@code null}, the endpoint will perform default processing.
          * @param linkEntities whether to link.
@@ -101,7 +123,7 @@ public final class EntitiesOptions extends Options {
         }
 
         public EntitiesOptions build() {
-            return new EntitiesOptions(calculateConfidence, linkEntities);
+            return new EntitiesOptions(calculateConfidence, calculateSalience, linkEntities);
         }
     }
 }
