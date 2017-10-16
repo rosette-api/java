@@ -72,6 +72,7 @@ public class EntityMention {
      * @return the confidence score for the entity (0.0-1.0)
      */
     private final Double confidence;
+    private final Double salience;
 
     /**
      * constructor for {@code EntityMention}
@@ -81,6 +82,7 @@ public class EntityMention {
      * @param normalized normalized mention text
      * @param count mention count
      * @param entityId if the entity was linked, the ID from the knowledge base.
+     * @param confidence entity confidence
      */
     @Deprecated
     public EntityMention(
@@ -92,7 +94,7 @@ public class EntityMention {
             String entityId,
             Double confidence
     ) {
-        this(type, mention, normalized, count, null, entityId, confidence);
+        this(type, mention, normalized, count, null, entityId, confidence, null);
     }
 
     /**
@@ -102,6 +104,7 @@ public class EntityMention {
      * @param normalized normalized mention text
      * @param entityId if the entity was linked, the ID from the knowledge base.
      * @param count mention count
+     * @param confidence entity confidence
      */
     @Deprecated
     public EntityMention(
@@ -112,7 +115,7 @@ public class EntityMention {
             Integer count,
             Double confidence
     ) {
-        this(type, mention, normalized, count, null, entityId, confidence);
+        this(type, mention, normalized, count, null, entityId, confidence, null);
     }
 
     /**
@@ -132,7 +135,8 @@ public class EntityMention {
             Integer count,
             List<MentionOffsets> mentionOffsets,
             String entityId,
-            Double confidence
+            Double confidence,
+            Double salience
     ) {
         this.indocChainId = null;
         this.type = type;
@@ -142,5 +146,28 @@ public class EntityMention {
         this.count = count;
         this.mentionOffsets = mentionOffsets;
         this.confidence = confidence;
+        this.salience = salience;
+    }
+
+    /**
+     * constructor for {@code EntityMention}
+     * @param type entity type
+     * @param mention mention text
+     * @param normalized normalized mention text
+     * @param entityId if the entity was linked, the ID from the knowledge base.
+     * @param count mention count
+     * @param confidence entity confidence
+     * @param salience entity salience
+     */
+    public EntityMention(
+            String type,
+            String mention,
+            String normalized,
+            String entityId,
+            Integer count,
+            Double confidence,
+            Double salience
+    ) {
+        this(type, mention, normalized, count, null, entityId, confidence, salience);
     }
 }

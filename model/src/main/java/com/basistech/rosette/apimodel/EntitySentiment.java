@@ -52,7 +52,7 @@ public final class EntitySentiment extends EntityMention {
                            String entityId,
                            Double confidence,
                            Label sentiment) {
-        this(type, mention, normalized, count, null, entityId, confidence, sentiment);
+        this(type, mention, normalized, count, null, entityId, confidence, null, sentiment);
     }
 
     /**
@@ -73,8 +73,9 @@ public final class EntitySentiment extends EntityMention {
                            List<MentionOffsets> mentionOffsets,
                            String entityId,
                            Double confidence,
+                           Double salience,
                            Label sentiment) {
-        super(type, mention, normalized, count, mentionOffsets, entityId, confidence);
+        super(type, mention, normalized, count, mentionOffsets, entityId, confidence, salience);
         this.sentiment = sentiment;
     }
 }

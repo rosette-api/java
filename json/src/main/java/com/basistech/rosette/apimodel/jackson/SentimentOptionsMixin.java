@@ -24,7 +24,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public abstract class SentimentOptionsMixin extends OptionsMixin {
     @JsonCreator
     protected SentimentOptionsMixin(
-            @JsonProperty("calculateEntityConfidence") Boolean calculateEntityConfidence
+            @JsonProperty("calculateEntityConfidence") Boolean calculateEntityConfidence,
+            @JsonProperty("calculateEntitySalience") Boolean calculateEntitySalience
     ) {
         //
     }

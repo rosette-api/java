@@ -22,16 +22,18 @@ import java.util.Objects;
  * Sentiment options.
  */
 public final class SentimentOptions extends Options {
-    public static final SentimentOptions DEGAULT_OPTIONS = new SentimentOptions(false);
+    public static final SentimentOptions DEGAULT_OPTIONS = new SentimentOptions(false, false);
     private Boolean calculateEntityConfidence;
+    private Boolean calculateEntitySalience;
 
     /**
      * Constructor for {@code SentimentOptions}
      *
      * @param calculateEntityConfidence return confidence score for the entities.
      */
-    protected SentimentOptions(Boolean calculateEntityConfidence) {
+    protected SentimentOptions(Boolean calculateEntityConfidence, Boolean calculateEntitySalience) {
         this.calculateEntityConfidence = calculateEntityConfidence;
+        this.calculateEntitySalience = calculateEntitySalience;
     }
 
     /**
@@ -39,6 +41,13 @@ public final class SentimentOptions extends Options {
      */
     public Boolean getCalculateEntityConfidence() {
         return calculateEntityConfidence;
+    }
+
+    /**
+     * @return the calculateEntitySalience flag.
+     */
+    public Boolean getCalculateEntitySalience() {
+        return calculateEntitySalience;
     }
 
     @Override
@@ -50,16 +59,18 @@ public final class SentimentOptions extends Options {
             return false;
         }
         SentimentOptions that = (SentimentOptions)o;
-        return Objects.equals(this.calculateEntityConfidence, that.calculateEntityConfidence);
+        return Objects.equals(this.calculateEntityConfidence, that.calculateEntityConfidence)
+                && Objects.equals(this.calculateEntitySalience, that.calculateEntitySalience);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calculateEntityConfidence);
+        return Objects.hash(calculateEntityConfidence, calculateEntitySalience);
     }
 
     public static class Builder {
         private Boolean calculateEntityConfidence;
+        private Boolean calculateEntitySalience;
 
         /**
          * DocumentRequest calculate entity confidence score. If the value is {@code true}, then the endpoint will
@@ -72,8 +83,19 @@ public final class SentimentOptions extends Options {
             return this;
         }
 
+        /**
+         * DocumentRequest calculate entity salience score. If the value is {@code true}, then the endpoint will
+         * return salience scores. If {@code false} or {@code null}, not.
+         * @param calculateEntitySalience whether to get entity salience score.
+         * @return this.
+         */
+        public Builder calculateEntitySalience(Boolean calculateEntitySalience) {
+            this.calculateEntitySalience = calculateEntitySalience;
+            return this;
+        }
+
         public SentimentOptions build() {
-            return new SentimentOptions(calculateEntityConfidence);
+            return new SentimentOptions(calculateEntityConfidence, calculateEntitySalience);
         }
     }
 }
