@@ -4,19 +4,22 @@
       "confidence": 0.6191439548350202, 
       "entityId": "Q30", 
       "indocChainId": 0, 
-      "mention": "U.S."
+      "mention": "U.S.",
+      "linkingConfidence": 0.5
     }, 
     {
       "confidence": 0.1883195998298547, 
       "entityId": "Q796", 
       "indocChainId": 1, 
-      "mention": "Iraq"
-    }, 
+      "mention": "Iraq",
+      "linkingConfidence": 0.5
+    },
     {
       "confidence": 0.16953509200793812, 
       "entityId": "Q889", 
       "indocChainId": 2, 
-      "mention": "Afghanistan"
+      "mention": "Afghanistan",
+      "linkingConfidence": 0.5
     }
   ]
 }

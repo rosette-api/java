@@ -32,6 +32,7 @@ public final class EntityMention {
     private final String entityId;
     private final Double confidence;
     private final Double salience;
+    private final Double linkingConfidence;
 
     /**
      * constructor for {@code EntityMention}
@@ -61,6 +62,7 @@ public final class EntityMention {
         this.entityId = entityId;
         this.confidence = confidence;
         this.salience = null;
+        this.linkingConfidence = null;
     }
 
     /**
@@ -88,6 +90,7 @@ public final class EntityMention {
         this.count = count;
         this.confidence = confidence;
         this.salience = null;
+        this.linkingConfidence = null;
     }
 
     /**
@@ -117,6 +120,40 @@ public final class EntityMention {
         this.count = count;
         this.confidence = confidence;
         this.salience = salience;
+        this.linkingConfidence = null;
+    }
+
+    /**
+     * constructor for {@code EntityMention}
+     * @param indocChainId in-document entity chain id
+     * @param type entity type
+     * @param mention mention text
+     * @param normalized normalized mention text
+     * @param count mention count
+     * @param entityId if the entity was linked, the ID from the knowledge base.
+     * @param confidence entity confidence
+     */
+    @Deprecated
+    public EntityMention(
+        Integer indocChainId,
+        String type,
+        String mention,
+        String normalized,
+        Integer count,
+        String entityId,
+        Double confidence,
+        Double salience,
+        Double linkingConfidence
+    ) {
+        this.indocChainId = indocChainId;
+        this.type = type;
+        this.mention = mention;
+        this.normalized = normalized;
+        this.count = count;
+        this.entityId = entityId;
+        this.confidence = confidence;
+        this.salience = salience;
+        this.linkingConfidence = linkingConfidence;
     }
 
     /**
@@ -180,10 +217,18 @@ public final class EntityMention {
 
     /**
      * get the salience score for the entity.
-     * @return the salience score  (0.0-1.0)
+     * @return the salience score  (0.0 or 1.0)
      */
     public Double getSalience() {
         return salience;
+    }
+
+    /**
+     * get the linking confidence score for the entity.
+     * @return the linking confidence score  (0.0-1.0)
+     */
+    public Double getLinkingConfidence() {
+        return linkingConfidence;
     }
 
     @Override
@@ -202,11 +247,12 @@ public final class EntityMention {
                 && Objects.equals(count, that.count)
                 && Objects.equals(entityId, that.entityId)
                 && Objects.equals(confidence, that.confidence)
-                && Objects.equals(salience, that.salience);
+                && Objects.equals(salience, that.salience)
+                && Objects.equals(linkingConfidence, that.linkingConfidence);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(indocChainId, type, mention, normalized, count, entityId, confidence, salience);
+        return Objects.hash(indocChainId, type, mention, normalized, count, entityId, confidence, salience, linkingConfidence);
     }
 }

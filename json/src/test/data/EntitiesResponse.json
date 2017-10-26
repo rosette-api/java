@@ -5,7 +5,10 @@
       "indocChainId": 0, 
       "mention": "Samsung", 
       "normalized": "Samsung", 
-      "type": "ORGANIZATION"
+      "type": "ORGANIZATION",
+      "salience": 1.0,
+      "confidence": 1.0,
+      "linkingConfidence": 1.0
     }
   ]
 }
