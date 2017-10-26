@@ -32,7 +32,8 @@ public class EntityMentionMixin extends BaseMixin {
             @JsonProperty("mentionOffsets") List<MentionOffsets> mentionOffsets,
             @JsonProperty("entityId") String entityId,
             @JsonProperty("confidence") Double confidence,
-            @JsonProperty("salience") Double salience
+            @JsonProperty("salience") Double salience,
+            @JsonProperty("linkingConfidence") Double linkingConfidence
     ) {
         //
     }
