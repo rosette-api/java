@@ -75,7 +75,7 @@ public final class EntitySentiment extends EntityMention {
                            Double confidence,
                            Double salience,
                            Label sentiment) {
-        super(type, mention, normalized, count, mentionOffsets, entityId, confidence, salience);
+        super(type, mention, normalized, count, mentionOffsets, entityId, confidence, salience, null);
         this.sentiment = sentiment;
     }
 }

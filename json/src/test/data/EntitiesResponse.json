@@ -6,6 +6,9 @@
       "mention": "Samsung", 
       "normalized": "Samsung", 
       "type": "ORGANIZATION",
+      "confidence": 1.0,
+      "linkingConfidence": 1.0,
+      "salience": 1.0,
       "mentionOffsets": [
         {"startOffset": 15, "endOffset": 22},
         {"startOffset": 88, "endOffset": 95}
