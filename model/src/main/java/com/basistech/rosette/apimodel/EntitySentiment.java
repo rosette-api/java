@@ -31,6 +31,7 @@ public final class EntitySentiment {
     private final Double confidence;
     private final Double salience;
     private final Label sentiment;
+    private final Double linkingConfidence;
 
     /**
      * constructor for {@code EntitySentiment}
@@ -49,7 +50,7 @@ public final class EntitySentiment {
                            String entityId,
                            Double confidence,
                            Label sentiment) {
-        this(type, mention, normalized, count, entityId, confidence, null, sentiment);
+        this(type, mention, normalized, count, entityId, confidence, null, null, sentiment);
     }
 
     /**
@@ -61,6 +62,7 @@ public final class EntitySentiment {
      * @param entityId if the entity was linked, the ID from the knowledge base.
      * @param confidence entity confidence.
      * @param salience entity salience.
+     * @param linkingConfidence linking confidence.
      * @param sentiment the sentiment information.
      */
     public EntitySentiment(String type,
@@ -70,6 +72,7 @@ public final class EntitySentiment {
                            String entityId,
                            Double confidence,
                            Double salience,
+                           Double linkingConfidence,
                            Label sentiment) {
         this.type = type;
         this.mention = mention;
@@ -78,6 +81,7 @@ public final class EntitySentiment {
         this.entityId = entityId;
         this.confidence = confidence;
         this.salience = salience;
+        this.linkingConfidence = linkingConfidence;
         this.sentiment = sentiment;
     }
 
@@ -140,6 +144,14 @@ public final class EntitySentiment {
     }
 
     /**
+     * get the linking confidence
+     * @return the linking confidence
+     */
+    public Double getLinkingConfidence() {
+        return linkingConfidence;
+    }
+
+    /**
      * @return the sentiment information.
      */
     public Label getSentiment() {
@@ -162,11 +174,12 @@ public final class EntitySentiment {
                 && Objects.equals(entityId, that.entityId)
                 && Objects.equals(confidence, that.confidence)
                 && Objects.equals(salience, that.salience)
+                && Objects.equals(linkingConfidence, that.linkingConfidence)
                 && Objects.equals(sentiment, that.sentiment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, mention, normalized, count, entityId, confidence, salience, sentiment);
+        return Objects.hash(type, mention, normalized, count, entityId, confidence, salience, linkingConfidence, sentiment);
     }
 }
