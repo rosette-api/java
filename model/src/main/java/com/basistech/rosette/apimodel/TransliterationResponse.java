@@ -16,42 +16,20 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Objects;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 /**
- * Simple API response data model for RCT.
+ * Simple API response data model for transliteration.
  */
-public final class TransliterationResponse extends Response {
-    private final String transliteration;
+@Getter
+@EqualsAndHashCode
+@Builder
+public class TransliterationResponse extends Response {
 
     /**
-     * Constructs a transliteration response.
-     * @param transliteration a transliteration string
-     */
-    public TransliterationResponse(final String transliteration) {
-        this.transliteration = transliteration;
-    }
-
-    /**
-     * Returns the transliteration.
      * @return the transliteration
      */
-    public String getTransliteration() {
-        return transliteration;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        return Objects.equals(transliteration, ((TransliterationResponse) obj).transliteration);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(transliteration);
-    }
+    private final String transliteration;
 }

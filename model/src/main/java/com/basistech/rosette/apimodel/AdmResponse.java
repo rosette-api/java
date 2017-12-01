@@ -1,5 +1,5 @@
 /*
-* Copyright 2016 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,18 +17,20 @@
 package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.dm.AnnotatedText;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 /**
- * An {@link AnnotatedText} response from a document-processing endpoint.
+ * An {@link com.basistech.rosette.dm.AnnotatedText} response from a document-processing endpoint.
  */
+@Getter
+@EqualsAndHashCode
+@Builder
 public class AdmResponse extends Response {
+
+    /**
+     * @return {@link com.basistech.rosette.dm.AnnotatedText}
+     */
     private final AnnotatedText text;
-
-    public AdmResponse(AnnotatedText text) {
-        this.text = text;
-    }
-
-    public AnnotatedText getText() {
-        return text;
-    }
 }

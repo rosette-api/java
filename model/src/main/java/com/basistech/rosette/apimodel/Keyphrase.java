@@ -16,56 +16,23 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Objects;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * Keyphrases found in a document.
  */
-public final class Keyphrase {
-    private final String phrase;
-    private final Double salience;
+@Value
+@Builder
+public class Keyphrase {
 
     /**
-     * constructor for {@code Keyphrase}
-     * @param phrase text of the keyphrase
-     * @param salience keyphrase salience
-     */
-    public Keyphrase(String phrase, Double salience) {
-        this.phrase = phrase;
-        this.salience = salience;
-    }
-
-    /**
-     * get the keyphrase text
      * @return the keyphrase text
      */
-    public String getPhrase() {
-        return phrase;
-    }
+    private final String phrase;
 
     /**
-     * get the keyphrase salience
-     * @return the keyphrase salience
+     * @return the keyphrase salience (0.0-1.0)
      */
-    public Double getSalience() {
-        return salience;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Keyphrase that = (Keyphrase) o;
-        return Objects.equals(phrase, that.phrase)
-                && Objects.equals(salience, that.salience);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(phrase, salience);
-    }
+    private final Double salience;
 }

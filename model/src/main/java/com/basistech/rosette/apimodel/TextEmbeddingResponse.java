@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,48 +16,24 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Value;
+
 import java.util.List;
 
 /** 
  * Simple api response data model for text embedding
  */
-public final class TextEmbeddingResponse extends Response {
+@SuppressWarnings("PMD")
+@Getter
+@EqualsAndHashCode
+@Builder(toBuilder = true)
+public class TextEmbeddingResponse extends Response {
 
+    /**
+     * @return the embedding vector as a list
+     */
     private final List<Double> embedding;
-
-    /**
-     * constructor for {@code TextEmbeddingResponse}
-     * @param embedding list of embedding
-     */
-    public TextEmbeddingResponse(List<Double> embedding) {
-        this.embedding = embedding;
-    }
-
-    /**
-     * get the list of embedding
-     * @return the list of embedding
-     */
-    public List<Double> getEmbedding() {
-        return embedding;
-    }
-
-    @Override
-    public int hashCode() {
-        return embedding != null ? embedding.hashCode() : 0;
-    }
-
-    /**
-     * if the param is a {@code TextEmbeddingResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof TextEmbeddingResponse)) {
-            return false;
-        }
-
-        TextEmbeddingResponse that = (TextEmbeddingResponse) o;
-        return embedding != null ? embedding.equals(that.getEmbedding()) : that.embedding == null;
-    }
 }

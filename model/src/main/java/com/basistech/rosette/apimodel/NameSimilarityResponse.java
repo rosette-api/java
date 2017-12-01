@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,41 +16,20 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 /**
  * Response data model for comparison of two names.
  */
-public final class NameSimilarityResponse extends Response {
+@Getter
+@EqualsAndHashCode
+@Builder
+public class NameSimilarityResponse extends Response {
 
+    /**
+     * @return name similarity result score (0.0-1.0)
+     */
     private final Double score;
-
-    /**
-     * Constructor for {@code NameMatchingResponse}
-     * @param score the similarity score.
-     */
-    public NameSimilarityResponse(Double score) {
-        this.score = score;
-    }
-
-    /**
-     * Gets the name similarity result
-     * @return name similarity result
-     */
-    public Double getScore() {
-        return score;
-    }
-
-    @Override
-    public int hashCode() {
-        return score != null ? score.hashCode() : 0;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof NameSimilarityResponse)) {
-            return false;
-        }
-
-        NameSimilarityResponse that = (NameSimilarityResponse) o;
-        return score != null ? score.equals(that.getScore()) : that.score == null;
-    }
 }

@@ -16,33 +16,28 @@
 
 package com.basistech.rosette.apimodel;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Value;
+
+import javax.validation.constraints.Min;
 
 /**
  * The start and end offset/index for a given mention in a string of text
  */
-@SuppressWarnings("PMD")
-@Getter @EqualsAndHashCode
+@Value
+@Builder
 public class MentionOffsets {
 
     /**
-     * @returns the offset for the first character of a mention, based on UTF-16 code page
+     * @return the offset for the first character of a mention, based on UTF-16 code page
      */
-    private Integer startOffset;
+    @Min(0)
+    private final Integer startOffset;
 
     /**
-     * @returns the offset for the last character of a mention, based on UTF-16 code page
+     * @return the offset for the last character of a mention, based on UTF-16 code page
      */
-    private Integer endOffset;
+    @Min(0)
+    private final Integer endOffset;
 
-    /**
-     * constructor for {@code MentionOffsets}
-     * @param startOffset offset for the first character of a mention
-     * @param endOffset offset for the last character of a mention
-     */
-    public MentionOffsets(Integer startOffset, Integer endOffset) {
-        this.startOffset = startOffset;
-        this.endOffset = endOffset;
-    }
 }

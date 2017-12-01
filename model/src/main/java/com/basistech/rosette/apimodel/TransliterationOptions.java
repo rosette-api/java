@@ -16,40 +16,18 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Objects;
+import lombok.Builder;
+import lombok.Value;
 
-public final class TransliterationOptions extends Options {
-    private Boolean reversed;
-
-    /**
-     * Constructs a set of transliteration options.
-     * @param reversed whether to do reverse transliteration
-     */
-    public TransliterationOptions(final Boolean reversed) {
-        this.reversed = reversed;
-    }
+/**
+ * Options for transliteration requests
+ */
+@SuppressWarnings("PMD")
+@Value @Builder
+public class TransliterationOptions extends Options {
 
     /**
-     * Returns whether to do reverse transliteration.
      * @return whether to do reverse transliteration
      */
-    public Boolean getReversed() {
-        return reversed;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        final TransliterationOptions that = (TransliterationOptions) obj;
-        return Objects.equals(reversed, that.reversed);
-    }
-
-    @Override
-        public int hashCode() {
-        return Objects.hashCode(reversed);
-    }
+    private final Boolean reversed;
 }

@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 /**
- * Provides examples on how to use the {@link com.basistech.rosette.api.RosetteAPI RosetteAPI}
+ * Provides examples on how to use the {@link com.basistech.rosette.api.HttpRosetteAPI HttpRosetteAPI}
  */
 public abstract class ExampleBase {
     private static final String KEY_PROP_NAME = "rosette.api.key";

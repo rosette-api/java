@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,48 +16,22 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.util.List;
 
 /**
  *  Simple api response data model for categorization
  **/
-public final class CategoriesResponse extends Response {
+@Getter
+@EqualsAndHashCode
+@Builder
+public class CategoriesResponse extends Response {
 
+    /**
+     * @return a list of categories
+     */
     private final List<Label> categories;
-    
-    /**
-     * Constructor for {@code CategoriesResponse}
-     * @param categories list of categories
-     */
-    public CategoriesResponse(List<Label> categories) {
-        this.categories = categories;
-    }
-
-    /**
-     * get the list of categories
-     * @return the list of categories
-     */
-    public List<Label> getCategories() {
-        return categories;
-    }
-
-    @Override
-    public int hashCode() {
-        return categories != null ? categories.hashCode() : 0;
-    }
-
-    /**
-     * if the param is a {@code CategoriesResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof CategoriesResponse)) {
-            return false;
-        }
-
-        CategoriesResponse that = (CategoriesResponse) o;
-        return categories != null ? categories.equals(that.getCategories()) : that.categories == null;
-    }
 }

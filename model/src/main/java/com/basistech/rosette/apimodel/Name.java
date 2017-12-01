@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,136 +18,36 @@ package com.basistech.rosette.apimodel;
 
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
+import lombok.Builder;
+import lombok.Value;
 
 import javax.validation.constraints.NotNull;
 
 /**
  * Class that represents a name.
  */
-public final class Name {
+@Value
+@Builder
+public class Name {
 
+    /**
+     * @return text of the name
+     */
     @NotNull
-    private String text;
-    private String entityType;
-    private ISO15924 script;
-    private LanguageCode language;
+    private final String text;
 
     /**
-     * Constructor for {@code Name}
-     * @param name a name
-     * @param entityType entity type of the name
-     * @param script script of the name
-     * @param language language of the name
-     */
-    public Name(String name,
-                String entityType,
-                ISO15924 script,
-                LanguageCode language) {
-        this.text = name;
-        this.entityType = entityType;
-        this.script = script;
-        this.language = language;
-    }
-
-    /**
-     * Constructor for {@code Name} with default entityType PERSON, unknown script and unknown language
-     * @param name a name
-     */
-    public Name(String name) {
-        this.text = name;
-        this.entityType = "PERSON";
-        this.script = ISO15924.Zyyy;
-        this.language = LanguageCode.UNKNOWN;
-    }
-
-    /**
-     * Gets the name
-     * @return Text of the name
-     */
-    public String getText() {
-        return text;
-    }
-
-    /**
-     * Gets the entity type of the name
      * @return entity type of the name
      */
-    public String getEntityType() {
-        return entityType;
-    }
+    private final String entityType;
 
     /**
-     * Gets the script of the name, {@link ISO15924}
-     * @return script of the name
+     * @return script of the name, {@link ISO15924}
      */
-    public ISO15924 getScript() {
-        return script;
-    }
+    private final ISO15924 script;
 
     /**
-     * Gets the language of the name, {@link LanguageCode}
-     * @return language of the name
+     * @return language of the name, {@link LanguageCode}
      */
-    public LanguageCode getLanguage() {
-        return language;
-    }
-
-    /**
-     * Sets the name text
-     * @param text name text
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    /**
-     * Sets the entity type of a name
-     * @param entityType entity type of a name
-     */
-    public void setEntityType(String entityType) {
-        this.entityType = entityType;
-    }
-
-    /**
-     * Sets the script of a name
-     * @param script script of a name
-     */
-    public void setScript(ISO15924 script) {
-        this.script = script;
-    }
-
-    /**
-     * Sets the language of a name
-     * @param language language of a name
-     */
-    public void setLanguage(LanguageCode language) {
-        this.language = language;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = text != null ? text.hashCode() : 0;
-        result = 31 * result + (entityType != null ? entityType.hashCode() : 0);
-        result = 31 * result + (script != null ? script.hashCode() : 0);
-        result = 31 * result + (language != null ? language.hashCode() : 0);
-        return result;
-    }
-
-    /**
-     * if the param is a {@code Name}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Name)) {
-            return false;
-        }
-
-        Name that = (Name) o;
-        return text != null ? text.equals(that.getText()) : that.text == null
-                && entityType != null ? entityType.equals(that.getEntityType()) : that.entityType == null
-                && script != null ? script.equals(that.getScript()) : that.script == null
-                && language != null ? language.equals(that.getScript()) : that.language == null;
-    }
+    private final LanguageCode language;
 }

@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,19 +16,21 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.Options;
-import com.basistech.util.LanguageCode;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.basistech.rosette.apimodel.DocumentRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.io.InputStream;
 
 //CHECKSTYLE:OFF
 @JsonTypeName("DocumentRequest")
-public abstract class DocumentRequestMixin extends BaseMixin {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonDeserialize(builder = DocumentRequest.DocumentRequestBuilder.class)
+public abstract class DocumentRequestMixin {
 
     public static class Views {
         public static class Content {
@@ -36,16 +38,8 @@ public abstract class DocumentRequestMixin extends BaseMixin {
         }
     }
 
-    @JsonCreator
-    protected DocumentRequestMixin(
-            @JsonProperty("language") LanguageCode language,
-            @JsonProperty("genre") String genre,
-            @JsonProperty("content") Object content,
-            @JsonProperty("contentUri") String contentUri,
-            @JsonProperty("contentType") String contentType,
-            @JsonProperty("options") Options options
-            ) {
-        //
+    @JsonPOJOBuilder(withPrefix = "")
+    abstract class DocumentRequestBuilderMixin {
     }
 
     @JsonIgnore

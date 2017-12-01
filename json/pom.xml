@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
         <artifactId>rosette-api-java-binding</artifactId>
-        <version>1.8.1-SNAPSHOT</version>
+        <version>1.9.100-SNAPSHOT</version>
     </parent>
     <artifactId>rosette-api-json</artifactId>
     <name>rosette-api-json</name>
@@ -52,10 +52,14 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.7.9</version>
+        </dependency>
+        <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>0.9.10</version>
-            <scope>test</scope>
+            <version>0.9.10</version><!-- 0.9.11 has guava version conflict with adm -->
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -77,6 +81,42 @@
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <shadedArtifactAttached>false</shadedArtifactAttached>
+                    <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/maven/**</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.reflections</pattern>
+                            <shadedPattern>com.basistech.rosette.org.reflections</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>net.bytebuddy</pattern>
+                            <shadedPattern>com.basistech.rosette.net.bytebuddy</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>shade</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

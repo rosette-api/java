@@ -45,7 +45,7 @@ public class TransliterationExample extends ExampleBase {
                 .build();
         // The API object creates an HTTP client, but to provide your own:
         // HttpRosetteAPI.Builder#httpClient(CloseableHttpClient)
-        DocumentRequest<TransliterationOptions> request = new DocumentRequest.Builder<TransliterationOptions>()
+        DocumentRequest<TransliterationOptions> request = DocumentRequest.<TransliterationOptions>builder()
                 .content(transliterationData)
                 .language(LanguageCode.ARABIC)
                 .build();

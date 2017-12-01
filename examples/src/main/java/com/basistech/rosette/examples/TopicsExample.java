@@ -17,6 +17,7 @@ package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.TopicsOptions;
 import com.basistech.rosette.apimodel.TopicsResponse;
 import com.basistech.util.LanguageCode;
 
@@ -39,7 +40,7 @@ public class TopicsExample extends ExampleBase {
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
-        DocumentRequest request = new DocumentRequest.Builder()
+        DocumentRequest<TopicsOptions> request = DocumentRequest.<TopicsOptions>builder()
                 .language(LanguageCode.ENGLISH)
                 .content(topicsData)
                 .build();

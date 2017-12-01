@@ -17,67 +17,25 @@
 package com.basistech.rosette.apimodel.jackson;
 
 import com.basistech.rosette.apimodel.AccuracyMode;
-import com.basistech.rosette.apimodel.AdmRequest;
-import com.basistech.rosette.apimodel.CategoriesOptions;
-import com.basistech.rosette.apimodel.CategoriesResponse;
-import com.basistech.rosette.apimodel.Concept;
-import com.basistech.rosette.apimodel.ConstantsResponse;
-import com.basistech.rosette.apimodel.Dependency;
 import com.basistech.rosette.apimodel.DocumentRequest;
-import com.basistech.rosette.apimodel.EntitiesOptions;
-import com.basistech.rosette.apimodel.EntitiesResponse;
-import com.basistech.rosette.apimodel.EntityMention;
-import com.basistech.rosette.apimodel.EntitySentiment;
-import com.basistech.rosette.apimodel.ErrorResponse;
-import com.basistech.rosette.apimodel.InfoResponse;
-import com.basistech.rosette.apimodel.Keyphrase;
-import com.basistech.rosette.apimodel.Label;
-import com.basistech.rosette.apimodel.LanguageDetectionResult;
-import com.basistech.rosette.apimodel.LanguageOptions;
-import com.basistech.rosette.apimodel.LanguageResponse;
-import com.basistech.rosette.apimodel.LanguageWeight;
-import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
-import com.basistech.rosette.apimodel.LinkedEntity;
-import com.basistech.rosette.apimodel.MentionOffsets;
-import com.basistech.rosette.apimodel.MorphologyOptions;
-import com.basistech.rosette.apimodel.MorphologyResponse;
-import com.basistech.rosette.apimodel.Name;
-import com.basistech.rosette.apimodel.NameDeduplicationRequest;
-import com.basistech.rosette.apimodel.NameDeduplicationResponse;
-import com.basistech.rosette.apimodel.NameSimilarityRequest;
-import com.basistech.rosette.apimodel.NameSimilarityResponse;
-import com.basistech.rosette.apimodel.NameTranslationRequest;
-import com.basistech.rosette.apimodel.NameTranslationResponse;
-import com.basistech.rosette.apimodel.Options;
-import com.basistech.rosette.apimodel.PingResponse;
-import com.basistech.rosette.apimodel.RegionDetectionResult;
-import com.basistech.rosette.apimodel.Relationship;
-import com.basistech.rosette.apimodel.RelationshipsOptions;
-import com.basistech.rosette.apimodel.RelationshipsResponse;
-import com.basistech.rosette.apimodel.Response;
-import com.basistech.rosette.apimodel.SentenceWithDependencies;
-import com.basistech.rosette.apimodel.SentencesResponse;
-import com.basistech.rosette.apimodel.SentimentOptions;
-import com.basistech.rosette.apimodel.SentimentResponse;
-import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
-import com.basistech.rosette.apimodel.TextEmbeddingResponse;
-import com.basistech.rosette.apimodel.TokensResponse;
-import com.basistech.rosette.apimodel.TopicsOptions;
-import com.basistech.rosette.apimodel.TopicsResponse;
-import com.basistech.rosette.apimodel.TransliterationOptions;
-import com.basistech.rosette.apimodel.TransliterationResponse;
-import com.basistech.rosette.apimodel.batch.BatchRequest;
-import com.basistech.rosette.apimodel.batch.BatchRequestItem;
-import com.basistech.rosette.apimodel.batch.BatchResponse;
-import com.basistech.rosette.apimodel.batch.BatchStatusResponse;
-import com.basistech.rosette.apimodel.jackson.batch.BatchRequestItemMixin;
-import com.basistech.rosette.apimodel.jackson.batch.BatchRequestMixin;
-import com.basistech.rosette.apimodel.jackson.batch.BatchResponseMixin;
-import com.basistech.rosette.apimodel.jackson.batch.BatchStatusResponseMixin;
+import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
+import net.bytebuddy.ByteBuddy;
+import net.bytebuddy.description.annotation.AnnotationDescription;
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
+
+import java.util.Set;
 
 /**
  * Jackson module to configure Json serialization and deserialization for the
@@ -91,68 +49,77 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
     }
 
     public void setupModule(Module.SetupContext context) {
-        super.setupModule(context);
-        context.setMixInAnnotations(Response.class, ResponseMixin.class);
-        context.setMixInAnnotations(Label.class, LabelMixin.class);
-        context.setMixInAnnotations(CategoriesOptions.class, CategoriesOptionsMixin.class);
-        context.setMixInAnnotations(CategoriesResponse.class, CategoriesResponseMixin.class);
-        context.setMixInAnnotations(ConstantsResponse.class, ConstantsResponseMixin.class);
-        context.setMixInAnnotations(EntitiesOptions.class, EntitiesOptionsMixin.class);
-        context.setMixInAnnotations(EntitiesResponse.class, EntityResponseMixin.class);
-        context.setMixInAnnotations(EntityMention.class, EntityMentionMixin.class);
-        context.setMixInAnnotations(EntitySentiment.class, EntitySentimentMixin.class);
-        context.setMixInAnnotations(ErrorResponse.class, ErrorResponseMixin.class);
-        context.setMixInAnnotations(InfoResponse.class, InfoResponseMixin.class);
-        context.setMixInAnnotations(LanguageDetectionResult.class, LanguageDetectionResultMixin.class);
-        context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);
-        context.setMixInAnnotations(RegionDetectionResult.class, RegionDetectionResultMixin.class);
-        context.setMixInAnnotations(LanguageResponse.class, LanguageResponseMixin.class);
-        context.setMixInAnnotations(LanguageWeight.class, LanguageWeightMixin.class);
-        context.setMixInAnnotations(LinkedEntity.class, LinkedEntityMixin.class);
-        context.setMixInAnnotations(LinkedEntitiesResponse.class, LinkedEntityResponseMixin.class);
-        context.setMixInAnnotations(MentionOffsets.class, MentionOffsetsMixin.class);
-        context.setMixInAnnotations(MorphologyOptions.class, MorphologyOptionsMixin.class);
-        context.setMixInAnnotations(MorphologyResponse.class, MorphologyResponseMixin.class);
-        context.setMixInAnnotations(Name.class, NameMixin.class);
-        context.setMixInAnnotations(NameDeduplicationRequest.class, NameDeduplicationRequestMixin.class);
-        context.setMixInAnnotations(NameDeduplicationResponse.class, NameDeduplicationResponseMixin.class);
-        context.setMixInAnnotations(NameSimilarityRequest.class, NameSimilarityRequestMixin.class);
-        context.setMixInAnnotations(NameSimilarityResponse.class, NameSimilarityResponseMixin.class);
-        context.setMixInAnnotations(NameTranslationRequest.class, NameTranslationRequestMixin.class);
-        context.setMixInAnnotations(NameTranslationResponse.class, NameTranslationResponseMixin.class);
-        context.setMixInAnnotations(PingResponse.class, PingResponseMixin.class);
-        context.setMixInAnnotations(DocumentRequest.class, DocumentRequestMixin.class);
-        context.setMixInAnnotations(AdmRequest.class, AdmRequestMixin.class);
-        context.setMixInAnnotations(SentencesResponse.class, SentencesResponseMixin.class);
-        context.setMixInAnnotations(SentimentOptions.class, SentimentOptionsMixin.class);
-        context.setMixInAnnotations(SentimentResponse.class, SentimentResponseMixin.class);
-        context.setMixInAnnotations(TokensResponse.class, TokenResponseMixin.class);
-        context.setMixInAnnotations(RelationshipsResponse.class, RelationshipsResponseMixin.class);
-        context.setMixInAnnotations(Relationship.class, RelationshipsMixin.class);
-        context.setMixInAnnotations(RelationshipsOptions.class, RelationshipsOptionsMixin.class);
-        context.setMixInAnnotations(Options.class, OptionsMixin.class);
-        context.setMixInAnnotations(TransliterationOptions.class, TransliterationOptionsMixin.class);
-        context.setMixInAnnotations(TransliterationResponse.class, TransliterationResponseMixin.class);
-        context.setMixInAnnotations(TopicsOptions.class, TopicsOptionsMixin.class);
-        context.setMixInAnnotations(TopicsResponse.class, TopicsResponseMixin.class);
-        context.setMixInAnnotations(Keyphrase.class, KeyphraseMixin.class);
-        context.setMixInAnnotations(Concept.class, ConceptMixin.class);
 
+        // fetch all model classes via reflection to avoid creating mixin files
+        // new model classes added will be automatically picked up
+        String modelPackage = Request.class.getPackage().getName(); // com.basistech.rosette.apimodel
+        Reflections reflections = new Reflections(new ConfigurationBuilder()
+                .setScanners(new SubTypesScanner(false), new ResourcesScanner())
+                .setUrls(ClasspathHelper.forClass(Request.class))
+                .filterInputsBy(new FilterBuilder()
+                        .include(FilterBuilder.prefix(modelPackage))
+                        .excludePackage(modelPackage + ".jackson")  // nothing from the package contains this class
+                )
+        );
+        Set<Class<?>> modelClasses = reflections.getSubTypesOf(Object.class);
+
+        super.setupModule(context);
+        for (Class modelClass : modelClasses) {
+            // lombok @Builder annotated model class should contain at least one inner class, the builder
+            if (modelClass.getDeclaredClasses().length == 0) {
+                continue;
+            }
+            // Some more complex JsonView handling is best left in an actual mixin file
+            if (modelClass.equals(DocumentRequest.class)) {
+                continue;
+            }
+            Class innerBuilderClass = null;
+            for (Class clazz: modelClass.getDeclaredClasses()) {
+                // make sure for model class Xyz, there's the corresponding builder inner class XyzBuilder
+                if (clazz.getSimpleName().equals(modelClass.getSimpleName() + "Builder")) {
+                    innerBuilderClass = clazz;
+                    break;
+                }
+            }
+            // only register mixin when there's a builder class
+            // this block replaces many XyzMixin.java files
+            if (innerBuilderClass != null) {
+                // create mixins on-the-fly
+                Class<?> modelMixinType = new ByteBuddy()
+                        .subclass(Object.class)
+                        .annotateType(AnnotationDescription.Builder.ofType(JsonDeserialize.class)
+                                .define("builder", innerBuilderClass)
+                                .build())
+                        .annotateType(AnnotationDescription.Builder.ofType(JsonInclude.class)
+                                .define("value", JsonInclude.Include.NON_NULL)
+                                .build())
+                        .make()
+                        .load(getClass().getClassLoader())
+                        .getLoaded();
+                Class<?> modelBuilderMixinType = new ByteBuddy()
+                        .subclass(Object.class)
+                        .annotateType(AnnotationDescription.Builder.ofType(JsonPOJOBuilder.class)
+                                // Jackson defaults to 'withXyz' for the builder fluent, so we need to
+                                // get rid of the prefix to accommodate lombok @Builder default which has
+                                // no prefix
+                                .define("withPrefix", "")
+                                .build())
+                        .make()
+                        .load(getClass().getClassLoader())
+                        .getLoaded();
+                context.setMixInAnnotations(modelClass, modelMixinType);
+                context.setMixInAnnotations(innerBuilderClass, modelBuilderMixinType);
+            }
+        }
+
+        context.setMixInAnnotations(DocumentRequest.class, DocumentRequestMixin.class);
+        context.setMixInAnnotations(DocumentRequest.DocumentRequestBuilder.class, DocumentRequestMixin.DocumentRequestBuilderMixin.class);
+
+        // TODO: see if there's something similar that can be used to generalize enum handling
         context.setMixInAnnotations(AccuracyMode.class, AccuracyModeMixin.class);
         SimpleSerializers keySerializers = new SimpleSerializers();
         keySerializers.addSerializer(new AccuracyModeSerializer());
         context.addKeySerializers(keySerializers);
-
-        context.setMixInAnnotations(BatchRequest.class, BatchRequestMixin.class);
-        context.setMixInAnnotations(BatchRequestItem.class, BatchRequestItemMixin.class);
-        context.setMixInAnnotations(BatchResponse.class, BatchResponseMixin.class);
-
-        context.setMixInAnnotations(BatchStatusResponse.class, BatchStatusResponseMixin.class);
-        context.setMixInAnnotations(TextEmbeddingResponse.class, TextEmbeddingResponseMixin.class);
-
-        context.setMixInAnnotations(SyntaxDependenciesResponse.class, SyntaxDependenciesResponseMixin.class);
-        context.setMixInAnnotations(SentenceWithDependencies.class, SentenceWithDependenciesMixin.class);
-        context.setMixInAnnotations(Dependency.class, DependencyMixin.class);
     }
 
     /**

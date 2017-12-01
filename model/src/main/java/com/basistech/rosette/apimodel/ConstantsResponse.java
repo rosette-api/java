@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,73 +16,30 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 /**
  * Data from informational request such as version, build, and support info
  */
-public final class ConstantsResponse extends Response {
+@Getter
+@EqualsAndHashCode
+@Builder
+public class ConstantsResponse extends Response {
 
+    /**
+     * @return the version of Rosette API
+     */
     private final String version;
+
+    /**
+     * @return the Rosette API build info
+     */
     private final String build;
-    private final Object support;
 
     /**
-     * Constructor for {@code ConstantsResponse}
-     * @param version Rosette API endpoint version
-     * @param build Rosette API endpoint build
-     * @param support support (reserved for future feature)
-     */
-    public ConstantsResponse(String version, String build, Object support) {
-        this.version = version;
-        this.build = build;
-        this.support = support;
-    }
-
-    /**
-     * get the Rosette API endpoint version
-     * @return the Rosette API endpoint version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * get the Rosette API endpoint build
-     * @return the Rosette API endpoint build
-     */
-    public String getBuild() {
-        return build;
-    }
-
-    /**
-     * get support 
      * @return support (reserved for future feature)
      */
-    public Object getSupport() {
-        return support;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = version != null ? version.hashCode() : 0;
-        result = 31 * result + (build != null ? build.hashCode() : 0);
-        result = 31 * result + (support != null ? support.hashCode() : 0);
-        return result;
-    }
-
-    /**
-     * if the param is a {@code ConstantsResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof ConstantsResponse)) {
-            return false;
-        }
-
-        ConstantsResponse that = (ConstantsResponse) o;
-        return version != null ? version.equals(that.getVersion()) : that.version == null
-                && build != null ? build.equals(that.getBuild()) : that.build == null
-                && support != null ? support.equals(that.getSupport()) : that.support == null;
-    }
+    private final Object support;
 }

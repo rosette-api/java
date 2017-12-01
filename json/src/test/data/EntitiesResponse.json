@@ -2,14 +2,16 @@
   "entities": [
     {
       "count": 17,
-      "indocChainId": 0, 
-      "mention": "Samsung", 
+      "mention": "Samsung",
       "normalized": "Samsung", 
       "type": "ORGANIZATION",
       "mentionOffsets": [
         {"startOffset": 15, "endOffset": 22},
         {"startOffset": 88, "endOffset": 95}
-      ]
+      ],
+      "salience": 1.0,
+      "confidence": 1.0,
+      "linkingConfidence": 1.0
     }
   ]
 }

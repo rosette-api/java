@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,18 +14,27 @@
 * limitations under the License.
 */
 
-package com.basistech.rosette.apimodel.jackson;
+package com.basistech.rosette.apimodel;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import lombok.Builder;
+import lombok.Value;
 
-@JsonTypeName("CategoriesOptions")
-public abstract class CategoriesOptionsMixin extends OptionsMixin {
-    @JsonCreator
-    private CategoriesOptionsMixin(
-            @JsonProperty("numCategories") Integer numCategories
-    ) {
-        //
-    }
+import java.util.List;
+
+/**
+ * Language region detection result
+ */
+@Value
+@Builder
+public class LanguageRegionDetectionResult {
+
+    /**
+     * @return the region text
+     */
+    private final String region;
+
+    /**
+     * @return the detected languages
+     */
+    private final List<LanguageDetectionResult> languages;
 }

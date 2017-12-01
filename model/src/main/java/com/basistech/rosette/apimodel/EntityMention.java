@@ -16,8 +16,8 @@
 
 package com.basistech.rosette.apimodel;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Value;
 
 import java.util.List;
 
@@ -25,16 +25,10 @@ import java.util.List;
  * An entity mention found in a document.
  * The /entities endpoint returns a collection of entity mentions.
  */
-@SuppressWarnings("PMD")
-@Getter @EqualsAndHashCode
+@Deprecated
+@Value
+@Builder
 public class EntityMention {
-
-    /**
-     * in-document entity chain id
-     * @return the id
-     */
-    @Deprecated
-    private final Integer indocChainId;
 
     /**
      * @return the entity type
@@ -72,102 +66,15 @@ public class EntityMention {
      * @return the confidence score for the entity (0.0-1.0)
      */
     private final Double confidence;
+
+    /**
+     * @return the confidence score for linking the entity to the knowledge base (0.0-1.0)
+     */
+    private final Double linkingConfidence;
+
+    /**
+     * @return the salience score for the entity (0.0|1.0)
+     */
     private final Double salience;
 
-    /**
-     * constructor for {@code EntityMention}
-     * @param indocChainId in-document entity chain id
-     * @param type entity type
-     * @param mention mention text
-     * @param normalized normalized mention text
-     * @param count mention count
-     * @param entityId if the entity was linked, the ID from the knowledge base.
-     * @param confidence entity confidence
-     */
-    @Deprecated
-    public EntityMention(
-            Integer indocChainId,
-            String type,
-            String mention,
-            String normalized,
-            Integer count,
-            String entityId,
-            Double confidence
-    ) {
-        this(type, mention, normalized, count, null, entityId, confidence, null);
-    }
-
-    /**
-     * constructor for {@code EntityMention}
-     * @param type entity type
-     * @param mention mention text
-     * @param normalized normalized mention text
-     * @param entityId if the entity was linked, the ID from the knowledge base.
-     * @param count mention count
-     * @param confidence entity confidence
-     */
-    @Deprecated
-    public EntityMention(
-            String type,
-            String mention,
-            String normalized,
-            String entityId,
-            Integer count,
-            Double confidence
-    ) {
-        this(type, mention, normalized, count, null, entityId, confidence, null);
-    }
-
-    /**
-     * constructor for {@code EntityMention}
-     * @param type entity type
-     * @param mention mention text
-     * @param normalized normalized mention text
-     * @param entityId if the entity was linked, the ID from the knowledge base.
-     * @param count mention count
-     * @param mentionOffsets list of mention offsets
-     * @param confidence entity extraction confidence score
-     */
-    public EntityMention(
-            String type,
-            String mention,
-            String normalized,
-            Integer count,
-            List<MentionOffsets> mentionOffsets,
-            String entityId,
-            Double confidence,
-            Double salience
-    ) {
-        this.indocChainId = null;
-        this.type = type;
-        this.mention = mention;
-        this.normalized = normalized;
-        this.entityId = entityId;
-        this.count = count;
-        this.mentionOffsets = mentionOffsets;
-        this.confidence = confidence;
-        this.salience = salience;
-    }
-
-    /**
-     * constructor for {@code EntityMention}
-     * @param type entity type
-     * @param mention mention text
-     * @param normalized normalized mention text
-     * @param entityId if the entity was linked, the ID from the knowledge base.
-     * @param count mention count
-     * @param confidence entity confidence
-     * @param salience entity salience
-     */
-    public EntityMention(
-            String type,
-            String mention,
-            String normalized,
-            String entityId,
-            Integer count,
-            Double confidence,
-            Double salience
-    ) {
-        this(type, mention, normalized, count, null, entityId, confidence, salience);
-    }
 }

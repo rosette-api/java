@@ -16,58 +16,27 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Simple api response data model for entity extraction
  */
-public final class TopicsResponse extends Response {
-
-    private final List<Keyphrase> keyphrases;
-    private final List<Concept> concepts;
-
-    /**
-     * Constructor for {@code TopicsResponse}
-     * @param keyphrases a list of extracted keyphrases
-     * @param concepts a list of extracted concepts
-     */
-    public TopicsResponse(List<Keyphrase> keyphrases, List<Concept> concepts) {
-        this.keyphrases = keyphrases;
-        this.concepts = concepts;
-    }
+@Getter
+@EqualsAndHashCode
+@Builder
+public class TopicsResponse extends Response {
 
     /**
-     * get the list of extracted keyphrases
      * @return the list of extracted keyphrases
      */
-    public List<Keyphrase> getKeyphrases() {
-        return keyphrases;
-    }
+    private final List<Keyphrase> keyphrases;
 
     /**
-     * get the list of extracted concepts
      * @return the list of extracted concepts
      */
-    public List<Concept> getConcepts() {
-        return concepts;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(keyphrases, concepts);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        TopicsResponse that = (TopicsResponse) o;
-        return Objects.equals(keyphrases, that.keyphrases)
-                && Objects.equals(concepts, that.concepts);
-    }
+    private final List<Concept> concepts;
 }

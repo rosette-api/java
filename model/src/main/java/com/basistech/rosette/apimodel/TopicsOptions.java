@@ -15,70 +15,30 @@
 */
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.Value;
+
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
-import java.util.Objects;
 
-public final class TopicsOptions extends Options {
+/**
+ * Options for topics requests
+ */
+@Value
+@Builder
+public class TopicsOptions extends Options {
+
+    /**
+     * @return concept salience threshold (0.0-1.0)
+     */
     @DecimalMin("0.0")
     @DecimalMax("1.0")
-    private Double conceptSalienceThreshold;
+    private final Double conceptSalienceThreshold;
+
+    /**
+     * @return key phrase salience threshold (0.0-1.0)
+     */
     @DecimalMin("0.0")
     @DecimalMax("1.0")
-    private Double keyphraseSalienceThreshold;
-
-    public TopicsOptions(Double conceptSalienceThreshold, Double keyphraseSalienceThreshold) {
-        this.conceptSalienceThreshold = conceptSalienceThreshold;
-        this.keyphraseSalienceThreshold = keyphraseSalienceThreshold;
-    }
-
-    public Double getconceptSalienceThreshold() {
-        return conceptSalienceThreshold;
-    }
-
-    public Double getkeyphraseSalienceThreshold() {
-        return keyphraseSalienceThreshold;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        final TopicsOptions that = (TopicsOptions) obj;
-        return Objects.equals(conceptSalienceThreshold, that.conceptSalienceThreshold)
-                && Objects.equals(keyphraseSalienceThreshold, that.keyphraseSalienceThreshold);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(conceptSalienceThreshold, keyphraseSalienceThreshold);
-    }
-
-    public static class Builder {
-        private Double conceptSalienceThreshold;
-        private Double keyphraseSalienceThreshold;
-
-        public Builder() {
-            //
-        }
-
-        public Builder conceptSalienceThreshold(Double conceptSalienceThreshold) {
-            this.conceptSalienceThreshold = conceptSalienceThreshold;
-            return this;
-        }
-
-
-        public Builder keyphraseSalienceThreshold(Double keyphraseSalienceThreshold) {
-            this.keyphraseSalienceThreshold = keyphraseSalienceThreshold;
-            return this;
-        }
-
-        public TopicsOptions build() {
-            return new TopicsOptions(conceptSalienceThreshold, keyphraseSalienceThreshold);
-        }
-    }
-
+    private final Double keyphraseSalienceThreshold;
 }

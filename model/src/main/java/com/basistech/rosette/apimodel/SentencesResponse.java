@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,48 +16,22 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.util.List;
 
 /** 
  * Simple api response data model for sentence determination requests 
  */
-public final class SentencesResponse extends Response {
-
-    private final List<String> sentences;
-
-    /**
-     * constructor for {@code SentencesResponse}
-     * @param sentences list of sentences
-     */
-    public SentencesResponse(List<String> sentences) {
-        this.sentences = sentences;
-    }
+@Getter
+@EqualsAndHashCode
+@Builder
+public class SentencesResponse extends Response {
 
     /**
-     * get the list of sentences
      * @return the list of sentences
      */
-    public List<String> getSentences() {
-        return sentences;
-    }
-
-    @Override
-    public int hashCode() {
-        return sentences != null ? sentences.hashCode() : 0;
-    }
-
-    /**
-     * if the param is a {@code SentencesResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof SentencesResponse)) {
-            return false;
-        }
-
-        SentencesResponse that = (SentencesResponse) o;
-        return sentences != null ? sentences.equals(that.getSentences()) : that.sentences == null;
-    }
+    private final List<String> sentences;
 }

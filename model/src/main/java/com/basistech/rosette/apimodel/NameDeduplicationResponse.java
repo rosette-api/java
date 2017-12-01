@@ -16,46 +16,22 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Response data model for the deduplication of a list of names
  */
-public final class NameDeduplicationResponse extends Response {
-
-    private final List<String> results;
-
-    /**
-     * Constructor for {@code NameMatchingResponse}
-     * @param results the results from deduplication as a list of cluster IDs.
-     */
-    public NameDeduplicationResponse(List<String> results) {
-        this.results = results;
-    }
+@Getter
+@EqualsAndHashCode
+@Builder
+public class NameDeduplicationResponse extends Response {
 
     /**
-     * Gets the name deduplication results
      * @return name deduplication results
      */
-    public List<String> getResults() {
-        return results;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(results);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        NameDeduplicationResponse that = (NameDeduplicationResponse) o;
-        return Objects.equals(results, that.results);
-    }
+    private final List<String> results;
 }
