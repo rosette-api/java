@@ -17,7 +17,6 @@ package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
-import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.RelationshipsOptions;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 

@@ -19,7 +19,6 @@ import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
-import com.basistech.util.LanguageCode;
 
 import java.io.IOException;
 
