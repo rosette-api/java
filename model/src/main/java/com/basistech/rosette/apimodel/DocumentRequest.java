@@ -137,7 +137,7 @@ public final class DocumentRequest<O extends Options> extends Request {
          * @param data The data.
          * @return this.
          */
-        public DocumentRequestBuilder content(String data) {
+        public DocumentRequestBuilder<O> content(String data) {
             this.content = data;
             return this;
         }
@@ -149,7 +149,7 @@ public final class DocumentRequest<O extends Options> extends Request {
          * @param contentType the content type.
          * @return this.
          */
-        public DocumentRequestBuilder content(byte[] bytes, String contentType) {
+        public DocumentRequestBuilder<O> content(byte[] bytes, String contentType) {
             this.content = new ByteArrayInputStream(bytes);
             this.contentType = contentType;
             return this;
@@ -162,7 +162,7 @@ public final class DocumentRequest<O extends Options> extends Request {
          * @param contentType the content type.
          * @return this.
          */
-        public DocumentRequestBuilder content(InputStream bytes, String contentType) {
+        public DocumentRequestBuilder<O> content(InputStream bytes, String contentType) {
             this.content = bytes;
             this.contentType = contentType;
             return this;
