@@ -49,7 +49,7 @@ import java.io.InputStream;
  * applies generic processing. Valid values for genre are specified in the API documentation.
  */
 @Value
-public class DocumentRequest<O extends Options> extends Request {
+public final class DocumentRequest<O extends Options> extends Request {
 
     /**
      * @return the language code

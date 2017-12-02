@@ -26,9 +26,8 @@ import javax.validation.constraints.NotNull;
  *
  * This class carries the two names to compare.
  */
-@SuppressWarnings("PMD")
 @Value
-public class NameSimilarityRequest extends Request {
+public final class NameSimilarityRequest extends Request {
 
     /**
      * @return first name

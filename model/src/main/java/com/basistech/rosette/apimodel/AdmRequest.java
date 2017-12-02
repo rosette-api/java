@@ -25,7 +25,7 @@ import lombok.Value;
  * input in a {@link com.basistech.rosette.dm.AnnotatedText} object.
  */
 @Value
-public class AdmRequest<O extends Options> extends Request {
+public final class AdmRequest<O extends Options> extends Request {
     public static final String ADM_CONTENT_TYPE = "model/vnd.rosette.annotated-data-model";
 
     /**

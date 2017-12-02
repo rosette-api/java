@@ -24,8 +24,8 @@ import java.util.List;
 /**
  * Extracted entity
  */
-@SuppressWarnings("PMD")
-@Value @Builder
+@Value
+@Builder
 public class Entity {
 
     /**

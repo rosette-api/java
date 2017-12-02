@@ -24,7 +24,7 @@ import com.basistech.rosette.apimodel.RelationshipsResponse;
 import java.io.IOException;
 
 /**
- * Example which demonstrates the entity extraction api.
+ * Example which demonstrates the relationships extraction api.
  */
 public final class RelationshipsExample extends ExampleBase {
     public static void main(String[] args) {

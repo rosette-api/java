@@ -22,8 +22,8 @@ import lombok.Value;
 /**
  * Options for transliteration requests
  */
-@SuppressWarnings("PMD")
-@Value @Builder
+@Value
+@Builder
 public class TransliterationOptions extends Options {
 
     /**

@@ -28,7 +28,7 @@ import java.util.List;
  * This class carries the list of names to dedupe as well as the score threshold.
  */
 @Value
-public class NameDeduplicationRequest extends Request {
+public final class NameDeduplicationRequest extends Request {
 
     /**
      * @return the list of names

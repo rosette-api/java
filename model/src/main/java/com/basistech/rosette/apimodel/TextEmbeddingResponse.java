@@ -19,17 +19,15 @@ package com.basistech.rosette.apimodel;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Value;
 
 import java.util.List;
 
 /** 
  * Simple api response data model for text embedding
  */
-@SuppressWarnings("PMD")
 @Getter
 @EqualsAndHashCode
-@Builder(toBuilder = true)
+@Builder
 public class TextEmbeddingResponse extends Response {
 
     /**

@@ -28,7 +28,7 @@ import lombok.Getter;
  */
 @Getter
 @EqualsAndHashCode
-@Builder(toBuilder = true)
+@Builder
 public class NameTranslationResponse extends Response {
 
     /**

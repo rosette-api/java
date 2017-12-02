@@ -28,7 +28,7 @@ import javax.validation.constraints.NotNull;
  * Request for name translation.
  */
 @Value
-public class NameTranslationRequest extends Request {
+public final class NameTranslationRequest extends Request {
 
     /**
      * @return the name to be translated
