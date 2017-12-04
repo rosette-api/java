@@ -53,7 +53,7 @@ public final class EntitySentiment {
                            String entityId,
                            Double confidence,
                            Label sentiment) {
-        this(type, mention, normalized, count, null,entityId, confidence, null, null, sentiment);
+        this(type, mention, normalized, count, null, entityId, confidence, null, null, sentiment);
     }
 
     /**
