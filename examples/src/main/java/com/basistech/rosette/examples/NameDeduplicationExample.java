@@ -39,10 +39,11 @@ public final class NameDeduplicationExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        List<String> nameDedupeData = Arrays.asList("John Smith", "Johnathon Smith", "Fred Jones");
+        String nameDedupeData = "John Smith,Johnathon Smith,Fred Jones";
+        List<String> listOfNames = new ArrayList<String>(Arrays.asList(nameDedupeData.split(",")));
 
         ArrayList<Name> names = new ArrayList<>();
-        for (String name: nameDedupeData) {
+        for (String name: listOfNames) {
             names.add(Name.builder().text(name).build());
         }
         double threshold = 0.75;
