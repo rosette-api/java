@@ -17,6 +17,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -27,6 +28,7 @@ public final class EntitySentiment {
     private final String mention;
     private final String normalized;
     private final Integer count;
+    private final List<MentionOffsets> mentionOffsets;
     private final String entityId;
     private final Double confidence;
     private final Double salience;
@@ -43,6 +45,7 @@ public final class EntitySentiment {
      * @param confidence entity confidence.
      * @param sentiment the sentiment information.
      */
+    @Deprecated
     public EntitySentiment(String type,
                            String mention,
                            String normalized,
@@ -50,7 +53,7 @@ public final class EntitySentiment {
                            String entityId,
                            Double confidence,
                            Label sentiment) {
-        this(type, mention, normalized, count, entityId, confidence, null, null, sentiment);
+        this(type, mention, normalized, count, null, entityId, confidence, null, null, sentiment);
     }
 
     /**
@@ -59,6 +62,7 @@ public final class EntitySentiment {
      * @param mention mention text
      * @param normalized normalized mention text
      * @param count mention count
+     * @param mentionOffsets mention offsets
      * @param entityId if the entity was linked, the ID from the knowledge base.
      * @param confidence entity confidence.
      * @param salience entity salience.
@@ -69,6 +73,7 @@ public final class EntitySentiment {
                            String mention,
                            String normalized,
                            Integer count,
+                           List<MentionOffsets> mentionOffsets,
                            String entityId,
                            Double confidence,
                            Double salience,
@@ -78,6 +83,7 @@ public final class EntitySentiment {
         this.mention = mention;
         this.normalized = normalized;
         this.count = count;
+        this.mentionOffsets = mentionOffsets;
         this.entityId = entityId;
         this.confidence = confidence;
         this.salience = salience;
@@ -115,6 +121,14 @@ public final class EntitySentiment {
      */
     public Integer getCount() {
         return count;
+    }
+
+    /**
+     * get offsets for all mentions
+     * @return offsets for all mentions
+     */
+    public List<MentionOffsets> getMentionOffsets() {
+        return mentionOffsets;
     }
 
     /**
@@ -171,6 +185,7 @@ public final class EntitySentiment {
                 && Objects.equals(mention, that.mention)
                 && Objects.equals(normalized, that.normalized)
                 && Objects.equals(count, that.count)
+                && Objects.equals(mentionOffsets, that.mentionOffsets)
                 && Objects.equals(entityId, that.entityId)
                 && Objects.equals(confidence, that.confidence)
                 && Objects.equals(salience, that.salience)
@@ -180,6 +195,6 @@ public final class EntitySentiment {
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, mention, normalized, count, entityId, confidence, salience, linkingConfidence, sentiment);
+        return Objects.hash(type, mention, normalized, count, mentionOffsets, entityId, confidence, salience, linkingConfidence, sentiment);
     }
 }

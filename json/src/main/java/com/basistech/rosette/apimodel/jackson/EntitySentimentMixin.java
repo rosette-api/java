@@ -17,8 +17,11 @@
 package com.basistech.rosette.apimodel.jackson;
 
 import com.basistech.rosette.apimodel.Label;
+import com.basistech.rosette.apimodel.MentionOffsets;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
 
 /**
  *
@@ -30,6 +33,7 @@ public class EntitySentimentMixin extends BaseMixin {
             @JsonProperty("mention") String mention,
             @JsonProperty("normalized") String normalized,
             @JsonProperty("count") Integer count,
+            @JsonProperty("mentionOffsets") List<MentionOffsets> mentionOffsets,
             @JsonProperty("entityId") String entityId,
             @JsonProperty("confidence") Double confidence,
             @JsonProperty("salience") Double salience,
