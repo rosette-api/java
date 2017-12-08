@@ -45,6 +45,7 @@
     </distributionManagement>
     <properties>
         <bnd-maven-plugin.version>3.2.0</bnd-maven-plugin.version>
+        <site-skin-version>1.5</site-skin-version>
     </properties>
     <modules>
         <module>model</module>
