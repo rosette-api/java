@@ -57,6 +57,7 @@ import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.SentenceWithDependencies;
 import com.basistech.rosette.apimodel.SentencesResponse;
+import com.basistech.rosette.apimodel.SentimentModelType;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
@@ -139,8 +140,10 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(Concept.class, ConceptMixin.class);
 
         context.setMixInAnnotations(AccuracyMode.class, AccuracyModeMixin.class);
+        context.setMixInAnnotations(SentimentModelType.class, SentimentModelTypeMixin.class);
         SimpleSerializers keySerializers = new SimpleSerializers();
         keySerializers.addSerializer(new AccuracyModeSerializer());
+        keySerializers.addSerializer(new SentimentModelTypeSerializer());
         context.addKeySerializers(keySerializers);
 
         context.setMixInAnnotations(BatchRequest.class, BatchRequestMixin.class);

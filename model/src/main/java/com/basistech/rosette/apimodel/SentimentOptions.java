@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -22,18 +22,26 @@ import java.util.Objects;
  * Sentiment options.
  */
 public final class SentimentOptions extends Options {
-    public static final SentimentOptions DEGAULT_OPTIONS = new SentimentOptions(false, false);
+    public static final SentimentOptions DEFAULT_OPTIONS = new SentimentOptions(false, false, SentimentModelType.SVM);
     private Boolean calculateEntityConfidence;
     private Boolean calculateEntitySalience;
+    private SentimentModelType modelType;
 
     /**
-     * Constructor for {@code SentimentOptions}
-     *
-     * @param calculateEntityConfidence return confidence score for the entities.
+     * Constructs a {@code SentimentOptions}.
+     * @param calculateEntityConfidence whether to return confidence
+     *                                  scores for entities
+     * @param calculateEntitySalience whether to return salience values
+     *                                for entities
+     * @param modelType the model type
      */
-    protected SentimentOptions(Boolean calculateEntityConfidence, Boolean calculateEntitySalience) {
+    protected SentimentOptions(
+            final Boolean calculateEntityConfidence,
+            final Boolean calculateEntitySalience,
+            final SentimentModelType modelType) {
         this.calculateEntityConfidence = calculateEntityConfidence;
         this.calculateEntitySalience = calculateEntitySalience;
+        this.modelType = modelType;
     }
 
     /**
@@ -50,6 +58,14 @@ public final class SentimentOptions extends Options {
         return calculateEntitySalience;
     }
 
+    /**
+     * Gets the model type.
+     * @return the model type
+     */
+    public SentimentModelType getModelType() {
+        return modelType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -60,17 +76,19 @@ public final class SentimentOptions extends Options {
         }
         SentimentOptions that = (SentimentOptions)o;
         return Objects.equals(this.calculateEntityConfidence, that.calculateEntityConfidence)
-                && Objects.equals(this.calculateEntitySalience, that.calculateEntitySalience);
+                && Objects.equals(this.calculateEntitySalience, that.calculateEntitySalience)
+                && modelType == that.modelType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calculateEntityConfidence, calculateEntitySalience);
+        return Objects.hash(calculateEntityConfidence, calculateEntitySalience, modelType);
     }
 
     public static class Builder {
         private Boolean calculateEntityConfidence;
         private Boolean calculateEntitySalience;
+        private SentimentModelType modelType;
 
         /**
          * DocumentRequest calculate entity confidence score. If the value is {@code true}, then the endpoint will
@@ -94,8 +112,18 @@ public final class SentimentOptions extends Options {
             return this;
         }
 
+        /**
+         * Sets the model type for sentiment analysis.
+         * @param modelType the model type
+         * @return {@code this}
+         */
+        public Builder modelType(final SentimentModelType modelType) {
+            this.modelType = modelType;
+            return this;
+        }
+
         public SentimentOptions build() {
-            return new SentimentOptions(calculateEntityConfidence, calculateEntitySalience);
+            return new SentimentOptions(calculateEntityConfidence, calculateEntitySalience, modelType);
         }
     }
 }
