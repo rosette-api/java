@@ -88,6 +88,9 @@
                         <configuration>
                             <addOutputDirectory>false</addOutputDirectory>
                             <sourceDirectory>src/main/java</sourceDirectory>
+                            <formatPreferences>
+                                <javaLangAsFQN>skip</javaLangAsFQN>
+                            </formatPreferences>
                         </configuration>
                     </execution>
                 </executions>
