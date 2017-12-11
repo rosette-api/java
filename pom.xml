@@ -35,7 +35,7 @@
         <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
-    <description>        This is the Java binding for the Rosette API. The classes in        here help Java applications to communicate with the Rosette API.    </description>
+    <description>This is the Java binding for the Rosette API. The classes in here help Java applications to communicate with the Rosette API.</description>
     <distributionManagement>
         <site>
             <id>site</id>
@@ -95,7 +95,6 @@
                 <version>2.10.3</version>
                 <configuration>
                     <failOnError>true</failOnError>
-                    <sourcepath>${project.build.directory}/generated-sources/delombok</sourcepath>
                 </configuration>
                 <executions>
                     <execution>
@@ -142,6 +141,24 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/model/target/generated-sources/delombok/</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -168,7 +185,6 @@
                 <version>2.10.3</version>
                 <configuration>
                     <failOnError>true</failOnError>
-                    <sourcepath>${project.build.directory}/generated-sources/delombok</sourcepath>
                 </configuration>
                 <reportSets>
                     <reportSet>

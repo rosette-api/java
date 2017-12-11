@@ -48,6 +48,8 @@
         </dependency>
     </dependencies>
     <build>
+        <!-- Specify source directory as the delombok directory in order for mvn site:site to use it instead of src/main/java -->
+        <sourceDirectory>${project.build.directory}/generated-sources/delombok/</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>biz.aQute.bnd</groupId>
@@ -81,10 +83,38 @@
                         <goals>
                             <goal>delombok</goal>
                         </goals>
+                        <!-- Point the lombok source to src/main/java instead of src/main/lombok, primarily so that
+                             duplicate directories can be avoided -->
                         <configuration>
                             <addOutputDirectory>false</addOutputDirectory>
                             <sourceDirectory>src/main/java</sourceDirectory>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Added javadoc plugin to model in order to specify the source path -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <failOnError>true</failOnError>
+                    <sourcepath>${project.build.directory}/generated-sources/delombok</sourcepath>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate</id>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                        <phase>site</phase>
+                    </execution>
+                    <execution>
+                        <id>plain</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <phase>package</phase>
                     </execution>
                 </executions>
             </plugin>
