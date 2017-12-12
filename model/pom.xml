@@ -99,9 +99,7 @@
                 <!-- Added javadoc plugin to model in order to specify the source path -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
                 <configuration>
-                    <failOnError>true</failOnError>
                     <sourcepath>${project.build.directory}/generated-sources/delombok</sourcepath>
                 </configuration>
                 <executions>
@@ -123,15 +121,4 @@
             </plugin>
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <sourcepath>${project.build.directory}/generated-sources/delombok</sourcepath>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>

@@ -44,6 +44,7 @@
     </distributionManagement>
     <properties>
         <bnd-maven-plugin.version>3.2.0</bnd-maven-plugin.version>
+        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
         <site-skin-version>1.5</site-skin-version>
     </properties>
     <modules>
@@ -92,10 +93,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
-                <configuration>
-                    <failOnError>true</failOnError>
-                </configuration>
                 <executions>
                     <execution>
                         <id>aggregate</id>
@@ -182,10 +179,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
-                <configuration>
-                    <failOnError>true</failOnError>
-                </configuration>
                 <reportSets>
                     <reportSet>
                         <id>non-aggregate</id>
