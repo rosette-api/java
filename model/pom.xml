@@ -48,8 +48,6 @@
         </dependency>
     </dependencies>
     <build>
-        <!-- Specify source directory as the delombok directory in order for mvn site:site to use it instead of src/main/java -->
-        <sourceDirectory>${project.build.directory}/generated-sources/delombok/</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>biz.aQute.bnd</groupId>
@@ -102,22 +100,6 @@
                 <configuration>
                     <sourcepath>${project.build.directory}/generated-sources/delombok</sourcepath>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>aggregate</id>
-                        <goals>
-                            <goal>aggregate</goal>
-                        </goals>
-                        <phase>site</phase>
-                    </execution>
-                    <execution>
-                        <id>plain</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
