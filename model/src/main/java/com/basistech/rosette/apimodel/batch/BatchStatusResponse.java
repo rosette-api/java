@@ -17,28 +17,16 @@
 package com.basistech.rosette.apimodel.batch;
 
 import com.basistech.rosette.apimodel.Response;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+@Getter
+@EqualsAndHashCode
+@Builder
 public final class BatchStatusResponse extends Response {
     // batch batchId
     private final String batchId;
     // whether the job is in progress
     private final float progress;
-
-    /**
-     *
-     * @param batchId ID of the batch
-     * @param progress whether the job has completed
-     */
-    public BatchStatusResponse(String batchId, float progress) {
-        this.batchId = batchId;
-        this.progress = progress;
-    }
-
-    public String getBatchId() {
-        return batchId;
-    }
-
-    public float getProgress() {
-        return progress;
-    }
 }
