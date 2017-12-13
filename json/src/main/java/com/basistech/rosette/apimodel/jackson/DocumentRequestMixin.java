@@ -16,12 +16,14 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.Options;
+import com.basistech.util.LanguageCode;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.io.InputStream;
@@ -29,13 +31,26 @@ import java.io.InputStream;
 //CHECKSTYLE:OFF
 @JsonTypeName("DocumentRequest")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonDeserialize(builder = DocumentRequest.DocumentRequestBuilder.class)
 public abstract class DocumentRequestMixin {
 
     public static class Views {
         public static class Content {
             //
         }
+    }
+
+    // unable to use builder due to https://github.com/FasterXML/jackson-databind/issues/921
+    @JsonCreator
+    protected DocumentRequestMixin(
+            @JsonProperty("profileId") String profileId,
+            @JsonProperty("language") LanguageCode language,
+            @JsonProperty("content") Object content,
+            @JsonProperty("contentUri") String contentUri,
+            @JsonProperty("contentType") String contentType,
+            @JsonProperty("genre") String genre,
+            @JsonProperty("options") Options options
+    ) {
+        //
     }
 
     @JsonPOJOBuilder(withPrefix = "")

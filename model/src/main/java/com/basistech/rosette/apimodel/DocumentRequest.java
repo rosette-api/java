@@ -82,7 +82,7 @@ public final class DocumentRequest<O extends Options> extends Request {
     private final O options;
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
-    private DocumentRequest(String profileId,
+    public DocumentRequest(String profileId,
                            LanguageCode language,
                            Object content,
                            String contentUri,

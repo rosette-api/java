@@ -21,6 +21,7 @@ import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -87,6 +88,9 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
                 // create mixins on-the-fly
                 Class<?> modelMixinType = new ByteBuddy()
                         .subclass(Object.class)
+                        .annotateType(AnnotationDescription.Builder.ofType(JsonTypeName.class)
+                                .define("value", modelClass.getSimpleName())
+                                .build())
                         .annotateType(AnnotationDescription.Builder.ofType(JsonDeserialize.class)
                                 .define("builder", innerBuilderClass)
                                 .build())

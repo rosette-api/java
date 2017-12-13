@@ -127,11 +127,20 @@ public class ModelTest {
 
                 // serialize
                 // for a request, we might need a view
-                ObjectWriter writer = mapper.writerWithView(DocumentRequestMixin.Views.Content.class);
+                ObjectWriter writer = mapper.writerWithView(Object.class);
                 if (o1 instanceof DocumentRequest) {
                     DocumentRequest r = (DocumentRequest) o1;
-                    if (r.getRawContent() instanceof String) {
-                        writer = mapper.writerWithView(String.class);
+                    if (r.getRawContent() instanceof String || r.getContentUri() != null) {
+                        writer = mapper.writerWithView(DocumentRequestMixin.Views.Content.class);
+                        // need to get rid of contentType for non-multipart request or it will fail comparison
+                        o1 = DocumentRequest.builder()
+                                .profileId(r.getProfileId())
+                                .language(r.getLanguage())
+                                .genre(r.getGenre())
+                                .content(r.getContent())
+                                .contentUri(r.getContentUri())
+                                .options(r.getOptions())
+                                .build();
                     }
                 }
                 String json = writer.writeValueAsString(o1);

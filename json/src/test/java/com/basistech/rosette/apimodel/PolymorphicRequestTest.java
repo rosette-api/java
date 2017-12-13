@@ -15,6 +15,7 @@
 */
 package com.basistech.rosette.apimodel;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,8 +34,8 @@ public class PolymorphicRequestTest extends Assert {
 
     @Test
     public void testRequestTypes() throws Exception {
-        String json = "{\"content\": \"what is my type\"}";
-        Request request = mapper.readValue(json, DocumentRequest.class);
+        String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"calculateConfidence\": true}}";
+        Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
         assertTrue(request instanceof DocumentRequest);
 
         json = "{\"name1\": {\"text\": \"Joe\"}, \"name2\": {\"text\": \"Geo\"}}";
