@@ -49,7 +49,7 @@ public final class AdmRequest<O extends Options> extends Request {
     private final LanguageCode language;
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
-    private AdmRequest(String profileId,
+    public AdmRequest(String profileId,
                        AnnotatedText text,
                        O options,
                        String genre,

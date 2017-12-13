@@ -17,6 +17,7 @@
 package com.basistech.rosette.apimodel.jackson;
 
 import com.basistech.rosette.apimodel.AccuracyMode;
+import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
@@ -71,7 +72,8 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
                 continue;
             }
             // Some more complex JsonView handling is best left in an actual mixin file
-            if (modelClass.equals(DocumentRequest.class)) {
+            // Also to work around https://github.com/FasterXML/jackson-databind/issues/921
+            if (modelClass.equals(DocumentRequest.class) || modelClass.equals(AdmRequest.class)) {
                 continue;
             }
             Class innerBuilderClass = null;
@@ -118,6 +120,8 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
 
         context.setMixInAnnotations(DocumentRequest.class, DocumentRequestMixin.class);
         context.setMixInAnnotations(DocumentRequest.DocumentRequestBuilder.class, DocumentRequestMixin.DocumentRequestBuilderMixin.class);
+        context.setMixInAnnotations(AdmRequest.class, AdmRequestMixin.class);
+        context.setMixInAnnotations(AdmRequest.AdmRequestBuilder.class, AdmRequestMixin.AdmRequestBuilderMixin.class);
 
         // TODO: see if there's something similar that can be used to generalize enum handling
         context.setMixInAnnotations(AccuracyMode.class, AccuracyModeMixin.class);
