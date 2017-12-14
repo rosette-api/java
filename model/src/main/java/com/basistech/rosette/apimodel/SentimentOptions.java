@@ -40,4 +40,10 @@ public class SentimentOptions extends Options {
      * @return the calculateEntitySalience flag.
      */
     private final Boolean calculateEntitySalience;
+
+
+    /**
+     * @return the model type.
+     */
+    private SentimentModelType modelType;
 }

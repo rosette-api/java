@@ -20,6 +20,7 @@ import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.Request;
+import com.basistech.rosette.apimodel.SentimentModelType;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -127,6 +128,11 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(AccuracyMode.class, AccuracyModeMixin.class);
         SimpleSerializers keySerializers = new SimpleSerializers();
         keySerializers.addSerializer(new AccuracyModeSerializer());
+        context.addKeySerializers(keySerializers);
+
+        context.setMixInAnnotations(SentimentModelType.class, SentimentModelTypeMixin.class);
+        keySerializers = new SimpleSerializers();
+        keySerializers.addSerializer(new SentimentModelTypeSerializer());
         context.addKeySerializers(keySerializers);
     }
 
