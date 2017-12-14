@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2014 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import java.util.List;
 public class EntityMentionMixin extends BaseMixin {
     @JsonCreator
     public EntityMentionMixin(
+            @JsonProperty("indocChainId") Integer indocChainId,
             @JsonProperty("type") String type,
             @JsonProperty("mention") String mention,
             @JsonProperty("normalized") String normalized,
@@ -32,7 +33,8 @@ public class EntityMentionMixin extends BaseMixin {
             @JsonProperty("mentionOffsets") List<MentionOffsets> mentionOffsets,
             @JsonProperty("entityId") String entityId,
             @JsonProperty("confidence") Double confidence,
-            @JsonProperty("salience") Double salience
+            @JsonProperty("salience") Double salience,
+            @JsonProperty("linkingConfidence") Double linkingConfidence
     ) {
         //
     }

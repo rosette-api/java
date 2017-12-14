@@ -39,6 +39,7 @@ import com.basistech.rosette.apimodel.LanguageWeight;
 import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
 import com.basistech.rosette.apimodel.LinkedEntity;
 import com.basistech.rosette.apimodel.MentionOffsets;
+import com.basistech.rosette.apimodel.MentionOffsets;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
@@ -103,6 +104,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(EntityMention.class, EntityMentionMixin.class);
         context.setMixInAnnotations(EntitySentiment.class, EntitySentimentMixin.class);
         context.setMixInAnnotations(ErrorResponse.class, ErrorResponseMixin.class);
+        context.setMixInAnnotations(EntityMention.class, EntityMentionMixin.class);
         context.setMixInAnnotations(InfoResponse.class, InfoResponseMixin.class);
         context.setMixInAnnotations(LanguageDetectionResult.class, LanguageDetectionResultMixin.class);
         context.setMixInAnnotations(LanguageOptions.class, LanguageOptionsMixin.class);

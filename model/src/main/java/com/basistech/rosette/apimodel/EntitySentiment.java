@@ -17,22 +17,23 @@
 
 package com.basistech.rosette.apimodel;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Per-entity sentiment info.
  */
-@SuppressWarnings("PMD")
-@Getter @EqualsAndHashCode
-public final class EntitySentiment extends EntityMention {
-
-    /**
-     * @return the sentiment information.
-     */
+public final class EntitySentiment {
+    private final String type;
+    private final String mention;
+    private final String normalized;
+    private final Integer count;
+    private final List<MentionOffsets> mentionOffsets;
+    private final String entityId;
+    private final Double confidence;
+    private final Double salience;
     private final Label sentiment;
+    private final Double linkingConfidence;
 
     /**
      * constructor for {@code EntitySentiment}
@@ -52,7 +53,7 @@ public final class EntitySentiment extends EntityMention {
                            String entityId,
                            Double confidence,
                            Label sentiment) {
-        this(type, mention, normalized, count, null, entityId, confidence, null, sentiment);
+        this(type, mention, normalized, count, null, entityId, confidence, null, null, sentiment);
     }
 
     /**
@@ -64,6 +65,8 @@ public final class EntitySentiment extends EntityMention {
      * @param mentionOffsets mention offsets
      * @param entityId if the entity was linked, the ID from the knowledge base.
      * @param confidence entity confidence.
+     * @param salience entity salience.
+     * @param linkingConfidence linking confidence.
      * @param sentiment the sentiment information.
      */
     public EntitySentiment(String type,
@@ -74,8 +77,124 @@ public final class EntitySentiment extends EntityMention {
                            String entityId,
                            Double confidence,
                            Double salience,
+                           Double linkingConfidence,
                            Label sentiment) {
-        super(type, mention, normalized, count, mentionOffsets, entityId, confidence, salience);
+        this.type = type;
+        this.mention = mention;
+        this.normalized = normalized;
+        this.count = count;
+        this.mentionOffsets = mentionOffsets;
+        this.entityId = entityId;
+        this.confidence = confidence;
+        this.salience = salience;
+        this.linkingConfidence = linkingConfidence;
         this.sentiment = sentiment;
+    }
+
+    /**
+     * get the entity type
+     * @return the entity type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * get the mention text
+     * @return the mention text
+     */
+    public String getMention() {
+        return mention;
+    }
+
+    /**
+     * get the normalized mention text
+     * @return the normalized mention text
+     */
+    public String getNormalized() {
+        return normalized;
+    }
+
+    /**
+     * get the mention count
+     * @return the mention count
+     */
+    public Integer getCount() {
+        return count;
+    }
+
+    /**
+     * get offsets for all mentions
+     * @return offsets for all mentions
+     */
+    public List<MentionOffsets> getMentionOffsets() {
+        return mentionOffsets;
+    }
+
+    /**
+     * get the entity knowledge base ID.
+     * @return the ID of this entity. If this entity was linked to a knowledge base,
+     * the resulting string will begin with 'Q'. If it was not linked to a knowledge base,
+     * it will begin with a 'T'. 'T' identifiers represent intra-document co-references.
+     */
+    public String getEntityId() {
+        return entityId;
+    }
+
+    /**
+     * get the entity confidence
+     * @return the entity confidence
+     */
+    public Double getConfidence() {
+        return confidence;
+    }
+
+    /**
+     * get the entity salience
+     * @return the entity salience
+     */
+    public Double getSalience() {
+        return salience;
+    }
+
+    /**
+     * get the linking confidence
+     * @return the linking confidence
+     */
+    public Double getLinkingConfidence() {
+        return linkingConfidence;
+    }
+
+    /**
+     * @return the sentiment information.
+     */
+    public Label getSentiment() {
+        return sentiment;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        EntitySentiment that = (EntitySentiment) o;
+        return Objects.equals(type, that.type)
+                && Objects.equals(mention, that.mention)
+                && Objects.equals(normalized, that.normalized)
+                && Objects.equals(count, that.count)
+                && Objects.equals(mentionOffsets, that.mentionOffsets)
+                && Objects.equals(entityId, that.entityId)
+                && Objects.equals(confidence, that.confidence)
+                && Objects.equals(salience, that.salience)
+                && Objects.equals(linkingConfidence, that.linkingConfidence)
+                && Objects.equals(sentiment, that.sentiment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, mention, normalized, count, mentionOffsets, entityId, confidence, salience, linkingConfidence, sentiment);
     }
 }
