@@ -73,7 +73,7 @@ public final class NameTranslationRequest extends Request {
     private final TransliterationScheme targetScheme;
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
-    private NameTranslationRequest(String profileId,
+    public NameTranslationRequest(String profileId,
                                    String name,
                                    String entityType,
                                    ISO15924 sourceScript,

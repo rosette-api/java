@@ -42,7 +42,7 @@ public final class NameDeduplicationRequest extends Request {
     private final Double threshold;
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
-    private NameDeduplicationRequest(String profileId,
+    public NameDeduplicationRequest(String profileId,
                                      List<Name> names,
                                      Double threshold) {
         super(profileId);

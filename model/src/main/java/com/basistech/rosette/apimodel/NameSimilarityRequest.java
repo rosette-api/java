@@ -42,7 +42,7 @@ public final class NameSimilarityRequest extends Request {
     private Name name2;
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
-    private NameSimilarityRequest(String profileId,
+    public NameSimilarityRequest(String profileId,
                                   Name name1,
                                   Name name2) {
         super(profileId);

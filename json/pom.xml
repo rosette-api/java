@@ -60,6 +60,7 @@
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.10</version><!-- 0.9.11 has guava version conflict with adm -->
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -98,10 +99,6 @@
                         </filter>
                     </filters>
                     <relocations>
-                        <relocation>
-                            <pattern>org.reflections</pattern>
-                            <shadedPattern>com.basistech.rosette.org.reflections</shadedPattern>
-                        </relocation>
                         <relocation>
                             <pattern>net.bytebuddy</pattern>
                             <shadedPattern>com.basistech.rosette.net.bytebuddy</shadedPattern>

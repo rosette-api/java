@@ -16,9 +16,8 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.rosette.RosetteRuntimeException;
 import com.basistech.rosette.apimodel.AccuracyMode;
-import com.basistech.rosette.apimodel.AdmRequest;
-import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentModelType;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
@@ -29,15 +28,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
+import com.google.common.reflect.ClassPath;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.description.annotation.AnnotationDescription;
-import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
-import org.reflections.scanners.SubTypesScanner;
-import org.reflections.util.ClasspathHelper;
-import org.reflections.util.ConfigurationBuilder;
-import org.reflections.util.FilterBuilder;
 
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -51,20 +47,26 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         super();
     }
 
+    private Set<Class<?>> getModelClasses() {
+        String modelPackage = Request.class.getPackage().getName();  // com.basistech.rosette.apimodel
+        ClassLoader classLoader = getClass().getClassLoader();
+        Set<Class<?>> modelClasses = new HashSet<>();
+        try {
+            ClassPath classPath = ClassPath.from(classLoader);
+            for (ClassPath.ClassInfo classInfo : classPath.getTopLevelClassesRecursive(modelPackage)) {
+                if (!classInfo.getPackageName().endsWith(".jackson")) {
+                    modelClasses.add(classInfo.load());
+                }
+            }
+        } catch (IOException e) {
+            throw new RosetteRuntimeException("Unable to locate model classes", e);
+        }
+        return modelClasses;
+    }
+
     public void setupModule(Module.SetupContext context) {
 
-        // fetch all model classes via reflection to avoid creating mixin files
-        // new model classes added will be automatically picked up
-        String modelPackage = Request.class.getPackage().getName(); // com.basistech.rosette.apimodel
-        Reflections reflections = new Reflections(new ConfigurationBuilder()
-                .setScanners(new SubTypesScanner(false), new ResourcesScanner())
-                .setUrls(ClasspathHelper.forClass(Request.class))
-                .filterInputsBy(new FilterBuilder()
-                        .include(FilterBuilder.prefix(modelPackage))
-                        .excludePackage(modelPackage + ".jackson")  // nothing from the package contains this class
-                )
-        );
-        Set<Class<?>> modelClasses = reflections.getSubTypesOf(Object.class);
+        Set<Class<?>> modelClasses = getModelClasses();
 
         super.setupModule(context);
         for (Class modelClass : modelClasses) {
@@ -73,8 +75,17 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
                 continue;
             }
             // Some more complex JsonView handling is best left in an actual mixin file
-            // Also to work around https://github.com/FasterXML/jackson-databind/issues/921
-            if (modelClass.equals(DocumentRequest.class) || modelClass.equals(AdmRequest.class)) {
+            // Also to work around https://github.com/rzwitserloot/lombok/issues/853
+            if (Request.class.isAssignableFrom(modelClass)) {
+                try {
+                    Class mixinClass = Class.forName(modelClass.getPackage().getName() + ".jackson." +  modelClass.getSimpleName() + "Mixin");
+                    Class builderClass = Class.forName(modelClass.getCanonicalName() + "$" + modelClass.getSimpleName() + "Builder");
+                    Class builderMixinClass = Class.forName(mixinClass.getCanonicalName() + "$" + modelClass.getSimpleName() + "BuilderMixin");
+                    context.setMixInAnnotations(modelClass, mixinClass);
+                    context.setMixInAnnotations(builderClass, builderMixinClass);
+                } catch (ClassNotFoundException e) {
+                    //
+                }
                 continue;
             }
             Class innerBuilderClass = null;
@@ -88,41 +99,42 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
             // only register mixin when there's a builder class
             // this block replaces many XyzMixin.java files
             if (innerBuilderClass != null) {
-                // create mixins on-the-fly
-                Class<?> modelMixinType = new ByteBuddy()
-                        .subclass(Object.class)
-                        .annotateType(AnnotationDescription.Builder.ofType(JsonTypeName.class)
-                                .define("value", modelClass.getSimpleName())
-                                .build())
-                        .annotateType(AnnotationDescription.Builder.ofType(JsonDeserialize.class)
-                                .define("builder", innerBuilderClass)
-                                .build())
-                        .annotateType(AnnotationDescription.Builder.ofType(JsonInclude.class)
-                                .define("value", JsonInclude.Include.NON_NULL)
-                                .build())
-                        .make()
-                        .load(getClass().getClassLoader())
-                        .getLoaded();
-                Class<?> modelBuilderMixinType = new ByteBuddy()
-                        .subclass(Object.class)
-                        .annotateType(AnnotationDescription.Builder.ofType(JsonPOJOBuilder.class)
-                                // Jackson defaults to 'withXyz' for the builder fluent, so we need to
-                                // get rid of the prefix to accommodate lombok @Builder default which has
-                                // no prefix
-                                .define("withPrefix", "")
-                                .build())
-                        .make()
-                        .load(getClass().getClassLoader())
-                        .getLoaded();
-                context.setMixInAnnotations(modelClass, modelMixinType);
-                context.setMixInAnnotations(innerBuilderClass, modelBuilderMixinType);
+                try {
+                    // create mixins on-the-fly
+                    Class<?> modelMixinType = new ByteBuddy()
+                            .subclass(Object.class)
+                            .name(modelClass.getCanonicalName() + "Mixin")
+                            .annotateType(AnnotationDescription.Builder.ofType(JsonTypeName.class)
+                                    .define("value", modelClass.getSimpleName())
+                                    .build())
+                            .annotateType(AnnotationDescription.Builder.ofType(JsonDeserialize.class)
+                                    .define("builder", innerBuilderClass)
+                                    .build())
+                            .annotateType(AnnotationDescription.Builder.ofType(JsonInclude.class)
+                                    .define("value", JsonInclude.Include.NON_NULL)
+                                    .build())
+                            .make()
+                            .load(getClass().getClassLoader())
+                            .getLoaded();
+                    Class<?> modelBuilderMixinType = new ByteBuddy()
+                            .subclass(Object.class)
+                            .name(modelClass.getCanonicalName() + "BuilderMixin")
+                            .annotateType(AnnotationDescription.Builder.ofType(JsonPOJOBuilder.class)
+                                    // Jackson defaults to 'withXyz' for the builder fluent, so we need to
+                                    // get rid of the prefix to accommodate lombok @Builder default which has
+                                    // no prefix
+                                    .define("withPrefix", "")
+                                    .build())
+                            .make()
+                            .load(getClass().getClassLoader())
+                            .getLoaded();
+                    context.setMixInAnnotations(modelClass, modelMixinType);
+                    context.setMixInAnnotations(innerBuilderClass, modelBuilderMixinType);
+                } catch (IllegalStateException e) {
+                    // loaded already, skipping
+                }
             }
         }
-
-        context.setMixInAnnotations(DocumentRequest.class, DocumentRequestMixin.class);
-        context.setMixInAnnotations(DocumentRequest.DocumentRequestBuilder.class, DocumentRequestMixin.DocumentRequestBuilderMixin.class);
-        context.setMixInAnnotations(AdmRequest.class, AdmRequestMixin.class);
-        context.setMixInAnnotations(AdmRequest.AdmRequestBuilder.class, AdmRequestMixin.AdmRequestBuilderMixin.class);
 
         // TODO: see if there's something similar that can be used to generalize enum handling
         context.setMixInAnnotations(AccuracyMode.class, AccuracyModeMixin.class);
