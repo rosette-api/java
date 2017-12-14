@@ -14,13 +14,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.8.104-SNAPSHOT</version>
+    <version>1.8.104</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
@@ -33,7 +31,7 @@
     <scm>
         <connection>scm:git:git@github.com:rosette-api/java.git</connection>
         <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>rosette-api-java-binding-1.8.104</tag>
     </scm>
     <description>This is the Java binding for the Rosette API. The classes in here help Java applications to communicate with the Rosette API.</description>
     <distributionManagement>
