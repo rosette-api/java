@@ -17,7 +17,6 @@ package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
-import com.basistech.rosette.apimodel.SentimentModelType;
 import com.basistech.rosette.apimodel.SentimentOptions;
 import com.basistech.rosette.apimodel.SentimentResponse;
 

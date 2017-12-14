@@ -39,7 +39,6 @@ import com.basistech.rosette.apimodel.LanguageWeight;
 import com.basistech.rosette.apimodel.LinkedEntitiesResponse;
 import com.basistech.rosette.apimodel.LinkedEntity;
 import com.basistech.rosette.apimodel.MentionOffsets;
-import com.basistech.rosette.apimodel.MentionOffsets;
 import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
