@@ -55,7 +55,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(NameTranslationRequest.class, NameTranslationRequestMixin.class);
         context.setMixInAnnotations(NameTranslationRequest.NameTranslationRequestBuilder.class, NameTranslationRequestMixin.NameTranslationRequestBuilderMixin.class);
         context.setMixInAnnotations(NameDeduplicationRequest.class, NameDeduplicationRequestMixin.class);
-        context.setMixInAnnotations(NameDeduplicationRequest.NameDeduplicationRequestBuilder.class,NameDeduplicationRequestMixin.NameDeduplicationRequestBuilderMixin.class);
+        context.setMixInAnnotations(NameDeduplicationRequest.NameDeduplicationRequestBuilder.class, NameDeduplicationRequestMixin.NameDeduplicationRequestBuilderMixin.class);
 
         // TODO: see if there's something similar that can be used to generalize enum handling
         context.setMixInAnnotations(AccuracyMode.class, AccuracyModeMixin.class);

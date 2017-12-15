@@ -118,6 +118,9 @@ public class JacksonMixinProcessor extends AbstractProcessor {
         TypeSpec.Builder mixinUtilClassBuilder = TypeSpec
                 .classBuilder("MixinUtil")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                .addAnnotation(AnnotationSpec.builder(SuppressWarnings.class)
+                        .addMember("value", "$S", "PMD")
+                        .build())
                 .addMethod(methodSpecBuilder.build());
         try {
             JavaFile.builder(PACKAGE_NAME, mixinUtilClassBuilder.build())
