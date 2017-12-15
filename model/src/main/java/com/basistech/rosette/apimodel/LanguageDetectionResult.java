@@ -17,6 +17,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.util.LanguageCode;
 import lombok.Builder;
 import lombok.Value;
@@ -26,6 +27,7 @@ import lombok.Value;
  */
 @Value
 @Builder
+@JacksonMixin
 public class LanguageDetectionResult {
 
     /**

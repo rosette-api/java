@@ -26,6 +26,12 @@
     <description>Rosette API data models</description>
     <dependencies>
         <dependency>
+            <groupId>com.basistech.rosette</groupId>
+            <artifactId>rosette-api-annotations</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.basistech</groupId>
             <artifactId>common-api</artifactId>
         </dependency>
@@ -44,6 +50,22 @@
             <version>1.16.18</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.squareup</groupId>
+            <artifactId>javapoet</artifactId>
+            <version>1.9.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -58,6 +80,9 @@
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                     </archive>
+                    <excludes>
+                        <exclude>**/jackson/**</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>

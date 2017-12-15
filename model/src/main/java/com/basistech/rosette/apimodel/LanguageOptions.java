@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.rosette.util.EncodingCode;
 import com.basistech.util.LanguageCode;
 import lombok.Builder;
@@ -31,6 +32,7 @@ import java.util.Set;
  */
 @Value
 @Builder
+@JacksonMixin
 public class LanguageOptions extends Options {
 
     /**

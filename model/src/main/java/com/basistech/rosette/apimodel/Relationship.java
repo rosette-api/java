@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import lombok.Builder;
 import lombok.Value;
 
@@ -27,6 +28,7 @@ import java.util.Set;
  */
 @Value
 @Builder
+@JacksonMixin
 public class Relationship {
 
     /**

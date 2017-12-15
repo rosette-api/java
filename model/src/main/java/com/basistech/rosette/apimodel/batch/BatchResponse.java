@@ -15,6 +15,7 @@
 */
 package com.basistech.rosette.apimodel.batch;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.rosette.apimodel.Response;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -23,6 +24,7 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode
 @Builder
+@JacksonMixin
 public final class BatchResponse extends Response {
     // batch id
     private final String id;

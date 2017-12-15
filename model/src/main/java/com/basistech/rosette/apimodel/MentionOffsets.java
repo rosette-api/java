@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import lombok.Builder;
 import lombok.Value;
 
@@ -26,6 +27,7 @@ import javax.validation.constraints.Min;
  */
 @Value
 @Builder
+@JacksonMixin
 public class MentionOffsets {
 
     /**

@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.rosette.dm.AnnotatedText;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -27,6 +28,7 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode
 @Builder
+@JacksonMixin
 public class AdmResponse extends Response {
 
     /**

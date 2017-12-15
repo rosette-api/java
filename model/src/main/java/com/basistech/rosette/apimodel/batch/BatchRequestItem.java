@@ -15,6 +15,7 @@
 */
 package com.basistech.rosette.apimodel.batch;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.rosette.apimodel.Request;
 import lombok.Builder;
 import lombok.Value;
@@ -31,6 +32,7 @@ import lombok.Value;
  */
 @Value
 @Builder
+@JacksonMixin
 public class BatchRequestItem {
     private final String endpoint;
     private final Request request;

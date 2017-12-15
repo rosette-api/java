@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.basistech.util.TransliterationScheme;
@@ -29,6 +30,7 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode
 @Builder
+@JacksonMixin
 public class NameTranslationResponse extends Response {
 
     /**

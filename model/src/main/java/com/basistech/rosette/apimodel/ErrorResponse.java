@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,6 +27,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode
 @Builder
+@JacksonMixin
 public class ErrorResponse extends Response {
 
     /**

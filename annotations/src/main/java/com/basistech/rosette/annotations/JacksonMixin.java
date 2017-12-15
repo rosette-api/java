@@ -14,27 +14,14 @@
 * limitations under the License.
 */
 
-package com.basistech.rosette.apimodel;
+package com.basistech.rosette.annotations;
 
-import com.basistech.rosette.annotations.JacksonMixin;
-import lombok.Builder;
-import lombok.Value;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-/**
- * Keyphrases found in a document.
- */
-@Value
-@Builder
-@JacksonMixin
-public class Keyphrase {
-
-    /**
-     * @return the keyphrase text
-     */
-    private final String phrase;
-
-    /**
-     * @return the keyphrase salience (0.0-1.0)
-     */
-    private final Double salience;
+@Retention(RetentionPolicy.SOURCE)
+@Target(ElementType.TYPE)
+public @interface JacksonMixin {
 }

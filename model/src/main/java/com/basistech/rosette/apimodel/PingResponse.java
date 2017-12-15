@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,6 +27,7 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode
 @Builder
+@JacksonMixin
 public class PingResponse extends Response {
 
     /**

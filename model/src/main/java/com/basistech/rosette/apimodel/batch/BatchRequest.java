@@ -15,6 +15,7 @@
 */
 package com.basistech.rosette.apimodel.batch;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import lombok.Builder;
 import lombok.Value;
 
@@ -27,6 +28,7 @@ import java.util.UUID;
  */
 @Value
 @Builder
+@JacksonMixin
 public final class BatchRequest {
 
     /**
