@@ -16,24 +16,14 @@
 
 package com.basistech.rosette.apimodel;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import java.util.Objects;
 
 /**
  * The start and end offset/index for a given mention in a string of text
  */
-@SuppressWarnings("PMD")
-@Getter @EqualsAndHashCode
 public class MentionOffsets {
 
-    /**
-     * @returns the offset for the first character of a mention, based on UTF-16 code page
-     */
     private Integer startOffset;
-
-    /**
-     * @returns the offset for the last character of a mention, based on UTF-16 code page
-     */
     private Integer endOffset;
 
     /**
@@ -44,5 +34,37 @@ public class MentionOffsets {
     public MentionOffsets(Integer startOffset, Integer endOffset) {
         this.startOffset = startOffset;
         this.endOffset = endOffset;
+    }
+
+    /**
+     * @returns the offset for the first character of a mention, based on UTF-16 code page
+     */
+    public Integer getStartOffset() {
+        return startOffset;
+    }
+
+    /**
+     * @returns the offset for the last character of a mention, based on UTF-16 code page
+     */
+    public Integer getEndOffset() {
+        return endOffset;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        MentionOffsets that = (MentionOffsets) o;
+        return Objects.equals(startOffset, that.startOffset)
+                && Objects.equals(endOffset, that.endOffset);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startOffset, endOffset);
     }
 }

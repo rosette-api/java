@@ -19,7 +19,8 @@
       "indocChainId": 2, 
       "mention": "Afghanistan", 
       "normalized": "Afghanistan", 
-      "type": "LOCATION"
+      "type": "LOCATION",
+      "salience": 1.0
     }, 
     {
       "count": 1, 
