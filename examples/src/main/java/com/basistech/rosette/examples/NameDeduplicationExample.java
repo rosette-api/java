@@ -38,7 +38,7 @@ public final class NameDeduplicationExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        String nameDedupeData = "John Smith,Johnathon Smith,Fred Jones";
+        String nameDedupeData = "Alice Terry,Alice Thierry,Betty Grable,Betty Gable,Norma Shearer,Norm Shearer,Brigitte Helm,Bridget Helem,Judy Holliday,Julie Halliday";
 
         ArrayList<Name> names = new ArrayList<>();
         for (String name: new ArrayList<String>(Arrays.asList(nameDedupeData.split(",")))) {

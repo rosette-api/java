@@ -37,7 +37,7 @@ public final class MorphologyCompleteExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        String morphologyCompleteData = "The quick brown fox jumped over the lazy dog. Yes he did.";
+        String morphologyCompleteData = "The quick brown fox jumped over the lazy dog. 👍🏾 Yes he did. B)";
 
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())

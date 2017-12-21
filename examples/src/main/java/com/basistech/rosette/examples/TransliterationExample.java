@@ -37,7 +37,7 @@ public class TransliterationExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        String transliterationData = "haza ya7taj fakat ila an takoun ba3dh el-nousous allati na7n ymkn an tata7awal ila al-3arabizi.";
+        String transliterationData = "ana r2ye7 el gam3a el sa3a 3 el 3asr";
 
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
