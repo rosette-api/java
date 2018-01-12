@@ -1,5 +1,5 @@
 /*
-* Copyright 2016 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,55 +16,29 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.util.Collection;
-import java.util.Objects;
 
 /**
  *  Information returned from the sentiment endpoint.
  **/
-public final class SentimentResponse extends Response {
-    private final Label document;
-    private final Collection<EntitySentiment> entities;
-
-    /**
-     *
-     * @param document The sentiment information for the entire document.
-     * @param entities The sentiment information for the entities detected in the document.
-     */
-    public SentimentResponse(Label document, Collection<EntitySentiment> entities) {
-        this.document = document;
-        this.entities = entities;
-    }
+@Getter
+@EqualsAndHashCode
+@Builder
+@JacksonMixin
+public  class SentimentResponse extends Response {
 
     /**
      * @return the whole-document sentiment.
      */
-    public Label getDocument() {
-        return document;
-    }
+    private final Label document;
 
     /**
      * @return the information for individual entities.
      */
-    public Collection<EntitySentiment> getEntities() {
-        return entities;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        SentimentResponse that = (SentimentResponse) o;
-        return Objects.equals(document, that.document)
-                && Objects.equals(entities, that.entities);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(document, entities);
-    }
+    private final Collection<Entity> entities;
 }

@@ -23,6 +23,7 @@ import com.basistech.rosette.apimodel.NameDeduplicationResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Example which demonstrates name deduplication.
@@ -39,10 +40,11 @@ public final class NameDeduplicationExample extends ExampleBase {
 
     private void run() throws IOException {
         String nameDedupeData = "John Smith,Johnathon Smith,Fred Jones";
+        List<String> listOfNames = new ArrayList<String>(Arrays.asList(nameDedupeData.split(",")));
 
         ArrayList<Name> names = new ArrayList<>();
-        for (String name: new ArrayList<String>(Arrays.asList(nameDedupeData.split(",")))) {
-            names.add(new Name(name));
+        for (String name: listOfNames) {
+            names.add(Name.builder().text(name).build());
         }
         double threshold = 0.75;
 
@@ -52,7 +54,7 @@ public final class NameDeduplicationExample extends ExampleBase {
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        NameDeduplicationRequest request = new NameDeduplicationRequest(names, threshold);
+        NameDeduplicationRequest request = NameDeduplicationRequest.builder().names(names).threshold(threshold).build();
         NameDeduplicationResponse response = rosetteApi.perform(HttpRosetteAPI.NAME_DEDUPLICATION_SERVICE_PATH, request,
                 NameDeduplicationResponse.class);
         System.out.println(responseToJson(response));

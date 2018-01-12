@@ -4,6 +4,7 @@ target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.next
+**/dependency-reduced-pom.xml
 release.properties
 mockserver*log
 **/.DS_Store

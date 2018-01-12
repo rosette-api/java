@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,48 +16,24 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.util.List;
 
 /** 
- * Simple api response data model for entity extraction 
+ * Simple api response data model for extracted entities
  */
+@Getter
+@EqualsAndHashCode
+@Builder
+@JacksonMixin
 public final class EntitiesResponse extends Response {
 
-    private final List<EntityMention> entities;
-    
     /**
-     * Constructor for {@code EntitiesResponse}
-     * @param entities list of extracted entities
-     */
-    public EntitiesResponse(List<EntityMention> entities) {
-        this.entities = entities;
-    }
-
-    /**
-     * get the list of extracted entities
      * @return the list of extracted entities
      */
-    public List<EntityMention> getEntities() {
-        return entities;
-    }
-
-    @Override
-    public int hashCode() {
-        return entities != null ? entities.hashCode() : 0;
-    }
-
-    /**
-     * if the param is a {@code EntitiesResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof EntitiesResponse)) {
-            return false;
-        }
-
-        EntitiesResponse that = (EntitiesResponse) o;
-        return entities != null ? entities.equals(that.getEntities()) : that.entities == null;
-    }
+    private final List<Entity> entities;
 }

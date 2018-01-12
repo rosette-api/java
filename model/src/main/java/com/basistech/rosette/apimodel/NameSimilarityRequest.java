@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.Value;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -23,76 +26,27 @@ import javax.validation.constraints.NotNull;
  *
  * This class carries the two names to compare.
  */
+@Value
 public final class NameSimilarityRequest extends Request {
 
+    /**
+     * @return first name
+     */
     @NotNull
     private Name name1;
+
+    /**
+     * @return second name
+     */
     @NotNull
     private Name name2;
 
-    /**
-     * Constructor for {@code NameMatchingRequest}
-     * @param name1 First name to be matched against second name
-     * @param name2 Second name to be matched against first name
-     */
-    public NameSimilarityRequest(Name name1,
-                                 Name name2) {
+    @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
+    public NameSimilarityRequest(String profileId,
+                                  Name name1,
+                                  Name name2) {
+        super(profileId);
         this.name1 = name1;
         this.name2 = name2;
-    }
-
-    /**
-     * Gets the first name
-     * @return first name
-     */
-    public Name getName1() {
-        return name1;
-    }
-
-    /**
-     * Gets the second name
-     * @return second name
-     */
-    public Name getName2() {
-        return name2;
-    }
-
-    /**
-     * Sets the first name
-     * @param name the name object.
-     */
-    public void setName1(Name name) {
-        name1 = name;
-    }
-
-    /**
-     * Sets the second name
-     * @param name the name object.
-     */
-    public void setName2(Name name) {
-        name1 = name;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name1 != null ? name1.hashCode() : 0;
-        result = 31 * result + (name2 != null ? name2.hashCode() : 0);
-        return result;
-    }
-
-    /**
-     * if the param is a {@code NameMatchingRequest}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof NameSimilarityRequest)) {
-            return false;
-        }
-
-        NameSimilarityRequest that = (NameSimilarityRequest) o;
-        return name1 != null ? name1.equals(that.getName1()) : that.name1 == null
-                && name2 != null ? name2.equals(that.getName1()) : that.name2 == null;
     }
 }

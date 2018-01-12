@@ -14,71 +14,32 @@
 * limitations under the License.
 */
 
-
 package com.basistech.rosette.apimodel;
 
-import java.util.Objects;
+import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * Concepts found in a document.
  */
-public final class Concept {
-    private final String phrase;
-    private final Double salience;
-    private final String conceptId;
+@Value
+@Builder
+@JacksonMixin
+public class Concept {
 
     /**
-     * constructor for {@code Concept}
-     * @param phrase text of the concept
-     * @param salience concept salience
-     * @param conceptId the id of the concept
-     */
-    public Concept(String phrase, Double salience, String conceptId) {
-        this.phrase = phrase;
-        this.salience = salience;
-        this.conceptId = conceptId;
-    }
-
-    /**
-     * get the concept text
      * @return the concept text
      */
-    public String getPhrase() {
-        return phrase;
-    }
+    private final String phrase;
 
     /**
-     * get the concept salience
      * @return the concept salience
      */
-    public Double getSalience() {
-        return salience;
-    }
+    private final Double salience;
 
     /**
-     * get the concept id
      * @return the concept id
      */
-    public String getConceptId() {
-        return conceptId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Concept that = (Concept) o;
-        return Objects.equals(phrase, that.phrase)
-                && Objects.equals(salience, that.salience)
-                && Objects.equals(conceptId, that.conceptId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(phrase, salience, conceptId);
-    }
+    private final String conceptId;
 }

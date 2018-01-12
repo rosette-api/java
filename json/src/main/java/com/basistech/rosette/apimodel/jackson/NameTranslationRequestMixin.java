@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,13 +20,20 @@ import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.basistech.util.TransliterationScheme;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+//CHECKSTYLE:OFF
 @JsonTypeName("NameTranslationRequest")
-public class NameTranslationRequestMixin extends BaseMixin {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public abstract class NameTranslationRequestMixin {
+
+    // unable to use builder due to https://github.com/FasterXML/jackson-databind/issues/921
     @JsonCreator
     protected NameTranslationRequestMixin(
+            @JsonProperty("profileId") String profileId,
             @JsonProperty("name") String name,
             @JsonProperty("entityType") String entityType,
             @JsonProperty("sourceScript") ISO15924 sourceScript,
@@ -37,5 +44,9 @@ public class NameTranslationRequestMixin extends BaseMixin {
             @JsonProperty("targetScheme") TransliterationScheme targetScheme
     ) {
         //
+    }
+
+    @JsonPOJOBuilder(withPrefix = "")
+    abstract class NameTranslationRequestBuilderMixin {
     }
 }

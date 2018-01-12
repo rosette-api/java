@@ -1,5 +1,5 @@
 /*
-* Copyright 2016 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,8 +15,16 @@
 */
 package com.basistech.rosette.apimodel.batch;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.rosette.apimodel.Response;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+@Getter
+@EqualsAndHashCode
+@Builder
+@JacksonMixin
 public final class BatchResponse extends Response {
     // batch id
     private final String id;
@@ -24,30 +32,4 @@ public final class BatchResponse extends Response {
     private final String batchOutputUrl;
     // progress checking endpoint/url
     private final String batchCheckProgressUrl;
-
-    /**
-     * A response returned upon successful submission of a batch in which
-     * contains a URL for progress checking and another specifies the output location.
-     *
-     * @param id ID of the batch
-     * @param batchOutputUrl the URL of the processing results
-     * @param batchCheckProgressUrl the URL that can be used to check batch progress
-     */
-    public BatchResponse(String id, String batchOutputUrl, String batchCheckProgressUrl) {
-        this.id = id;
-        this.batchOutputUrl = batchOutputUrl;
-        this.batchCheckProgressUrl = batchCheckProgressUrl;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getBatchOutputUrl() {
-        return batchOutputUrl;
-    }
-
-    public String getBatchCheckProgressUrl() {
-        return batchCheckProgressUrl;
-    }
 }

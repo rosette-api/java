@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,39 +16,29 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.util.List;
-import java.util.Objects;
 
+/**
+ * All syntactical dependencies extracted from the document
+ */
+@Getter
+@EqualsAndHashCode
+@Builder
+@JacksonMixin
 public class SyntaxDependenciesResponse extends Response {
+
+    /**
+     * @return list of sentences with syntactical dependencies
+     */
     private final List<SentenceWithDependencies> sentences;
+
+    /**
+     * @return list of tokens in the document
+     */
     private final List<String> tokens;
-
-    public SyntaxDependenciesResponse(List<SentenceWithDependencies> sentences,
-                                      List<String> tokens) {
-        this.sentences = sentences;
-        this.tokens = tokens;
-    }
-
-    public List<SentenceWithDependencies> getSentences() {
-        return this.sentences;
-    }
-
-    public List<String> getTokens() {
-        return this.tokens;
-    }
-
-    public boolean equals(Object o) {
-        if (!(o instanceof SyntaxDependenciesResponse)) {
-            return false;
-        } else {
-            SyntaxDependenciesResponse that = (SyntaxDependenciesResponse) o;
-            return Objects.equals(this.sentences, that.sentences)
-                    && Objects.equals(this.tokens, that.tokens);
-        }
-    }
-
-    public int hashCode() {
-        return Objects.hash(this.sentences, this.tokens);
-    }
-
 }

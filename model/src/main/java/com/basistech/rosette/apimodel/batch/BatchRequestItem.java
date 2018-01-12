@@ -1,5 +1,5 @@
 /*
-* Copyright 2016 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,7 +15,10 @@
 */
 package com.basistech.rosette.apimodel.batch;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.rosette.apimodel.Request;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * One item in a batch request. Each item consists of an input
@@ -27,32 +30,11 @@ import com.basistech.rosette.apimodel.Request;
  * a json file consisting of an array of strings; each string being treated as an
  * input. The string length in this case is limited to 200 characters.
  */
+@Value
+@Builder
+@JacksonMixin
 public class BatchRequestItem {
     private final String endpoint;
     private final Request request;
     private final String id;
-
-    /**
-     * Create an item.
-     * @param endpoint the endpoint
-     * @param request the request.
-     * @param id a unique id for the request item supplied by the caller
-     */
-    public BatchRequestItem(String endpoint, Request request, String id) {
-        this.endpoint = endpoint;
-        this.request = request;
-        this.id = id;
-    }
-
-    public String getEndpoint() {
-        return endpoint;
-    }
-
-    public Request getRequest() {
-        return request;
-    }
-
-    public String getId() {
-        return id;
-    }
 }

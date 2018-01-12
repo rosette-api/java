@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,69 +16,27 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /**
  * Rosette API response error data
  */
+@Data
+@EqualsAndHashCode
+@Builder
+@JacksonMixin
 public class ErrorResponse extends Response {
 
-    private String code;
-    private String message;
-
     /**
-     * constructor for {@code ErrorResponse}
-     * @param code error code
-     * @param message error message
-     */
-    public ErrorResponse(String code,
-                         String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    /**
-     * get the error code
      * @return the error code
      */
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    private String code;
 
     /**
-     * get the error message
      * @return the error message
      */
-    public String getMessage() {
-        return message;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = code != null ? code.hashCode() : 0;
-        result = 31 * result + (message != null ? message.hashCode() : 0);
-        return result;
-    }
-
-    /**
-     * if the param is a {@code ErrorResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof ErrorResponse)) {
-            return false;
-        }
-
-        ErrorResponse that = (ErrorResponse) o;
-        return code != null ? code.equals(that.getCode()) : that.code == null
-                && message != null ? message.equals(that.getMessage()) : that.message == null;
-    }
+    private String message;
 }

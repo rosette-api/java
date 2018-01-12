@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,8 +30,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.collect.Lists;
 import org.junit.Before;
@@ -40,10 +41,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -133,8 +130,17 @@ public class ModelTest {
                 ObjectWriter writer = mapper.writerWithView(Object.class);
                 if (o1 instanceof DocumentRequest) {
                     DocumentRequest r = (DocumentRequest) o1;
-                    if (r.getRawContent() instanceof String) {
+                    if (r.getRawContent() instanceof String || r.getContentUri() != null) {
                         writer = mapper.writerWithView(DocumentRequestMixin.Views.Content.class);
+                        // need to get rid of contentType for non-multipart request or it will fail comparison
+                        o1 = DocumentRequest.builder()
+                                .profileId(r.getProfileId())
+                                .language(r.getLanguage())
+                                .genre(r.getGenre())
+                                .content(r.getContent())
+                                .contentUri(r.getContentUri())
+                                .options(r.getOptions())
+                                .build();
                     }
                 }
                 String json = writer.writeValueAsString(o1);

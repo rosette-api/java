@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,16 +19,29 @@ package com.basistech.rosette.apimodel.jackson;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-public class NameMixin extends BaseMixin {
+//CHECKSTYLE:OFF
+@JsonTypeName("Name")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public abstract class NameMixin {
+
+    // Need to stick to a non-builder mixin to support single-string constructor
+    // see the model code for details
     @JsonCreator
-    protected NameMixin(
-            @JsonProperty("text") String name,
+    protected NameMixin (
+            @JsonProperty("name") String name,
             @JsonProperty("entityType") String entityType,
             @JsonProperty("script") ISO15924 script,
             @JsonProperty("language") LanguageCode language
     ) {
         //
+    }
+
+    @JsonPOJOBuilder(withPrefix = "")
+    abstract class NameBuilderMixin {
     }
 }

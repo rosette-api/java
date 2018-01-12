@@ -1,5 +1,5 @@
 /*
-* Copyright 2016 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -374,9 +374,9 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
                     currentSetValue = new HashSet<>(Collections.singletonList(resp.getExtendedInformation().get(header.getName())));
                 }
                 currentSetValue.add(header.getValue());
-                resp.setExtendedInformation(header.getName(), currentSetValue);
+                resp.addExtendedInformation(header.getName(), currentSetValue);
             } else {
-                resp.setExtendedInformation(header.getName(), header.getValue());
+                resp.addExtendedInformation(header.getName(), header.getValue());
             }
         }
     }
@@ -529,7 +529,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
                         errorContent = "(no body)";
                     }
                     // something not from us at all
-                    throw new HttpRosetteAPIException("Invalid error response (not json)", new ErrorResponse("invalidErrorResponse", errorContent), status);
+                    throw new HttpRosetteAPIException("Invalid error response (not json)",
+                            ErrorResponse.builder().code("invalidErrorResponse").message(errorContent).build(), status);
                 }
             } else {
                 return mapper.readValue(inputStream, clazz);

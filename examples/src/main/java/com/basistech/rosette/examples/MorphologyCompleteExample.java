@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public final class MorphologyCompleteExample extends ExampleBase {
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
-        DocumentRequest<MorphologyOptions> request = new DocumentRequest.Builder<MorphologyOptions>().content(morphologyCompleteData).build();
+        DocumentRequest<MorphologyOptions> request = DocumentRequest.<MorphologyOptions>builder().content(morphologyCompleteData).build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         MorphologyResponse response = rosetteApi.perform(HttpRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);

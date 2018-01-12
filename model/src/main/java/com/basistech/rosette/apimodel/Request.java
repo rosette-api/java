@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,17 +16,18 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
  * Common base class of all requests.
  */
+@Data
+@AllArgsConstructor
 public abstract class Request {
-    private String profileId;
 
-    public String getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(String profileId) {
-        this.profileId = profileId;
-    }
+    /**
+     * @return profile ID
+     */
+    protected String profileId;
 }

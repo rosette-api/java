@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -56,10 +56,9 @@ public class DevRosetteAPITest {
     @Test
     public void multipart() throws Exception {
         // this assumes that the server has the mock version of the components.
-        Request morphologyRequest = new DocumentRequest.Builder<>()
-                .language(LanguageCode.ENGLISH)
-                .options(new MorphologyOptions(false, false, PartOfSpeechTagSet.upt16))
-                .contentBytes("This is the cereal shot from 1 gun .".getBytes(Charsets.UTF_8), "text/plain;charset=utf-8")
+        Request morphologyRequest = DocumentRequest.builder().language(LanguageCode.ENGLISH)
+                .options(MorphologyOptions.builder().partOfSpeechTagSet(PartOfSpeechTagSet.upt16).build())
+                .content("This is the cereal shot from 1 gun .".getBytes(Charsets.UTF_8), "text/plain;charset=utf-8")
                 .build();
         TokensResponse response = api.perform(AbstractRosetteAPI.TOKENS_SERVICE_PATH, morphologyRequest, TokensResponse.class);
         assertEquals(9, response.getTokens().size());
@@ -69,9 +68,8 @@ public class DevRosetteAPITest {
     @Test
     public void simple() throws Exception {
         // this assumes that the server has the mock version of the components.
-        Request morphologyRequest = new DocumentRequest.Builder<>()
-                .language(LanguageCode.ENGLISH)
-                .options(new MorphologyOptions(false, false, PartOfSpeechTagSet.upt16))
+        Request morphologyRequest = DocumentRequest.builder().language(LanguageCode.ENGLISH)
+                .options(MorphologyOptions.builder().partOfSpeechTagSet(PartOfSpeechTagSet.upt16).build())
                 .content("This is the cereal shot from 1 gun .")
                 .build();
         TokensResponse response = api.perform(AbstractRosetteAPI.TOKENS_SERVICE_PATH, morphologyRequest, TokensResponse.class);

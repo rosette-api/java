@@ -16,114 +16,36 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Objects;
+import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * Sentiment options.
  */
-public final class SentimentOptions extends Options {
-    public static final SentimentOptions DEFAULT_OPTIONS = new SentimentOptions(false, false, SentimentModelType.SVM);
-    private Boolean calculateEntityConfidence;
-    private Boolean calculateEntitySalience;
-    private SentimentModelType modelType;
+@Value
+@Builder
+@JacksonMixin
+public class SentimentOptions extends Options {
 
-    /**
-     * Constructs a {@code SentimentOptions}.
-     * @param calculateEntityConfidence whether to return confidence
-     *                                  scores for entities
-     * @param calculateEntitySalience whether to return salience values
-     *                                for entities
-     * @param modelType the model type
-     */
-    protected SentimentOptions(
-            final Boolean calculateEntityConfidence,
-            final Boolean calculateEntitySalience,
-            final SentimentModelType modelType) {
-        this.calculateEntityConfidence = calculateEntityConfidence;
-        this.calculateEntitySalience = calculateEntitySalience;
-        this.modelType = modelType;
-    }
+    public static final SentimentOptions DEFAULT = SentimentOptions.builder()
+            .calculateEntityConfidence(false)
+            .calculateEntitySalience(false)
+            .build();
 
     /**
      * @return the calculateEntityConfidence flag.
      */
-    public Boolean getCalculateEntityConfidence() {
-        return calculateEntityConfidence;
-    }
+    private final Boolean calculateEntityConfidence;
 
     /**
      * @return the calculateEntitySalience flag.
      */
-    public Boolean getCalculateEntitySalience() {
-        return calculateEntitySalience;
-    }
+    private final Boolean calculateEntitySalience;
+
 
     /**
-     * Gets the model type.
-     * @return the model type
+     * @return the model type.
      */
-    public SentimentModelType getModelType() {
-        return modelType;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        SentimentOptions that = (SentimentOptions)o;
-        return Objects.equals(this.calculateEntityConfidence, that.calculateEntityConfidence)
-                && Objects.equals(this.calculateEntitySalience, that.calculateEntitySalience)
-                && modelType == that.modelType;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(calculateEntityConfidence, calculateEntitySalience, modelType);
-    }
-
-    public static class Builder {
-        private Boolean calculateEntityConfidence;
-        private Boolean calculateEntitySalience;
-        private SentimentModelType modelType;
-
-        /**
-         * DocumentRequest calculate entity confidence score. If the value is {@code true}, then the endpoint will
-         * return confidence scores. If {@code false} or {@code null}, not.
-         * @param calculateEntityConfidence whether to get entity confidence score.
-         * @return this.
-         */
-        public Builder calculateEntityConfidence(Boolean calculateEntityConfidence) {
-            this.calculateEntityConfidence = calculateEntityConfidence;
-            return this;
-        }
-
-        /**
-         * DocumentRequest calculate entity salience score. If the value is {@code true}, then the endpoint will
-         * return salience scores. If {@code false} or {@code null}, not.
-         * @param calculateEntitySalience whether to get entity salience score.
-         * @return this.
-         */
-        public Builder calculateEntitySalience(Boolean calculateEntitySalience) {
-            this.calculateEntitySalience = calculateEntitySalience;
-            return this;
-        }
-
-        /**
-         * Sets the model type for sentiment analysis.
-         * @param modelType the model type
-         * @return {@code this}
-         */
-        public Builder modelType(final SentimentModelType modelType) {
-            this.modelType = modelType;
-            return this;
-        }
-
-        public SentimentOptions build() {
-            return new SentimentOptions(calculateEntityConfidence, calculateEntitySalience, modelType);
-        }
-    }
+    private SentimentModelType modelType;
 }

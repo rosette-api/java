@@ -16,6 +16,9 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public abstract class Options {
     //
 }
