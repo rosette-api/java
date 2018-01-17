@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2017 Basis Technology Corp.
+  Copyright 2018 Basis Technology Corp.
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -42,7 +42,11 @@
     </distributionManagement>
     <properties>
         <bnd-maven-plugin.version>3.2.0</bnd-maven-plugin.version>
+        <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+        <http-components-version>4.5.2</http-components-version>
+        <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
         <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
+        <mockserver-version>3.10.2</mockserver-version>
         <site-skin-version>1.5</site-skin-version>
     </properties>
     <modules>
@@ -77,6 +81,22 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.basedir}</directory>
+                            <includes>
+                                <include>**/mockserver.log</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                    <followSymlinks>false</followSymlinks>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
@@ -102,7 +122,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>${maven-javadoc-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>aggregate</id>
@@ -119,6 +139,13 @@
                         <phase>package</phase>
                     </execution>
                 </executions>
+                <configuration>
+                    <!-- is there a better way? build-helper has add-source but no remove-source -->
+                    <sourcepath>model/target/generated-sources/delombok;
+                        json/src/main/java;
+                        common/src/main/java;
+                        api/src/main/java</sourcepath>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -151,7 +178,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${build-helper-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>add-source</id>
@@ -166,17 +193,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <!-- is there a better way? builder-helper has add-source but no remove-source -->
-                    <sourcepath>model/target/generated-sources/delombok;
-                        json/src/main/java;
-                        common/src/main/java;
-                        api/src/main/java</sourcepath>
-                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>
@@ -201,7 +217,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>${maven-javadoc-plugin.version}</version>
                 <reportSets>
                     <reportSet>
                         <id>non-aggregate</id>
