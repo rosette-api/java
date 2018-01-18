@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public class InvalidErrorTest extends AbstractTest {
         boolean exceptional = false;
         try {
             HttpRosetteAPI api = new HttpRosetteAPI.Builder().key("my-key-123").url(mockServiceUrl).build();
-            api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, new DocumentRequest.Builder<>().content("sample text").build(), LanguageResponse.class);
+            api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, DocumentRequest.builder().content("sample text").build(), LanguageResponse.class);
         } catch (HttpRosetteAPIException e) {
             exceptional = true;
             assertEquals("invalidErrorResponse", e.getErrorResponse().getCode());

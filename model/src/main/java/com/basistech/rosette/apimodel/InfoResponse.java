@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,99 +16,42 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 /**
  * Rosette API information 
  */
-public final class InfoResponse extends Response {
-
-    private final String name;
-    private final String version;
-    private final String buildNumber;
-    private final String buildTime;
-    private final Boolean versionChecked;
+@Getter
+@EqualsAndHashCode
+@Builder
+@JacksonMixin
+public class InfoResponse extends Response {
 
     /**
-     * constructor for {@code InfoResponse} 
-     * @param name name
-     * @param version version
-     * @param buildNumber build number
-     * @param buildTime build time
-     * @param versionChecked client version checked
-     */
-    public InfoResponse(String name, String version, String buildNumber, String buildTime, Boolean versionChecked) {
-        this.name = name;
-        this.version = version;
-        this.buildNumber = buildNumber;
-        this.buildTime = buildTime;
-        this.versionChecked = versionChecked;
-    }
-
-    /**
-     * get the name
      * @return the name
      */
-    public String getName() {
-        return name;
-    }
+    private final String name;
 
     /**
-     * get the version 
      * @return the version
      */
-    public String getVersion() {
-        return version;
-    }
+    private final String version;
 
     /**
-     * get the build number 
      * @return the build number
      */
-    public String getBuildNumber() {
-        return buildNumber;
-    }
+    private final String buildNumber;
 
     /**
-     * get the build time 
      * @return the build time
      */
-    public String getBuildTime() {
-        return buildTime;
-    }
+    private final String buildTime;
 
     /**
-     * is client version checked to be compatible
      * @return client version checked
      */
-    public Boolean isVersionChecked() {
-        return versionChecked;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (version != null ? version.hashCode() : 0);
-        result = 31 * result + (buildNumber != null ? buildNumber.hashCode() : 0);
-        result = 31 * result + (buildTime != null ? buildTime.hashCode() : 0);
-        result = 31 * result + (versionChecked != null ? versionChecked.hashCode() : 0);
-        return result;
-    }
-
-    /**
-     * if the param is a {@code InfoResponse}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof InfoResponse)) {
-            return false;
-        }
-
-        InfoResponse that = (InfoResponse) o;
-        return name != null ? name.equals(that.getName()) : that.name == null
-                && version != null ? version.equals(that.getVersion()) : that.version == null
-                && buildNumber != null ? buildNumber.equals(that.getBuildNumber()) : that.buildNumber == null
-                && buildTime != null ? buildTime.equals(that.getBuildTime()) : that.buildTime == null
-                && versionChecked != null ? versionChecked.equals(that.isVersionChecked()) : that.versionChecked == null;
-    }
+    private final Boolean versionChecked;
 }

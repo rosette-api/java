@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -40,15 +40,19 @@ public final class NameSimilarityExample extends ExampleBase {
     private void run() throws IOException {
         String matchedNameData1 = "Michael Jackson";
         String matchedNameData2 = "迈克尔·杰克逊";
-        Name name1 = new Name(matchedNameData1, "PERSON", ISO15924.Zyyy, LanguageCode.ENGLISH);
-        Name name2 = new Name(matchedNameData2);
+        Name name1 = Name.builder().text(matchedNameData1)
+                .entityType("PERSON")
+                .script(ISO15924.Zyyy)
+                .language(LanguageCode.ENGLISH)
+                .build();
+        Name name2 = Name.builder().text(matchedNameData2).build();
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        NameSimilarityRequest request = new NameSimilarityRequest(name1, name2);
+        NameSimilarityRequest request = NameSimilarityRequest.builder().name1(name1).name2(name2).build();
         NameSimilarityResponse response = rosetteApi.perform(HttpRosetteAPI.NAME_SIMILARITY_SERVICE_PATH, request, NameSimilarityResponse.class);
         System.out.println(responseToJson(response));
     }

@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -167,7 +167,8 @@ public class BasicTest extends AbstractTest {
                     .build();
             AnnotatedText testData = ApiModelMixinModule.setupObjectMapper(
                     new ObjectMapper()).readValue(reqIns, AnnotatedText.class);
-            AnnotatedText resp = api.perform(HttpRosetteAPI.ENTITIES_SERVICE_PATH, new AdmRequest<>(testData, null, null, null));
+            AnnotatedText resp = api.perform(HttpRosetteAPI.ENTITIES_SERVICE_PATH,
+                    AdmRequest.builder().text(testData).build());
             assertEquals("Q100", resp.getEntities().get(0).getEntityId());
         }
     }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Copyright 2017 Basis Technology Corp.
- 
+
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
- 
+
          http://www.apache.org/licenses/LICENSE-2.0
- 
+
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,11 +18,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.8.106-SNAPSHOT</version>
+    <version>1.9.0-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
-        <version>1.1.4</version>
+        <version>1.1.5</version>
         <relativePath />
     </parent>
     <packaging>pom</packaging>
@@ -31,12 +31,9 @@
     <scm>
         <connection>scm:git:git@github.com:rosette-api/java.git</connection>
         <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
-    <description>
-        This is the Java binding for the Rosette API. The classes in
-        here help Java applications to communicate with the Rosette API.
-    </description>
+        <tag>HEAD</tag>
+    </scm>
+    <description>This is the Java binding for the Rosette API. The classes in here help Java applications to communicate with the Rosette API.</description>
     <distributionManagement>
         <site>
             <id>site</id>
@@ -45,9 +42,11 @@
     </distributionManagement>
     <properties>
         <bnd-maven-plugin.version>3.2.0</bnd-maven-plugin.version>
+        <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
         <site-skin-version>1.5</site-skin-version>
     </properties>
     <modules>
+        <module>annotations</module>
         <module>model</module>
         <module>json</module>
         <module>common</module>
@@ -76,6 +75,16 @@
     </dependencyManagement>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <compilerVersion>1.7</compilerVersion>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>com.basistech</groupId>
                 <artifactId>bbh-maven-plugin</artifactId>
@@ -138,6 +147,36 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/model/target/generated-sources/delombok/</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <!-- is there a better way? builder-helper has add-source but no remove-source -->
+                    <sourcepath>model/target/generated-sources/delombok;
+                        json/src/main/java;
+                        common/src/main/java;
+                        api/src/main/java</sourcepath>
+                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>

@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ public final class TokensExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         // When no options, use <?>.
-        DocumentRequest<?> request = new DocumentRequest.Builder<>().content(tokensData).build();
+        DocumentRequest<?> request = DocumentRequest.builder().content(tokensData).build();
         TokensResponse response = rosetteApi.perform(HttpRosetteAPI.TOKENS_SERVICE_PATH, request, TokensResponse.class);
         System.out.println(responseToJson(response));
     }

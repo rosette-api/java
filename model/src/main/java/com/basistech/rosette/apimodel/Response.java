@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,14 +25,19 @@ import java.util.Map;
  * Base class for all responses.
  * In this version, they have nothing in common.
  */
+@Getter
 public abstract class Response {
+    /**
+     * @return extended information
+     */
     protected Map<String, Object> extendedInformation;
 
-    public Map<String, Object> getExtendedInformation() {
-        return extendedInformation;
-    }
-
-    public void setExtendedInformation(String key, Object value) {
+    /**
+     * add more extended information to the response
+     * @param key
+     * @param value
+     */
+    public void addExtendedInformation(String key, Object value) {
         if (extendedInformation == null) {
             extendedInformation = new HashMap<>();
         }

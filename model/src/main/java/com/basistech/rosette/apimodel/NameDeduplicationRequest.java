@@ -16,87 +16,37 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.Builder;
+import lombok.Value;
+
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Request object for name-deduplication.
  *
  * This class carries the list of names to dedupe as well as the score threshold.
  */
+@Value
 public final class NameDeduplicationRequest extends Request {
 
+    /**
+     * @return the list of names
+     */
     @NotNull
-    private List<Name> names;
-    private Double threshold;
+    private final  List<Name> names;
 
     /**
-     * Constructor for {@code NameMatchingRequest}
-     * @param names List of names to be deduplicated
-     * @param threshold score threshold used to tune the strictness of the clustering algorithm. Can be null for default threshold.
-     */
-    public NameDeduplicationRequest(List<Name> names,
-                                    Double threshold) {
-        this.names = names;
-        this.threshold = threshold;
-    }
-
-    /**
-     * Gets the names
-     * @return the names
-     */
-    public List<Name> getNames() {
-        return names;
-    }
-
-    /**
-     * Gets the threshold
      * @return the threshold
      */
-    public Double getThreshold() {
-        return threshold;
-    }
+    private final Double threshold;
 
-    /**
-     * Sets the names
-     * @param names the names.
-     */
-    public void setNames(List<Name> names) {
+    @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
+    public NameDeduplicationRequest(String profileId,
+                                     List<Name> names,
+                                     Double threshold) {
+        super(profileId);
         this.names = names;
-    }
-
-    /**
-     * Sets the threshold
-     * @param threshold the threshold.
-     */
-    public void setThreshold(Double threshold) {
         this.threshold = threshold;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(names, threshold);
-    }
-
-    /**
-     * if the param is a {@code NameSimilarityRequest}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        NameDeduplicationRequest that = (NameDeduplicationRequest) o;
-
-        boolean sameThresh = (that.threshold == null || threshold == null) ? that.threshold == threshold
-                                                                           : Double.compare(that.threshold, threshold) == 0;
-
-        return sameThresh && Objects.equals(names, that.names);
     }
 }

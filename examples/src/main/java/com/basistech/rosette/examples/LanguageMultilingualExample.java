@@ -45,10 +45,9 @@ public final class LanguageMultilingualExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //rosetteApi.httpClient(CloseableHttpClient)
 
-        LanguageOptions options = new LanguageOptions();
-        options.setMultilingual(true);
+        LanguageOptions options = LanguageOptions.builder().multilingual(true).build();
 
-        DocumentRequest<LanguageOptions> request = new DocumentRequest.Builder<LanguageOptions>()
+        DocumentRequest<LanguageOptions> request = DocumentRequest.<LanguageOptions>builder()
             .content(languageMultilingualData)
             .options(options)
             .build();

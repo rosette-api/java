@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ public final class LanguageExample extends ExampleBase {
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        DocumentRequest<LanguageOptions> request = new DocumentRequest.Builder<LanguageOptions>().content(languageData).build();
+        DocumentRequest<LanguageOptions> request = DocumentRequest.<LanguageOptions>builder().content(languageData).build();
         LanguageResponse response = rosetteApi.perform(HttpRosetteAPI.LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
         System.out.println(responseToJson(response));
     }

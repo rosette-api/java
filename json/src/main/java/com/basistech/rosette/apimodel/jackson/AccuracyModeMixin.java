@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,10 +16,12 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonSerialize(using = AccuracyModeSerializer.class, keyUsing = AccuracyModeSerializer.class)
 @JsonDeserialize(using = AccuracyModeDeserializer.class)
-public class AccuracyModeMixin extends BaseMixin {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+abstract class AccuracyModeMixin {
 }

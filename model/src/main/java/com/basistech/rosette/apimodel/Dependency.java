@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,47 +16,30 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Objects;
+import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Builder;
+import lombok.Value;
 
+/**
+ * Syntactic dependency
+ */
+@Value
+@Builder
+@JacksonMixin
 public class Dependency {
+
+    /**
+     * @return the dependency type
+     */
     private final String dependencyType;
-    private final int governorTokenIndex;
-    private final int dependentTokenIndex;
 
-    public Dependency(String dependencyType,
-                      Integer governorTokenIndex,
-                      Integer dependentTokenIndex) {
-        this.dependencyType = dependencyType;
-        this.governorTokenIndex = governorTokenIndex;
-        this.dependentTokenIndex = dependentTokenIndex;
-    }
+    /**
+     * @return the governor token index
+     */
+    private final Integer governorTokenIndex;
 
-    public Integer getGovernorTokenIndex() {
-        return governorTokenIndex;
-    }
-
-    public Integer getDependentTokenIndex() {
-        return dependentTokenIndex;
-    }
-
-    public String getDependencyType() {
-        return dependencyType;
-    }
-
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        } else if (o != null && this.getClass() == o.getClass()) {
-            Dependency that = (Dependency)o;
-            return Objects.equals(this.governorTokenIndex, that.governorTokenIndex)
-                    && Objects.equals(this.dependentTokenIndex, that.dependentTokenIndex)
-                    && Objects.equals(this.dependencyType, that.dependencyType);
-        } else {
-            return false;
-        }
-    }
-
-    public int hashCode() {
-        return Objects.hash(this.governorTokenIndex, this.dependentTokenIndex, this.dependencyType);
-    }
+    /**
+     * @return the dependent token index
+     */
+    private final Integer dependentTokenIndex;
 }

@@ -1,5 +1,5 @@
 /*
-* Copyright 2016 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,45 +17,47 @@ package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.dm.AnnotatedText;
 import com.basistech.util.LanguageCode;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * A request to a document-processing endpoint that supplies the input as partially-annotated
- * input in a {@link AnnotatedText} object.
+ * input in a {@link com.basistech.rosette.dm.AnnotatedText} object.
  */
-public class AdmRequest<O extends Options> extends Request {
+@Value
+public final class AdmRequest<O extends Options> extends Request {
     public static final String ADM_CONTENT_TYPE = "model/vnd.rosette.annotated-data-model";
-    private final AnnotatedText text;
-    private final O options;
-    private final String genre;
-    private final LanguageCode language;
 
     /**
-     * Construct the request.
-     * @param text the annotated text.
-     * @param options the options, or null.
-     * @param genre the genre, or null.
-     * @param language the language, or null.
+     * @return {@link com.basistech.rosette.dm.AnnotatedText}
      */
-    public AdmRequest(AnnotatedText text, O options, String genre, LanguageCode language) {
+    private final AnnotatedText text;
+
+    /**
+     * @return options
+     */
+    private final O options;
+
+    /**
+     * @return genre
+     */
+    private final String genre;
+
+    /**
+     * @return language
+     */
+    private final LanguageCode language;
+
+    @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
+    public AdmRequest(String profileId,
+                       AnnotatedText text,
+                       O options,
+                       String genre,
+                       LanguageCode language) {
+        super(profileId);
         this.text = text;
         this.options = options;
         this.genre = genre;
         this.language = language;
-    }
-
-    public AnnotatedText getText() {
-        return text;
-    }
-
-    public O getOptions() {
-        return options;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public LanguageCode getLanguage() {
-        return language;
     }
 }

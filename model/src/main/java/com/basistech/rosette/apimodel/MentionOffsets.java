@@ -16,55 +16,30 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Objects;
+import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Builder;
+import lombok.Value;
+
+import javax.validation.constraints.Min;
 
 /**
  * The start and end offset/index for a given mention in a string of text
  */
+@Value
+@Builder
+@JacksonMixin
 public class MentionOffsets {
 
-    private Integer startOffset;
-    private Integer endOffset;
+    /**
+     * @return the offset for the first character of a mention, based on UTF-16 code page
+     */
+    @Min(0)
+    private final Integer startOffset;
 
     /**
-     * constructor for {@code MentionOffsets}
-     * @param startOffset offset for the first character of a mention
-     * @param endOffset offset for the last character of a mention
+     * @return the offset for the last character of a mention, based on UTF-16 code page
      */
-    public MentionOffsets(Integer startOffset, Integer endOffset) {
-        this.startOffset = startOffset;
-        this.endOffset = endOffset;
-    }
+    @Min(0)
+    private final Integer endOffset;
 
-    /**
-     * @returns the offset for the first character of a mention, based on UTF-16 code page
-     */
-    public Integer getStartOffset() {
-        return startOffset;
-    }
-
-    /**
-     * @returns the offset for the last character of a mention, based on UTF-16 code page
-     */
-    public Integer getEndOffset() {
-        return endOffset;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MentionOffsets that = (MentionOffsets) o;
-        return Objects.equals(startOffset, that.startOffset)
-                && Objects.equals(endOffset, that.endOffset);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(startOffset, endOffset);
-    }
 }

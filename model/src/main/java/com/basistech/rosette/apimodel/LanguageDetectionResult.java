@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,68 +17,26 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.util.LanguageCode;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * Language detection result
  */
-public final class LanguageDetectionResult {
+@Value
+@Builder
+@JacksonMixin
+public class LanguageDetectionResult {
 
+    /**
+     * @return the language code
+     */
     private final LanguageCode language;
-    private final Double confidence;
-    
-    /**
-     * Constructor for {@code LanguageDetectionResult}
-     * @param language detected language
-     * @param confidence detection confidence
-     */
-    public LanguageDetectionResult(
-            LanguageCode language,
-            Double confidence
-    ) {
-        this.language = language;
-        this.confidence = confidence;
-    }
 
     /**
-     * get the detected language 
-     * @return the language
-     */
-    public LanguageCode getLanguage() {
-        return language;
-    }
-
-    /**
-     * get the detection confidence
      * @return the confidence
      */
-    public Double getConfidence() {
-        return confidence;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = language != null ? language.hashCode() : 0;
-        temp = Double.doubleToLongBits(confidence);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
-
-    /**
-     * if the param is a {@code LanguageDetectionResult}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof LanguageDetectionResult)) {
-            return false;
-        }
-
-        LanguageDetectionResult that = (LanguageDetectionResult) o;
-        return language != null ? language.equals(that.getLanguage()) : that.language == null
-                && confidence.equals(that.getConfidence());
-    }
+    private final Double confidence;
 }

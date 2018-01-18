@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public final class SentimentExample extends ExampleBase {
             //The api object creates an http client, but to provide your own:
             //api.httpClient(CloseableHttpClient)
             // When no options, use <?>.
-            DocumentRequest<SentimentOptions> request = new DocumentRequest.Builder<SentimentOptions>().contentBytes(inputStream, "text/html").build();
+            DocumentRequest<SentimentOptions> request = DocumentRequest.<SentimentOptions>builder().content(inputStream, "text/html").build();
             SentimentResponse response = rosetteApi.perform(HttpRosetteAPI.SENTIMENT_SERVICE_PATH, request, SentimentResponse.class);
             System.out.println(responseToJson(response));
         }

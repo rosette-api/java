@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2017 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@
 package com.basistech.rosette.apimodel;
 
 import com.basistech.util.LanguageCode;
+import lombok.Builder;
+import lombok.Value;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -25,7 +27,7 @@ import java.io.InputStream;
  * This class represents the common information for all document processing requests to the Rosette API.
  * Most applications do not use this class directly; the methods of the {@code RosetteAPI} class
  * create request objects. More complex applications may create objects of
- * this class for themselves via the {@link DocumentRequest.Builder}.
+ * this class for themselves via the {@link DocumentRequest.DocumentRequestBuilder}.
  * <br>
  * On the wire, a request is a json object. All the endpoints accept the same set of items,
  * represented here, that describe the input document.
@@ -40,51 +42,60 @@ import java.io.InputStream;
  *     returned by the server for downloaded data.</li>
  * </ol>
  * In this object the 'content' item is an {@link Object}; it contains a {@link String}
- * for plain text, or an {@link java.io.InputStream} for binary data. {@link BaseBuilder}
+ * for plain text, or an {@link java.io.InputStream} for binary data. {@link DocumentRequest.DocumentRequestBuilder}
  * provides several alternative methods for setting this information.
  *
  * This class includes a 'genre' field. If no genre is specified, then the system
  * applies generic processing. Valid values for genre are specified in the API documentation.
  */
-public class DocumentRequest<O extends Options> extends Request {
-
-    private final LanguageCode language;
-    private final Object content;
-    private final String contentUri;
-    private final String contentType;
-    private final String genre;
-    private final O options;
+@Value
+public final class DocumentRequest<O extends Options> extends Request {
 
     /**
-     * Constructor for {@code DocumentRequest}
-     * @param language language code
-     * @param genre document genre, e.g. "social-media"
-     * @param content raw data
-     * @param contentUri uri pointing to the data
-     * @param contentType byte array of data
-     * @param options options
+     * @return the language code
      */
-    public DocumentRequest(
-            LanguageCode language,
-            String genre,
-            Object content,
-            String contentUri,
-            String contentType,
-            O options) {
+    private final LanguageCode language;
+
+    /**
+     * @return the request content
+     */
+    private final Object content;
+
+    /**
+     * @return the URI of request content
+     */
+    private final String contentUri;
+
+    /**
+     * @return request content type
+     */
+    private final String contentType;
+
+    /**
+     * @return request genre
+     */
+    private final String genre;
+
+    /**
+     * @return request options
+     */
+    private final O options;
+
+    @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
+    public DocumentRequest(String profileId,
+                           LanguageCode language,
+                           Object content,
+                           String contentUri,
+                           String contentType,
+                           String genre,
+                           O options) {
+        super(profileId);
         this.language = language;
         this.content = content;
         this.contentUri = contentUri;
         this.contentType = contentType;
         this.genre = genre;
         this.options = options;
-    }
-
-    /**
-     * get the language code
-     * @return the language code
-     */
-    public LanguageCode getLanguage() {
-        return language;
     }
 
     /**
@@ -100,7 +111,7 @@ public class DocumentRequest<O extends Options> extends Request {
     }
 
     /**
-     * get the content as an array of bytes 
+     * get the content as an array of bytes
      * @return the content as bytes
      */
     public InputStream getContentBytes() {
@@ -111,228 +122,50 @@ public class DocumentRequest<O extends Options> extends Request {
         }
     }
 
+    /**
+     * get content as an object
+     * @return the content as object
+     */
     public Object getRawContent() {
         return content;
     }
 
-    /**
-     * get the URI to accessible content (content and contentURI are mutually exlcusive) 
-     * @return the content URI
-     */
-    public String getContentUri() {
-        return contentUri;
-    }
-
-    /**
-     * get the content type 
-     * @return the content type
-     */
-    public String getContentType() {
-        return contentType;
-    }
-
-    /**
-     * get the genre.
-     * @return the genre.
-     */
-    public String getGenre() {
-        return genre;
-    }
-
-    /**
-     * get the options.
-     * @return the options.
-     */
-    public O getOptions() {
-        return options;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = language != null ? language.hashCode() : 0;
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (contentUri != null ? contentUri.hashCode() : 0);
-        result = 31 * result + (contentType != null ? contentType.hashCode() : 0);
-        result = 31 * result + (genre != null ? genre.hashCode() : 0);
-        result = 31 * result + (options != null ? options.hashCode() : 0);
-        return result;
-    }
-
-    /**
-     * if the param is a {@code DocumentRequest}, compare contents for equality
-     * @param o the object
-     * @return whether or not the param object is equal to this object
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof DocumentRequest)) {
-            return false;
-        }
-
-        DocumentRequest that = (DocumentRequest) o;
-        return language != null ? language.equals(that.getLanguage()) : that.language == null
-                && content != null ? content.equals(that.content) : that.content == null
-                && contentUri != null ? contentUri.equals(that.getContentUri()) : that.contentUri == null
-                && contentType != null ? contentType.equals(that.getContentType()) : that.contentType == null
-                && genre != null ? genre.equals(that.getGenre()) : that.genre == null
-                && options != null ? options.equals(that.getOptions()) : that.options == null;
-    }
-
-    /**
-     * Base class for builders for the request objects. This class is only useful to construct
-     * specific subtypes, it can't be used to construct 'plain' DocumentRequest objects.
-     * @param <T> The type of the request object.
-     * @param <O> The option class.
-     * @param <B> the builder subclass.
-     */
-    public abstract static class BaseBuilder<T extends DocumentRequest, O extends Options, B extends BaseBuilder<T, O, B>> {
-        protected LanguageCode language;
-        protected Object content;
-        protected String contentUri;
-        protected String contentType;
-        protected String genre;
-        protected O options;
-
-        protected abstract B getThis();
-
+    // need more fluent builder methods in addition to lombok defaults
+    public static class DocumentRequestBuilder<O extends Options> {
         /**
-         * Set the language of the input.
-         * @param language the language.
-         * @return this
-         */
-        public B language(LanguageCode language) {
-            this.language = language;
-            return getThis();
-        }
-
-        /**
-         * @return the language, if any, for this request.
-         */
-        LanguageCode language() {
-            return language;
-        }
-
-        /**
-         * Set the content for this request as a string of plain text.
-         * @param content the content.
+         * Specify the content as String. Use this for plain text.
+         * @param data The data.
          * @return this.
          */
-        public B content(String content) {
-            this.content = content;
-            return getThis();
-        }
-
-        /**
-         * @return the content for this request.
-         */
-        public String contentString() {
-            return (String) content;
-        }
-
-        /**
-         * Set the content for this request to be the URI of data to download.
-         * Only 'http:' URI's are supported.
-         * @param uri the URI.
-         * @return this.
-         */
-        public B contentUri(String uri) {
-            this.contentUri = uri;
-            return getThis();
-        }
-
-        /**
-         * @return the URI of the content to retrieve, if any.
-         */
-        public String contentUri() {
-            return contentUri;
-        }
-
-        /**
-         * Specify the content as bytes with a content type. Use this for
-         * formats other than plain text.
-         * @param bytes The data.
-         * @param contentType the content type.
-         * @return this.
-         */
-        public B contentBytes(byte[] bytes, String contentType) {
-            this.content = new ByteArrayInputStream(bytes);
-            this.contentType = contentType;
-            return getThis();
-        }
-
-        /**
-         * Specify the content as bytes with a content type. Use this for
-         * formats other than plain text.
-         * @param bytes The data.
-         * @param contentType the content type.
-         * @return this.
-         */
-        public B contentBytes(InputStream bytes, String contentType) {
-            this.content = bytes;
-            this.contentType = contentType;
-            return getThis();
-        }
-
-        /**
-         * @return the content bytes, if any.
-         */
-        public InputStream contentBytes() {
-            return (InputStream)content;
-        }
-
-        /**
-         * @return the content type for the content bytes.
-         */
-        public String contentType() {
-            return contentType;
-        }
-
-        /**
-         * Set the options for this request.
-         * @param options the options.
-         * @return this.
-         */
-        public B options(O options) {
-            this.options = options;
-            return getThis();
-        }
-
-        /**
-         * @return the options for this request.
-         */
-        public O options() {
-            return options;
-        }
-
-        public B genre(String genre) {
-            this.genre = genre;
-            return getThis();
-        }
-
-        public String genre() {
-            return genre;
-        }
-
-        /**
-         * Construct the request object.
-         * @return the request object.
-         */
-        public abstract T build();
-    }
-
-    /**
-     * Fluent builder class for {@link DocumentRequest} objects.
-     */
-    public static class Builder<O extends Options> extends BaseBuilder<DocumentRequest, O, Builder<O>> {
-        @Override
-        protected Builder<O> getThis() {
+        public DocumentRequestBuilder<O> content(String data) {
+            this.content = data;
             return this;
         }
 
-        @Override
-        public DocumentRequest<O> build() {
-            return new DocumentRequest<>(language, genre, content, contentUri, contentType, options);
+        /**
+         * Specify the content as bytes with a content type. Use this for
+         * formats other than plain text.
+         * @param bytes The data.
+         * @param contentType the content type.
+         * @return this.
+         */
+        public DocumentRequestBuilder<O> content(byte[] bytes, String contentType) {
+            this.content = new ByteArrayInputStream(bytes);
+            this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * Specify the content as bytes with a content type. Use this for
+         * formats other than plain text.
+         * @param bytes The data.
+         * @param contentType the content type.
+         * @return this.
+         */
+        public DocumentRequestBuilder<O> content(InputStream bytes, String contentType) {
+            this.content = bytes;
+            this.contentType = contentType;
+            return this;
         }
     }
-
 }

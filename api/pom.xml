@@ -19,7 +19,7 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
          <artifactId>rosette-api-java-binding</artifactId>
-        <version>1.8.106-SNAPSHOT</version>
+        <version>1.9.0-SNAPSHOT</version>
     </parent>
     <artifactId>rosette-api</artifactId>
     <name>rosette-api</name>
@@ -159,6 +159,13 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+                </configuration>
             </plugin>
         </plugins>
         <resources>
