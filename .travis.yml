@@ -1,5 +1,5 @@
 language: java
-script: mvn clean verify javadoc:aggregate
+script: mvn clean verify
 jdk:
 - oraclejdk8
 - openjdk7
