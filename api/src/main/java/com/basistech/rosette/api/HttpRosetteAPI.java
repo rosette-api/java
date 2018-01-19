@@ -82,7 +82,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
     public static final String SERVICE_NAME = "RosetteAPI";
     public static final String BINDING_VERSION = getVersion();
-    public static final String USER_AGENT_STR = SERVICE_NAME + "-Java/" + BINDING_VERSION;
+    public static final String USER_AGENT_STR = SERVICE_NAME + "-Java/" + BINDING_VERSION + "/" + System.getProperty("java.version");
     private static final Logger LOG = LoggerFactory.getLogger(HttpRosetteAPI.class);
     private String urlBase = DEFAULT_URL_BASE;
     private int failureRetries = 1;
