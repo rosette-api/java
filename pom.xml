@@ -45,7 +45,12 @@
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
         <http-components-version>4.5.2</http-components-version>
         <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
-        <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <!-- There appears to be a regression between 3.0.0-M1 and 3.0.0 that causes
+             exclusions to fail.  And javadoc does not like the generated annotations
+             source in the models sub-module. -->
+        <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>2.4</maven-source-plugin.version>
         <mockserver-version>3.10.2</mockserver-version>
         <site-skin-version>1.5</site-skin-version>
     </properties>
@@ -82,7 +87,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
+                <version>${maven-clean-plugin.version}</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -98,7 +103,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <compilerVersion>1.7</compilerVersion>
                     <source>1.7</source>
@@ -125,32 +130,22 @@
                 <version>${maven-javadoc-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>aggregate</id>
-                        <goals>
-                            <goal>aggregate</goal>
-                        </goals>
-                        <phase>site</phase>
-                    </execution>
-                    <execution>
-                        <id>plain</id>
+                        <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                        <phase>package</phase>
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- is there a better way? build-helper has add-source but no remove-source -->
-                    <sourcepath>model/target/generated-sources/delombok;
-                        json/src/main/java;
-                        common/src/main/java;
-                        api/src/main/java</sourcepath>
+                    <sourceFileExcludes>
+                        <exclude>**/target/generated-sources/annotations/com/basistech/rosette/apimodel/**</exclude>
+                    </sourceFileExcludes>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -212,27 +207,35 @@
             </plugins>
         </pluginManagement>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <id>non-aggregate</id>
-                        <reports>
-                            <report>javadoc</report>
-                        </reports>
-                    </reportSet>
-                    <reportSet>
-                        <id>aggregate</id>
-                        <reports>
-                            <report>aggregate</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
+    <profiles>
+        <profile>
+            <id>aggregate-javadoc</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>${maven-javadoc-plugin.version}</version>
+                            <executions>
+                                <execution>
+                                    <id>gh-pages</id>
+                                    <goals>
+                                        <goal>aggregate-jar</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <!-- is there a better way? builder-helper has add-source but no remove-source -->
+                                <sourcepath>model/target/generated-sources/delombok;
+                                    json/src/main/java;
+                                    common/src/main/java;
+                                    api/src/main/java</sourcepath>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 </project>
