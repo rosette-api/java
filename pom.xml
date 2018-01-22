@@ -48,7 +48,8 @@
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <!-- There appears to be a regression between 3.0.0-M1 and 3.0.0 that causes
              exclusions to fail.  And javadoc does not like the generated annotations
-             source in the models sub-module. -->
+             source in the models sub-module. And none of these versions work with
+             JDK 1.7.  Hence the exclusion in Travis. -->
         <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
         <mockserver-version>3.10.2</mockserver-version>

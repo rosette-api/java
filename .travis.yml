@@ -1,5 +1,6 @@
 language: java
-script: mvn clean verify
+# Javadoc exclusions don't work with JDK 1.7.
+script: mvn -Dmaven.javadoc.skip=true clean verify
 jdk:
 - oraclejdk8
 - openjdk7
