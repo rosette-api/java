@@ -24,6 +24,7 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -58,7 +59,7 @@ public class ModelTest {
 
     @Parameterized.Parameters(name = "inputStreamContent: {0}")
     public static Collection<Object[]> data() {
-        return Lists.newArrayList(new Object[] {Boolean.FALSE}, new Object[] {Boolean.TRUE});
+        return Arrays.asList(new Object[] {Boolean.FALSE}, new Object[] {Boolean.TRUE});
     }
 
 
