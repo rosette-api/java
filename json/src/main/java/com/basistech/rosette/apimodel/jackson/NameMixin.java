@@ -41,6 +41,11 @@ public abstract class NameMixin {
         //
     }
 
+    @JsonCreator
+    protected NameMixin (String name) {
+        //
+    }
+
     @JsonPOJOBuilder(withPrefix = "")
     abstract class NameBuilderMixin {
     }
