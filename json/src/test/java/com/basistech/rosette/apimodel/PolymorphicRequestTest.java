@@ -49,5 +49,9 @@ public class PolymorphicRequestTest extends Assert {
         json = "{\"names\": [{\"text\": \"Joe\"}, {\"text\": \"Smith\"}], \"threshold\": 0.8}";
         request = mapper.readValue(json, NameDeduplicationRequest.class);
         assertTrue(request instanceof NameDeduplicationRequest);
+
+        json = "{\"names\": [\"Joe\", \"Smith\"], \"threshold\": 0.8}";
+        request = mapper.readValue(json, NameDeduplicationRequest.class);
+        assertTrue(request instanceof NameDeduplicationRequest);
     }
 }
