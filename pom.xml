@@ -18,7 +18,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.9.1-SNAPSHOT</version>
+    <version>1.9.102-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
@@ -69,7 +69,7 @@
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>common-api</artifactId>
-                <version>36.1.3</version>
+                <version>36.1.4</version>
             </dependency>
             <dependency>
                 <groupId>com.basistech</groupId>
