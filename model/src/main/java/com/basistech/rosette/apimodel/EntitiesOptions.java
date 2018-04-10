@@ -34,6 +34,7 @@ public class EntitiesOptions extends Options {
             .calculateConfidence(false)
             .calculateSalience(false)
             .linkEntities(true)
+            .modelType("statistical")
             .build();
 
     /**
@@ -50,4 +51,9 @@ public class EntitiesOptions extends Options {
      * @return the linkEntities flag.
      */
     private final Boolean linkEntities;
+
+    /**
+     * @return the modelType to use.
+     */
+    private final String modelType;
 }

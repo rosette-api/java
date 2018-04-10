@@ -18,11 +18,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.9.102-SNAPSHOT</version>
+    <version>1.9.103-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
-        <version>1.2.0</version>
+        <version>1.1.9</version>
         <relativePath />
     </parent>
     <packaging>pom</packaging>
@@ -74,17 +74,12 @@
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>adm-model</artifactId>
-                <version>2.4.3</version>
+                <version>2.4.400</version>
             </dependency>
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>adm-json</artifactId>
-                <version>2.4.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>18.0</version>
+                <version>2.4.400</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
