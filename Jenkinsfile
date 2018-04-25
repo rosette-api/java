@@ -1,4 +1,4 @@
-node {
+node ("docker-light") {
     def SOURCEDIR = pwd()
     try {
         stage("Clean up") {
