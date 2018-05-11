@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2018 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.SentimentModelType;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
@@ -81,6 +82,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
     public static ObjectMapper setupObjectMapper(ObjectMapper mapper) {
         final ApiModelMixinModule module = new ApiModelMixinModule();
         mapper.registerModule(module);
+        mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
         return mapper;
     }
 }

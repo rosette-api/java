@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2018 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -49,4 +49,9 @@ public class MorphologyOptions extends Options {
      * indicates the default.
      */
     private final PartOfSpeechTagSet partOfSpeechTagSet;
+
+    /**
+     * @return the model type
+     */
+    private final MorphologyModelType modelType;
 }
