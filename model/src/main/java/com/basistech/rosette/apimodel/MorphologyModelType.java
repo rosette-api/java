@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Basis Technology Corp.
+ * Copyright 2018 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel.jackson;
+package com.basistech.rosette.apimodel;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-@JsonSerialize(using = SentimentModelTypeSerializer.class, keyUsing = SentimentModelTypeSerializer.class)
-@JsonDeserialize(using = SentimentModelTypeDeserializer.class)
-public class SentimentModelTypeMixin {
+/**
+ * A model type for morphological analysis.
+ */
+public enum MorphologyModelType {
+    DEFAULT,
+    PERCEPTRON,
+    /**/;
 }

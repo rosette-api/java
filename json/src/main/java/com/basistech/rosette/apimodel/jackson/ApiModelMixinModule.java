@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2018 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,18 +16,16 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.AccuracyMode;
 import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameDeduplicationRequest;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
-import com.basistech.rosette.apimodel.SentimentModelType;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleSerializers;
 
 /**
  * Jackson module to configure Json serialization and deserialization for the
@@ -59,17 +57,6 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(NameTranslationRequest.NameTranslationRequestBuilder.class, NameTranslationRequestMixin.NameTranslationRequestBuilderMixin.class);
         context.setMixInAnnotations(NameDeduplicationRequest.class, NameDeduplicationRequestMixin.class);
         context.setMixInAnnotations(NameDeduplicationRequest.NameDeduplicationRequestBuilder.class, NameDeduplicationRequestMixin.NameDeduplicationRequestBuilderMixin.class);
-
-        // TODO: see if there's something similar that can be used to generalize enum handling
-        context.setMixInAnnotations(AccuracyMode.class, AccuracyModeMixin.class);
-        SimpleSerializers keySerializers = new SimpleSerializers();
-        keySerializers.addSerializer(new AccuracyModeSerializer());
-        context.addKeySerializers(keySerializers);
-
-        context.setMixInAnnotations(SentimentModelType.class, SentimentModelTypeMixin.class);
-        keySerializers = new SimpleSerializers();
-        keySerializers.addSerializer(new SentimentModelTypeSerializer());
-        context.addKeySerializers(keySerializers);
     }
 
     /**
@@ -81,6 +68,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
     public static ObjectMapper setupObjectMapper(ObjectMapper mapper) {
         final ApiModelMixinModule module = new ApiModelMixinModule();
         mapper.registerModule(module);
+        mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
         return mapper;
     }
 }
