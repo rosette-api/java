@@ -32,6 +32,9 @@ To check out more examples, see [examples](examples/src/main/java/com/basistech/
 ## API Documentation ##
 Check out the [documentation](http://rosette-api.github.io/java)
 
+## Release Notes
+See the [Wiki](https://github.com/rosette-api/java/wiki/Release-Notes).
+
 ## Docker ##
 A Docker image for running the examples against the compiled source library is available on Docker Hub.
 
