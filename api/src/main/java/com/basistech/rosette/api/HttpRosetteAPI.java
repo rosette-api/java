@@ -18,6 +18,7 @@ package com.basistech.rosette.api;
 import com.basistech.rosette.RosetteRuntimeException;
 import com.basistech.rosette.api.common.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.AdmRequest;
+import com.basistech.rosette.apimodel.AdmResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.InfoResponse;
@@ -318,7 +319,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
 
         URIBuilder uriBuilder = new URIBuilder(urlStr);
 
-        if (AnnotatedText.class.isAssignableFrom(clazz)) {
+        if (AnnotatedText.class.isAssignableFrom(clazz) || AdmResponse.class.equals(clazz)) {
             //TODO: change output=rosette to Accept: model/vnd.rosette.annotated-data-model header
             uriBuilder.addParameter("output", "rosette");
         }
