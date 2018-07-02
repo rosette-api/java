@@ -18,9 +18,13 @@ package com.basistech.rosette.api;
 
 import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.SupportedLanguage;
+import com.basistech.rosette.apimodel.SupportedLanguagesResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.dm.AnnotatedText;
 
+import com.basistech.util.ISO15924;
+import com.basistech.util.LanguageCode;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
 import org.junit.Before;
@@ -43,6 +47,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.ENTITIES_SERVICE_PATH;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class BasicTest extends AbstractTest {
@@ -167,7 +172,7 @@ public class BasicTest extends AbstractTest {
                     .build();
             AnnotatedText testData = ApiModelMixinModule.setupObjectMapper(
                     new ObjectMapper()).readValue(reqIns, AnnotatedText.class);
-            AnnotatedText resp = api.perform(HttpRosetteAPI.ENTITIES_SERVICE_PATH,
+            AnnotatedText resp = api.perform(ENTITIES_SERVICE_PATH,
                     AdmRequest.builder().text(testData).build());
             assertEquals("Q100", resp.getEntities().get(0).getEntityId());
         }
@@ -210,6 +215,33 @@ public class BasicTest extends AbstractTest {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    @Test
+    public void testLanguageSupport() throws Exception {
+        try (InputStream respIns = getClass().getResourceAsStream("/supported-languages.json")) {
+            mockServer.when(HttpRequest.request()
+                    .withMethod("GET")
+                    .withPath("/rest/v1/entities/supported-languages"))
+                    .respond(HttpResponse.response()
+                            .withStatusCode(200)
+                            .withHeader("Content-Type", "application/json")
+                            .withBody(IOUtils.toString(respIns, "UTF-8")));
+            api = new HttpRosetteAPI.Builder()
+                    .key("foo-key")
+                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .build();
+            SupportedLanguagesResponse resp = api.getSupportedLanguages(ENTITIES_SERVICE_PATH);
+            assertEquals(2, resp.getSupportedLanguages().size());
+            assert(resp.getSupportedLanguages().contains(SupportedLanguage.builder()
+                    .language(LanguageCode.ENGLISH)
+                    .script(ISO15924.Latn)
+                    .build()));
+            assert(resp.getSupportedLanguages().contains(SupportedLanguage.builder()
+                    .language(LanguageCode.JAPANESE)
+                    .script(ISO15924.Kana)
+                    .build()));
         }
     }
 }

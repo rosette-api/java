@@ -16,11 +16,13 @@
 
 package com.basistech.rosette.api.common;
 
+import java.io.IOException;
 import java.util.concurrent.Future;
 
 import com.basistech.rosette.apimodel.CommonRosetteAPIException;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.SupportedLanguagesResponse;
 import com.basistech.rosette.dm.AnnotatedText;
 
 /**
@@ -45,6 +47,16 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     public static final String TOPICS_SERVICE_PATH = "/topics";
     public static final String INFO_SERVICE_PATH = "/info";
     public static final String PING_SERVICE_PATH = "/ping";
+    public static final String SUPPORTED_LANGUAGES_SUBPATH = "/supported-languages";
+
+
+    /**
+     * Gets the set of language and script codes supported by the specified Rosette API endpoint.
+     *
+     * @return SupportedLanguagesResponse
+     * @throws CommonRosetteAPIException for an error.
+     */
+    public abstract SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws CommonRosetteAPIException;
 
     /**
      * Perform a request to an endpoint of the Rosette API.

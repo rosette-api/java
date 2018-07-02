@@ -25,6 +25,7 @@ import com.basistech.rosette.apimodel.InfoResponse;
 import com.basistech.rosette.apimodel.PingResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.SupportedLanguagesResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
 import com.basistech.rosette.dm.AnnotatedText;
@@ -216,6 +217,18 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      */
     public PingResponse ping() throws IOException, HttpRosetteAPIException {
         return sendGetRequest(urlBase + PING_SERVICE_PATH, PingResponse.class);
+    }
+
+    /**
+     * Gets the set of language and script codes supported by the specified Rosette API endpoint.
+     *
+     * @return SupportedLanguagesResponse
+     * @throws HttpRosetteAPIException Rosette specific exception
+     * @throws IOException         General IO exception
+     */
+    @Override
+    public SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws HttpRosetteAPIException  {
+        return sendGetRequest(urlBase + endpoint + SUPPORTED_LANGUAGES_SUBPATH, SupportedLanguagesResponse.class);
     }
 
     /**
