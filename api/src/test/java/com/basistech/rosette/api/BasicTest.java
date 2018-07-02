@@ -234,11 +234,11 @@ public class BasicTest extends AbstractTest {
                     .build();
             SupportedLanguagesResponse resp = api.getSupportedLanguages(ENTITIES_SERVICE_PATH);
             assertEquals(2, resp.getSupportedLanguages().size());
-            assert(resp.getSupportedLanguages().contains(SupportedLanguage.builder()
+            assertTrue(resp.getSupportedLanguages().contains(SupportedLanguage.builder()
                     .language(LanguageCode.ENGLISH)
                     .script(ISO15924.Latn)
                     .build()));
-            assert(resp.getSupportedLanguages().contains(SupportedLanguage.builder()
+            assertTrue(resp.getSupportedLanguages().contains(SupportedLanguage.builder()
                     .language(LanguageCode.JAPANESE)
                     .script(ISO15924.Kana)
                     .build()));
