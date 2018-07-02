@@ -16,7 +16,6 @@
 
 package com.basistech.rosette.api.common;
 
-import java.io.IOException;
 import java.util.concurrent.Future;
 
 import com.basistech.rosette.apimodel.CommonRosetteAPIException;
