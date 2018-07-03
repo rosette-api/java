@@ -223,8 +223,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * Gets the set of language and script codes supported by the specified Rosette API endpoint.
      *
      * @return SupportedLanguagesResponse
-     * @throws HttpRosetteAPIException Rosette specific exception
-     * @throws IOException         General IO exception
+     * @throws HttpRosetteAPIException for an error returned from the Rosette API.
      */
     @Override
     public SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws HttpRosetteAPIException  {
