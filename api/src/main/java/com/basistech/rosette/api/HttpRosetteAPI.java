@@ -227,7 +227,11 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      */
     @Override
     public SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws HttpRosetteAPIException  {
-        return sendGetRequest(urlBase + endpoint + SUPPORTED_LANGUAGES_SUBPATH, SupportedLanguagesResponse.class);
+        if (DOC_ENDPOINTS.contains(endpoint)) {
+            return sendGetRequest(urlBase + endpoint + SUPPORTED_LANGUAGES_SUBPATH, SupportedLanguagesResponse.class);
+        } else {
+            return null;
+        }
     }
 
     /**
