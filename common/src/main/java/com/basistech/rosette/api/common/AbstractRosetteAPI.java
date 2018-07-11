@@ -16,11 +16,15 @@
 
 package com.basistech.rosette.api.common;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.Future;
 
 import com.basistech.rosette.apimodel.CommonRosetteAPIException;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.SupportedLanguagesResponse;
 import com.basistech.rosette.dm.AnnotatedText;
 
 /**
@@ -45,6 +49,36 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     public static final String TOPICS_SERVICE_PATH = "/topics";
     public static final String INFO_SERVICE_PATH = "/info";
     public static final String PING_SERVICE_PATH = "/ping";
+    public static final String SUPPORTED_LANGUAGES_SUBPATH = "/supported-languages";
+
+    public static final Set<String> DOC_ENDPOINTS = new HashSet<>(Arrays.asList(
+            LANGUAGE_SERVICE_PATH,
+            MORPHOLOGY_SERVICE_PATH,
+            ENTITIES_SERVICE_PATH,
+            CATEGORIES_SERVICE_PATH,
+            RELATIONSHIPS_SERVICE_PATH,
+            SENTIMENT_SERVICE_PATH,
+            TOKENS_SERVICE_PATH,
+            SENTENCES_SERVICE_PATH,
+            TEXT_EMBEDDING_SERVICE_PATH,
+            SYNTAX_DEPENDENCIES_SERVICE_PATH,
+            TRANSLITERATION_SERVICE_PATH,
+            TOPICS_SERVICE_PATH
+    ));
+
+    public static final Set<String> NAMES_ENDPOINTS = new HashSet<>(Arrays.asList(
+            NAME_SIMILARITY_SERVICE_PATH,
+            NAME_TRANSLATION_SERVICE_PATH,
+            NAME_DEDUPLICATION_SERVICE_PATH
+    ));
+
+    /**
+     * Gets the set of language and script codes supported by the specified Rosette API endpoint.
+     *
+     * @return SupportedLanguagesResponse
+     * @throws CommonRosetteAPIException for an error.
+     */
+    public abstract SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws CommonRosetteAPIException;
 
     /**
      * Perform a request to an endpoint of the Rosette API.
