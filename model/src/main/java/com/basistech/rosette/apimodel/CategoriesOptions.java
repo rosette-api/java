@@ -35,4 +35,9 @@ public class CategoriesOptions extends Options {
      */
     @Min(1)
     private final Integer numCategories;
+
+    /**
+     * @return the name of the model directory
+     */
+    private final String modelName;
 }
