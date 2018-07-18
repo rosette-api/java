@@ -82,4 +82,9 @@ public class Entity {
      */
     private final Label sentiment;
 
+    /**
+     * @return the DBpediaType
+     */
+    private final String dbpediaType;
+
 }

@@ -16,7 +16,8 @@
       "confidence": 0.021874076835034832, 
       "entityId": "Q1088831", 
       "indocChainId": 2, 
-      "mention": "Washington"
+      "mention": "Washington",
+      "dbpediaType": "test1"
     }
   ]
 }

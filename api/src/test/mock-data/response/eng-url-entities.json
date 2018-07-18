@@ -19,7 +19,9 @@
       "indocChainId": 2, 
       "mention": "Washington", 
       "normalized": "Washington", 
-      "type": "LOCATION"
+      "type": "LOCATION",
+      "dbpediaType": "test1"
+
     }
   ]
 }
