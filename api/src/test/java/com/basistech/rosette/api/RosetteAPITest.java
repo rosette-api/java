@@ -58,8 +58,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.hamcrest.core.Is.is;
-
 @RunWith(Parameterized.class)
 public class RosetteAPITest extends AbstractTest {
     private final String testFilename;
