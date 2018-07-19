@@ -317,7 +317,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyEntity(EntitiesResponse response) throws IOException {
         EntitiesResponse goldResponse = mapper.readValue(responseStr, EntitiesResponse.class);
-        assertThat(response.getEntities(), is(goldResponse.getEntities()));
+        assertEquals(goldResponse.getEntities(), response.getEntities());
     }
 
     @Test
