@@ -267,6 +267,20 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     @Test
+    public void testGetEntityLinked() throws IOException {
+        if (!(testFilename.endsWith("-entities_linked.json"))) {
+            return;
+        }
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
+        try {
+            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
+            verifyEntity(response);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+    @Test
     public void testIgnoredUnknownField() throws IOException {
         if ("unknown-field-entities.json".equals(testFilename)) {
             DocumentRequest<?> request = readValue(DocumentRequest.class);
@@ -301,7 +315,7 @@ public class RosetteAPITest extends AbstractTest {
 
     private void verifyEntity(EntitiesResponse response) throws IOException {
         EntitiesResponse goldResponse = mapper.readValue(responseStr, EntitiesResponse.class);
-        assertEquals(response.getEntities().size(), goldResponse.getEntities().size());
+        assertEquals(goldResponse.getEntities(), response.getEntities());
     }
 
     @Test

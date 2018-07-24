@@ -56,4 +56,9 @@ public class EntitiesOptions extends Options {
      * @return the modelType to use.
      */
     private final String modelType;
+
+    /**
+     * @retrun the includeDBpediaType flag.
+     */
+    private final Boolean includeDBpediaType;
 }

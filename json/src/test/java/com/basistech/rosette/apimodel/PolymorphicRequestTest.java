@@ -38,6 +38,10 @@ public class PolymorphicRequestTest extends Assert {
         Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
         assertTrue(request instanceof DocumentRequest);
 
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaType\": true, \"calculateConfidence\": true}}";
+        request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
+        assertTrue(request instanceof DocumentRequest);
+
         json = "{\"name1\": {\"text\": \"Joe\"}, \"name2\": {\"text\": \"Geo\"}}";
         request = mapper.readValue(json, NameSimilarityRequest.class);
         assertTrue(request instanceof NameSimilarityRequest);
