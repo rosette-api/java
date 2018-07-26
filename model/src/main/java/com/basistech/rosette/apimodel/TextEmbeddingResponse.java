@@ -33,7 +33,17 @@ import java.util.List;
 public class TextEmbeddingResponse extends Response {
 
     /**
-     * @return the embedding vector as a list
+     * @return the document embedding vector as a list
      */
-    private final List<Double> embedding;
+    private final List<Double> documentEmbedding;
+
+    /**
+     * @return list of tokens, or {@code null}
+     */
+    private final List<String> tokens;
+
+    /**
+     * @return list of per-token embeddings, 1:1 with tokens, or {@code null}
+     */
+    private final List<List<Double>> tokenEmbeddings;
 }
