@@ -28,7 +28,7 @@ import lombok.Value;
 public class TextEmbeddingOptions extends Options {
 
     /**
-     * @return whether embeddings should be returned for each token
+     * @return whether embeddings should be returned for each token in addition to the whole document
      */
     private Boolean perToken;
 
