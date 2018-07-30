@@ -31,8 +31,19 @@ import javax.validation.constraints.Min;
 public class CategoriesOptions extends Options {
 
     /**
+     * @deprecated
      * @return number of categories
      */
     @Min(1)
     private final Integer numCategories;
+
+    /**
+     * @return whether or not we are in single label mode
+     */
+    private final boolean singleLabel;
+
+    /**
+     * @return the score threshold
+     */
+    private final Float scoreThreshold;
 }

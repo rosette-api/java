@@ -35,5 +35,5 @@ public class CategoriesResponse extends Response {
     /**
      * @return a list of categories
      */
-    private final List<Label> categories;
+    private final List<CategoryLabel> categories;
 }

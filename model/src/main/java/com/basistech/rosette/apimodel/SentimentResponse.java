@@ -30,7 +30,7 @@ import java.util.Collection;
 @EqualsAndHashCode
 @Builder
 @JacksonMixin
-public  class SentimentResponse extends Response {
+public class SentimentResponse extends Response {
 
     /**
      * @return the whole-document sentiment.
