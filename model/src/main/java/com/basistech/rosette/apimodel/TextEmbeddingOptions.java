@@ -28,6 +28,6 @@ public class TextEmbeddingOptions extends Options {
     /**
      * @return whether embeddings should be returned for each token
      */
-    private Boolean perTokenEmbeddings;
+    private Boolean perToken;
 
 }
