@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2018 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,37 +13,23 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.annotations.JacksonMixin;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Value;
 
-import java.util.List;
-
-/** 
- * Simple api response data model for text embedding
+/**
+ * Text embedding options
  */
-@Getter
-@EqualsAndHashCode
+@Value
 @Builder
 @JacksonMixin
-public class TextEmbeddingResponse extends Response {
+public class TextEmbeddingOptions extends Options {
 
     /**
-     * @return the document embedding vector as a list
+     * @return whether embeddings should be returned for each token in addition to the whole document
      */
-    private final List<Double> documentEmbedding;
+    private Boolean perToken;
 
-    /**
-     * @return list of tokens, or {@code null}
-     */
-    private final List<String> tokens;
-
-    /**
-     * @return list of per-token embeddings, 1:1 with tokens, or {@code null}
-     */
-    private final List<List<Double>> tokenEmbeddings;
 }
