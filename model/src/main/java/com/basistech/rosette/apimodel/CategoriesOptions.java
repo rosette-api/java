@@ -41,7 +41,6 @@ public class CategoriesOptions extends Options {
 
     /**
      * Single label mode will return only the highest scoring category
-     * instead of all categories with a positive score
      * @return whether or not we are in single label mode
      */
     private final boolean singleLabel;
