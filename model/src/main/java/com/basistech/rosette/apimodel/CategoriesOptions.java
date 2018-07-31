@@ -32,7 +32,7 @@ public class CategoriesOptions extends Options {
 
     /**
      * @deprecated
-     * users should use {@link singleLabel} to return only one result
+     * Users should use {@link singleLabel} to return only one result
      * or {@link scoreThreshold} to filter results based on raw score
      * @return number of categories
      */
@@ -41,6 +41,8 @@ public class CategoriesOptions extends Options {
 
     /**
      * Single label mode will return only the highest scoring category
+     * If singleLabel is false, every category whose score exceeds the default
+     * (or specified) {@link scoreThreshold} value will be returned
      * @return whether or not we are in single label mode
      */
     private final Boolean singleLabel;
