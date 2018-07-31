@@ -43,7 +43,7 @@ public class CategoriesOptions extends Options {
      * Single label mode will return only the highest scoring category
      * @return whether or not we are in single label mode
      */
-    private final boolean singleLabel;
+    private final Boolean singleLabel;
 
     /**
      * threshold against the category's raw score, whose value
