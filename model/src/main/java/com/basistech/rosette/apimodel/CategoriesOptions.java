@@ -40,7 +40,7 @@ public class CategoriesOptions extends Options {
     private final Integer numCategories;
 
     /**
-     * Single label mode will return only the highest scoring category
+     * Single label mode will return only the highest scoring category, regardless of score
      * If singleLabel is false, every category whose score exceeds the default
      * (or specified) {@link scoreThreshold} value will be returned
      * @return whether or not we are in single label mode
