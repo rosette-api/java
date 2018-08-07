@@ -31,8 +31,26 @@ import javax.validation.constraints.Min;
 public class CategoriesOptions extends Options {
 
     /**
+     * @deprecated
+     * Users should use {@link singleLabel} to return only one result
+     * or {@link scoreThreshold} to filter results based on raw score
      * @return number of categories
      */
     @Min(1)
     private final Integer numCategories;
+
+    /**
+     * Single label mode will return only the highest scoring category, regardless of score
+     * If singleLabel is false, every category whose score exceeds the default
+     * (or specified) {@link scoreThreshold} value will be returned
+     * @return whether or not we are in single label mode
+     */
+    private final Boolean singleLabel;
+
+    /**
+     * threshold against the category's raw score, whose value
+     * can be any real number.
+     * @return the score threshold
+     */
+    private final Float scoreThreshold;
 }

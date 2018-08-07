@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2018 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,27 +13,29 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.annotations.JacksonMixin;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Value;
 
-import java.util.List;
-
-/**
- *  Simple api response data model for categorization
- **/
-@Getter
-@EqualsAndHashCode
+@Value
 @Builder
 @JacksonMixin
-public class CategoriesResponse extends Response {
+public class CategoryLabel {
 
     /**
-     * @return a list of categories
+     * @return the label.
      */
-    private final List<CategoryLabel> categories;
+    private final String label;
+
+    /**
+     * @return the confidence score  (0.0-1.0)
+     */
+    private final Double confidence;
+
+    /**
+     * @return the raw score (-INF-INF)
+     */
+    private final Double score;
 }
