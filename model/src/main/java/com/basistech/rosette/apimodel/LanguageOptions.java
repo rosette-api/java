@@ -99,4 +99,9 @@ public class LanguageOptions extends Options {
      */
     private final Set<LanguageWeight> languageWeightAdjustments;
 
+    /**
+     * @return whether to distinguish between North Korean and South Korean
+     */
+    private final Boolean koreanDialects;
+
 }
