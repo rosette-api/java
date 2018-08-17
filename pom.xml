@@ -69,7 +69,7 @@
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>common-api</artifactId>
-                <version>36.1.4</version>
+                <version>36.2.0</version>
             </dependency>
             <dependency>
                 <groupId>com.basistech</groupId>
