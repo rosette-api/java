@@ -52,18 +52,23 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     public static final String SUPPORTED_LANGUAGES_SUBPATH = "/supported-languages";
 
     public static final Set<String> DOC_ENDPOINTS = new HashSet<>(Arrays.asList(
-            LANGUAGE_SERVICE_PATH,
-            MORPHOLOGY_SERVICE_PATH,
-            ENTITIES_SERVICE_PATH,
-            CATEGORIES_SERVICE_PATH,
-            RELATIONSHIPS_SERVICE_PATH,
-            SENTIMENT_SERVICE_PATH,
-            TOKENS_SERVICE_PATH,
-            SENTENCES_SERVICE_PATH,
-            TEXT_EMBEDDING_SERVICE_PATH,
-            SYNTAX_DEPENDENCIES_SERVICE_PATH,
-            TRANSLITERATION_SERVICE_PATH,
-            TOPICS_SERVICE_PATH
+        LANGUAGE_SERVICE_PATH,
+        MORPHOLOGY_SERVICE_PATH,
+        MORPHOLOGY_SERVICE_PATH + "/complete",
+        MORPHOLOGY_SERVICE_PATH + "/lemmas",
+        MORPHOLOGY_SERVICE_PATH + "/parts-of-speech",
+        MORPHOLOGY_SERVICE_PATH + "/compound-components",
+        MORPHOLOGY_SERVICE_PATH + "/han-readings",
+        ENTITIES_SERVICE_PATH,
+        CATEGORIES_SERVICE_PATH,
+        RELATIONSHIPS_SERVICE_PATH,
+        SENTIMENT_SERVICE_PATH,
+        TOKENS_SERVICE_PATH,
+        SENTENCES_SERVICE_PATH,
+        TEXT_EMBEDDING_SERVICE_PATH,
+        SYNTAX_DEPENDENCIES_SERVICE_PATH,
+        TRANSLITERATION_SERVICE_PATH,
+        TOPICS_SERVICE_PATH
     ));
 
     public static final Set<String> NAMES_ENDPOINTS = new HashSet<>(Arrays.asList(
