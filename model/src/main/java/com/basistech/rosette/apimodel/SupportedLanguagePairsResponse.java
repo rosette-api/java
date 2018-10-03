@@ -17,6 +17,7 @@
 package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.annotations.JacksonMixin;
+
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,15 +25,15 @@ import lombok.Getter;
 import java.util.Set;
 
 /**
- * Supported languages/scripts for a given endpoint
+ * Supported language/script/scheme pairs for name-translation and name-similarity endpoints
  */
 @Getter
 @EqualsAndHashCode
 @Builder
 @JacksonMixin
-public class SupportedLanguagesResponse extends Response {
+public class SupportedLanguagePairsResponse extends Response {
     /**
-     * @return the set of supported languages/scripts
+     * @return the set of supported language pairs
      */
-    private final Set<SupportedLanguage> supportedLanguages;
+    private final Set<SupportedLanguagePair> supportedLanguagePairs;
 }

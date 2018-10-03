@@ -24,6 +24,7 @@ import java.util.concurrent.Future;
 import com.basistech.rosette.apimodel.CommonRosetteAPIException;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.SupportedLanguagePairsResponse;
 import com.basistech.rosette.apimodel.SupportedLanguagesResponse;
 import com.basistech.rosette.dm.AnnotatedText;
 
@@ -84,6 +85,16 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
      * @throws CommonRosetteAPIException for an error.
      */
     public abstract SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws CommonRosetteAPIException;
+
+    /**
+     * Gets the set of language, script codes and transliteration scheme pairs supported by the specified Rosette API
+     * endpoint.
+     *
+     * @param endpoint Rosette API endpoint.
+     * @return SupportedLanguagePairsResponse
+     * @throws CommonRosetteAPIException for an error returned from the Rosette API.
+     */
+    public abstract SupportedLanguagePairsResponse getSupportedLanguagePairs(String endpoint) throws CommonRosetteAPIException;
 
     /**
      * Perform a request to an endpoint of the Rosette API.
