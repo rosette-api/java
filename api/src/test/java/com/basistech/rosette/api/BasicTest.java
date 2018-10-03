@@ -19,12 +19,17 @@ package com.basistech.rosette.api;
 import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.SupportedLanguage;
+import com.basistech.rosette.apimodel.SupportedLanguagePair;
+import com.basistech.rosette.apimodel.SupportedLanguagePairsResponse;
 import com.basistech.rosette.apimodel.SupportedLanguagesResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.dm.AnnotatedText;
 
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
+import com.basistech.util.TextDomain;
+import com.basistech.util.TransliterationScheme;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
 import org.junit.Before;
@@ -48,6 +53,8 @@ import java.util.Set;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static com.basistech.rosette.api.common.AbstractRosetteAPI.ENTITIES_SERVICE_PATH;
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_SIMILARITY_SERVICE_PATH;
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class BasicTest extends AbstractTest {
@@ -241,6 +248,62 @@ public class BasicTest extends AbstractTest {
             assertTrue(resp.getSupportedLanguages().contains(SupportedLanguage.builder()
                     .language(LanguageCode.JAPANESE)
                     .script(ISO15924.Kana)
+                    .build()));
+        }
+    }
+
+    @Test
+    public void testNameSimilarityLanguageSupport() throws Exception {
+        try (InputStream respIns = getClass().getResourceAsStream("/name-similarity-supported-languages.json")) {
+            mockServer.when(HttpRequest.request()
+                    .withMethod("GET")
+                    .withPath("/rest/v1/name-similarity/supported-languages"))
+                    .respond(HttpResponse.response()
+                            .withStatusCode(200)
+                            .withHeader("Content-Type", "application/json")
+                            .withBody(IOUtils.toString(respIns, "UTF-8")));
+            api = new HttpRosetteAPI.Builder()
+                    .key("foo-key")
+                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .build();
+
+            SupportedLanguagePairsResponse resp = api.getSupportedLanguagePairs(NAME_SIMILARITY_SERVICE_PATH);
+            assertEquals(2, resp.getSupportedLanguagePairs().size());
+            assertTrue(resp.getSupportedLanguagePairs().contains(SupportedLanguagePair.builder()
+                    .source(new TextDomain(ISO15924.Latn, LanguageCode.ENGLISH, null))
+                    .target(new TextDomain(ISO15924.Latn, LanguageCode.ENGLISH, null))
+                    .build()));
+            assertTrue(resp.getSupportedLanguagePairs().contains(SupportedLanguagePair.builder()
+                    .source(new TextDomain(ISO15924.Arab, LanguageCode.ARABIC, null))
+                    .target(new TextDomain(ISO15924.Arab, LanguageCode.ARABIC, null))
+                    .build()));
+        }
+    }
+
+    @Test
+    public void testNameTranslationLanguageSupport() throws Exception {
+        try (InputStream respIns = getClass().getResourceAsStream("/name-translation-supported-languages.json")) {
+            mockServer.when(HttpRequest.request()
+                    .withMethod("GET")
+                    .withPath("/rest/v1/name-translation/supported-languages"))
+                    .respond(HttpResponse.response()
+                            .withStatusCode(200)
+                            .withHeader("Content-Type", "application/json")
+                            .withBody(IOUtils.toString(respIns, "UTF-8")));
+            api = new HttpRosetteAPI.Builder()
+                    .key("foo-key")
+                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .build();
+
+            SupportedLanguagePairsResponse resp = api.getSupportedLanguagePairs(NAME_TRANSLATION_SERVICE_PATH);
+            assertEquals(2, resp.getSupportedLanguagePairs().size());
+            assertTrue(resp.getSupportedLanguagePairs().contains(SupportedLanguagePair.builder()
+                    .source(new TextDomain(ISO15924.Latn, LanguageCode.ENGLISH, TransliterationScheme.NATIVE))
+                    .target(new TextDomain(ISO15924.Latn, LanguageCode.ENGLISH, TransliterationScheme.IC))
+                    .build()));
+            assertTrue(resp.getSupportedLanguagePairs().contains(SupportedLanguagePair.builder()
+                    .source(new TextDomain(ISO15924.Arab, LanguageCode.ARABIC, TransliterationScheme.NATIVE))
+                    .target(new TextDomain(ISO15924.Arab, LanguageCode.ARABIC, TransliterationScheme.NATIVE))
                     .build()));
         }
     }

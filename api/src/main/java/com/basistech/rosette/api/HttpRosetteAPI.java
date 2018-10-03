@@ -25,6 +25,7 @@ import com.basistech.rosette.apimodel.InfoResponse;
 import com.basistech.rosette.apimodel.PingResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.Response;
+import com.basistech.rosette.apimodel.SupportedLanguagePairsResponse;
 import com.basistech.rosette.apimodel.SupportedLanguagesResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
@@ -227,8 +228,25 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      */
     @Override
     public SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws HttpRosetteAPIException  {
-        if (DOC_ENDPOINTS.contains(endpoint)) {
+        if (DOC_ENDPOINTS.contains(endpoint) || endpoint.equals(NAME_DEDUPLICATION_SERVICE_PATH)) {
             return sendGetRequest(urlBase + endpoint + SUPPORTED_LANGUAGES_SUBPATH, SupportedLanguagesResponse.class);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Gets the set of language, script codes and transliteration scheme pairs supported by the specified Rosette API
+     * endpoint.
+     *
+     * @param endpoint Rosette API endpoint.
+     * @return SupportedLanguagePairsResponse
+     * @throws HttpRosetteAPIException for an error returned from the Rosette API.
+     */
+    @Override
+    public SupportedLanguagePairsResponse getSupportedLanguagePairs(String endpoint) throws HttpRosetteAPIException  {
+        if (NAMES_ENDPOINTS.contains(endpoint) && !endpoint.equals(NAME_DEDUPLICATION_SERVICE_PATH)) {
+            return sendGetRequest(urlBase + endpoint + SUPPORTED_LANGUAGES_SUBPATH, SupportedLanguagePairsResponse.class);
         } else {
             return null;
         }

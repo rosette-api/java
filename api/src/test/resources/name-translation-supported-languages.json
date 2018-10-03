@@ -1,0 +1,6 @@
+{
+  "supportedLanguagePairs": [
+    {"source": {"language": "eng", "script": "Latn", "transliterationScheme": "native"}, "target": {"language": "eng", "script": "Latn", "transliterationScheme": "ic"}},
+    {"source": {"language": "ara", "script": "Arab", "transliterationScheme": "native"}, "target": {"language": "ara", "script": "Arab", "transliterationScheme": "native"}}
+  ]
+}
