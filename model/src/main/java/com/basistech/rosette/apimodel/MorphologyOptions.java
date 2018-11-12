@@ -54,4 +54,9 @@ public class MorphologyOptions extends Options {
      * @return the model type
      */
     private final MorphologyModelType modelType;
+
+    /**
+     * @return the disambiguator type
+     */
+    private final DisambiguatorType disambiguatorType;
 }
