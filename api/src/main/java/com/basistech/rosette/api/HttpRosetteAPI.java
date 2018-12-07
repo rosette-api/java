@@ -35,7 +35,6 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.common.io.ByteStreams;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
@@ -61,6 +60,7 @@ import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -159,7 +159,19 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @throws IOException
      */
     private static byte[] getBytes(InputStream is) throws IOException {
-        return ByteStreams.toByteArray(is);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        byte[] buf = new byte[4096];
+        long total = 0;
+
+        while (true) {
+            int r = is.read(buf);
+            if (r == -1) {
+                return out.toByteArray();
+            }
+            out.write(buf, 0, r);
+            total += (long)r;
+        }
     }
 
     private void initClient(String key, List<Header> additionalHeaders) {
