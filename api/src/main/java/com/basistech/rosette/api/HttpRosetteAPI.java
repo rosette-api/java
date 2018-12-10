@@ -162,15 +162,14 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         byte[] buf = new byte[4096];
-        long total = 0;
 
         while (true) {
             int r = is.read(buf);
             if (r == -1) {
+                out.flush();
                 return out.toByteArray();
             }
             out.write(buf, 0, r);
-            total += (long)r;
         }
     }
 
