@@ -1,0 +1,6 @@
+{
+  "supportedLanguagePairs": [
+    {"source": {"language": "eng", "script": "Latn"}, "target": {"language": "eng", "script": "Latn"}},
+    {"source": {"language": "ara", "script": "Arab"}, "target": {"language": "ara", "script": "Arab"}}
+  ]
+}
