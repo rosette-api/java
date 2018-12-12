@@ -29,15 +29,15 @@
     <inceptionYear>2014</inceptionYear>
     <url>http://rosette-api.github.io/java</url>
     <scm>
-        <connection>scm:git:git@github.com:rosette-api/java.git</connection>
-        <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
+        <connection>scm:git:https://github.com/rosette-api/java.git</connection>
+        <developerConnection>scm:git:https://github.com/rosette-api/java.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <description>This is the Java binding for the Rosette API. The classes in here help Java applications to communicate with the Rosette API.</description>
     <distributionManagement>
         <site>
             <id>site</id>
-            <url>scm:git:git@github.com:rosette-api/java.git</url>
+            <url>scm:git:https://github.com/rosette-api/java.git</url>
         </site>
     </distributionManagement>
     <properties>
