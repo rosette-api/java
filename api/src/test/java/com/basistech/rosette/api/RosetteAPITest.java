@@ -30,6 +30,7 @@ import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
+import com.basistech.rosette.apimodel.RelatedTermsResponse;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentResponse;
@@ -380,7 +381,6 @@ public class RosetteAPITest extends AbstractTest {
         }
     }
 
-
     private void verifySyntaxDependency(SyntaxDependenciesResponse response) throws IOException {
         SyntaxDependenciesResponse goldResponse = mapper.readValue(responseStr, SyntaxDependenciesResponse.class);
         assertEquals(response.getSentences().size(), goldResponse.getSentences().size());
@@ -398,6 +398,25 @@ public class RosetteAPITest extends AbstractTest {
         } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
+    }
+
+    @Test
+    public void testGetRelatedTerms() throws IOException {
+        if (!(testFilename.endsWith("-related_terms.json"))) {
+            return;
+        }
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
+        try {
+            RelatedTermsResponse response = api.perform(AbstractRosetteAPI.RELATED_TERMS_SERVICE_PATH, request, RelatedTermsResponse.class);
+            verifyRelatedTerms(response);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+    private void verifyRelatedTerms(RelatedTermsResponse response) throws IOException {
+        RelatedTermsResponse goldResponse = mapper.readValue(responseStr, RelatedTermsResponse.class);
+        assertEquals(response.getRelatedTerms().size(), goldResponse.getRelatedTerms().size());
     }
 
     // THERE ARE NO REL FILENAMES!
