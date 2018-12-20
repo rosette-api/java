@@ -34,7 +34,7 @@ public final class RelatedTermsExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        String relatedTermsData = "dog";
+        String relatedTermsData = "spy";
 
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())

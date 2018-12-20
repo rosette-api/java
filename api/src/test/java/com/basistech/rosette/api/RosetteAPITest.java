@@ -72,7 +72,7 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     @Parameterized.Parameters
-    public static Collection<Object[]> data() throws URISyntaxException, IOException {
+    public static Collection<Object[]> data() throws IOException {
         File dir = new File("src/test/mock-data/response");
         Collection<Object[]> params = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
