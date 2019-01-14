@@ -44,8 +44,9 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     public static final String NAME_SIMILARITY_SERVICE_PATH = "/name-similarity";
     public static final String TOKENS_SERVICE_PATH = "/tokens";
     public static final String SENTENCES_SERVICE_PATH = "/sentences";
-    public static final String TEXT_EMBEDDING_SERVICE_PATH = "/semantics/vector";
-    public static final String RELATED_TERMS_SERVICE_PATH = "/semantics/similar";
+    public static final String TEXT_EMBEDDING_SERVICE_PATH = "/text-embedding";
+    public static final String SEMANTIC_VECTORS_SERVICE_PATH = "/semantics/vector";
+    public static final String SIMILAR_TERMS_SERVICE_PATH = "/semantics/similar";
     public static final String SYNTAX_DEPENDENCIES_SERVICE_PATH = "/syntax/dependencies";
     public static final String TRANSLITERATION_SERVICE_PATH = "/transliteration";
     public static final String TOPICS_SERVICE_PATH = "/topics";
@@ -68,7 +69,8 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
         TOKENS_SERVICE_PATH,
         SENTENCES_SERVICE_PATH,
         TEXT_EMBEDDING_SERVICE_PATH,
-        RELATED_TERMS_SERVICE_PATH,
+        SEMANTIC_VECTORS_SERVICE_PATH,
+        SIMILAR_TERMS_SERVICE_PATH,
         SYNTAX_DEPENDENCIES_SERVICE_PATH,
         TRANSLITERATION_SERVICE_PATH,
         TOPICS_SERVICE_PATH

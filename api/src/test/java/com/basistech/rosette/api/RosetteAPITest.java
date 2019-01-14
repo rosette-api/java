@@ -30,7 +30,7 @@ import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
-import com.basistech.rosette.apimodel.RelatedTermsResponse;
+import com.basistech.rosette.apimodel.SimilarTermsResponse;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentResponse;
@@ -51,7 +51,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -401,22 +400,22 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     @Test
-    public void testGetRelatedTerms() throws IOException {
-        if (!(testFilename.endsWith("-related_terms.json"))) {
+    public void testGetSimilarTerms() throws IOException {
+        if (!(testFilename.endsWith("-similar_terms.json"))) {
             return;
         }
         DocumentRequest<?> request = readValue(DocumentRequest.class);
         try {
-            RelatedTermsResponse response = api.perform(AbstractRosetteAPI.RELATED_TERMS_SERVICE_PATH, request, RelatedTermsResponse.class);
-            verifyRelatedTerms(response);
+            SimilarTermsResponse response = api.perform(AbstractRosetteAPI.SIMILAR_TERMS_SERVICE_PATH, request, SimilarTermsResponse.class);
+            verifySimilarTerms(response);
         } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
     }
 
-    private void verifyRelatedTerms(RelatedTermsResponse response) throws IOException {
-        RelatedTermsResponse goldResponse = mapper.readValue(responseStr, RelatedTermsResponse.class);
-        assertEquals(response.getRelatedTerms().size(), goldResponse.getRelatedTerms().size());
+    private void verifySimilarTerms(SimilarTermsResponse response) throws IOException {
+        SimilarTermsResponse goldResponse = mapper.readValue(responseStr, SimilarTermsResponse.class);
+        assertEquals(response.getSimilarTerms().size(), goldResponse.getSimilarTerms().size());
     }
 
     // THERE ARE NO REL FILENAMES!
