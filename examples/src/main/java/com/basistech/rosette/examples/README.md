@@ -27,11 +27,11 @@ Otherwise you can compile and run these examples by hand:
 | NameSimilarityExample.java                  | Matches two names and produces a match score
 | NameTranslationExample.java                 | Translates a name
 | PingExample.java                            | Pings the Rosette API to check for availability
-| RelatedTermsExample.java                    | Gets the related terms to an input word
+| SemanticVectorsExample.java                 | Gets the text embedding
 | SentencesExample.java                       | Gets the sentences
 | SentimentExample.java                       | Gets the sentiment of a local file
+| SimilarTermsExample.java                    | Gets the list of similar terms
 | SyntaxDependenciesExample.java              | Gets syntactical dependencies
-| TextEmbeddingExample.java                   | Gets the document vector
 | TokenExample.java                           | Gets the tokens
 | TopicsExample.java                          | Gets topics
 | TransliterationExample.java                 | Gets transliteration
