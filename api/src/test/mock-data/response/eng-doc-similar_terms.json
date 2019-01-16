@@ -1,0 +1,130 @@
+{
+  "similarTerms": {
+    "deu": [
+      {
+        "term": "Deckname",
+        "similarity": 0.51391315
+      },
+      {
+        "term": "GRU",
+        "similarity": 0.50809389
+      },
+      {
+        "term": "Spion",
+        "similarity": 0.50051737
+      },
+      {
+        "term": "KGB",
+        "similarity": 0.49981388
+      },
+      {
+        "term": "Informant",
+        "similarity": 0.48774603
+      },
+      {
+        "term": "Geheimagent",
+        "similarity": 0.48700801
+      },
+      {
+        "term": "Geheimdienst",
+        "similarity": 0.48512384
+      },
+      {
+        "term": "Spionin",
+        "similarity": 0.47224587
+      },
+      {
+        "term": "MI6",
+        "similarity": 0.46969846
+      },
+      {
+        "term": "Decknamen",
+        "similarity": 0.44730526
+      }
+    ],
+    "jpn": [
+      {
+        "term": "スパイ",
+        "similarity": 0.5544399
+      },
+      {
+        "term": "諜報",
+        "similarity": 0.46903181
+      },
+      {
+        "term": "MI6",
+        "similarity": 0.46344957
+      },
+      {
+        "term": "殺し屋",
+        "similarity": 0.41098994
+      },
+      {
+        "term": "正体",
+        "similarity": 0.40109193
+      },
+      {
+        "term": "プレデター",
+        "similarity": 0.39433435
+      },
+      {
+        "term": "レンズマン",
+        "similarity": 0.3918637
+      },
+      {
+        "term": "S.H.I.E.L.D.",
+        "similarity": 0.38338536
+      },
+      {
+        "term": "サーシャ",
+        "similarity": 0.37628397
+      },
+      {
+        "term": "黒幕",
+        "similarity": 0.37256041
+      }
+    ],
+    "spa": [
+      {
+        "term": "espía",
+        "similarity": 0.61295485
+      },
+      {
+        "term": "cia",
+        "similarity": 0.46201307
+      },
+      {
+        "term": "desertor",
+        "similarity": 0.42849663
+      },
+      {
+        "term": "cómplice",
+        "similarity": 0.36646274
+      },
+      {
+        "term": "subrepticiamente",
+        "similarity": 0.36629659
+      },
+      {
+        "term": "asesino",
+        "similarity": 0.36264464
+      },
+      {
+        "term": "misterioso",
+        "similarity": 0.35466132
+      },
+      {
+        "term": "fugitivo",
+        "similarity": 0.35033143
+      },
+      {
+        "term": "informante",
+        "similarity": 0.34707013
+      },
+      {
+        "term": "mercenario",
+        "similarity": 0.34658083
+      }
+    ]
+  }
+}

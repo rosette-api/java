@@ -30,6 +30,7 @@ import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameSimilarityResponse;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.NameTranslationResponse;
+import com.basistech.rosette.apimodel.SimilarTermsResponse;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentResponse;
@@ -50,7 +51,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -72,7 +72,7 @@ public class RosetteAPITest extends AbstractTest {
     }
 
     @Parameterized.Parameters
-    public static Collection<Object[]> data() throws URISyntaxException, IOException {
+    public static Collection<Object[]> data() throws IOException {
         File dir = new File("src/test/mock-data/response");
         Collection<Object[]> params = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
@@ -380,7 +380,6 @@ public class RosetteAPITest extends AbstractTest {
         }
     }
 
-
     private void verifySyntaxDependency(SyntaxDependenciesResponse response) throws IOException {
         SyntaxDependenciesResponse goldResponse = mapper.readValue(responseStr, SyntaxDependenciesResponse.class);
         assertEquals(response.getSentences().size(), goldResponse.getSentences().size());
@@ -398,6 +397,25 @@ public class RosetteAPITest extends AbstractTest {
         } catch (HttpRosetteAPIException e) {
             verifyException(e);
         }
+    }
+
+    @Test
+    public void testGetSimilarTerms() throws IOException {
+        if (!(testFilename.endsWith("-similar_terms.json"))) {
+            return;
+        }
+        DocumentRequest<?> request = readValue(DocumentRequest.class);
+        try {
+            SimilarTermsResponse response = api.perform(AbstractRosetteAPI.SIMILAR_TERMS_SERVICE_PATH, request, SimilarTermsResponse.class);
+            verifySimilarTerms(response);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+    private void verifySimilarTerms(SimilarTermsResponse response) throws IOException {
+        SimilarTermsResponse goldResponse = mapper.readValue(responseStr, SimilarTermsResponse.class);
+        assertEquals(response.getSimilarTerms().size(), goldResponse.getSimilarTerms().size());
     }
 
     // THERE ARE NO REL FILENAMES!

@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2018 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,18 +17,18 @@ package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
-import com.basistech.rosette.apimodel.TextEmbeddingOptions;
-import com.basistech.rosette.apimodel.TextEmbeddingResponse;
+import com.basistech.rosette.apimodel.SemanticVectorsOptions;
+import com.basistech.rosette.apimodel.SemanticVectorsResponse;
 
 import java.io.IOException;
 
 /**
- * Example which demonstrates the text embedding.
+ * Example which demonstrates semantic-vectors.
  */
-public final class TextEmbeddingExample extends ExampleBase {
+public final class SemanticVectorsExample extends ExampleBase {
     public static void main(String[] args) {
         try {
-            new TextEmbeddingExample().run();
+            new SemanticVectorsExample().run();
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
@@ -45,10 +45,10 @@ public final class TextEmbeddingExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         // When no options, use <?>.
-        DocumentRequest<TextEmbeddingOptions> request = DocumentRequest.<TextEmbeddingOptions>builder()
+        DocumentRequest<SemanticVectorsOptions> request = DocumentRequest.<SemanticVectorsOptions>builder()
             .content(embeddingsData)
             .build();
-        TextEmbeddingResponse response = rosetteApi.perform(HttpRosetteAPI.TEXT_EMBEDDING_SERVICE_PATH, request, TextEmbeddingResponse.class);
+        SemanticVectorsResponse response = rosetteApi.perform(HttpRosetteAPI.SEMANTIC_VECTORS_SERVICE_PATH, request, SemanticVectorsResponse.class);
         System.out.println(responseToJson(response));
     }
 }
