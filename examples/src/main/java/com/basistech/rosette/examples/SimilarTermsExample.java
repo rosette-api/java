@@ -25,6 +25,9 @@ import com.google.common.collect.Lists;
 
 import java.io.IOException;
 
+/**
+ * Example which demonstrates the similar terms api
+ */
 public final class SimilarTermsExample extends ExampleBase {
     public static void main(String[] args) {
         try {
