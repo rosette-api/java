@@ -18,7 +18,7 @@ Otherwise you can compile and run these examples by hand:
 - `java -cp .:<path-to-rosette-api-jar-file> -Drosette.api.key=<your-api-key> com.basistech.rosette.examples.<XyzExample>`
 
 ## Docker ##
-Docker files can be found [here](https://github.com/rosette-api/java/examples/docker)
+Docker files can be found [here](https://github.com/rosette-api/java/tree/master/examples/docker)
 
 ### Summary
 To simplify the running of the Java examples, the Dockerfile will build an image and install the rosette-api library from the *published source*.
