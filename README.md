@@ -40,7 +40,7 @@ If you prefer to build from source, please use an appropriate release tag.
 
 #### Examples
 View small example programs for each Rosette endpoint
-in the [examples](https://github.com/rosette-api/java/tree/master/examples) directory.
+in the [examples](https://github.com/rosette-api/java/tree/master/examples/src/main/java/com/basistech/rosette/examples) directory.
 
 #### Documentation & Support
 - [Binding API](https://rosette-api.github.io/java/)
