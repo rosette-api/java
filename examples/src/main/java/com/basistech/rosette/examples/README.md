@@ -3,6 +3,11 @@ Rosette API Java Examples
 
 Each example class can be run independently.
 
+Each example file demonstrates one of the capabilities of the Rosette Platform.
+
+A note on pre-requisites. Rosette API only suports TLS 1.2 so ensure your toolchain also supports it.
+
+##Maven ##
 If you use Maven, everything should have been setup and you can start running the examples using `mvn exec:java`.
 Otherwise you can compile and run these examples by hand:
 
@@ -11,27 +16,20 @@ Otherwise you can compile and run these examples by hand:
 - `cd src/main/java/com/basistech/rosette/examples`
 - `javac -cp .:<path-to-rosette-api-jar-file> *.java`
 - `java -cp .:<path-to-rosette-api-jar-file> -Drosette.api.key=<your-api-key> com.basistech.rosette.examples.<XyzExample>`
- 
-| File Name                                   | Description
-| -------------                               |------------- 
-| CategoriesExample.java                      | Gets the category of a document at a URL
-| EntitiesExample.java                        | Extracts entities
-| InfoExample.java                            | Gets information about Rosette API
-| LanguageExample.java                        | Detects language
-| MorphologyCompleteExample.java              | Gets the complete morphological analysis
-| MorphologyCompoundComponentsExample.java    | Gets the de-compounded words
-| MorphologyHanReadingsExample.java           | Gets the Chinese/Han readings
-| MorphologyLemmasExample.java                | Gets the lemmas
-| MorphologyPartsOfSpeechExample.java         | Gets the part-of-speech tags
-| NameDeduplicationExample.java               | Gets a list of cluster IDs given a list of names
-| NameSimilarityExample.java                  | Matches two names and produces a match score
-| NameTranslationExample.java                 | Translates a name
-| PingExample.java                            | Pings the Rosette API to check for availability
-| SemanticVectorsExample.java                 | Gets the text embedding
-| SentencesExample.java                       | Gets the sentences
-| SentimentExample.java                       | Gets the sentiment of a local file
-| SimilarTermsExample.java                    | Gets the list of similar terms
-| SyntaxDependenciesExample.java              | Gets syntactical dependencies
-| TokenExample.java                           | Gets the tokens
-| TopicsExample.java                          | Gets topics
-| TransliterationExample.java                 | Gets transliteration
+
+## Docker ##
+[Docker files](https://github.com/rosette-api/java/examples/docker)
+
+### Summary
+To simplify the running of the Java examples, the Dockerfile will build an image and install the rosette-api library from the *published source*.
+
+### Basic Usage
+Build the docker image, e.g. `docker build --rm -t basistech/java:1.1 .`
+
+Run an example as `docker run --rm -e API_KEY=api-key -v "path-to-java-dir:/source" basistech/java:1.1`
+
+To test against a specific source file, add `-e FILENAME=filename` before the `-v`.
+To test against an alternate url, add `-e ALT_URL=alternate_url`.
+
+
+
