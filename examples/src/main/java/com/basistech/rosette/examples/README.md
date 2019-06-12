@@ -7,7 +7,7 @@ Each example file demonstrates one of the capabilities of the Rosette Platform.
 
 A note on pre-requisites. Rosette API only suports TLS 1.2 so ensure your toolchain also supports it.
 
-##Maven ##
+## Maven ##
 If you use Maven, everything should have been setup and you can start running the examples using `mvn exec:java`.
 Otherwise you can compile and run these examples by hand:
 
@@ -18,7 +18,7 @@ Otherwise you can compile and run these examples by hand:
 - `java -cp .:<path-to-rosette-api-jar-file> -Drosette.api.key=<your-api-key> com.basistech.rosette.examples.<XyzExample>`
 
 ## Docker ##
-[Docker files](https://github.com/rosette-api/java/examples/docker)
+Docker files can be found [here](https://github.com/rosette-api/java/examples/docker)
 
 ### Summary
 To simplify the running of the Java examples, the Dockerfile will build an image and install the rosette-api library from the *published source*.
