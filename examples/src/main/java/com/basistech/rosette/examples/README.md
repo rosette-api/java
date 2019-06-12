@@ -5,7 +5,7 @@ Each example class can be run independently.
 
 Each example file demonstrates one of the capabilities of the Rosette Platform.
 
-A note on pre-requisites. Rosette API only suports TLS 1.2 so ensure your toolchain also supports it.
+A note on prerequisites. Rosette API only suports TLS 1.2 so ensure your toolchain also supports it.
 
 ## Maven ##
 If you use Maven, everything should have been setup and you can start running the examples using `mvn exec:java`.
