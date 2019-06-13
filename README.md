@@ -1,7 +1,9 @@
-[![Build Status](https://travis-ci.org/rosette-api/java.svg?branch=master)](https://travis-ci.org/rosette-api/java)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.basistech.rosette/rosette-api-java-binding/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.basistech.rosette/rosette-api-java-binding)
+<a href="https://www.rosette.com"><img src="https://s3.amazonaws.com/styleguide.basistech.com/logos/rosette-logo.png" width="181" height="47" /></a>
 
-# Java client binding for Rosette API #
+---
+
+[![Build Status](https://travis-ci.org/rosette-api/java.svg?branch=master)](https://travis-ci.org/rosette-api/java)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.basistech.rosette/rosette-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.basistech.rosette/rosette-api-java-binding)
 
 ## Rosette API
 The Rosette Text Analytics Platform uses natural language processing, statistical modeling, and machine learning to
@@ -15,9 +17,7 @@ comparing the similarity of names, categorizing and adding linguistic tags to te
 
 ## Quick Start
 
-### Installation ##
-If you use Maven, include this dependency in your `pom.xml`:
-
+#### Maven
 ```xml
 <dependency>
     <groupId>com.basistech.rosette</groupId>
@@ -26,21 +26,16 @@ If you use Maven, include this dependency in your `pom.xml`:
 </dependency>
 ```
 
-where `${rosette.api.java.binding.version}` is the [latest version available from Maven Central](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.basistech.rosette%22%20AND%20a%3A%22rosette-api%22).
+Set `${rosette.api.java.binding.version}` in the `<properties>` block.  The latest version available is displayed
+in the Maven Central badge at the top of this page.
 
-The version will change as new versions of the binding are released. Note that versions of the form `x.y.Nxx`, where `N` is greater than 100, are internal testing versions; do not use them without consultation with Basis Technology Corp.
-
-If the version you are using is not the latest from Maven Central. Please check for its
-[**compatibilty with api.rosette.com**](https://developer.rosette.com/features-and-functions?java).
-If you have an on-premise version of Rosette API server, please contact support for binding
-compatibility with your installation.
-
-The source code on the master branch is the current state of development; it is not recommended for general use.
-If you prefer to build from source, please use an appropriate release tag.
+#### Test Releases
+Versions, of the form `x.y.z`, where `z` is greater than or equal to `100`, are internal testing versions.  Do not use
+them without consultation with Basis Technology Corp.
 
 #### Examples
-View small example programs for each Rosette endpoint
-in the [examples](https://github.com/rosette-api/java/tree/master/examples/src/main/java/com/basistech/rosette/examples) directory.
+View small example programs for each Rosette endpoint in the
+[examples](https://github.com/rosette-api/java/tree/master/examples/src/main/java/com/basistech/rosette/examples) directory.
 
 #### Documentation & Support
 - [Binding API](https://rosette-api.github.io/java/)
