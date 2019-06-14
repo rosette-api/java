@@ -35,7 +35,7 @@ them without consultation with Basis Technology Corp.
 
 #### Examples
 View small example programs for each Rosette endpoint in the
-[examples](https://github.com/rosette-api/java/tree/master/examples/src/main/java/com/basistech/rosette/examples) directory.
+[examples](examples/src/main/java/com/basistech/rosette/examples) directory.
 
 #### Documentation & Support
 - [Binding API](https://rosette-api.github.io/java/)
@@ -44,8 +44,8 @@ View small example programs for each Rosette endpoint in the
 - [Rosette Platform Release Notes](https://support.rosette.com/hc/en-us/articles/360018354971-Release-Notes)
 - [Binding/Rosette Platform Compatibility](https://developer.rosette.com/features-and-functions?java#)
 - [Support](https://support.rosette.com)
-- [Binding License: Apache 2.0](https://github.com/rosette-api/java/blob/develop/LICENSE.txt)
+- [Binding License: Apache 2.0](LICENSE.txt)
 
 ## Binding Developer Information
-If you are modifying the binding code, please refer to the [developer README](https://github.com/rosette-api/java/tree/develop/DEVELOPER.md) file.
+If you are modifying the binding code, please refer to the [developer README](DEVELOPER.md) file.
 
