@@ -1,37 +1,17 @@
-Rosette API Java Examples
-=========================
+## Endpoint Examples
+Each example file demonstrates one of the capabilities of the Rosette Platform.
 
-Each example class can be run independently.
+Here are some methods for running the examples. Each example will also accept an optional `-Drosette.api.altUrl`
+parameter for overriding the default URL.
 
-If you use Maven, everything should have been setup and you can start running the examples using `mvn exec:java`.
-Otherwise you can compile and run these examples by hand:
+A note on prerequisites. Rosette API only supports TLS 1.2 so ensure your toolchain also supports it.
 
-- make sure you have JRE 1.7+, verify by `java -version`
-- download <TODO: nexus url>
-- `cd src/main/java/com/basistech/rosette/examples`
-- `javac -cp .:<path-to-rosette-api-jar-file> *.java`
-- `java -cp .:<path-to-rosette-api-jar-file> -Drosette.api.key=<your-api-key> com.basistech.rosette.examples.<XyzExample>`
- 
-| File Name                                   | Description
-| -------------                               |------------- 
-| CategoriesExample.java                      | Gets the category of a document at a URL
-| EntitiesExample.java                        | Extracts entities
-| InfoExample.java                            | Gets information about Rosette API
-| LanguageExample.java                        | Detects language
-| MorphologyCompleteExample.java              | Gets the complete morphological analysis
-| MorphologyCompoundComponentsExample.java    | Gets the de-compounded words
-| MorphologyHanReadingsExample.java           | Gets the Chinese/Han readings
-| MorphologyLemmasExample.java                | Gets the lemmas
-| MorphologyPartsOfSpeechExample.java         | Gets the part-of-speech tags
-| NameDeduplicationExample.java               | Gets a list of cluster IDs given a list of names
-| NameSimilarityExample.java                  | Matches two names and produces a match score
-| NameTranslationExample.java                 | Translates a name
-| PingExample.java                            | Pings the Rosette API to check for availability
-| SemanticVectorsExample.java                 | Gets the text embedding
-| SentencesExample.java                       | Gets the sentences
-| SentimentExample.java                       | Gets the sentiment of a local file
-| SimilarTermsExample.java                    | Gets the list of similar terms
-| SyntaxDependenciesExample.java              | Gets syntactical dependencies
-| TokenExample.java                           | Gets the tokens
-| TopicsExample.java                          | Gets topics
-| TransliterationExample.java                 | Gets transliteration
+#### Running from Local Source
+
+```
+git clone git@github.com:rosette-api/java.git
+cd java
+mvn compile
+cd examples
+mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.PingExample" -Drosette.api.key=$API_KEY
+```
