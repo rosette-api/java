@@ -11,7 +11,7 @@ A note on prerequisites. Rosette API only supports TLS 1.2 so ensure your toolch
 ```
 git clone git@github.com:rosette-api/java.git
 cd java
-mvn compile
+mvn install
 cd examples
 mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.PingExample" -Drosette.api.key=$API_KEY
 ```
