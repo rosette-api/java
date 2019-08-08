@@ -41,6 +41,17 @@ public class PolymorphicRequestTest extends Assert {
         json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaType\": true, \"calculateConfidence\": true}}";
         request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
         assertTrue(request instanceof DocumentRequest);
+        assertNull(((DocumentRequest<EntitiesOptions>) request).getOptions().getIncludePermID());
+
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaType\": true, \"calculateConfidence\": true, \"includePermID\": true}}";
+        request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
+        assertTrue(request instanceof DocumentRequest);
+        assertTrue(((DocumentRequest<EntitiesOptions>) request).getOptions().getIncludePermID());
+
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaType\": true, \"calculateConfidence\": true, \"includePermID\": false}}";
+        request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
+        assertTrue(request instanceof DocumentRequest);
+        assertFalse(((DocumentRequest<EntitiesOptions>) request).getOptions().getIncludePermID());
 
         json = "{\"name1\": {\"text\": \"Joe\"}, \"name2\": {\"text\": \"Geo\"}}";
         request = mapper.readValue(json, NameSimilarityRequest.class);
