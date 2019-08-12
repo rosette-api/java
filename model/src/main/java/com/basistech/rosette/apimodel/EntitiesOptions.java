@@ -61,4 +61,9 @@ public class EntitiesOptions extends Options {
      * @retrun the includeDBpediaType flag.
      */
     private final Boolean includeDBpediaType;
+
+    /**
+     * @return the includePermID flag.
+     */
+    private final Boolean includePermID;
 }
