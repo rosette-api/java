@@ -1,0 +1,34 @@
+{
+  "entities": [
+    {
+      "type": "PERSON",
+      "mention": "Virgin Galactic",
+      "normalized": "Virgin Galactic",
+      "count": 1,
+      "mentionOffsets": [
+        {
+          "startOffset": 16,
+          "endOffset": 31
+        }
+      ],
+      "entityId": "T0",
+      "confidence": 0.21180975,
+      "permId": "https://permid.org/1-5000950848"
+    },
+    {
+      "type": "ORGANIZATION",
+      "mention": "Social Capital Hedosophia",
+      "normalized": "Social Capital Hedosophia",
+      "count": 1,
+      "mentionOffsets": [
+        {
+          "startOffset": 61,
+          "endOffset": 86
+        }
+      ],
+      "entityId": "T1",
+      "confidence": 0.04323018,
+      "permId": "https://permid.org/1-5057796824"
+    }
+  ]
+}
