@@ -20,6 +20,7 @@ import com.basistech.rosette.RosetteRuntimeException;
 import com.basistech.rosette.api.common.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.LanguageResponse;
@@ -284,11 +285,11 @@ public class RosetteAPITest extends AbstractTest {
     @Test
     public void testGetEntityPermId() throws IOException {
         if (testFilename.endsWith("-entities_permid.json")) {
-            DocumentRequest<?> request = readValue(DocumentRequest.class);
+            DocumentRequest<EntitiesOptions> request = readValue(DocumentRequest.class);
             try {
                 EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
                 verifyEntity(response);
-            } catch (HttpRosetteAPIException e){
+            } catch (HttpRosetteAPIException e) {
                 verifyException(e);
             }
         }
