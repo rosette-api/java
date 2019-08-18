@@ -1,34 +1,34 @@
 {
   "entities": [
     {
-      "type": "PERSON",
-      "mention": "Virgin Galactic",
-      "normalized": "Virgin Galactic",
+      "type": "ORGANIZATION",
+      "mention": "Toyota",
+      "normalized": "Toyota",
       "count": 1,
       "mentionOffsets": [
         {
-          "startOffset": 16,
-          "endOffset": 31
+          "startOffset": 0,
+          "endOffset": 6
         }
       ],
-      "entityId": "T0",
-      "confidence": 0.21180975,
-      "permId": "https://permid.org/1-5000950848"
+      "entityId": "Q53268",
+      "linkingConfidence": 0.45885878,
+      "permId": "4295876746"
     },
     {
       "type": "ORGANIZATION",
-      "mention": "Social Capital Hedosophia",
-      "normalized": "Social Capital Hedosophia",
+      "mention": "Microsoft",
+      "normalized": "Microsoft",
       "count": 1,
       "mentionOffsets": [
         {
-          "startOffset": 61,
-          "endOffset": 86
+          "startOffset": 11,
+          "endOffset": 20
         }
       ],
-      "entityId": "T1",
-      "confidence": 0.04323018,
-      "permId": "https://permid.org/1-5057796824"
+      "entityId": "Q2283",
+      "linkingConfidence": 0.76733641,
+      "permId": "4295907168"
     }
   ]
 }
