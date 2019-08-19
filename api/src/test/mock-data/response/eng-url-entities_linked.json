@@ -17,7 +17,11 @@
       "entityId": "Q1088831", 
       "indocChainId": 2, 
       "mention": "Washington",
-      "dbpediaType": "test1"
+      "dbpediaType": [
+        "test1",
+        "foo",
+        "bar"
+      ]
     }
   ]
 }
