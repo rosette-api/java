@@ -85,7 +85,7 @@ public class Entity {
     /**
      * @return the DBpediaType
      */
-    private final String dbpediaType;
+    private final List<String> dbpediaType;
 
     /**
      * @return the PermID
