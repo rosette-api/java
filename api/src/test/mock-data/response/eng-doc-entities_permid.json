@@ -1,0 +1,34 @@
+{
+  "entities": [
+    {
+      "type": "ORGANIZATION",
+      "mention": "Toyota",
+      "normalized": "Toyota",
+      "count": 1,
+      "mentionOffsets": [
+        {
+          "startOffset": 0,
+          "endOffset": 6
+        }
+      ],
+      "entityId": "Q53268",
+      "linkingConfidence": 0.45885878,
+      "permId": "4295876746"
+    },
+    {
+      "type": "ORGANIZATION",
+      "mention": "Microsoft",
+      "normalized": "Microsoft",
+      "count": 1,
+      "mentionOffsets": [
+        {
+          "startOffset": 11,
+          "endOffset": 20
+        }
+      ],
+      "entityId": "Q2283",
+      "linkingConfidence": 0.76733641,
+      "permId": "4295907168"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2014-2019 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.basistech.rosette.RosetteRuntimeException;
 import com.basistech.rosette.api.common.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.LanguageResponse;
@@ -277,6 +278,20 @@ public class RosetteAPITest extends AbstractTest {
             verifyEntity(response);
         } catch (HttpRosetteAPIException e) {
             verifyException(e);
+        }
+    }
+
+
+    @Test
+    public void testGetEntityPermId() throws IOException {
+        if (testFilename.endsWith("-entities_permid.json")) {
+            DocumentRequest<EntitiesOptions> request = readValue(DocumentRequest.class);
+            try {
+                EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
+                verifyEntity(response);
+            } catch (HttpRosetteAPIException e) {
+                verifyException(e);
+            }
         }
     }
 
