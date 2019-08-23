@@ -58,9 +58,16 @@ public class EntitiesOptions extends Options {
     private final String modelType;
 
     /**
+     * @deprecated use includeDBpediaTypes instead.
      * @return the includeDBpediaType flag.
      */
     private final Boolean includeDBpediaType;
+
+    /**
+     * @since 1.14.0 (19.08)
+     * @return the includeDBpediaType flag.
+     */
+    private final Boolean includeDBpediaTypes;
 
     /**
      * @return the includePermID flag.

@@ -15,7 +15,8 @@
       "salience": 1.0,
       "confidence": 1.0,
       "linkingConfidence": 1.0,
-      "dbpediaType": [
+      "dbpediaType": "test1",
+      "dbpediaTypes": [
         "test1",
         "test2"
       ]
