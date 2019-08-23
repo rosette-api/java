@@ -20,7 +20,8 @@
       "mention": "Washington", 
       "normalized": "Washington", 
       "type": "LOCATION",
-      "dbpediaType": [
+      "dbpediaType": "test1",
+      "dbpediaTypes": [
         "test1"
       ]
     }

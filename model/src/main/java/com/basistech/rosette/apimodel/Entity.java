@@ -83,9 +83,16 @@ public class Entity {
     private final Label sentiment;
 
     /**
+     * @deprecated use dbpediaTypes instead.
      * @return the DBpediaType
      */
-    private final List<String> dbpediaType;
+    private final String dbpediaType;
+
+    /**
+     * @since 1.14.0 (19.08)
+     * @return the DBpediaTypes
+     */
+    private final List<String> dbpediaTypes;
 
     /**
      * @return the PermID
