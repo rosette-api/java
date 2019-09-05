@@ -21,6 +21,7 @@ package com.basistech.rosette.apimodel;
  */
 public enum MorphologyModelType {
     DEFAULT,
+    NEURAL,
     PERCEPTRON,
     /**/;
 }
