@@ -28,8 +28,6 @@ import lombok.Value;
 @Builder
 public class Address {
 
-    private static final String EMPTY_STRING = "";
-
     /**
      * @return the address house
      */
