@@ -16,7 +16,6 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Collections;
 import java.util.Map;
 
 import lombok.Builder;
@@ -130,53 +129,4 @@ public class Address {
      * @return the address uid
      */
     private final String uid;
-
-    /**
-     * Default constructor for lombok
-     * @param house
-     * @param houseNumber
-     * @param road
-     * @param unit
-     * @param level
-     * @param staircase
-     * @param entrance
-     * @param suburb
-     * @param cityDistrict
-     * @param city
-     * @param island
-     * @param stateDistrict
-     * @param state
-     * @param countryRegion
-     * @param country
-     * @param worldRegion
-     * @param postCode
-     * @param poBox
-     * @param extra
-     * @param uid
-     */
-    public Address(String house, String houseNumber, String road, String unit, String level, String staircase,
-                String entrance, String suburb, String cityDistrict, String city, String island, String stateDistrict,
-                String state, String countryRegion, String country, String worldRegion, String postCode, String poBox,
-                Map<String, String> extra, String uid) {
-        this.house = house;
-        this.houseNumber = houseNumber;
-        this.road = road;
-        this.unit = unit;
-        this.level = level;
-        this.staircase = staircase;
-        this.entrance = entrance;
-        this.suburb = suburb;
-        this.cityDistrict = cityDistrict;
-        this.city = city;
-        this.island = island;
-        this.stateDistrict = stateDistrict;
-        this.state = state;
-        this.countryRegion = countryRegion;
-        this.country = country;
-        this.worldRegion = worldRegion;
-        this.postCode = postCode;
-        this.poBox = poBox;
-        this.extra = extra == null ? Collections.<String, String>emptyMap() : Collections.unmodifiableMap(extra);
-        this.uid = uid;
-    }
 }
