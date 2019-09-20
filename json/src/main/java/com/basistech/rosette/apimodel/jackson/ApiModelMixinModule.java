@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import com.basistech.rosette.apimodel.Address;
+import com.basistech.rosette.apimodel.AddressSimilarityRequest;
 import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.Name;
@@ -57,6 +59,10 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(NameTranslationRequest.NameTranslationRequestBuilder.class, NameTranslationRequestMixin.NameTranslationRequestBuilderMixin.class);
         context.setMixInAnnotations(NameDeduplicationRequest.class, NameDeduplicationRequestMixin.class);
         context.setMixInAnnotations(NameDeduplicationRequest.NameDeduplicationRequestBuilder.class, NameDeduplicationRequestMixin.NameDeduplicationRequestBuilderMixin.class);
+        context.setMixInAnnotations(Address.class, AddressMixin.class);
+        context.setMixInAnnotations(Address.AddressBuilder.class, AddressMixin.AddressBuilderMixin.class);
+        context.setMixInAnnotations(AddressSimilarityRequest.class, AddressSimilarityRequestMixin.class);
+        context.setMixInAnnotations(AddressSimilarityRequest.AddressSimilarityRequestBuilder.class, AddressSimilarityRequestMixin.AddressSimilarityRequestBuilderMixin.class);
     }
 
     /**

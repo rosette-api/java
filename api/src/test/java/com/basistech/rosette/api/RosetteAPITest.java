@@ -18,6 +18,8 @@ package com.basistech.rosette.api;
 
 import com.basistech.rosette.RosetteRuntimeException;
 import com.basistech.rosette.api.common.AbstractRosetteAPI;
+import com.basistech.rosette.apimodel.AddressSimilarityRequest;
+import com.basistech.rosette.apimodel.AddressSimilarityResponse;
 import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
@@ -141,7 +143,7 @@ public class RosetteAPITest extends AbstractTest {
 
     @Test
     public void testMatchName() throws IOException {
-        if (!(testFilename.endsWith("-matched-name.json"))) {
+        if (!(testFilename.endsWith("-name-similarity.json"))) {
             return;
         }
         NameSimilarityRequest request = readValueNameMatcher();
@@ -161,6 +163,30 @@ public class RosetteAPITest extends AbstractTest {
     private NameSimilarityRequest readValueNameMatcher() throws IOException {
         File input = new File("src/test/mock-data/request", testFilename);
         return mapper.readValue(input, NameSimilarityRequest.class);
+    }
+
+    @Test
+    public void testMatchAddress() throws IOException {
+        if (!(testFilename.endsWith("-address-similarity.json"))) {
+            return;
+        }
+        AddressSimilarityRequest request = readValueAddressMatcher();
+        try {
+            AddressSimilarityResponse response = api.perform(AbstractRosetteAPI.ADDRESS_SIMILARITY_SERVICE_PATH, request, AddressSimilarityResponse.class);
+            verifyAddressMatcher(response);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e);
+        }
+    }
+
+    private void verifyAddressMatcher(AddressSimilarityResponse response) throws IOException {
+        AddressSimilarityResponse goldResponse = mapper.readValue(responseStr, AddressSimilarityResponse.class);
+        assertEquals(goldResponse.getScore(), response.getScore(), 0.0);
+    }
+
+    private AddressSimilarityRequest readValueAddressMatcher() throws IOException {
+        File input = new File("src/test/mock-data/request", testFilename);
+        return mapper.readValue(input, AddressSimilarityRequest.class);
     }
 
     @Test

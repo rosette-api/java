@@ -1,0 +1,16 @@
+{
+  "address1": {
+    "houseNumber" : "1600",
+    "road" : "Pennsylvania Ave NW",
+    "city" : "Washington",
+    "state" : "DC",
+    "postCode" : "20500"
+  },
+  "address2": {
+    "houseNumber" : "160",
+    "road" : "Pennsilvana Ave",
+    "city" : "Washington",
+    "state" : "D.C.",
+    "postCode" : "20500"
+  }
+}
