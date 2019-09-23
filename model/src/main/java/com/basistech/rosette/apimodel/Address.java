@@ -16,8 +16,6 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.Map;
-
 import lombok.Builder;
 import lombok.Value;
 
@@ -117,14 +115,4 @@ public class Address {
      * @return the address P.O. Box
      */
     private final String poBox;
-
-    /**
-     * @return the extra properties of the address
-     */
-    private final Map<String, String> extra;
-
-    /**
-     * @return the address uid
-     */
-    private final String uid;
 }
