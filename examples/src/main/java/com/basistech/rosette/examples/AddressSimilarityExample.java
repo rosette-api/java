@@ -37,19 +37,29 @@ public final class AddressSimilarityExample extends ExampleBase {
     }
 
     private void run() throws IOException {
+        String addressSimilarityHouseno1 = "1600";
+        String addressSimilarityRoad1 = "Pennsylvania Ave NW";
+        String addressSimilarityCity1 = "Washington";
+        String addressSimilarityState1 = "DC";
+        String addressSimilarityPostcode1 = "20500";
         Address address1 = Address.builder()
-                .houseNumber("1600")
-                .road("Pennsylvania Ave NW")
-                .city("Washington")
-                .state("DC")
-                .postCode("20500")
+                .houseNumber(addressSimilarityHouseno1)
+                .road(addressSimilarityRoad1)
+                .city(addressSimilarityCity1)
+                .state(addressSimilarityState1)
+                .postCode(addressSimilarityPostcode1)
                 .build();
+        String addressSimilarityHouseno2 = "160";
+        String addressSimilarityRoad2 = "Pennsilvana Ave";
+        String addressSimilarityCity2 = "Washington";
+        String addressSimilarityState2 = "D.C.";
+        String addressSimilarityPostcode2 = "20500";
         Address address2 = Address.builder()
-                .houseNumber("160")
-                .road("Pennsilvana Ave")
-                .city("Washington")
-                .state("DC")
-                .postCode("20500")
+                .houseNumber(addressSimilarityHouseno2)
+                .road(addressSimilarityRoad2)
+                .city(addressSimilarityCity2)
+                .state(addressSimilarityState2)
+                .postCode(addressSimilarityPostcode2)
                 .build();
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
