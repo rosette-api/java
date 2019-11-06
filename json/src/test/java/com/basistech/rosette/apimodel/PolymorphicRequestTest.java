@@ -15,6 +15,7 @@
 */
 package com.basistech.rosette.apimodel;
 
+import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.Assert;
 import org.junit.Before;
@@ -68,5 +69,9 @@ public class PolymorphicRequestTest extends Assert {
         json = "{\"names\": [\"Joe\", \"Smith\"], \"threshold\": 0.8}";
         request = mapper.readValue(json, NameDeduplicationRequest.class);
         assertTrue(request instanceof NameDeduplicationRequest);
+
+        json = "{\"language\": \"xxx\", \"configuration\": {\"entities\": { \"LOCATION\": [\"Boston\", \"Mos Eisley\"] } } }";
+        request = mapper.readValue(json, new TypeReference<ConfigurationRequest<GazetteerConfiguration>>() { });
+        assertTrue(request instanceof ConfigurationRequest);
     }
 }

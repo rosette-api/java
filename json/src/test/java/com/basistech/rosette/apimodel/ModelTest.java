@@ -16,6 +16,18 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.common.collect.Lists;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -30,18 +42,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
-import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.common.collect.Lists;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -97,6 +97,10 @@ public class ModelTest {
             }
             if (className.contains(".batch.")) {
                 // there are polymorphism issues in here for this test strategy.
+                continue;
+            }
+
+            if (className.contains("ConfigurationRequest")) {
                 continue;
             }
 
