@@ -50,7 +50,7 @@ public final class AddressSimilarityExample extends ExampleBase {
                 .postCode(addressSimilarityPostcode1)
                 .build();
         String addressSimilarityHouseno2 = "160";
-        String addressSimilarityRoad2 = "Pennsilvana Ave";
+        String addressSimilarityRoad2 = "Pennsilvana Avenue";
         String addressSimilarityCity2 = "Washington";
         String addressSimilarityState2 = "D.C.";
         String addressSimilarityPostcode2 = "20500";
