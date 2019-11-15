@@ -33,5 +33,5 @@ public class ConfigurationResponse extends Response {
     /**
      * @return the ping response message
      */
-    private final String message;
+    private final String code;
 }
