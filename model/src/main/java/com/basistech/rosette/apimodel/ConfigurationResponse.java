@@ -23,7 +23,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Response ping data
+ * Response to configuration request
  */
 @Getter
 @EqualsAndHashCode
