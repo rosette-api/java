@@ -31,7 +31,7 @@ import lombok.Getter;
 @JacksonMixin
 public class ConfigurationResponse extends Response {
     /**
-     * @return the ping response message
+     * @return the result code
      */
     private final String code;
 }
