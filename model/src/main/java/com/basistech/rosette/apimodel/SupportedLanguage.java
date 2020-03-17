@@ -20,7 +20,10 @@ import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.Value;
+import lombok.experimental.NonFinal;
 
 /**
  * Supported language/script
@@ -38,4 +41,12 @@ public class SupportedLanguage {
      * @return the script code
      */
     private final ISO15924 script;
+
+    /**
+     * @return if this language is licensed or not
+     */
+    @NonFinal
+    @Getter
+    @Setter
+    private Boolean licensed;
 }

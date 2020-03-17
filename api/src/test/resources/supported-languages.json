@@ -1,6 +1,6 @@
 {
   "supportedLanguages": [
-    {"language": "eng", "script": "Latn"},
-    {"language": "jpn", "script": "Kana"}
+    {"language": "eng", "script": "Latn", "licensed" : true },
+    {"language": "jpn", "script": "Kana", "licensed" : false}
   ]
 }
