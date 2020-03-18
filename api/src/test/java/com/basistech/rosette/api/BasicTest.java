@@ -244,10 +244,12 @@ public class BasicTest extends AbstractTest {
             assertTrue(resp.getSupportedLanguages().contains(SupportedLanguage.builder()
                     .language(LanguageCode.ENGLISH)
                     .script(ISO15924.Latn)
+                    .licensed(Boolean.TRUE)
                     .build()));
             assertTrue(resp.getSupportedLanguages().contains(SupportedLanguage.builder()
                     .language(LanguageCode.JAPANESE)
                     .script(ISO15924.Kana)
+                    .licensed(Boolean.FALSE)
                     .build()));
         }
     }
@@ -272,10 +274,12 @@ public class BasicTest extends AbstractTest {
             assertTrue(resp.getSupportedLanguagePairs().contains(SupportedLanguagePair.builder()
                     .source(new TextDomain(ISO15924.Latn, LanguageCode.ENGLISH, null))
                     .target(new TextDomain(ISO15924.Latn, LanguageCode.ENGLISH, null))
+                    .licensed(Boolean.TRUE)
                     .build()));
             assertTrue(resp.getSupportedLanguagePairs().contains(SupportedLanguagePair.builder()
                     .source(new TextDomain(ISO15924.Arab, LanguageCode.ARABIC, null))
                     .target(new TextDomain(ISO15924.Arab, LanguageCode.ARABIC, null))
+                    .licensed(Boolean.TRUE)
                     .build()));
         }
     }
@@ -300,10 +304,12 @@ public class BasicTest extends AbstractTest {
             assertTrue(resp.getSupportedLanguagePairs().contains(SupportedLanguagePair.builder()
                     .source(new TextDomain(ISO15924.Latn, LanguageCode.ENGLISH, TransliterationScheme.NATIVE))
                     .target(new TextDomain(ISO15924.Latn, LanguageCode.ENGLISH, TransliterationScheme.IC))
+                    .licensed(Boolean.TRUE)
                     .build()));
             assertTrue(resp.getSupportedLanguagePairs().contains(SupportedLanguagePair.builder()
                     .source(new TextDomain(ISO15924.Arab, LanguageCode.ARABIC, TransliterationScheme.NATIVE))
                     .target(new TextDomain(ISO15924.Arab, LanguageCode.ARABIC, TransliterationScheme.NATIVE))
+                    .licensed(Boolean.TRUE)
                     .build()));
         }
     }

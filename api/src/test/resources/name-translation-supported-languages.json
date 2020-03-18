@@ -1,6 +1,7 @@
 {
   "supportedLanguagePairs": [
-    {"source": {"language": "eng", "script": "Latn", "transliterationScheme": "NATIVE"}, "target": {"language": "eng", "script": "Latn", "transliterationScheme": "IC"}},
-    {"source": {"language": "ara", "script": "Arab", "transliterationScheme": "NATIVE"}, "target": {"language": "ara", "script": "Arab", "transliterationScheme": "NATIVE"}}
+    {"source": {"language": "eng", "script": "Latn", "transliterationScheme": "NATIVE"}, "target": {"language": "eng", "script": "Latn", "transliterationScheme": "IC"},
+      "licensed" : true },
+    {"source": {"language": "ara", "script": "Arab", "transliterationScheme": "NATIVE"}, "target": {"language": "ara", "script": "Arab", "transliterationScheme": "NATIVE"}, "licensed": true }
   ]
 }

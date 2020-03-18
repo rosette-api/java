@@ -18,9 +18,11 @@ package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.util.TextDomain;
-
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.Value;
+import lombok.experimental.NonFinal;
 
 /**
  * Supported language/script/scheme pairs
@@ -38,4 +40,12 @@ public class SupportedLanguagePair {
      * @return the target TextDomain
      */
     private final TextDomain target;
+
+    /**
+     * @return if this language pair is licensed or not
+     */
+    @NonFinal
+    @Getter
+    @Setter
+    private Boolean licensed;
 }
