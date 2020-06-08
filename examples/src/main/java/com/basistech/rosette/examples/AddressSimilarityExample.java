@@ -19,9 +19,10 @@ package com.basistech.rosette.examples;
 import java.io.IOException;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import com.basistech.rosette.apimodel.Address;
 import com.basistech.rosette.apimodel.AddressSimilarityRequest;
 import com.basistech.rosette.apimodel.AddressSimilarityResponse;
+import com.basistech.rosette.apimodel.FieldedAddress;
+import com.basistech.rosette.apimodel.UnfieldedAddress;
 
 /**
  * Example which demonstrates address similarity
@@ -42,24 +43,16 @@ public final class AddressSimilarityExample extends ExampleBase {
         String addressSimilarityCity1 = "Washington";
         String addressSimilarityState1 = "DC";
         String addressSimilarityPostcode1 = "20500";
-        Address address1 = Address.builder()
+        FieldedAddress address1 = FieldedAddress.builder()
                 .houseNumber(addressSimilarityHouseno1)
                 .road(addressSimilarityRoad1)
                 .city(addressSimilarityCity1)
                 .state(addressSimilarityState1)
                 .postCode(addressSimilarityPostcode1)
                 .build();
-        String addressSimilarityHouseno2 = "160";
-        String addressSimilarityRoad2 = "Pennsilvana Avenue";
-        String addressSimilarityCity2 = "Washington";
-        String addressSimilarityState2 = "D.C.";
-        String addressSimilarityPostcode2 = "20500";
-        Address address2 = Address.builder()
-                .houseNumber(addressSimilarityHouseno2)
-                .road(addressSimilarityRoad2)
-                .city(addressSimilarityCity2)
-                .state(addressSimilarityState2)
-                .postCode(addressSimilarityPostcode2)
+        String addressSimilarityAddress2 = "160 Pennsilvana Avenue, Washington, D.C., 20500";
+        UnfieldedAddress address2 = UnfieldedAddress.builder()
+                .address(addressSimilarityAddress2)
                 .build();
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
