@@ -293,6 +293,10 @@ public class ModelTest {
             }
             break;
         }
+        case "IAddress": {
+            o = new UnfieldedAddress("foo");
+            break;
+        }
         default:
             if (parameterArgClass != null) {
                 Constructor[] ctors = parameterArgClass.getDeclaredConstructors();

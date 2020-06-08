@@ -16,35 +16,24 @@
 
 package com.basistech.rosette.apimodel;
 
-
-import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
 
-/**
- * Request object for address-similarity.
- *
- * This class carries the two addresses to compare.
- */
 @Value
-public final class AddressSimilarityRequest extends Request {
+@Builder
+public class UnfieldedAddress implements IAddress {
 
     /**
-     * @return first address
+     * return the address
      */
-    @NotNull
-    private IAddress address1;
+    public final String address;
 
-    /**
-     * @return second address
-     */
-    @NotNull
-    private IAddress address2;
+    @Override
+    public boolean fielded() {
+        return false;
+    }
 
-    @Builder
-    public AddressSimilarityRequest(String profileId, IAddress address1, IAddress address2) {
-        super(profileId);
-        this.address1 = address1;
-        this.address2 = address2;
+    public UnfieldedAddress(String address) {
+        this.address = address;
     }
 }

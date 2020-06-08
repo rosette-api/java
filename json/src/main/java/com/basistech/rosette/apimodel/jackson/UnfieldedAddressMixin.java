@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Basis Technology Corp.
+ * Copyright 2020 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,22 +22,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-import com.basistech.rosette.apimodel.IAddress;
-
-@JsonTypeName("AddressSimilarityRequest")
+@JsonTypeName("UnfieldedAddress")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AddressSimilarityRequestMixin {
+public abstract class UnfieldedAddressMixin {
+
 
     @JsonCreator
-    protected AddressSimilarityRequestMixin(
-            @JsonProperty("profileId") String profileId,
-            @JsonProperty("address1") IAddress address1,
-            @JsonProperty("address2") IAddress address2
-    ) {
+    protected UnfieldedAddressMixin(@JsonProperty("address") String address) {
         //
     }
 
     @JsonPOJOBuilder(withPrefix = "")
-    abstract class AddressSimilarityRequestBuilderMixin {
+    abstract class UnfieldedAddressBuilderMixin {
     }
 }

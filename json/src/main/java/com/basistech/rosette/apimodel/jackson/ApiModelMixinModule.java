@@ -21,14 +21,18 @@ import com.basistech.rosette.apimodel.AddressSimilarityRequest;
 import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.ConfigurationRequest;
 import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.FieldedAddress;
+import com.basistech.rosette.apimodel.IAddress;
 import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameDeduplicationRequest;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
+import com.basistech.rosette.apimodel.UnfieldedAddress;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 
 /**
  * Jackson module to configure Json serialization and deserialization for the
@@ -62,11 +66,20 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(NameDeduplicationRequest.NameDeduplicationRequestBuilder.class, NameDeduplicationRequestMixin.NameDeduplicationRequestBuilderMixin.class);
         context.setMixInAnnotations(Address.class, AddressMixin.class);
         context.setMixInAnnotations(Address.AddressBuilder.class, AddressMixin.AddressBuilderMixin.class);
+        context.setMixInAnnotations(FieldedAddress.class, FieldedAddressMixin.class);
+        context.setMixInAnnotations(FieldedAddress.FieldedAddressBuilder.class, FieldedAddressMixin.FieldedAddressBuilderMixin.class);
+        context.setMixInAnnotations(UnfieldedAddress.class, UnfieldedAddressMixin.class);
+        context.setMixInAnnotations(UnfieldedAddress.UnfieldedAddressBuilder.class, UnfieldedAddressMixin.UnfieldedAddressBuilderMixin.class);
         context.setMixInAnnotations(AddressSimilarityRequest.class, AddressSimilarityRequestMixin.class);
         context.setMixInAnnotations(AddressSimilarityRequest.AddressSimilarityRequestBuilder.class, AddressSimilarityRequestMixin.AddressSimilarityRequestBuilderMixin.class);
         context.setMixInAnnotations(ConfigurationRequest.class, ConfigurationRequestMixin.class);
         context.setMixInAnnotations(ConfigurationRequest.ConfigurationRequestBuilder.class,
             ConfigurationRequestMixin.ConfigurationRequestBuilderMixin.class);
+
+        // IAddresses require a custom deserializer
+        SimpleDeserializers deserializers = new SimpleDeserializers();
+        deserializers.addDeserializer(IAddress.class, new AddressDeserializer());
+        context.addDeserializers(deserializers);
     }
 
     /**
