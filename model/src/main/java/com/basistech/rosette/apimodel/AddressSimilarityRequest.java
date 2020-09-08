@@ -17,6 +17,8 @@
 package com.basistech.rosette.apimodel;
 
 
+import java.util.Map;
+
 import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
@@ -41,10 +43,17 @@ public final class AddressSimilarityRequest extends Request {
     @NotNull
     private IAddress address2;
 
+    /**
+     * @return parameters to use in the request
+     */
+    private Map<String, String> parameters;
+
     @Builder
-    public AddressSimilarityRequest(String profileId, IAddress address1, IAddress address2) {
+    public AddressSimilarityRequest(String profileId, IAddress address1, IAddress address2,
+                                    Map<String, String> parameters) {
         super(profileId);
         this.address1 = address1;
         this.address2 = address2;
+        this.parameters = parameters;
     }
 }

@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,8 +34,9 @@ public class AddressSimilarityRequestMixin {
     protected AddressSimilarityRequestMixin(
             @JsonProperty("profileId") String profileId,
             @JsonProperty("address1") IAddress address1,
-            @JsonProperty("address2") IAddress address2
-    ) {
+            @JsonProperty("address2") IAddress address2,
+            @JsonProperty("parameters") Map<String, String> parameters
+            ) {
         //
     }
 
