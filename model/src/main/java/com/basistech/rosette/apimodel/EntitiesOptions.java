@@ -78,4 +78,9 @@ public class EntitiesOptions extends Options {
      * @return the RTS workspace id.
      */
     private final String rtsDecoder;
+
+    /**
+     * @return case sensitivity of model to use. Can be one of caseSensitive, caseInsensitive or automatic.
+     */
+    private final String caseSensitivity;
 }
