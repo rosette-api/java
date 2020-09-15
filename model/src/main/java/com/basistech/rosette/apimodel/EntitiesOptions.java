@@ -73,4 +73,9 @@ public class EntitiesOptions extends Options {
      * @return the includePermID flag.
      */
     private final Boolean includePermID;
+
+    /**
+     * @return the RTS workspace id.
+     */
+    private final String rtsDecoder;
 }

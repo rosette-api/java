@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.Map;
+
 import lombok.Builder;
 import lombok.Value;
 
@@ -41,12 +43,19 @@ public final class NameSimilarityRequest extends Request {
     @NotNull
     private Name name2;
 
+    /**
+     * @return parameters to use
+     */
+    private Map<String, String> parameters;
+
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
     public NameSimilarityRequest(String profileId,
-                                  Name name1,
-                                  Name name2) {
+                                 Name name1,
+                                 Name name2,
+                                 Map<String, String> parameters) {
         super(profileId);
         this.name1 = name1;
         this.name2 = name2;
+        this.parameters = parameters;
     }
 }
