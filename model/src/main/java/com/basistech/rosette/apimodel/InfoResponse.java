@@ -54,4 +54,9 @@ public class InfoResponse extends Response {
      * @return client version checked
      */
     private final Boolean versionChecked;
+
+    /**
+     * @return the license expiration date
+     */
+    private final String licenseExpiration;
 }

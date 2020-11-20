@@ -34,5 +34,5 @@ def slack(boolean success) {
     def color = success ? "#00FF00" : "#FF0000"
     def status = success ? "SUCCESSFUL" : "FAILED"
     def message = status + ": Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-    slackSend(color: color, channel: "#rapid", message: message)
+    slackSend(color: color, channel: "#p-n-c_jenkins", message: message)
 }

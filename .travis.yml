@@ -1,12 +1,11 @@
+arch: amd64
+os: linux
+dist: trusty
 language: java
 script: mvn clean verify
 jdk:
 - oraclejdk8
 - openjdk8
-
-# suggested by travis support.
-sudo: required
-dist: trusty
-group:
-
-sudo: required
+notifications:
+  slack:
+    secure: WZMfOBd4zX7SOjeIzCpXGu2vCXwrBQBK3mXkPfn8VaAhwQkAiL7VnonDS19YVMfSm0eG5S9uZKT1wSzZFKvTmw7KEeDkD1rLfdqjbmIzT9W0iwG31mY+Q8gKBN1Dg9dSrCtwC3LkhXhvv4UjzVZ+FnJlrMzEVT+QUrHcQHSqt+uM5Mxz83pj+ZM8eqviODVxSzTwWD4Lqromvq7nplUO45MOrAIhY0Jau0sst2ysAiQXayqSXI33YC2xUJkPcNdypLGOsZ0bWIs68yXfxTMgDVB1+acRw9AFPDMapHUiiueqkJgZ/Itn643iAG4wftGza4OMnTPHpe3hQGp5kM4cqcqvuVmz29wQUWjpOUCqX4e6AoQfV+9jAC81tzbEX89HyyKUf/tAgxe/BefjduSSwT+hlV0WPXOdp4YIyA9YykAPdWlAceYJPipG9sJOWEKekfxojIiRpH2Ha/aV3T0ZgaHlWeoxIwDYgMZeIZxTvRoOwK3SxQzP5cPqh3yj0brJ9d1Z090Vo8qX1/tRt0OXT966Z/yC4MEurhJDNPBbSuBTQpqH+ayhObLnIxXpinPQSEA0fF5votVgZU20ZQDW8SOLPLyP+ZJ5qfUxbvhkLEk7GlO0rlD5xhXjG288u5vEwsWKYXDQ2TVdJdBXIflLxvPhIk8fo/JClnosTlbc9eg=
