@@ -54,6 +54,16 @@ public class PolymorphicRequestTest extends Assert {
         assertTrue(request instanceof DocumentRequest);
         assertFalse(((DocumentRequest<EntitiesOptions>) request).getOptions().getIncludePermID());
 
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"enableStructuredRegion\": true}}";
+        request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
+        assertTrue(request instanceof DocumentRequest);
+        assertTrue(((DocumentRequest<EntitiesOptions>) request).getOptions().getEnableStructuredRegion());
+
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"enableStructuredRegion\": false}}";
+        request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
+        assertTrue(request instanceof DocumentRequest);
+        assertFalse(((DocumentRequest<EntitiesOptions>) request).getOptions().getEnableStructuredRegion());
+
         json = "{\"name1\": {\"text\": \"Joe\"}, \"name2\": {\"text\": \"Geo\"}}";
         request = mapper.readValue(json, NameSimilarityRequest.class);
         assertTrue(request instanceof NameSimilarityRequest);
