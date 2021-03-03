@@ -35,6 +35,7 @@ public class EntitiesOptions extends Options {
             .calculateSalience(false)
             .linkEntities(true)
             .modelType("statistical")
+            .enableStructuredRegion(false)
             .build();
 
     /**
