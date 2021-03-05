@@ -35,6 +35,7 @@ public class EntitiesOptions extends Options {
             .calculateSalience(false)
             .linkEntities(true)
             .modelType("statistical")
+            .enableStructuredRegion(false)
             .build();
 
     /**
@@ -83,4 +84,9 @@ public class EntitiesOptions extends Options {
      * @return case sensitivity of model to use. Can be one of caseSensitive, caseInsensitive or automatic.
      */
     private final String caseSensitivity;
+
+    /**
+     * @return the enableStructuredRegion flag.
+     */
+    private final Boolean enableStructuredRegion;
 }
