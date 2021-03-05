@@ -54,6 +54,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     public static final String INFO_SERVICE_PATH = "/info";
     public static final String PING_SERVICE_PATH = "/ping";
     public static final String SUPPORTED_LANGUAGES_SUBPATH = "/supported-languages";
+    public static final String EVENTS_SERVICE_PATH = "/events";
 
     public static final Set<String> DOC_ENDPOINTS = new HashSet<>(Arrays.asList(
         LANGUAGE_SERVICE_PATH,
@@ -74,7 +75,8 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
         SIMILAR_TERMS_SERVICE_PATH,
         SYNTAX_DEPENDENCIES_SERVICE_PATH,
         TRANSLITERATION_SERVICE_PATH,
-        TOPICS_SERVICE_PATH
+        TOPICS_SERVICE_PATH,
+        EVENTS_SERVICE_PATH
     ));
 
     public static final Set<String> NAMES_ENDPOINTS = new HashSet<>(Arrays.asList(
