@@ -35,5 +35,5 @@ public final class EventsResponse extends Response {
     /**
      * @return the list of events
      */
-    private final List<Event> evnents;
+    private final List<Event> events;
 }
