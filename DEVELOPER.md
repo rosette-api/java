@@ -5,7 +5,9 @@ To be updated..
 
 
 #### Internal Releasing
-TBD..
+
+To perform an internal release, use `-Drelease-profile=internal-release` in `release:perform`.
+
 
 #### Old Stuff
 [Docker](examples/docker) bits for running examples.  Maybe just remove?
