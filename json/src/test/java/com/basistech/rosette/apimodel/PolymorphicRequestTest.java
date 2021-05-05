@@ -35,7 +35,7 @@ public class PolymorphicRequestTest extends Assert {
 
     @Test
     public void testRequestTypes() throws Exception {
-        String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"calculateConfidence\": true}}";
+        String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"workspaceId\": \"ws1\"}}";
         Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EventsOptions>>() { });
         assertTrue(request instanceof DocumentRequest);
 

@@ -17,6 +17,7 @@
 package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.annotations.JacksonMixin;
+import com.basistech.rosette.dm.Event;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

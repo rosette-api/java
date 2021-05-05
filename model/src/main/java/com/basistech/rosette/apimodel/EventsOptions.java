@@ -31,17 +31,11 @@ public class EventsOptions extends Options {
      * Default options
      */
     public static final EventsOptions DEFAULT = EventsOptions.builder()
-            .calculateConfidence(false)
-            .modelType("stubModel")
+            .workspaceId("_unset_")
             .build();
-
-    /**
-     * @return the calculateConfidence flag.
-     */
-    private final Boolean calculateConfidence;
 
     /**
      * @return the modelType to use.
      */
-    private final String modelType;
+    private final String workspaceId;
 }

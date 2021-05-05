@@ -18,7 +18,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.18.102-SNAPSHOT</version>
+    <version>1.18.103-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
@@ -54,6 +54,7 @@
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
         <mockserver-version>3.10.2</mockserver-version>
         <site-skin-version>1.5</site-skin-version>
+        <bt-adm-version>2.7.1</bt-adm-version>
     </properties>
     <modules>
         <module>annotations</module>
@@ -74,12 +75,12 @@
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>adm-model</artifactId>
-                <version>2.5.2</version>
+                <version>${bt-adm-version}</version>
             </dependency>
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>adm-json</artifactId>
-                <version>2.5.2</version>
+                <version>${bt-adm-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
