@@ -22,7 +22,7 @@
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
-        <version>2.0.2</version>
+        <version>8.1.0</version>
         <relativePath />
     </parent>
     <packaging>pom</packaging>
@@ -31,7 +31,7 @@
     <scm>
         <connection>scm:git:git@github.com:rosette-api/java.git</connection>
         <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
-        <tag>rosette-api-java-binding-1.14.0</tag>
+        <tag>HEAD</tag>
     </scm>
     <description>This is the Java binding for the Rosette API. The classes in here help Java applications to communicate with the Rosette API.</description>
     <distributionManagement>
@@ -41,19 +41,21 @@
         </site>
     </distributionManagement>
     <properties>
-        <bnd-maven-plugin.version>3.2.0</bnd-maven-plugin.version>
-        <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
-        <http-components-version>4.5.2</http-components-version>
-        <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
-        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <bnd-maven-plugin.version>5.3.0</bnd-maven-plugin.version>
+        <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
+        <http-components-version>4.5.13</http-components-version>
+        <lombok-version>1.18.20</lombok-version>
+        <maven-lombok-version>${lombok-version}.0</maven-lombok-version>
+        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <!-- There appears to be a regression between 3.0.0-M1 and 3.0.0 that causes
              exclusions to fail.  And javadoc does not like the generated annotations
              source in the models sub-module. And none of these versions work with
              JDK 1.7.  Hence the exclusion in Travis. -->
-        <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
-        <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <mockserver-version>3.10.2</mockserver-version>
-        <site-skin-version>1.5</site-skin-version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <mockserver-version>5.11.2</mockserver-version>
+        <site-skin-version>1.9</site-skin-version>
         <bt-adm-version>2.7.2</bt-adm-version>
     </properties>
     <modules>
@@ -139,8 +141,71 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <!-- sourceFileExclude is temperamental.  You have to exclude relative to the source folder.
+                         The source folder *after* the generated-source portion matches other sources that we want
+                         to include.  Long story short, we need to list them all.
+                         https://issues.apache.org/jira/browse/MJAVADOC-573 -->
                     <sourceFileExcludes>
-                        <exclude>**/target/generated-sources/annotations/com/basistech/rosette/apimodel/**</exclude>
+                        <sourceFileExclude>**/apimodel/batch/jackson/BatchRequestItemMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/batch/jackson/BatchRequestMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/batch/jackson/BatchResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/batch/jackson/BatchStatusResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/AddressSimilarityResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/AdmResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/CategoriesOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/CategoriesResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/CategoryLabelMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/ConceptMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/ConfigurationResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/ConstantsResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/DependencyMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/EntitiesOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/EntitiesResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/EntityMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/ErrorResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/EventsOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/EventsResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/GazetteerConfigurationMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/InfoResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/KeyphraseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/LabelMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/LanguageDetectionResultMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/LanguageOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/LanguageRegionDetectionResultMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/LanguageResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/LanguageWeightMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/MentionOffsetsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/MixinUtil.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/MorphologyOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/MorphologyResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/NameDeduplicationResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/NameSimilarityResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/NameTranslationResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/PingResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/RelationshipMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/RelationshipsOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/RelationshipsResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SemanticVectorsOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SemanticVectorsResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SentenceWithDependenciesMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SentencesResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SentimentOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SentimentResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SimilarTermMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SimilarTermsOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SimilarTermsResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SupportedLanguageMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SupportedLanguagePairMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SupportedLanguagePairsResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SupportedLanguagesResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/SyntaxDependenciesResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/TextEmbeddingOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/TextEmbeddingResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/TokensResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/TopicsOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/TopicsResponseMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/TransliterationOptionsMixin.java</sourceFileExclude>
+                        <sourceFileExclude>**/apimodel/jackson/TransliterationResponseMixin.java</sourceFileExclude>
                     </sourceFileExcludes>
                 </configuration>
             </plugin>
