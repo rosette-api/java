@@ -43,7 +43,7 @@
     <properties>
         <bnd-maven-plugin.version>3.2.0</bnd-maven-plugin.version>
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
-        <http-components-version>4.5.2</http-components-version>
+        <http-components-version>4.5.13</http-components-version>
         <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <!-- There appears to be a regression between 3.0.0-M1 and 3.0.0 that causes
