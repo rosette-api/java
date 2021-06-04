@@ -43,7 +43,7 @@
     <properties>
         <bnd-maven-plugin.version>5.3.0</bnd-maven-plugin.version>
         <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
-        <http-components-version>4.5.2</http-components-version>
+        <http-components-version>4.5.13</http-components-version>
         <lombok-version>1.18.20</lombok-version>
         <maven-lombok-version>${lombok-version}.0</maven-lombok-version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
