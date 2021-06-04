@@ -21,7 +21,7 @@ import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import org.apache.http.HttpHeaders;
 import org.junit.Test;
-import org.mockserver.client.server.MockServerClient;
+import org.mockserver.client.MockServerClient;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
