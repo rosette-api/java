@@ -20,6 +20,10 @@ import com.basistech.rosette.annotations.JacksonMixin;
 import lombok.Builder;
 import lombok.Value;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * Events options
  */
@@ -37,5 +41,6 @@ public class EventsOptions extends Options {
     /**
      * @return the modelType to use.
      */
-    private final String workspaceId;
+    @NotBlank
+    String workspaceId;
 }
