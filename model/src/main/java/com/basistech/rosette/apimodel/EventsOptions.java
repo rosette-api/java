@@ -21,8 +21,6 @@ import lombok.Builder;
 import lombok.Value;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 /**
  * Events options
@@ -39,7 +37,7 @@ public class EventsOptions extends Options {
             .build();
 
     /**
-     * @return the modelType to use.
+     * workspaceId to use.
      */
     @NotBlank
     String workspaceId;
