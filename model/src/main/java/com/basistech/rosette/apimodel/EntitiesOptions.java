@@ -89,4 +89,9 @@ public class EntitiesOptions extends Options {
      * @return the enableStructuredRegion flag.
      */
     private final Boolean enableStructuredRegion;
+
+    /**
+     * @return the structuredRegionProcessingType flag. Can be one of none, nerModel, nameClassifier
+     */
+    private final String structuredRegionProcessingType;
 }
