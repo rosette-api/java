@@ -78,7 +78,7 @@ public class PolymorphicRequestTest extends Assert {
         request = mapper.readValue(json, NameDeduplicationRequest.class);
         assertTrue(request instanceof NameDeduplicationRequest);
 
-        json = "{\"language\": \"xxx\", \"configuration\": {\"entities\": https://meet.google.com/iah-omkb-egp{ \"LOCATION\": [\"Boston\", \"Mos Eisley\"] } } }";
+        json = "{\"language\": \"xxx\", \"configuration\": {\"entities\": { \"LOCATION\": [\"Boston\", \"Mos Eisley\"] } } }";
         request = mapper.readValue(json, new TypeReference<ConfigurationRequest<GazetteerConfiguration>>() { });
         assertTrue(request instanceof ConfigurationRequest);
     }
