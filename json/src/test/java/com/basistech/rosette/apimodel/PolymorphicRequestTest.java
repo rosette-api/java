@@ -15,15 +15,12 @@
 */
 package com.basistech.rosette.apimodel;
 
-import com.basistech.util.LanguageCode;
+import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 
 public class PolymorphicRequestTest extends Assert {
     private ObjectMapper mapper;
@@ -35,12 +32,9 @@ public class PolymorphicRequestTest extends Assert {
 
     @Test
     public void testRequestTypes() throws Exception {
-        String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"workspaceId\": \"ws1\"}}";
-        Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EventsOptions>>() { });
-        assertTrue(request instanceof DocumentRequest);
 
-        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"calculateConfidence\": true}}";
-        request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
+        String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"calculateConfidence\": true}}";
+        Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
         assertTrue(request instanceof DocumentRequest);
 
         json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaType\": true, \"calculateConfidence\": true}}";
@@ -84,8 +78,20 @@ public class PolymorphicRequestTest extends Assert {
         request = mapper.readValue(json, NameDeduplicationRequest.class);
         assertTrue(request instanceof NameDeduplicationRequest);
 
-        json = "{\"language\": \"xxx\", \"configuration\": {\"entities\": { \"LOCATION\": [\"Boston\", \"Mos Eisley\"] } } }";
+        json = "{\"language\": \"xxx\", \"configuration\": {\"entities\": https://meet.google.com/iah-omkb-egp{ \"LOCATION\": [\"Boston\", \"Mos Eisley\"] } } }";
         request = mapper.readValue(json, new TypeReference<ConfigurationRequest<GazetteerConfiguration>>() { });
         assertTrue(request instanceof ConfigurationRequest);
+    }
+
+    @Test
+    public void eventsRequests() throws Exception {
+        String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"workspaceId\": \"ws1\"}}";
+        Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EventsOptions>>() { });
+        assertTrue(request instanceof DocumentRequest);
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"plan\": {\"eng\": [\"abc123\"]}}}";
+        request = mapper.readValue(json, new TypeReference<DocumentRequest<EventsOptions>>() { });
+        assertTrue(request instanceof DocumentRequest);
+
+
     }
 }

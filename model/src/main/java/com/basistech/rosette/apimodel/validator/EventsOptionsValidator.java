@@ -14,36 +14,22 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel;
+package com.basistech.rosette.apimodel.validator;
 
-import com.basistech.rosette.annotations.JacksonMixin;
-import com.basistech.rosette.apimodel.validator.ValidEventsOptions;
+import com.basistech.rosette.apimodel.EventsOptions;
 import com.basistech.util.LanguageCode;
-import lombok.Builder;
-import lombok.Value;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import java.util.EnumMap;
 import java.util.List;
 
-/**
- * Events options
- */
-@Value
-@Builder
-@JacksonMixin
-@ValidEventsOptions
-public class EventsOptions extends Options {
-    /**
-     * Default options
-     */
-    public static final EventsOptions DEFAULT = EventsOptions.builder()
-            .workspaceId("_unset_")
-            .build();
+public class EventsOptionsValidator implements ConstraintValidator<ValidEventsOptions, EventsOptions> {
+    @Override
+    public boolean isValid(EventsOptions value, ConstraintValidatorContext context) {
+        String workspaceId = value.getWorkspaceId();
+        EnumMap<LanguageCode, List<String>> plan = value.getPlan();
 
-    /**
-     * workspaceId to use.
-     */
-    String workspaceId;
-
-    EnumMap<LanguageCode, List<String>> plan;
+        return (workspaceId != null && !workspaceId.isEmpty()) ^ (plan != null && !plan.isEmpty());
+    }
 }
