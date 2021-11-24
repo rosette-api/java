@@ -177,6 +177,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         HttpClientBuilder builder = HttpClients.custom();
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
         cm.setMaxTotal(connectionConcurrency);
+        cm.setDefaultMaxPerRoute(connectionConcurrency);
         builder.setConnectionManager(cm);
 
         initHeaders(key, additionalHeaders);
