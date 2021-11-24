@@ -17,7 +17,6 @@
 package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.annotations.JacksonMixin;
-import com.basistech.rosette.apimodel.validator.ValidEventsOptions;
 import com.basistech.util.LanguageCode;
 import lombok.Builder;
 import lombok.Value;
@@ -31,14 +30,11 @@ import java.util.List;
 @Value
 @Builder
 @JacksonMixin
-@ValidEventsOptions
 public class EventsOptions extends Options {
     /**
      * Default options
      */
-    public static final EventsOptions DEFAULT = EventsOptions.builder()
-            .workspaceId("_unset_")
-            .build();
+    public static final EventsOptions DEFAULT = EventsOptions.builder().build();
 
     /**
      * workspaceId to use.
