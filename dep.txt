@@ -1,0 +1,65 @@
+[INFO] Scanning for projects...
+[INFO] Inspecting build with total of 8 modules...
+[INFO] Installing Nexus Staging features:
+[INFO]   ... total of 8 executions of maven-deploy-plugin replaced with nexus-staging-maven-plugin
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] rosette-api-java-binding                                           [pom]
+[INFO] rosette-api-annotations                                            [jar]
+[INFO] rosette-api-model                                                  [jar]
+[INFO] rosette-api-json                                                   [jar]
+[INFO] rosette-api-common                                                 [jar]
+[INFO] rosette-api                                                        [jar]
+[INFO] rosette-api-examples                                               [jar]
+[INFO] rosette-api-release                                                [pom]
+[INFO] 
+[INFO] -----------< com.basistech.rosette:rosette-api-java-binding >-----------
+[INFO] Building rosette-api-java-binding 1.20.0-SNAPSHOT                  [1/8]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:tree (default-cli) @ rosette-api-java-binding ---
+[INFO] com.basistech.rosette:rosette-api-java-binding:pom:1.20.0-SNAPSHOT
+[INFO] 
+[INFO] -----------< com.basistech.rosette:rosette-api-annotations >------------
+[INFO] Building rosette-api-annotations 1.20.0-SNAPSHOT                   [2/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:tree (default-cli) @ rosette-api-annotations ---
+[INFO] com.basistech.rosette:rosette-api-annotations:jar:1.20.0-SNAPSHOT
+[INFO] +- com.fasterxml.jackson.core:jackson-annotations:jar:2.9.6:provided
+[INFO] +- com.fasterxml.jackson.core:jackson-databind:jar:2.9.6:provided
+[INFO] |  \- com.fasterxml.jackson.core:jackson-core:jar:2.9.6:provided
+[INFO] +- com.squareup:javapoet:jar:1.9.0:provided
+[INFO] \- org.projectlombok:lombok:jar:1.16.18:provided
+[INFO] 
+[INFO] --------------< com.basistech.rosette:rosette-api-model >---------------
+[INFO] Building rosette-api-model 1.20.0-SNAPSHOT                         [3/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for rosette-api-java-binding 1.20.0-SNAPSHOT:
+[INFO] 
+[INFO] rosette-api-java-binding ........................... SUCCESS [  0.481 s]
+[INFO] rosette-api-annotations ............................ SUCCESS [  0.027 s]
+[INFO] rosette-api-model .................................. FAILURE [  0.023 s]
+[INFO] rosette-api-json ................................... SKIPPED
+[INFO] rosette-api-common ................................. SKIPPED
+[INFO] rosette-api ........................................ SKIPPED
+[INFO] rosette-api-examples ............................... SKIPPED
+[INFO] rosette-api-release ................................ SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.132 s
+[INFO] Finished at: 2021-12-17T15:10:02-06:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project rosette-api-model: Could not resolve dependencies for project com.basistech.rosette:rosette-api-model:jar:1.20.0-SNAPSHOT: Failure to find com.basistech.rosette:rosette-api-annotations:jar:1.20.0-SNAPSHOT in http://nexus.basistech.net/nexus/content/groups/public was cached in the local repository, resolution will not be reattempted until the update interval of Nexus has elapsed or updates are forced -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :rosette-api-model
