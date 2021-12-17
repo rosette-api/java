@@ -53,6 +53,8 @@
         <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
         <mockserver-version>3.10.2</mockserver-version>
+        <!-- Use new server.  https://issues.sonatype.org/browse/OSSRH-76389 -->
+        <nexus-staging-plugin-ossrh-nexus-url>https://s01.oss.sonatype.org</nexus-staging-plugin-ossrh-nexus-url>
         <site-skin-version>1.5</site-skin-version>
         <bt-adm-version>2.7.2</bt-adm-version>
     </properties>
