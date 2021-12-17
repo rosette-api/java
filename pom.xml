@@ -22,7 +22,7 @@
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
-        <version>2.0.2</version>
+        <version>2.0.3</version>
         <relativePath />
     </parent>
     <packaging>pom</packaging>
@@ -31,7 +31,7 @@
     <scm>
         <connection>scm:git:git@github.com:rosette-api/java.git</connection>
         <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
-        <tag>rosette-api-java-binding-1.19.1</tag>
+        <tag>HEAD</tag>
     </scm>
     <description>This is the Java binding for the Rosette API. The classes in here help Java applications to communicate with the Rosette API.</description>
     <distributionManagement>
@@ -53,8 +53,6 @@
         <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
         <mockserver-version>3.10.2</mockserver-version>
-        <!-- Use new server.  https://issues.sonatype.org/browse/OSSRH-76389 -->
-        <nexus-staging-plugin-nexus-url>https://s01.oss.sonatype.org</nexus-staging-plugin-nexus-url>
         <site-skin-version>1.5</site-skin-version>
         <bt-adm-version>2.7.2</bt-adm-version>
     </properties>
