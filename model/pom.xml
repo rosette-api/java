@@ -47,7 +47,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.18</version>
+            <version>1.18.20</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -88,7 +88,7 @@
             <plugin>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok-maven-plugin</artifactId>
-                <version>1.16.18.1</version>
+                <version>1.18.20.0</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -100,6 +100,9 @@
                         <configuration>
                             <addOutputDirectory>false</addOutputDirectory>
                             <sourceDirectory>src/main/java</sourceDirectory>
+                            <outputDirectory>
+                                ${project.build.directory}/delombok
+                            </outputDirectory>
                             <formatPreferences>
                                 <javaLangAsFQN>skip</javaLangAsFQN>
                             </formatPreferences>

@@ -41,7 +41,7 @@
         </site>
     </distributionManagement>
     <properties>
-        <bnd-maven-plugin.version>3.2.0</bnd-maven-plugin.version>
+        <bnd-maven-plugin.version>6.2.0</bnd-maven-plugin.version>
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
         <http-components-version>4.5.13</http-components-version>
         <http-components-core-version>4.4.15</http-components-core-version>
@@ -51,7 +51,7 @@
              exclusions to fail.  And javadoc does not like the generated annotations
              source in the models sub-module. And none of these versions work with
              JDK 1.7.  Hence the exclusion in Travis. -->
-        <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
         <mockserver-version>3.10.2</mockserver-version>
         <site-skin-version>1.5</site-skin-version>
@@ -101,7 +101,7 @@
                             </includes>
                         </fileset>
                     </filesets>
-                    <followSymlinks>false</followSymlinks>
+                    <!--<followSymlinks>false</followSymlinks>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -109,9 +109,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <compilerVersion>1.7</compilerVersion>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <compilerVersion>17</compilerVersion>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -141,6 +141,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <sourcepath>target/generated-sources/delombok</sourcepath>
                     <sourceFileExcludes>
                         <exclude>**/target/generated-sources/annotations/com/basistech/rosette/apimodel/**</exclude>
                     </sourceFileExcludes>
