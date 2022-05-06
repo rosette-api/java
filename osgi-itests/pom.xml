@@ -16,6 +16,10 @@
             <artifactId>rosette-api</artifactId>
             <version>1.21.1-SNAPSHOT</version>
         </dependency>
+
+        <!-- minimum external requirements of rosette-api OSGi -->
+        <!-- OSGi dependencies are sensitive to underlying bundles' requirements -->
+        <!-- Transitive dependencies of rosette-api are used for resolving as well. -->
         <dependency>
             <groupId>com.basistech</groupId>
             <artifactId>common-api</artifactId>
@@ -33,24 +37,7 @@
             <version>1.8.10</version>
             <scope>compile</scope>
         </dependency>
-        <!--
-                <dependency>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>org.apache.felix.scr</artifactId>
-                    <version>2.0.6</version>
-                    <scope>compile</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>org.apache.felix.metatype</artifactId>
-                    <version>1.2.2</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>org.apache.felix.log</artifactId>
-                    <version>1.0.0</version>
-                </dependency>
-        -->
+
         <!-- SLF4J is part of rosette-osgi's system packages. -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -61,6 +48,7 @@
             <artifactId>slf4j-simple</artifactId>
         </dependency>
 
+        <!-- bnd-testing dependencies -->
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.enroute.junit.wrapper</artifactId>
@@ -70,18 +58,6 @@
             <groupId>org.osgi</groupId>
             <artifactId>osgi.enroute.hamcrest.wrapper</artifactId>
             <version>1.3.0</version>
-        </dependency>
-<!--
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.cmpn</artifactId>
-            <version>6.0.0</version>
-        </dependency>
--->
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-            <version>6.0.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -108,17 +84,12 @@
                 <groupId>biz.aQute.bnd</groupId>
                 <artifactId>bnd-maven-plugin</artifactId>
             </plugin>
-
-            <!-- Custom manifest header rootDirectory has the root directory. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                        <manifestEntries>
-                            <basedir>${basedir}</basedir>
-                        </manifestEntries>
                     </archive>
                     <outputDirectory>${bundle-repo}</outputDirectory>
                 </configuration>
