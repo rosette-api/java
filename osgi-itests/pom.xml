@@ -17,14 +17,18 @@
             <version>1.21.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- minimum external requirements of rosette-api OSGi -->
-        <!-- OSGi dependencies are sensitive to underlying bundles' requirements -->
-        <!-- Transitive dependencies of rosette-api are used for resolving as well. -->
+        <!-- The goal of this test is to make sure rosette-api resolves successfully in OSGi with given dependencies. -->
+        <!-- A failure in this test indicates changes in the minimum runtime requirements of the bundle. -->
+
+        <!-- Transitive dependencies of rosette-api are used for resolving. -->
+        <!-- ADM common-api doesn't line up with the parent in use. -->
         <dependency>
             <groupId>com.basistech</groupId>
             <artifactId>common-api</artifactId>
             <version>37.0.1</version>
         </dependency>
+
+        <!-- OSGi framework dependencies -->
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.framework</artifactId>
