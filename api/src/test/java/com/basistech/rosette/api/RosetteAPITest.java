@@ -43,10 +43,13 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockserver.client.server.MockServerClient;
+//import org.mockserver.client.server.MockServerClient;
+import org.mockserver.client.MockServerClient;
+import org.mockserver.junit.MockServerRule;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
@@ -54,6 +57,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.ServerSocket;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -66,6 +70,9 @@ public class RosetteAPITest extends AbstractTest {
     private final String testFilename;
     private HttpRosetteAPI api;
     private String responseStr;
+
+    @Rule
+    public MockServerRule mockServerRule = new MockServerRule(this, serverPort);
     private MockServerClient mockServer;
     private String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
 
@@ -101,7 +108,8 @@ public class RosetteAPITest extends AbstractTest {
                 String statusStr = FileUtils.readFileToString(statusFile, "UTF-8").trim();
                 statusCode = Integer.parseInt(statusStr);
             }
-            mockServer = new MockServerClient("localhost", serverPort);
+
+            mockServer = mockServerRule.getClient();
             mockServer.reset();
             mockServer.when(HttpRequest.request()
                     .withMethod("GET")
