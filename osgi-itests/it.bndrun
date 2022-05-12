@@ -1,7 +1,7 @@
 -standalone: target/index.xml
 # -runtrace: true
--runfw: org.apache.felix.framework;version=5
--runee: JavaSE-1.8
+-runfw: org.apache.felix.framework;version=7
+-runee: JavaSE-11
 
 -runsystempackages: \
 	sun.misc,org.slf4j
