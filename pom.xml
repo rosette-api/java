@@ -53,7 +53,8 @@
              JDK 1.7.  Hence the exclusion in Travis. -->
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <mockserver-version>4.1.0</mockserver-version>
+	<mockserver-version>4.1.0</mockserver-version>
+	<nexus-staging-plugin-version>1.6.13</nexus-staging-plugin-version>
         <site-skin-version>1.5</site-skin-version>
         <bt-adm-version>2.7.2</bt-adm-version>
     </properties>
