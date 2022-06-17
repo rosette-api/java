@@ -23,12 +23,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.Value;
 import lombok.experimental.NonFinal;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  * Supported language/script/scheme pairs
  */
 @Value
 @Builder
+@Jacksonized
 @JacksonMixin
 public class SupportedLanguagePair {
     /**
