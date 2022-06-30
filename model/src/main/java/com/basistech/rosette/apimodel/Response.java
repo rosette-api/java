@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -26,6 +27,7 @@ import java.util.Map;
  * In this version, they have nothing in common.
  */
 @Getter
+@EqualsAndHashCode
 public abstract class Response {
     /**
      * @return extended information

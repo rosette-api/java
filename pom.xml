@@ -18,7 +18,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.21.106-SNAPSHOT</version>
+    <version>1.21.111-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
@@ -51,7 +51,7 @@
              exclusions to fail.  And javadoc does not like the generated annotations
              source in the models sub-module. And none of these versions work with
              JDK 1.7.  Hence the exclusion in Travis. -->
-        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
 	<mockserver-version>4.1.0</mockserver-version>
 	<nexus-staging-plugin-version>1.6.13</nexus-staging-plugin-version>
