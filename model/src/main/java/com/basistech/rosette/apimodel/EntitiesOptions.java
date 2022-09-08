@@ -54,9 +54,9 @@ public class EntitiesOptions extends Options {
     private final Boolean linkEntities;
 
     /**
-     * @return the linkExistingEntities flag.
+     * @return the linkMentionMode flag.
      */
-    private final Boolean linkExistingEntities;
+    private final String linkMentionMode;
 
     /**
      * @return the modelType to use.
