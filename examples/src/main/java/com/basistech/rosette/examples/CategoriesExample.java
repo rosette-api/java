@@ -39,7 +39,7 @@ public final class CategoriesExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        String categoriesUrlData = "https://onlocationvacations.com/2018/02/06/downton-abbey-exhibition-extended-april-2-nyc/";
+        String categoriesUrlData = "https://www.rosette.com/about/";
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                                 .key(getApiKeyFromSystemProperty())
                                 .url(getAltUrlFromSystemProperty())
