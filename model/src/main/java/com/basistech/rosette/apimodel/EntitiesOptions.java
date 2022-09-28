@@ -54,6 +54,11 @@ public class EntitiesOptions extends Options {
     private final Boolean linkEntities;
 
     /**
+     * @return the linkMentionMode mode.
+     */
+    private final String linkMentionMode;
+
+    /**
      * @return the modelType to use.
      */
     private final String modelType;
