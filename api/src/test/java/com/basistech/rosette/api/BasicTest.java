@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -64,11 +64,12 @@ public class BasicTest extends AbstractTest {
     private MockServerClient mockServer;
     private HttpRosetteAPI api;
 
-    private static int getFreePort() {
+    public BasicTest() throws IOException {
+    }
+
+    private static int getFreePort() throws IOException {
         try (ServerSocket socket = new ServerSocket(0)) {
             serverPort = socket.getLocalPort();
-        } catch (IOException e) {
-            fail("Failed to allocate a port");
         }
         assertNotEquals(0, serverPort);
         return serverPort;
