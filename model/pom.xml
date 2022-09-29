@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2017 Basis Technology Corp.
+  Copyright 2017-2022 Basis Technology Corp.
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -24,6 +24,9 @@
     <artifactId>rosette-api-model</artifactId>
     <name>rosette-api-model</name>
     <description>Rosette API data models</description>
+    <properties>
+        <delombok.output.directory>${project.build.directory}/delombok</delombok.output.directory>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
@@ -100,15 +103,29 @@
                         <configuration>
                             <addOutputDirectory>false</addOutputDirectory>
                             <sourceDirectory>src/main/java</sourceDirectory>
-                            <outputDirectory>
-                                ${project.build.directory}/delombok
-                            </outputDirectory>
+                            <outputDirectory>${delombok.output.directory}</outputDirectory>
                             <formatPreferences>
                                 <javaLangAsFQN>skip</javaLangAsFQN>
                             </formatPreferences>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourcepath>${delombok.output.directory}</sourcepath>
+                </configuration>
             </plugin>
         </plugins>
     </build>
