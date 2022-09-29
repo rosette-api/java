@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -22,6 +22,8 @@ import com.basistech.rosette.apimodel.TransliterationResponse;
 import com.basistech.util.LanguageCode;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.TRANSLITERATION_SERVICE_PATH;
 
 /**
  * Example which demonstrates the transliteration API.
@@ -49,7 +51,7 @@ public class TransliterationExample extends ExampleBase {
                 .content(transliterationData)
                 .language(LanguageCode.ARABIC)
                 .build();
-        TransliterationResponse response = rosetteApi.perform(HttpRosetteAPI.TRANSLITERATION_SERVICE_PATH, request, TransliterationResponse.class);
+        TransliterationResponse response = rosetteApi.perform(TRANSLITERATION_SERVICE_PATH, request, TransliterationResponse.class);
         System.out.println(responseToJson(response));
     }
 }

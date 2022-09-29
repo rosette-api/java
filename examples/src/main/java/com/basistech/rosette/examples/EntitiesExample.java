@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -22,6 +22,8 @@ import com.basistech.rosette.apimodel.EntitiesResponse;
 
 import java.io.IOException;
 
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.ENTITIES_SERVICE_PATH;
+
 /**
  * Example which demonstrates the entity extraction api.
  */
@@ -43,7 +45,7 @@ public final class EntitiesExample extends ExampleBase {
         DocumentRequest<EntitiesOptions> request = DocumentRequest.<EntitiesOptions>builder()
                 .content(entitiesTextData)
                 .build();
-        EntitiesResponse response = rosetteApi.perform(HttpRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
+        EntitiesResponse response = rosetteApi.perform(ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
         System.out.println(responseToJson(response));
     }
 }

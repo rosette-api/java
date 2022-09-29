@@ -1,5 +1,5 @@
 /*
-* Copyright 2017-2019 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -41,62 +41,63 @@ public class EntitiesOptions extends Options {
     /**
      * @return the calculateConfidence flag.
      */
-    private final Boolean calculateConfidence;
+    Boolean calculateConfidence;
 
     /**
      * @return the calculateSalience flag.
      */
-    private final Boolean calculateSalience;
+    Boolean calculateSalience;
 
     /**
      * @return the linkEntities flag.
      */
-    private final Boolean linkEntities;
+    Boolean linkEntities;
 
     /**
      * @return the linkMentionMode mode.
      */
-    private final String linkMentionMode;
+    String linkMentionMode;
 
     /**
      * @return the modelType to use.
      */
-    private final String modelType;
+    String modelType;
 
     /**
      * @deprecated use includeDBpediaTypes instead.
      * @return the includeDBpediaType flag.
      */
-    private final Boolean includeDBpediaType;
+    @Deprecated(since = "1.14.0", forRemoval = true)
+    Boolean includeDBpediaType;
 
     /**
      * @since 1.14.0 (19.08)
      * @return the includeDBpediaType flag.
      */
-    private final Boolean includeDBpediaTypes;
+    Boolean includeDBpediaTypes;
 
     /**
      * @return the includePermID flag.
      */
-    private final Boolean includePermID;
+    Boolean includePermID;
 
     /**
      * @return the RTS workspace id.
      */
-    private final String rtsDecoder;
+    String rtsDecoder;
 
     /**
      * @return case sensitivity of model to use. Can be one of caseSensitive, caseInsensitive or automatic.
      */
-    private final String caseSensitivity;
+    String caseSensitivity;
 
     /**
      * @return the enableStructuredRegion flag.
      */
-    private final Boolean enableStructuredRegion;
+    Boolean enableStructuredRegion;
 
     /**
      * @return the structuredRegionProcessingType flag. Can be one of none, nerModel, nameClassifier
      */
-    private final String structuredRegionProcessingType;
+    String structuredRegionProcessingType;
 }

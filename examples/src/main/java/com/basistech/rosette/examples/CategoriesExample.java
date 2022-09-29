@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import com.basistech.rosette.apimodel.CategoriesResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.CATEGORIES_SERVICE_PATH;
 
 /**
  * Example which demonstrates the category api.
@@ -46,8 +48,10 @@ public final class CategoriesExample extends ExampleBase {
                                 .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        DocumentRequest<CategoriesOptions> request = DocumentRequest.<CategoriesOptions>builder().contentUri(categoriesUrlData).build();
-        CategoriesResponse response = rosetteApi.perform(HttpRosetteAPI.CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
+        DocumentRequest<CategoriesOptions> request = DocumentRequest.<CategoriesOptions>builder()
+                                                                    .contentUri(categoriesUrlData)
+                                                                    .build();
+        CategoriesResponse response = rosetteApi.perform(CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
         System.out.println(responseToJson(response));
     }
 }

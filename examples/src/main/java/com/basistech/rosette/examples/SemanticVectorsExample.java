@@ -1,5 +1,5 @@
 /*
-* Copyright 2019 Basis Technology Corp.
+* Copyright 2019-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import com.basistech.rosette.apimodel.SemanticVectorsOptions;
 import com.basistech.rosette.apimodel.SemanticVectorsResponse;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.SEMANTIC_VECTORS_SERVICE_PATH;
 
 /**
  * Example which demonstrates semantic-vectors.
@@ -48,7 +50,7 @@ public final class SemanticVectorsExample extends ExampleBase {
         DocumentRequest<SemanticVectorsOptions> request = DocumentRequest.<SemanticVectorsOptions>builder()
             .content(semanticVectorsData)
             .build();
-        SemanticVectorsResponse response = rosetteApi.perform(HttpRosetteAPI.SEMANTIC_VECTORS_SERVICE_PATH, request, SemanticVectorsResponse.class);
+        SemanticVectorsResponse response = rosetteApi.perform(SEMANTIC_VECTORS_SERVICE_PATH, request, SemanticVectorsResponse.class);
         System.out.println(responseToJson(response));
     }
 }

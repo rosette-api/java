@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
 import com.basistech.rosette.apimodel.DocumentRequest;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.SYNTAX_DEPENDENCIES_SERVICE_PATH;
 
 /**
  * Example which demonstrates the syntax dependencies endpoint of the Rosette api.
@@ -43,7 +45,7 @@ public final class SyntaxDependenciesExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         DocumentRequest<?> request = DocumentRequest.builder().content(syntaxDependenciesData).build();
-        SyntaxDependenciesResponse response = rosetteApi.perform(HttpRosetteAPI.SYNTAX_DEPENDENCIES_SERVICE_PATH, request, SyntaxDependenciesResponse.class);
+        SyntaxDependenciesResponse response = rosetteApi.perform(SYNTAX_DEPENDENCIES_SERVICE_PATH, request, SyntaxDependenciesResponse.class);
         System.out.println(responseToJson(response));
     }
 }

@@ -1,5 +1,5 @@
 /*
-* Copyright 2017-2019 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.basistech.rosette.annotations.JacksonMixin;
 import lombok.Builder;
 import lombok.Value;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -33,69 +34,71 @@ public class Entity {
     /**
      * @return the entity type
      */
-    private final String type;
+    String type;
 
     /**
      * @return the entity mention text
      */
-    private final String mention;
+    String mention;
 
     /**
      * @return the normalized entity mention text
      */
-    private final String normalized;
+    String normalized;
 
     /**
      * @return the entity mention count
      */
-    private final Integer count;
+    Integer count;
 
     /**
      * @return the list of offsets for all mentions
      */
-    private final List<MentionOffsets> mentionOffsets;
+    @Valid
+    List<MentionOffsets> mentionOffsets;
 
     /**
      * @return the ID of this entity. If this entity was linked to a knowledge base,
      * the resulting string will begin with 'Q'. If it was not linked to a knowledge base,
      * it will begin with a 'T'. 'T' identifiers represent intra-document co-references.
      */
-    private final String entityId;
+    String entityId;
 
     /**
      * @return the confidence score for the entity (0.0-1.0)
      */
-    private final Double confidence;
+    Double confidence;
 
     /**
      * @return the confidence score for linking the entity to the knowledge base (0.0-1.0)
      */
-    private final Double linkingConfidence;
+    Double linkingConfidence;
 
     /**
      * @return the salience score for the entity (0.0|1.0)
      */
-    private final Double salience;
+    Double salience;
 
     /**
      * @return the sentiment information.
      */
-    private final Label sentiment;
+    Label sentiment;
 
     /**
      * @deprecated use dbpediaTypes instead.
      * @return the DBpediaType
      */
-    private final String dbpediaType;
+    @Deprecated(since = "1.14.0", forRemoval = true)
+    String dbpediaType;
 
     /**
      * @since 1.14.0 (19.08)
      * @return the DBpediaTypes
      */
-    private final List<String> dbpediaTypes;
+    List<String> dbpediaTypes;
 
     /**
      * @return the PermID
      */
-    private final String permId;
+    String permId;
 }

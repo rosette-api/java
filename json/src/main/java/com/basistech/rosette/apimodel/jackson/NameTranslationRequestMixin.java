@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -47,6 +47,6 @@ public abstract class NameTranslationRequestMixin {
     }
 
     @JsonPOJOBuilder(withPrefix = "")
-    abstract class NameTranslationRequestBuilderMixin {
+    abstract static class NameTranslationRequestBuilderMixin {
     }
 }

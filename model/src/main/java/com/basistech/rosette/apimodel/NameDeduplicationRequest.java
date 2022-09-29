@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,7 +19,9 @@ package com.basistech.rosette.apimodel;
 import lombok.Builder;
 import lombok.Value;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,25 +30,26 @@ import java.util.List;
  * This class carries the list of names to dedupe as well as the score threshold.
  */
 @Value
-public final class NameDeduplicationRequest extends Request {
+public class NameDeduplicationRequest extends Request {
 
     /**
      * @return the list of names
      */
     @NotNull
-    private final  List<Name> names;
+    @Valid
+    List<Name> names;
 
     /**
      * @return the threshold
      */
-    private final Double threshold;
+    Double threshold;
 
-    @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
+    @Builder     // workaround for inheritance https://github.com/projectlombok/lombok/issues/853
     public NameDeduplicationRequest(String profileId,
                                      List<Name> names,
                                      Double threshold) {
         super(profileId);
-        this.names = names;
+        this.names = new ArrayList<>(names);
         this.threshold = threshold;
     }
 }

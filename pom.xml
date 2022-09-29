@@ -41,18 +41,23 @@
         </site>
     </distributionManagement>
     <properties>
+        <bbh-maven-plugin.version>1.0.1</bbh-maven-plugin.version>
         <bnd-maven-plugin.version>6.2.0</bnd-maven-plugin.version>
+        <bt-adm-version>2.7.2</bt-adm-version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
-        <http-components-version>4.5.13</http-components-version>
-        <http-components-core-version>4.4.15</http-components-core-version>
+        <http-components.version>4.5.13</http-components.version>
+        <http-components-core.version>4.4.15</http-components-core.version>
+        <java-poet.version>1.13.0</java-poet.version>
+        <javax-validation-api.version>2.0.0.Final</javax-validation-api.version>
+        <lombok.version>1.18.24</lombok.version>
+        <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <mockserver-version>4.1.0</mockserver-version>
+        <mockserver.version>4.1.0</mockserver.version>
         <nexus-staging-plugin-version>1.6.13</nexus-staging-plugin-version>
-        <site-skin-version>1.5</site-skin-version>
-        <bt-adm-version>2.7.2</bt-adm-version>
+        <site-skin.version>1.5</site-skin.version>
     </properties>
     <modules>
         <module>annotations</module>
@@ -98,7 +103,6 @@
                             </includes>
                         </fileset>
                     </filesets>
-                    <!--<followSymlinks>false</followSymlinks>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -114,7 +118,7 @@
             <plugin>
                 <groupId>com.basistech</groupId>
                 <artifactId>bbh-maven-plugin</artifactId>
-                <version>1.0.1</version>
+                <version>${bbh-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>osgi-version</id>

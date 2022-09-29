@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import com.basistech.util.LanguageCode;
 import lombok.Builder;
 import lombok.Value;
 
+import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
@@ -38,38 +39,41 @@ public class LanguageOptions extends Options {
     /**
      * @return whether to detect language regions
      */
-    private final Boolean multilingual;
+    Boolean multilingual;
 
     /**
      * @return minimum number of valid characters
      */
     @Min(1)
-    private final Integer minValidChars;
+    Integer minValidChars;
 
     /**
-     * @return the most frequent n-grams to consider in detection, smaller depth results in faster operation but lower detection accuracy
+     * @return the most frequent n-grams to consider in detection, smaller depth results in faster operation but
+     * lower detection accuracy
      */
     @Min(1)
-    private final Integer profileDepth;
+    Integer profileDepth;
 
     /**
-     * @return number of n-gram distance ambiguity threshold (0.0-100.0), input profile distances closer to each other than this threshold are deemed ambiguous
+     * @return number of n-gram distance ambiguity threshold (0.0-100.0), input profile distances closer to each
+     * other than this threshold are deemed ambiguous
      */
     @DecimalMin("0.0")
     @DecimalMax("100.0")
-    private final Double ambiguityThreshold;
+    Double ambiguityThreshold;
 
     /**
-     * @return number of n-gram distance invalidity threshold (0.0-100.0), input profile distance exceeding this threshold will be deemed invalid
+     * @return number of n-gram distance invalidity threshold (0.0-100.0), input profile distance exceeding this
+     * threshold will be deemed invalid
      */
     @DecimalMin("0.0")
     @DecimalMax("100.0")
-    private final Double invalidityThreshold;
+    Double invalidityThreshold;
 
     /**
      * @return language hint
      */
-    private final LanguageCode languageHint;
+    LanguageCode languageHint;
 
     /**
      * @return the language hint weight (1.0-99.0) used to help resolve ambiguous results.
@@ -78,12 +82,12 @@ public class LanguageOptions extends Options {
      */
     @DecimalMin("1.0")
     @DecimalMax("99.0")
-    private final Double languageHintWeight;
+    Double languageHintWeight;
 
     /**
      * @return the encoding hint used to help resolve ambiguous results
      */
-    private final EncodingCode encodingHint;
+    EncodingCode encodingHint;
 
     /**
      * @return the encoding hint weight (1.0-100.0) used to help resolve ambiguous results.
@@ -92,16 +96,17 @@ public class LanguageOptions extends Options {
      */
     @DecimalMin("1.0")
     @DecimalMax("100.0")
-    private final Double encodingHintWeight;
+    Double encodingHintWeight;
 
     /**
      * @return languageWeightAdjustments the set of language weight adjustments
      */
-    private final Set<LanguageWeight> languageWeightAdjustments;
+    @Valid
+    Set<LanguageWeight> languageWeightAdjustments;
 
     /**
      * @return whether to distinguish between North Korean and South Korean
      */
-    private final Boolean koreanDialects;
+    Boolean koreanDialects;
 
 }

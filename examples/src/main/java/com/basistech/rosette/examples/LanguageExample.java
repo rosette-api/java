@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageResponse;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.LANGUAGE_SERVICE_PATH;
 
 /**
  * Example which demonstrates the language detection api.
@@ -44,8 +46,10 @@ public final class LanguageExample extends ExampleBase {
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        DocumentRequest<LanguageOptions> request = DocumentRequest.<LanguageOptions>builder().content(languageData).build();
-        LanguageResponse response = rosetteApi.perform(HttpRosetteAPI.LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
+        DocumentRequest<LanguageOptions> request = DocumentRequest.<LanguageOptions>builder()
+                                                                  .content(languageData)
+                                                                  .build();
+        LanguageResponse response = rosetteApi.perform(LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
         System.out.println(responseToJson(response));
     }
 }

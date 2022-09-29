@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_DEDUPLICATION_SERVICE_PATH;
 
 /**
  * Example which demonstrates name deduplication.
@@ -55,7 +57,7 @@ public final class NameDeduplicationExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         NameDeduplicationRequest request = NameDeduplicationRequest.builder().names(names).threshold(threshold).build();
-        NameDeduplicationResponse response = rosetteApi.perform(HttpRosetteAPI.NAME_DEDUPLICATION_SERVICE_PATH, request,
+        NameDeduplicationResponse response = rosetteApi.perform(NAME_DEDUPLICATION_SERVICE_PATH, request,
                 NameDeduplicationResponse.class);
         System.out.println(responseToJson(response));
     }

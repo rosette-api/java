@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import com.basistech.rosette.apimodel.RelationshipsOptions;
 import com.basistech.rosette.apimodel.RelationshipsResponse;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.RELATIONSHIPS_SERVICE_PATH;
 
 /**
  * Example which demonstrates the relationships extraction api.
@@ -45,7 +47,7 @@ public final class RelationshipsExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         DocumentRequest<RelationshipsOptions> request = DocumentRequest.<RelationshipsOptions>builder().content(relationshipsTextData).build();
-        RelationshipsResponse response = rosetteApi.perform(HttpRosetteAPI.RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
+        RelationshipsResponse response = rosetteApi.perform(RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
         System.out.println(responseToJson(response));
     }
 }

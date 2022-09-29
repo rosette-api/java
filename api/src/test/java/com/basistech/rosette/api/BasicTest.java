@@ -118,7 +118,7 @@ public class BasicTest extends AbstractTest {
 
         Date d2 = new Date();
 
-        assert d2.getTime() - d1.getTime() > delayTime * numConnections * 1000; // at least as long as the delay in the request
+        assertTrue(d2.getTime() - d1.getTime() > delayTime * numConnections * 1000); // at least as long as the delay in the request
 
         api = new HttpRosetteAPI.Builder().connectionConcurrency(numConnections)
                 .url(String.format("http://localhost:%d/rest/v1", serverPort))
@@ -137,8 +137,8 @@ public class BasicTest extends AbstractTest {
 
         d2 = new Date();
 
-        assert d2.getTime() - d1.getTime() < delayTime * numConnections * 1000; // less than (numConnections) serial requests
-        assert d2.getTime() - d1.getTime() > delayTime * 1000; // but at least as long as one
+        assertTrue(d2.getTime() - d1.getTime() < delayTime * numConnections * 1000); // less than (numConnections) serial requests
+        assertTrue(d2.getTime() - d1.getTime() > delayTime * 1000); // but at least as long as one
     }
 
     @Test
@@ -159,7 +159,8 @@ public class BasicTest extends AbstractTest {
                 .url(String.format("http://localhost:%d/rest/v1", serverPort))
                 .additionalHeader("X-Foo", "Bar")
                 .build();
-        api.ping();
+        var resp = api.ping();
+        assertEquals("5", resp.getExtendedInformation().get("X-RosetteAPI-Concurrency"));
     }
 
     @Test

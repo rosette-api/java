@@ -1,5 +1,5 @@
 /*
-* Copyright 2021 Basis Technology Corp.
+* Copyright 2021-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EventsOptions;
 import com.basistech.rosette.apimodel.EventsResponse;
 import com.basistech.util.LanguageCode;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.EVENTS_SERVICE_PATH;
 
 /**
  * Example which demonstrates the events API.
@@ -44,7 +46,7 @@ public class EventsExample extends ExampleBase {
                 .language(LanguageCode.ENGLISH)
                 .content(topicsData)
                 .build();
-        EventsResponse resp = rosetteApi.perform(HttpRosetteAPI.EVENTS_SERVICE_PATH, request, EventsResponse.class);
+        EventsResponse resp = rosetteApi.perform(EVENTS_SERVICE_PATH, request, EventsResponse.class);
         System.out.println(responseToJson(resp));
     }
 }
