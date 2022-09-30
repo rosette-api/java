@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,22 +34,22 @@ public class Name {
      * @return text of the name
      */
     @NotNull
-    private final String text;
+    String text;
 
     /**
      * @return entity type of the name
      */
-    private final String entityType;
+    String entityType;
 
     /**
      * @return script of the name, {@link ISO15924}
      */
-    private final ISO15924 script;
+    ISO15924 script;
 
     /**
      * @return language of the name, {@link LanguageCode}
      */
-    private final LanguageCode language;
+    LanguageCode language;
 
     /**
      * Default constructor for lombok

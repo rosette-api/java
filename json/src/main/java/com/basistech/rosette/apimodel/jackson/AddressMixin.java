@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Basis Technology Corp.
+ * Copyright 2019-2022 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +58,6 @@ public abstract class AddressMixin {
     }
 
     @JsonPOJOBuilder(withPrefix = "")
-    abstract class AddressBuilderMixin {
+    abstract static class AddressBuilderMixin {
     }
 }

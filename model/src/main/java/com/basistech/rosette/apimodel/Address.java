@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Basis Technology Corp.
+ * Copyright 2019-2022 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
+ * @deprecated
  * Class that represents an address
  */
 @Value
@@ -30,92 +31,92 @@ public class Address implements IAddress {
     /**
      * @return the address house
      */
-    private final String house;
+    String house;
 
     /**
      * @return the address house number
      */
-    private final String houseNumber;
+    String houseNumber;
 
     /**
      * @return the address road
      */
-    private final String road;
+    String road;
 
     /**
      * @return the address unit
      */
-    private final String unit;
+    String unit;
 
     /**
      * @return the address level
      */
-    private final String level;
+    String level;
 
     /**
      * @return the address staircase
      */
-    private final String staircase;
+    String staircase;
 
     /**
      * @return the address entrance
      */
-    private final String entrance;
+    String entrance;
 
     /**
      * @return the address suburb
      */
-    private final String suburb;
+    String suburb;
 
     /**
      * @return the address city district
      */
-    private final String cityDistrict;
+    String cityDistrict;
 
     /**
      * @return the address city
      */
-    private final String city;
+    String city;
 
     /**
      * @return the address island
      */
-    private final String island;
+    String island;
 
     /**
      * @return the address state district
      */
-    private final String stateDistrict;
+    String stateDistrict;
 
     /**
      * @return the address state
      */
-    private final String state;
+    String state;
 
     /**
      * @return the address country region
      */
-    private final String countryRegion;
+    String countryRegion;
 
     /**
      * @return the address country
      */
-    private final String country;
+    String country;
 
     /**
      * @return the address world region
      */
-    private final String worldRegion;
+    String worldRegion;
 
     /**
      * @return the address postal code
      */
-    private final String postCode;
+    String postCode;
 
     /**
      * @return the address P.O. Box
      */
-    private final String poBox;
+    String poBox;
 
     @Override
     public boolean fielded() {

@@ -45,6 +45,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         super();
     }
 
+    @Override
     public void setupModule(Module.SetupContext context) {
 
         super.setupModule(context);
@@ -52,26 +53,33 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         MixinUtil.addMixins(context);
 
         context.setMixInAnnotations(DocumentRequest.class, DocumentRequestMixin.class);
-        context.setMixInAnnotations(DocumentRequest.DocumentRequestBuilder.class, DocumentRequestMixin.DocumentRequestBuilderMixin.class);
+        context.setMixInAnnotations(DocumentRequest.DocumentRequestBuilder.class,
+                DocumentRequestMixin.DocumentRequestBuilderMixin.class);
         context.setMixInAnnotations(AdmRequest.class, AdmRequestMixin.class);
         context.setMixInAnnotations(AdmRequest.AdmRequestBuilder.class, AdmRequestMixin.AdmRequestBuilderMixin.class);
 
         context.setMixInAnnotations(Name.class, NameMixin.class);
         context.setMixInAnnotations(Name.NameBuilder.class, NameMixin.NameBuilderMixin.class);
         context.setMixInAnnotations(NameSimilarityRequest.class, NameSimilarityRequestMixin.class);
-        context.setMixInAnnotations(NameSimilarityRequest.NameSimilarityRequestBuilder.class, NameSimilarityRequestMixin.NameSimilarityRequestBuilderMixin.class);
+        context.setMixInAnnotations(NameSimilarityRequest.NameSimilarityRequestBuilder.class,
+                NameSimilarityRequestMixin.NameSimilarityRequestBuilderMixin.class);
         context.setMixInAnnotations(NameTranslationRequest.class, NameTranslationRequestMixin.class);
-        context.setMixInAnnotations(NameTranslationRequest.NameTranslationRequestBuilder.class, NameTranslationRequestMixin.NameTranslationRequestBuilderMixin.class);
+        context.setMixInAnnotations(NameTranslationRequest.NameTranslationRequestBuilder.class,
+                NameTranslationRequestMixin.NameTranslationRequestBuilderMixin.class);
         context.setMixInAnnotations(NameDeduplicationRequest.class, NameDeduplicationRequestMixin.class);
-        context.setMixInAnnotations(NameDeduplicationRequest.NameDeduplicationRequestBuilder.class, NameDeduplicationRequestMixin.NameDeduplicationRequestBuilderMixin.class);
+        context.setMixInAnnotations(NameDeduplicationRequest.NameDeduplicationRequestBuilder.class,
+                NameDeduplicationRequestMixin.NameDeduplicationRequestBuilderMixin.class);
         context.setMixInAnnotations(Address.class, AddressMixin.class);
         context.setMixInAnnotations(Address.AddressBuilder.class, AddressMixin.AddressBuilderMixin.class);
         context.setMixInAnnotations(FieldedAddress.class, FieldedAddressMixin.class);
-        context.setMixInAnnotations(FieldedAddress.FieldedAddressBuilder.class, FieldedAddressMixin.FieldedAddressBuilderMixin.class);
+        context.setMixInAnnotations(FieldedAddress.FieldedAddressBuilder.class,
+                FieldedAddressMixin.FieldedAddressBuilderMixin.class);
         context.setMixInAnnotations(UnfieldedAddress.class, UnfieldedAddressMixin.class);
-        context.setMixInAnnotations(UnfieldedAddress.UnfieldedAddressBuilder.class, UnfieldedAddressMixin.UnfieldedAddressBuilderMixin.class);
+        context.setMixInAnnotations(UnfieldedAddress.UnfieldedAddressBuilder.class,
+                UnfieldedAddressMixin.UnfieldedAddressBuilderMixin.class);
         context.setMixInAnnotations(AddressSimilarityRequest.class, AddressSimilarityRequestMixin.class);
-        context.setMixInAnnotations(AddressSimilarityRequest.AddressSimilarityRequestBuilder.class, AddressSimilarityRequestMixin.AddressSimilarityRequestBuilderMixin.class);
+        context.setMixInAnnotations(AddressSimilarityRequest.AddressSimilarityRequestBuilder.class,
+                AddressSimilarityRequestMixin.AddressSimilarityRequestBuilderMixin.class);
         context.setMixInAnnotations(ConfigurationRequest.class, ConfigurationRequestMixin.class);
         context.setMixInAnnotations(ConfigurationRequest.ConfigurationRequestBuilder.class,
             ConfigurationRequestMixin.ConfigurationRequestBuilderMixin.class);

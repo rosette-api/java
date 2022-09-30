@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import com.basistech.rosette.apimodel.NameTranslationResponse;
 import com.basistech.util.LanguageCode;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH;
 
 /**
  * Example which demonstrates the name translation api.
@@ -48,7 +50,7 @@ public final class NameTranslationExample extends ExampleBase {
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        NameTranslationResponse response = rosetteApi.perform(HttpRosetteAPI.NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
+        NameTranslationResponse response = rosetteApi.perform(NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
         System.out.println(responseToJson(response));
     }
 }

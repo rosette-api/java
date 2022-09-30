@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.basistech</groupId>
             <artifactId>common-api</artifactId>
-            <version>37.0.1</version>
+            <version>${bt-common-api.version}</version>
         </dependency>
 
         <!-- OSGi framework dependencies -->

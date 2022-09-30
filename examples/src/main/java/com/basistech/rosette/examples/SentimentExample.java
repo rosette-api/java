@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -27,6 +27,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.SENTIMENT_SERVICE_PATH;
+
 /**
  * Example which demonstrates the sentiment api.
  */
@@ -52,7 +54,7 @@ public final class SentimentExample extends ExampleBase {
             //api.httpClient(CloseableHttpClient)
             // When no options, use <?>.
             DocumentRequest<SentimentOptions> request = DocumentRequest.<SentimentOptions>builder().content(inputStream, "text/html").build();
-            SentimentResponse response = rosetteApi.perform(HttpRosetteAPI.SENTIMENT_SERVICE_PATH, request, SentimentResponse.class);
+            SentimentResponse response = rosetteApi.perform(SENTIMENT_SERVICE_PATH, request, SentimentResponse.class);
             System.out.println(responseToJson(response));
         }
 

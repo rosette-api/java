@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import com.basistech.rosette.apimodel.MorphologyResponse;
 
 import java.io.IOException;
 
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH;
+
 /**
  * Example which demonstrates the part-of-speech api.
  */
@@ -45,7 +47,7 @@ public final class MorphologyPartsOfSpeechExample extends ExampleBase {
                 .build();
         DocumentRequest<MorphologyOptions> request = DocumentRequest.<MorphologyOptions>builder().content(morphologyPartsOfSpeechData)
                 .build();
-        MorphologyResponse response = rosetteApi.perform(HttpRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.PARTS_OF_SPEECH,
+        MorphologyResponse response = rosetteApi.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.PARTS_OF_SPEECH,
                 request, MorphologyResponse.class);
         System.out.println(responseToJson(response));
     }

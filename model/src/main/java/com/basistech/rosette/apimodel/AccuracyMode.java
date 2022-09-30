@@ -25,7 +25,7 @@ public enum AccuracyMode {
     PRECISION("precision"),
     RECALL("recall");
 
-    private String label;
+    private final String label;
 
     /**
      * constructor for {@code AccuracyMode} which sets a label for reference
@@ -40,14 +40,6 @@ public enum AccuracyMode {
      */
     public String getLabel() {
         return label;
-    }
-
-    /**
-     * set the label
-     * @param label the label
-     */
-    public void setLabel(String label) {
-        this.label = label;
     }
 
     /**

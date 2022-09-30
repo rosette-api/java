@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Basis Technology Corp.
+ * Copyright 2019-2022 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import com.basistech.rosette.apimodel.AddressSimilarityRequest;
 import com.basistech.rosette.apimodel.AddressSimilarityResponse;
 import com.basistech.rosette.apimodel.FieldedAddress;
 import com.basistech.rosette.apimodel.UnfieldedAddress;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.ADDRESS_SIMILARITY_SERVICE_PATH;
 
 /**
  * Example which demonstrates address similarity
@@ -60,8 +62,13 @@ public final class AddressSimilarityExample extends ExampleBase {
                 .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        AddressSimilarityRequest request = AddressSimilarityRequest.builder().address1(address1).address2(address2).build();
-        AddressSimilarityResponse response = rosetteApi.perform(HttpRosetteAPI.ADDRESS_SIMILARITY_SERVICE_PATH, request, AddressSimilarityResponse.class);
+        AddressSimilarityRequest request = AddressSimilarityRequest.builder()
+                                                .address1(address1)
+                                                .address2(address2)
+                                                .build();
+        AddressSimilarityResponse response = rosetteApi
+                .perform(ADDRESS_SIMILARITY_SERVICE_PATH, request, AddressSimilarityResponse.class);
+
         System.out.println(responseToJson(response));
     }
 }

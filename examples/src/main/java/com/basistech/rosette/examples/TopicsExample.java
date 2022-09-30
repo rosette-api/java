@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.TopicsOptions;
 import com.basistech.rosette.apimodel.TopicsResponse;
 import com.basistech.util.LanguageCode;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.TOPICS_SERVICE_PATH;
 
 /**
  * Example which demonstrates the topics API.
@@ -44,7 +46,7 @@ public class TopicsExample extends ExampleBase {
                 .language(LanguageCode.ENGLISH)
                 .content(topicsData)
                 .build();
-        TopicsResponse resp = rosetteApi.perform(HttpRosetteAPI.TOPICS_SERVICE_PATH, request, TopicsResponse.class);
+        TopicsResponse resp = rosetteApi.perform(TOPICS_SERVICE_PATH, request, TopicsResponse.class);
         System.out.println(responseToJson(resp));
     }
 }

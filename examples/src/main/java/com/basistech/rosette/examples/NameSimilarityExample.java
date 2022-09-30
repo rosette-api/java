@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_SIMILARITY_SERVICE_PATH;
 
 /**
  * Example which demonstrates name similarity.
@@ -53,7 +55,7 @@ public final class NameSimilarityExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         NameSimilarityRequest request = NameSimilarityRequest.builder().name1(name1).name2(name2).build();
-        NameSimilarityResponse response = rosetteApi.perform(HttpRosetteAPI.NAME_SIMILARITY_SERVICE_PATH, request, NameSimilarityResponse.class);
+        NameSimilarityResponse response = rosetteApi.perform(NAME_SIMILARITY_SERVICE_PATH, request, NameSimilarityResponse.class);
         System.out.println(responseToJson(response));
     }
 }

@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.SentencesResponse;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.SENTENCES_SERVICE_PATH;
 
 /**
  * Example which demonstrates the sentence detection api.
@@ -45,7 +47,7 @@ public final class SentencesExample extends ExampleBase {
         //api.httpClient(CloseableHttpClient)
         // When no options, use <?>.
         DocumentRequest<?> request = DocumentRequest.builder().content(sentencesData).build();
-        SentencesResponse response = rosetteApi.perform(HttpRosetteAPI.SENTENCES_SERVICE_PATH, request, SentencesResponse.class);
+        SentencesResponse response = rosetteApi.perform(SENTENCES_SERVICE_PATH, request, SentencesResponse.class);
         System.out.println(responseToJson(response));
     }
 }

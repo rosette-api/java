@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Basis Technology Corp.
+ * Copyright 2020-2022 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,6 +49,6 @@ public abstract class FieldedAddressMixin {
     }
 
     @JsonPOJOBuilder(withPrefix = "")
-    abstract class FieldedAddressBuilderMixin {
+    abstract static class FieldedAddressBuilderMixin {
     }
 }

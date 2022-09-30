@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.util.LanguageCode;
 
 import java.io.IOException;
+
+import static com.basistech.rosette.api.common.AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH;
 
 /**
  * Example which demonstrates the decompounding api.
@@ -48,7 +50,7 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
         DocumentRequest<MorphologyOptions> request = DocumentRequest.<MorphologyOptions>builder().content(morphologyCompoundComponentsData)
                 .language(LanguageCode.GERMAN) // example of specifying the language.
                 .build();
-        MorphologyResponse response = rosetteApi.perform(HttpRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPOUND_COMPONENTS,
+        MorphologyResponse response = rosetteApi.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPOUND_COMPONENTS,
                 request, MorphologyResponse.class);
 
         System.out.println(responseToJson(response));

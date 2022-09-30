@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -73,6 +73,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.Future;
+import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
 import static java.net.HttpURLConnection.HTTP_OK;
@@ -85,8 +86,11 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
     public static final String SERVICE_NAME = "RosetteAPI";
     public static final String BINDING_VERSION = getVersion();
-    public static final String USER_AGENT_STR = SERVICE_NAME + "-Java/" + BINDING_VERSION + "/" + System.getProperty("java.version");
+    public static final String USER_AGENT_STR = SERVICE_NAME + "-Java/" + BINDING_VERSION + "/"
+            + System.getProperty("java.version");
     private static final Logger LOG = LoggerFactory.getLogger(HttpRosetteAPI.class);
+    private static final String IO_EXCEPTION_MESSAGE = "IO Exception communicating with the Rosette API";
+    private static final Pattern TRAILING_SLASHES = Pattern.compile("/+$");
     private String urlBase = DEFAULT_URL_BASE;
     private int failureRetries = 1;
     private ObjectMapper mapper;
@@ -116,7 +120,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     HttpRosetteAPI(String key, String urlToCall, Integer failureRetries,
                        CloseableHttpClient httpClient, List<Header> additionalHeaders,
                        Integer connectionConcurrency, boolean onlyAcceptKnownFields) throws HttpRosetteAPIException {
-        urlBase = urlToCall == null ? urlBase : urlToCall.trim().replaceAll("/+$", "");
+        urlBase = urlToCall == null ? urlBase : TRAILING_SLASHES.matcher(urlToCall.trim()).replaceAll("");
         if (failureRetries != null && failureRetries >= 1) {
             this.failureRetries = failureRetries;
         }
@@ -241,7 +245,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     @Override
     public SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws HttpRosetteAPIException  {
         if (DOC_ENDPOINTS.contains(endpoint) || NAME_DEDUPLICATION_SERVICE_PATH.equals(endpoint)) {
-            return sendGetRequest(urlBase + endpoint + SUPPORTED_LANGUAGES_SUBPATH, SupportedLanguagesResponse.class);
+            return sendGetRequest(urlBase + endpoint + SUPPORTED_LANGUAGES_SUBPATH,
+                    SupportedLanguagesResponse.class);
         } else {
             return null;
         }
@@ -258,7 +263,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     @Override
     public SupportedLanguagePairsResponse getSupportedLanguagePairs(String endpoint) throws HttpRosetteAPIException  {
         if (NAMES_ENDPOINTS.contains(endpoint) && !NAME_DEDUPLICATION_SERVICE_PATH.equals(endpoint)) {
-            return sendGetRequest(urlBase + endpoint + SUPPORTED_LANGUAGES_SUBPATH, SupportedLanguagePairsResponse.class);
+            return sendGetRequest(urlBase + endpoint + SUPPORTED_LANGUAGES_SUBPATH,
+                    SupportedLanguagePairsResponse.class);
         } else {
             return null;
         }
@@ -276,11 +282,12 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @throws RosetteRuntimeException for other errors, such as communications problems with HTTP.
      */
     @Override
-    public <RequestType extends Request, ResponseType extends Response> ResponseType perform(String endpoint, RequestType request, Class<ResponseType> responseClass) throws HttpRosetteAPIException {
+    public <RequestType extends Request, ResponseType extends Response> ResponseType perform(String endpoint,
+                             RequestType request, Class<ResponseType> responseClass) throws HttpRosetteAPIException {
         try {
             return sendPostRequest(request, urlBase + endpoint, responseClass);
         } catch (IOException e) {
-            throw new RosetteRuntimeException("IO Exception communicating with the Rosette API", e);
+            throw new RosetteRuntimeException(IO_EXCEPTION_MESSAGE, e);
         } catch (URISyntaxException e) {
             throw new RosetteRuntimeException("Invalid URI", e);
         }
@@ -296,11 +303,12 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @throws RosetteRuntimeException for other errors, such as communications problems with HTTP.
      */
     @Override
-    public <RequestType extends Request> AnnotatedText perform(String endpoint, RequestType request) throws HttpRosetteAPIException {
+    public <RequestType extends Request> AnnotatedText perform(String endpoint, RequestType request)
+            throws HttpRosetteAPIException {
         try {
             return sendPostRequest(request, urlBase + endpoint, AnnotatedText.class);
         } catch (IOException e) {
-            throw new RosetteRuntimeException("IO Exception communicating with the Rosette API", e);
+            throw new RosetteRuntimeException(IO_EXCEPTION_MESSAGE, e);
         } catch (URISyntaxException e) {
             throw new RosetteRuntimeException("Invalid URI", e);
         }
@@ -310,7 +318,9 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * This method always throws UnsupportedOperationException.
      */
     @Override
-    public <RequestType extends Request, ResponseType extends Response> Future<ResponseType> performAsync(String endpoint, RequestType request, Class<ResponseType> responseClass) throws HttpRosetteAPIException {
+    public <RequestType extends Request, ResponseType extends Response> Future<ResponseType>
+        performAsync(String endpoint, RequestType request, Class<ResponseType> responseClass)
+            throws HttpRosetteAPIException {
         throw new UnsupportedOperationException("Asynchronous operations are not yet supported");
     }
 
@@ -335,7 +345,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
             responseHeadersToExtendedInformation(resp, httpResponse);
             return resp;
         } catch (IOException e) {
-            throw new RosetteRuntimeException("IO Exception communicating with the Rosette API", e);
+            throw new RosetteRuntimeException(IO_EXCEPTION_MESSAGE, e);
         }
     }
 
@@ -349,7 +359,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @return Response
      * @throws IOException
      */
-    private <T> T sendPostRequest(Object request, String urlStr, Class<T> clazz) throws IOException, URISyntaxException {
+    private <T> T sendPostRequest(Object request, String urlStr, Class<T> clazz)
+            throws IOException, URISyntaxException {
         ObjectWriter writer = mapper.writer().without(JsonGenerator.Feature.AUTO_CLOSE_TARGET);
         boolean notPlainText = false;
         if (request instanceof DocumentRequest) {
@@ -391,7 +402,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
                 T resp = getResponse(response, clazz);
                 Header ridHeader = response.getFirstHeader("X-RosetteAPI-DocumentRequest-Id");
                 if (ridHeader != null && ridHeader.getValue() != null) {
-                    LOG.debug("DocumentRequest ID " + ridHeader.getValue());
+                    LOG.debug("DocumentRequest ID {}", ridHeader.getValue());
                 }
                 if (resp instanceof Response) {
                     responseHeadersToExtendedInformation((Response)resp, response);
@@ -418,7 +429,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
                 if (resp.getExtendedInformation().get(header.getName()) instanceof Set) {
                     currentSetValue = (Set<Object>) resp.getExtendedInformation().get(header.getName());
                 } else {
-                    currentSetValue = new HashSet<>(Collections.singletonList(resp.getExtendedInformation().get(header.getName())));
+                    currentSetValue = new HashSet<>(Collections.singletonList(resp
+                            .getExtendedInformation().get(header.getName())));
                 }
                 currentSetValue.add(header.getValue());
                 resp.addExtendedInformation(header.getName(), currentSetValue);
@@ -459,7 +471,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         });
     }
 
-    private void setupMultipartRequest(final Request request, final ObjectWriter finalWriter, HttpPost post) throws IOException {
+    private void setupMultipartRequest(final Request request, final ObjectWriter finalWriter, HttpPost post)
+            throws IOException {
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         builder.setMimeSubtype("mixed");
         builder.setMode(HttpMultipartMode.STRICT);
@@ -533,7 +546,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @return Response
      * @throws IOException
      */
-    private <T extends Object> T getResponse(HttpResponse httpResponse, Class<T> clazz) throws IOException, HttpRosetteAPIException {
+    private <T extends Object> T getResponse(HttpResponse httpResponse, Class<T> clazz)
+            throws IOException, HttpRosetteAPIException {
         int status = httpResponse.getStatusLine().getStatusCode();
         String encoding = headerValueOrNull(httpResponse.getFirstHeader(HttpHeaders.CONTENT_ENCODING));
 
@@ -548,15 +562,16 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
                 if ("application/json".equals(responseContentType)) {
                     ErrorResponse errorResponse = mapper.readValue(inputStream, ErrorResponse.class);
                     if (ridHeader != null) {
-                        LOG.debug("DocumentRequest ID " + ridHeader);
+                        LOG.debug("DocumentRequest ID {}", ridHeader);
                     }
                     if (ecHeader != null) {
                         errorResponse.setCode(ecHeader);
                     }
                     if (429 == status) {
                         String concurrencyMessage = "You have exceeded your plan's limit on concurrent calls. "
-                                + "This could be caused by multiple processes or threads making Rosette API calls in parallel, "
-                                + "or if your httpClient is configured with higher concurrency than your plan allows.";
+                                + "This could be caused by multiple processes or threads making Rosette API calls "
+                                + "in parallel, or if your httpClient is configured with higher concurrency "
+                                + "than your plan allows.";
                         if (emHeader == null) {
                             emHeader = concurrencyMessage;
                         } else {
@@ -677,6 +692,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
          * Only process the response from server if all fields are recognized. If set and a new
          * field is returned in the response, exception will be thrown.
          *
+         * @param onlyAcceptKnownFields whether to accept known fields.
          * @return this.
          */
         public Builder onlyAcceptKnownFields(boolean onlyAcceptKnownFields) {

@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -89,6 +89,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     /**
      * Gets the set of language and script codes supported by the specified Rosette API endpoint.
      *
+     * @param endpoint Rosette API endpoint.
      * @return SupportedLanguagesResponse
      * @throws CommonRosetteAPIException for an error.
      */
@@ -102,7 +103,8 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
      * @return SupportedLanguagePairsResponse
      * @throws CommonRosetteAPIException for an error returned from the Rosette API.
      */
-    public abstract SupportedLanguagePairsResponse getSupportedLanguagePairs(String endpoint) throws CommonRosetteAPIException;
+    public abstract SupportedLanguagePairsResponse getSupportedLanguagePairs(String endpoint)
+            throws CommonRosetteAPIException;
 
     /**
      * Perform a request to an endpoint of the Rosette API.
@@ -114,7 +116,9 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
      * @return the response.
      * @throws CommonRosetteAPIException for an error.
      */
-    public abstract <RequestType extends Request, ResponseType extends Response> ResponseType perform(String endpoint, RequestType request, Class<ResponseType> responseClass) throws CommonRosetteAPIException;
+    public abstract <RequestType extends Request, ResponseType extends Response> ResponseType
+        perform(String endpoint, RequestType request, Class<ResponseType> responseClass)
+            throws CommonRosetteAPIException;
 
     /**
      * Perform a request to an endpoint of the Rosette API.
@@ -124,7 +128,8 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
      * @return the response, {@link com.basistech.rosette.dm.AnnotatedText}.
      * @throws CommonRosetteAPIException for an error.
      */
-    public abstract <RequestType extends Request> AnnotatedText perform(String endpoint, RequestType request) throws CommonRosetteAPIException;
+    public abstract <RequestType extends Request> AnnotatedText perform(String endpoint, RequestType request)
+            throws CommonRosetteAPIException;
 
     /**
      * Start an asynchronous request to an endpoint of the Rosette API.
@@ -136,5 +141,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
      * @return a {@link Future} for the response.
      * @throws CommonRosetteAPIException for an error.
      */
-    public abstract <RequestType extends Request, ResponseType extends Response> Future<ResponseType> performAsync(String endpoint, RequestType request, Class<ResponseType> responseClass) throws CommonRosetteAPIException;
+    public abstract <RequestType extends Request, ResponseType extends Response> Future<ResponseType>
+        performAsync(String endpoint, RequestType request, Class<ResponseType> responseClass)
+            throws CommonRosetteAPIException;
 }
