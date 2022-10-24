@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2014-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,15 +19,18 @@ package com.basistech.rosette.api;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.zip.GZIPOutputStream;
 
 public abstract class AbstractTest extends Assert {
@@ -37,9 +40,9 @@ public abstract class AbstractTest extends Assert {
     protected static ObjectMapper mapper;
 
     @BeforeClass
-    public static void before() throws IOException {
+    public static void before() throws IOException, URISyntaxException {
         URL url = Resources.getResource("MockServerClientPort.property");
-        String clientPort = Resources.toString(url, Charsets.UTF_8);
+        String clientPort = Resources.toString(url, StandardCharsets.UTF_8);
         serverPort = Integer.parseInt(clientPort);
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -53,5 +56,14 @@ public abstract class AbstractTest extends Assert {
         return baos.toByteArray();
     }
 
-
+/*
+    private static int getMockServerPort() throws IOException, URISyntaxException {
+        String filename = "MockServerClientPort.property";
+        URL u = Thread.currentThread().getContextClassLoader().getResource(filename);
+        assertNotNull(u);
+        Path p = Paths.get(u.toURI());
+        String port = Files.readAllLines(p, StandardCharsets.UTF_8).get(0);
+        return Integer.parseInt(port);
+    }
+*/
 }

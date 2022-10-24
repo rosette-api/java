@@ -21,11 +21,14 @@ import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import org.apache.http.HttpHeaders;
 import org.junit.Test;
-import org.mockserver.client.server.MockServerClient;
+import org.mockserver.client.MockServerClient;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
 import java.nio.charset.StandardCharsets;
+
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+import static java.net.HttpURLConnection.HTTP_OK;
 
 
 public class InvalidErrorTest extends AbstractTest {
@@ -38,20 +41,21 @@ public class InvalidErrorTest extends AbstractTest {
                 .respond(HttpResponse.response()
                             .withBody("Invalid path; '//'")
                             .withHeader("X-RosetteAPI-Concurrency", "5")
-                            .withStatusCode(404));
+                            .withStatusCode(HTTP_NOT_FOUND));
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/ping")
                 .withHeader(HttpHeaders.USER_AGENT, HttpRosetteAPI.USER_AGENT_STR))
                 .respond(HttpResponse.response()
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
-                        .withStatusCode(200)
+                        .withStatusCode(HTTP_OK)
                         .withHeader("X-RosetteAPI-Concurrency", "5"));
         String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest//v1";
         boolean exceptional = false;
         try {
             HttpRosetteAPI api = new HttpRosetteAPI.Builder().key("my-key-123").url(mockServiceUrl).build();
             api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, DocumentRequest.builder().content("sample text").build(), LanguageResponse.class);
+            api.close();
         } catch (HttpRosetteAPIException e) {
             exceptional = true;
             assertEquals("invalidErrorResponse", e.getErrorResponse().getCode());
@@ -59,5 +63,6 @@ public class InvalidErrorTest extends AbstractTest {
             assertNotNull(e.getErrorResponse().getMessage());
         }
         assertTrue(exceptional);
+        mockServer.close();
     }
 }

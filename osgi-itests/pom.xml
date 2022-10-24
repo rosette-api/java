@@ -32,13 +32,13 @@
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.framework</artifactId>
-            <version>7.0.3</version>
+            <version>${felix-framework.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.configadmin</artifactId>
-            <version>1.8.10</version>
+            <version>${felix-configadmin.version}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -56,12 +56,12 @@
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.enroute.junit.wrapper</artifactId>
-            <version>4.12.0</version>
+            <version>${osgi-enroute-junit-wrapper.version}</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.enroute.hamcrest.wrapper</artifactId>
-            <version>1.3.0</version>
+            <version>${osgi-enroute-hamcrest-wrapper.version}</version>
         </dependency>
     </dependencies>
     <build>

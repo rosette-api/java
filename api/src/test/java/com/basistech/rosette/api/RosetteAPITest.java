@@ -1,5 +1,5 @@
 /*
-* Copyright 2014-2019 Basis Technology Corp.
+* Copyright 2014-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -42,11 +42,12 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockserver.client.server.MockServerClient;
+import org.mockserver.client.MockServerClient;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
@@ -61,13 +62,16 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static java.net.HttpURLConnection.HTTP_OK;
+
 @RunWith(Parameterized.class)
+@org.junit.Ignore
 public class RosetteAPITest extends AbstractTest {
+    private final String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
     private final String testFilename;
     private HttpRosetteAPI api;
     private String responseStr;
     private MockServerClient mockServer;
-    private String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest/v1";
 
 
     public RosetteAPITest(String filename) {
@@ -92,15 +96,17 @@ public class RosetteAPITest extends AbstractTest {
     @Before
     public void setUp() throws Exception {
         String statusFilename = testFilename.replace(".json", ".status");
+
         try (InputStream bodyStream = new FileInputStream("src/test/mock-data/response/" + testFilename)) {
-            responseStr = IOUtils.toString(bodyStream, "UTF-8");
-            int statusCode = 200;
+            responseStr = IOUtils.toString(bodyStream, StandardCharsets.UTF_8);
+            int statusCode = HTTP_OK;
 
             File statusFile = new File("src/test/mock-data/response", statusFilename);
             if (statusFile.exists()) {
-                String statusStr = FileUtils.readFileToString(statusFile, "UTF-8").trim();
+                String statusStr = FileUtils.readFileToString(statusFile, StandardCharsets.UTF_8).trim();
                 statusCode = Integer.parseInt(statusStr);
             }
+
             mockServer = new MockServerClient("localhost", serverPort);
             mockServer.reset();
             mockServer.when(HttpRequest.request()
@@ -109,7 +115,7 @@ public class RosetteAPITest extends AbstractTest {
                     .withHeader(HttpHeaders.USER_AGENT, HttpRosetteAPI.USER_AGENT_STR))
                     .respond(HttpResponse.response()
                             .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
-                            .withStatusCode(200)
+                            .withStatusCode(HTTP_OK)
                             .withHeader("X-RosetteAPI-Concurrency", "5"));
             if (responseStr.length() > 200) {  // test gzip if response is somewhat big
                 mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
@@ -129,7 +135,7 @@ public class RosetteAPITest extends AbstractTest {
             mockServer.when(HttpRequest.request()
                     .withPath("/info"))
                 .respond(HttpResponse.response()
-                    .withStatusCode(200)
+                    .withStatusCode(HTTP_OK)
                     .withHeader("Content-Type", "application/json")
                     .withHeader("X-RosetteAPI-Concurrency", "5")
                     .withBody(INFO_REPONSE, StandardCharsets.UTF_8));
@@ -139,6 +145,13 @@ public class RosetteAPITest extends AbstractTest {
                     .url(mockServiceUrl)
                     .build();
         }
+    }
+
+    // This class should be re-factored after upgrading to JUnit 5.  Probably making individual tests parameterized,
+    // instead of the entire class.  This @After method was added to avoid resource exhaustion.
+    @After
+    public void closeMockServer() {
+        mockServer.close();
     }
 
     @Test
