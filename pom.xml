@@ -41,10 +41,12 @@
         </site>
     </distributionManagement>
     <properties>
+        <!-- TODO:  After completing upgrade to latest parent pom, review and remove properties we want the parent to set. -->
         <bbh-maven-plugin.version>1.0.1</bbh-maven-plugin.version>
         <bnd-maven-plugin.version>6.2.0</bnd-maven-plugin.version>
         <bt-adm-version>2.7.3</bt-adm-version>
         <bt-common-api.version>37.0.1</bt-common-api.version>
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-codec.version>1.15</commons-codec.version>
@@ -55,6 +57,7 @@
         <http-components-core.version>4.4.15</http-components-core.version>
         <java-poet.version>1.13.0</java-poet.version>
         <javax-validation-api.version>2.0.0.Final</javax-validation-api.version>
+        <junit.version>5.9.1</junit.version>
         <lombok.version>1.18.24</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>

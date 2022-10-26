@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2017-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,8 +20,11 @@ import com.basistech.rosette.api.common.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import org.apache.http.HttpHeaders;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockserver.client.MockServerClient;
+import org.mockserver.junit.jupiter.MockServerExtension;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
@@ -29,15 +32,22 @@ import java.nio.charset.StandardCharsets;
 
 import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 import static java.net.HttpURLConnection.HTTP_OK;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@ExtendWith(MockServerExtension.class)
+public class InvalidErrorTest {
+    private MockServerClient mockServer;
 
-public class InvalidErrorTest extends AbstractTest {
+    @BeforeEach
+    public void setup(MockServerClient mockServer) {
+        this.mockServer = mockServer;
+    }
 
     @Test
     public void notJsonError() throws Exception {
-        MockServerClient mockServer = new MockServerClient("localhost", serverPort);
-        mockServer.reset()
-                .when(HttpRequest.request().withPath(".*/{2,}.*"))
+        mockServer.when(HttpRequest.request().withPath(".*/{2,}.*"))
                 .respond(HttpResponse.response()
                             .withBody("Invalid path; '//'")
                             .withHeader("X-RosetteAPI-Concurrency", "5")
@@ -50,7 +60,7 @@ public class InvalidErrorTest extends AbstractTest {
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
                         .withStatusCode(HTTP_OK)
                         .withHeader("X-RosetteAPI-Concurrency", "5"));
-        String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest//v1";
+        String mockServiceUrl = "http://localhost:" + mockServer.getPort() + "/rest//v1";
         boolean exceptional = false;
         try {
             HttpRosetteAPI api = new HttpRosetteAPI.Builder().key("my-key-123").url(mockServiceUrl).build();

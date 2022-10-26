@@ -23,19 +23,20 @@ import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.TokensResponse;
 import com.basistech.util.LanguageCode;
 import com.basistech.util.PartOfSpeechTagSet;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test that is usually ignored, used to debug against a live service.
  */
-@org.junit.Ignore
+@Disabled
 public class DevRosetteAPITest {
     // edit the right URL into place
     private static final String URL = "http://localhost:8181/rest/v1";
@@ -43,18 +44,18 @@ public class DevRosetteAPITest {
 
     private HttpRosetteAPI api;
 
-    @Before
-    public void before() throws Exception {
+    @BeforeEach
+    public void before() {
         api = new HttpRosetteAPI.Builder().key(KEY).url(URL).build();
     }
 
-    @After
+    @AfterEach
     public void after() throws IOException {
         api.close();
     }
 
     @Test
-    public void multipart() throws Exception {
+    public void multipart() {
         // this assumes that the server has the mock version of the components.
         Request morphologyRequest = DocumentRequest.builder().language(LanguageCode.ENGLISH)
                 .options(MorphologyOptions.builder().partOfSpeechTagSet(PartOfSpeechTagSet.upt16).build())
@@ -66,7 +67,7 @@ public class DevRosetteAPITest {
     }
 
     @Test
-    public void simple() throws Exception {
+    public void simple() {
         // this assumes that the server has the mock version of the components.
         Request morphologyRequest = DocumentRequest.builder().language(LanguageCode.ENGLISH)
                 .options(MorphologyOptions.builder().partOfSpeechTagSet(PartOfSpeechTagSet.upt16).build())

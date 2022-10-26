@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2014-2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,59 +18,49 @@ package com.basistech.rosette.apimodel;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
-public class NonNullTest extends Assert {
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-    private final String className;
-    private final File testFile;
+public class NonNullTest {
     private ObjectMapper mapper;
 
-    public NonNullTest(String className, File testFile) {
-        this.className = className;
-        this.testFile = testFile;
-    }
-
     // All test resource filename has <ClassName>.json pattern. They contain null requestId and timers fields.
-    @Parameterized.Parameters(name = "{0}")
-    public static Collection<Object[]> data() throws URISyntaxException, IOException {
+    private static Stream<Arguments> testNonNullParameters() throws IOException {
         File dir = new File("src/test/data");
-        Collection<Object[]> params = new ArrayList<>();
+        Stream.Builder<Arguments> streamBuilder = Stream.builder();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(dir.toPath())) {
             for (Path file : paths) {
                 if (file.toString().endsWith(".json")) {
                     String className = file.getFileName().toString().replace(".json", "");
-                    params.add(new Object[]{NonNullTest.class.getPackage().getName() + "." + className, file.toFile()});
+                    streamBuilder.add(Arguments.of(NonNullTest.class.getPackage().getName() + "." + className, file.toFile()));
                 }
             }
         }
-        return params;
+        return streamBuilder.build();
     }
 
-    @Before
+    @BeforeEach
     public void init() {
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
-    @Test
-    public void testNonNull() throws IOException, ClassNotFoundException {
+    @ParameterizedTest(name = "{0}; {1}")
+    @MethodSource("testNonNullParameters")
+    public void testNonNull(String className, File testFile) throws IOException, ClassNotFoundException {
         Class<?> c = Class.forName(className);
         String s = FileUtils.readFileToString(testFile, StandardCharsets.UTF_8);
         String s2 = mapper.writeValueAsString(mapper.readValue(s, c));

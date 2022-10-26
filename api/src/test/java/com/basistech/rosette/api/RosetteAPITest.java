@@ -42,10 +42,10 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.junit.runners.Parameterized;
 import org.mockserver.client.MockServerClient;
 import org.mockserver.model.HttpRequest;
@@ -63,9 +63,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static java.net.HttpURLConnection.HTTP_OK;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
-@RunWith(Parameterized.class)
-@org.junit.Ignore
+@Disabled
 public class RosetteAPITest extends AbstractTest {
     private final String mockServiceUrl = "http://localhost:" + serverPort + "/rest/v1";
     private final String testFilename;
@@ -93,7 +95,7 @@ public class RosetteAPITest extends AbstractTest {
     }
 
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         String statusFilename = testFilename.replace(".json", ".status");
 
@@ -147,9 +149,7 @@ public class RosetteAPITest extends AbstractTest {
         }
     }
 
-    // This class should be re-factored after upgrading to JUnit 5.  Probably making individual tests parameterized,
-    // instead of the entire class.  This @After method was added to avoid resource exhaustion.
-    @After
+    @AfterEach
     public void closeMockServer() {
         mockServer.close();
     }

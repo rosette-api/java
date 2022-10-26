@@ -32,17 +32,17 @@ import com.basistech.util.TransliterationScheme;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockserver.client.MockServerClient;
-import org.mockserver.junit.MockServerRule;
+import org.mockserver.junit.jupiter.MockServerExtension;
 import org.mockserver.model.Delay;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.ServerSocket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,23 +55,18 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.ENTITIES_SERVI
 import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_SIMILARITY_SERVICE_PATH;
 import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH;
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BasicTest extends AbstractTest {
-
-    @Rule
-    public MockServerRule mockServerRule = new MockServerRule(this, false, getFreePort());
+@ExtendWith(MockServerExtension.class)
+public class BasicTest {
     private MockServerClient mockServer;
     private HttpRosetteAPI api;
 
-    public BasicTest() throws IOException {
-    }
-
-    private static int getFreePort() throws IOException {
-        try (ServerSocket socket = new ServerSocket(0)) {
-            serverPort = socket.getLocalPort();
-        }
-        assertNotEquals(0, serverPort);
-        return serverPort;
+    @BeforeEach
+    public void setup(MockServerClient mockServer) {
+        this.mockServer = mockServer;
     }
 
     // an indirect way to show that connection pooling works
@@ -96,7 +91,7 @@ public class BasicTest extends AbstractTest {
 
         // "before" case - send off (numConnections) requests, expect them to run serially
         api = new HttpRosetteAPI.Builder().connectionConcurrency(1)
-                .url(String.format("http://localhost:%d/rest/v1", serverPort)).build();
+                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort())).build();
 
         Date d1 = new Date();
 
@@ -115,7 +110,7 @@ public class BasicTest extends AbstractTest {
         assertTrue(d2.getTime() - d1.getTime() > delayTime * numConnections * 1000); // at least as long as the delay in the request
 
         api = new HttpRosetteAPI.Builder().connectionConcurrency(numConnections)
-                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                 .build();
         d1 = new Date();
 
@@ -149,7 +144,7 @@ public class BasicTest extends AbstractTest {
 
         api = new HttpRosetteAPI.Builder()
                 .key("foo-key")
-                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                 .additionalHeader("X-Foo", "Bar")
                 .build();
         var resp = api.ping();
@@ -170,7 +165,7 @@ public class BasicTest extends AbstractTest {
                             .withBody(IOUtils.toString(respIns, StandardCharsets.UTF_8)));
             api = new HttpRosetteAPI.Builder()
                     .key("foo-key")
-                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                     .build();
             AnnotatedText testData = ApiModelMixinModule.setupObjectMapper(
                     new ObjectMapper()).readValue(reqIns, AnnotatedText.class);
@@ -194,7 +189,7 @@ public class BasicTest extends AbstractTest {
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
         api = new HttpRosetteAPI.Builder()
                 .key("foo-key")
-                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                 .build();
         Response resp = api.ping();
         assertEquals("Bar", resp.getExtendedInformation().get("X-Foo"));
@@ -233,7 +228,7 @@ public class BasicTest extends AbstractTest {
                             .withBody(IOUtils.toString(respIns, StandardCharsets.UTF_8)));
             api = new HttpRosetteAPI.Builder()
                     .key("foo-key")
-                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                     .build();
             SupportedLanguagesResponse resp = api.getSupportedLanguages(ENTITIES_SERVICE_PATH);
             assertEquals(2, resp.getSupportedLanguages().size());
@@ -263,7 +258,7 @@ public class BasicTest extends AbstractTest {
                             .withBody(IOUtils.toString(respIns, StandardCharsets.UTF_8)));
             api = new HttpRosetteAPI.Builder()
                     .key("foo-key")
-                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                     .build();
 
             SupportedLanguagePairsResponse resp = api.getSupportedLanguagePairs(NAME_SIMILARITY_SERVICE_PATH);
@@ -294,7 +289,7 @@ public class BasicTest extends AbstractTest {
                             .withBody(IOUtils.toString(respIns, StandardCharsets.UTF_8)));
             api = new HttpRosetteAPI.Builder()
                     .key("foo-key")
-                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                     .build();
 
             SupportedLanguagePairsResponse resp = api.getSupportedLanguagePairs(NAME_TRANSLATION_SERVICE_PATH);

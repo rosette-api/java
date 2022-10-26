@@ -20,27 +20,26 @@ import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.Resources;
-import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.net.ServerSocket;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.zip.GZIPOutputStream;
 
-public abstract class AbstractTest extends Assert {
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+public abstract class AbstractTest {
     public static final String INFO_REPONSE = "{ \"buildNumber\": \"6bafb29d\", \"buildTime\": \"2015.10.08_10:19:26\", \"name\": "
             + "\"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }";
     protected static int serverPort;
     protected static ObjectMapper mapper;
 
-    @BeforeClass
-    public static void before() throws IOException, URISyntaxException {
+    @BeforeAll
+    public static void before() throws IOException {
         URL url = Resources.getResource("MockServerClientPort.property");
         String clientPort = Resources.toString(url, StandardCharsets.UTF_8);
         serverPort = Integer.parseInt(clientPort);
@@ -56,14 +55,13 @@ public abstract class AbstractTest extends Assert {
         return baos.toByteArray();
     }
 
-/*
-    private static int getMockServerPort() throws IOException, URISyntaxException {
-        String filename = "MockServerClientPort.property";
-        URL u = Thread.currentThread().getContextClassLoader().getResource(filename);
-        assertNotNull(u);
-        Path p = Paths.get(u.toURI());
-        String port = Files.readAllLines(p, StandardCharsets.UTF_8).get(0);
-        return Integer.parseInt(port);
+    static int getFreePort() {
+        try (ServerSocket socket = new ServerSocket(0)) {
+            serverPort = socket.getLocalPort();
+        } catch (IOException e) {
+            fail("Caught IOException while trying to locate a free port.");
+        }
+        assertNotEquals(0, serverPort);
+        return serverPort;
     }
-*/
 }
