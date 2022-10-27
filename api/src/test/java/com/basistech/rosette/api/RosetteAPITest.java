@@ -25,6 +25,7 @@ import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
+import com.basistech.rosette.apimodel.LanguageDetectionResult;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.NameDeduplicationRequest;
@@ -45,9 +46,9 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -81,23 +82,25 @@ class RosetteAPITest {
     private MockServerClient mockServer;
     private ObjectMapper mapper;
 
+
+
     @BeforeEach
     public void setUp(MockServerClient mockServer) {
-        this.mockServer = mockServer;
-
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        mockServer.when(HttpRequest.request()
+        this.mockServer = mockServer;
+        this.mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/ping")
                 .withHeader(HttpHeaders.USER_AGENT, HttpRosetteAPI.USER_AGENT_STR))
                 .respond(HttpResponse.response()
-                        .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
+                        .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}",
+                                StandardCharsets.UTF_8)
                         .withStatusCode(HTTP_OK)
                         .withHeader("X-RosetteAPI-Concurrency", "5"));
 
-        mockServer.when(HttpRequest.request()
+        this.mockServer.when(HttpRequest.request()
                 .withPath("/info"))
             .respond(HttpResponse.response()
                 .withStatusCode(HTTP_OK)
@@ -109,6 +112,11 @@ class RosetteAPITest {
                 .key("my-key-123")
                 .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                 .build();
+    }
+
+    @AfterEach
+    public void reset() {
+        mockServer.reset();
     }
 
     private static byte[] gzip(String text) throws IOException {
@@ -187,7 +195,8 @@ class RosetteAPITest {
         setStatusCodeResponse(responseStr, statusCode);
         NameSimilarityRequest request = readValueNameMatcher(testFilename);
         try {
-            NameSimilarityResponse response = api.perform(AbstractRosetteAPI.NAME_SIMILARITY_SERVICE_PATH, request, NameSimilarityResponse.class);
+            NameSimilarityResponse response = api.perform(AbstractRosetteAPI.NAME_SIMILARITY_SERVICE_PATH, request,
+                    NameSimilarityResponse.class);
             verifyNameMatcher(response, responseStr);
         } catch (HttpRosetteAPIException e) {
             verifyException(e, responseStr);
@@ -204,122 +213,145 @@ class RosetteAPITest {
         return mapper.readValue(input, NameSimilarityRequest.class);
     }
 
-    /*
-    @Test
-    public void testMatchAddress() throws IOException {
-        if (!(testFilename.endsWith("-address-similarity.json"))) {
-            return;
-        }
-        AddressSimilarityRequest request = readValueAddressMatcher();
+    private static Stream<Arguments> testMatchAddressParameters() throws IOException {
+        return getTestFiles("-address-similarity.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMatchAddressParameters")
+    void testMatchAddress(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        AddressSimilarityRequest request = readValueAddressMatcher(testFilename);
         try {
-            AddressSimilarityResponse response = api.perform(AbstractRosetteAPI.ADDRESS_SIMILARITY_SERVICE_PATH, request, AddressSimilarityResponse.class);
-            verifyAddressMatcher(response);
+            AddressSimilarityResponse response = api.perform(AbstractRosetteAPI.ADDRESS_SIMILARITY_SERVICE_PATH,
+                    request, AddressSimilarityResponse.class);
+            verifyAddressMatcher(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    private void verifyAddressMatcher(AddressSimilarityResponse response) throws IOException {
+    private void verifyAddressMatcher(AddressSimilarityResponse response, String responseStr) throws IOException {
         AddressSimilarityResponse goldResponse = mapper.readValue(responseStr, AddressSimilarityResponse.class);
         assertEquals(goldResponse.getScore(), response.getScore(), 0.0);
     }
 
-    private AddressSimilarityRequest readValueAddressMatcher() throws IOException {
+    private AddressSimilarityRequest readValueAddressMatcher(String testFilename) throws IOException {
         File input = new File("src/test/mock-data/request", testFilename);
         return mapper.readValue(input, AddressSimilarityRequest.class);
     }
 
-    @Test
-    public void testTranslateName() throws IOException {
-        if (!(testFilename.endsWith("-translated-name.json"))) {
-            return;
-        }
-        NameTranslationRequest request = readValueNameTranslation();
+    private static Stream<Arguments> testTranslateNameParameters() throws IOException {
+        return getTestFiles("-name-translation.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testTranslateNameParameters")
+    void testTranslateName(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        NameTranslationRequest request = readValueNameTranslation(testFilename);
         try {
-            NameTranslationResponse response = api.perform(AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
-            verifyNameTranslation(response);
+            NameTranslationResponse response = api.perform(AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH, request,
+                    NameTranslationResponse.class);
+            verifyNameTranslation(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    private void verifyNameTranslation(NameTranslationResponse response) throws IOException {
+    private void verifyNameTranslation(NameTranslationResponse response, String responseStr) throws IOException {
         NameTranslationResponse goldResponse = mapper.readValue(responseStr, NameTranslationResponse.class);
         assertEquals(goldResponse.getTranslation(), response.getTranslation());
     }
 
-    private NameTranslationRequest readValueNameTranslation() throws IOException {
+    private NameTranslationRequest readValueNameTranslation(String testFilename) throws IOException {
         File input = new File("src/test/mock-data/request", testFilename);
         return mapper.readValue(input, NameTranslationRequest.class);
     }
 
-    private void verifyLanguage(LanguageResponse response) throws IOException {
+    private void verifyLanguage(LanguageResponse response, String responseStr) throws IOException {
         LanguageResponse goldResponse = mapper.readValue(responseStr, LanguageResponse.class);
         assertEquals(goldResponse.getLanguageDetections().size(), response.getLanguageDetections().size());
     }
 
-    @Test
-    public void testGetLanguageDoc() throws IOException {
-        if (!(testFilename.endsWith("-language.json") && testFilename.contains("-doc-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetLanguageDocParameters() throws IOException {
+        return getTestFiles("-doc-language.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetLanguageDocParameters")
+    void testGetLanguageDoc(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            LanguageResponse response = api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
-            verifyLanguage(response);
+            LanguageResponse response = api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, request,
+                    LanguageResponse.class);
+            verifyLanguage(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
-    public void testGetLanguageURL() throws IOException {
-        if (!(testFilename.endsWith("-language.json") && testFilename.contains("-url-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetLanguageURLParameters() throws IOException {
+        return getTestFiles("-url-language.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetLanguageURLParameters")
+    void testGetLanguageURL(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            LanguageResponse response = api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
-            verifyLanguage(response);
+            LanguageResponse response = api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, request,
+                    LanguageResponse.class);
+            verifyLanguage(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
-    public void testGetMorphologyDoc() throws IOException {
-        if (!(testFilename.endsWith("-morphology_complete.json") && testFilename.contains("-doc-"))) {
-            return;
-        }
-        DocumentRequest<?> request = readValue(DocumentRequest.class);
+    private static Stream<Arguments> testGetMorphologyDocParameters() throws IOException {
+        return getTestFiles("-doc-morphology_complete.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetMorphologyDocParameters")
+    void testGetMorphologyDoc(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            MorphologyResponse response = api.perform(AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
-            verifyMorphology(response);
+            MorphologyResponse response = api.perform(AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/"
+                    + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
+            verifyMorphology(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    private void verifyMorphology(MorphologyResponse response) throws IOException {
+    private void verifyMorphology(MorphologyResponse response, String responseStr) throws IOException {
         MorphologyResponse goldResponse = mapper.readValue(responseStr, MorphologyResponse.class);
         assertEquals(response.getPosTags().size(), goldResponse.getPosTags().size());
     }
 
-    @Test
-    public void testGetMorphologyURL() throws IOException {
-        if (!(testFilename.endsWith("-morphology_complete.json") && testFilename.contains("-url-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetMorphologyURLParameters() throws IOException {
+        return getTestFiles("-url-morphology_complete.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetMorphologyURLParameters")
+    void testGetMorphologyURL(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            MorphologyResponse response = api.perform(AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
-            verifyMorphology(response);
+            MorphologyResponse response = api.perform(AbstractRosetteAPI.MORPHOLOGY_SERVICE_PATH + "/"
+                    + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
+            verifyMorphology(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
+/*    @Test
     public void testGetEntityDoc() throws IOException {
         if (!(testFilename.endsWith("-entities.json") && testFilename.contains("-doc-"))) {
             return;
