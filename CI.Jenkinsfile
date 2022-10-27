@@ -13,11 +13,12 @@ node ("docker-light") {
                                --pull always \
                                --volume ${sourceDir}:/source \
                                --volume /opt/maven-basis:/opt/maven-basis \
-                               --volume /bin/git:/bin/git \
                                eclipse-temurin:17-jdk-focal \
-                               bash -c \"pushd /source && \
+                               bash -c \"apt-get update && \
+                                         apt-get install -y git && \
+                                         pushd /source && \
                                          /opt/maven-basis/bin/mvn --batch-mode clean install && \
-                                         /opt/maven-basis/bin/mvn sonar:sonar \
+                                         /opt/maven-basis/bin/mvn --batch-mode sonar:sonar \
                                                                   -Dsonar.login=${env.SONAR_AUTH_TOKEN} \
                                                                   -Dsonar.host.url=${env.SONAR_HOST_URL}\""
             }
