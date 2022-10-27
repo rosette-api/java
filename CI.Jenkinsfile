@@ -10,17 +10,21 @@ node ("docker-light") {
         stage("Maven Build") {
             withSonarQubeEnv {
                 sh "docker run --rm \
-                               --pull always \
-                               --volume ${sourceDir}:/source \
-                               --volume /opt/maven-basis:/opt/maven-basis \
-                               eclipse-temurin:17-jdk-focal \
-                               bash -c \"apt-get update && \
-                                         apt-get install -y git && \
-                                         pushd /source && \
-                                         /opt/maven-basis/bin/mvn --batch-mode clean install && \
-                                         /opt/maven-basis/bin/mvn --batch-mode sonar:sonar \
-                                                                  -Dsonar.login=${env.SONAR_AUTH_TOKEN} \
-                                                                  -Dsonar.host.url=${env.SONAR_HOST_URL}\""
+                       --pull always \
+                       --volume ${sourceDir}:/source \
+                       --volume /opt/maven-basis:/opt/maven-basis \
+                       eclipse-temurin:17-jdk-focal \
+                       bash -c \"apt-get update && \
+                             apt-get install -y git && \
+                             pushd /source && \
+                             /opt/maven-basis/bin/mvn --batch-mode clean install && \
+                             /opt/maven-basis/bin/mvn --batch-mode sonar:sonar \
+                                  -Dsonar.login=${env.SONAR_AUTH_TOKEN} \
+                                  -Dsonar.host.url=${env.SONAR_HOST_URL} \
+                                  -Dsonar.coverage.jacoco.xmlReportPaths=./api/target/site/jacoco/jacoco.xml,./json/target/site/jacoco/jacoco.xml \
+                                  -Dsonar.pullrequest.key=${env.CHANGE_ID} \
+                                  -Dsonar.pullrequest.base=${env.CHANGE_TARGET} \
+                                  -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH}\""
             }
         }
         slack(true)
