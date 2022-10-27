@@ -12,7 +12,7 @@ node ("docker-light") {
                 sh "docker run --rm \
                                --pull always \
                                --volume ${sourceDir}:/source \
-                               --volume /opt/maven-basis:/opt/maven-basis
+                               --volume /opt/maven-basis:/opt/maven-basis \
                                eclipse-temurin:17-jdk-focal \
                                bash -c \"pushd /source && \
                                          /opt/maven-basis/bin/mvn --batch-mode clean install && \
