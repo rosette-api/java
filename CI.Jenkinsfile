@@ -15,13 +15,13 @@ node ("docker-light") {
 //                                --pull always \
 //                                --env API_KEY=${API_KEY} \
 //                                --env ALT_URL=${ALT_URL} \
-//                                --volume ${sourceDir}:/source maven:eclipse-temurin-17-focal \
+//                                --volume ${sourceDir}:/source maven:3.8-eclipse-temurin-17-focal \
 //                                bash -c \"pushd /source; mvn -B clean install\""
 //             }
             withEnv([]) {
                 sh "docker run --rm \
                                --pull always \
-                               --volume ${sourceDir}:/source maven:eclipse-temurin-17-focal \
+                               --volume ${sourceDir}:/source maven:3.8-eclipse-temurin-17-focal \
                                bash -c \"pushd /source && \
                                          mvn -B clean install\""
             }
