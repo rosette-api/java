@@ -215,56 +215,8 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>${build-helper-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>reserve-network-port</id>
-                        <goals>
-                            <goal>reserve-network-port</goal>
-                        </goals>
-                        <phase>initialize</phase>
-                        <configuration>
-                            <portNames>
-                                <portName>mockServerClient.port</portName>
-                            </portNames>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.mock-server</groupId>
-                <artifactId>mockserver-maven-plugin</artifactId>
-                <version>${mockserver.version}</version>
-                <configuration>
-                    <serverPort>${mockServerClient.port}</serverPort>
-                    <logLevel>WARN</logLevel>
-                    <skip>${skip-mockserver}</skip>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>process-test-classes</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>runForked</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>verify</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>stopForked</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <argLine>-Xmx1024m</argLine>
-                </configuration>
             </plugin>
         </plugins>
         <resources>
@@ -280,13 +232,6 @@
             <testResource>
                 <directory>src/test/resources</directory>
                 <includes>
-                    <include>**/*.property</include>
-                </includes>
-                <filtering>true</filtering>
-            </testResource>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <includes>
                     <include>**/*.xml</include>
                     <include>**/*.json</include>
                     <include>**/*.status</include>
@@ -295,24 +240,4 @@
             </testResource>
         </testResources>
     </build>
-    <profiles>
-        <profile>
-            <id>skip-mockserver-tests</id>
-            <properties>
-                <skip-mockserver>true</skip-mockserver>
-            </properties>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <artifactId>maven-surefire-plugin</artifactId>
-                            <configuration>
-                                <skip>true</skip>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-    </profiles>
 </project>
