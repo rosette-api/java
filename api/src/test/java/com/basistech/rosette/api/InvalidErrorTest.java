@@ -37,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockServerExtension.class)
-public class InvalidErrorTest {
+class InvalidErrorTest {
     private MockServerClient mockServer;
 
     @BeforeEach
@@ -46,7 +46,7 @@ public class InvalidErrorTest {
     }
 
     @Test
-    public void notJsonError() throws Exception {
+    void notJsonError() throws Exception {
         mockServer.when(HttpRequest.request().withPath(".*/{2,}.*"))
                 .respond(HttpResponse.response()
                             .withBody("Invalid path; '//'")

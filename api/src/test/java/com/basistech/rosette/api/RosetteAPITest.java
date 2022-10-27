@@ -74,7 +74,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @ExtendWith(MockServerExtension.class)
-public class RosetteAPITest {
+class RosetteAPITest {
     private static final String INFO_RESPONSE = "{ \"buildNumber\": \"6bafb29d\", \"buildTime\": "
         + "\"2015.10.08_10:19:26\", \"name\": \"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }";
     private HttpRosetteAPI api;
@@ -183,7 +183,7 @@ public class RosetteAPITest {
 
     @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
     @MethodSource("testMatchNameParameters")
-    public void testMatchName(String testFilename, String responseStr, int statusCode) throws IOException {
+    void testMatchName(String testFilename, String responseStr, int statusCode) throws IOException {
         setStatusCodeResponse(responseStr, statusCode);
         NameSimilarityRequest request = readValueNameMatcher(testFilename);
         try {

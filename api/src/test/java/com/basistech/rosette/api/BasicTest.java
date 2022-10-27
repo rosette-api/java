@@ -60,7 +60,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockServerExtension.class)
-public class BasicTest {
+class BasicTest {
     private MockServerClient mockServer;
     private HttpRosetteAPI api;
 
@@ -75,7 +75,7 @@ public class BasicTest {
     // then set concurrent connections = 5,
     // run several requests again, showing they're executed in parallel
     @Test
-    public void testMultipleConnections() throws InterruptedException {
+    void testMultipleConnections() throws InterruptedException {
         int delayTime = 3;
         int numConnections = 5;
 
@@ -130,7 +130,7 @@ public class BasicTest {
         assertTrue(d2.getTime() - d1.getTime() > delayTime * 1000); // but at least as long as one
     }
     @Test
-    public void testHeaders() throws Exception {
+    void testHeaders() throws Exception {
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/ping")
@@ -152,7 +152,7 @@ public class BasicTest {
     }
 
     @Test
-    public void testAdm() throws Exception {
+    void testAdm() throws Exception {
         try (InputStream reqIns = getClass().getResourceAsStream("/adm-req.json");
              InputStream respIns = getClass().getResourceAsStream("/adm-resp.json")) {
             assertNotNull(respIns);
@@ -176,7 +176,7 @@ public class BasicTest {
     }
 
     @Test
-    public void testExtendedInfo() throws Exception {
+    void testExtendedInfo() throws Exception {
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/ping"))
@@ -216,7 +216,7 @@ public class BasicTest {
     }
 
     @Test
-    public void testLanguageSupport() throws Exception {
+    void testLanguageSupport() throws Exception {
         try (InputStream respIns = getClass().getResourceAsStream("/supported-languages.json")) {
             assertNotNull(respIns);
             mockServer.when(HttpRequest.request()
@@ -246,7 +246,7 @@ public class BasicTest {
     }
 
     @Test
-    public void testNameSimilarityLanguageSupport() throws Exception {
+    void testNameSimilarityLanguageSupport() throws Exception {
         try (InputStream respIns = getClass().getResourceAsStream("/name-similarity-supported-languages.json")) {
             assertNotNull(respIns);
             mockServer.when(HttpRequest.request()
@@ -277,7 +277,7 @@ public class BasicTest {
     }
 
     @Test
-    public void testNameTranslationLanguageSupport() throws Exception {
+    void testNameTranslationLanguageSupport() throws Exception {
         try (InputStream respIns = getClass().getResourceAsStream("/name-translation-supported-languages.json")) {
             assertNotNull(respIns);
             mockServer.when(HttpRequest.request()

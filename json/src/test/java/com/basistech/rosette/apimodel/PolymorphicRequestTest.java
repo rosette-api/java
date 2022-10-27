@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class PolymorphicRequestTest {
+class PolymorphicRequestTest {
     private static final String DOC_REQUEST = DocumentRequest.class.getName();
     private ObjectMapper mapper;
 
@@ -36,7 +36,7 @@ public class PolymorphicRequestTest {
     }
 
     @Test
-    public void testRequestTypes() throws Exception {
+    void testRequestTypes() throws Exception {
 
         String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"calculateConfidence\": true}}";
         Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
@@ -89,7 +89,7 @@ public class PolymorphicRequestTest {
     }
 
     @Test
-    public void eventsRequests() throws Exception {
+    void eventsRequests() throws Exception {
         String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"workspaceId\": \"ws1\"}}";
         Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EventsOptions>>() { });
         assertEquals(DOC_REQUEST, request.getClass().getName());

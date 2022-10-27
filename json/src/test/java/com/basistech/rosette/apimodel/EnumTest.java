@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EnumTest {
+class EnumTest {
     private ObjectMapper mapper;
 
     @BeforeEach
@@ -35,7 +35,7 @@ public class EnumTest {
     }
 
     @Test
-    public void testCaseInsensitivity() throws Exception {
+    void testCaseInsensitivity() throws Exception {
         String json = "{\"content\": \"foo\", \"options\": {\"modelType\": \"dEfAuLT\"}}";
         Request request = mapper.readValue(json, new TypeReference<DocumentRequest<MorphologyOptions>>() { });
         assertTrue(request instanceof DocumentRequest);

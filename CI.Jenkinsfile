@@ -21,7 +21,6 @@ node ("docker-light") {
                              /opt/maven-basis/bin/mvn --batch-mode sonar:sonar \
                                   -Dsonar.login=${env.SONAR_AUTH_TOKEN} \
                                   -Dsonar.host.url=${env.SONAR_HOST_URL} \
-                                  -Dsonar.coverage.jacoco.xmlReportPaths=./api/target/site/jacoco/jacoco.xml,./json/target/site/jacoco/jacoco.xml \
                                   -Dsonar.pullrequest.key=${env.CHANGE_ID} \
                                   -Dsonar.pullrequest.base=${env.CHANGE_TARGET} \
                                   -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH}\""

@@ -45,7 +45,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class ModelTest {
+class ModelTest {
     private ObjectMapper mapper;
 
     private static Stream<Arguments> packageTestParameters() {
@@ -62,7 +62,7 @@ public class ModelTest {
 
     @ParameterizedTest(name = "inputStreamContent: {0}")
     @MethodSource("packageTestParameters")
-    public void packageTest(boolean inputStreams) throws ClassNotFoundException, IOException {
+    void packageTest(boolean inputStreams) throws ClassNotFoundException, IOException {
         Reflections reflections = new Reflections(this.getClass().getPackage().getName(), new SubTypesScanner(false));
 
         Set<Class<?>> allClasses = reflections.getSubTypesOf(Object.class);

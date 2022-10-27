@@ -37,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Test that is usually ignored, used to debug against a live service.
  */
 @Disabled
-public class DevRosetteAPITest {
+class DevRosetteAPITest {
     // edit the right URL into place
     private static final String URL = "http://localhost:8181/rest/v1";
     private static final String KEY = null;
@@ -55,7 +55,7 @@ public class DevRosetteAPITest {
     }
 
     @Test
-    public void multipart() {
+    void multipart() {
         // this assumes that the server has the mock version of the components.
         Request morphologyRequest = DocumentRequest.builder().language(LanguageCode.ENGLISH)
                 .options(MorphologyOptions.builder().partOfSpeechTagSet(PartOfSpeechTagSet.upt16).build())
@@ -67,7 +67,7 @@ public class DevRosetteAPITest {
     }
 
     @Test
-    public void simple() {
+    void simple() {
         // this assumes that the server has the mock version of the components.
         Request morphologyRequest = DocumentRequest.builder().language(LanguageCode.ENGLISH)
                 .options(MorphologyOptions.builder().partOfSpeechTagSet(PartOfSpeechTagSet.upt16).build())

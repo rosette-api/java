@@ -35,7 +35,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class NonNullTest {
+class NonNullTest {
     private ObjectMapper mapper;
 
     // All test resource filename has <ClassName>.json pattern. They contain null requestId and timers fields.
@@ -60,7 +60,7 @@ public class NonNullTest {
 
     @ParameterizedTest(name = "{0}; {1}")
     @MethodSource("testNonNullParameters")
-    public void testNonNull(String className, File testFile) throws IOException, ClassNotFoundException {
+    void testNonNull(String className, File testFile) throws IOException, ClassNotFoundException {
         Class<?> c = Class.forName(className);
         String s = FileUtils.readFileToString(testFile, StandardCharsets.UTF_8);
         String s2 = mapper.writeValueAsString(mapper.readValue(s, c));
