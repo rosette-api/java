@@ -17,10 +17,11 @@
 package com.basistech.rosette.osgi.it;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@SuppressWarnings("java:S5960") // This is a test class.
 public class RosetteApiOsgiTest {
     @Test
     public void smokeTest() {
