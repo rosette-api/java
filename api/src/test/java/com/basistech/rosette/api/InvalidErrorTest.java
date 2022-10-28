@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,38 +20,52 @@ import com.basistech.rosette.api.common.AbstractRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import org.apache.http.HttpHeaders;
-import org.junit.Test;
-import org.mockserver.client.server.MockServerClient;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockserver.client.MockServerClient;
+import org.mockserver.junit.jupiter.MockServerExtension;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
 import java.nio.charset.StandardCharsets;
 
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+import static java.net.HttpURLConnection.HTTP_OK;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class InvalidErrorTest extends AbstractTest {
+@ExtendWith(MockServerExtension.class)
+class InvalidErrorTest {
+    private MockServerClient mockServer;
+
+    @BeforeEach
+    public void setup(MockServerClient mockServer) {
+        this.mockServer = mockServer;
+    }
 
     @Test
-    public void notJsonError() throws Exception {
-        MockServerClient mockServer = new MockServerClient("localhost", serverPort);
-        mockServer.reset()
-                .when(HttpRequest.request().withPath(".*/{2,}.*"))
+    void notJsonError() throws Exception {
+        mockServer.when(HttpRequest.request().withPath(".*/{2,}.*"))
                 .respond(HttpResponse.response()
                             .withBody("Invalid path; '//'")
                             .withHeader("X-RosetteAPI-Concurrency", "5")
-                            .withStatusCode(404));
+                            .withStatusCode(HTTP_NOT_FOUND));
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/ping")
                 .withHeader(HttpHeaders.USER_AGENT, HttpRosetteAPI.USER_AGENT_STR))
                 .respond(HttpResponse.response()
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
-                        .withStatusCode(200)
+                        .withStatusCode(HTTP_OK)
                         .withHeader("X-RosetteAPI-Concurrency", "5"));
-        String mockServiceUrl = "http://localhost:" + Integer.toString(serverPort) + "/rest//v1";
+        String mockServiceUrl = "http://localhost:" + mockServer.getPort() + "/rest//v1";
         boolean exceptional = false;
         try {
             HttpRosetteAPI api = new HttpRosetteAPI.Builder().key("my-key-123").url(mockServiceUrl).build();
             api.perform(AbstractRosetteAPI.LANGUAGE_SERVICE_PATH, DocumentRequest.builder().content("sample text").build(), LanguageResponse.class);
+            api.close();
         } catch (HttpRosetteAPIException e) {
             exceptional = true;
             assertEquals("invalidErrorResponse", e.getErrorResponse().getCode());
@@ -59,5 +73,6 @@ public class InvalidErrorTest extends AbstractTest {
             assertNotNull(e.getErrorResponse().getMessage());
         }
         assertTrue(exceptional);
+        mockServer.close();
     }
 }

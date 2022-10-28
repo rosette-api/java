@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,10 +21,10 @@ import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.collect.Lists;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
@@ -36,41 +36,34 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-@RunWith(Parameterized.class)
-public class ModelTest {
-
-    private boolean inputStreams;
+@SuppressWarnings("PMD.UnusedPrivateMethod") // Parameterized Tests
+class ModelTest {
     private ObjectMapper mapper;
 
-    public ModelTest(Boolean inputStreams) {
-        this.inputStreams = inputStreams;
+    private static Stream<Arguments> packageTestParameters() {
+        return Stream.of(
+                Arguments.of(true),
+                Arguments.of(false)
+        );
     }
 
-
-    @Parameterized.Parameters(name = "inputStreamContent: {0}")
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[] {Boolean.FALSE}, new Object[] {Boolean.TRUE});
-    }
-
-
-    @Before
+    @BeforeEach
     public void init() {
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
-    @Test
-    public void packageTest() throws ClassNotFoundException, IllegalAccessException, InvocationTargetException,
-            InstantiationException, IOException {
+    @ParameterizedTest(name = "inputStreamContent: {0}")
+    @MethodSource("packageTestParameters")
+    void packageTest(boolean inputStreams) throws ClassNotFoundException, IOException {
         Reflections reflections = new Reflections(this.getClass().getPackage().getName(), new SubTypesScanner(false));
 
         Set<Class<?>> allClasses = reflections.getSubTypesOf(Object.class);
@@ -124,7 +117,7 @@ public class ModelTest {
                     if (className.endsWith("ConstantsResponse")) {
                         inputStreams = false; // special case due to Object in there.
                     }
-                    o1 = createObject(ctor);
+                    o1 = createObject(ctor, inputStreams);
                 } finally {
                     inputStreams = oldInputStreams;
                 }
@@ -158,7 +151,7 @@ public class ModelTest {
     }
 
 
-    private Object createObject(Constructor ctor) {
+    private Object createObject(Constructor ctor, boolean inputStreams) {
         Object o;
         int argSize = ctor.getParameterTypes().length;
         Class[] parameterTypes = ctor.getParameterTypes();
@@ -166,7 +159,7 @@ public class ModelTest {
 
         for (int i = 0; i < argSize; i++) {
             try {
-                args[i] = createObjectForType(parameterTypes[i], ctor.getGenericParameterTypes()[i]);
+                args[i] = createObjectForType(parameterTypes[i], ctor.getGenericParameterTypes()[i], inputStreams);
             } catch (Throwable e) {
                 e.printStackTrace();
                 fail(String.format("Unable to create object %s %d %s %s", ctor, i, parameterTypes[i], ctor.getGenericParameterTypes()[i]));
@@ -187,8 +180,8 @@ public class ModelTest {
     }
 
     //CHECKSTYLE:OFF
-    private Object createObjectForType(Class<?> type, Type genericParameterType) throws IllegalAccessException,
-            InstantiationException, InvocationTargetException {
+    private Object createObjectForType(Class<?> type, Type genericParameterType, boolean inputStreams)
+            throws IllegalAccessException, InstantiationException, InvocationTargetException {
         Object o = null;
         Class firstComponentType = type.isArray() ? type.getComponentType() : type;
         String typeName = firstComponentType.getSimpleName();
@@ -256,7 +249,7 @@ public class ModelTest {
         case "Collection":
         case "List": {
             if (parameterArgClass != null) {
-                Object o1 = createObjectForType(parameterArgClass, null);
+                Object o1 = createObjectForType(parameterArgClass, null, inputStreams);
                 List<Object> list = new ArrayList<>();
                 list.add(o1);
                 o = list;
@@ -274,7 +267,7 @@ public class ModelTest {
             break;
         case "Set": {
             if (parameterArgClass != null) {
-                Object o1 = createObjectForType(parameterArgClass, null);
+                Object o1 = createObjectForType(parameterArgClass, null, inputStreams);
                 Set<Object> set = new HashSet<>();
                 set.add(o1);
                 o = set;
@@ -300,10 +293,10 @@ public class ModelTest {
         default:
             if (parameterArgClass != null) {
                 Constructor[] ctors = parameterArgClass.getDeclaredConstructors();
-                o = createObject(ctors[0]);
+                o = createObject(ctors[0], inputStreams);
             } else {
                 Constructor[] ctors = firstComponentType.getDeclaredConstructors();
-                o = createObject(ctors[0]);
+                o = createObject(ctors[0], inputStreams);
             }
         }
         return o;

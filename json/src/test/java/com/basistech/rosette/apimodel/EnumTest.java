@@ -16,24 +16,26 @@
 package com.basistech.rosette.apimodel;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class EnumTest extends Assert {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class EnumTest {
     private ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void init() {
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
     }
 
     @Test
-    public void testCaseInsensitivity() throws Exception {
+    void testCaseInsensitivity() throws Exception {
         String json = "{\"content\": \"foo\", \"options\": {\"modelType\": \"dEfAuLT\"}}";
         Request request = mapper.readValue(json, new TypeReference<DocumentRequest<MorphologyOptions>>() { });
         assertTrue(request instanceof DocumentRequest);

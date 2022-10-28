@@ -1,5 +1,5 @@
 /*
-* Copyright 2017-2022 Basis Technology Corp.
+* Copyright 2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -32,18 +32,17 @@ import com.basistech.util.TransliterationScheme;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.mockserver.client.server.MockServerClient;
-import org.mockserver.junit.MockServerRule;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockserver.client.MockServerClient;
+import org.mockserver.junit.jupiter.MockServerExtension;
 import org.mockserver.model.Delay;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.ServerSocket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,29 +55,18 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.ENTITIES_SERVI
 import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_SIMILARITY_SERVICE_PATH;
 import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH;
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BasicTest extends AbstractTest {
-
-    @Rule
-    public MockServerRule mockServerRule = new MockServerRule(this, getFreePort());
+@ExtendWith(MockServerExtension.class)
+class BasicTest {
     private MockServerClient mockServer;
     private HttpRosetteAPI api;
 
-    public BasicTest() throws IOException {
-    }
-
-    private static int getFreePort() throws IOException {
-        try (ServerSocket socket = new ServerSocket(0)) {
-            serverPort = socket.getLocalPort();
-        }
-        assertNotEquals(0, serverPort);
-        return serverPort;
-    }
-
-    @Before
-    public void setup() {
-        mockServer.reset();
-        // for version check call
+    @BeforeEach
+    public void setup(MockServerClient mockServer) {
+        this.mockServer = mockServer;
     }
 
     // an indirect way to show that connection pooling works
@@ -87,7 +75,7 @@ public class BasicTest extends AbstractTest {
     // then set concurrent connections = 5,
     // run several requests again, showing they're executed in parallel
     @Test
-    public void testMultipleConnections() throws IOException, InterruptedException {
+    void testMultipleConnections() throws InterruptedException {
         int delayTime = 3;
         int numConnections = 5;
 
@@ -103,7 +91,7 @@ public class BasicTest extends AbstractTest {
 
         // "before" case - send off (numConnections) requests, expect them to run serially
         api = new HttpRosetteAPI.Builder().connectionConcurrency(1)
-                .url(String.format("http://localhost:%d/rest/v1", serverPort)).build();
+                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort())).build();
 
         Date d1 = new Date();
 
@@ -122,7 +110,7 @@ public class BasicTest extends AbstractTest {
         assertTrue(d2.getTime() - d1.getTime() > delayTime * numConnections * 1000); // at least as long as the delay in the request
 
         api = new HttpRosetteAPI.Builder().connectionConcurrency(numConnections)
-                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                 .build();
         d1 = new Date();
 
@@ -141,9 +129,8 @@ public class BasicTest extends AbstractTest {
         assertTrue(d2.getTime() - d1.getTime() < delayTime * numConnections * 1000); // less than (numConnections) serial requests
         assertTrue(d2.getTime() - d1.getTime() > delayTime * 1000); // but at least as long as one
     }
-
     @Test
-    public void testHeaders() throws Exception {
+    void testHeaders() throws Exception {
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/ping")
@@ -157,7 +144,7 @@ public class BasicTest extends AbstractTest {
 
         api = new HttpRosetteAPI.Builder()
                 .key("foo-key")
-                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                 .additionalHeader("X-Foo", "Bar")
                 .build();
         var resp = api.ping();
@@ -165,19 +152,20 @@ public class BasicTest extends AbstractTest {
     }
 
     @Test
-    public void testAdm() throws Exception {
+    void testAdm() throws Exception {
         try (InputStream reqIns = getClass().getResourceAsStream("/adm-req.json");
              InputStream respIns = getClass().getResourceAsStream("/adm-resp.json")) {
+            assertNotNull(respIns);
             mockServer.when(HttpRequest.request()
                     .withMethod("POST")
                     .withPath("/rest/v1/entities"))
                     .respond(HttpResponse.response()
                             .withStatusCode(200)
                             .withHeader("Content-Type", "application/json")
-                            .withBody(IOUtils.toString(respIns, "UTF-8")));
+                            .withBody(IOUtils.toString(respIns, StandardCharsets.UTF_8)));
             api = new HttpRosetteAPI.Builder()
                     .key("foo-key")
-                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                     .build();
             AnnotatedText testData = ApiModelMixinModule.setupObjectMapper(
                     new ObjectMapper()).readValue(reqIns, AnnotatedText.class);
@@ -188,7 +176,7 @@ public class BasicTest extends AbstractTest {
     }
 
     @Test
-    public void testExtendedInfo() throws Exception {
+    void testExtendedInfo() throws Exception {
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
                 .withPath("/rest/v1/ping"))
@@ -201,7 +189,7 @@ public class BasicTest extends AbstractTest {
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
         api = new HttpRosetteAPI.Builder()
                 .key("foo-key")
-                .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                 .build();
         Response resp = api.ping();
         assertEquals("Bar", resp.getExtendedInformation().get("X-Foo"));
@@ -210,10 +198,10 @@ public class BasicTest extends AbstractTest {
         assertTrue(foos.contains("Bar2"));
     }
 
-    private class ApiPinger extends Thread {
+    private static class ApiPinger extends Thread {
         HttpRosetteAPI api1;
 
-        ApiPinger(HttpRosetteAPI api) throws IOException {
+        ApiPinger(HttpRosetteAPI api) {
             this.api1 = api;
         }
 
@@ -228,18 +216,19 @@ public class BasicTest extends AbstractTest {
     }
 
     @Test
-    public void testLanguageSupport() throws Exception {
+    void testLanguageSupport() throws Exception {
         try (InputStream respIns = getClass().getResourceAsStream("/supported-languages.json")) {
+            assertNotNull(respIns);
             mockServer.when(HttpRequest.request()
                     .withMethod("GET")
                     .withPath("/rest/v1/entities/supported-languages"))
                     .respond(HttpResponse.response()
                             .withStatusCode(200)
                             .withHeader("Content-Type", "application/json")
-                            .withBody(IOUtils.toString(respIns, "UTF-8")));
+                            .withBody(IOUtils.toString(respIns, StandardCharsets.UTF_8)));
             api = new HttpRosetteAPI.Builder()
                     .key("foo-key")
-                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                     .build();
             SupportedLanguagesResponse resp = api.getSupportedLanguages(ENTITIES_SERVICE_PATH);
             assertEquals(2, resp.getSupportedLanguages().size());
@@ -257,18 +246,19 @@ public class BasicTest extends AbstractTest {
     }
 
     @Test
-    public void testNameSimilarityLanguageSupport() throws Exception {
+    void testNameSimilarityLanguageSupport() throws Exception {
         try (InputStream respIns = getClass().getResourceAsStream("/name-similarity-supported-languages.json")) {
+            assertNotNull(respIns);
             mockServer.when(HttpRequest.request()
                     .withMethod("GET")
                     .withPath("/rest/v1/name-similarity/supported-languages"))
                     .respond(HttpResponse.response()
                             .withStatusCode(200)
                             .withHeader("Content-Type", "application/json")
-                            .withBody(IOUtils.toString(respIns, "UTF-8")));
+                            .withBody(IOUtils.toString(respIns, StandardCharsets.UTF_8)));
             api = new HttpRosetteAPI.Builder()
                     .key("foo-key")
-                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                     .build();
 
             SupportedLanguagePairsResponse resp = api.getSupportedLanguagePairs(NAME_SIMILARITY_SERVICE_PATH);
@@ -287,18 +277,19 @@ public class BasicTest extends AbstractTest {
     }
 
     @Test
-    public void testNameTranslationLanguageSupport() throws Exception {
+    void testNameTranslationLanguageSupport() throws Exception {
         try (InputStream respIns = getClass().getResourceAsStream("/name-translation-supported-languages.json")) {
+            assertNotNull(respIns);
             mockServer.when(HttpRequest.request()
                     .withMethod("GET")
                     .withPath("/rest/v1/name-translation/supported-languages"))
                     .respond(HttpResponse.response()
                             .withStatusCode(200)
                             .withHeader("Content-Type", "application/json")
-                            .withBody(IOUtils.toString(respIns, "UTF-8")));
+                            .withBody(IOUtils.toString(respIns, StandardCharsets.UTF_8)));
             api = new HttpRosetteAPI.Builder()
                     .key("foo-key")
-                    .url(String.format("http://localhost:%d/rest/v1", serverPort))
+                    .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                     .build();
 
             SupportedLanguagePairsResponse resp = api.getSupportedLanguagePairs(NAME_TRANSLATION_SERVICE_PATH);

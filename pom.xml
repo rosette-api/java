@@ -22,7 +22,7 @@
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
-        <version>2.0.3</version>
+        <version>7.0.1</version>
         <relativePath />
     </parent>
     <packaging>pom</packaging>
@@ -41,23 +41,34 @@
         </site>
     </distributionManagement>
     <properties>
+        <!-- TODO:  After completing upgrade to latest parent pom, review and remove properties we want the parent to set. -->
         <bbh-maven-plugin.version>1.0.1</bbh-maven-plugin.version>
         <bnd-maven-plugin.version>6.2.0</bnd-maven-plugin.version>
-        <bt-adm-version>2.7.2</bt-adm-version>
+        <bt-adm-version>2.7.3</bt-adm-version>
         <bt-common-api.version>37.0.1</bt-common-api.version>
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <commons-codec.version>1.15</commons-codec.version>
+        <felix-framework.version>7.0.5</felix-framework.version>
+        <felix-configadmin.version>1.9.24</felix-configadmin.version>
+        <findbugs-jsr305.version>3.0.2</findbugs-jsr305.version>
         <http-components.version>4.5.13</http-components.version>
         <http-components-core.version>4.4.15</http-components-core.version>
         <java-poet.version>1.13.0</java-poet.version>
         <javax-validation-api.version>2.0.0.Final</javax-validation-api.version>
+        <junit.version>5.9.1</junit.version>
         <lombok.version>1.18.24</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <mockserver.version>4.1.0</mockserver.version>
+        <mockserver.version>5.14.0</mockserver.version>
         <nexus-staging-plugin-version>1.6.13</nexus-staging-plugin-version>
+        <osgi-enroute-junit-wrapper.version>4.12.0</osgi-enroute-junit-wrapper.version>
+        <osgi-enroute-hamcrest-wrapper.version>1.3.0</osgi-enroute-hamcrest-wrapper.version>
+        <reflections.version>0.10.2</reflections.version>
         <site-skin.version>1.5</site-skin.version>
     </properties>
     <modules>
@@ -91,6 +102,14 @@
     </dependencyManagement>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>

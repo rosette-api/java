@@ -1,5 +1,5 @@
 /*
-* Copyright 2017-2022 Basis Technology Corp.
+* Copyright 2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -177,6 +177,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         }
     }
 
+    @SuppressWarnings("java:HttpClient_must_be_closed") // This library requires keeping the connection open.
     private void initClient(String key, List<Header> additionalHeaders) {
         HttpClientBuilder builder = HttpClients.custom();
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();

@@ -1,0 +1,33 @@
+{
+  "relationships": [
+    {
+      "predicate": "Organization Headquarters",
+      "predicateId": "ORG-HEADQUARTERS",
+      "arg1": "FLIR Systems",
+      "arg1Id": "Q5426537",
+      "arg2": "Oregon",
+      "arg2Id": "Q824"
+    },
+    {
+      "predicate": "Citizen of",
+      "predicateId": "CIT-OF",
+      "arg1": "Timms",
+      "arg1Id": "T5",
+      "arg2": "Dubai",
+      "arg2Id": "Q612",
+      "confidence": 0.89470345
+    },
+    {
+      "predicate": "Person Employee or Member of",
+      "predicateId": "PER-EMPLOYEE-MEMBER-OF",
+      "arg1": "Timms",
+      "arg2": "FLIR"
+    },
+    {
+      "predicate": "Organization top employees",
+      "predicateId": "ORG-TOP-EMPLOYEES",
+      "arg1": "FLIR",
+      "arg2": "Timms"
+    }
+  ]
+}
