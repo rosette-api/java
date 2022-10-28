@@ -16,12 +16,6 @@
             <artifactId>rosette-api</artifactId>
             <version>1.23.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- The goal of this test is to make sure rosette-api resolves successfully in OSGi with given dependencies. -->
         <!-- A failure in this test indicates changes in the minimum runtime requirements of the bundle. -->
