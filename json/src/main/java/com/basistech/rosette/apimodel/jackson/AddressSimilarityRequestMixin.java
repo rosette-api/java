@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 Basis Technology Corp.
+ * Copyright 2022 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class AddressSimilarityRequestMixin {
             @JsonProperty("address1") IAddress address1,
             @JsonProperty("address2") IAddress address2,
             @JsonProperty("parameters") Map<String, String> parameters
-            ) {
+    ) {
         //
     }
 

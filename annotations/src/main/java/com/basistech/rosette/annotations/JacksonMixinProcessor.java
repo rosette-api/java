@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -48,6 +48,7 @@ import java.util.Set;
 public class JacksonMixinProcessor extends AbstractProcessor {
 
     private static final String PACKAGE_NAME = "com.basistech.rosette.apimodel.jackson";
+    private static final String VALUE = "value";
 
     private ProcessingEnvironment processingEnvironment;
 
@@ -58,6 +59,7 @@ public class JacksonMixinProcessor extends AbstractProcessor {
     }
 
     @Override
+    @SuppressWarnings("java:S3516") // From the Javadoc:  "A processor may always return the same boolean value..."
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnvironment) {
         if (roundEnvironment.getElementsAnnotatedWith(JacksonMixin.class).isEmpty()) {
             return true;
@@ -76,14 +78,14 @@ public class JacksonMixinProcessor extends AbstractProcessor {
                         .classBuilder(typeElement.getSimpleName().toString() + "Mixin")
                         .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                         .addAnnotation(AnnotationSpec.builder(JsonTypeName.class)
-                                .addMember("value", "$S", typeElement.getSimpleName())
+                                .addMember(VALUE, "$S", typeElement.getSimpleName())
                                 .build())
                         .addAnnotation(AnnotationSpec.builder(JsonDeserialize.class)
                                 .addMember("builder", CodeBlock.builder()
                                         .add(elementQualifiedName + "." + elementSimpleName + "Builder.class").build())
                                 .build())
                         .addAnnotation(AnnotationSpec.builder(JsonInclude.class)
-                                .addMember("value", CodeBlock.builder()
+                                .addMember(VALUE, CodeBlock.builder()
                                         .add("JsonInclude.Include.NON_NULL").build())
                                 .build())
                         .addType(TypeSpec
@@ -119,7 +121,7 @@ public class JacksonMixinProcessor extends AbstractProcessor {
                 .classBuilder("MixinUtil")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addAnnotation(AnnotationSpec.builder(SuppressWarnings.class)
-                        .addMember("value", "$S", "PMD")
+                        .addMember(VALUE, "$S", "PMD")
                         .build())
                 .addMethod(methodSpecBuilder.build());
         try {

@@ -1,5 +1,5 @@
 /*
-* Copyright 2014-2022 Basis Technology Corp.
+* Copyright 2022 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ import com.basistech.rosette.apimodel.DocumentRequest;
 import com.basistech.rosette.apimodel.EntitiesOptions;
 import com.basistech.rosette.apimodel.EntitiesResponse;
 import com.basistech.rosette.apimodel.ErrorResponse;
-import com.basistech.rosette.apimodel.LanguageDetectionResult;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.NameDeduplicationRequest;
@@ -47,7 +46,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHeaders;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -75,6 +73,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @ExtendWith(MockServerExtension.class)
+@SuppressWarnings("PMD.UnusedPrivateMethod") // Parameterized Tests
 class RosetteAPITest {
     private static final String INFO_RESPONSE = "{ \"buildNumber\": \"6bafb29d\", \"buildTime\": "
         + "\"2015.10.08_10:19:26\", \"name\": \"RosetteAPI\", \"version\": \"0.7.0\", \"versionChecked\": true }";
@@ -351,278 +350,306 @@ class RosetteAPITest {
         }
     }
 
-/*    @Test
-    public void testGetEntityDoc() throws IOException {
-        if (!(testFilename.endsWith("-entities.json") && testFilename.contains("-doc-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetEntityDocParameters() throws IOException {
+        return getTestFiles("-doc-entities.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetEntityDocParameters")
+    void testGetEntityDoc(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
-            verifyEntity(response);
+            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request,
+                    EntitiesResponse.class);
+            verifyEntity(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
-    public void testGetEntityLinked() throws IOException {
-        if (!(testFilename.endsWith("-entities_linked.json"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetEntityLinkedParameters() throws IOException {
+        return getTestFiles("-entities_linked.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetEntityLinkedParameters")
+    void testGetEntityLinked(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
-            verifyEntity(response);
+            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request,
+                    EntitiesResponse.class);
+            verifyEntity(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
 
-    @Test
-    public void testGetEntityPermId() throws IOException {
+    private static Stream<Arguments> testGetEntityPermIdParameters() throws IOException {
+        return getTestFiles("-entities_permid.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetEntityPermIdParameters")
+    void testGetEntityPermId(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         if (testFilename.endsWith("-entities_permid.json")) {
             DocumentRequest<EntitiesOptions> request = readValue(DocumentRequest.class, testFilename);
             try {
-                EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
-                verifyEntity(response);
+                EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request,
+                        EntitiesResponse.class);
+                verifyEntity(response, responseStr);
             } catch (HttpRosetteAPIException e) {
-                verifyException(e);
+                verifyException(e, responseStr);
             }
         }
     }
 
-    @Test
-    public void testIgnoredUnknownField() throws IOException {
-        if ("unknown-field-entities.json".equals(testFilename)) {
-            DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
-            try {
-                EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
-                verifyEntity(response);
-            } catch (HttpRosetteAPIException e) {
-                verifyException(e);
-            }
+    private static Stream<Arguments> testIgnoredUnknownFieldParameters() throws IOException {
+        return getTestFiles("unknown-field-entities.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testIgnoredUnknownFieldParameters")
+    void testIgnoredUnknownField(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
+        try {
+            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request,
+                    EntitiesResponse.class);
+            verifyEntity(response, responseStr);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
-    public void testNonIgnoredUnknownField() throws IOException {
-        if ("unknown-field-entities.json".equals(testFilename)) {
-            DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
-            HttpRosetteAPI tmpApi = new HttpRosetteAPI.Builder()
-                    .key("my-key-123")
-                    .url(mockServiceUrl)
-                    .onlyAcceptKnownFields(true)
-                    .build();
-            try {
-                tmpApi.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
-            } catch (RosetteRuntimeException e) {
-                if (e.getCause() instanceof UnrecognizedPropertyException) {
-                    return;
-                }
-            }
-            fail("Unknown field is ignored when it shouldn't be ");
-        }
+    private static Stream<Arguments> testNonIgnoredUnknownFieldParameters() throws IOException {
+        return getTestFiles("unknown-field-entities.json");
     }
 
-    private void verifyEntity(EntitiesResponse response) throws IOException {
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testNonIgnoredUnknownFieldParameters")
+    void testNonIgnoredUnknownField(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
+
+        try (HttpRosetteAPI tmpApi = new HttpRosetteAPI.Builder()
+                .key("my-key-123")
+                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
+                .onlyAcceptKnownFields(true)
+                .build()) {
+            tmpApi.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
+        } catch (RosetteRuntimeException e) {
+            if (e.getCause() instanceof UnrecognizedPropertyException) {
+                return;
+            }
+        }
+        fail("Unknown field is ignored when it shouldn't be ");
+    }
+
+    private void verifyEntity(EntitiesResponse response, String responseStr) throws IOException {
         EntitiesResponse goldResponse = mapper.readValue(responseStr, EntitiesResponse.class);
         assertEquals(goldResponse.getEntities(), response.getEntities());
     }
 
-    @Test
-    public void testGetEntityURL() throws IOException {
-        if (!(testFilename.endsWith("-entities.json") && testFilename.contains("-url-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetEntityURLParameters() throws IOException {
+        return getTestFiles("-url-entities.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetEntityURLParameters")
+    void testGetEntityURL(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
-            verifyEntity(response);
+            EntitiesResponse response = api.perform(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, request,
+                    EntitiesResponse.class);
+            verifyEntity(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
-    public void testGetCategories() throws IOException {
-        if (!(testFilename.endsWith("-categories.json") && testFilename.contains("-doc-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetCategoriesDocParameters() throws IOException {
+        return getTestFiles("-doc-categories.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetCategoriesDocParameters")
+    void testGetCategoriesDoc(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            CategoriesResponse response = api.perform(AbstractRosetteAPI.CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
-            verifyCategory(response);
+            CategoriesResponse response = api.perform(AbstractRosetteAPI.CATEGORIES_SERVICE_PATH, request,
+                    CategoriesResponse.class);
+            verifyCategory(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-
-    private void verifyCategory(CategoriesResponse response) throws IOException {
+    private void verifyCategory(CategoriesResponse response, String responseStr) throws IOException {
         CategoriesResponse goldResponse = mapper.readValue(responseStr, CategoriesResponse.class);
         assertEquals(response.getCategories().size(), goldResponse.getCategories().size());
     }
 
-    @Test
-    public void testGetCategoriesURL() throws IOException {
-        if (!(testFilename.endsWith("-categories.json") && testFilename.contains("-url-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetCategoriesURLParameters() throws IOException {
+        return getTestFiles("-url-categories.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetCategoriesURLParameters")
+    void testGetCategoriesURL(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            CategoriesResponse response = api.perform(AbstractRosetteAPI.CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
-            verifyCategory(response);
+            CategoriesResponse response = api.perform(AbstractRosetteAPI.CATEGORIES_SERVICE_PATH, request,
+                    CategoriesResponse.class);
+            verifyCategory(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
-    public void testGetSyntaxDependencies() throws IOException {
-        if (!(testFilename.endsWith("-syntax_dependencies.json") && testFilename.contains("-doc-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetSyntaxDependenciesDocParameters() throws IOException {
+        return getTestFiles("-doc-syntax_dependencies.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetSyntaxDependenciesDocParameters")
+    void testGetSyntaxDependenciesDoc(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            SyntaxDependenciesResponse response = api.perform(AbstractRosetteAPI.SYNTAX_DEPENDENCIES_SERVICE_PATH, request, SyntaxDependenciesResponse.class);
-            verifySyntaxDependency(response);
+            SyntaxDependenciesResponse response = api.perform(AbstractRosetteAPI.SYNTAX_DEPENDENCIES_SERVICE_PATH,
+                    request, SyntaxDependenciesResponse.class);
+            verifySyntaxDependency(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    private void verifySyntaxDependency(SyntaxDependenciesResponse response) throws IOException {
+    private void verifySyntaxDependency(SyntaxDependenciesResponse response, String responseStr) throws IOException {
         SyntaxDependenciesResponse goldResponse = mapper.readValue(responseStr, SyntaxDependenciesResponse.class);
         assertEquals(response.getSentences().size(), goldResponse.getSentences().size());
     }
 
-    @Test
-    public void testGetSyntaxDependenciesURL() throws IOException {
-        if (!(testFilename.endsWith("-syntax_dependencies.json") && testFilename.contains("-url-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetSimilarTermsParameters() throws IOException {
+        return getTestFiles("-similar_terms.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetSimilarTermsParameters")
+    void testGetSimilarTerms(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            SyntaxDependenciesResponse response = api.perform(AbstractRosetteAPI.SYNTAX_DEPENDENCIES_SERVICE_PATH, request, SyntaxDependenciesResponse.class);
-            verifySyntaxDependency(response);
+            SimilarTermsResponse response = api.perform(AbstractRosetteAPI.SIMILAR_TERMS_SERVICE_PATH, request,
+                    SimilarTermsResponse.class);
+            verifySimilarTerms(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
-    public void testGetSimilarTerms() throws IOException {
-        if (!(testFilename.endsWith("-similar_terms.json"))) {
-            return;
-        }
-        DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
-        try {
-            SimilarTermsResponse response = api.perform(AbstractRosetteAPI.SIMILAR_TERMS_SERVICE_PATH, request, SimilarTermsResponse.class);
-            verifySimilarTerms(response);
-        } catch (HttpRosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    private void verifySimilarTerms(SimilarTermsResponse response) throws IOException {
+    private void verifySimilarTerms(SimilarTermsResponse response, String responseStr) throws IOException {
         SimilarTermsResponse goldResponse = mapper.readValue(responseStr, SimilarTermsResponse.class);
         assertEquals(response.getSimilarTerms().size(), goldResponse.getSimilarTerms().size());
     }
 
-    // THERE ARE NO REL FILENAMES!
-    @Test
-    public void testGetRelationships() throws IOException {
-        if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-doc-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetRelationshipsDocParameters() throws IOException {
+        return getTestFiles("-doc-relationships.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetRelationshipsDocParameters")
+    void testGetRelationshipsDoc(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            RelationshipsResponse response = api.perform(AbstractRosetteAPI.RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
-            verifyRelationships(response);
+            RelationshipsResponse response = api.perform(AbstractRosetteAPI.RELATIONSHIPS_SERVICE_PATH, request,
+                    RelationshipsResponse.class);
+            verifyRelationships(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    private void verifyRelationships(RelationshipsResponse response) throws IOException {
+    private void verifyRelationships(RelationshipsResponse response, String responseStr) throws IOException {
         RelationshipsResponse goldResponse = mapper.readValue(responseStr, RelationshipsResponse.class);
         assertEquals(response.getRelationships().size(), goldResponse.getRelationships().size());
     }
 
-    @Test
-    public void testGetRelationshipsURL() throws IOException {
-        if (!(testFilename.endsWith("-relationships.json") && testFilename.contains("-url-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetSentimentDocParameters() throws IOException {
+        return getTestFiles("-doc-sentiment.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetSentimentDocParameters")
+    void testGetSentimentDoc(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            RelationshipsResponse response = api.perform(AbstractRosetteAPI.RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
-            verifyRelationships(response);
+            SentimentResponse response = api.perform(AbstractRosetteAPI.SENTENCES_SERVICE_PATH, request,
+                    SentimentResponse.class);
+            verifySentiment(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
-    public void testGetSentiment() throws IOException {
-        if (!(testFilename.endsWith("-sentiment.json") && testFilename.contains("-doc-"))) {
-            return;
-        }
-        DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
-        try {
-            SentimentResponse response = api.perform(AbstractRosetteAPI.SENTENCES_SERVICE_PATH, request, SentimentResponse.class);
-            verifySentiment(response);
-        } catch (HttpRosetteAPIException e) {
-            verifyException(e);
-        }
-    }
-
-    private void verifySentiment(SentimentResponse response) throws IOException {
+    private void verifySentiment(SentimentResponse response, String responseStr) throws IOException {
         SentimentResponse goldResponse = mapper.readValue(responseStr, SentimentResponse.class);
         // this is minimal.
         assertNotNull(response.getEntities());
         assertEquals(response.getEntities().size(), goldResponse.getEntities().size());
     }
 
-    @Test
-    public void testGetSentimentURL() throws IOException {
-        if (!(testFilename.endsWith("-sentiment.json") && testFilename.contains("-url-"))) {
-            return;
-        }
+    private static Stream<Arguments> testGetSentimentURLParameters() throws IOException {
+        return getTestFiles("-url-sentiment.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testGetSentimentURLParameters")
+    void testGetSentimentURL(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
         DocumentRequest<?> request = readValue(DocumentRequest.class, testFilename);
         try {
-            SentimentResponse response = api.perform(AbstractRosetteAPI.SENTENCES_SERVICE_PATH, request, SentimentResponse.class);
-            verifySentiment(response);
+            SentimentResponse response = api.perform(AbstractRosetteAPI.SENTENCES_SERVICE_PATH, request,
+                    SentimentResponse.class);
+            verifySentiment(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    @Test
-    public void testNameDeduplication() throws IOException {
-        if (!(testFilename.endsWith("-name-deduplication.json"))) {
-            return;
-        }
-        NameDeduplicationRequest request = readValueNameDeduplication();
+    private static Stream<Arguments> testNameDeduplicationParameters() throws IOException {
+        return getTestFiles("-name-deduplication.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testNameDeduplicationParameters")
+    void testNameDeduplication(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        NameDeduplicationRequest request = readValueNameDeduplication(testFilename);
         try {
             NameDeduplicationResponse response = api.perform(AbstractRosetteAPI.NAME_DEDUPLICATION_SERVICE_PATH,
                     request, NameDeduplicationResponse.class);
-            verifyNameDeduplication(response);
+            verifyNameDeduplication(response, responseStr);
         } catch (HttpRosetteAPIException e) {
-            verifyException(e);
+            verifyException(e, responseStr);
         }
     }
 
-    private void verifyNameDeduplication(NameDeduplicationResponse response) throws IOException {
+    private void verifyNameDeduplication(NameDeduplicationResponse response, String responseStr) throws IOException {
         NameDeduplicationResponse goldResponse = mapper.readValue(responseStr, NameDeduplicationResponse.class);
         assertEquals(goldResponse.getResults(), response.getResults());
     }
 
-    private NameDeduplicationRequest readValueNameDeduplication() throws IOException {
+    private NameDeduplicationRequest readValueNameDeduplication(String testFilename) throws IOException {
         File input = new File("src/test/mock-data/request", testFilename);
         return mapper.readValue(input, NameDeduplicationRequest.class);
     }
-     */
 }

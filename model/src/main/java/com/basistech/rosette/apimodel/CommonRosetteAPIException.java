@@ -21,7 +21,7 @@ import com.basistech.rosette.RosetteRuntimeException;
  * Exception from the Rosette API inherit from this exception.
  */
 public class CommonRosetteAPIException extends RosetteRuntimeException {
-    private final ErrorResponse errorResponse;
+    private final transient ErrorResponse errorResponse;
 
     public CommonRosetteAPIException(ErrorResponse errorResponse) {
         this.errorResponse = errorResponse;

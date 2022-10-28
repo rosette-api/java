@@ -1,0 +1,132 @@
+{
+  "sentences": [
+    {
+      "startTokenIndex": 0,
+      "endTokenIndex": 19,
+      "dependencies": [
+        {
+          "dependencyType": "name",
+          "governorTokenIndex": 1,
+          "dependentTokenIndex": 0
+        },
+        {
+          "dependencyType": "nsubjpass",
+          "governorTokenIndex": 9,
+          "dependentTokenIndex": 1
+        },
+        {
+          "dependencyType": "punct",
+          "governorTokenIndex": 1,
+          "dependentTokenIndex": 2
+        },
+        {
+          "dependencyType": "det",
+          "governorTokenIndex": 6,
+          "dependentTokenIndex": 3
+        },
+        {
+          "dependencyType": "amod",
+          "governorTokenIndex": 6,
+          "dependentTokenIndex": 4
+        },
+        {
+          "dependencyType": "compound",
+          "governorTokenIndex": 6,
+          "dependentTokenIndex": 5
+        },
+        {
+          "dependencyType": "appos",
+          "governorTokenIndex": 1,
+          "dependentTokenIndex": 6
+        },
+        {
+          "dependencyType": "punct",
+          "governorTokenIndex": 1,
+          "dependentTokenIndex": 7
+        },
+        {
+          "dependencyType": "auxpass",
+          "governorTokenIndex": 9,
+          "dependentTokenIndex": 8
+        },
+        {
+          "dependencyType": "root",
+          "governorTokenIndex": -1,
+          "dependentTokenIndex": 9
+        },
+        {
+          "dependencyType": "det",
+          "governorTokenIndex": 12,
+          "dependentTokenIndex": 10
+        },
+        {
+          "dependencyType": "compound",
+          "governorTokenIndex": 12,
+          "dependentTokenIndex": 11
+        },
+        {
+          "dependencyType": "dobj",
+          "governorTokenIndex": 9,
+          "dependentTokenIndex": 12
+        },
+        {
+          "dependencyType": "case",
+          "governorTokenIndex": 14,
+          "dependentTokenIndex": 13
+        },
+        {
+          "dependencyType": "nmod",
+          "governorTokenIndex": 12,
+          "dependentTokenIndex": 14
+        },
+        {
+          "dependencyType": "cc",
+          "governorTokenIndex": 14,
+          "dependentTokenIndex": 15
+        },
+        {
+          "dependencyType": "conj",
+          "governorTokenIndex": 14,
+          "dependentTokenIndex": 16
+        },
+        {
+          "dependencyType": "case",
+          "governorTokenIndex": 18,
+          "dependentTokenIndex": 17
+        },
+        {
+          "dependencyType": "nmod",
+          "governorTokenIndex": 9,
+          "dependentTokenIndex": 18
+        },
+        {
+          "dependencyType": "punct",
+          "governorTokenIndex": 9,
+          "dependentTokenIndex": 19
+        }
+      ]
+    }
+  ],
+  "tokens": [
+    "Yoshinori",
+    "Ohsumi",
+    ",",
+    "a",
+    "Japanese",
+    "cell",
+    "biologist",
+    ",",
+    "was",
+    "awarded",
+    "the",
+    "Nobel",
+    "Prize",
+    "in",
+    "Physiology",
+    "or",
+    "Medicine",
+    "on",
+    "Monday",
+    "."
+  ]
+}
