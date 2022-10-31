@@ -9,6 +9,11 @@ node ("docker-light") {
         }
         stage("Maven Build") {
             withSonarQubeEnv {
+                mySonarOpts="-Dsonar.login=${env.SONAR_AUTH_TOKEN} -Dsonar.host.url=${env.SONAR_HOST_URL}"
+                 if ("${env.CHANGE_BRANCH}") {
+                     mySonarOpts="$mySonarOpts -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH}"
+                }
+                echo("Sonar Options are: $mySonarOpts")
                 sh "docker run --rm \
                        --pull always \
                        --volume ${sourceDir}:/source \
@@ -17,12 +22,7 @@ node ("docker-light") {
                        bash -c \"apt-get update && \
                              apt-get install -y git && \
                              pushd /source && \
-                             export MY_SONAR_OPTS=\"-Dsonar.login=${env.SONAR_AUTH_TOKEN} -Dsonar.host.url=${env.SONAR_HOST_URL}\" \
-                             if [[ ! -z ${env.CHANGE_BRANCH} ]]; then \
-                                 MY_SONAR_OPTS+=-Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH} \
-                             fi \
-                             echo \"Sonar Options are: ${env.MY_SONAR_OPTS}\" \
-                             /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar ${MY_SONAR_OPTS}\""
+                             /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar $mySonarOpts\""
             }
         }
         slack(true)
