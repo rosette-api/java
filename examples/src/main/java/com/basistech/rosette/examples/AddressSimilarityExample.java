@@ -29,6 +29,7 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.ADDRESS_SIMILA
 /**
  * Example which demonstrates address similarity
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class AddressSimilarityExample extends ExampleBase {
     public static void main(String[] args) {
         try {

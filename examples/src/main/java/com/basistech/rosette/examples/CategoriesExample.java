@@ -30,6 +30,7 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.CATEGORIES_SER
  * Gets QAG categories (http://www.iab.net/QAGInitiative/overview/taxonomy) of a web page document
  * located at http://www.basistech.com/about
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class CategoriesExample extends ExampleBase {
     public static void main(String[] args) {
         try {

@@ -27,6 +27,7 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.NAME_TRANSLATI
 /**
  * Example which demonstrates the name translation api.
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class NameTranslationExample extends ExampleBase {
     public static void main(String[] args) {
         try {

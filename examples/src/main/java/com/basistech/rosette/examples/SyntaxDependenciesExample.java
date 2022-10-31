@@ -26,6 +26,7 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.SYNTAX_DEPENDE
 /**
  * Example which demonstrates the syntax dependencies endpoint of the Rosette api.
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class SyntaxDependenciesExample extends ExampleBase {
     public static void main(String[] args) {
         try {

@@ -29,6 +29,7 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.MORPHOLOGY_SER
 /**
  * Example which demonstrates the decompounding api.
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class MorphologyCompoundComponentsExample extends ExampleBase {
     public static void main(String[] args) {
         try {

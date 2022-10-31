@@ -26,6 +26,7 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.TOKENS_SERVICE
 /**
  * Example which demonstrates the tokens api.
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class TokensExample extends ExampleBase {
     public static void main(String[] args) {
         try {

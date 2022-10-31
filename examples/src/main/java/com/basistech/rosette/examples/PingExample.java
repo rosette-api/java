@@ -23,6 +23,7 @@ import java.io.IOException;
 /**
  * Example which demonstrates the ping api.
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class PingExample extends ExampleBase {
     public static void main(String[] args) {
         try {
