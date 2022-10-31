@@ -27,6 +27,7 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.SEMANTIC_VECTO
 /**
  * Example which demonstrates semantic-vectors.
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class SemanticVectorsExample extends ExampleBase {
     public static void main(String[] args) {
         try {

@@ -32,6 +32,7 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.SENTIMENT_SERV
 /**
  * Example which demonstrates the sentiment api.
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class SentimentExample extends ExampleBase {
     public static void main(String[] args) {
         try {

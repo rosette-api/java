@@ -27,6 +27,7 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.ENTITIES_SERVI
 /**
  * Example which demonstrates the entity extraction api.
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class EntitiesExample extends ExampleBase {
     public static void main(String[] args) {
         try {

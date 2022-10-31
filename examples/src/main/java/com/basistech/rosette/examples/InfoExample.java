@@ -23,6 +23,7 @@ import java.io.IOException;
 /**
  * Example which demonstrates the top level info api.
  */
+@SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public final class InfoExample extends ExampleBase {
     public static void main(String[] args) {
         try {
