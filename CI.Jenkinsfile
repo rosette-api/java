@@ -10,7 +10,7 @@ node ("docker-light") {
         stage("Maven Build") {
             withSonarQubeEnv {
                 mySonarOpts="-Dsonar.login=${env.SONAR_AUTH_TOKEN} -Dsonar.host.url=${env.SONAR_HOST_URL}"
-                 if ("${env.CHANGE_BRANCH}" == "null") {
+                 if ("${env.CHANGE_BRANCH}" != "null") {
                      mySonarOpts="$mySonarOpts -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH}"
                 }
                 echo("Sonar Options are: $mySonarOpts")
