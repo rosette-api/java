@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 /**
  * Provides examples on how to use the {@link com.basistech.rosette.api.HttpRosetteAPI HttpRosetteAPI}
  */
+@SuppressWarnings("java:S106")
 public abstract class ExampleBase {
     private static final String KEY_PROP_NAME = "rosette.api.key";
     private static final String URL_PROP_NAME = "rosette.api.altUrl";
