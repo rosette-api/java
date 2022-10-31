@@ -17,9 +17,12 @@ node ("docker-light") {
                        bash -c \"apt-get update && \
                              apt-get install -y git && \
                              pushd /source && \
-                             /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar \
-                                  -Dsonar.login=${env.SONAR_AUTH_TOKEN} \
-                                  -Dsonar.host.url=${env.SONAR_HOST_URL}\""
+                             MY_SONAR_OPTS=\"-Dsonar.login=${env.SONAR_AUTH_TOKEN} -Dsonar.host.url=${env.SONAR_HOST_URL}\" \
+                             if [[ ! -z ${env.CHANGE_BRANCH} ]]; then
+                                 MY_SONAR_OPTS+=-Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH}
+                             fi \
+                             echo \"Sonar Options are: ${MY_SONAR_OPTS}\" \
+                             /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar ${MY_SONAR_OPTS}\""
             }
         }
         slack(true)
