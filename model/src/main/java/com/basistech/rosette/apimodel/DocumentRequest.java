@@ -1,18 +1,18 @@
 /*
-* Copyright 2017 Basis Technology Corp.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright 2017 Basis Technology Corp.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.basistech.rosette.apimodel;
 
@@ -44,9 +44,6 @@ import java.io.InputStream;
  * In this object the 'content' item is an {@link Object}; it contains a {@link String}
  * for plain text, or an {@link java.io.InputStream} for binary data. {@link DocumentRequest.DocumentRequestBuilder}
  * provides several alternative methods for setting this information.
- *
- * This class includes a 'genre' field. If no genre is specified, then the system
- * applies generic processing. Valid values for genre are specified in the API documentation.
  */
 @Value
 public final class DocumentRequest<O extends Options> extends Request {
@@ -71,7 +68,7 @@ public final class DocumentRequest<O extends Options> extends Request {
      */
     private final String contentType;
 
-    /**
+    /** @deprecated
      * @return request genre
      */
     private final String genre;
@@ -81,13 +78,29 @@ public final class DocumentRequest<O extends Options> extends Request {
      */
     private final O options;
 
+
+    public DocumentRequest(String profileId,
+                           LanguageCode language,
+                           Object content,
+                           String contentUri,
+                           String contentType,
+                           O options) {
+        super(profileId);
+        this.language = language;
+        this.content = content;
+        this.contentUri = contentUri;
+        this.contentType = contentType;
+        this.genre = null;
+        this.options = options;
+    }
+
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
     public DocumentRequest(String profileId,
                            LanguageCode language,
                            Object content,
                            String contentUri,
                            String contentType,
-                           String genre,
+                           @Deprecated String genre,
                            O options) {
         super(profileId);
         this.language = language;
@@ -100,6 +113,7 @@ public final class DocumentRequest<O extends Options> extends Request {
 
     /**
      * get content to process if it's a String.
+     *
      * @return the content if a String, else null.
      */
     public String getContent() {
@@ -112,11 +126,12 @@ public final class DocumentRequest<O extends Options> extends Request {
 
     /**
      * get the content as an array of bytes
+     *
      * @return the content as bytes
      */
     public InputStream getContentBytes() {
         if (content instanceof InputStream) {
-            return (InputStream)content;
+            return (InputStream) content;
         } else {
             return null;
         }
@@ -124,6 +139,7 @@ public final class DocumentRequest<O extends Options> extends Request {
 
     /**
      * get content as an object
+     *
      * @return the content as object
      */
     public Object getRawContent() {
@@ -134,6 +150,7 @@ public final class DocumentRequest<O extends Options> extends Request {
     public static class DocumentRequestBuilder<O extends Options> {
         /**
          * Specify the content as String. Use this for plain text.
+         *
          * @param data The data.
          * @return this.
          */
@@ -145,7 +162,8 @@ public final class DocumentRequest<O extends Options> extends Request {
         /**
          * Specify the content as bytes with a content type. Use this for
          * formats other than plain text.
-         * @param bytes The data.
+         *
+         * @param bytes       The data.
          * @param contentType the content type.
          * @return this.
          */
@@ -158,7 +176,8 @@ public final class DocumentRequest<O extends Options> extends Request {
         /**
          * Specify the content as bytes with a content type. Use this for
          * formats other than plain text.
-         * @param bytes The data.
+         *
+         * @param bytes       The data.
          * @param contentType the content type.
          * @return this.
          */
