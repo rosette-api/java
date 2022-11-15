@@ -100,4 +100,11 @@ public class EntitiesOptions extends Options {
      * @return the structuredRegionProcessingType flag. Can be one of none, nerModel, nameClassifier
      */
     String structuredRegionProcessingType;
+
+    /**
+     * @return the regexCurrencySplit flag.
+     * If enabled, will cause MONEY regular expression entity extractions to be split into two:
+     * CURRENCY:AMT and CURRENCY:TYPE
+     */
+    Boolean regexCurrencySplit;
 }
