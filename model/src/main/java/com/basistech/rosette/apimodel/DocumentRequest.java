@@ -68,9 +68,10 @@ public final class DocumentRequest<O extends Options> extends Request {
      */
     private final String contentType;
 
-    /** @deprecated
+    /**
      * @return request genre
      */
+    @Deprecated
     private final String genre;
 
     /**

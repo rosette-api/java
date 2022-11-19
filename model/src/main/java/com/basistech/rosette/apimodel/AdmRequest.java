@@ -39,9 +39,9 @@ public final class AdmRequest<O extends Options> extends Request {
     private final O options;
 
     /**
-     * @deprecated
      * @return genre
      */
+    @Deprecated
     private final String genre;
 
     /**
