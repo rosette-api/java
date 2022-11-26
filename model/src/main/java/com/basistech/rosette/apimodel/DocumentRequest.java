@@ -44,9 +44,6 @@ import java.io.InputStream;
  * In this object the 'content' item is an {@link Object}; it contains a {@link String}
  * for plain text, or an {@link java.io.InputStream} for binary data. {@link DocumentRequest.DocumentRequestBuilder}
  * provides several alternative methods for setting this information.
- *
- * This class includes a 'genre' field. If no genre is specified, then the system
- * applies generic processing. Valid values for genre are specified in the API documentation.
  */
 @Value
 public final class DocumentRequest<O extends Options> extends Request {
@@ -72,11 +69,6 @@ public final class DocumentRequest<O extends Options> extends Request {
     private final String contentType;
 
     /**
-     * @return request genre
-     */
-    private final String genre;
-
-    /**
      * @return request options
      */
     private final O options;
@@ -87,14 +79,12 @@ public final class DocumentRequest<O extends Options> extends Request {
                            Object content,
                            String contentUri,
                            String contentType,
-                           String genre,
                            O options) {
         super(profileId);
         this.language = language;
         this.content = content;
         this.contentUri = contentUri;
         this.contentType = contentType;
-        this.genre = genre;
         this.options = options;
     }
 
