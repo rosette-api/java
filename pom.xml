@@ -18,11 +18,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
-    <version>1.23.102-SNAPSHOT</version>
+    <version>1.23.103-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
-        <version>7.0.1</version>
+        <version>12.0.0</version>
         <relativePath />
     </parent>
     <packaging>pom</packaging>
@@ -41,12 +41,7 @@
         </site>
     </distributionManagement>
     <properties>
-        <!-- TODO:  After completing upgrade to latest parent pom, review and remove properties we want the parent to set. -->
         <bbh-maven-plugin.version>1.0.1</bbh-maven-plugin.version>
-        <bnd-maven-plugin.version>6.2.0</bnd-maven-plugin.version>
-        <bt-adm-version>2.7.3</bt-adm-version>
-        <bt-common-api.version>37.0.1</bt-common-api.version>
-        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-codec.version>1.15</commons-codec.version>
@@ -60,12 +55,7 @@
         <junit.version>5.9.1</junit.version>
         <lombok.version>1.18.24</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
-        <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <mockserver.version>5.14.0</mockserver.version>
-        <nexus-staging-plugin-version>1.6.13</nexus-staging-plugin-version>
         <osgi-enroute-junit-wrapper.version>4.12.0</osgi-enroute-junit-wrapper.version>
         <osgi-enroute-hamcrest-wrapper.version>1.3.0</osgi-enroute-hamcrest-wrapper.version>
         <reflections.version>0.10.2</reflections.version>
@@ -86,7 +76,7 @@
             <dependency>
                 <groupId>com.basistech</groupId>
                 <artifactId>common-api</artifactId>
-                <version>${bt-common-api.version}</version>
+                <version>${bt-common-api-version}</version>
             </dependency>
             <dependency>
                 <groupId>com.basistech</groupId>
