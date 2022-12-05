@@ -47,7 +47,6 @@ public abstract class DocumentRequestMixin {
             @JsonProperty("content") Object content,
             @JsonProperty("contentUri") String contentUri,
             @JsonProperty("contentType") String contentType,
-            @JsonProperty("genre") String genre,
             @JsonProperty("options") Options options
     ) {
         //
