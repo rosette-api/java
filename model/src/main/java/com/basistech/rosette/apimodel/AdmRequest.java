@@ -39,6 +39,11 @@ public final class AdmRequest<O extends Options> extends Request {
     private final O options;
 
     /**
+     * @return genre
+     */
+    private final String genre;
+
+    /**
      * @return language
      */
     private final LanguageCode language;
@@ -47,10 +52,12 @@ public final class AdmRequest<O extends Options> extends Request {
     public AdmRequest(String profileId,
                        AnnotatedText text,
                        O options,
+                       String genre,
                        LanguageCode language) {
         super(profileId);
         this.text = text;
         this.options = options;
+        this.genre = genre;
         this.language = language;
     }
 }

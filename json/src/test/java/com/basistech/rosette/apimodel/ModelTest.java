@@ -134,6 +134,7 @@ class ModelTest {
                         o1 = DocumentRequest.builder()
                                 .profileId(r.getProfileId())
                                 .language(r.getLanguage())
+                                .genre(r.getGenre())
                                 .content(r.getContent())
                                 .contentUri(r.getContentUri())
                                 .options(r.getOptions())
