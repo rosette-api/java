@@ -36,6 +36,7 @@ public abstract class AdmRequestMixin {
             @JsonProperty("profileId") String profileId,
             @JsonProperty("text") AnnotatedText text,
             @JsonProperty("options") Options options,
+            @JsonProperty("genre") String genre,
             @JsonProperty("language") LanguageCode language
     ) {
         //
