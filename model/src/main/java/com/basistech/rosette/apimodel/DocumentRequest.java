@@ -69,31 +69,9 @@ public final class DocumentRequest<O extends Options> extends Request {
     private final String contentType;
 
     /**
-     * @return request genre
-     */
-    @Deprecated
-    private final String genre;
-
-    /**
      * @return request options
      */
     private final O options;
-
-
-    public DocumentRequest(String profileId,
-                           LanguageCode language,
-                           Object content,
-                           String contentUri,
-                           String contentType,
-                           O options) {
-        super(profileId);
-        this.language = language;
-        this.content = content;
-        this.contentUri = contentUri;
-        this.contentType = contentType;
-        this.genre = null;
-        this.options = options;
-    }
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
     public DocumentRequest(String profileId,
@@ -101,14 +79,12 @@ public final class DocumentRequest<O extends Options> extends Request {
                            Object content,
                            String contentUri,
                            String contentType,
-                           @Deprecated String genre,
                            O options) {
         super(profileId);
         this.language = language;
         this.content = content;
         this.contentUri = contentUri;
         this.contentType = contentType;
-        this.genre = genre;
         this.options = options;
     }
 
