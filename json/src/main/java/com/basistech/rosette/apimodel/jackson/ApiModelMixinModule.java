@@ -16,7 +16,6 @@
 
 package com.basistech.rosette.apimodel.jackson;
 
-import com.basistech.rosette.apimodel.Address;
 import com.basistech.rosette.apimodel.AddressSimilarityRequest;
 import com.basistech.rosette.apimodel.AdmRequest;
 import com.basistech.rosette.apimodel.ConfigurationRequest;
@@ -38,7 +37,6 @@ import com.fasterxml.jackson.databind.module.SimpleDeserializers;
  * Jackson module to configure Json serialization and deserialization for the
  * Rosette API model.
  */
-@SuppressWarnings("deprecation")
 public class ApiModelMixinModule extends AnnotatedDataModelModule {
 
     public ApiModelMixinModule() {
@@ -69,8 +67,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(NameDeduplicationRequest.class, NameDeduplicationRequestMixin.class);
         context.setMixInAnnotations(NameDeduplicationRequest.NameDeduplicationRequestBuilder.class,
                 NameDeduplicationRequestMixin.NameDeduplicationRequestBuilderMixin.class);
-        context.setMixInAnnotations(Address.class, AddressMixin.class);
-        context.setMixInAnnotations(Address.AddressBuilder.class, AddressMixin.AddressBuilderMixin.class);
+
         context.setMixInAnnotations(FieldedAddress.class, FieldedAddressMixin.class);
         context.setMixInAnnotations(FieldedAddress.FieldedAddressBuilder.class,
                 FieldedAddressMixin.FieldedAddressBuilderMixin.class);
