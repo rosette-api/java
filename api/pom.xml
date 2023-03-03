@@ -71,7 +71,7 @@
         <dependency>
             <groupId>com.basis.org.apache.httpcomponents</groupId>
             <artifactId>httpclient-osgi</artifactId>
-            <version>${http-components.version}</version>
+            <version>${bt-custom-httpclient-osgi-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.httpcomponents</groupId>
