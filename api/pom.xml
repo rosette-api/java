@@ -69,7 +69,7 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.basis.org.apache.httpcomponents</groupId>
+            <groupId>com.basistech.org.apache.httpcomponents</groupId>
             <artifactId>httpclient-osgi</artifactId>
             <version>${bt-custom-httpclient-osgi-version}</version>
             <exclusions>
