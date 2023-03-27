@@ -19,7 +19,7 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
          <artifactId>rosette-api-java-binding</artifactId>
-        <version>1.24.101-SNAPSHOT</version>
+        <version>1.24.2-SNAPSHOT</version>
     </parent>
     <artifactId>rosette-api</artifactId>
     <name>rosette-api</name>
@@ -69,9 +69,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
+            <groupId>com.basistech.org.apache.httpcomponents</groupId>
             <artifactId>httpclient-osgi</artifactId>
-            <version>${http-components.version}</version>
+            <version>${bt-custom-httpclient-osgi-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.httpcomponents</groupId>
