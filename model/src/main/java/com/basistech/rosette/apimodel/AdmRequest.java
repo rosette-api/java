@@ -39,39 +39,19 @@ public final class AdmRequest<O extends Options> extends Request {
     private final O options;
 
     /**
-     * @return genre
-     */
-    @Deprecated
-    private final String genre;
-
-    /**
      * @return language
      */
     private final LanguageCode language;
-
-
-    public AdmRequest(String profileId,
-                      AnnotatedText text,
-                      O options,
-                      LanguageCode language) {
-        super(profileId);
-        this.text = text;
-        this.options = options;
-        this.genre = null;
-        this.language = language;
-    }
 
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
     public AdmRequest(String profileId,
                       AnnotatedText text,
                       O options,
-                      @Deprecated String genre,
                       LanguageCode language) {
         super(profileId);
         this.text = text;
         this.options = options;
-        this.genre = genre;
         this.language = language;
     }
 }

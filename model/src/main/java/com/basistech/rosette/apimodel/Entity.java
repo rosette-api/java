@@ -85,13 +85,6 @@ public class Entity {
     Label sentiment;
 
     /**
-     * @deprecated use dbpediaTypes instead.
-     * @return the DBpediaType
-     */
-    @Deprecated(since = "1.14.0", forRemoval = true)
-    String dbpediaType;
-
-    /**
      * @since 1.14.0 (19.08)
      * @return the DBpediaTypes
      */

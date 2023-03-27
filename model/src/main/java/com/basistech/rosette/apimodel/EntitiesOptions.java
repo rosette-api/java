@@ -64,13 +64,6 @@ public class EntitiesOptions extends Options {
     String modelType;
 
     /**
-     * @deprecated use includeDBpediaTypes instead.
-     * @return the includeDBpediaType flag.
-     */
-    @Deprecated(since = "1.14.0", forRemoval = true)
-    Boolean includeDBpediaType;
-
-    /**
      * @since 1.14.0 (19.08)
      * @return the includeDBpediaType flag.
      */

@@ -42,17 +42,17 @@ class PolymorphicRequestTest {
         Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
         assertEquals(DOC_REQUEST, request.getClass().getName());
 
-        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaType\": true, \"calculateConfidence\": true}}";
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaTypes\": true, \"calculateConfidence\": true}}";
         request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
         assertEquals(DOC_REQUEST, request.getClass().getName());
         assertNull(((DocumentRequest<EntitiesOptions>) request).getOptions().getIncludePermID());
 
-        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaType\": true, \"calculateConfidence\": true, \"includePermID\": true}}";
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaTypes\": true, \"calculateConfidence\": true, \"includePermID\": true}}";
         request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
         assertEquals(DOC_REQUEST, request.getClass().getName());
         assertTrue(((DocumentRequest<EntitiesOptions>) request).getOptions().getIncludePermID());
 
-        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaType\": true, \"calculateConfidence\": true, \"includePermID\": false}}";
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaTypes\": true, \"calculateConfidence\": true, \"includePermID\": false}}";
         request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
         assertEquals(DOC_REQUEST, request.getClass().getName());
         assertFalse(((DocumentRequest<EntitiesOptions>) request).getOptions().getIncludePermID());
