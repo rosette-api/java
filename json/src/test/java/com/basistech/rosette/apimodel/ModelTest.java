@@ -18,10 +18,13 @@ package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.jackson.DocumentRequestMixin;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -43,6 +46,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @SuppressWarnings("PMD.UnusedPrivateMethod") // Parameterized Tests
@@ -375,5 +379,13 @@ class ModelTest {
             break;
         }
         return object;
+    }
+
+    @Test
+    void doNotDeserializeGenre() throws JsonProcessingException {
+        String json = "{\"content\": \"foo\", \"genre\":\"foo\"}";
+        // Ensure that the document request no longer deserializes genre
+        Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
+        assertTrue(mapper.writeValueAsString(request).indexOf("genre") == -1);
     }
 }

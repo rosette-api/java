@@ -17,6 +17,7 @@
 package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.annotations.JacksonMixin;
+import javax.validation.constraints.Min;
 import lombok.Builder;
 import lombok.Value;
 
@@ -27,6 +28,16 @@ import lombok.Value;
 @Builder
 @JacksonMixin
 public class CategoriesOptions extends Options {
+
+    /**
+     * @deprecated
+     * Users should use {@link singleLabel} to return only one result
+     * or {@link scoreThreshold} to filter results based on raw score
+     * @return number of categories
+     */
+    @Deprecated
+    @Min(1)
+    private final Integer numCategories;
 
     /**
      * Single label mode will return only the highest scoring category, regardless of score

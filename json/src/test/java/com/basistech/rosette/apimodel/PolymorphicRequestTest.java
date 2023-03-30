@@ -38,8 +38,12 @@ class PolymorphicRequestTest {
     @Test
     void testRequestTypes() throws Exception {
 
-        String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"calculateConfidence\": true}}";
+        String json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"genre\": \"news\"}";
         Request request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
+        assertEquals(DOC_REQUEST, request.getClass().getName());
+
+        json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"calculateConfidence\": true}}";
+        request = mapper.readValue(json, new TypeReference<DocumentRequest<EntitiesOptions>>() { });
         assertEquals(DOC_REQUEST, request.getClass().getName());
 
         json = "{\"content\": \"what is my type\", \"language\": \"eng\", \"options\": {\"includeDBpediaTypes\": true, \"calculateConfidence\": true}}";
