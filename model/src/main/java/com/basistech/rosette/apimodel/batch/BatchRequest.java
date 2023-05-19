@@ -36,7 +36,7 @@ public final class BatchRequest {
      * @return id an ID string.
      */
     @Builder.Default
-    private final String batchId = UUID.randomUUID().toString();;
+    private final String batchId = UUID.randomUUID().toString();
 
     /**
      * A URL for RosetteAPI to call to inform you the completion of the batch.
