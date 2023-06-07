@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Basis Technology Corp.
+ * Copyright 2023 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,4 +42,10 @@ public class SimilarTermsOptions extends Options {
      * @return the number of similar terms requested
      */
     private final Integer count;
+
+    /**
+     * @return the generation of embeddings to use for all languages, defaulting to second generation embeddings unless
+     * the language supports first generation embeddings
+     */
+    private EmbeddingsMode embeddingsMode;
 }
