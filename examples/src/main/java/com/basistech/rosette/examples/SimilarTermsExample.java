@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2023 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.basistech.rosette.examples;
 
 import com.basistech.rosette.api.HttpRosetteAPI;
 import com.basistech.rosette.apimodel.DocumentRequest;
+import com.basistech.rosette.apimodel.EmbeddingsMode;
 import com.basistech.rosette.apimodel.SimilarTermsOptions;
 import com.basistech.rosette.apimodel.SimilarTermsResponse;
 import com.basistech.util.LanguageCode;
@@ -54,6 +55,7 @@ public final class SimilarTermsExample extends ExampleBase {
         DocumentRequest<SimilarTermsOptions> request = DocumentRequest.<SimilarTermsOptions>builder()
                 .content(similarTermsData)
                 .options(SimilarTermsOptions.builder()
+                        .embeddingsMode(EmbeddingsMode.GEN_1)
                         .resultLanguages(Lists.newArrayList(LanguageCode.SPANISH, LanguageCode.GERMAN, LanguageCode.JAPANESE))
                         .build())
                 .build();
