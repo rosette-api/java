@@ -34,7 +34,7 @@ public class EventsOptions extends Options {
     /**
      * Default options
      */
-    public static final EventsOptions DEFAULT = EventsOptions.builder().build();
+    public static final EventsOptions DEFAULT = EventsOptions.builder().negation(EventsNegationOption.IGNORE).build();
 
     /**
      * workspaceId to use.
@@ -42,4 +42,6 @@ public class EventsOptions extends Options {
     String workspaceId;
 
     EnumMap<LanguageCode, List<String>> plan;
+
+    EventsNegationOption negation;
 }
