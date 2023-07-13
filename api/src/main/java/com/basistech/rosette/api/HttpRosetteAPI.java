@@ -67,13 +67,18 @@ import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 
 import static java.net.HttpURLConnection.HTTP_OK;
@@ -98,6 +103,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     private List<Header> additionalHeaders;
     private int connectionConcurrency = 2;
     private boolean closeClientOnClose = true;
+    private ExecutorService threadPool;
+    private int shutdownWait;
 
     private HttpRosetteAPI() {
         // use builder
@@ -119,7 +126,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      */
     HttpRosetteAPI(String key, String urlToCall, Integer failureRetries,
                        CloseableHttpClient httpClient, List<Header> additionalHeaders,
-                       Integer connectionConcurrency, boolean onlyAcceptKnownFields) throws HttpRosetteAPIException {
+                       Integer connectionConcurrency, boolean onlyAcceptKnownFields,
+                       Integer shutdownWait) throws HttpRosetteAPIException {
         urlBase = urlToCall == null ? urlBase : TRAILING_SLASHES.matcher(urlToCall.trim()).replaceAll("");
         if (failureRetries != null && failureRetries >= 1) {
             this.failureRetries = failureRetries;
@@ -127,6 +135,10 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
 
         if (connectionConcurrency != null) {
             this.connectionConcurrency = connectionConcurrency;
+        }
+        this.threadPool = Executors.newFixedThreadPool(this.connectionConcurrency * 2);
+        if (shutdownWait != null) {
+            this.shutdownWait = shutdownWait;
         }
 
         mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
@@ -601,10 +613,56 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         }
     }
 
+    /**
+     * Creates a RosetteRequest which can be sent concurrently through this HttpRosetteAPI
+     *
+     * @param endpoint the endpoint to which the request is sent to
+     * @param request the request object
+     * @param responseClass Response's class
+     * @return RequestThread which when started sends the predefined request through this http client
+     * @param <R>  Type of the response
+     */
+    public <R extends Response> RosetteRequest<R> createRosetteRequest(String endpoint,
+                                                                       Request request,
+                                                                       Class<R> responseClass) {
+        return new RosetteRequest<>(this, request, endpoint, responseClass);
+    }
+
+    /**
+     * Sends the request concurrently
+     * @param request the request to be sent
+     * @return A Future with the response of the request
+     * @param <R> type of the response object
+     */
+    public <R extends Response> Future<R> submitRequest(RosetteRequest<R> request) {
+        return this.threadPool.submit(request);
+    }
+
+    /**
+     * Sends the requests concurrently
+     * @param requests list of the requests to be sent
+     * @return A list of Futures with the responses to the requests
+     */
+    public List<Future<? extends Response>> submitRequests(Collection<RosetteRequest<? extends Response>> requests) {
+        return requests.stream()
+                .map(this::submitRequest)
+                .collect(Collectors.toList());
+    }
+
+
     @Override
     public void close() throws IOException {
         if (closeClientOnClose) {
             httpClient.close();
+        }
+        try {
+            this.threadPool.shutdown();
+            boolean terminated = this.threadPool.awaitTermination(this.shutdownWait, TimeUnit.SECONDS);
+            if (!terminated) {
+                this.threadPool.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            this.threadPool.shutdownNow();
         }
     }
 
@@ -619,6 +677,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         private CloseableHttpClient httpClient;
         private List<Header> additionalHeaders = new ArrayList<>();
         private boolean onlyAcceptKnownFields;
+        private Integer shutdownWait;
 
         /**
          * Specify the API key. This is required for use with the public API, and
@@ -702,6 +761,16 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         }
 
         /**
+         * Specify how long in seconds the api should wait for pending requests before forcefully terminating
+         * @param shutdownWaitSeconds the length of the wait in seconds. The default is 0.
+         * @return this.
+         */
+        public Builder shutdownWait(int shutdownWaitSeconds) {
+            this.shutdownWait = shutdownWaitSeconds;
+            return this;
+        }
+
+        /**
          * Build the API object.
          * @return the new API object.
          * @throws HttpRosetteAPIException for some error encountered.
@@ -713,7 +782,8 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
                                       httpClient,
                                       additionalHeaders,
                                       concurrency,
-                                      onlyAcceptKnownFields);
+                                      onlyAcceptKnownFields,
+                                      shutdownWait);
         }
     }
 }
