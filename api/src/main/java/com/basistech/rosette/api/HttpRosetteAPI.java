@@ -619,7 +619,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @param endpoint the endpoint to which the request is sent to
      * @param request the request object
      * @param responseClass Response's class
-     * @return RequestThread which when started sends the predefined request through this http client
+     * @return RosetteRequest which when started sends the predefined request through this http client
      */
     public RosetteRequest createRosetteRequest(String endpoint,
                                                Request request,
