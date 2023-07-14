@@ -89,6 +89,7 @@ public final class ConcurrencyExample extends ExampleBase {
                         LanguageResponse.class)
         );
         // Setting up morphology request
+        // No content is given to this request and it will return an error response
         threads.add(
                 rosetteApi.createRosetteRequest(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE,
                         DocumentRequest.<MorphologyOptions>builder().build(),
