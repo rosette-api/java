@@ -620,21 +620,19 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @param request the request object
      * @param responseClass Response's class
      * @return RequestThread which when started sends the predefined request through this http client
-     * @param <R>  Type of the response
      */
-    public <R extends Response> RosetteRequest<R> createRosetteRequest(String endpoint,
-                                                                       Request request,
-                                                                       Class<R> responseClass) {
-        return new RosetteRequest<>(this, request, endpoint, responseClass);
+    public RosetteRequest createRosetteRequest(String endpoint,
+                                               Request request,
+                                               Class<? extends Response> responseClass) {
+        return new RosetteRequest(this, request, endpoint, responseClass);
     }
 
     /**
      * Sends the request concurrently
      * @param request the request to be sent
      * @return A Future with the response of the request
-     * @param <R> type of the response object
      */
-    public <R extends Response> Future<R> submitRequest(RosetteRequest<R> request) {
+    public Future<Response> submitRequest(RosetteRequest request) {
         return this.threadPool.submit(request);
     }
 
@@ -643,7 +641,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @param requests list of the requests to be sent
      * @return A list of Futures with the responses to the requests
      */
-    public List<Future<? extends Response>> submitRequests(Collection<RosetteRequest<? extends Response>> requests) {
+    public List<Future<Response>> submitRequests(Collection<RosetteRequest> requests) {
         return requests.stream()
                 .map(this::submitRequest)
                 .collect(Collectors.toList());

@@ -67,7 +67,7 @@ public final class ConcurrencyExample extends ExampleBase {
                 .connectionConcurrency(maximumConcurrency)
                 .build();
 
-        List<RosetteRequest<? extends Response>> threads = new ArrayList<>();
+        List<RosetteRequest> threads = new ArrayList<>();
         // Setting up entities request
         String entitiesTextData =
                 "The Securities and Exchange Commission today announced the leadership of the agency’s trial unit. "
@@ -89,10 +89,9 @@ public final class ConcurrencyExample extends ExampleBase {
                         LanguageResponse.class)
         );
         // Setting up morphology request
-        String morphologyCompleteData = "The quick brown fox jumped over the lazy dog. 👍🏾 Yes he did. B)";
         threads.add(
                 rosetteApi.createRosetteRequest(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE,
-                        DocumentRequest.<MorphologyOptions>builder().content(morphologyCompleteData).build(),
+                        DocumentRequest.<MorphologyOptions>builder().build(),
                         MorphologyResponse.class)
         );
         //Setting up names deduplication request
@@ -125,7 +124,7 @@ public final class ConcurrencyExample extends ExampleBase {
         );
 
         // start the threads
-        List<Future<? extends Response>> futures = rosetteApi.submitRequests(threads);
+        List<Future<Response>> futures = rosetteApi.submitRequests(threads);
 
         // wait for the threads to finish
         for (int i = 0; i < threads.size(); i++) {

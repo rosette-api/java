@@ -22,18 +22,17 @@ import java.util.concurrent.Callable;
 
 /**
  * This class encompasses a future request that can be sent concurrently
- * @param <R> type of the response object
  */
-public class RosetteRequest<R extends Response> implements Callable<R> {
+public class RosetteRequest implements Callable<Response> {
     private final HttpRosetteAPI api;
     private final Request request;
     private final String servicePath;
-    private final Class<R> responseClass;
-    private R response;
+    private final Class<? extends Response> responseClass;
+    private Response response;
 
     RosetteRequest(HttpRosetteAPI api,
                    Request request,
-                   String servicePath, Class<R> responseClass) {
+                   String servicePath, Class<? extends Response> responseClass) {
         this.api = api;
         this.request = request;
         this.servicePath = servicePath;
@@ -41,12 +40,16 @@ public class RosetteRequest<R extends Response> implements Callable<R> {
     }
 
     @Override
-    public R call() {
-        this.response = api.perform(this.servicePath, this.request, this.responseClass);
+    public Response call() {
+        try {
+            this.response = api.perform(this.servicePath, this.request, this.responseClass);
+        } catch (HttpRosetteAPIException ex) {
+            this.response = ex.getErrorResponse();
+        }
         return this.response;
     }
 
-    public R getResponse() {
+    public Response getResponse() {
         return this.response;
     }
 }
