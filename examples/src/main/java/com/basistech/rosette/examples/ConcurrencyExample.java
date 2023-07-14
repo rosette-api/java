@@ -27,6 +27,7 @@ import com.basistech.rosette.apimodel.MorphologyOptions;
 import com.basistech.rosette.apimodel.MorphologyResponse;
 import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameDeduplicationRequest;
+import com.basistech.rosette.apimodel.NameDeduplicationResponse;
 import com.basistech.rosette.apimodel.Response;
 import com.basistech.rosette.apimodel.TokensResponse;
 import com.basistech.rosette.apimodel.TransliterationResponse;
@@ -107,7 +108,7 @@ public final class ConcurrencyExample extends ExampleBase {
         threads.add(
                 rosetteApi.createRosetteRequest(NAME_DEDUPLICATION_SERVICE_PATH,
                         NameDeduplicationRequest.builder().names(names).threshold(threshold).build(),
-                        MorphologyResponse.class)
+                        NameDeduplicationResponse.class)
         );
         //Setting up the tokens request
         String tokensData = "北京大学生物系主任办公室内部会议";
