@@ -62,8 +62,8 @@ public final class ConcurrencyExample extends ExampleBase {
         //Setting up the Api
         int maximumConcurrency = 3;
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
-                .key("getApiKeyFromSystemProperty")
-                .url("http://localhost:8181/rest/v1")
+                .key(getApiKeyFromSystemProperty())
+                .url(getAltUrlFromSystemProperty())
                 .connectionConcurrency(maximumConcurrency)
                 .build();
 
