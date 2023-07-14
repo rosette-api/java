@@ -153,7 +153,7 @@ class RosetteRequestTest {
 
         assertTrue(d2.getTime() - d1.getTime() > delay * requests.size()); // at least as long as the delay in the request
 
-        //run requests concurrency
+        //run requests concurrently
         int concurrency = 3;
         this.api = new HttpRosetteAPI.Builder().url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
                 .connectionConcurrency(3).build();
