@@ -16,13 +16,26 @@
 
 package com.basistech.rosette.apimodel;
 
-import java.util.EnumSet;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public enum EventsNegationOption {
     IGNORE("Ignore"),
     BOTH("Both"),
     ONLY_POSITIVE("Only positive"),
     ONLY_NEGATIVE("Only negative");
+
+    private static final Map<String, EventsNegationOption> STRING_KEYS;
+
+    static {
+        STRING_KEYS = Arrays.stream(EventsNegationOption.values())
+                .collect(Collectors.toMap(
+                    value -> value.toString().toLowerCase(),
+                    Function.identity()
+                ));
+    }
 
     private final String label;
 
@@ -31,12 +44,7 @@ public enum EventsNegationOption {
     }
 
     public static EventsNegationOption forValue(String value) {
-        for (EventsNegationOption negationOption : EnumSet.allOf(EventsNegationOption.class)) {
-            if (negationOption.toString().equalsIgnoreCase(value)) {
-                return negationOption;
-            }
-        }
-        throw new IllegalArgumentException("invalid events negation option: " + value);
+        return STRING_KEYS.get(value.toLowerCase());
     }
 
     @Override
