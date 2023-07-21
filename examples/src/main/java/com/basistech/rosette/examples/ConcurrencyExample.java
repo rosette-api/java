@@ -37,6 +37,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import static com.basistech.rosette.api.common.AbstractRosetteAPI.ENTITIES_SERVICE_PATH;
@@ -68,7 +70,7 @@ public final class ConcurrencyExample extends ExampleBase {
                 .connectionConcurrency(maximumConcurrency)
                 .build();
 
-        List<RosetteRequest> threads = new ArrayList<>();
+        List<RosetteRequest> requests = new ArrayList<>();
         // Setting up entities request
         String entitiesTextData =
                 "The Securities and Exchange Commission today announced the leadership of the agency’s trial unit. "
@@ -77,21 +79,21 @@ public final class ConcurrencyExample extends ExampleBase {
                 + "Since December 2016, Ms. Fitzpatrick and Mr. Gottesman have served as Co-Acting Chief Litigation Counsel.  "
                 + "In that role, they were jointly responsible for supervising the trial unit at the agency’s Washington D.C. headquarters "
                 + "as well as coordinating with litigators in the SEC’s 11 regional offices around the country.";
-        threads.add(
+        requests.add(
             rosetteApi.createRosetteRequest(ENTITIES_SERVICE_PATH,
                     DocumentRequest.<EntitiesOptions>builder().content(entitiesTextData).build(),
                     EntitiesResponse.class)
         );
         // Setting up language request
         String languageData = "Por favor Señorita, says the man.";
-        threads.add(
+        requests.add(
                 rosetteApi.createRosetteRequest(LANGUAGE_SERVICE_PATH,
                         DocumentRequest.<LanguageOptions>builder().content(languageData).build(),
                         LanguageResponse.class)
         );
         // Setting up morphology request
         // No content is given to this request and it will return an error response
-        threads.add(
+        requests.add(
                 rosetteApi.createRosetteRequest(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE,
                         DocumentRequest.<MorphologyOptions>builder().build(),
                         MorphologyResponse.class)
@@ -105,38 +107,39 @@ public final class ConcurrencyExample extends ExampleBase {
             names.add(Name.builder().text(name).build());
         }
         double threshold = 0.75;
-        threads.add(
+        requests.add(
                 rosetteApi.createRosetteRequest(NAME_DEDUPLICATION_SERVICE_PATH,
                         NameDeduplicationRequest.builder().names(names).threshold(threshold).build(),
                         NameDeduplicationResponse.class)
         );
         //Setting up the tokens request
         String tokensData = "北京大学生物系主任办公室内部会议";
-        threads.add(
+        requests.add(
                 rosetteApi.createRosetteRequest(TOKENS_SERVICE_PATH,
                         DocumentRequest.builder().content(tokensData).build(),
                         TokensResponse.class)
         );
         //Setting up the transliteration request
         String transliterationData = "ana r2ye7 el gam3a el sa3a 3 el 3asr";
-        threads.add(
+        requests.add(
                 rosetteApi.createRosetteRequest(TRANSLITERATION_SERVICE_PATH,
                         DocumentRequest.builder().content(transliterationData).build(),
                         TransliterationResponse.class)
         );
 
         // start the threads
-        List<Future<Response>> futures = rosetteApi.submitRequests(threads);
+        ExecutorService threadPool = Executors.newFixedThreadPool(maximumConcurrency);
+        List<Future<Response>> futures = threadPool.invokeAll(requests);
 
         // wait for the threads to finish
-        for (int i = 0; i < threads.size(); i++) {
+        for (int i = 0; i < requests.size(); i++) {
             futures.get(i).get();
         }
 
-        for (int i = 0; i < threads.size(); i++) {
-            System.out.println(responseToJson(threads.get(i).getResponse()));
+        for (int i = 0; i < requests.size(); i++) {
+            System.out.println(responseToJson(requests.get(i).getResponse()));
         }
-        rosetteApi.close();
+        threadPool.shutdown();
     }
 
 

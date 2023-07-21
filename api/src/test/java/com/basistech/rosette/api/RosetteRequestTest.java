@@ -23,8 +23,6 @@ import com.basistech.rosette.apimodel.ErrorResponse;
 import com.basistech.rosette.apimodel.LanguageOptions;
 import com.basistech.rosette.apimodel.LanguageResponse;
 import com.basistech.rosette.apimodel.Response;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,12 +38,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockServerExtension.class)
@@ -86,9 +85,11 @@ class RosetteRequestTest {
         RosetteRequest entitiesRequest = this.api.createRosetteRequest(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, entitiesRequestData, EntitiesResponse.class);
 
         //testing the request
-        Future<Response> response = this.api.submitRequest(entitiesRequest);
+        ExecutorService threadPool = Executors.newFixedThreadPool(1);
+        Future<Response> response = threadPool.submit(entitiesRequest);
         assertInstanceOf(EntitiesResponse.class, response.get());
         assertEquals(response.get(), entitiesRequest.getResponse());
+        threadPool.shutdownNow();
     }
 
 
@@ -107,9 +108,11 @@ class RosetteRequestTest {
         RosetteRequest entitiesRequest = this.api.createRosetteRequest(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, entitiesRequestData, EntitiesResponse.class);
 
         //testing the request
-        Future<Response> response = this.api.submitRequest(entitiesRequest);
+        ExecutorService threadPool = Executors.newFixedThreadPool(1);
+        Future<Response> response = threadPool.submit(entitiesRequest);
         assertInstanceOf(ErrorResponse.class, response.get());
         assertEquals(response.get(), entitiesRequest.getResponse());
+        threadPool.shutdownNow();
     }
 
     @Test
@@ -144,8 +147,9 @@ class RosetteRequestTest {
         }
 
         //run requests
+        ExecutorService threadPool = Executors.newFixedThreadPool(7);
         Date d1 = new Date();
-        List<Future<Response>> responses = this.api.submitRequests(requests);
+        List<Future<Response>> responses = threadPool.invokeAll(requests);
         for (int i = 0; i < responses.size(); i++) {
             responses.get(i).get();
         }
@@ -168,7 +172,7 @@ class RosetteRequestTest {
 
 
         d1 = new Date();
-        responses = this.api.submitRequests(requests);
+        responses = threadPool.invokeAll(requests);
         for (int i = 0; i < responses.size(); i++) {
             responses.get(i).get();
         }
@@ -177,54 +181,6 @@ class RosetteRequestTest {
         assertTrue(d2.getTime() - d1.getTime() < delay * requests.size()); // less than serial requests
         assertTrue(d2.getTime() - d1.getTime() > requests.size() / concurrency * delay); // running faster than this would suggest it exceeds the maximum concurrency
     }
-
-    private RosetteRequest setupShutdownTest(int shutdownWaitSeconds, int responseDelayMillis, CloseableHttpClient client) {
-        this.api = new HttpRosetteAPI.Builder()
-                .url(String.format("http://localhost:%d/rest/v1", mockServer.getPort()))
-                .shutdownWait(shutdownWaitSeconds)
-                .httpClient(client)
-                .build();
-
-        //response setup
-        String entitiesResponse = "{\"entities\" : [ {     \"type\" : \"ORGANIZATION\",     \"mention\" : \"Securities and Exchange Commission\",     \"normalized\" : \"U.S. Securities and Exchange Commission\",     \"count\" : 1,     \"mentionOffsets\" : [ {       \"startOffset\" : 4,       \"endOffset\" : 38     } ],     \"entityId\" : \"Q953944\",     \"confidence\" : 0.39934742,     \"linkingConfidence\" : 0.67404154   } ] }";
-        setupResponse("/rest/v1/entities", entitiesResponse, 200, responseDelayMillis, 1);
-
-        //request setup
-        String entitiesTextData = "The Securities and Exchange Commission today announced the leadership of the agency’s trial unit.";
-        DocumentRequest<EntitiesOptions> entitiesRequestData = DocumentRequest.<EntitiesOptions>builder()
-                .content(entitiesTextData)
-                .build();
-        return this.api.createRosetteRequest(AbstractRosetteAPI.ENTITIES_SERVICE_PATH, entitiesRequestData, EntitiesResponse.class);
-    }
-
-    @Test
-    void successfulShutdown() throws IOException {
-        /* creating http client to avoid closing the httpClient of HttpRosetteApi during close()
-         *  which automatically closes the pending threads. This way the shutdown behaviour can be tested.*/
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        int shutdownWait = 3;
-        RosetteRequest request = setupShutdownTest(shutdownWait, 1000, httpClient);
-        this.api.submitRequest(request);
-        this.api.close();
-        httpClient.close();
-
-        assertInstanceOf(EntitiesResponse.class, request.getResponse()); //got response successfully
-    }
-
-    @Test
-    void timeoutShutdown() throws IOException {
-        /* creating http client to avoid closing the httpClient of HttpRosetteApi during close()
-         *  which automatically closes the pending threads. This way the shutdown behaviour can be tested.*/
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        int shutdownWait = 3;
-        RosetteRequest request = setupShutdownTest(shutdownWait, 5000, httpClient);
-        this.api.submitRequest(request);
-        this.api.close();
-
-        httpClient.close();
-        assertNull(request.getResponse()); //didn't get a response, it was forcefully shutdown
-    }
-
 
     @AfterEach
     void after() throws IOException {
