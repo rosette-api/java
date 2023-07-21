@@ -601,6 +601,21 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         }
     }
 
+    /**
+     * Creates a RosetteRequest which can be sent concurrently through this HttpRosetteAPI
+     *
+     * @param endpoint the endpoint to which the request is sent to
+     * @param request the request object
+     * @param responseClass Response's class
+     * @return RosetteRequest which when started sends the predefined request through this http client
+     */
+    public RosetteRequest createRosetteRequest(String endpoint,
+                                               Request request,
+                                               Class<? extends Response> responseClass) {
+        return new RosetteRequest(this, request, endpoint, responseClass);
+    }
+
+
     @Override
     public void close() throws IOException {
         if (closeClientOnClose) {
