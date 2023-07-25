@@ -25,17 +25,18 @@ node ("docker-light") {
                              /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar $mySonarOpts\""
             }
         }
-        slack(true)
+        postToTeams(true)
     } catch (e) {
         currentBuild.result = "FAILED"
-        slack(false)
+        postToTeams(false)
         throw e
     }
 }
 
-def slack(boolean success) {
+def postToTeams(boolean success) {
+    def webhookUrl = "${env.TEAMS_PNC_JENKINS_WEBHOOK_URL}"
     def color = success ? "#00FF00" : "#FF0000"
     def status = success ? "SUCCESSFUL" : "FAILED"
-    def message = status + ": Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-    slackSend(color: color, channel: "#p-n-c_jenkins", message: message)
+    def message = "*" + status + ":* '${env.JOB_NAME}' - [${env.BUILD_NUMBER}] - ${env.BUILD_URL}"
+    office365ConnectorSend(webhookUrl: webhookUrl, color: color, message: message, status: status)
 }
