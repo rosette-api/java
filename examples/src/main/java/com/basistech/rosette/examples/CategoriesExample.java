@@ -42,7 +42,7 @@ public final class CategoriesExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        String categoriesUrlData = "https://www.rosette.com/about/";
+        String categoriesUrlData = "https://www.babelstreet.com/rosette";
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                                 .key(getApiKeyFromSystemProperty())
                                 .url(getAltUrlFromSystemProperty())
