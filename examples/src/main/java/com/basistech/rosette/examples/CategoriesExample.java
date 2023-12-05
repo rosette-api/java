@@ -42,7 +42,7 @@ public final class CategoriesExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        String categoriesUrlData = "https://www.babelstreet.com/rosette";
+        String categoriesTextData = "If you are a fan of the British television series Downton Abbey and you are planning to be in New York anytime before April 2nd, there is a perfect stop for you while in town.";
         HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
                                 .key(getApiKeyFromSystemProperty())
                                 .url(getAltUrlFromSystemProperty())
@@ -50,7 +50,7 @@ public final class CategoriesExample extends ExampleBase {
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         DocumentRequest<CategoriesOptions> request = DocumentRequest.<CategoriesOptions>builder()
-                                                                    .contentUri(categoriesUrlData)
+                                                                    .content(categoriesTextData)
                                                                     .build();
         CategoriesResponse response = rosetteApi.perform(CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
         System.out.println(responseToJson(response));
