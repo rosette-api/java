@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.basistech.rosette</groupId>
          <artifactId>rosette-api-java-binding</artifactId>
-        <version>1.28.0</version>
+        <version>1.28.1-SNAPSHOT</version>
     </parent>
     <properties>
         <bundle-repo>target/test-bundles</bundle-repo>
@@ -14,7 +14,7 @@
         <dependency>
             <groupId>com.basistech.rosette</groupId>
             <artifactId>rosette-api</artifactId>
-            <version>1.28.0</version>
+            <version>1.28.1-SNAPSHOT</version>
         </dependency>
 
         <!-- The goal of this test is to make sure rosette-api resolves successfully in OSGi with given dependencies. -->
