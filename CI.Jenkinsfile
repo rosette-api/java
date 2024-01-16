@@ -22,7 +22,10 @@ node ("docker-light") {
                        bash -c \"apt-get update && \
                              apt-get install -y git && \
                              pushd /source && \
-                             /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar $mySonarOpts\""
+                             /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar $mySonarOpts && \
+                             echo && \
+                             echo [INFO] Re-permission files for cleanup. && \
+                             chown -R jenkins:jenkins /source\""
             }
         }
         postToTeams(true)
