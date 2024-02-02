@@ -41,7 +41,8 @@ public abstract class NameTranslationRequestMixin {
             @JsonProperty("sourceLanguageOfUse") LanguageCode sourceLanguageOfUse,
             @JsonProperty("targetLanguage") LanguageCode targetLanguage,
             @JsonProperty("targetScript") ISO15924 targetScript,
-            @JsonProperty("targetScheme") TransliterationScheme targetScheme
+            @JsonProperty("targetScheme") TransliterationScheme targetScheme,
+            @JsonProperty("maximumResults") Integer maximumResults
     ) {
         //
     }

@@ -16,6 +16,8 @@
 
 package com.basistech.rosette.apimodel;
 
+import java.util.List;
+
 import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
@@ -72,4 +74,9 @@ public class NameTranslationResponse extends Response {
      * @return the translation confidence (0.0-1.0)
      */
     private final Double confidence;
+
+    /**
+     * @return the translation
+     */
+    private final List<NameTranslation> translations;
 }
