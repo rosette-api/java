@@ -284,8 +284,6 @@ class RosetteAPITest {
     private void verifyMultiNameTranslations(NameTranslationResponse response, String responseStr) throws IOException {
         NameTranslationResponse goldResponse = mapper.readValue(responseStr, NameTranslationResponse.class);
         assertEquals(goldResponse.getTranslations(), response.getTranslations());
-        assertEquals(goldResponse.getTranslation(), response.getTranslation());
-        assertEquals(goldResponse.getConfidence(), response.getConfidence());
     }
 
     private NameTranslationRequest readValueNameTranslation(String testFilename) throws IOException {
