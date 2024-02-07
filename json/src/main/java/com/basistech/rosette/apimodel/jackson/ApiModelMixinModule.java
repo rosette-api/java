@@ -27,6 +27,8 @@ import com.basistech.rosette.apimodel.NameDeduplicationRequest;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.UnfieldedAddress;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityDeserializer;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.Module;
@@ -84,6 +86,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         // IAddresses require a custom deserializer
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(IAddress.class, new AddressDeserializer());
+        deserializers.addDeserializer(RecordSimilarityRequest.class, new RecordSimilarityDeserializer());
         context.addDeserializers(deserializers);
     }
 

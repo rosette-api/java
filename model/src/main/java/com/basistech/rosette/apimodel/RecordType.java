@@ -17,23 +17,22 @@
 package com.basistech.rosette.apimodel;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Value;
 
-@Value
-@Builder
+import java.util.Arrays;
+
+//CHECKSTYLE:OFF
 @AllArgsConstructor
-@Data
-public class UnfieldedAddress implements IAddress {
+public enum RecordType {
+    NAME("rni_name"),
+    DATE("rni_date"),
+    ADDRESS("rni_address");
 
-    /**
-     * return the address
-     */
-    String address;
+    private final String value;
 
-    @Override
-    public boolean fielded() {
-        return false;
+    public static RecordType getEnumFromString(final String value) {
+        return Arrays.stream(RecordType.values())
+                .filter(recordType -> recordType.value.equalsIgnoreCase(value))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("No constant with value " + value + " found"));
     }
 }

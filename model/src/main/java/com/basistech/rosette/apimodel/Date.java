@@ -17,23 +17,13 @@
 package com.basistech.rosette.apimodel;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Value;
+import lombok.NoArgsConstructor;
 
-@Value
-@Builder
+//CHECKSTYLE:OFF
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class UnfieldedAddress implements IAddress {
-
-    /**
-     * return the address
-     */
-    String address;
-
-    @Override
-    public boolean fielded() {
-        return false;
-    }
+public class Date implements Record {
+    private String date;
 }

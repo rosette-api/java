@@ -14,26 +14,21 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel;
+package com.basistech.rosette.apimodel.recordsimilarity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Value;
+import lombok.NoArgsConstructor;
 
-@Value
-@Builder
-@AllArgsConstructor
+import java.util.Map;
+
+//CHECKSTYLE:OFF
 @Data
-public class UnfieldedAddress implements IAddress {
+@AllArgsConstructor
+@NoArgsConstructor
+public class RecordSimilarityRequest {
 
-    /**
-     * return the address
-     */
-    String address;
-
-    @Override
-    public boolean fielded() {
-        return false;
-    }
+    private Map<String, RecordSimilarityField> fields;
+    private RecordSimilarityProperties properties;
+    private RecordSimilarityRecords records;
 }
