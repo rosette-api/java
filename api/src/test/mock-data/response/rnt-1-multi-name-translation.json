@@ -1,0 +1,49 @@
+{
+  "sourceScript": "Arab",
+  "sourceLanguageOfUse": "ara",
+  "targetLanguage": "eng",
+  "targetScript": "Latn",
+  "targetScheme": "IC",
+  "translations": [
+    {
+      "translatio": "Mu'ammar Muhammad Abu-Minyar al-Qadhaf",
+      "confidence": 0.10655738
+    },
+    {
+      "translation": "Mu'ammar Muhammad Abu-Minyar al-Qadhaf",
+      "confidence": 0.10382514
+    },
+    {
+      "translation": "Mu'ammar Muhammad Abaw Minyar al-Qadhaf",
+      "confidence": 0.1010929
+    },
+    {
+      "translation": "Mu'ammar Muhammad Abu-Minyar al-Qadhaf",
+      "confidence": 0.10094909
+    },
+    {
+      "translation": "Mu'ammar Mhammad Abu-Minyar al-Qadhaf",
+      "confidence": 0.10094909
+    },
+    {
+      "translation": "Mu'ammar Muhammad Abu-Minyar al-Qadhaf",
+      "confidence": 0.09836066
+    },
+    {
+      "translation": "Mu'ammar Muhammad Abw Minyar al-Qadhaf",
+      "confidence": 0.09836066
+    },
+    {
+      "translation": "Mu'ammar Mhammad Abu-Minyar al-Qadhaf",
+      "confidence": 0.09836066
+    },
+    {
+      "translation": "Mu'ammar Muhammad Abaw Minyar al-Qadhaf",
+      "confidence": 0.09577222
+    },
+    {
+      "translation": "Mu'ammar Mhammad Abaw Minyar al-Qadhaf",
+      "confidence": 0.09577222
+    }
+  ]
+}
