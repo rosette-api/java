@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel;
+package com.basistech.rosette.apimodel.recordsimilarity.records;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Arrays;
 
-//CHECKSTYLE:OFF
 @AllArgsConstructor
+@Getter
 public enum RecordType {
     NAME("rni_name"),
     DATE("rni_date"),
     ADDRESS("rni_address");
 
-    private final String value;
+    @JsonValue private final String value;
 
     public static RecordType getEnumFromString(final String value) {
         return Arrays.stream(RecordType.values())

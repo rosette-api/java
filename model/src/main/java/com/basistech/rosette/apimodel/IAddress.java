@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel;
 
-public interface IAddress extends Record {
+public interface IAddress {
 
     boolean fielded();
 }

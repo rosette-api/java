@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel;
+package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-//CHECKSTYLE:OFF
 public interface Record {
 }

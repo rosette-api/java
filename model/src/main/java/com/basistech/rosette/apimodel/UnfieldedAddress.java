@@ -16,21 +16,21 @@
 
 package com.basistech.rosette.apimodel;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Value;
 
 @Value
 @Builder
-@AllArgsConstructor
-@Data
 public class UnfieldedAddress implements IAddress {
 
     /**
      * return the address
      */
     String address;
+
+    public UnfieldedAddress(String address) {
+        this.address = address;
+    }
 
     @Override
     public boolean fielded() {

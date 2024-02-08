@@ -18,12 +18,11 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 
 import java.util.List;
 import java.util.Map;
-import com.basistech.rosette.apimodel.Record;
+import com.basistech.rosette.apimodel.recordsimilarity.records.Record;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//CHECKSTYLE:OFF
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

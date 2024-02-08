@@ -24,10 +24,16 @@ import com.basistech.rosette.apimodel.FieldedAddress;
 import com.basistech.rosette.apimodel.IAddress;
 import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameDeduplicationRequest;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.AddressRecordDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.DateRecordDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.NameRecordDeserializer;
+import com.basistech.rosette.apimodel.recordsimilarity.records.AddressRecord;
+import com.basistech.rosette.apimodel.recordsimilarity.records.DateRecord;
+import com.basistech.rosette.apimodel.recordsimilarity.records.NameRecord;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.UnfieldedAddress;
-import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordSimilarityDeserializer;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -86,6 +92,9 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         // IAddresses require a custom deserializer
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(IAddress.class, new AddressDeserializer());
+        deserializers.addDeserializer(NameRecord.class, new NameRecordDeserializer());
+        deserializers.addDeserializer(DateRecord.class, new DateRecordDeserializer());
+        deserializers.addDeserializer(AddressRecord.class, new AddressRecordDeserializer());
         deserializers.addDeserializer(RecordSimilarityRequest.class, new RecordSimilarityDeserializer());
         context.addDeserializers(deserializers);
     }

@@ -18,17 +18,16 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
 import java.util.Map;
 
-//CHECKSTYLE:OFF
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@Value
 public class RecordSimilarityRequest {
 
-    private Map<String, RecordSimilarityField> fields;
-    private RecordSimilarityProperties properties;
-    private RecordSimilarityRecords records;
+    Map<String, RecordSimilarityField> fields;
+    RecordSimilarityProperties properties;
+    RecordSimilarityRecords records;
 }

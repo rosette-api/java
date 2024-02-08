@@ -69,7 +69,6 @@ class ModelTest {
     @MethodSource("packageTestParameters")
     void packageTest(boolean inputStreams) throws ClassNotFoundException, IOException {
         Reflections reflections = new Reflections(this.getClass().getPackage().getName(), new SubTypesScanner(false));
-
         Set<Class<?>> allClasses = reflections.getSubTypesOf(Object.class);
         for (Object clazz : allClasses) {
             String className = ((Class) clazz).getName();
@@ -251,12 +250,12 @@ class ModelTest {
 
         case "Collection":
         case "List": {
+            List<Object> list = new ArrayList<>();
             if (parameterArgClass != null) {
                 Object o1 = createObjectForType(parameterArgClass, null, inputStreams);
-                List<Object> list = new ArrayList<>();
                 list.add(o1);
-                o = list;
             }
+            o = list;
             break;
         }
         case "Object":

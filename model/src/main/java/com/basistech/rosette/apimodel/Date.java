@@ -16,11 +16,11 @@
 
 package com.basistech.rosette.apimodel;
 
+import com.basistech.rosette.apimodel.recordsimilarity.records.Record;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//CHECKSTYLE:OFF
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

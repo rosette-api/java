@@ -18,9 +18,7 @@ package com.basistech.rosette.apimodel;
 
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Value;
 
 import javax.validation.constraints.NotNull;
@@ -30,9 +28,7 @@ import javax.validation.constraints.NotNull;
  */
 @Value
 @Builder
-@AllArgsConstructor
-@Data
-public class Name implements Record {
+public class Name {
 
     /**
      * @return text of the name
@@ -56,6 +52,21 @@ public class Name implements Record {
     LanguageCode language;
 
     /**
+     * Default constructor for lombok
+     *
+     * @param name
+     * @param entityType
+     * @param script
+     * @param language
+     */
+    public Name(String name, String entityType, ISO15924 script, LanguageCode language) {
+        this.text = name;
+        this.entityType = entityType;
+        this.script = script;
+        this.language = language;
+    }
+
+    /**
      * Constructor for {@code Name} with default entityType PERSON, unknown script and unknown language
      * This allows Jackson to use the single arg constructor to deserialize a short-hand value
      * like {"name": "Mike"} instead of the full fledged {"name": {"text": "Mike"}}
@@ -63,8 +74,8 @@ public class Name implements Record {
      */
     public Name(String name) {
         this.text = name;
-        this.entityType = null;
-        this.script = null;
-        this.language = null;
+        this.entityType = "PERSON";
+        this.script = ISO15924.Zyyy;
+        this.language = LanguageCode.UNKNOWN;
     }
 }
