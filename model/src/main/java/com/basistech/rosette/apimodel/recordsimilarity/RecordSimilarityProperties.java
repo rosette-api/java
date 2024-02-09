@@ -26,4 +26,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RecordSimilarityProperties {
     private Double threshold;
+    private boolean includeExplainInfo;
 }
