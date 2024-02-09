@@ -27,7 +27,7 @@ import java.util.Map;
 @Value
 public class RecordSimilarityRequest {
 
-    Map<String, RecordSimilarityField> fields;
+    Map<String, RecordSimilarityFieldInfo> fields;
     RecordSimilarityProperties properties;
     RecordSimilarityRecords records;
 }

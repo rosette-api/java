@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
@@ -32,20 +31,20 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public abstract class NameRecord implements Record {
-    @NotNull private String text;
+public abstract class RecordDate implements RecordSimilarityField {
+    @NotNull private String date;
 
     @NoArgsConstructor
     @ToString(callSuper = true)
     @EqualsAndHashCode(callSuper = true)
     @Getter
     @Setter
-    public static class UnfieldedNameRecord extends NameRecord {
-        public UnfieldedNameRecord(final String text) {
-            super(text);
+    public static class UnfieldedRecordDate extends RecordDate {
+        public UnfieldedRecordDate(final String date) {
+            super(date);
         }
         @JsonValue public String toJson() {
-            return super.getText();
+            return super.getDate();
         }
     }
 
@@ -55,14 +54,9 @@ public abstract class NameRecord implements Record {
     @Getter
     @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class FieldedNameRecord extends NameRecord {
-        private String entityType;
-        private LanguageCode language;
-
-        public FieldedNameRecord(final String text, final String entityType, final LanguageCode language) {
-            super(text);
-            this.entityType = entityType;
-            this.language = language;
+    public static class FieldedRecordDate extends RecordDate {
+        public FieldedRecordDate(final String date) {
+            super(date);
         }
     }
 
