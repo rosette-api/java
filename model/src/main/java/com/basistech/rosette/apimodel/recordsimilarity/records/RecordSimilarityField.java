@@ -14,22 +14,7 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel.recordsimilarity;
+package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class RecordSimilarityField {
-
-    private RecordType type;
-    private double weight;
-
-    public void setType(final String type) {
-        this.type = RecordType.getEnumFromString(type);
-    }
+public interface RecordSimilarityField {
 }

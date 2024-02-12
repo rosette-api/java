@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public abstract class AddressRecord implements Record {
+public abstract class AddressField implements RecordSimilarityField {
     @NotNull private String address;
 
     @NoArgsConstructor
@@ -39,8 +39,8 @@ public abstract class AddressRecord implements Record {
     @EqualsAndHashCode(callSuper = true)
     @Getter
     @Setter
-    public static class UnfieldedAddressRecord extends AddressRecord {
-        public UnfieldedAddressRecord(final String address) {
+    public static class UnfieldedAddress extends AddressField {
+        public UnfieldedAddress(final String address) {
             super(address);
         }
         @JsonValue public String toJson() {
@@ -54,8 +54,8 @@ public abstract class AddressRecord implements Record {
     @Getter
     @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class FieldedAddressRecord extends AddressRecord {
-        public FieldedAddressRecord(final String address) {
+    public static class FieldedAddress extends AddressField {
+        public FieldedAddress(final String address) {
             super(address);
         }
     }

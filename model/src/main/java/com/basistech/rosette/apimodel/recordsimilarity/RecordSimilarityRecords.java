@@ -18,7 +18,7 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 
 import java.util.List;
 import java.util.Map;
-import com.basistech.rosette.apimodel.recordsimilarity.records.Record;
+import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +28,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RecordSimilarityRecords {
 
-    private List<Map<String, Record>> left;
-    private List<Map<String, Record>> right;
+    private List<Map<String, RecordSimilarityField>> left;
+    private List<Map<String, RecordSimilarityField>> right;
 }

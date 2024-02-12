@@ -24,11 +24,11 @@ import java.util.Map;
 @Value
 public class RecordSimilarityRequest extends Request {
 
-    Map<String, RecordSimilarityField> fields;
+    Map<String, RecordSimilarityFieldInfo> fields;
     RecordSimilarityProperties properties;
     RecordSimilarityRecords records;
 
-    public RecordSimilarityRequest(String profileId, Map<String, RecordSimilarityField> fields, RecordSimilarityProperties properties, RecordSimilarityRecords records) {
+    public RecordSimilarityRequest(String profileId, Map<String, RecordSimilarityFieldInfo> fields, RecordSimilarityProperties properties, RecordSimilarityRecords records) {
         super(profileId);
         this.fields = fields;
         this.properties = properties;

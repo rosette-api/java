@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public abstract class NameRecord implements Record {
+public abstract class NameField implements RecordSimilarityField {
     @NotNull private String text;
 
     @NoArgsConstructor
@@ -40,8 +40,8 @@ public abstract class NameRecord implements Record {
     @EqualsAndHashCode(callSuper = true)
     @Getter
     @Setter
-    public static class UnfieldedNameRecord extends NameRecord {
-        public UnfieldedNameRecord(final String text) {
+    public static class UnfieldedName extends NameField {
+        public UnfieldedName(final String text) {
             super(text);
         }
         @JsonValue public String toJson() {
@@ -55,11 +55,11 @@ public abstract class NameRecord implements Record {
     @Getter
     @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class FieldedNameRecord extends NameRecord {
+    public static class FieldedName extends NameField {
         private String entityType;
         private LanguageCode language;
 
-        public FieldedNameRecord(final String text, final String entityType, final LanguageCode language) {
+        public FieldedName(final String text, final String entityType, final LanguageCode language) {
             super(text);
             this.entityType = entityType;
             this.language = language;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public abstract class DateRecord implements Record {
+public abstract class DateField implements RecordSimilarityField {
     @NotNull private String date;
 
     @NoArgsConstructor
@@ -39,8 +39,8 @@ public abstract class DateRecord implements Record {
     @EqualsAndHashCode(callSuper = true)
     @Getter
     @Setter
-    public static class UnfieldedDateRecord extends DateRecord {
-        public UnfieldedDateRecord(final String date) {
+    public static class UnfieldedDate extends DateField {
+        public UnfieldedDate(final String date) {
             super(date);
         }
         @JsonValue public String toJson() {
@@ -54,8 +54,8 @@ public abstract class DateRecord implements Record {
     @Getter
     @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class FieldedDateRecord extends DateRecord {
-        public FieldedDateRecord(final String date) {
+    public static class FieldedDate extends DateField {
+        public FieldedDate(final String date) {
             super(date);
         }
     }

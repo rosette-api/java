@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
-import com.basistech.rosette.apimodel.recordsimilarity.records.AddressRecord;
+import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,18 +24,18 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class AddressRecordDeserializer extends StdDeserializer<AddressRecord> {
-    public AddressRecordDeserializer() {
-        super(AddressRecord.class);
+public class RecordDateDeserializer extends StdDeserializer<DateField> {
+    public RecordDateDeserializer() {
+        super(DateField.class);
     }
 
     @Override
-    public AddressRecord deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public DateField deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         if (node.isObject()) {
-            return jsonParser.getCodec().treeToValue(node, AddressRecord.FieldedAddressRecord.class);
+            return jsonParser.getCodec().treeToValue(node, DateField.FieldedDate.class);
         } else if (node.isTextual()) {
-            return new AddressRecord.UnfieldedAddressRecord(node.textValue());
+            return new DateField.UnfieldedDate(node.textValue());
         }
         throw new IOException("Invalid JSON structure: unexpected node type");
     }

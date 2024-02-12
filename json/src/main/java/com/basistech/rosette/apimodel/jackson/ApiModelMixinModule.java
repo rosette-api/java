@@ -24,12 +24,12 @@ import com.basistech.rosette.apimodel.FieldedAddress;
 import com.basistech.rosette.apimodel.IAddress;
 import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameDeduplicationRequest;
-import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.AddressRecordDeserializer;
-import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.DateRecordDeserializer;
-import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.NameRecordDeserializer;
-import com.basistech.rosette.apimodel.recordsimilarity.records.AddressRecord;
-import com.basistech.rosette.apimodel.recordsimilarity.records.DateRecord;
-import com.basistech.rosette.apimodel.recordsimilarity.records.NameRecord;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordAddressDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordDateDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordNameDeserializer;
+import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.UnfieldedAddress;
@@ -92,9 +92,9 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         // IAddresses require a custom deserializer
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(IAddress.class, new AddressDeserializer());
-        deserializers.addDeserializer(NameRecord.class, new NameRecordDeserializer());
-        deserializers.addDeserializer(DateRecord.class, new DateRecordDeserializer());
-        deserializers.addDeserializer(AddressRecord.class, new AddressRecordDeserializer());
+        deserializers.addDeserializer(NameField.class, new RecordNameDeserializer());
+        deserializers.addDeserializer(DateField.class, new RecordDateDeserializer());
+        deserializers.addDeserializer(AddressField.class, new RecordAddressDeserializer());
         deserializers.addDeserializer(RecordSimilarityRequest.class, new RecordSimilarityDeserializer());
         context.addDeserializers(deserializers);
     }

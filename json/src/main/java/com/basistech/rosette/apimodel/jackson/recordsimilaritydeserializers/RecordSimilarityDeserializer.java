@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,14 @@
 
 package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
-import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityField;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityProperties;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRecords;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
-import com.basistech.rosette.apimodel.recordsimilarity.records.AddressRecord;
-import com.basistech.rosette.apimodel.recordsimilarity.records.DateRecord;
-import com.basistech.rosette.apimodel.recordsimilarity.records.NameRecord;
-import com.basistech.rosette.apimodel.recordsimilarity.records.Record;
+import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordType;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -48,7 +48,7 @@ public class RecordSimilarityDeserializer extends StdDeserializer<RecordSimilari
     public RecordSimilarityRequest deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         try (jsonParser) {
             final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
-            final Map<String, RecordSimilarityField> fields = node.get("fields").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityField>>() { });
+            final Map<String, RecordSimilarityFieldInfo> fields = node.get("fields").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityFieldInfo>>() { });
             final RecordSimilarityProperties properties = node.get("properties").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityProperties.class);
             final RecordSimilarityRecords records = new RecordSimilarityRecords(
                     parseRecords(node.get("records").get("left"), fields, jsonParser),
@@ -57,37 +57,37 @@ public class RecordSimilarityDeserializer extends StdDeserializer<RecordSimilari
         }
     }
 
-    private static List<Map<String, Record>> parseRecords(final JsonNode arrayNode,
-                                                         final Map<String, RecordSimilarityField> fields,
-                                                         final JsonParser jsonParser) throws IOException {
-        final List<Map<String, Record>> records = new ArrayList<>();
+    private static List<Map<String, RecordSimilarityField>> parseRecords(final JsonNode arrayNode,
+                                                                         final Map<String, RecordSimilarityFieldInfo> fields,
+                                                                         final JsonParser jsonParser) throws IOException {
+        final List<Map<String, RecordSimilarityField>> records = new ArrayList<>();
         for (JsonNode recordNode : arrayNode) {
             final Iterator<Map.Entry<String, JsonNode>> recordsIterator = recordNode.fields();
-            final Map<String, Record> record = new HashMap<>();
+            final Map<String, RecordSimilarityField> record = new HashMap<>();
             while (recordsIterator.hasNext()) {
                 final Map.Entry<String, JsonNode> recordEntry = recordsIterator.next();
-                final String recordName = recordEntry.getKey();
-                final JsonNode recordValue = recordEntry.getValue();
+                final String fieldName = recordEntry.getKey();
+                final JsonNode fieldValue = recordEntry.getValue();
 
-                if (fields.containsKey(recordName)) {
-                    final RecordType recordType = fields.get(recordName).getType();
-                    final Record recordData;
+                if (fields.containsKey(fieldName)) {
+                    final RecordType recordType = fields.get(fieldName).getType();
+                    final RecordSimilarityField fieldData;
                     switch (recordType) {
                     case DATE:
-                        recordData = recordValue.traverse(jsonParser.getCodec()).readValueAs(DateRecord.class);
+                        fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
                         break;
                     case NAME:
-                        recordData = recordValue.traverse(jsonParser.getCodec()).readValueAs(NameRecord.class);
+                        fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(NameField.class);
                         break;
                     case ADDRESS:
-                        recordData = recordValue.traverse(jsonParser.getCodec()).readValueAs(AddressRecord.class);
+                        fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
                         break;
                     default:
-                        throw new IllegalArgumentException("Unsupported record type: " + recordType);
+                        throw new IllegalArgumentException("Unsupported field type: " + recordType);
                     }
-                    record.put(recordName, recordData);
+                    record.put(fieldName, fieldData);
                 } else {
-                    throw new IllegalArgumentException("Unsupported record name: " + recordName);
+                    throw new IllegalArgumentException("Unsupported field name: " + fieldName);
                 }
             }
             records.add(record);
