@@ -16,18 +16,22 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.basistech.rosette.apimodel.Request;
 import lombok.Value;
 
 import java.util.Map;
 
-@Data
-@AllArgsConstructor
 @Value
-public class RecordSimilarityRequest {
+public class RecordSimilarityRequest extends Request {
 
     Map<String, RecordSimilarityFieldInfo> fields;
     RecordSimilarityProperties properties;
     RecordSimilarityRecords records;
+
+    public RecordSimilarityRequest(String profileId, Map<String, RecordSimilarityField> fields, RecordSimilarityProperties properties, RecordSimilarityRecords records) {
+        super(profileId);
+        this.fields = fields;
+        this.properties = properties;
+        this.records = records;
+    }
 }
