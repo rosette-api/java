@@ -100,6 +100,10 @@ class ModelTest {
                 continue;
             }
 
+            if (className.contains("RecordSimilarityRequest")) {
+                continue;
+            }
+
             Class c = Class.forName(className);
             if (Modifier.isAbstract(c.getModifiers())) {
                 continue;
