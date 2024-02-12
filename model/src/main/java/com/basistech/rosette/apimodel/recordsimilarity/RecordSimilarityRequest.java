@@ -17,11 +17,13 @@
 package com.basistech.rosette.apimodel.recordsimilarity;
 
 import com.basistech.rosette.apimodel.Request;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Value;
 
 import java.util.Map;
 
 @Value
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityRequest extends Request {
 
     Map<String, RecordSimilarityFieldInfo> fields;

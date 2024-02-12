@@ -25,6 +25,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordType;
+import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -41,7 +42,7 @@ class RecordSimilarityRequestTest {
 
     private static final ObjectMapper MAPPER = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
 
-    private static final String EXPECTED_JSON = "{\"profileId\":null,\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"address\":\"123 Roadlane Ave\"}}]}}";
+    private static final String EXPECTED_JSON = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"address\":\"123 Roadlane Ave\"}}]}}";
     private static final RecordSimilarityRequest EXPECTED_REQUEST = new RecordSimilarityRequest(null,
             Map.of(
                     "primaryName", new RecordSimilarityFieldInfo(RecordType.NAME, 0.5),
@@ -53,17 +54,17 @@ class RecordSimilarityRequestTest {
             new RecordSimilarityRecords(
                     List.of(
                             Map.of(
-                                    "primaryName", new NameField.FieldedName("Ethan R", "PERSON", LanguageCode.ENGLISH),
+                                    "primaryName", new NameField.FieldedName("Ethan R", "PERSON", LanguageCode.ENGLISH, LanguageCode.ENGLISH, ISO15924.Latn),
                                     "dob", new DateField.UnfieldedDate("1993-04-16"),
                                     "dob2", new DateField.FieldedDate("1993/04/16"),
                                     "addr", new AddressField.UnfieldedAddress("123 Roadlane Ave")),
                             Map.of(
-                                    "primaryName", new NameField.FieldedName("Evan R", null, null),
+                                    "primaryName", new NameField.FieldedName("Evan R", null, null, null, null),
                                     "dob", new DateField.FieldedDate("1993-04-16"))
                     ),
                     List.of(
                             Map.of(
-                                    "primaryName", new NameField.FieldedName("Seth R", null, null),
+                                    "primaryName", new NameField.FieldedName("Seth R", null, LanguageCode.ENGLISH,  null, null),
                                     "dob", new DateField.FieldedDate("1993-04-16")),
                             Map.of(
                                     "primaryName", new NameField.UnfieldedName("Ivan R"),

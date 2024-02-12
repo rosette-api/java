@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
+import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -58,11 +59,15 @@ public abstract class NameField implements RecordSimilarityField {
     public static class FieldedName extends NameField {
         private String entityType;
         private LanguageCode language;
+        private LanguageCode languageOfOrigin;
+        private ISO15924 script;
 
-        public FieldedName(final String text, final String entityType, final LanguageCode language) {
+        public FieldedName(final String text, final String entityType, final LanguageCode language, final LanguageCode languageOfOrigin, final ISO15924 script) {
             super(text);
             this.entityType = entityType;
             this.language = language;
+            this.languageOfOrigin = languageOfOrigin;
+            this.script = script;
         }
     }
 
