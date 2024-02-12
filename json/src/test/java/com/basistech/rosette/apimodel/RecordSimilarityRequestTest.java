@@ -42,7 +42,7 @@ class RecordSimilarityRequestTest {
     private static final ObjectMapper MAPPER = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
 
     private static final String EXPECTED_JSON = "{\"fields\":{\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7},\"records\":{\"left\":[{\"primaryName\":{\"text\":\"Ethan R\",\"language\":\"eng\",\"entityType\":\"PERSON\"},\"dob\":\"1993-04-16\",\"dob2\":{\"date\":\"1993/04/16\"},\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"dob2\":{\"date\":\"1993/04/16\"},\"addr\":{\"address\":\"123 Roadlane Ave\"}}]}}";
-    private static final RecordSimilarityRequest EXPECTED_REQUEST = new RecordSimilarityRequest(
+    private static final RecordSimilarityRequest EXPECTED_REQUEST = new RecordSimilarityRequest(null,
             Map.of(
                     "primaryName", new RecordSimilarityField(RecordType.NAME, 0.5),
                     "dob", new RecordSimilarityField(RecordType.DATE, 0.2),

@@ -53,7 +53,7 @@ public class RecordSimilarityDeserializer extends StdDeserializer<RecordSimilari
             final RecordSimilarityRecords records = new RecordSimilarityRecords(
                     parseRecords(node.get("records").get("left"), fields, jsonParser),
                     parseRecords(node.get("records").get("right"), fields, jsonParser));
-            return new RecordSimilarityRequest(fields, properties, records);
+            return new RecordSimilarityRequest(null, fields, properties, records);
         }
     }
 
