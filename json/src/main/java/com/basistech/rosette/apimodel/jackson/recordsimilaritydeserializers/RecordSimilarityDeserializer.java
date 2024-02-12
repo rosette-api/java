@@ -20,9 +20,9 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityProperties;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRecords;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordAddress;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordDate;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordName;
+import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordType;
 import com.fasterxml.jackson.core.JsonParser;
@@ -74,13 +74,13 @@ public class RecordSimilarityDeserializer extends StdDeserializer<RecordSimilari
                     final RecordSimilarityField fieldData;
                     switch (recordType) {
                     case DATE:
-                        fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(RecordDate.class);
+                        fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
                         break;
                     case NAME:
-                        fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(RecordName.class);
+                        fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(NameField.class);
                         break;
                     case ADDRESS:
-                        fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(RecordAddress.class);
+                        fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
                         break;
                     default:
                         throw new IllegalArgumentException("Unsupported field type: " + recordType);

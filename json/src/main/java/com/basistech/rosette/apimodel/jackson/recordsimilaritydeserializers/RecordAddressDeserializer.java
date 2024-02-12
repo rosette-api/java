@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordAddress;
+import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,18 +24,18 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class RecordAddressDeserializer extends StdDeserializer<RecordAddress> {
+public class RecordAddressDeserializer extends StdDeserializer<AddressField> {
     public RecordAddressDeserializer() {
-        super(RecordAddress.class);
+        super(AddressField.class);
     }
 
     @Override
-    public RecordAddress deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public AddressField deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         if (node.isObject()) {
-            return jsonParser.getCodec().treeToValue(node, RecordAddress.FieldedRecordAddress.class);
+            return jsonParser.getCodec().treeToValue(node, AddressField.FieldedAddress.class);
         } else if (node.isTextual()) {
-            return new RecordAddress.UnfieldedRecordAddress(node.textValue());
+            return new AddressField.UnfieldedAddress(node.textValue());
         }
         throw new IOException("Invalid JSON structure: unexpected node type");
     }

@@ -21,9 +21,9 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityProperties;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRecords;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordAddress;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordDate;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordName;
+import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordType;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -53,23 +53,23 @@ class RecordSimilarityRequestTest {
             new RecordSimilarityRecords(
                     List.of(
                             Map.of(
-                                    "primaryName", new RecordName.FieldedRecordName("Ethan R", "PERSON", LanguageCode.ENGLISH),
-                                    "dob", new RecordDate.UnfieldedRecordDate("1993-04-16"),
-                                    "dob2", new RecordDate.FieldedRecordDate("1993/04/16"),
-                                    "addr", new RecordAddress.UnfieldedRecordAddress("123 Roadlane Ave")),
+                                    "primaryName", new NameField.FieldedName("Ethan R", "PERSON", LanguageCode.ENGLISH),
+                                    "dob", new DateField.UnfieldedDate("1993-04-16"),
+                                    "dob2", new DateField.FieldedDate("1993/04/16"),
+                                    "addr", new AddressField.UnfieldedAddress("123 Roadlane Ave")),
                             Map.of(
-                                    "primaryName", new RecordName.FieldedRecordName("Evan R", null, null),
-                                    "dob", new RecordDate.FieldedRecordDate("1993-04-16"))
+                                    "primaryName", new NameField.FieldedName("Evan R", null, null),
+                                    "dob", new DateField.FieldedDate("1993-04-16"))
                     ),
                     List.of(
                             Map.of(
-                                    "primaryName", new RecordName.FieldedRecordName("Seth R", null, null),
-                                    "dob", new RecordDate.FieldedRecordDate("1993-04-16")),
+                                    "primaryName", new NameField.FieldedName("Seth R", null, null),
+                                    "dob", new DateField.FieldedDate("1993-04-16")),
                             Map.of(
-                                    "primaryName", new RecordName.UnfieldedRecordName("Ivan R"),
-                                    "dob", new RecordDate.FieldedRecordDate("1993-04-16"),
-                                    "dob2", new RecordDate.FieldedRecordDate("1993/04/16"),
-                                    "addr", new RecordAddress.FieldedRecordAddress("123 Roadlane Ave"))
+                                    "primaryName", new NameField.UnfieldedName("Ivan R"),
+                                    "dob", new DateField.FieldedDate("1993-04-16"),
+                                    "dob2", new DateField.FieldedDate("1993/04/16"),
+                                    "addr", new AddressField.FieldedAddress("123 Roadlane Ave"))
                     )
             )
     );

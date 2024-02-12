@@ -16,7 +16,6 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
@@ -32,20 +31,20 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public abstract class RecordName implements RecordSimilarityField {
-    @NotNull private String text;
+public abstract class DateField implements RecordSimilarityField {
+    @NotNull private String date;
 
     @NoArgsConstructor
     @ToString(callSuper = true)
     @EqualsAndHashCode(callSuper = true)
     @Getter
     @Setter
-    public static class UnfieldedRecordName extends RecordName {
-        public UnfieldedRecordName(final String text) {
-            super(text);
+    public static class UnfieldedDate extends DateField {
+        public UnfieldedDate(final String date) {
+            super(date);
         }
         @JsonValue public String toJson() {
-            return super.getText();
+            return super.getDate();
         }
     }
 
@@ -55,14 +54,9 @@ public abstract class RecordName implements RecordSimilarityField {
     @Getter
     @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class FieldedRecordName extends RecordName {
-        private String entityType;
-        private LanguageCode language;
-
-        public FieldedRecordName(final String text, final String entityType, final LanguageCode language) {
-            super(text);
-            this.entityType = entityType;
-            this.language = language;
+    public static class FieldedDate extends DateField {
+        public FieldedDate(final String date) {
+            super(date);
         }
     }
 

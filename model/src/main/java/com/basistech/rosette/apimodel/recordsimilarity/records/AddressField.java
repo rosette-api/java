@@ -31,7 +31,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public abstract class RecordAddress implements RecordSimilarityField {
+public abstract class AddressField implements RecordSimilarityField {
     @NotNull private String address;
 
     @NoArgsConstructor
@@ -39,8 +39,8 @@ public abstract class RecordAddress implements RecordSimilarityField {
     @EqualsAndHashCode(callSuper = true)
     @Getter
     @Setter
-    public static class UnfieldedRecordAddress extends RecordAddress {
-        public UnfieldedRecordAddress(final String address) {
+    public static class UnfieldedAddress extends AddressField {
+        public UnfieldedAddress(final String address) {
             super(address);
         }
         @JsonValue public String toJson() {
@@ -54,8 +54,8 @@ public abstract class RecordAddress implements RecordSimilarityField {
     @Getter
     @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class FieldedRecordAddress extends RecordAddress {
-        public FieldedRecordAddress(final String address) {
+    public static class FieldedAddress extends AddressField {
+        public FieldedAddress(final String address) {
             super(address);
         }
     }
