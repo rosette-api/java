@@ -20,21 +20,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Arrays;
-
 @AllArgsConstructor
 @Getter
-public enum RecordType {
+public enum FieldType {
     NAME("rni_name"),
     DATE("rni_date"),
     ADDRESS("rni_address");
 
     @JsonValue private final String value;
-
-    public static RecordType getEnumFromString(final String value) {
-        return Arrays.stream(RecordType.values())
-                .filter(recordType -> recordType.value.equalsIgnoreCase(value))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("No constant with value " + value + " found"));
-    }
 }

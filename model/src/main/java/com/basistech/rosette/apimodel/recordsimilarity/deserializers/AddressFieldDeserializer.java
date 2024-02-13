@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.deserializers;
 
-import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,18 +24,18 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class RecordNameDeserializer extends StdDeserializer<NameField> {
-    public RecordNameDeserializer() {
-        super(NameField.class);
+public class AddressFieldDeserializer extends StdDeserializer<AddressField> {
+    public AddressFieldDeserializer() {
+        super(AddressField.class);
     }
 
     @Override
-    public NameField deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public AddressField deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         if (node.isObject()) {
-            return jsonParser.getCodec().treeToValue(node, NameField.FieldedName.class);
+            return jsonParser.getCodec().treeToValue(node, AddressField.FieldedAddress.class);
         } else if (node.isTextual()) {
-            return NameField.UnfieldedName.builder().text(node.textValue()).build();
+            return AddressField.UnfieldedAddress.builder().address(node.textValue()).build();
         }
         throw new IOException("Invalid JSON structure: unexpected node type");
     }

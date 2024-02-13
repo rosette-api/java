@@ -24,7 +24,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordType;
+import com.basistech.rosette.apimodel.recordsimilarity.records.FieldType;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -46,10 +46,10 @@ class RecordSimilarityRequestTest {
     private static final RecordSimilarityRequest EXPECTED_REQUEST = RecordSimilarityRequest.builder()
             .fields(
                 Map.of(
-                    "primaryName", RecordSimilarityFieldInfo.builder().type(RecordType.NAME).weight(0.5).build(),
-                    "dob", RecordSimilarityFieldInfo.builder().type(RecordType.DATE).weight(0.2).build(),
-                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordType.DATE).weight(0.1).build(),
-                    "addr", RecordSimilarityFieldInfo.builder().type(RecordType.ADDRESS).weight(0.5).build()
+                    "primaryName", RecordSimilarityFieldInfo.builder().type(FieldType.NAME).weight(0.5).build(),
+                    "dob", RecordSimilarityFieldInfo.builder().type(FieldType.DATE).weight(0.2).build(),
+                    "dob2", RecordSimilarityFieldInfo.builder().type(FieldType.DATE).weight(0.1).build(),
+                    "addr", RecordSimilarityFieldInfo.builder().type(FieldType.ADDRESS).weight(0.5).build()
                 )
             )
             .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())

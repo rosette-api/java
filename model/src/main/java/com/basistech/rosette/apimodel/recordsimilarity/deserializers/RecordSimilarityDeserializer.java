@@ -24,7 +24,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordType;
+import com.basistech.rosette.apimodel.recordsimilarity.records.FieldType;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -75,9 +75,9 @@ public class RecordSimilarityDeserializer extends StdDeserializer<RecordSimilari
                 final JsonNode fieldValue = recordEntry.getValue();
 
                 if (fields.containsKey(fieldName)) {
-                    final RecordType recordType = fields.get(fieldName).getType();
+                    final FieldType fieldType = fields.get(fieldName).getType();
                     final RecordSimilarityField fieldData;
-                    switch (recordType) {
+                    switch (fieldType) {
                     case DATE:
                         fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
                         break;
@@ -88,7 +88,7 @@ public class RecordSimilarityDeserializer extends StdDeserializer<RecordSimilari
                         fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
                         break;
                     default:
-                        throw new IllegalArgumentException("Unsupported field type: " + recordType);
+                        throw new IllegalArgumentException("Unsupported field type: " + fieldType);
                     }
                     record.put(fieldName, fieldData);
                 } else {

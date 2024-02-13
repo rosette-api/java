@@ -24,9 +24,9 @@ import com.basistech.rosette.apimodel.FieldedAddress;
 import com.basistech.rosette.apimodel.IAddress;
 import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameDeduplicationRequest;
-import com.basistech.rosette.apimodel.recordsimilarity.deserializers.RecordAddressDeserializer;
-import com.basistech.rosette.apimodel.recordsimilarity.deserializers.RecordDateDeserializer;
-import com.basistech.rosette.apimodel.recordsimilarity.deserializers.RecordNameDeserializer;
+import com.basistech.rosette.apimodel.recordsimilarity.deserializers.AddressFieldDeserializer;
+import com.basistech.rosette.apimodel.recordsimilarity.deserializers.DateFieldDeserializer;
+import com.basistech.rosette.apimodel.recordsimilarity.deserializers.NameFieldDeserializer;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
@@ -92,9 +92,9 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         // IAddresses require a custom deserializer
         SimpleDeserializers deserializers = new SimpleDeserializers();
         deserializers.addDeserializer(IAddress.class, new AddressDeserializer());
-        deserializers.addDeserializer(NameField.class, new RecordNameDeserializer());
-        deserializers.addDeserializer(DateField.class, new RecordDateDeserializer());
-        deserializers.addDeserializer(AddressField.class, new RecordAddressDeserializer());
+        deserializers.addDeserializer(NameField.class, new NameFieldDeserializer());
+        deserializers.addDeserializer(DateField.class, new DateFieldDeserializer());
+        deserializers.addDeserializer(AddressField.class, new AddressFieldDeserializer());
         deserializers.addDeserializer(RecordSimilarityRequest.class, new RecordSimilarityDeserializer());
         context.addDeserializers(deserializers);
     }
