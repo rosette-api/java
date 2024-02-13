@@ -24,8 +24,8 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class RecordNameDeserializer extends StdDeserializer<NameField> {
-    public RecordNameDeserializer() {
+public class NameFieldDeserializer extends StdDeserializer<NameField> {
+    public NameFieldDeserializer() {
         super(NameField.class);
     }
 

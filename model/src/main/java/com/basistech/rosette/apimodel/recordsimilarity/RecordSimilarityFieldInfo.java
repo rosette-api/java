@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordType;
+import com.basistech.rosette.apimodel.recordsimilarity.records.FieldType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,10 +26,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RecordSimilarityFieldInfo {
 
-    private RecordType type;
+    private FieldType type;
     private double weight;
 
     public void setType(final String type) {
-        this.type = RecordType.getEnumFromString(type);
+        this.type = FieldType.getEnumFromString(type);
     }
 }

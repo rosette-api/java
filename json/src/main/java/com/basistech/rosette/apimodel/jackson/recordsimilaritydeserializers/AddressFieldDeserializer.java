@@ -24,8 +24,8 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class RecordAddressDeserializer extends StdDeserializer<AddressField> {
-    public RecordAddressDeserializer() {
+public class AddressFieldDeserializer extends StdDeserializer<AddressField> {
+    public AddressFieldDeserializer() {
         super(AddressField.class);
     }
 

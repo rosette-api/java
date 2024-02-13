@@ -24,7 +24,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordType;
+import com.basistech.rosette.apimodel.recordsimilarity.records.FieldType;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -45,10 +45,10 @@ class RecordSimilarityRequestTest {
     private static final String EXPECTED_JSON = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"address\":\"123 Roadlane Ave\"}}]}}";
     private static final RecordSimilarityRequest EXPECTED_REQUEST = new RecordSimilarityRequest(null,
             Map.of(
-                    "primaryName", new RecordSimilarityFieldInfo(RecordType.NAME, 0.5),
-                    "dob", new RecordSimilarityFieldInfo(RecordType.DATE, 0.2),
-                    "dob2", new RecordSimilarityFieldInfo(RecordType.DATE, 0.1),
-                    "addr", new RecordSimilarityFieldInfo(RecordType.ADDRESS, 0.5)
+                    "primaryName", new RecordSimilarityFieldInfo(FieldType.NAME, 0.5),
+                    "dob", new RecordSimilarityFieldInfo(FieldType.DATE, 0.2),
+                    "dob2", new RecordSimilarityFieldInfo(FieldType.DATE, 0.1),
+                    "addr", new RecordSimilarityFieldInfo(FieldType.ADDRESS, 0.5)
             ),
             new RecordSimilarityProperties(0.7, true),
             new RecordSimilarityRecords(
