@@ -16,5 +16,13 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = AddressField.class, name = "address"),
+        @JsonSubTypes.Type(value = NameField.class, name = "name"),
+        @JsonSubTypes.Type(value = DateField.class, name = "date")})
 public interface RecordSimilarityField {
 }

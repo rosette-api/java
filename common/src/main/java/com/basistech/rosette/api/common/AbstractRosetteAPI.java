@@ -42,6 +42,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     public static final String NAME_DEDUPLICATION_SERVICE_PATH = "/name-deduplication";
     public static final String NAME_TRANSLATION_SERVICE_PATH = "/name-translation";
     public static final String NAME_SIMILARITY_SERVICE_PATH = "/name-similarity";
+    public static final String RECORD_SIMILARITY_SERVICE_PATH = "/record-similarity";
     public static final String ADDRESS_SIMILARITY_SERVICE_PATH = "/address-similarity";
     public static final String TOKENS_SERVICE_PATH = "/tokens";
     public static final String SENTENCES_SERVICE_PATH = "/sentences";
@@ -81,6 +82,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
 
     public static final Set<String> NAMES_ENDPOINTS = new HashSet<>(Arrays.asList(
             NAME_SIMILARITY_SERVICE_PATH,
+            RECORD_SIMILARITY_SERVICE_PATH,
             NAME_TRANSLATION_SERVICE_PATH,
             NAME_DEDUPLICATION_SERVICE_PATH,
             ADDRESS_SIMILARITY_SERVICE_PATH

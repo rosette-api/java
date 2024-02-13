@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "score": 0.87,
+      "left": {
+        "primaryName": "Ethan R",
+        "dob": "1993-04-16",
+        "dob2": "1993/04/16",
+        "addr": "123 Roadlane Ave"
+      },
+      "right": {
+        "primaryName": "Seth R",
+        "dob": "1993-04-16"
+      },
+      "explain": {
+        "primaryName": {
+          "score": 0.99,
+          "calculated_weight": 0.7142857142857143,
+          "details": {}
+        },
+        "dob": {
+          "score": 0.8,
+          "calculated_weight": 0.2857142857142857,
+          "details": {}
+        },
+        "dob2": "missing from right",
+        "addr": "missing from right"
+      }
+    }
+  ]
+}

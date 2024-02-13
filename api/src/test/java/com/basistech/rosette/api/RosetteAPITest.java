@@ -39,6 +39,9 @@ import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResponse;
+
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
@@ -210,6 +213,34 @@ class RosetteAPITest {
     private NameSimilarityRequest readValueNameMatcher(String testFilename) throws IOException {
         File input = new File("src/test/mock-data/request", testFilename);
         return mapper.readValue(input, NameSimilarityRequest.class);
+    }
+
+    private static Stream<Arguments> testMatchRecordParameters() throws IOException {
+        return getTestFiles("-record-similarity.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMatchRecordParameters")
+    void testMatchRecord(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        RecordSimilarityRequest request = readValueRecordMatcher(testFilename);
+        try {
+            RecordSimilarityResponse response = api.perform(AbstractRosetteAPI.RECORD_SIMILARITY_SERVICE_PATH, request,
+                    RecordSimilarityResponse.class);
+            verifyRecordMatcher(response, responseStr);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e, responseStr);
+        }
+    }
+
+    private void verifyRecordMatcher(RecordSimilarityResponse response, String responseStr) throws IOException {
+        RecordSimilarityResponse goldResponse = mapper.readValue(responseStr, RecordSimilarityResponse.class);
+        assertEquals(goldResponse.getResults(), response.getResults());
+    }
+
+    private RecordSimilarityRequest readValueRecordMatcher(String testFilename) throws IOException {
+        File input = new File("src/test/mock-data/request", testFilename);
+        return mapper.readValue(input, RecordSimilarityRequest.class);
     }
 
     private static Stream<Arguments> testMatchAddressParameters() throws IOException {

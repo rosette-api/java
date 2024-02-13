@@ -24,8 +24,8 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class RecordDateDeserializer extends StdDeserializer<DateField> {
-    public RecordDateDeserializer() {
+public class DateFieldDeserializer extends StdDeserializer<DateField> {
+    public DateFieldDeserializer() {
         super(DateField.class);
     }
 

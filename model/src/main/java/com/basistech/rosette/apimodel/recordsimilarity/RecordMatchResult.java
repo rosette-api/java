@@ -16,24 +16,20 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
-import com.basistech.rosette.apimodel.Request;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Value;
-
 import java.util.Map;
 
+import lombok.Builder;
+import lombok.Value;
+
+import com.basistech.rosette.annotations.JacksonMixin;
+import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
+
 @Value
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class RecordSimilarityRequest extends Request {
-
-    Map<String, RecordSimilarityFieldInfo> fields;
-    RecordSimilarityProperties properties;
-    RecordSimilarityRecords records;
-
-    public RecordSimilarityRequest(String profileId, Map<String, RecordSimilarityFieldInfo> fields, RecordSimilarityProperties properties, RecordSimilarityRecords records) {
-        super(profileId);
-        this.fields = fields;
-        this.properties = properties;
-        this.records = records;
-    }
+@Builder
+@JacksonMixin
+public class RecordMatchResult {
+    Double score;
+    Map<String, RecordSimilarityField> left;
+    Map<String, RecordSimilarityField> right;
+    String explain;
 }
