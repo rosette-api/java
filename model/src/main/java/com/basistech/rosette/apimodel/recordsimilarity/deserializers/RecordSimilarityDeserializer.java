@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
+package com.basistech.rosette.apimodel.recordsimilarity.deserializers;
 
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityProperties;
@@ -50,10 +50,15 @@ public class RecordSimilarityDeserializer extends StdDeserializer<RecordSimilari
             final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
             final Map<String, RecordSimilarityFieldInfo> fields = node.get("fields").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityFieldInfo>>() { });
             final RecordSimilarityProperties properties = node.get("properties").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityProperties.class);
-            final RecordSimilarityRecords records = new RecordSimilarityRecords(
-                    parseRecords(node.get("records").get("left"), fields, jsonParser),
-                    parseRecords(node.get("records").get("right"), fields, jsonParser));
-            return new RecordSimilarityRequest(null, fields, properties, records);
+            final RecordSimilarityRecords records = RecordSimilarityRecords.builder()
+                    .left(parseRecords(node.get("records").get("left"), fields, jsonParser))
+                    .right(parseRecords(node.get("records").get("right"), fields, jsonParser))
+                    .build();
+            return RecordSimilarityRequest.builder()
+                    .fields(fields)
+                    .properties(properties)
+                    .records(records)
+                    .build();
         }
     }
 

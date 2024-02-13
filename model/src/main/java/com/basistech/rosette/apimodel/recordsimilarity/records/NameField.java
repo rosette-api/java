@@ -20,55 +20,46 @@ import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.NotNull;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
+@SuperBuilder
+@ToString
+@EqualsAndHashCode
 public abstract class NameField implements RecordSimilarityField {
-    @NotNull private String text;
+    @NotNull private final String text;
 
-    @NoArgsConstructor
+    @Jacksonized
+    @SuperBuilder
     @ToString(callSuper = true)
     @EqualsAndHashCode(callSuper = true)
     @Getter
-    @Setter
     public static class UnfieldedName extends NameField {
-        public UnfieldedName(final String text) {
-            super(text);
-        }
         @JsonValue public String toJson() {
             return super.getText();
         }
     }
 
-    @NoArgsConstructor
+    @Jacksonized
+    @SuperBuilder
     @ToString(callSuper = true)
     @EqualsAndHashCode(callSuper = true)
     @Getter
-    @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class FieldedName extends NameField {
-        private String entityType;
-        private LanguageCode language;
-        private LanguageCode languageOfOrigin;
-        private ISO15924 script;
-
-        public FieldedName(final String text, final String entityType, final LanguageCode language, final LanguageCode languageOfOrigin, final ISO15924 script) {
-            super(text);
-            this.entityType = entityType;
-            this.language = language;
-            this.languageOfOrigin = languageOfOrigin;
-            this.script = script;
-        }
+        private final String entityType;
+        private final LanguageCode language;
+        private final LanguageCode languageOfOrigin;
+        private final ISO15924 script;
     }
 
 }

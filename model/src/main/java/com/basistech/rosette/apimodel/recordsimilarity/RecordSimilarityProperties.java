@@ -16,15 +16,19 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+import lombok.Value;
+import lombok.extern.jackson.Jacksonized;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Jacksonized
+@Builder
+@ToString
+@EqualsAndHashCode
+@Getter
 public class RecordSimilarityProperties {
-    private Double threshold;
-    private boolean includeExplainInfo;
+    private final Double threshold;
+    private final boolean includeExplainInfo;
 }

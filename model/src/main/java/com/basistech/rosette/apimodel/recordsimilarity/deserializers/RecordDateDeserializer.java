@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
+package com.basistech.rosette.apimodel.recordsimilarity.deserializers;
 
-import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,18 +24,18 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
-public class RecordAddressDeserializer extends StdDeserializer<AddressField> {
-    public RecordAddressDeserializer() {
-        super(AddressField.class);
+public class RecordDateDeserializer extends StdDeserializer<DateField> {
+    public RecordDateDeserializer() {
+        super(DateField.class);
     }
 
     @Override
-    public AddressField deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public DateField deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         if (node.isObject()) {
-            return jsonParser.getCodec().treeToValue(node, AddressField.FieldedAddress.class);
+            return jsonParser.getCodec().treeToValue(node, DateField.FieldedDate.class);
         } else if (node.isTextual()) {
-            return new AddressField.UnfieldedAddress(node.textValue());
+            return DateField.UnfieldedDate.builder().date(node.textValue()).build();
         }
         throw new IOException("Invalid JSON structure: unexpected node type");
     }

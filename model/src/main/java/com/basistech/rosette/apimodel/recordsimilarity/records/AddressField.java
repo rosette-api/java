@@ -18,41 +18,40 @@ package com.basistech.rosette.apimodel.recordsimilarity.records;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.NotNull;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
+@SuperBuilder
+@ToString
+@EqualsAndHashCode
 public abstract class AddressField implements RecordSimilarityField {
-    @NotNull private String address;
+    @NotNull private final String address;
 
-    @NoArgsConstructor
+    @Jacksonized
+    @SuperBuilder
     @ToString(callSuper = true)
     @EqualsAndHashCode(callSuper = true)
     @Getter
-    @Setter
     public static class UnfieldedAddress extends AddressField {
-        public UnfieldedAddress(final String address) {
-            super(address);
-        }
         @JsonValue public String toJson() {
             return super.getAddress();
         }
     }
 
-    @NoArgsConstructor
+    @Jacksonized
+    @SuperBuilder
     @ToString(callSuper = true)
     @EqualsAndHashCode(callSuper = true)
     @Getter
-    @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class FieldedAddress extends AddressField {
         public FieldedAddress(final String address) {
