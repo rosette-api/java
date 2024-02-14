@@ -18,22 +18,20 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
-import com.basistech.rosette.annotations.JacksonMixin;
+import lombok.Value;
+import lombok.extern.jackson.Jacksonized;
 
-@Getter
-@EqualsAndHashCode
 @Builder
-@JacksonMixin
+@Jacksonized
+@Value
 public class RecordSimilarityExplainInfo {
-    private double weight;
+    double weight;
     @JsonProperty(value = "calculated_weight")
-    private double calculatedWeight;
+    double calculatedWeight;
     @JsonProperty(value = "raw_score")
-    private double rawScore;
+    double rawScore;
     @JsonProperty(value = "final_score")
-    private double finalScore;
-    private String details;
+    double finalScore;
+    String details;
 }
