@@ -24,7 +24,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.FieldType;
+import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -71,7 +71,7 @@ public class RecordSimilarityDeserializer extends StdDeserializer<RecordSimilari
                 final JsonNode fieldValue = recordEntry.getValue();
 
                 if (fields.containsKey(fieldName)) {
-                    final FieldType fieldType = fields.get(fieldName).getType();
+                    final RecordFieldType fieldType = fields.get(fieldName).getType();
                     final RecordSimilarityField fieldData;
                     switch (fieldType) {
                     case DATE:

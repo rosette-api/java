@@ -16,7 +16,7 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
-import com.basistech.rosette.apimodel.recordsimilarity.records.FieldType;
+import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
@@ -27,6 +27,6 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Value
 public class RecordSimilarityFieldInfo {
-    @NotNull FieldType type;
+    @NotNull RecordFieldType type;
     double weight;
 }
