@@ -38,4 +38,8 @@ public class RecordSimilarityResponse extends Response {
      * @return list of record match results
      */
     private final List<RecordSimilarityResult> results;
+    /**
+     * @return error message to user in case no results matched the threshold
+     */
+    private final String errorMessage;
 }
