@@ -22,7 +22,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum FieldType {
+public enum RecordFieldType {
     NAME("rni_name"),
     DATE("rni_date"),
     ADDRESS("rni_address");
