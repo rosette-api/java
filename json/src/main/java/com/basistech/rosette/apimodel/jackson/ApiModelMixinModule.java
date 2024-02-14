@@ -24,16 +24,18 @@ import com.basistech.rosette.apimodel.FieldedAddress;
 import com.basistech.rosette.apimodel.IAddress;
 import com.basistech.rosette.apimodel.Name;
 import com.basistech.rosette.apimodel.NameDeduplicationRequest;
-import com.basistech.rosette.apimodel.recordsimilarity.deserializers.AddressFieldDeserializer;
-import com.basistech.rosette.apimodel.recordsimilarity.deserializers.DateFieldDeserializer;
-import com.basistech.rosette.apimodel.recordsimilarity.deserializers.NameFieldDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.AddressFieldDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.DateFieldDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.NameFieldDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordSimilarityRequestDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordSimilarityResultDeserializer;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResult;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
 import com.basistech.rosette.apimodel.NameSimilarityRequest;
 import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.UnfieldedAddress;
-import com.basistech.rosette.apimodel.recordsimilarity.deserializers.RecordSimilarityRequestDeserializer;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -96,6 +98,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         deserializers.addDeserializer(DateField.class, new DateFieldDeserializer());
         deserializers.addDeserializer(AddressField.class, new AddressFieldDeserializer());
         deserializers.addDeserializer(RecordSimilarityRequest.class, new RecordSimilarityRequestDeserializer());
+        deserializers.addDeserializer(RecordSimilarityResult.class, new RecordSimilarityResultDeserializer());
         context.addDeserializers(deserializers);
     }
 

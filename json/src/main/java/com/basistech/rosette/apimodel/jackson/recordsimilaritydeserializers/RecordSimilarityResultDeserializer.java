@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel.recordsimilarity.deserializers;
+package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
 import java.io.IOException;
 import java.util.Map;

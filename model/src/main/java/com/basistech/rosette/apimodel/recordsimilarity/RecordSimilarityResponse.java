@@ -18,28 +18,25 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 
 import java.util.List;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-
-import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.rosette.apimodel.Response;
+import lombok.Builder;
+import lombok.Value;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  * Response data model for comparison of two records.
  */
-@Getter
-@EqualsAndHashCode
+@Value
 @Builder
-@JacksonMixin
+@Jacksonized
 public class RecordSimilarityResponse extends Response {
 
     /**
      * @return list of record match results
      */
-    private final List<RecordSimilarityResult> results;
+    List<RecordSimilarityResult> results;
     /**
      * @return error message to user in case no results matched the threshold
      */
-    private final String errorMessage;
+    String errorMessage;
 }

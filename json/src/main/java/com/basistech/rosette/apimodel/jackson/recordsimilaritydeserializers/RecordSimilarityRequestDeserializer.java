@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel.recordsimilarity.deserializers;
+package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,11 +49,7 @@ public class RecordSimilarityRequestDeserializer extends StdDeserializer<RecordS
                     .left(parseRecords(node.get("records").get("left"), fields, jsonParser))
                     .right(parseRecords(node.get("records").get("right"), fields, jsonParser))
                     .build();
-            return RecordSimilarityRequest.builder()
-                    .fields(fields)
-                    .properties(properties)
-                    .records(records)
-                    .build();
+            return RecordSimilarityRequest.builder().fields(fields).properties(properties).records(records).build();
         }
     }
 
