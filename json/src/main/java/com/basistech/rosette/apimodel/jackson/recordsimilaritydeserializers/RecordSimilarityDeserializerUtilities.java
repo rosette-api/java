@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel.recordsimilarity.deserializers;
+package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
 
-class RecordSimilarityDeserializerUtilities {
+final class RecordSimilarityDeserializerUtilities {
 
     private RecordSimilarityDeserializerUtilities() { }
 
