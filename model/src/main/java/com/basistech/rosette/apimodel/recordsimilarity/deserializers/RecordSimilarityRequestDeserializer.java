@@ -16,27 +16,22 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.deserializers;
 
-import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
-import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityProperties;
-import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRecords;
-import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
-import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityProperties;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRecords;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
+import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
 
 public class RecordSimilarityRequestDeserializer extends StdDeserializer<RecordSimilarityRequest> {
 
@@ -67,40 +62,8 @@ public class RecordSimilarityRequestDeserializer extends StdDeserializer<RecordS
                                                                          final JsonParser jsonParser) throws IOException {
         final List<Map<String, RecordSimilarityField>> records = new ArrayList<>();
         for (JsonNode recordNode : arrayNode) {
-            records.add(parseRecord(recordNode, fields, jsonParser));
+            records.add(RecordSimilarityDeserializerUtilities.parseRecord(recordNode, fields, jsonParser));
         }
         return records;
-    }
-
-    static Map<String, RecordSimilarityField> parseRecord(JsonNode jsonNode, Map<String, RecordSimilarityFieldInfo> fields, JsonParser jsonParser) throws IOException {
-        final Iterator<Map.Entry<String, JsonNode>> recordsIterator = jsonNode.fields();
-        final Map<String, RecordSimilarityField> record = new HashMap<>();
-        while (recordsIterator.hasNext()) {
-            final Map.Entry<String, JsonNode> recordEntry = recordsIterator.next();
-            final String fieldName = recordEntry.getKey();
-            final JsonNode fieldValue = recordEntry.getValue();
-
-            if (fields.containsKey(fieldName)) {
-                final RecordFieldType fieldType = fields.get(fieldName).getType();
-                final RecordSimilarityField fieldData;
-                switch (fieldType) {
-                case DATE:
-                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
-                    break;
-                case NAME:
-                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(NameField.class);
-                    break;
-                case ADDRESS:
-                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unsupported field type: " + fieldType);
-                }
-                record.put(fieldName, fieldData);
-            } else {
-                throw new IllegalArgumentException("Unsupported field name: " + fieldName);
-            }
-        }
-        return record;
     }
 }

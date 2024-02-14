@@ -16,8 +16,6 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.deserializers;
 
-import static com.basistech.rosette.apimodel.recordsimilarity.deserializers.RecordSimilarityRequestDeserializer.parseRecord;
-
 import java.io.IOException;
 import java.util.Map;
 
@@ -47,8 +45,8 @@ public class RecordSimilarityResultDeserializer extends StdDeserializer<RecordSi
         });
         return RecordSimilarityResult.builder()
                 .score(score)
-                .left(parseRecord(node.get("left"), fields, jsonParser))
-                .right(parseRecord(node.get("right"), fields, jsonParser))
+                .left(RecordSimilarityDeserializerUtilities.parseRecord(node.get("left"), fields, jsonParser))
+                .right(RecordSimilarityDeserializerUtilities.parseRecord(node.get("right"), fields, jsonParser))
                 .explainInfo(explainInfo)
                 .build();
     }
