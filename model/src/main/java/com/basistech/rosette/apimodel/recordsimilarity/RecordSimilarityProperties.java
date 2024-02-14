@@ -17,17 +17,13 @@
 package com.basistech.rosette.apimodel.recordsimilarity;
 
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
 @Jacksonized
 @Builder
-@ToString
-@EqualsAndHashCode
-@Getter
+@Value
 public class RecordSimilarityProperties {
-    private final Double threshold;
-    private final boolean includeExplainInfo;
+    Double threshold;
+    boolean includeExplainInfo;
 }

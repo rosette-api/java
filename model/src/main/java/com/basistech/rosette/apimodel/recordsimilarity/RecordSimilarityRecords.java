@@ -20,20 +20,13 @@ import java.util.List;
 import java.util.Map;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
-import lombok.extern.jackson.Jacksonized;
+import lombok.Value;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
-@Jacksonized
 @Builder
-@EqualsAndHashCode
-@ToString
-@Getter
+@Value
 public class RecordSimilarityRecords {
-    @NotNull @NotEmpty private final List<Map<String, RecordSimilarityField>> left;
-    @NotNull @NotEmpty private final List<Map<String, RecordSimilarityField>> right;
+    @NotEmpty List<Map<String, RecordSimilarityField>> left;
+    @NotEmpty List<Map<String, RecordSimilarityField>> right;
 }

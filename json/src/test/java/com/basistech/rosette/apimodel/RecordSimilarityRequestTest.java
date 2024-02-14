@@ -43,50 +43,47 @@ class RecordSimilarityRequestTest {
     private static final ObjectMapper MAPPER = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
 
     private static final String EXPECTED_JSON = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"address\":\"123 Roadlane Ave\"}}]}}";
-    private static final RecordSimilarityRequest EXPECTED_REQUEST = RecordSimilarityRequest.builder()
-            .fields(
-                Map.of(
+    private static final RecordSimilarityRequest EXPECTED_REQUEST = RecordSimilarityRequest.builder().fields(
+            Map.of(
                     "primaryName", RecordSimilarityFieldInfo.builder().type(FieldType.NAME).weight(0.5).build(),
                     "dob", RecordSimilarityFieldInfo.builder().type(FieldType.DATE).weight(0.2).build(),
                     "dob2", RecordSimilarityFieldInfo.builder().type(FieldType.DATE).weight(0.1).build(),
                     "addr", RecordSimilarityFieldInfo.builder().type(FieldType.ADDRESS).weight(0.5).build()
-                )
-            )
-            .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
-            .records(
-                RecordSimilarityRecords.builder()
-                    .left(
-                        List.of(
-                            Map.of(
-                                "primaryName", NameField.FieldedName.builder()
-                                        .text("Ethan R").entityType("PERSON")
-                                        .language(LanguageCode.ENGLISH)
-                                        .languageOfOrigin(LanguageCode.ENGLISH)
-                                        .script(ISO15924.Latn)
-                                        .build(),
-                                "dob", DateField.UnfieldedDate.builder().date("1993-04-16").build(),
-                                "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
-                            ),
-                            Map.of(
-                                "primaryName", NameField.FieldedName.builder().text("Evan R").build(),
+            )).properties(
+            RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
+            .records(RecordSimilarityRecords.builder()
+                .left(
+                    List.of(
+                        Map.of(
+                            "primaryName", NameField.FieldedName.builder()
+                                    .text("Ethan R").entityType("PERSON")
+                                    .language(LanguageCode.ENGLISH)
+                                    .languageOfOrigin(LanguageCode.ENGLISH)
+                                    .script(ISO15924.Latn)
+                                    .build(),
+                            "dob", DateField.UnfieldedDate.builder().date("1993-04-16").build(),
+                            "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
+                            "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
+                        ),
+                        Map.of(
+                            "primaryName", NameField.FieldedName.builder().text("Evan R").build(),
+                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                        )
+                    )
+                ).right(
+                    List.of(
+                        Map.of(
+                                "primaryName", NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
                                 "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
-                            )
+                        ),
+                        Map.of(
+                                "primaryName", NameField.UnfieldedName.builder().text("Ivan R").build(),
+                                "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
+                                "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
+                                "addr", AddressField.FieldedAddress.builder().address("123 Roadlane Ave").build()
                         )
-                    ).right(
-                        List.of(
-                            Map.of(
-                                    "primaryName", NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
-                                    "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
-                            ),
-                            Map.of(
-                                    "primaryName", NameField.UnfieldedName.builder().text("Ivan R").build(),
-                                    "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
-                                    "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                    "addr", AddressField.FieldedAddress.builder().address("123 Roadlane Ave").build()
-                            )
-                        )
-                    ).build()
+                    )
+                ).build()
             ).build();
 
     @Test

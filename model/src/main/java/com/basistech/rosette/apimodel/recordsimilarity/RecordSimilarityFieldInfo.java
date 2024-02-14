@@ -18,19 +18,15 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 
 import com.basistech.rosette.apimodel.recordsimilarity.records.FieldType;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.NotNull;
 
 @Jacksonized
 @Builder
-@Getter
-@ToString
-@EqualsAndHashCode
+@Value
 public class RecordSimilarityFieldInfo {
-    @NotNull private final FieldType type;
-    private final double weight;
+    @NotNull FieldType type;
+    double weight;
 }

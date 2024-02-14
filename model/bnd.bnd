@@ -1,2 +1,2 @@
 Bundle-Version: ${osgi-version}
-Export-Package: com.basistech.rosette.apimodel,com.basistech.rosette.apimodel.batch,com.basistech.rosette.apimodel.recordsimilarity,com.basistech.rosette.apimodel.recordsimilarity.records, com.basistech.rosette.apimodel.recordsimilarity.deserializers
+Export-Package: com.basistech.rosette.apimodel,com.basistech.rosette.apimodel.batch,com.basistech.rosette.apimodel.recordsimilarity,com.basistech.rosette.apimodel.recordsimilarity.records
