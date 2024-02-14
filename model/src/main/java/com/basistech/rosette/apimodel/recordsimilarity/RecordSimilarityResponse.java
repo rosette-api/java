@@ -37,5 +37,5 @@ public class RecordSimilarityResponse extends Response {
     /**
      * @return list of record match results
      */
-    private final List<RecordMatchResult> results;
+    private final List<RecordSimilarityResult> results;
 }

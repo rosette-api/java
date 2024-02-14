@@ -18,12 +18,16 @@ package com.basistech.rosette.apimodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  * Common base class of all requests.
  */
 @Data
 @AllArgsConstructor
+@SuperBuilder
+@NoArgsConstructor
 public abstract class Request {
 
     /**

@@ -28,23 +28,15 @@
           "language": "eng",
           "entityType": "PERSON"
         },
-        "dob": {
-          "date": "1993-04-16"
-        },
-        "dob2": {
-          "date": "1993/04/16"
-        },
-        "addr": {
-          "address:": "123 Roadlane Ave"
-        }
+        "dob": "1993-04-16",
+        "dob2": "1993/04/16",
+        "addr": "123 Roadlane Ave"
       },
       {
         "primaryName": {
           "text": "Evan R"
         },
-        "dob": {
-          "date": "1993-04-16"
-        }
+        "dob": "1993-04-16"
       }
     ],
     "right": [
@@ -52,25 +44,16 @@
         "primaryName": {
           "text": "Seth R"
         },
-        "dob": {
-          "date": "1993-04-16"
-        }
+        "dob": "1993-04-16"
       },
       {
         "primaryName": {
           "text": "Ivan R"
         },
-        "dob": {
-          "date": "1993-04-16"
-        },
-        "dob2": {
-          "date": "1993/04/16"
-        },
-        "addr": {
-          "address": "123 Roadlane Ave"
-        }
+        "dob": "1993-04-16",
+        "dob2": "1993/04/16",
+        "addr": "123 Roadlane Ave"
       }
     ]
   }
 }
-

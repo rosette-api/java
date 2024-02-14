@@ -1,6 +1,24 @@
 {
   "results": [
     {
+      "fields": {
+        "primaryName": {
+          "type": "rni_name",
+          "weight": 0.5
+        },
+        "dob": {
+          "type": "rni_date",
+          "weight": 0.2
+        },
+        "dob2": {
+          "type": "rni_date",
+          "weight": 0.1
+        },
+        "addr": {
+          "type": "rni_address",
+          "weight": 0.5
+        }
+      },
       "score": 0.87,
       "left": {
         "primaryName": "Ethan R",
@@ -12,19 +30,21 @@
         "primaryName": "Seth R",
         "dob": "1993-04-16"
       },
-      "explain": {
+      "explainInfo": {
         "primaryName": {
-          "score": 0.99,
-          "calculated_weight": 0.7142857142857143,
-          "details": {}
+          "raw_score": 0.99,
+          "calculated_weight": 0.7142857142857143
         },
         "dob": {
-          "score": 0.8,
-          "calculated_weight": 0.2857142857142857,
-          "details": {}
+          "raw_score": 0.8,
+          "calculated_weight": 0.2857142857142857
         },
-        "dob2": "missing from right",
-        "addr": "missing from right"
+        "dob2": {
+          "error_message": "missing from right"
+        },
+        "addr": {
+          "error_message": "missing from right"
+        }
       }
     }
   ]

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Basis Technology Corp.
+ * Copyright 2022 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,18 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel.recordsimilarity;
+package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-import lombok.Builder;
-import lombok.Value;
+@AllArgsConstructor
+@Getter
+public enum RecordFieldType {
+    NAME("rni_name"),
+    DATE("rni_date"),
+    ADDRESS("rni_address");
 
-import com.basistech.rosette.annotations.JacksonMixin;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
-
-@Value
-@Builder
-@JacksonMixin
-public class RecordMatchResult {
-    Double score;
-    Map<String, RecordSimilarityField> left;
-    Map<String, RecordSimilarityField> right;
-    String explain;
+    @JsonValue private final String value;
 }

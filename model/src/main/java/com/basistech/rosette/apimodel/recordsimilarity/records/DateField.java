@@ -18,46 +18,42 @@ package com.basistech.rosette.apimodel.recordsimilarity.records;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.NotNull;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
+@SuperBuilder
+@ToString
+@EqualsAndHashCode
 public abstract class DateField implements RecordSimilarityField {
-    @NotNull private String date;
+    @NotNull private final String date;
 
-    @NoArgsConstructor
+    @Jacksonized
+    @SuperBuilder
     @ToString(callSuper = true)
     @EqualsAndHashCode(callSuper = true)
     @Getter
-    @Setter
     public static class UnfieldedDate extends DateField {
-        public UnfieldedDate(final String date) {
-            super(date);
-        }
         @JsonValue public String toJson() {
             return super.getDate();
         }
     }
 
-    @NoArgsConstructor
+    @Jacksonized
+    @SuperBuilder
     @ToString(callSuper = true)
     @EqualsAndHashCode(callSuper = true)
     @Getter
-    @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class FieldedDate extends DateField {
-        public FieldedDate(final String date) {
-            super(date);
-        }
     }
 
 }

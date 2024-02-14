@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,23 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
-import lombok.extern.jackson.Jacksonized;
 
-@Jacksonized
-@Builder
-@ToString
-@EqualsAndHashCode
+import com.basistech.rosette.annotations.JacksonMixin;
+
 @Getter
-public class RecordSimilarityProperties {
-    private final Double threshold;
-    private final boolean includeExplainInfo;
+@EqualsAndHashCode
+@Builder
+@JacksonMixin
+public class RecordSimilarityExplainInfo {
+    private double weight;
+    @JsonProperty(value = "calculated_weight")
+    private double calculatedWeight;
+    @JsonProperty(value = "raw_score")
+    private double rawScore;
+    @JsonProperty(value = "final_score")
+    private double finalScore;
 }
