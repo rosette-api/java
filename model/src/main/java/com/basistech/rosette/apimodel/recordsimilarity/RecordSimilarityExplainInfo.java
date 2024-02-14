@@ -35,4 +35,5 @@ public class RecordSimilarityExplainInfo {
     private double rawScore;
     @JsonProperty(value = "final_score")
     private double finalScore;
+    private String details;
 }

@@ -40,10 +40,10 @@
           "calculated_weight": 0.2857142857142857
         },
         "dob2": {
-          "error_message": "missing from right"
+          "details": "missing from right"
         },
         "addr": {
-          "error_message": "missing from right"
+          "details": "missing from right"
         }
       }
     }
