@@ -20,29 +20,22 @@ import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Value;
+import lombok.experimental.NonFinal;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Getter
 @SuperBuilder
-@ToString
-@EqualsAndHashCode
+@Value
+@NonFinal
 public abstract class NameField implements RecordSimilarityField {
-    @NotNull private final String text;
+    @NotBlank String text;
 
     @Jacksonized
     @SuperBuilder
-    @ToString(callSuper = true)
-    @EqualsAndHashCode(callSuper = true)
-    @Getter
+    @Value
     public static class UnfieldedName extends NameField {
         @JsonValue public String toJson() {
             return super.getText();
@@ -51,15 +44,13 @@ public abstract class NameField implements RecordSimilarityField {
 
     @Jacksonized
     @SuperBuilder
-    @ToString(callSuper = true)
-    @EqualsAndHashCode(callSuper = true)
-    @Getter
+    @Value
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class FieldedName extends NameField {
-        private final String entityType;
-        private final LanguageCode language;
-        private final LanguageCode languageOfOrigin;
-        private final ISO15924 script;
+        String entityType;
+        LanguageCode language;
+        LanguageCode languageOfOrigin;
+        ISO15924 script;
     }
 
 }

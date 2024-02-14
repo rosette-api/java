@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.apimodel.recordsimilarity.deserializers;
+package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.fasterxml.jackson.core.JsonParser;
