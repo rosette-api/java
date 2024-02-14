@@ -100,10 +100,6 @@ class ModelTest {
                 continue;
             }
 
-            if (className.contains("RecordSimilarityRequest")) {
-                continue;
-            }
-
             Class c = Class.forName(className);
             if (Modifier.isAbstract(c.getModifiers())) {
                 continue;
@@ -272,24 +268,24 @@ class ModelTest {
         case "EnumSet":
             break;
         case "Set": {
+            Set<Object> set = new HashSet<>();
             if (parameterArgClass != null) {
                 Object o1 = createObjectForType(parameterArgClass, null, inputStreams);
-                Set<Object> set = new HashSet<>();
                 set.add(o1);
-                o = set;
             }
+            o = set;
             break;
         }
         case "Map": {
+            HashMap<Object, Object> map = new HashMap<>();
             if (parameterArgTypes != null && parameterArgTypes.length == 2) {
                 Class keyClass = (Class) parameterArgTypes[0];
                 Object keyObject = createObject(keyClass);
                 if (keyObject != null) {
-                    HashMap<Object, Object> map = new HashMap<>();
                     map.put(keyObject, null);
-                    o = map;
                 }
             }
+            o = map;
             break;
         }
         case "IAddress": {

@@ -38,11 +38,9 @@ public class RecordSimilarityResultDeserializer extends StdDeserializer<RecordSi
     @Override
     public RecordSimilarityResult deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
-        final Map<String, RecordSimilarityFieldInfo> fields = node.get("fields").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityFieldInfo>>() {
-        });
+        final Map<String, RecordSimilarityFieldInfo> fields = node.get("fields").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityFieldInfo>>() { });
         final Double score = node.get("score").traverse(jsonParser.getCodec()).readValueAs(Double.class);
-        final Map<String, RecordSimilarityExplainInfo> explainInfo = node.get("explainInfo").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityExplainInfo>>() {
-        });
+        final Map<String, RecordSimilarityExplainInfo> explainInfo = node.get("explainInfo").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityExplainInfo>>() { });
         return RecordSimilarityResult.builder()
                 .score(score)
                 .left(RecordSimilarityDeserializerUtilities.parseRecord(node.get("left"), fields, jsonParser))

@@ -20,7 +20,6 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
 
@@ -30,7 +29,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityF
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityResult {
-    @NotNull Double score;
+    double score;
     @NotEmpty Map<String, RecordSimilarityField> left;
     @NotEmpty Map<String, RecordSimilarityField> right;
     @NotEmpty Map<String, RecordSimilarityExplainInfo> explainInfo;
