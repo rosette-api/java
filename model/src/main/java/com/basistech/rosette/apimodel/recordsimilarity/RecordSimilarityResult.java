@@ -32,5 +32,6 @@ public class RecordSimilarityResult {
     double score;
     @NotEmpty Map<String, RecordSimilarityField> left;
     @NotEmpty Map<String, RecordSimilarityField> right;
-    @NotEmpty Map<String, RecordSimilarityExplainInfo> explainInfo;
+    Map<String, RecordSimilarityExplainInfo> explainInfo;
+    String error;
 }
