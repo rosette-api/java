@@ -33,15 +33,18 @@
       "explainInfo": {
         "scoredFields": {
           "primaryName": {
-          "rawScore": 0.99,
-          "calculatedWeight": 0.7142857142857143
+            "rawScore": 0.99,
+            "calculatedWeight": 0.7142857142857143
           },
           "dob": {
-          "rawScore": 0.8,
-          "calculatedWeight": 0.2857142857142857
+            "rawScore": 0.8,
+            "calculatedWeight": 0.2857142857142857
           }
         },
-        "rightOnlyFields": ["dob2", "addr"]
+        "rightOnlyFields": [
+          "dob2",
+          "addr"
+        ]
       }
     }
   ]
