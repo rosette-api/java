@@ -31,20 +31,17 @@
         "dob": "1993-04-16"
       },
       "explainInfo": {
-        "primaryName": {
+        "scoredFields": {
+          "primaryName": {
           "raw_score": 0.99,
           "calculated_weight": 0.7142857142857143
-        },
-        "dob": {
+          },
+          "dob": {
           "raw_score": 0.8,
           "calculated_weight": 0.2857142857142857
+          }
         },
-        "dob2": {
-          "details": "missing from right"
-        },
-        "addr": {
-          "details": "missing from right"
-        }
+        "rightOnlyFields": ["dob2", "addr"]
       }
     }
   ]
