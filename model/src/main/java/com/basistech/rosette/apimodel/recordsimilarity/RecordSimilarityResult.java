@@ -19,7 +19,6 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import javax.validation.constraints.NotEmpty;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
 
@@ -30,8 +29,8 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityF
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityResult {
     double score;
-    @NotEmpty Map<String, RecordSimilarityField> left;
-    @NotEmpty Map<String, RecordSimilarityField> right;
-    Map<String, RecordSimilarityExplainInfo> explainInfo;
+    Map<String, RecordSimilarityField> left;
+    Map<String, RecordSimilarityField> right;
+    RecordSimilarityExplainInfo explainInfo;
     String error;
 }
