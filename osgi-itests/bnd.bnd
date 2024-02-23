@@ -1,8 +1,0 @@
-Export-Package: ${p}.it
-
-Test-Cases: \
-    ${classes;CONCRETE;ANNOTATED;org.junit.Test}
-
-p = com.basistech.rosette.osgi
-
-
