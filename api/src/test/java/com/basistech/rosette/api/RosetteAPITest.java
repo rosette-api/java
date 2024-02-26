@@ -258,9 +258,32 @@ class RosetteAPITest {
         }
     }
 
+    private static Stream<Arguments> testMultiTranslateNameParameters() throws IOException {
+        return getTestFiles("-multi-name-translation.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMultiTranslateNameParameters")
+    void testMultiTranslateName(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        NameTranslationRequest request = readValueNameTranslation(testFilename);
+        try {
+            NameTranslationResponse response = api.perform(AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH, request,
+                    NameTranslationResponse.class);
+            verifyMultiNameTranslations(response, responseStr);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e, responseStr);
+        }
+    }
+
     private void verifyNameTranslation(NameTranslationResponse response, String responseStr) throws IOException {
         NameTranslationResponse goldResponse = mapper.readValue(responseStr, NameTranslationResponse.class);
         assertEquals(goldResponse.getTranslation(), response.getTranslation());
+    }
+
+    private void verifyMultiNameTranslations(NameTranslationResponse response, String responseStr) throws IOException {
+        NameTranslationResponse goldResponse = mapper.readValue(responseStr, NameTranslationResponse.class);
+        assertEquals(goldResponse.getTranslations(), response.getTranslations());
     }
 
     private NameTranslationRequest readValueNameTranslation(String testFilename) throws IOException {
