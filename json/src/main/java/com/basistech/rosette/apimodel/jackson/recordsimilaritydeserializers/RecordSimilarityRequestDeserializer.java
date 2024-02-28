@@ -18,6 +18,7 @@ package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,12 +44,15 @@ public class RecordSimilarityRequestDeserializer extends StdDeserializer<RecordS
     public RecordSimilarityRequest deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         try (jsonParser) {
             final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
-            final Map<String, RecordSimilarityFieldInfo> fields = node.get("fields").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityFieldInfo>>() { });
-            final RecordSimilarityProperties properties = node.get("properties").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityProperties.class);
-            final RecordSimilarityRecords records = RecordSimilarityRecords.builder()
-                    .left(parseRecords(node.get("records").get("left"), fields, jsonParser))
-                    .right(parseRecords(node.get("records").get("right"), fields, jsonParser))
-                    .build();
+            final Map<String, RecordSimilarityFieldInfo> fields = node.get("fields") != null ? node.get("fields").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityFieldInfo>>() { }) : new HashMap<>();
+            final RecordSimilarityProperties properties = node.get("properties") != null ? node.get("properties").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityProperties.class) : null;
+            RecordSimilarityRecords records = null;
+            if (node.get("records") != null && node.get("records").get("left") != null && node.get("records").get("right") != null) {
+                records = RecordSimilarityRecords.builder()
+                        .left(parseRecords(node.get("records").get("left"), fields, jsonParser))
+                        .right(parseRecords(node.get("records").get("right"), fields, jsonParser))
+                        .build();
+            }
             return RecordSimilarityRequest.builder()
                     .fields(fields)
                     .properties(properties)
