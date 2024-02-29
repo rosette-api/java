@@ -16,15 +16,14 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
-import java.util.Map;
-
+import com.basistech.rosette.apimodel.Request;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
 
-import com.basistech.rosette.apimodel.Request;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.Map;
 
 @Value
 @SuperBuilder
