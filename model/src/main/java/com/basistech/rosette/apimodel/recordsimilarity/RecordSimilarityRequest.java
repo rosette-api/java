@@ -19,6 +19,8 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
 
@@ -28,7 +30,7 @@ import com.basistech.rosette.apimodel.Request;
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityRequest extends Request {
-    Map<String, RecordSimilarityFieldInfo> fields;
-    RecordSimilarityProperties properties;
-    RecordSimilarityRecords records;
+    @NotEmpty Map<String, RecordSimilarityFieldInfo> fields;
+    @NotNull RecordSimilarityProperties properties;
+    @NotNull RecordSimilarityRecords records;
 }
