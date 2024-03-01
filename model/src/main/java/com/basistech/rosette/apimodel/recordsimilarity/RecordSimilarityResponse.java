@@ -19,6 +19,7 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 import java.util.List;
 
 import com.basistech.rosette.apimodel.Response;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
@@ -29,6 +30,7 @@ import lombok.extern.jackson.Jacksonized;
 @Value
 @Builder
 @Jacksonized
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityResponse extends Response {
 
     /**

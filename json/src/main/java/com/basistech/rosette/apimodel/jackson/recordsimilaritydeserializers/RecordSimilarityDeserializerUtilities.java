@@ -46,6 +46,9 @@ final class RecordSimilarityDeserializerUtilities {
             if (fields.containsKey(fieldName)) {
                 final RecordFieldType fieldType = fields.get(fieldName).getType();
                 final RecordSimilarityField fieldData;
+                if (fieldType == null) {
+                    throw new IllegalArgumentException("Unspecified field type for: " + fieldName);
+                }
                 switch (fieldType) {
                 case DATE:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
@@ -61,7 +64,7 @@ final class RecordSimilarityDeserializerUtilities {
                 }
                 record.put(fieldName, fieldData);
             } else {
-                throw new IllegalArgumentException("Unsupported field name: " + fieldName);
+                throw new IllegalArgumentException("Unsupported field name: " + fieldName + " not found in field mapping");
             }
         }
         return record;
