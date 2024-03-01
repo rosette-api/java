@@ -100,4 +100,11 @@ public class EntitiesOptions extends Options {
      * CURRENCY:AMT and CURRENCY:TYPE
      */
     Boolean regexCurrencySplit;
+
+    /**
+     * @return useIndocServer flag.  If true, REX will make request to indoc-coref-server and merge
+     * results with existing entities.
+     * default false
+     */
+    Boolean useIndocServer;
 }
