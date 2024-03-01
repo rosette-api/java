@@ -19,6 +19,8 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 import java.util.List;
 import java.util.Map;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
+
+import javax.validation.Valid;
 import lombok.Builder;
 import lombok.Value;
 
@@ -27,6 +29,6 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 @Value
 public class RecordSimilarityRecords {
-    @NotEmpty List<Map<String, RecordSimilarityField>> left;
-    @NotEmpty List<Map<String, RecordSimilarityField>> right;
+    @NotEmpty @Valid List<Map<String, RecordSimilarityField>> left;
+    @NotEmpty @Valid List<Map<String, RecordSimilarityField>> right;
 }
