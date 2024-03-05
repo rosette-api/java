@@ -1,0 +1,5 @@
+{
+  "code": "badRequestFormat",
+  "message": "Unspecified field type for: primaryName",
+  "stack": null
+}

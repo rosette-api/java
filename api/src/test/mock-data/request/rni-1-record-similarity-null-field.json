@@ -1,0 +1,53 @@
+{
+  "fields": {
+    "primaryName": {
+      "type": null,
+      "weight": 0.5
+    },
+    "dob": {
+      "type": "rni_date",
+      "weight": 0.2
+    },
+    "dob2": {
+      "type": "rni_date",
+      "weight": 0.1
+    },
+    "addr": {
+      "type": "rni_address",
+      "weight": 0.5
+    }
+  },
+  "properties": {
+    "threshold": 0.7
+  },
+  "records": {
+    "left": [
+      {
+        "primaryName": {
+          "data": "Ethan R",
+          "language": "eng",
+          "entityType": "PERSON"
+        },
+        "dob": "1993-04-16",
+        "dob2": "1993/04/16",
+        "addr": "123 Roadlane Ave"
+      },
+      {
+        "primaryName": "Evan R",
+        "dob": "1993-04-16"
+      }
+    ],
+    "right": [
+      {
+        "primaryName": "Seth R",
+        "dob": "1993-04-16"
+      },
+      {
+        "primaryName": "Ivan R",
+        "dob": "1993-04-16",
+        "dob2": "1993/04/16",
+        "addr": "123 Roadlane Ave"
+      }
+    ]
+  }
+}
