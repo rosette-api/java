@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2018-2022 Basis Technology Corp.
+  Copyright 2018-2024 Basis Technology Corp.
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -41,12 +41,9 @@
         </site>
     </distributionManagement>
     <properties>
-        <bbh-maven-plugin.version>1.0.1</bbh-maven-plugin.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-codec.version>1.15</commons-codec.version>
-        <felix-framework.version>7.0.5</felix-framework.version>
-        <felix-configadmin.version>1.9.24</felix-configadmin.version>
         <findbugs-jsr305.version>3.0.2</findbugs-jsr305.version>
         <http-components.version>4.5.13</http-components.version>
         <http-components-core.version>4.4.15</http-components-core.version>
@@ -56,8 +53,6 @@
         <lombok.version>1.18.24</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <mockserver.version>5.14.0</mockserver.version>
-        <osgi-enroute-junit-wrapper.version>4.12.0</osgi-enroute-junit-wrapper.version>
-        <osgi-enroute-hamcrest-wrapper.version>1.3.0</osgi-enroute-hamcrest-wrapper.version>
         <reflections.version>0.10.2</reflections.version>
         <site-skin.version>1.5</site-skin.version>
     </properties>
@@ -67,7 +62,6 @@
         <module>json</module>
         <module>common</module>
         <module>api</module>
-        <module>osgi-itests</module>
         <module>examples</module>
         <module>release</module>
     </modules>
@@ -126,20 +120,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>com.basistech</groupId>
-                <artifactId>bbh-maven-plugin</artifactId>
-                <version>${bbh-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>osgi-version</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>osgi-version</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>${maven-source-plugin.version}</version>
@@ -149,20 +129,6 @@
                         <phase>verify</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <!-- create properties for pathnames of dependencies, used to do OSGi embedding. -->
-                    <execution>
-                        <id>set-dep-properties</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>properties</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -198,18 +164,6 @@
                             <id>attach-javadocs</id>
                             <goals>
                                 <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>biz.aQute.bnd</groupId>
-                    <artifactId>bnd-maven-plugin</artifactId>
-                    <version>${bnd-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>bnd-process</goal>
                             </goals>
                         </execution>
                     </executions>

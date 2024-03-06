@@ -1,0 +1,11 @@
+{
+  "entityType": "PERSON",
+  "name": "معمر محمد أبو منيار القذاف", 
+  "sourceLanguageOfOrigin": "ara", 
+  "sourceLanguageOfUse": "ara", 
+  "sourceScript": "Arab", 
+  "targetLanguage": "eng", 
+  "targetScheme": "IC", 
+  "targetScript": "Latn",
+  "maximumResults": 10
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,24 @@
  * limitations under the License.
  */
 
-package com.basistech.rosette.osgi.it;
+package com.basistech.rosette.apimodel;
 
-import com.basistech.rosette.api.HttpRosetteAPI;
-import org.junit.Test;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
-import static org.junit.Assert.assertNotNull;
+import com.basistech.rosette.annotations.JacksonMixin;
 
-@SuppressWarnings("java:S5960") // This is a test class.
-public class RosetteApiOsgiTest {
-    @Test
-    public void smokeTest() {
-        HttpRosetteAPI api = new HttpRosetteAPI.Builder().build();
-        assertNotNull(api);
+@Getter
+@EqualsAndHashCode
+@Builder
+@JacksonMixin
+public class NameTranslation {
+    String translation;
+    Double confidence;
+
+    public NameTranslation(String translation, Double confidence) {
+        this.translation = translation;
+        this.confidence = confidence;
     }
 }
