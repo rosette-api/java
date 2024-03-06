@@ -233,6 +233,40 @@ class RosetteAPITest {
         }
     }
 
+    private static Stream<Arguments> testMatchRecordMissingFieldParameters() throws IOException {
+        return getTestFiles("-record-similarity-missing-field.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMatchRecordMissingFieldParameters")
+    void testMatchRecordMissingField(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+
+        try {
+            readValueRecordMatcher(testFilename);
+            fail("Did not throw exception for a field type in request but not in mapping");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Unsupported field name: primaryName not found in field mapping", e.getMessage());
+        }
+    }
+
+    private static Stream<Arguments> testMatchRecordNullFieldParameters() throws IOException {
+        return getTestFiles("-record-similarity-null-field.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMatchRecordNullFieldParameters")
+    void testMatchRecordNullField(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+
+        try {
+            readValueRecordMatcher(testFilename);
+            fail("Did not throw exception for a field with null type");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Unspecified field type for: primaryName", e.getMessage());
+        }
+    }
+
     private void verifyRecordMatcher(RecordSimilarityResponse response, String responseStr) throws IOException {
         RecordSimilarityResponse goldResponse = mapper.readValue(responseStr, RecordSimilarityResponse.class);
         assertEquals(goldResponse.getResults(), response.getResults());
@@ -289,9 +323,32 @@ class RosetteAPITest {
         }
     }
 
+    private static Stream<Arguments> testMultiTranslateNameParameters() throws IOException {
+        return getTestFiles("-multi-name-translation.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMultiTranslateNameParameters")
+    void testMultiTranslateName(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        NameTranslationRequest request = readValueNameTranslation(testFilename);
+        try {
+            NameTranslationResponse response = api.perform(AbstractRosetteAPI.NAME_TRANSLATION_SERVICE_PATH, request,
+                    NameTranslationResponse.class);
+            verifyMultiNameTranslations(response, responseStr);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e, responseStr);
+        }
+    }
+
     private void verifyNameTranslation(NameTranslationResponse response, String responseStr) throws IOException {
         NameTranslationResponse goldResponse = mapper.readValue(responseStr, NameTranslationResponse.class);
         assertEquals(goldResponse.getTranslation(), response.getTranslation());
+    }
+
+    private void verifyMultiNameTranslations(NameTranslationResponse response, String responseStr) throws IOException {
+        NameTranslationResponse goldResponse = mapper.readValue(responseStr, NameTranslationResponse.class);
+        assertEquals(goldResponse.getTranslations(), response.getTranslations());
     }
 
     private NameTranslationRequest readValueNameTranslation(String testFilename) throws IOException {

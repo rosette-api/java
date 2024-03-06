@@ -72,7 +72,11 @@ public final class NameTranslationRequest extends Request {
      */
     private final TransliterationScheme targetScheme;
 
-    @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
+    /**
+     * @return the maximum number of translation results to return
+     */
+    private final Integer maximumResults;
+
     public NameTranslationRequest(String profileId,
                                    String name,
                                    String entityType,
@@ -82,6 +86,20 @@ public final class NameTranslationRequest extends Request {
                                    LanguageCode targetLanguage,
                                    ISO15924 targetScript,
                                    TransliterationScheme targetScheme) {
+        this(profileId, name, entityType, sourceScript, sourceLanguageOfOrigin, sourceLanguageOfUse, targetLanguage, targetScript, targetScheme, null);
+    }
+
+    @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
+    public NameTranslationRequest(String profileId,
+                                  String name,
+                                  String entityType,
+                                  ISO15924 sourceScript,
+                                  LanguageCode sourceLanguageOfOrigin,
+                                  LanguageCode sourceLanguageOfUse,
+                                  LanguageCode targetLanguage,
+                                  ISO15924 targetScript,
+                                  TransliterationScheme targetScheme,
+                                  Integer maximumResults) {
         super(profileId);
         this.name = name;
         this.entityType = entityType;
@@ -91,5 +109,6 @@ public final class NameTranslationRequest extends Request {
         this.targetLanguage = targetLanguage;
         this.targetScript = targetScript;
         this.targetScheme = targetScheme;
+        this.maximumResults = maximumResults;
     }
 }
