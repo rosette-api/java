@@ -30,5 +30,5 @@ import javax.validation.constraints.NotNull;
 @Value
 public class RecordSimilarityFieldInfo {
     @NotNull @Valid RecordFieldType type;
-    @NotNull @Valid Double weight;
+    Double weight;
 }
