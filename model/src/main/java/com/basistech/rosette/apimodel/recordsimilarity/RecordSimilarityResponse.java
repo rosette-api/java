@@ -17,12 +17,14 @@
 package com.basistech.rosette.apimodel.recordsimilarity;
 
 import java.util.List;
+import java.util.Map;
 
-import com.basistech.rosette.apimodel.Response;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
+
+import com.basistech.rosette.apimodel.Response;
 
 /**
  * Response data model for comparison of two records.
@@ -32,7 +34,7 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityResponse extends Response {
-
+    Map<String, RecordSimilarityFieldInfo> fields;
     /**
      * @return list of record match results
      */
