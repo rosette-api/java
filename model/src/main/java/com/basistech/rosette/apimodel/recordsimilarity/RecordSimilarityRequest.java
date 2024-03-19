@@ -31,6 +31,6 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityRequest extends Request {
     @NotEmpty @Valid Map<String, RecordSimilarityFieldInfo> fields;
-    RecordSimilarityProperties properties;
+    @Valid RecordSimilarityProperties properties;
     @NotNull @Valid RecordSimilarityRecords records;
 }

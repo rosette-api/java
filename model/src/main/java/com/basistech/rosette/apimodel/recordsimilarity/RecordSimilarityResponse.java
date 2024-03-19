@@ -26,6 +26,8 @@ import lombok.extern.jackson.Jacksonized;
 
 import com.basistech.rosette.apimodel.Response;
 
+import javax.validation.Valid;
+
 /**
  * Response data model for comparison of two records.
  */
@@ -34,13 +36,13 @@ import com.basistech.rosette.apimodel.Response;
 @Jacksonized
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityResponse extends Response {
-    Map<String, RecordSimilarityFieldInfo> fields;
+    @Valid Map<String, RecordSimilarityFieldInfo> fields;
     /**
      * @return list of record match results
      */
-    List<RecordSimilarityResult> results;
+    @Valid List<RecordSimilarityResult> results;
     /**
      * @return error message to user in case no results matched the threshold
      */
-    String errorMessage;
+    @Valid String errorMessage;
 }
