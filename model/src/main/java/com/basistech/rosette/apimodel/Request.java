@@ -17,21 +17,17 @@
 package com.basistech.rosette.apimodel;
 
 import lombok.AllArgsConstructor;
-import lombok.Value;
-import lombok.experimental.NonFinal;
-import lombok.experimental.SuperBuilder;
+import lombok.Data;
 
 /**
  * Common base class of all requests.
  */
-@Value
-@NonFinal
-@SuperBuilder
+@Data
 @AllArgsConstructor
 public abstract class Request {
 
     /**
      * @return profile ID
      */
-    String profileId;
+    protected String profileId;
 }

@@ -20,17 +20,27 @@ import com.basistech.rosette.apimodel.Request;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import javax.validation.Valid;
 import lombok.Value;
-import lombok.experimental.SuperBuilder;
+import lombok.Builder;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 @Value
-@SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityRequest extends Request {
     @NotEmpty @Valid Map<String, RecordSimilarityFieldInfo> fields;
     @Valid RecordSimilarityProperties properties;
     @NotNull @Valid RecordSimilarityRecords records;
+
+    @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
+    public RecordSimilarityRequest(String profileId,
+                                   Map<String, RecordSimilarityFieldInfo> fields,
+                                   RecordSimilarityProperties properties,
+                                   RecordSimilarityRecords records) {
+        super(profileId);
+        this.fields = fields;
+        this.properties = properties;
+        this.records = records;
+    }
 }

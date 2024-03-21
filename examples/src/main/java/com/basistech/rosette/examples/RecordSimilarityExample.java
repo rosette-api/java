@@ -49,43 +49,48 @@ public class RecordSimilarityExample extends ExampleBase {
     }
 
     private void run() throws IOException {
+        String primaryNameField = "primaryName";
+        String dobField = "dob";
+        String dob2Field = "dob2";
+        String addrField = "addr";
+        String dobHyphen = "1993-04-16";
         RecordSimilarityRequest request = RecordSimilarityRequest.builder()
                 .fields(Map.of(
-                        "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.NAME).weight(0.5).build(),
-                        "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.2).build(),
-                        "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.1).build(),
-                        "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.ADDRESS).weight(0.5).build()))
+                        primaryNameField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.NAME).weight(0.5).build(),
+                        dobField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.2).build(),
+                        dob2Field, RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.1).build(),
+                        addrField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.ADDRESS).weight(0.5).build()))
                 .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
                 .records(RecordSimilarityRecords.builder()
                         .left(
                                 List.of(
                                         Map.of(
-                                                "primaryName", NameField.FieldedName.builder()
+                                                primaryNameField, NameField.FieldedName.builder()
                                                         .text("Ethan R").entityType("PERSON")
                                                         .language(LanguageCode.ENGLISH)
                                                         .languageOfOrigin(LanguageCode.ENGLISH)
                                                         .script(ISO15924.Latn)
                                                         .build(),
-                                                "dob", DateField.UnfieldedDate.builder().date("1993-04-16").build(),
-                                                "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                                "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
+                                                dobField, DateField.UnfieldedDate.builder().date(dobHyphen).build(),
+                                                dob2Field, DateField.FieldedDate.builder().date("1993/04/16").build(),
+                                                addrField, AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
                                         ),
                                         Map.of(
-                                                "primaryName", NameField.FieldedName.builder().text("Evan R").build(),
-                                                "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                                primaryNameField, NameField.FieldedName.builder().text("Evan R").build(),
+                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build()
                                         )
                                 )
                         ).right(
                                 List.of(
                                         Map.of(
-                                                "primaryName", NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
-                                                "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                                primaryNameField, NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
+                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build()
                                         ),
                                         Map.of(
-                                                "primaryName", NameField.UnfieldedName.builder().text("Ivan R").build(),
-                                                "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
-                                                "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                                "addr", AddressField.FieldedAddress.builder().address("123 Roadlane Ave").build()
+                                                primaryNameField, NameField.UnfieldedName.builder().text("Ivan R").build(),
+                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build(),
+                                                dob2Field, DateField.FieldedDate.builder().date("1993/04/16").build(),
+                                                addrField, AddressField.FieldedAddress.builder().address("123 Roadlane Ave").build()
                                         )
                                 )
                         ).build()

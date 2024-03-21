@@ -23,6 +23,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
+import javax.validation.Valid;
 
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
@@ -35,7 +36,7 @@ final class RecordSimilarityDeserializerUtilities {
 
     private RecordSimilarityDeserializerUtilities() { }
 
-    static Map<String, RecordSimilarityField> parseRecord(JsonNode jsonNode, Map<String, RecordSimilarityFieldInfo> fields, JsonParser jsonParser) throws IOException {
+    static Map<String, RecordSimilarityField> parseRecord(JsonNode jsonNode, @Valid Map<String, RecordSimilarityFieldInfo> fields, JsonParser jsonParser) throws IOException {
         final Iterator<Map.Entry<String, JsonNode>> recordsIterator = jsonNode.fields();
         final Map<String, RecordSimilarityField> record = new HashMap<>();
         while (recordsIterator.hasNext()) {
