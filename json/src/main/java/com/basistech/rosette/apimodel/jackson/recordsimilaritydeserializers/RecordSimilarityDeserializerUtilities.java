@@ -29,7 +29,6 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
 
 final class RecordSimilarityDeserializerUtilities {
@@ -38,19 +37,19 @@ final class RecordSimilarityDeserializerUtilities {
 
     static Map<String, RecordSimilarityField> parseRecord(JsonNode jsonNode, @Valid Map<String, RecordSimilarityFieldInfo> fields, JsonParser jsonParser) throws IOException {
         final Iterator<Map.Entry<String, JsonNode>> recordsIterator = jsonNode.fields();
-        final Map<String, RecordSimilarityField> record = new HashMap<>();
+        final Map<String, RecordSimilarityField> recordMap = new HashMap<>();
         while (recordsIterator.hasNext()) {
             final Map.Entry<String, JsonNode> recordEntry = recordsIterator.next();
             final String fieldName = recordEntry.getKey();
             final JsonNode fieldValue = recordEntry.getValue();
 
             if (fields.containsKey(fieldName)) {
-                final RecordFieldType fieldType = fields.get(fieldName).getType();
+                final RecordSimilarityFieldInfo fieldInfo = fields.get(fieldName);
                 final RecordSimilarityField fieldData;
-                if (fieldType == null) {
+                if (fieldInfo == null) {
                     throw new IllegalArgumentException("Unspecified field type for: " + fieldName);
                 }
-                switch (fieldType) {
+                switch (fieldInfo.getType()) {
                 case DATE:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
                     break;
@@ -61,13 +60,13 @@ final class RecordSimilarityDeserializerUtilities {
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
                     break;
                 default:
-                    throw new IllegalArgumentException("Unsupported field type: " + fieldType);
+                    throw new IllegalArgumentException("Unsupported field type: " + fieldInfo.getType());
                 }
-                record.put(fieldName, fieldData);
+                recordMap.put(fieldName, fieldData);
             } else {
                 throw new IllegalArgumentException("Unsupported field name: " + fieldName + " not found in field mapping");
             }
         }
-        return record;
+        return recordMap;
     }
 }
