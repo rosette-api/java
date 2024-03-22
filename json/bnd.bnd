@@ -1,0 +1,2 @@
+Bundle-Version: ${osgi-version}
+Export-Package: com.basistech.rosette.apimodel.jackson,com.basistech.rosette.apimodel.jackson.batch,com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers

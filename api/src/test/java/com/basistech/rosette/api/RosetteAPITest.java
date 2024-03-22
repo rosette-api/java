@@ -39,6 +39,9 @@ import com.basistech.rosette.apimodel.Request;
 import com.basistech.rosette.apimodel.SentimentResponse;
 import com.basistech.rosette.apimodel.SyntaxDependenciesResponse;
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResponse;
+
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
@@ -210,6 +213,68 @@ class RosetteAPITest {
     private NameSimilarityRequest readValueNameMatcher(String testFilename) throws IOException {
         File input = new File("src/test/mock-data/request", testFilename);
         return mapper.readValue(input, NameSimilarityRequest.class);
+    }
+
+    private static Stream<Arguments> testMatchRecordParameters() throws IOException {
+        return getTestFiles("-record-similarity.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMatchRecordParameters")
+    void testMatchRecord(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+        RecordSimilarityRequest request = readValueRecordMatcher(testFilename);
+        try {
+            RecordSimilarityResponse response = api.perform(AbstractRosetteAPI.RECORD_SIMILARITY_SERVICE_PATH, request,
+                    RecordSimilarityResponse.class);
+            verifyRecordMatcher(response, responseStr);
+        } catch (HttpRosetteAPIException e) {
+            verifyException(e, responseStr);
+        }
+    }
+
+    private static Stream<Arguments> testMatchRecordMissingFieldParameters() throws IOException {
+        return getTestFiles("-record-similarity-missing-field.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMatchRecordMissingFieldParameters")
+    void testMatchRecordMissingField(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+
+        try {
+            readValueRecordMatcher(testFilename);
+            fail("Did not throw exception for a field type in request but not in mapping");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Unsupported field name: primaryName not found in field mapping", e.getMessage());
+        }
+    }
+
+    private static Stream<Arguments> testMatchRecordNullFieldParameters() throws IOException {
+        return getTestFiles("-record-similarity-null-field.json");
+    }
+
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMatchRecordNullFieldParameters")
+    void testMatchRecordNullField(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+
+        try {
+            readValueRecordMatcher(testFilename);
+            fail("Did not throw exception for a field with null type");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Unspecified field type for: primaryName", e.getMessage());
+        }
+    }
+
+    private void verifyRecordMatcher(RecordSimilarityResponse response, String responseStr) throws IOException {
+        RecordSimilarityResponse goldResponse = mapper.readValue(responseStr, RecordSimilarityResponse.class);
+        assertEquals(goldResponse.getResults(), response.getResults());
+    }
+
+    private RecordSimilarityRequest readValueRecordMatcher(String testFilename) throws IOException {
+        File input = new File("src/test/mock-data/request", testFilename);
+        return mapper.readValue(input, RecordSimilarityRequest.class);
     }
 
     private static Stream<Arguments> testMatchAddressParameters() throws IOException {

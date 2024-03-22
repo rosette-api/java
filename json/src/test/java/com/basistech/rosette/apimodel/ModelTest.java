@@ -69,7 +69,6 @@ class ModelTest {
     @MethodSource("packageTestParameters")
     void packageTest(boolean inputStreams) throws ClassNotFoundException, IOException {
         Reflections reflections = new Reflections(this.getClass().getPackage().getName(), new SubTypesScanner(false));
-
         Set<Class<?>> allClasses = reflections.getSubTypesOf(Object.class);
         for (Object clazz : allClasses) {
             String className = ((Class) clazz).getName();
@@ -98,6 +97,9 @@ class ModelTest {
             }
 
             if (className.contains("ConfigurationRequest")) {
+                continue;
+            }
+            if (className.contains("RecordSimilarityRequest")) {
                 continue;
             }
 
