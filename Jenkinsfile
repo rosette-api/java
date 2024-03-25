@@ -1,11 +1,21 @@
 node ("docker-light") {
     def SOURCEDIR = pwd()
     try {
+        def mavenLocalRepo = "$JENKINS_HOME/maven-local-repositories/executor-$EXECUTOR_NUMBER"
         stage("Clean up") {
             step([$class: 'WsCleanup'])
+            sh "rm -rf $mavenLocalRepo"
         }
         stage("Checkout Code") {
             checkout scm
+        }
+        stage("Build") {
+            withMaven(maven: "Basis",
+                    mavenLocalRepo: mavenLocalRepo,
+                    publisherStrategy: "EXPLICIT") {
+                sh "mvn clean verify"
+            }
+
         }
         stage("Test with Docker") {
             echo "${env.ALT_URL}"
