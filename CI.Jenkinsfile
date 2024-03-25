@@ -23,11 +23,11 @@ node ("docker-light") {
                              apt-get install -y git && \
                              pushd /source && \
                              /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar $mySonarOpts; \
-                             maven_ret=\$?; \
+                             maven_ret=\\\$?; \
                              echo && \
                              echo [INFO] Set file permissions to UID and GID of jenkins user for cleanup. && \
                              chown -R 9960:9960 /source && \
-                             exit \$maven_ret\""
+                             exit \\\$maven_ret\""
             }
         }
         postToTeams(true)
