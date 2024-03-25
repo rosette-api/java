@@ -27,7 +27,7 @@ node ("docker-light") {
                              echo && \
                              echo [INFO] Set file permissions to UID and GID of jenkins user for cleanup. && \
                              chown -R 9960:9960 /source && \
-                             exit \$maven_ret\"
+                             exit \$maven_ret\""
             }
         }
         postToTeams(true)
