@@ -1,13 +1,23 @@
 node ("docker-light") {
     def sourceDir = pwd()
     try {
+        def mavenLocalRepo = "$JENKINS_HOME/maven-local-repositories/executor-$EXECUTOR_NUMBER"
         stage("Clean up") {
             step([$class: 'WsCleanup'])
+            sh "rm -rf $mavenLocalRepo"
         }
         stage("Checkout Code") {
             checkout scm
         }
-        stage("Maven Build") {
+        stage("Build") {
+            withMaven(maven: "Basis",
+                    mavenLocalRepo: mavenLocalRepo,
+                    publisherStrategy: "EXPLICIT") {
+                sh "mvn clean verify"
+            }
+
+        }
+        stage("Test with Docker") {
             withSonarQubeEnv {
                 mySonarOpts="-Dsonar.login=${env.SONAR_AUTH_TOKEN} -Dsonar.host.url=${env.SONAR_HOST_URL}"
                  if ("${env.CHANGE_BRANCH}" != "null") {
