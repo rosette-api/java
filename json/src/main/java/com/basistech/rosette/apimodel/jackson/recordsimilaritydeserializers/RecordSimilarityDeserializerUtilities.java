@@ -46,7 +46,7 @@ final class RecordSimilarityDeserializerUtilities {
             if (fields.containsKey(fieldName)) {
                 final RecordSimilarityFieldInfo fieldInfo = fields.get(fieldName);
                 final RecordSimilarityField fieldData;
-                if (fieldInfo == null) {
+                if (fieldInfo == null || fieldInfo.getType() == null) {
                     throw new IllegalArgumentException("Unspecified field type for: " + fieldName);
                 }
                 switch (fieldInfo.getType()) {
