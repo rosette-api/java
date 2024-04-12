@@ -30,6 +30,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.UnknownField;
 
 final class RecordSimilarityDeserializerUtilities {
 
@@ -60,7 +61,8 @@ final class RecordSimilarityDeserializerUtilities {
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
                     break;
                 default:
-                    throw new IllegalArgumentException("Unsupported field type: " + fieldInfo.getType());
+                    fieldData =  fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
+//                    throw new IllegalArgumentException("Unsupported field type: " + fieldInfo.getType());
                 }
                 recordMap.put(fieldName, fieldData);
             } else {

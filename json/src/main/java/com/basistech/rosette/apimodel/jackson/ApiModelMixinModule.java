@@ -27,6 +27,7 @@ import com.basistech.rosette.apimodel.NameDeduplicationRequest;
 import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.AddressFieldDeserializer;
 import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.DateFieldDeserializer;
 import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.NameFieldDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.UnknownFieldDeserializer;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResult;
 import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordSimilarityResultDeserializer;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
@@ -37,6 +38,7 @@ import com.basistech.rosette.apimodel.NameTranslationRequest;
 import com.basistech.rosette.apimodel.UnfieldedAddress;
 import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordSimilarityRequestDeserializer;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
+import com.basistech.rosette.apimodel.recordsimilarity.records.UnknownField;
 import com.basistech.rosette.dm.jackson.AnnotatedDataModelModule;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.Module;
@@ -84,6 +86,10 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(UnfieldedAddress.class, UnfieldedAddressMixin.class);
         context.setMixInAnnotations(UnfieldedAddress.UnfieldedAddressBuilder.class,
                 UnfieldedAddressMixin.UnfieldedAddressBuilderMixin.class);
+
+        context.setMixInAnnotations(UnknownField.class, UnknownFieldMixin.class);
+        context.setMixInAnnotations(UnknownField.class, UnknownFieldMixin.UnknownFieldBuilderMixin.class);
+
         context.setMixInAnnotations(AddressSimilarityRequest.class, AddressSimilarityRequestMixin.class);
         context.setMixInAnnotations(AddressSimilarityRequest.AddressSimilarityRequestBuilder.class,
                 AddressSimilarityRequestMixin.AddressSimilarityRequestBuilderMixin.class);
@@ -97,6 +103,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         deserializers.addDeserializer(NameField.class, new NameFieldDeserializer());
         deserializers.addDeserializer(DateField.class, new DateFieldDeserializer());
         deserializers.addDeserializer(AddressField.class, new AddressFieldDeserializer());
+        deserializers.addDeserializer(UnknownField.class, new UnknownFieldDeserializer());
         deserializers.addDeserializer(RecordSimilarityRequest.class, new RecordSimilarityRequestDeserializer());
         deserializers.addDeserializer(RecordSimilarityResult.class, new RecordSimilarityResultDeserializer());
         context.addDeserializers(deserializers);

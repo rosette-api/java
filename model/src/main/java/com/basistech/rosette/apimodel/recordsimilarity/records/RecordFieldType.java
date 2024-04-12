@@ -25,7 +25,8 @@ import lombok.Getter;
 public enum RecordFieldType {
     NAME("rni_name"),
     DATE("rni_date"),
-    ADDRESS("rni_address");
+    ADDRESS("rni_address"),
+    UNKNOWN("unknown");
 
     @JsonValue private final String value;
 }
