@@ -16,17 +16,51 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
+import java.io.IOException;
+
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
+@JsonDeserialize(using = RecordFieldType.RecordFieldTypeDeserializer.class)
 public enum RecordFieldType {
     NAME("rni_name"),
     DATE("rni_date"),
     ADDRESS("rni_address"),
-    UNKNOWN("unknown");
+    UNKNOWN(null);
 
-    @JsonValue private final String value;
+    @JsonValue private String value;
+
+    public static class RecordFieldTypeDeserializer extends JsonDeserializer<RecordFieldType> {
+        private RecordFieldType fromString(String value) {
+            RecordFieldType type;
+            switch (value) {
+            case "rni_name":
+                type = NAME;
+                break;
+            case "rni_date":
+                type = DATE;
+                break;
+            case "rni_address":
+                type = ADDRESS;
+                break;
+            default:
+                type = UNKNOWN;
+                type.value = value;
+            }
+            return type;
+        }
+        @Override
+        public RecordFieldType deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+                throws IOException {
+            String value = jsonParser.getValueAsString();
+            return fromString(value);
+        }
+    }
 }
