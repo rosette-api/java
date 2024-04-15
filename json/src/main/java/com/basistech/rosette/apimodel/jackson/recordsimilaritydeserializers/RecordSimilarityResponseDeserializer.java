@@ -44,7 +44,9 @@ public class RecordSimilarityResponseDeserializer extends StdDeserializer<Record
     public RecordSimilarityResponse deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
 
-        Map<String, RecordSimilarityFieldInfo> fields = node.get("fields").traverse(jsonParser.getCodec()).readValueAs(FIELDS_TYPE_REFERENCE);
+        JsonNode fieldsNode = node.get("fields");
+
+        Map<String, RecordSimilarityFieldInfo> fields = fieldsNode != null ? node.get("fields").traverse(jsonParser.getCodec()).readValueAs(FIELDS_TYPE_REFERENCE) : null;
         String errorMessage = Optional.ofNullable(node.get("errorMessage")).map(JsonNode::asText).orElse(null);
 
         JsonNode resultsNode = node.get("results");

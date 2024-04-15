@@ -38,11 +38,11 @@ final class RecordSimilarityDeserializerUtilities {
     private RecordSimilarityDeserializerUtilities() {
     }
 
-    public static RecordSimilarityResult parseResult(JsonNode node, JsonParser jsonParser, @NotNull Map<String, RecordSimilarityFieldInfo> fields) throws IOException {
+    public static RecordSimilarityResult parseResult(JsonNode node, JsonParser jsonParser, Map<String, RecordSimilarityFieldInfo> fields) throws IOException {
         final Double score = node.get("score") != null ? node.get("score").traverse(jsonParser.getCodec()).readValueAs(Double.class) : null;
         final RecordSimilarityExplainInfo explainInfo = node.get("explainInfo") != null ? node.get("explainInfo").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityExplainInfo.class) : null;
-        Map<String, RecordSimilarityField> left = node.get("left") != null ? parseRecord(node.get("left"), jsonParser, fields) : null;
-        Map<String, RecordSimilarityField> right = node.get("right") != null ? parseRecord(node.get("right"), jsonParser, fields) : null;
+        Map<String, RecordSimilarityField> left = node.get("left") != null && fields != null ? parseRecord(node.get("left"), jsonParser, fields) : null;
+        Map<String, RecordSimilarityField> right = node.get("right") != null && fields != null ? parseRecord(node.get("right"), jsonParser, fields) : null;
         return RecordSimilarityResult.builder()
                 .score(score)
                 .left(left)
