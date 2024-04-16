@@ -44,11 +44,15 @@ public class RecordSimilarityResultDeserializer extends StdDeserializer<RecordSi
         final RecordSimilarityExplainInfo explainInfo = node.get("explainInfo") != null ? node.get("explainInfo").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityExplainInfo.class) : null;
         Map<String, RecordSimilarityField> left = node.get("left") != null && fields != null ? RecordSimilarityDeserializerUtilities.parseRecord(node.get("left"), fields, jsonParser) : null;
         Map<String, RecordSimilarityField> right = node.get("right") != null && fields != null ? RecordSimilarityDeserializerUtilities.parseRecord(node.get("right"), fields, jsonParser) : null;
+        final String error = node.get("error") != null ? node.get("error").traverse(jsonParser.getCodec()).readValueAs(String.class) : null;
+        final String info = node.get("info") != null ? node.get("info").traverse(jsonParser.getCodec()).readValueAs(String.class) : null;
         return RecordSimilarityResult.builder()
                 .score(score)
                 .left(left)
                 .right(right)
                 .explainInfo(explainInfo)
+                .error(error)
+                .info(info)
                 .build();
     }
 }

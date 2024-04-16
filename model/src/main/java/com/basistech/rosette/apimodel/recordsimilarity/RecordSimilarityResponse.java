@@ -41,6 +41,12 @@ public class RecordSimilarityResponse extends Response {
      * @return list of record match results
      */
     @Valid List<RecordSimilarityResult> results;
+
+    /**
+     * @return info message to user, that could hold additional information about the results
+     */
+    @Valid String info;
+
     /**
      * @return error message to user in case no results matched the threshold
      */
