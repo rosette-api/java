@@ -16,33 +16,23 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.Value;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
+import lombok.Getter;
 
-@Jacksonized
-@SuperBuilder
-@Value
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Getter
 public class UnknownField implements RecordSimilarityField {
-    private Map<String, Object> unknownFields = new HashMap<>();
+    Object  data;
 
-    @JsonAnySetter
-    public void setUnknownField(String name, Object value) {
-        unknownFields.put(name, value);
+    @JsonCreator
+    public UnknownField(Object data) {
+        this.data = data;
     }
 
-    @JsonValue public String toJson() {
-        StringBuilder jsonString = new StringBuilder();
-        for (String fieldName : unknownFields.keySet()) {
-            jsonString.append("\"" + fieldName + "\":\"" + unknownFields.get(fieldName).toString() + "\"");
-        }
-        return jsonString.toString();
+
+    @JsonValue
+    public String toJson() {
+        return this.data.toString();
     }
+
 }
