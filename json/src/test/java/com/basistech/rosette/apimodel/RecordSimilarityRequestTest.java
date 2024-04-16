@@ -43,11 +43,14 @@ class RecordSimilarityRequestTest {
     private static final ObjectMapper MAPPER = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
 
     private static final String EXPECTED_JSON = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"address\":\"123 Roadlane Ave\"}}]}}";
+    private static final String EXPECTED_JSON_WITH_PARAMS = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"address\":\"123 Roadlane Ave\"}}]},\"parameters\":{\"timeDistanceWeight\":\"0.8\",\"stringDistanceWeight\":\"0.1\"}}";
+    private static final String EXPECTED_JSON_WITH_UNIVERSE = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"address\":\"123 Roadlane Ave\"}}]},\"parameterUniverse\":\"myUniverse\"}";
+
     private static final RecordSimilarityRequest EXPECTED_REQUEST = RecordSimilarityRequest.builder()
             .fields(Map.of(
+                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.1).build(),
                     "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.NAME).weight(0.5).build(),
                     "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.2).build(),
-                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.1).build(),
                     "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.ADDRESS).weight(0.5).build()))
             .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
             .records(RecordSimilarityRecords.builder()
@@ -85,10 +88,105 @@ class RecordSimilarityRequestTest {
                 ).build()
             ).build();
 
+    private static final RecordSimilarityRequest EXPECTED_REQUEST_WITH_PARAMS = RecordSimilarityRequest.builder()
+            .fields(Map.of(
+                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.1).build(),
+                    "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.NAME).weight(0.5).build(),
+                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.2).build(),
+                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.ADDRESS).weight(0.5).build()))
+            .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
+            .records(RecordSimilarityRecords.builder()
+                    .left(
+                            List.of(
+                                    Map.of(
+                                            "primaryName", NameField.FieldedName.builder()
+                                                    .text("Ethan R").entityType("PERSON")
+                                                    .language(LanguageCode.ENGLISH)
+                                                    .languageOfOrigin(LanguageCode.ENGLISH)
+                                                    .script(ISO15924.Latn)
+                                                    .build(),
+                                            "dob", DateField.UnfieldedDate.builder().date("1993-04-16").build(),
+                                            "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
+                                            "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
+                                    ),
+                                    Map.of(
+                                            "primaryName", NameField.FieldedName.builder().text("Evan R").build(),
+                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                    )
+                            )
+                    ).right(
+                            List.of(
+                                    Map.of(
+                                            "primaryName", NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
+                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                    ),
+                                    Map.of(
+                                            "primaryName", NameField.UnfieldedName.builder().text("Ivan R").build(),
+                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
+                                            "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
+                                            "addr", AddressField.FieldedAddress.builder().address("123 Roadlane Ave").build()
+                                    )
+                            )
+                    ).build()
+            )
+            .parameters(Map.of(
+                    "timeDistanceWeight", "0.8",
+                    "stringDistanceWeight", "0.1"))
+            .build();
+
+    private static final RecordSimilarityRequest EXPECTED_REQUEST_WITH_UNIVERSE = RecordSimilarityRequest.builder()
+            .fields(Map.of(
+                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.2).build(),
+                    "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.NAME).weight(0.5).build(),
+                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.1).build(),
+                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.ADDRESS).weight(0.5).build()))
+            .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
+            .records(RecordSimilarityRecords.builder()
+                    .left(
+                            List.of(
+                                    Map.of(
+                                            "primaryName", NameField.FieldedName.builder()
+                                                    .text("Ethan R").entityType("PERSON")
+                                                    .language(LanguageCode.ENGLISH)
+                                                    .languageOfOrigin(LanguageCode.ENGLISH)
+                                                    .script(ISO15924.Latn)
+                                                    .build(),
+                                            "dob", DateField.UnfieldedDate.builder().date("1993-04-16").build(),
+                                            "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
+                                            "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
+                                    ),
+                                    Map.of(
+                                            "primaryName", NameField.FieldedName.builder().text("Evan R").build(),
+                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                    )
+                            )
+                    ).right(
+                            List.of(
+                                    Map.of(
+                                            "primaryName", NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
+                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                    ),
+                                    Map.of(
+                                            "primaryName", NameField.UnfieldedName.builder().text("Ivan R").build(),
+                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
+                                            "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
+                                            "addr", AddressField.FieldedAddress.builder().address("123 Roadlane Ave").build()
+                                    )
+                            )
+                    ).build()
+            )
+            .parameterUniverse("myUniverse").build();
+
     @Test
     void testDeserialization() throws JsonProcessingException {
         final RecordSimilarityRequest request = MAPPER.readValue(EXPECTED_JSON, new TypeReference<>() { });
         assertEquals(EXPECTED_REQUEST, request);
+
+        final RecordSimilarityRequest requestParams = MAPPER.readValue(EXPECTED_JSON_WITH_PARAMS, new TypeReference<>() { });
+        assertEquals(EXPECTED_REQUEST_WITH_PARAMS, requestParams);
+
+        final RecordSimilarityRequest requestUniverse = MAPPER.readValue(EXPECTED_JSON_WITH_UNIVERSE, new TypeReference<>() { });
+        assertEquals(EXPECTED_REQUEST_WITH_UNIVERSE, requestUniverse);
     }
 
     @Test
@@ -96,6 +194,14 @@ class RecordSimilarityRequestTest {
         final JsonNode expectedJson = MAPPER.readTree(EXPECTED_JSON);
         final JsonNode actualJson = MAPPER.valueToTree(EXPECTED_REQUEST);
         assertEquals(expectedJson, actualJson);
+
+        final JsonNode expectedParamJson = MAPPER.readTree(EXPECTED_JSON_WITH_PARAMS);
+        final JsonNode actualParamJson = MAPPER.valueToTree(EXPECTED_REQUEST_WITH_PARAMS);
+        assertEquals(expectedParamJson, actualParamJson);
+
+        final JsonNode expectedUniverseJson = MAPPER.readTree(EXPECTED_JSON_WITH_UNIVERSE);
+        final JsonNode actualUniverseJson = MAPPER.valueToTree(EXPECTED_REQUEST_WITH_UNIVERSE);
+        assertEquals(expectedUniverseJson, actualUniverseJson);
     }
 
 }
