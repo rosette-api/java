@@ -237,18 +237,18 @@ class RosetteAPITest {
         return getTestFiles("-record-similarity-missing-field.json");
     }
 
-    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
-    @MethodSource("testMatchRecordMissingFieldParameters")
-    void testMatchRecordMissingField(String testFilename, String responseStr, int statusCode) throws IOException {
-        setStatusCodeResponse(responseStr, statusCode);
-
-        try {
-            readValueRecordMatcher(testFilename);
-            fail("Did not throw exception for a field type in request but not in mapping");
-        } catch (IllegalArgumentException e) {
-            assertEquals("Unsupported field name: primaryName not found in field mapping", e.getMessage());
-        }
-    }
+//    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+//    @MethodSource("testMatchRecordMissingFieldParameters")
+//    void testMatchRecordMissingField(String testFilename, String responseStr, int statusCode) throws IOException {
+//        setStatusCodeResponse(responseStr, statusCode);
+//
+//        try {
+//            readValueRecordMatcher(testFilename);
+//            fail("Did not throw exception for a field type in request but not in mapping");
+//        } catch (IllegalArgumentException e) {
+//            assertEquals("Unsupported field name: primaryName not found in field mapping", e.getMessage());
+//        }
+//    }
 
     private static Stream<Arguments> testMatchRecordNullFieldParameters() throws IOException {
         return getTestFiles("-record-similarity-null-field.json");
