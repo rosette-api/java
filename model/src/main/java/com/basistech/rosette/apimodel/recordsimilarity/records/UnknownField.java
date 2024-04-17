@@ -49,12 +49,12 @@ public class UnknownField implements RecordSimilarityField {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 String jsonString = mapper.writeValueAsString(map);
-                JsonNode jsonNode = mapper.readTree(jsonString);
-                return jsonNode;
+                return mapper.readTree(jsonString);
             } catch (JsonProcessingException e) {
                 return this.data;
             }
         }
+        // if given input is not an Object node, it's a String so return it
         return this.data;
     }
 }
