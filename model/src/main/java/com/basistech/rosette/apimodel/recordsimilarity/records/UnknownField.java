@@ -16,14 +16,17 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.Getter;
-import lombok.Value;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Getter
-@Value
 public class UnknownField implements RecordSimilarityField {
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     JsonNode data;
@@ -33,4 +36,25 @@ public class UnknownField implements RecordSimilarityField {
         this.data = data;
     }
 
+    //There's probably a better way to do this
+    @JsonValue
+    public Object getData() {
+        if (data != null && data.isObject()) {
+            Iterator<Map.Entry<String, JsonNode>> fields = data.fields();
+            Map<String, JsonNode> map = new HashMap<>();
+            while (fields.hasNext()) {
+                Map.Entry<String, JsonNode> fieldEntry = fields.next();
+                map.put(fieldEntry.getKey(), fieldEntry.getValue());
+            }
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                String jsonString = mapper.writeValueAsString(map);
+                JsonNode jsonNode = mapper.readTree(jsonString);
+                return jsonNode;
+            } catch (JsonProcessingException e) {
+                return this.data;
+            }
+        }
+        return this.data;
+    }
 }
