@@ -29,6 +29,13 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Value
 public class RecordSimilarityFieldInfo {
+    // The default setting for scoreIfNull, which disables this feature
+    private static final double DEFAULT_SCORE_IF_NULL = -1.0;
     @NotNull @Valid RecordFieldType type;
     Double weight;
+    /**
+     * the score that this field should return if the field is null in a record
+     */
+    @Builder.Default
+    @NotNull @Valid Double scoreIfNull = DEFAULT_SCORE_IF_NULL;
 }
