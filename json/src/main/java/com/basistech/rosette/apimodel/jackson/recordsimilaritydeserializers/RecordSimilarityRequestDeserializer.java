@@ -46,7 +46,6 @@ public class RecordSimilarityRequestDeserializer extends StdDeserializer<RecordS
             final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
             final Map<String, RecordSimilarityFieldInfo> fields = node.get("fields") != null ? node.get("fields").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, RecordSimilarityFieldInfo>>() { }) : new HashMap<>();
             final RecordSimilarityProperties properties = node.get("properties") != null ? node.get("properties").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityProperties.class) : RecordSimilarityProperties.builder().build();
-
             RecordSimilarityRecords records = null;
             String recordsField = "records";
             if (node.get(recordsField) != null && fields != null && node.get(recordsField).get("left") != null && node.get(recordsField).get("right") != null) {
@@ -55,7 +54,6 @@ public class RecordSimilarityRequestDeserializer extends StdDeserializer<RecordS
                         .right(parseRecords(node.get(recordsField).get("right"), fields, jsonParser))
                         .build();
             }
-
             return RecordSimilarityRequest.builder()
                     .fields(fields)
                     .properties(properties)
