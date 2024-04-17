@@ -50,9 +50,11 @@ public class RecordSimilarityResponseDeserializer extends StdDeserializer<Record
         String errorMessage = Optional.ofNullable(node.get("errorMessage")).map(JsonNode::asText).orElse(null);
 
         JsonNode resultsNode = node.get("results");
-        List<RecordSimilarityResult> results = new ArrayList<>(resultsNode.size());
-        for (JsonNode resultNode : resultsNode) {
-            results.add(RecordSimilarityDeserializerUtilities.parseResult(resultNode, jsonParser, fields));
+        List<RecordSimilarityResult> results = new ArrayList<>();
+        if (resultsNode != null) {
+            for (JsonNode resultNode : resultsNode) {
+                results.add(RecordSimilarityDeserializerUtilities.parseResult(resultNode, jsonParser, fields));
+            }
         }
 
         return RecordSimilarityResponse.builder()
