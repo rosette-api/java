@@ -32,25 +32,15 @@ public class RecordSimilarityRequest extends Request {
     @NotEmpty @Valid Map<String, RecordSimilarityFieldInfo> fields;
     @Valid RecordSimilarityProperties properties;
     @NotNull @Valid RecordSimilarityRecords records;
-    @Valid Map<String, String> parameters;
-    @Valid String parameterUniverse;
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
     public RecordSimilarityRequest(String profileId,
                                    Map<String, RecordSimilarityFieldInfo> fields,
                                    RecordSimilarityProperties properties,
-                                   RecordSimilarityRecords records,
-                                   Map<String, String> parameters,
-                                   String parameterUniverse) {
+                                   RecordSimilarityRecords records) {
         super(profileId);
         this.fields = fields;
         this.properties = properties;
         this.records = records;
-        this.parameters = parameters;
-        this.parameterUniverse = parameterUniverse;
-
-        if (this.parameters != null && parameterUniverse != null) {
-            throw new IllegalArgumentException("Parameters and parameter universe may not both be specified");
-        }
     }
 }

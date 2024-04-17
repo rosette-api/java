@@ -56,15 +56,10 @@ public class RecordSimilarityRequestDeserializer extends StdDeserializer<RecordS
                         .build();
             }
 
-            final Map<String, String> parameters = node.get("parameters") != null ? node.get("parameters").traverse(jsonParser.getCodec()).readValueAs(new TypeReference<Map<String, String>>() { }) : null;
-            final String parameterUniverse = node.get("parameterUniverse") != null ? node.get("parameterUniverse").traverse(jsonParser.getCodec()).readValueAs(String.class) : null;
-
             return RecordSimilarityRequest.builder()
                     .fields(fields)
                     .properties(properties)
                     .records(records)
-                    .parameters(parameters)
-                    .parameterUniverse(parameterUniverse)
                     .build();
         }
     }
