@@ -44,26 +44,33 @@ final class RecordSimilarityDeserializerUtilities {
             final String fieldName = recordEntry.getKey();
             final JsonNode fieldValue = recordEntry.getValue();
 
-            final RecordSimilarityFieldInfo fieldInfo = fields.get(fieldName);
             final RecordSimilarityField fieldData;
-            if (fieldInfo.getType() == null) {
-                throw new IllegalArgumentException("Unspecified field type for: " + fieldName);
+
+            if (fields.containsKey(fieldName)) {
+                final RecordSimilarityFieldInfo fieldInfo = fields.get(fieldName);
+                if (fieldInfo.getType() == null) {
+                    throw new IllegalArgumentException("Unspecified field type for: " + fieldName);
+                }
+                switch (fieldInfo.getType()) {
+                case DATE:
+                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
+                    break;
+                case NAME:
+                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(NameField.class);
+                    break;
+                case ADDRESS:
+                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
+                    break;
+                default:
+                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
+                }
+                recordMap.put(fieldName, fieldData);
+            } else {
+                //treat unmapped field as UnknownField so we can get to scoring,
+                //it won't be counted toward the score anyway
+                fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
+                recordMap.put(fieldName, fieldData);
             }
-            switch (fieldInfo.getType()) {
-            case DATE:
-                fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
-                break;
-            case NAME:
-                fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(NameField.class);
-                break;
-            case ADDRESS:
-                fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
-                break;
-            default:
-                fieldData =  fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
-//                    throw new IllegalArgumentException("Unsupported field type: " + fieldInfo.getType());
-            }
-            recordMap.put(fieldName, fieldData);
         }
         return recordMap;
     }

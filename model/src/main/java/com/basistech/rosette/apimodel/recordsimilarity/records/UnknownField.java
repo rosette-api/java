@@ -17,22 +17,20 @@
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.Getter;
+import lombok.Value;
 
 @Getter
+@Value
 public class UnknownField implements RecordSimilarityField {
-    Object  data;
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
+    JsonNode data;
 
     @JsonCreator
-    public UnknownField(Object data) {
+    public UnknownField(JsonNode data) {
         this.data = data;
-    }
-
-
-    @JsonValue
-    public String toJson() {
-        return this.data.toString();
     }
 
 }
