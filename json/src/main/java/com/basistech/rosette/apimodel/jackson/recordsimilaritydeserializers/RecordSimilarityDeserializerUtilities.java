@@ -33,6 +33,10 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityF
 import com.basistech.rosette.apimodel.recordsimilarity.records.UnknownField;
 
 final class RecordSimilarityDeserializerUtilities {
+    private static final String DATE = "rni_date";
+    private static final String NAME = "rni_name";
+    private static final String ADDRESS = "rni_address";
+
 
     private RecordSimilarityDeserializerUtilities() { }
 
