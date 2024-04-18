@@ -17,7 +17,6 @@
 package com.basistech.rosette.apimodel.recordsimilarity;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
