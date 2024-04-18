@@ -17,7 +17,6 @@
 package com.basistech.rosette.apimodel.recordsimilarity;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
@@ -26,7 +25,6 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Value
 public class RecordSimilarityProperties {
-    @Builder.Default
-    @NotNull @Valid Double threshold = 0.0;
-    @NotNull @Valid boolean includeExplainInfo;
+    @Valid Double threshold;
+    @Valid boolean includeExplainInfo;
 }
