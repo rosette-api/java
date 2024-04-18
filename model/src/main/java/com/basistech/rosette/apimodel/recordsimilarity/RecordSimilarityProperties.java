@@ -26,7 +26,6 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Value
 public class RecordSimilarityProperties {
-    @Builder.Default
-    @NotNull @Valid Double threshold = 0.0;
-    @NotNull @Valid boolean includeExplainInfo;
+    @NotNull @Valid Double threshold;
+    @NotNull @Valid Boolean includeExplainInfo;
 }
