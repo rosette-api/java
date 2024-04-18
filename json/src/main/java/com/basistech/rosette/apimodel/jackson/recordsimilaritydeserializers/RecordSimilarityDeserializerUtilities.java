@@ -68,13 +68,12 @@ final class RecordSimilarityDeserializerUtilities {
                 default:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
                 }
-                recordMap.put(fieldName, fieldData);
             } else {
                 //treat unmapped field as UnknownField so we can get to scoring,
                 //it won't be counted toward the score anyway
                 fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
-                recordMap.put(fieldName, fieldData);
             }
+            recordMap.put(fieldName, fieldData);
         }
         return recordMap;
     }
