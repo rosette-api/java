@@ -63,8 +63,6 @@ final class RecordSimilarityDeserializerUtilities {
                     throw new IllegalArgumentException("Unsupported field type: " + fieldInfo.getType());
                 }
                 recordMap.put(fieldName, fieldData);
-            } else {
-                throw new IllegalArgumentException("Unsupported field name: " + fieldName + " not found in field mapping");
             }
         }
         return recordMap;
