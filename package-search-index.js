@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.basistech.rosette.api"},{"l":"com.basistech.rosette.api.common"},{"l":"com.basistech.rosette.apimodel.jackson"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.basistech.rosette.api"},{"l":"com.basistech.rosette.api.common"},{"l":"com.basistech.rosette.apimodel.jackson"},{"l":"com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers"}];updateSearchResults();
