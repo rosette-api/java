@@ -233,9 +233,9 @@ class RosetteAPITest {
         }
     }
 
-    private static Stream<Arguments> testMatchRecordMissingFieldParameters() throws IOException {
-        return getTestFiles("-record-similarity-missing-field.json");
-    }
+//    private static Stream<Arguments> testMatchRecordMissingFieldParameters() throws IOException {
+//        return getTestFiles("-record-similarity-missing-field.json");
+//    }
 
 //    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
 //    @MethodSource("testMatchRecordMissingFieldParameters")
