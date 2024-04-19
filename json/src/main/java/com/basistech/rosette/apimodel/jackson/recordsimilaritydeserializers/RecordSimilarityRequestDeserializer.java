@@ -67,7 +67,7 @@ public class RecordSimilarityRequestDeserializer extends StdDeserializer<RecordS
                                                                          final JsonParser jsonParser) throws IOException {
         final List<Map<String, RecordSimilarityField>> records = new ArrayList<>();
         for (JsonNode recordNode : arrayNode) {
-            records.add(RecordSimilarityDeserializerUtilities.parseRecord(recordNode, fields, jsonParser));
+            records.add(RecordSimilarityDeserializerUtilities.parseRecord(recordNode, jsonParser, fields));
         }
         return records;
     }
