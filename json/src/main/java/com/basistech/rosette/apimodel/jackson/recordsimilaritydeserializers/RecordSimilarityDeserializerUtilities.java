@@ -26,6 +26,8 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityExplainIn
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResult;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
+
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
@@ -39,11 +41,23 @@ final class RecordSimilarityDeserializerUtilities {
     private RecordSimilarityDeserializerUtilities() {
     }
 
-    public static RecordSimilarityResult parseResult(JsonNode node, JsonParser jsonParser, Map<String, RecordSimilarityFieldInfo> fields) throws IOException {
-        final Double score = node.get("score") != null ? node.get("score").traverse(jsonParser.getCodec()).readValueAs(Double.class) : null;
-        final RecordSimilarityExplainInfo explainInfo = node.get("explainInfo") != null ? node.get("explainInfo").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityExplainInfo.class) : null;
-        final Map<String, RecordSimilarityField> left = node.get("left") != null && fields != null ? parseRecord(node.get("left"), jsonParser, fields) : null;
-        final Map<String, RecordSimilarityField> right = node.get("right") != null && fields != null ? parseRecord(node.get("right"), jsonParser, fields) : null;
+    public static RecordSimilarityResult parseResult(
+            JsonNode node,
+            JsonParser jsonParser,
+            @Valid Map<String, RecordSimilarityFieldInfo> fields
+    ) throws IOException {
+        final Double score = node.get("score") != null
+                ? node.get("score").traverse(jsonParser.getCodec()).readValueAs(Double.class)
+                : null;
+        final RecordSimilarityExplainInfo explainInfo = node.get("explainInfo") != null
+                ? node.get("explainInfo").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityExplainInfo.class)
+                : null;
+        final Map<String, RecordSimilarityField> left = node.get("left") != null && fields != null
+                ? parseRecord(node.get("left"), jsonParser, fields)
+                : null;
+        final Map<String, RecordSimilarityField> right = node.get("right") != null && fields != null
+                ? parseRecord(node.get("right"), jsonParser, fields)
+                : null;
         final String error = Optional.ofNullable(node.get("error")).map(JsonNode::asText).orElse(null);
         return RecordSimilarityResult.builder()
                 .score(score)
@@ -54,7 +68,11 @@ final class RecordSimilarityDeserializerUtilities {
                 .build();
     }
 
-    static Map<String, RecordSimilarityField> parseRecord(JsonNode jsonNode, JsonParser jsonParser, @NotNull Map<String, RecordSimilarityFieldInfo> fields) throws IOException {
+    static Map<String, RecordSimilarityField> parseRecord(
+            JsonNode jsonNode,
+            JsonParser jsonParser,
+            @NotNull @Valid Map<String, RecordSimilarityFieldInfo> fields
+    ) throws IOException {
         final Iterator<Map.Entry<String, JsonNode>> recordsIterator = jsonNode.fields();
         final Map<String, RecordSimilarityField> recordMap = new HashMap<>();
         while (recordsIterator.hasNext()) {
