@@ -17,7 +17,6 @@
 package com.basistech.rosette.apimodel.recordsimilarity;
 
 import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
@@ -34,7 +33,6 @@ import javax.validation.Valid;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityResponse extends Response {
-    @Valid Map<String, RecordSimilarityFieldInfo> fields;
     /**
      * @return list of record match results
      */
