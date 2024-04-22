@@ -47,18 +47,18 @@ public class RecordSimilarityResponseTest {
         RecordSimilarityResponse temp;
         try {
             temp = RecordSimilarityResponse.builder()
-                    .fields(Map.of("primaryName", RecordSimilarityFieldInfo.builder()
-                                    .type(RecordFieldType.RNI_NAME)
-                                    .weight(0.5)
-                                    .build(),
-                            "dob", RecordSimilarityFieldInfo.builder()
-                                    .type(RecordFieldType.RNI_DATE)
-                                    .weight(0.2)
-                                    .build(),
-                            "addr", RecordSimilarityFieldInfo.builder()
-                                    .type(RecordFieldType.RNI_ADDRESS)
-                                    .weight(0.3)
-                                    .build()))
+//                    .fields(Map.of("primaryName", RecordSimilarityFieldInfo.builder()
+//                                    .type(RecordFieldType.RNI_NAME)
+//                                    .weight(0.5)
+//                                    .build(),
+//                            "dob", RecordSimilarityFieldInfo.builder()
+//                                    .type(RecordFieldType.RNI_DATE)
+//                                    .weight(0.2)
+//                                    .build(),
+//                            "addr", RecordSimilarityFieldInfo.builder()
+//                                    .type(RecordFieldType.RNI_ADDRESS)
+//                                    .weight(0.3)
+//                                    .build()))
                     .results(List.of(RecordSimilarityResult.builder()
                                     .score(0.87)
                                     .left(Map.of("primaryName", NameField.FieldedName.builder()
