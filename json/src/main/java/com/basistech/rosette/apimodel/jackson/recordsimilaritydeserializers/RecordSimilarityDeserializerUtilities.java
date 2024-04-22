@@ -34,14 +34,11 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.UnknownField;
 
 final class RecordSimilarityDeserializerUtilities {
-    private static final String DATE = "rni_date";
-    private static final String NAME = "rni_name";
-    private static final String ADDRESS = "rni_address";
-
 
     private RecordSimilarityDeserializerUtilities() {
     }
@@ -93,13 +90,13 @@ final class RecordSimilarityDeserializerUtilities {
                     throw new IllegalArgumentException("Unspecified field type for: " + fieldName);
                 }
                 switch (fieldInfo.getType()) {
-                case DATE:
+                case RecordFieldType.RNI_DATE:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
                     break;
-                case NAME:
+                case RecordFieldType.RNI_NAME:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(NameField.class);
                     break;
-                case ADDRESS:
+                case RecordFieldType.RNI_ADDRESS:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
                     break;
                 default:

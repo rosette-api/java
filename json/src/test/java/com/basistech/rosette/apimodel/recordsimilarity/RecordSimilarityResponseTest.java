@@ -48,15 +48,15 @@ public class RecordSimilarityResponseTest {
         try {
             temp = RecordSimilarityResponse.builder()
                     .fields(Map.of("primaryName", RecordSimilarityFieldInfo.builder()
-                                    .type(RecordFieldType.NAME)
+                                    .type(RecordFieldType.RNI_NAME)
                                     .weight(0.5)
                                     .build(),
                             "dob", RecordSimilarityFieldInfo.builder()
-                                    .type(RecordFieldType.DATE)
+                                    .type(RecordFieldType.RNI_DATE)
                                     .weight(0.2)
                                     .build(),
                             "addr", RecordSimilarityFieldInfo.builder()
-                                    .type(RecordFieldType.ADDRESS)
+                                    .type(RecordFieldType.RNI_ADDRESS)
                                     .weight(0.3)
                                     .build()))
                     .results(List.of(RecordSimilarityResult.builder()

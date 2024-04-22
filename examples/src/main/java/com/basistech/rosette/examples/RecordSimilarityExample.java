@@ -24,6 +24,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResponse;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 
@@ -38,9 +39,6 @@ import static com.basistech.rosette.api.common.AbstractRosetteAPI.RECORD_SIMILAR
  */
 @SuppressWarnings({"java:S1166", "java:S2221", "java:S106"})
 public class RecordSimilarityExample extends ExampleBase {
-    private static final String DATE = "rni_date";
-    private static final String ADDRESS = "rni_address";
-    private static final String NAME = "rni_name";
     public static void main(String[] args) {
         try {
             new RecordSimilarityExample().run();
@@ -58,10 +56,10 @@ public class RecordSimilarityExample extends ExampleBase {
         String dobHyphen = "1993-04-16";
         RecordSimilarityRequest request = RecordSimilarityRequest.builder()
                 .fields(Map.of(
-                        primaryNameField, RecordSimilarityFieldInfo.builder().type(NAME).weight(0.5).build(),
-                        dobField, RecordSimilarityFieldInfo.builder().type(DATE).weight(0.2).build(),
-                        dob2Field, RecordSimilarityFieldInfo.builder().type(DATE).weight(0.1).build(),
-                        addrField, RecordSimilarityFieldInfo.builder().type(ADDRESS).weight(0.5).build()))
+                        primaryNameField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NAME).weight(0.5).build(),
+                        dobField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build(),
+                        dob2Field, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.1).build(),
+                        addrField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build()))
                 .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
                 .records(RecordSimilarityRecords.builder()
                         .left(
