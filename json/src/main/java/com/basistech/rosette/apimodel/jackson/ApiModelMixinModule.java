@@ -27,8 +27,8 @@ import com.basistech.rosette.apimodel.NameDeduplicationRequest;
 import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.AddressFieldDeserializer;
 import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.DateFieldDeserializer;
 import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.NameFieldDeserializer;
-import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResult;
-import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordSimilarityResultDeserializer;
+import com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers.RecordSimilarityResponseDeserializer;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResponse;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
@@ -99,7 +99,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         deserializers.addDeserializer(DateField.class, new DateFieldDeserializer());
         deserializers.addDeserializer(AddressField.class, new AddressFieldDeserializer());
         deserializers.addDeserializer(RecordSimilarityRequest.class, new RecordSimilarityRequestDeserializer());
-        deserializers.addDeserializer(RecordSimilarityResult.class, new RecordSimilarityResultDeserializer());
+        deserializers.addDeserializer(RecordSimilarityResponse.class, new RecordSimilarityResponseDeserializer());
         context.addDeserializers(deserializers);
     }
 
