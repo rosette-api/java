@@ -16,7 +16,6 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -38,26 +37,25 @@ public class UnknownField implements RecordSimilarityField {
         this.data = data;
     }
 
-    //There's probably a better way to do this
     @JsonValue
     public Object getData() {
-        if (data != null && data.isObject()) {
-            Iterator<Map.Entry<String, JsonNode>> fields = data.fields();
-            Map<String, JsonNode> map = new LinkedHashMap<>();
-            while (fields.hasNext()) {
-                Map.Entry<String, JsonNode> fieldEntry = fields.next();
-                map.put(fieldEntry.getKey(), fieldEntry.getValue());
+        if (data == null) {
+            return "";
+        } else {
+            if (data.isObject()) {
+                Map<String, JsonNode> map = new LinkedHashMap<>();
+                data.fields().forEachRemaining(fieldEntry -> map.put(fieldEntry.getKey(), fieldEntry.getValue()));
+                try {
+                    ObjectMapper mapper = new ObjectMapper();
+                    String jsonString = mapper.writeValueAsString(map);
+                    return mapper.readTree(jsonString);
+                } catch (JsonProcessingException e) {
+                    return this.data;
+                }
             }
-            try {
-                ObjectMapper mapper = new ObjectMapper();
-                String jsonString = mapper.writeValueAsString(map);
-                return mapper.readTree(jsonString);
-            } catch (JsonProcessingException e) {
-                return this.data;
-            }
+            // if given input is not an Object node, it's a String so return it
+            return this.data;
         }
-        // if given input is not an Object node, it's a String so return it
-        return this.data;
     }
 
     @Override
