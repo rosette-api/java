@@ -43,6 +43,7 @@ public class RecordSimilarityResponse extends Response {
     /**
      * @return info messages to user, that could hold additional information about the results
      */
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Valid List<String> info;
 
     /**
