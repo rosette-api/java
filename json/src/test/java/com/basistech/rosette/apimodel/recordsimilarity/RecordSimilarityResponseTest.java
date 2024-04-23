@@ -120,16 +120,7 @@ public class RecordSimilarityResponseTest {
         MAPPER.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
         MAPPER.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
         final RecordSimilarityResponse response = MAPPER.readValue(EXPECTED_JSON, RecordSimilarityResponse.class);
-        for (int i = 0; i < response.getResults().size(); i++) {
-            for (String fieldName : response.getResults().get(i).getLeft().keySet()) {
-                assertEquals(MAPPER.writeValueAsString(response.getResults().get(i).getLeft().get(fieldName)),
-                        MAPPER.writeValueAsString(EXPECTED_RESPONSE.getResults().get(i).getLeft().get(fieldName)));
-            }
-            for (String fieldName : response.getResults().get(i).getRight().keySet()) {
-                assertEquals(MAPPER.writeValueAsString(response.getResults().get(i).getRight().get(fieldName)),
-                        MAPPER.writeValueAsString(EXPECTED_RESPONSE.getResults().get(i).getRight().get(fieldName)));
-            }
-        }
+        assertEquals(MAPPER.writeValueAsString(response), MAPPER.writeValueAsString(EXPECTED_RESPONSE));
     }
 
     @Test
