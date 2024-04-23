@@ -25,7 +25,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class UnknownField implements RecordSimilarityField {
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -56,5 +58,22 @@ public class UnknownField implements RecordSimilarityField {
         }
         // if given input is not an Object node, it's a String so return it
         return this.data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        try {
+            if (o instanceof UnknownField) {
+                UnknownField other = (UnknownField) o;
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+                mapper.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
+                return (mapper.writeValueAsString(this.data).equals(mapper.writeValueAsString(other.data)));
+            } else {
+                return false;
+            }
+        } catch (JsonProcessingException ex) {
+            return false;
+        }
     }
 }
