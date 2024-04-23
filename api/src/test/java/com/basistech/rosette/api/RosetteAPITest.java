@@ -241,43 +241,15 @@ class RosetteAPITest {
     @MethodSource("testMatchRecordMissingFieldParameters")
     void testMatchRecordMissingField(String testFilename, String responseStr, int statusCode) throws IOException {
         setStatusCodeResponse(responseStr, statusCode);
-            readValueRecordMatcher(testFilename);
-            assertEquals("{\n" +
-                    "  \"results\": [\n" +
-                    "    {\n" +
-                    "      \"score\": 0.0,\n" +
-                    "      \"left\": {\n" +
-                    "        \"dob2\": \"1993/04/16\",\n" +
-                    "        \"dob\": \"1993-04-16\",\n" +
-                    "        \"primaryName\": {\n" +
-                    "          \"data\": \"Ethan R\",\n" +
-                    "          \"language\": \"eng\",\n" +
-                    "          \"entityType\": \"PERSON\"\n" +
-                    "        },\n" +
-                    "        \"addr\": \"123 Roadlane Ave\"\n" +
-                    "      },\n" +
-                    "      \"right\": {\n" +
-                    "        \"dob\": \"1993-04-16\",\n" +
-                    "        \"primaryName\": \"Seth R\"\n" +
-                    "      },\n" +
-                    "      \"error\": \"Field 'primaryName' not found in field mapping\"\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"score\": 0.0,\n" +
-                    "      \"left\": {\n" +
-                    "        \"dob\": \"1993-04-16\",\n" +
-                    "        \"primaryName\": \"Evan R\"\n" +
-                    "      },\n" +
-                    "      \"right\": {\n" +
-                    "        \"dob2\": \"1993/04/16\",\n" +
-                    "        \"dob\": \"1993-04-16\",\n" +
-                    "        \"primaryName\": \"Ivan R\",\n" +
-                    "        \"addr\": \"123 Roadlane Ave\"\n" +
-                    "      },\n" +
-                    "      \"error\": \"Field 'primaryName' not found in field mapping\"\n" +
-                    "    }\n" +
-                    "  ]\n" +
-                    "}", responseStr);
+        readValueRecordMatcher(testFilename);
+        assertEquals("{\"results\":[{\"score\":0.0,\"left\":{\"dob2\":\"1993/04/16\","
+                    + "\"dob\":\"1993-04-16\",\"primaryName\":{\"data\":\"Ethan R\",\"language\":\"eng\","
+                    + "\"entityType\":\"PERSON\"},\"addr\":\"123 Roadlane Ave\"},\"right\":{\"dob\":\"1993-04-16\","
+                    + "\"primaryName\":\"Seth R\"},\"error\":\"Field 'primaryName' not found in field mapping\"},"
+                    + "{\"score\":0.0,\"left\":{\"dob\":\"1993-04-16\",\"primaryName\":\"Evan R\"},"
+                    + "\"right\":{\"dob2\":\"1993/04/16\",\"dob\":\"1993-04-16\",\"primaryName\":\"Ivan R\","
+                    + "\"addr\":\"123 Roadlane Ave\"},\"error\":\"Field 'primaryName' not found in field mapping\"}]}",
+                    responseStr);
     }
 
     private static Stream<Arguments> testMatchRecordNullFieldParameters() throws IOException {
