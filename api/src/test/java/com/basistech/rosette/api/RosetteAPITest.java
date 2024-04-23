@@ -233,22 +233,52 @@ class RosetteAPITest {
         }
     }
 
-//    private static Stream<Arguments> testMatchRecordMissingFieldParameters() throws IOException {
-//        return getTestFiles("-record-similarity-missing-field.json");
-//    }
+    private static Stream<Arguments> testMatchRecordMissingFieldParameters() throws IOException {
+        return getTestFiles("-record-similarity-missing-field.json");
+    }
 
-//    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
-//    @MethodSource("testMatchRecordMissingFieldParameters")
-//    void testMatchRecordMissingField(String testFilename, String responseStr, int statusCode) throws IOException {
-//        setStatusCodeResponse(responseStr, statusCode);
-//
-//        try {
-//            readValueRecordMatcher(testFilename);
-//            fail("Did not throw exception for a field type in request but not in mapping");
-//        } catch (IllegalArgumentException e) {
-//            assertEquals("Unsupported field name: primaryName not found in field mapping", e.getMessage());
-//        }
-//    }
+    @ParameterizedTest(name = "testFilename: {0}; statusCode: {2}")
+    @MethodSource("testMatchRecordMissingFieldParameters")
+    void testMatchRecordMissingField(String testFilename, String responseStr, int statusCode) throws IOException {
+        setStatusCodeResponse(responseStr, statusCode);
+            readValueRecordMatcher(testFilename);
+            assertEquals("{\n" +
+                    "  \"results\": [\n" +
+                    "    {\n" +
+                    "      \"score\": 0.0,\n" +
+                    "      \"left\": {\n" +
+                    "        \"dob2\": \"1993/04/16\",\n" +
+                    "        \"dob\": \"1993-04-16\",\n" +
+                    "        \"primaryName\": {\n" +
+                    "          \"data\": \"Ethan R\",\n" +
+                    "          \"language\": \"eng\",\n" +
+                    "          \"entityType\": \"PERSON\"\n" +
+                    "        },\n" +
+                    "        \"addr\": \"123 Roadlane Ave\"\n" +
+                    "      },\n" +
+                    "      \"right\": {\n" +
+                    "        \"dob\": \"1993-04-16\",\n" +
+                    "        \"primaryName\": \"Seth R\"\n" +
+                    "      },\n" +
+                    "      \"error\": \"Field 'primaryName' not found in field mapping\"\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"score\": 0.0,\n" +
+                    "      \"left\": {\n" +
+                    "        \"dob\": \"1993-04-16\",\n" +
+                    "        \"primaryName\": \"Evan R\"\n" +
+                    "      },\n" +
+                    "      \"right\": {\n" +
+                    "        \"dob2\": \"1993/04/16\",\n" +
+                    "        \"dob\": \"1993-04-16\",\n" +
+                    "        \"primaryName\": \"Ivan R\",\n" +
+                    "        \"addr\": \"123 Roadlane Ave\"\n" +
+                    "      },\n" +
+                    "      \"error\": \"Field 'primaryName' not found in field mapping\"\n" +
+                    "    }\n" +
+                    "  ]\n" +
+                    "}", responseStr);
+    }
 
     private static Stream<Arguments> testMatchRecordNullFieldParameters() throws IOException {
         return getTestFiles("-record-similarity-null-field.json");

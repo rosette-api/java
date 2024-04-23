@@ -1,5 +1,36 @@
 {
-  "code": "badRequestFormat",
-  "message": "Unsupported field name: primaryName not found in field mapping",
-  "stack": null
+  "results": [
+    {
+      "score": 0.0,
+      "left": {
+        "dob2": "1993/04/16",
+        "dob": "1993-04-16",
+        "primaryName": {
+          "data": "Ethan R",
+          "language": "eng",
+          "entityType": "PERSON"
+        },
+        "addr": "123 Roadlane Ave"
+      },
+      "right": {
+        "dob": "1993-04-16",
+        "primaryName": "Seth R"
+      },
+      "error": "Field 'primaryName' not found in field mapping"
+    },
+    {
+      "score": 0.0,
+      "left": {
+        "dob": "1993-04-16",
+        "primaryName": "Evan R"
+      },
+      "right": {
+        "dob2": "1993/04/16",
+        "dob": "1993-04-16",
+        "primaryName": "Ivan R",
+        "addr": "123 Roadlane Ave"
+      },
+      "error": "Field 'primaryName' not found in field mapping"
+    }
+  ]
 }
