@@ -58,6 +58,8 @@ public class UnknownField implements RecordSimilarityField {
         }
     }
 
+    //compare the content of the String form of the UnknownFields' data
+    //enforce ordering
     @Override
     public boolean equals(Object o) {
         try {
@@ -66,7 +68,7 @@ public class UnknownField implements RecordSimilarityField {
                 ObjectMapper mapper = new ObjectMapper();
                 mapper.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
                 mapper.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
-                return (mapper.writeValueAsString(this.data).equals(mapper.writeValueAsString(other.data)));
+                return mapper.writeValueAsString(this.data).equals(mapper.writeValueAsString(other.data));
             } else {
                 return false;
             }
@@ -74,4 +76,18 @@ public class UnknownField implements RecordSimilarityField {
             return false;
         }
     }
+
+    //hashcode based on String form
+    @Override
+    public int hashCode() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+            mapper.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
+            return 19 * mapper.writeValueAsString(this.data).hashCode();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
