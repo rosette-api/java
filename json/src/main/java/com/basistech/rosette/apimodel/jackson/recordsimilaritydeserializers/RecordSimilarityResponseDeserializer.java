@@ -16,11 +16,9 @@
 
 package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
-//import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResponse;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResult;
 import com.fasterxml.jackson.core.JsonParser;
-//import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -28,13 +26,9 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Map;
 import java.util.Optional;
 
 public class RecordSimilarityResponseDeserializer extends StdDeserializer<RecordSimilarityResponse> {
-
-//    private static final TypeReference<Map<String, RecordSimilarityFieldInfo>> FIELDS_TYPE_REFERENCE = new TypeReference<>() {
-//    };
 
     public RecordSimilarityResponseDeserializer() {
         super(RecordSimilarityResponse.class);

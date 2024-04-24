@@ -66,15 +66,16 @@ final class RecordSimilarityDeserializerUtilities {
                 .build();
     }
 
-    static Map<String, RecordSimilarityField> parseRecordForResponse(JsonNode jsonNode, JsonParser jsonParser) throws IOException {
+    static Map<String, RecordSimilarityField> parseRecordForResponse(JsonNode jsonNode, JsonParser jsonParser) {
         final Map<String, RecordSimilarityField> recordMap = new HashMap<>();
-        final Iterator<Map.Entry<String, JsonNode>> recordsIterator = jsonNode.fields();
-        while (recordsIterator.hasNext()) {
-            final Map.Entry<String, JsonNode> recordEntry = recordsIterator.next();
-            final String fieldName = recordEntry.getKey();
-            RecordSimilarityField rsf = jsonNode.get(fieldName).traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
-            recordMap.put(fieldName, rsf);
-        }
+        jsonNode.fields().forEachRemaining(entry -> {
+            String fieldName = entry.getKey();
+            try {
+                recordMap.put(fieldName, jsonNode.get(fieldName).traverse(jsonParser.getCodec()).readValueAs(UnknownField.class));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         return recordMap;
     }
 
