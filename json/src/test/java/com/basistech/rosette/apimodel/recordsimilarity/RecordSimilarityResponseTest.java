@@ -120,6 +120,8 @@ public class RecordSimilarityResponseTest {
         MAPPER.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
         MAPPER.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
         final RecordSimilarityResponse response = MAPPER.readValue(EXPECTED_JSON, RecordSimilarityResponse.class);
+        //Can't compare response objects directly since fields within names and other RecordSimilarityField may
+        // change order, so compare the content of their json strings with fields sorted alphabetically
         assertEquals(MAPPER.writeValueAsString(response), MAPPER.writeValueAsString(EXPECTED_RESPONSE));
     }
 

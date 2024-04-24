@@ -71,7 +71,8 @@ final class RecordSimilarityDeserializerUtilities {
         jsonNode.fields().forEachRemaining(entry -> {
             String fieldName = entry.getKey();
             try {
-                recordMap.put(fieldName, jsonNode.get(fieldName).traverse(jsonParser.getCodec()).readValueAs(UnknownField.class));
+                recordMap.put(fieldName, jsonNode.get(fieldName).traverse(jsonParser.getCodec())
+                        .readValueAs(UnknownField.class));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
