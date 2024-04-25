@@ -62,7 +62,7 @@ final class RecordSimilarityDeserializerUtilities {
                 ? parseRecord(node.get("right"), jsonParser, fields)
                 : null;
         final String error = Optional.ofNullable(node.get("error")).map(JsonNode::asText).orElse(null);
-        List<String> info = Optional.ofNullable(node.get("info"))
+        final List<String> info = Optional.ofNullable(node.get("info"))
                 .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
                         .map(JsonNode::asText)
                         .collect(Collectors.toList()))
