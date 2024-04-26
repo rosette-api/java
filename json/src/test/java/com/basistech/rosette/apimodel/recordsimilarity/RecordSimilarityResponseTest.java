@@ -96,7 +96,7 @@ public class RecordSimilarityResponseTest {
                                                             .finalScore(0.85)
                                                             .details(MAPPER.readTree("\"any details\""))
                                                             .build()
-                                                    ))
+                                            ))
                                             .build())
                                     .build(),
                             RecordSimilarityResult.builder()
