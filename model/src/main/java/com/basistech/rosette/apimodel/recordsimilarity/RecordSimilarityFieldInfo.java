@@ -34,5 +34,5 @@ public class RecordSimilarityFieldInfo {
     /**
      * the score that this field should return if the field is null in a record
      */
-    @NotNull @Valid Double scoreIfNull;
+    Double scoreIfNull;
 }
