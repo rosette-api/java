@@ -50,10 +50,10 @@ public class RecordSimilarityResponseDeserializer extends StdDeserializer<Record
 
         Map<String, RecordSimilarityFieldInfo> fields = fieldsNode != null ? node.get("fields").traverse(jsonParser.getCodec()).readValueAs(FIELDS_TYPE_REFERENCE) : null;
         List<String> info = Optional.ofNullable(node.get("info"))
-                            .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
-                                                          .map(JsonNode::asText)
-                                                          .collect(Collectors.toList()))
-                            .orElse(null);
+                .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
+                        .map(JsonNode::asText)
+                        .collect(Collectors.toList()))
+                .orElse(null);
         String errorMessage = Optional.ofNullable(node.get("errorMessage")).map(JsonNode::asText).orElse(null);
 
         JsonNode resultsNode = node.get("results");
