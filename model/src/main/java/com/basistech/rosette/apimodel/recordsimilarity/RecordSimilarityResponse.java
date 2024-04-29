@@ -22,7 +22,6 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Value;
-import lombok.extern.jackson.Jacksonized;
 
 import com.basistech.rosette.apimodel.Response;
 
@@ -33,7 +32,6 @@ import javax.validation.Valid;
  */
 @Value
 @Builder
-@Jacksonized
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityResponse extends Response {
     @Valid Map<String, RecordSimilarityFieldInfo> fields;

@@ -28,7 +28,7 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityF
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityResult {
-    double score;
+    Double score;
     Map<String, RecordSimilarityField> left;
     Map<String, RecordSimilarityField> right;
     RecordSimilarityExplainInfo explainInfo;
