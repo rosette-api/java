@@ -18,6 +18,7 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import javax.validation.Valid;
 import lombok.Builder;
 import lombok.Value;
@@ -28,7 +29,12 @@ import javax.validation.constraints.NotNull;
 @Jacksonized
 @Builder
 @Value
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityFieldInfo {
     @NotNull @Valid RecordFieldType type;
     Double weight;
+    /**
+     * the score that this field should return if the field is null in a record
+     */
+    Double scoreIfNull;
 }
