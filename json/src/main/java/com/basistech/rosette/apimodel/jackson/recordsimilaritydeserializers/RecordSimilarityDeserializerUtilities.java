@@ -17,10 +17,11 @@
 package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityExplainInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResult;
@@ -60,13 +61,20 @@ final class RecordSimilarityDeserializerUtilities {
         final Map<String, RecordSimilarityField> right = node.get("right") != null && fields != null
                 ? parseRecord(node.get("right"), jsonParser, fields)
                 : null;
-        final String error = Optional.ofNullable(node.get("error")).map(JsonNode::asText).orElse(null);
+
+        List<String> errorList = new ArrayList<>();
+        JsonNode errorNode = node.get("error");
+        if (errorNode != null && errorNode.isArray()) {
+            for (JsonNode element : errorNode) {
+                errorList.add(element.asText());
+            }
+        }
         return RecordSimilarityResult.builder()
                 .score(score)
                 .left(left)
                 .right(right)
                 .explainInfo(explainInfo)
-                .error(error)
+                .error(errorList)
                 .build();
     }
 
