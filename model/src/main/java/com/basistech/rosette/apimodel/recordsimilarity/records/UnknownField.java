@@ -16,9 +16,6 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -49,23 +46,7 @@ public class UnknownField implements RecordSimilarityField {
 
     @JsonValue
     public Object getData() {
-        if (data == null) {
-            return "";
-        } else {
-            if (data.isObject()) {
-                Map<String, JsonNode> map = new LinkedHashMap<>();
-                data.fields().forEachRemaining(fieldEntry -> map.put(fieldEntry.getKey(), fieldEntry.getValue()));
-                try {
-                    ObjectMapper mapper = new ObjectMapper();
-                    String jsonString = mapper.writeValueAsString(map);
-                    return mapper.readTree(jsonString);
-                } catch (JsonProcessingException e) {
-                    return this.data;
-                }
-            }
-            // if given input is not an Object node, it's a String so return it
-            return this.data;
-        }
+        return this.data;
     }
 
     //compare the content of the String form of the UnknownFields' data
