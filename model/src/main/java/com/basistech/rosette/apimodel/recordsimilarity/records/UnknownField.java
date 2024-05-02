@@ -39,7 +39,12 @@ public class UnknownField implements RecordSimilarityField {
 
     @Override
     public String toString() {
-        return String.valueOf(this.data);
+        return String.valueOf(getData())
+                .replace("\"", "")
+                .replace(":", "=")
+                .replace("{", "(")
+                .replace("}", ")")
+                .replace(",", ", ");
     }
 
     @JsonValue
