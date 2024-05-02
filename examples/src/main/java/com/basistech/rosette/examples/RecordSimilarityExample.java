@@ -90,7 +90,7 @@ public class RecordSimilarityExample extends ExampleBase {
                                                 primaryNameField, NameField.UnfieldedName.builder().text("Ivan R").build(),
                                                 dobField, DateField.FieldedDate.builder().date(dobHyphen).build(),
                                                 dob2Field, DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                                addrField, AddressField.FieldedAddress.builder().address("123 Roadlane Ave").build()
+                                                addrField, AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build()
                                         )
                                 )
                         ).build()

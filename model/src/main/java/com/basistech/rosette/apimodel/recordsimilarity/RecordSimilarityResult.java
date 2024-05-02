@@ -16,6 +16,7 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,9 +29,10 @@ import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityF
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityResult {
-    double score;
+    Double score;
     Map<String, RecordSimilarityField> left;
     Map<String, RecordSimilarityField> right;
     RecordSimilarityExplainInfo explainInfo;
+    List<String> info;
     String error;
 }
