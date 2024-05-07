@@ -45,6 +45,7 @@ public abstract class DateField implements RecordSimilarityField {
     @Value
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class FieldedDate extends DateField {
+        @NotBlank String format;
     }
 
 }
