@@ -29,6 +29,7 @@ import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +45,6 @@ class RecordSimilarityRequestTest {
     private static final String EXPECTED_JSON_WITH_PARAMS = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true,\"parameters\":{\"timeDistanceWeight\":\"0.8\",\"stringDistanceWeight\":\"0.1\"}},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"}}]}}";
     private static final String EXPECTED_JSON_WITH_UNIVERSE = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true,\"parameterUniverse\":\"myParameterUniverse\"},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"}}]}}";
 
-    private static final String EXPECTED_JSON = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"address\":\"123 Roadlane Ave\"}}]}}";
     private static final RecordSimilarityRequest EXPECTED_REQUEST = RecordSimilarityRequest.builder()
             .fields(Map.of(
                     "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).scoreIfNull(0.8).build(),
@@ -186,8 +186,6 @@ class RecordSimilarityRequestTest {
 
     @Test
     void testDeserialization() throws JsonProcessingException {
-        MAPPER.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
-        MAPPER.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
         final RecordSimilarityRequest request = MAPPER.readValue(EXPECTED_JSON, new TypeReference<>() { });
         assertEquals(EXPECTED_REQUEST, request);
 
