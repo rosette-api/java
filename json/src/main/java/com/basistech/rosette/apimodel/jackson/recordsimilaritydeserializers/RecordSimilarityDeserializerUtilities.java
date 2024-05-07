@@ -22,6 +22,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityExplainInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResult;
@@ -69,12 +72,18 @@ final class RecordSimilarityDeserializerUtilities {
                 errorList.add(element.asText());
             }
         }
+        List<String> info = Optional.ofNullable(node.get("info"))
+                .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
+                        .map(JsonNode::asText)
+                        .collect(Collectors.toList()))
+                .orElse(null);
         return RecordSimilarityResult.builder()
                 .score(score)
                 .left(left)
                 .right(right)
                 .explainInfo(explainInfo)
                 .error(errorList)
+                .info(info)
                 .build();
     }
 

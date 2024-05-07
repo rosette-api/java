@@ -34,4 +34,5 @@ public class RecordSimilarityResult {
     Map<String, RecordSimilarityField> right;
     RecordSimilarityExplainInfo explainInfo;
     List<String> error;
+    List<String> info;
 }

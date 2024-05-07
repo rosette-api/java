@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class RecordSimilarityResponseDeserializer extends StdDeserializer<RecordSimilarityResponse> {
 
@@ -47,6 +49,11 @@ public class RecordSimilarityResponseDeserializer extends StdDeserializer<Record
         JsonNode fieldsNode = node.get("fields");
 
         Map<String, RecordSimilarityFieldInfo> fields = fieldsNode != null ? node.get("fields").traverse(jsonParser.getCodec()).readValueAs(FIELDS_TYPE_REFERENCE) : null;
+        List<String> info = Optional.ofNullable(node.get("info"))
+                            .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
+                                                          .map(JsonNode::asText)
+                                                          .collect(Collectors.toList()))
+                            .orElse(null);
         String errorMessage = Optional.ofNullable(node.get("errorMessage")).map(JsonNode::asText).orElse(null);
 
         JsonNode resultsNode = node.get("results");
@@ -60,6 +67,7 @@ public class RecordSimilarityResponseDeserializer extends StdDeserializer<Record
         return RecordSimilarityResponse.builder()
                 .fields(fields)
                 .results(results)
+                .info(info)
                 .errorMessage(errorMessage)
                 .build();
     }
