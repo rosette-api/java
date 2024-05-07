@@ -30,14 +30,14 @@ import javax.validation.constraints.NotBlank;
 @Value
 @NonFinal
 public abstract class AddressField implements RecordSimilarityField {
-    @NotBlank String address;
 
     @Jacksonized
     @SuperBuilder
     @Value
     public static class UnfieldedAddress extends AddressField {
+        @NotBlank String address;
         @JsonValue public String toJson() {
-            return super.getAddress();
+            return address;
         }
     }
 
@@ -46,6 +46,24 @@ public abstract class AddressField implements RecordSimilarityField {
     @Value
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class FieldedAddress extends AddressField {
+        String house;
+        String houseNumber;
+        String road;
+        String unit;
+        String level;
+        String staircase;
+        String entrance;
+        String suburb;
+        String cityDistrict;
+        String city;
+        String island;
+        String stateDistrict;
+        String state;
+        String countryRegion;
+        String country;
+        String worldRegion;
+        String postCode;
+        String poBox;
     }
 
 }

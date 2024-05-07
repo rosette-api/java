@@ -26,7 +26,12 @@ import javax.validation.constraints.NotNull;
 @Jacksonized
 @Builder
 @Value
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityFieldInfo {
     @NotNull @Valid String type;
     Double weight;
+    /**
+     * the score that this field should return if the field is null in a record
+     */
+    Double scoreIfNull;
 }
