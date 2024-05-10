@@ -97,7 +97,7 @@ public class RecordSimilarityExample extends ExampleBase {
                 ).build();
 
         HttpRosetteAPI rosetteAPI = new HttpRosetteAPI.Builder()
-                                    .key("b1db524b37ad4b75f86729999d6017fd")
+                                    .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
