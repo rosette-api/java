@@ -20,7 +20,6 @@ import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
-import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.basistech.util.NEConstants;
@@ -38,7 +37,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RecordSimilarityResponseTest {
 
     private static final ObjectMapper MAPPER = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-    private static final String EXPECTED_JSON = "{\"fields\":{\"addr\":{\"scoreIfNull\":0.8,\"type\":\"rni_address\",\"weight\":0.3},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5}},\"info\":[\"Field threshold not found in properties! Defaulting to 0.0\",\"Field weight not found in fields! Defaulting to 1.0 for all entries\"],\"results\":[{\"explainInfo\":{\"leftOnlyFields\":[\"addr\"],\"scoredFields\":{\"dob\":{\"calculatedWeight\":0.2857142857142857,\"finalScore\":0.74,\"rawScore\":0.8,\"weight\":0.5},\"primaryName\":{\"calculatedWeight\":0.7142857142857143,\"details\":\"any details\",\"finalScore\":0.85,\"rawScore\":0.99,\"weight\":0.5}}},\"left\":{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"primaryName\":{\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\",\"text\":\"Ethan R\"}},\"right\":{\"dob\":\"1993-04-16\",\"primaryName\":{\"text\":\"Seth R\"}},\"score\":0.87},{\"error\":\"Field foo not found in field mapping\",\"info\":[\"Some info message\",\"Some other info message\"],\"left\":{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"primaryName\":{\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\",\"text\":\"Ethan R\"}},\"right\":{\"dob\":\"1993-04-16\",\"primaryName\":{\"text\":\"Seth R\"}}}]}";
+
+    private static final String EXPECTED_JSON = "{\"info\":[\"Field threshold not found in properties! Defaulting to 0.0\",\"Field weight not found in fields! Defaulting to 1.0 for all entries\"],\"results\":[{\"explainInfo\":{\"leftOnlyFields\":[\"addr\"],\"scoredFields\":{\"dob\":{\"calculatedWeight\":0.2857142857142857,\"finalScore\":0.74,\"rawScore\":0.8,\"weight\":0.5},\"primaryName\":{\"calculatedWeight\":0.7142857142857143,\"details\":\"any details\",\"finalScore\":0.85,\"rawScore\":0.99,\"weight\":0.5}}},\"left\":{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"primaryName\":{\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\",\"text\":\"Ethan R\"}},\"right\":{\"dob\":\"1993-04-16\",\"primaryName\":{\"text\":\"Seth R\"}},\"score\":0.87},{\"error\":\"Field foo not found in field mapping\",\"info\":[\"Some info message\",\"Some other info message\"],\"left\":{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"primaryName\":{\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\",\"text\":\"Ethan R\"}},\"right\":{\"dob\":\"1993-04-16\",\"primaryName\":{\"text\":\"Seth R\"}}}]}";
 
     private static final RecordSimilarityResponse EXPECTED_RESPONSE;
 
@@ -46,20 +46,6 @@ public class RecordSimilarityResponseTest {
         RecordSimilarityResponse temp;
         try {
             temp = RecordSimilarityResponse.builder()
-                    .fields(Map.of("primaryName", RecordSimilarityFieldInfo.builder()
-                                    .type(RecordFieldType.NAME)
-                                    .weight(0.5)
-                                    .build(),
-                            "dob", RecordSimilarityFieldInfo.builder()
-                                    .type(RecordFieldType.DATE)
-                                    .weight(0.2)
-                                    .scoreIfNull(null)
-                                    .build(),
-                            "addr", RecordSimilarityFieldInfo.builder()
-                                    .type(RecordFieldType.ADDRESS)
-                                    .weight(0.3)
-                                    .scoreIfNull(0.8)
-                                    .build()))
                     .results(List.of(RecordSimilarityResult.builder()
                                     .score(0.87)
                                     .left(Map.of("primaryName", NameField.FieldedName.builder()
@@ -136,8 +122,12 @@ public class RecordSimilarityResponseTest {
 
     @Test
     public void testDeserialization() throws JsonProcessingException {
+        MAPPER.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+        MAPPER.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
         final RecordSimilarityResponse response = MAPPER.readValue(EXPECTED_JSON, RecordSimilarityResponse.class);
-        assertEquals(EXPECTED_RESPONSE, response);
+        //Can't compare response objects directly since fields within names and other RecordSimilarityField may
+        // change order, so compare the content of their json strings with fields sorted alphabetically
+        assertEquals(MAPPER.writeValueAsString(response), MAPPER.writeValueAsString(EXPECTED_RESPONSE));
     }
 
     @Test

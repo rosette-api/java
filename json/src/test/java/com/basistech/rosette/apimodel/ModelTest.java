@@ -102,6 +102,9 @@ class ModelTest {
             if (className.contains("RecordSimilarityRequest")) {
                 continue;
             }
+            if (className.contains("UnknownField")) {
+                continue;
+            }
 
             Class c = Class.forName(className);
             if (Modifier.isAbstract(c.getModifiers())) {

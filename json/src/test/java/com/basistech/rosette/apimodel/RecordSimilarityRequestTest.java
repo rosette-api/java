@@ -47,10 +47,10 @@ class RecordSimilarityRequestTest {
 
     private static final RecordSimilarityRequest EXPECTED_REQUEST = RecordSimilarityRequest.builder()
             .fields(Map.of(
-                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.ADDRESS).weight(0.5).scoreIfNull(0.8).build(),
-                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.1).scoreIfNull(null).build(),
-                    "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.NAME).weight(0.5).build(),
-                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.2).build()))
+                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).scoreIfNull(0.8).build(),
+                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.1).scoreIfNull(null).build(),
+                    "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NAME).weight(0.5).build(),
+                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build()))
             .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
             .records(RecordSimilarityRecords.builder()
                 .left(
@@ -89,10 +89,10 @@ class RecordSimilarityRequestTest {
 
     private static final RecordSimilarityRequest EXPECTED_REQUEST_WITH_PARAMS = RecordSimilarityRequest.builder()
             .fields(Map.of(
-                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.1).build(),
-                    "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.NAME).weight(0.5).build(),
-                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.2).build(),
-                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.ADDRESS).weight(0.5).build()))
+                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.1).build(),
+                    "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NAME).weight(0.5).build(),
+                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build(),
+                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build()))
             .properties(RecordSimilarityProperties.builder()
                     .threshold(0.7)
                     .includeExplainInfo(true)
@@ -140,10 +140,10 @@ class RecordSimilarityRequestTest {
 
     private static final RecordSimilarityRequest EXPECTED_REQUEST_WITH_UNIVERSE = RecordSimilarityRequest.builder()
             .fields(Map.of(
-                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.2).build(),
-                    "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.NAME).weight(0.5).build(),
-                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.DATE).weight(0.1).build(),
-                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.ADDRESS).weight(0.5).build()))
+                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build(),
+                    "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NAME).weight(0.5).build(),
+                    "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.1).build(),
+                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build()))
             .properties(RecordSimilarityProperties.builder()
                     .threshold(0.7)
                     .includeExplainInfo(true)
