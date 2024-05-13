@@ -17,7 +17,6 @@
 package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -61,13 +60,11 @@ final class RecordSimilarityDeserializerUtilities {
                 ? parseRecordForResponse(node.get("right"), jsonParser)
                 : null;
 
-        List<String> errorList = new ArrayList<>();
-        JsonNode errorNode = node.get("error");
-        if (errorNode != null && errorNode.isArray()) {
-            for (JsonNode element : errorNode) {
-                errorList.add(element.asText());
-            }
-        }
+        List<String> errorList = Optional.ofNullable(node.get("error"))
+                .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
+                        .map(JsonNode::asText)
+                        .collect(Collectors.toList()))
+                .orElse(null);
         List<String> info = Optional.ofNullable(node.get("info"))
                 .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
                         .map(JsonNode::asText)
