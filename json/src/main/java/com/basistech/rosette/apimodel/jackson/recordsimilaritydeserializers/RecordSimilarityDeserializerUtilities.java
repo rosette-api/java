@@ -47,22 +47,18 @@ final class RecordSimilarityDeserializerUtilities {
     private RecordSimilarityDeserializerUtilities() {
     }
 
-    public static RecordSimilarityResult parseResult(
-            JsonNode node,
-            JsonParser jsonParser,
-            @Valid Map<String, RecordSimilarityFieldInfo> fields
-    ) throws IOException {
+    public static RecordSimilarityResult parseResult(JsonNode node, JsonParser jsonParser) throws IOException {
         final Double score = node.get("score") != null
                 ? node.get("score").traverse(jsonParser.getCodec()).readValueAs(Double.class)
                 : null;
         final RecordSimilarityExplainInfo explainInfo = node.get("explainInfo") != null
                 ? node.get("explainInfo").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityExplainInfo.class)
                 : null;
-        final Map<String, RecordSimilarityField> left = node.get("left") != null && fields != null
-                ? parseRecord(node.get("left"), jsonParser, fields)
+        final Map<String, RecordSimilarityField> left = node.get("left") != null
+                ? parseRecordForResponse(node.get("left"), jsonParser)
                 : null;
-        final Map<String, RecordSimilarityField> right = node.get("right") != null && fields != null
-                ? parseRecord(node.get("right"), jsonParser, fields)
+        final Map<String, RecordSimilarityField> right = node.get("right") != null
+                ? parseRecordForResponse(node.get("right"), jsonParser)
                 : null;
 
         List<String> errorList = new ArrayList<>();
@@ -85,6 +81,20 @@ final class RecordSimilarityDeserializerUtilities {
                 .error(errorList)
                 .info(info)
                 .build();
+    }
+
+    static Map<String, RecordSimilarityField> parseRecordForResponse(JsonNode jsonNode, JsonParser jsonParser) {
+        final Map<String, RecordSimilarityField> recordMap = new HashMap<>();
+        jsonNode.fields().forEachRemaining(entry -> {
+            String fieldName = entry.getKey();
+            try {
+                recordMap.put(fieldName, jsonNode.get(fieldName).traverse(jsonParser.getCodec())
+                        .readValueAs(UnknownField.class));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        return recordMap;
     }
 
     static Map<String, RecordSimilarityField> parseRecord(

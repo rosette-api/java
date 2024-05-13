@@ -16,15 +16,14 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class UnknownField implements RecordSimilarityField {
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -35,24 +34,51 @@ public class UnknownField implements RecordSimilarityField {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(getData())
+                .replace("\"", "")
+                .replace(":", "=")
+                .replace("{", "(")
+                .replace("}", ")")
+                .replace(",", ", ");
+    }
+
     @JsonValue
     public Object getData() {
-        if (data == null) {
-            return "";
-        } else {
-            if (data.isObject()) {
-                Map<String, JsonNode> map = new LinkedHashMap<>();
-                data.fields().forEachRemaining(fieldEntry -> map.put(fieldEntry.getKey(), fieldEntry.getValue()));
-                try {
-                    ObjectMapper mapper = new ObjectMapper();
-                    String jsonString = mapper.writeValueAsString(map);
-                    return mapper.readTree(jsonString);
-                } catch (JsonProcessingException e) {
-                    return this.data;
-                }
+        return this.data;
+    }
+
+    //compare the content of the String form of the UnknownFields' data
+    //enforce ordering
+    @Override
+    public boolean equals(Object o) {
+        try {
+            if (o instanceof UnknownField) {
+                UnknownField other = (UnknownField) o;
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+                mapper.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
+                return mapper.writeValueAsString(this.data).equals(mapper.writeValueAsString(other.data));
+            } else {
+                return false;
             }
-            // if given input is not an Object node, it's a String so return it
-            return this.data;
+        } catch (JsonProcessingException ex) {
+            return false;
         }
     }
+
+    //hashcode based on String form
+    @Override
+    public int hashCode() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+            mapper.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
+            return 19 * mapper.writeValueAsString(this.data).hashCode();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
