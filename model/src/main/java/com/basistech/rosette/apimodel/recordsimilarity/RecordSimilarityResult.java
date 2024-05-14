@@ -33,6 +33,8 @@ public class RecordSimilarityResult {
     Map<String, RecordSimilarityField> left;
     Map<String, RecordSimilarityField> right;
     RecordSimilarityExplainInfo explainInfo;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> error;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
