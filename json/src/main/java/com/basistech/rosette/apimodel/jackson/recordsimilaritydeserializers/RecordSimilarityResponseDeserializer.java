@@ -16,11 +16,9 @@
 
 package com.basistech.rosette.apimodel.jackson.recordsimilaritydeserializers;
 
-import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResponse;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResult;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -28,15 +26,11 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class RecordSimilarityResponseDeserializer extends StdDeserializer<RecordSimilarityResponse> {
-
-    private static final TypeReference<Map<String, RecordSimilarityFieldInfo>> FIELDS_TYPE_REFERENCE = new TypeReference<>() {
-    };
 
     public RecordSimilarityResponseDeserializer() {
         super(RecordSimilarityResponse.class);
@@ -46,9 +40,6 @@ public class RecordSimilarityResponseDeserializer extends StdDeserializer<Record
     public RecordSimilarityResponse deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
 
-        JsonNode fieldsNode = node.get("fields");
-
-        Map<String, RecordSimilarityFieldInfo> fields = fieldsNode != null ? node.get("fields").traverse(jsonParser.getCodec()).readValueAs(FIELDS_TYPE_REFERENCE) : null;
         List<String> info = Optional.ofNullable(node.get("info"))
                 .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
                         .map(JsonNode::asText)
@@ -60,12 +51,10 @@ public class RecordSimilarityResponseDeserializer extends StdDeserializer<Record
         List<RecordSimilarityResult> results = new ArrayList<>();
         if (resultsNode != null) {
             for (JsonNode resultNode : resultsNode) {
-                results.add(RecordSimilarityDeserializerUtilities.parseResult(resultNode, jsonParser, fields));
+                results.add(RecordSimilarityDeserializerUtilities.parseResult(resultNode, jsonParser));
             }
         }
-
         return RecordSimilarityResponse.builder()
-                .fields(fields)
                 .results(results)
                 .info(info)
                 .errorMessage(errorMessage)

@@ -37,31 +37,34 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.UnknownField;
 
 final class RecordSimilarityDeserializerUtilities {
 
     private RecordSimilarityDeserializerUtilities() {
     }
 
-    public static RecordSimilarityResult parseResult(
-            JsonNode node,
-            JsonParser jsonParser,
-            @Valid Map<String, RecordSimilarityFieldInfo> fields
-    ) throws IOException {
+    public static RecordSimilarityResult parseResult(JsonNode node, JsonParser jsonParser) throws IOException {
         final Double score = node.get("score") != null
                 ? node.get("score").traverse(jsonParser.getCodec()).readValueAs(Double.class)
                 : null;
         final RecordSimilarityExplainInfo explainInfo = node.get("explainInfo") != null
                 ? node.get("explainInfo").traverse(jsonParser.getCodec()).readValueAs(RecordSimilarityExplainInfo.class)
                 : null;
-        final Map<String, RecordSimilarityField> left = node.get("left") != null && fields != null
-                ? parseRecord(node.get("left"), jsonParser, fields)
+        final Map<String, RecordSimilarityField> left = node.get("left") != null
+                ? parseRecordForResponse(node.get("left"), jsonParser)
                 : null;
-        final Map<String, RecordSimilarityField> right = node.get("right") != null && fields != null
-                ? parseRecord(node.get("right"), jsonParser, fields)
+        final Map<String, RecordSimilarityField> right = node.get("right") != null
+                ? parseRecordForResponse(node.get("right"), jsonParser)
                 : null;
-        final String error = Optional.ofNullable(node.get("error")).map(JsonNode::asText).orElse(null);
+
+        List<String> errorList = Optional.ofNullable(node.get("error"))
+                .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
+                        .map(JsonNode::asText)
+                        .collect(Collectors.toList()))
+                .orElse(null);
         final List<String> info = Optional.ofNullable(node.get("info"))
                 .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
                         .map(JsonNode::asText)
@@ -72,9 +75,23 @@ final class RecordSimilarityDeserializerUtilities {
                 .left(left)
                 .right(right)
                 .explainInfo(explainInfo)
-                .error(error)
+                .error(errorList)
                 .info(info)
                 .build();
+    }
+
+    static Map<String, RecordSimilarityField> parseRecordForResponse(JsonNode jsonNode, JsonParser jsonParser) {
+        final Map<String, RecordSimilarityField> recordMap = new HashMap<>();
+        jsonNode.fields().forEachRemaining(entry -> {
+            String fieldName = entry.getKey();
+            try {
+                recordMap.put(fieldName, jsonNode.get(fieldName).traverse(jsonParser.getCodec())
+                        .readValueAs(UnknownField.class));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        return recordMap;
     }
 
     static Map<String, RecordSimilarityField> parseRecord(
@@ -89,29 +106,32 @@ final class RecordSimilarityDeserializerUtilities {
             final String fieldName = recordEntry.getKey();
             final JsonNode fieldValue = recordEntry.getValue();
 
+            final RecordSimilarityField fieldData;
+
             if (fields.containsKey(fieldName)) {
                 final RecordSimilarityFieldInfo fieldInfo = fields.get(fieldName);
-                final RecordSimilarityField fieldData;
                 if (fieldInfo.getType() == null) {
                     throw new IllegalArgumentException("Unspecified field type for: " + fieldName);
                 }
                 switch (fieldInfo.getType()) {
-                case DATE:
+                case RecordFieldType.RNI_DATE:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
                     break;
-                case NAME:
+                case RecordFieldType.RNI_NAME:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(NameField.class);
                     break;
-                case ADDRESS:
+                case RecordFieldType.RNI_ADDRESS:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
                     break;
                 default:
-                    throw new IllegalArgumentException("Unsupported field type: " + fieldInfo.getType());
+                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
                 }
-                recordMap.put(fieldName, fieldData);
             } else {
-                throw new IllegalArgumentException("Unsupported field name: " + fieldName + " not found in field mapping");
+                //treat unmapped field as UnknownField so we can get to scoring,
+                //it won't be counted toward the score anyway
+                fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
             }
+            recordMap.put(fieldName, fieldData);
         }
         return recordMap;
     }

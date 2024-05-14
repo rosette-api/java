@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,10 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+public final class RecordFieldType {
+    public static final String RNI_NAME = "rni_name";
+    public static final String RNI_DATE = "rni_date";
+    public static final String RNI_ADDRESS = "rni_address";
 
-@AllArgsConstructor
-@Getter
-public enum RecordFieldType {
-    NAME("rni_name"),
-    DATE("rni_date"),
-    ADDRESS("rni_address");
-
-    @JsonValue private final String value;
+    private RecordFieldType() { }
 }

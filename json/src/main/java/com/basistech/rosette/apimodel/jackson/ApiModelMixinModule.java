@@ -84,6 +84,7 @@ public class ApiModelMixinModule extends AnnotatedDataModelModule {
         context.setMixInAnnotations(UnfieldedAddress.class, UnfieldedAddressMixin.class);
         context.setMixInAnnotations(UnfieldedAddress.UnfieldedAddressBuilder.class,
                 UnfieldedAddressMixin.UnfieldedAddressBuilderMixin.class);
+
         context.setMixInAnnotations(AddressSimilarityRequest.class, AddressSimilarityRequestMixin.class);
         context.setMixInAnnotations(AddressSimilarityRequest.AddressSimilarityRequestBuilder.class,
                 AddressSimilarityRequestMixin.AddressSimilarityRequestBuilderMixin.class);
