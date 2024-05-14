@@ -33,6 +33,6 @@ public class RecordSimilarityResult {
     Map<String, RecordSimilarityField> left;
     Map<String, RecordSimilarityField> right;
     RecordSimilarityExplainInfo explainInfo;
+    List<String> error;
     List<String> info;
-    String error;
 }

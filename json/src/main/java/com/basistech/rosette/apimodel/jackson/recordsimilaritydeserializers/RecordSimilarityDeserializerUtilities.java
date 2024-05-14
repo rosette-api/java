@@ -59,7 +59,12 @@ final class RecordSimilarityDeserializerUtilities {
         final Map<String, RecordSimilarityField> right = node.get("right") != null
                 ? parseRecordForResponse(node.get("right"), jsonParser)
                 : null;
-        final String error = Optional.ofNullable(node.get("error")).map(JsonNode::asText).orElse(null);
+
+        List<String> errorList = Optional.ofNullable(node.get("error"))
+                .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
+                        .map(JsonNode::asText)
+                        .collect(Collectors.toList()))
+                .orElse(null);
         List<String> info = Optional.ofNullable(node.get("info"))
                 .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
                         .map(JsonNode::asText)
@@ -70,7 +75,7 @@ final class RecordSimilarityDeserializerUtilities {
                 .left(left)
                 .right(right)
                 .explainInfo(explainInfo)
-                .error(error)
+                .error(errorList)
                 .info(info)
                 .build();
     }
