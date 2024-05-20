@@ -65,7 +65,7 @@ final class RecordSimilarityDeserializerUtilities {
                         .map(JsonNode::asText)
                         .collect(Collectors.toList()))
                 .orElse(null);
-        List<String> info = Optional.ofNullable(node.get("info"))
+        final List<String> info = Optional.ofNullable(node.get("info"))
                 .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
                         .map(JsonNode::asText)
                         .collect(Collectors.toList()))

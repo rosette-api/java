@@ -20,7 +20,6 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
@@ -30,9 +29,8 @@ import lombok.extern.jackson.Jacksonized;
 @Value
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityProperties {
-    @Builder.Default
-    @NotNull @Valid Double threshold = 0.0;
-    @NotNull @Valid Boolean includeExplainInfo;
+    @Valid Double threshold;
+    @Valid Boolean includeExplainInfo;
     @Valid Map<String, String> parameters;
     @Valid String parameterUniverse;
 }

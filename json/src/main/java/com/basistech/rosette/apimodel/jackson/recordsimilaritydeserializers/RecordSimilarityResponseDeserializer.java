@@ -41,10 +41,10 @@ public class RecordSimilarityResponseDeserializer extends StdDeserializer<Record
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
 
         List<String> info = Optional.ofNullable(node.get("info"))
-                            .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
-                                                          .map(JsonNode::asText)
-                                                          .collect(Collectors.toList()))
-                            .orElse(null);
+                .map(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
+                        .map(JsonNode::asText)
+                        .collect(Collectors.toList()))
+                .orElse(null);
         String errorMessage = Optional.ofNullable(node.get("errorMessage")).map(JsonNode::asText).orElse(null);
 
         JsonNode resultsNode = node.get("results");
