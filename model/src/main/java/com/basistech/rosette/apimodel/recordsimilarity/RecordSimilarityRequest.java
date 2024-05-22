@@ -22,14 +22,13 @@ import javax.validation.Valid;
 import lombok.Value;
 import lombok.Builder;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 @Value
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityRequest extends Request {
-    @NotEmpty @Valid Map<String, RecordSimilarityFieldInfo> fields;
+    @Valid Map<String, RecordSimilarityFieldInfo> fields;
     @Valid RecordSimilarityProperties properties;
     @NotNull @Valid RecordSimilarityRecords records;
 
