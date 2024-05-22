@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -113,7 +114,7 @@ final class RecordSimilarityDeserializerUtilities {
                 if (fieldInfo.getType() == null) {
                     throw new IllegalArgumentException("Unspecified field type for: " + fieldName);
                 }
-                switch (fieldInfo.getType()) {
+                switch (fieldInfo.getType().toLowerCase(Locale.ENGLISH)) {
                 case RecordFieldType.RNI_DATE:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(DateField.class);
                     break;
