@@ -72,7 +72,7 @@ public class RecordSimilarityExample extends ExampleBase {
                                                         .script(ISO15924.Latn)
                                                         .build(),
                                                 dobField, DateField.UnfieldedDate.builder().date(dobHyphen).build(),
-                                                dob2Field, DateField.FieldedDate.builder().date("1993/04/16").build(),
+                                                dob2Field, DateField.FieldedDate.builder().date("04161993").format("MMddyyyy").build(),
                                                 addrField, AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
                                         ),
                                         Map.of(
