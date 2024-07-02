@@ -45,7 +45,6 @@
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-codec.version>1.15</commons-codec.version>
         <findbugs-jsr305.version>3.0.2</findbugs-jsr305.version>
-        <http-components.version>4.5.13</http-components.version>
         <http-components-core.version>4.4.15</http-components-core.version>
         <java-poet.version>1.13.0</java-poet.version>
         <javax-validation-api.version>2.0.0.Final</javax-validation-api.version>
