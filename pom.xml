@@ -42,11 +42,7 @@
     </distributionManagement>
     <properties>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
-        <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-codec.version>1.15</commons-codec.version>
-        <findbugs-jsr305.version>3.0.2</findbugs-jsr305.version>
-        <http-components.version>4.5.13</http-components.version>
-        <http-components-core.version>4.4.15</http-components-core.version>
         <java-poet.version>1.13.0</java-poet.version>
         <javax-validation-api.version>2.0.0.Final</javax-validation-api.version>
         <junit.version>5.9.1</junit.version>
@@ -54,7 +50,6 @@
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <mockserver.version>5.14.0</mockserver.version>
         <reflections.version>0.10.2</reflections.version>
-        <site-skin.version>1.5</site-skin.version>
     </properties>
     <modules>
         <module>annotations</module>
@@ -65,25 +60,6 @@
         <module>examples</module>
         <module>release</module>
     </modules>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.basistech</groupId>
-                <artifactId>common-api</artifactId>
-                <version>${bt-common-api-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.basistech</groupId>
-                <artifactId>adm-model</artifactId>
-                <version>${bt-adm-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.basistech</groupId>
-                <artifactId>adm-json</artifactId>
-                <version>${bt-adm-version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     <build>
         <plugins>
             <plugin>
@@ -97,7 +73,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>${maven-clean-plugin.version}</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -112,7 +87,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <compilerVersion>17</compilerVersion>
                     <source>11</source>
@@ -122,7 +96,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
