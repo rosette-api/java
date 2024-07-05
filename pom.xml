@@ -53,7 +53,6 @@
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <mockserver.version>5.14.0</mockserver.version>
         <reflections.version>0.10.2</reflections.version>
-        <site-skin.version>1.5</site-skin.version>
     </properties>
     <modules>
         <module>annotations</module>
