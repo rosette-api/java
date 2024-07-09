@@ -41,14 +41,14 @@
         </site>
     </distributionManagement>
     <properties>
-        <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
-        <commons-codec.version>1.15</commons-codec.version>
+        <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
+        <commons-codec.version>1.17.0</commons-codec.version>
         <java-poet.version>1.13.0</java-poet.version>
-        <javax-validation-api.version>2.0.0.Final</javax-validation-api.version>
-        <junit.version>5.9.1</junit.version>
-        <lombok.version>1.18.24</lombok.version>
+        <javax-validation-api.version>2.0.1.Final</javax-validation-api.version>
+        <junit.version>5.9.3</junit.version>
+        <lombok.version>1.18.34</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
-        <mockserver.version>5.14.0</mockserver.version>
+        <mockserver.version>5.15.0</mockserver.version>
         <reflections.version>0.10.2</reflections.version>
     </properties>
     <modules>
