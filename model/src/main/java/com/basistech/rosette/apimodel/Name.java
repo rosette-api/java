@@ -52,11 +52,14 @@ public class Name {
     LanguageCode language;
 
 
+    /**
+     * @return gender of the name, {@link Gender}
+     */
     Gender gender;
 
 
     /**
-     * Default constructor for lombok
+     * Default constructor for lombok (gender is optional)
      *
      * @param name
      * @param entityType
@@ -71,6 +74,15 @@ public class Name {
         this.gender = null;
     }
 
+    /**
+     * Default constructor for lombok with gender
+     *
+     * @param name
+     * @param entityType
+     * @param script
+     * @param language
+     * @param gender
+     */
     public Name(String name, String entityType, ISO15924 script, LanguageCode language, Gender gender) {
         this.text = name;
         this.entityType = entityType;
