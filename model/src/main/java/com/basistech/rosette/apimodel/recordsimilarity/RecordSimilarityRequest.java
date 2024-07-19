@@ -18,11 +18,11 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 
 import com.basistech.rosette.apimodel.Request;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import lombok.Value;
 import lombok.Builder;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.Map;
 
 @Value

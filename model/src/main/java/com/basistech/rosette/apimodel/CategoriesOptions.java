@@ -17,7 +17,7 @@
 package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.annotations.JacksonMixin;
-import javax.validation.constraints.Min;
+import jakarta.validation.constraints.Min;
 import lombok.Builder;
 import lombok.Value;
 

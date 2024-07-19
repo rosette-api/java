@@ -24,7 +24,7 @@ import lombok.Value;
 
 import com.basistech.rosette.apimodel.Response;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * Response data model for comparison of two records.

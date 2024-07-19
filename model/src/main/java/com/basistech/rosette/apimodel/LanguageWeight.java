@@ -22,8 +22,8 @@ import com.basistech.util.LanguageCode;
 import lombok.Builder;
 import lombok.Value;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 /**
  * language weight used to resolve ambiguous results

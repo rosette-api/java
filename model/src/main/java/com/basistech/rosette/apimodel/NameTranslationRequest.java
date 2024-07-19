@@ -22,7 +22,7 @@ import com.basistech.util.TransliterationScheme;
 import lombok.Builder;
 import lombok.Value;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Request for name translation.
