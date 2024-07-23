@@ -17,12 +17,12 @@
 package com.basistech.rosette.apimodel.recordsimilarity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Jacksonized
 @Builder

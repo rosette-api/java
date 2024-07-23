@@ -31,8 +31,8 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResult;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;

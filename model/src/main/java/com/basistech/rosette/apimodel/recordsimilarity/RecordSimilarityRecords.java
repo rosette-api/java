@@ -20,11 +20,11 @@ import java.util.List;
 import java.util.Map;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import lombok.Builder;
 import lombok.Value;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 
 @Builder
 @Value

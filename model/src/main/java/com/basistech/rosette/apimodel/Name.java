@@ -21,7 +21,7 @@ import com.basistech.util.LanguageCode;
 import lombok.Builder;
 import lombok.Value;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * Class that represents a name.

@@ -22,10 +22,10 @@ import com.basistech.util.LanguageCode;
 import lombok.Builder;
 import lombok.Value;
 
-import javax.validation.Valid;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import java.util.Set;
 
 /**

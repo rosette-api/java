@@ -39,9 +39,9 @@
             <artifactId>common-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>${javax-validation-api.version}</version>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta-validation-api.version}</version>
         </dependency>
         <dependency>
             <groupId>com.basistech</groupId>
