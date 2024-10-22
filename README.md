@@ -9,7 +9,7 @@ Rosette uses natural language processing, statistical modeling, and machine lear
 
 
 ## Rosette API Access
-- Rosette Cloud [Sign Up](https://developer.rosette.com/signup)
+- Rosette Cloud [Sign Up](https://developer.babelstreet.com/signup)
 ## Quick Start
 
 #### Maven
@@ -26,7 +26,7 @@ in the Maven Central badge at the top of this page.
 
 #### Test Releases
 Versions, of the form `x.y.z`, where `z` is greater than or equal to `100`, are internal testing versions.  Do not use
-them without consultation with Basis Technology Corp.
+them without consultation with Babel Street.(???)
 
 #### Examples
 View small example programs for each Rosette endpoint in the
@@ -36,7 +36,7 @@ View small example programs for each Rosette endpoint in the
 - [Binding API](https://rosette-api.github.io/java/)
 - [Rosette Platform API](https://docs.babelstreet.com/API/en/index-en.html)
 - [Binding Release Notes](https://github.com/rosette-api/java/wiki/Release-Notes)
-- [Rosette Platform Release Notes](https://babelstreet.my.site.com/support/s/article/Rosette-Cloud-Release-Notes)
+- [Rosette Platform Release Notes](https://docs.babelstreet.com/Release/en/rosette-cloud.html)
 - [Support](https://babelstreet.my.site.com/support/s/)
 - [Binding License: Apache 2.0](LICENSE.txt)
 

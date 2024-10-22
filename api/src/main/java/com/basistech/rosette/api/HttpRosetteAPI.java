@@ -83,7 +83,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
  */
 public class HttpRosetteAPI extends AbstractRosetteAPI {
 
-    public static final String DEFAULT_URL_BASE = "https://api.rosette.com/rest/v1";
+    public static final String DEFAULT_URL_BASE = "https://analytics.babelstreet.com/rest/v1";
     public static final String SERVICE_NAME = "RosetteAPI";
     public static final String BINDING_VERSION = getVersion();
     public static final String USER_AGENT_STR = SERVICE_NAME + "-Java/" + BINDING_VERSION + "/"
@@ -197,7 +197,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
         this.additionalHeaders.add(new BasicHeader(HttpHeaders.USER_AGENT, USER_AGENT_STR));
         this.additionalHeaders.add(new BasicHeader(HttpHeaders.ACCEPT_ENCODING, "gzip"));
         if (key != null) {
-            this.additionalHeaders.add(new BasicHeader("X-RosetteAPI-Key", key));
+            this.additionalHeaders.add(new BasicHeader("X-BabelStreetAPI-Key", key));
             this.additionalHeaders.add(new BasicHeader("X-RosetteAPI-Binding", "java"));
             this.additionalHeaders.add(new BasicHeader("X-RosetteAPI-Binding-Version", BINDING_VERSION));
         }

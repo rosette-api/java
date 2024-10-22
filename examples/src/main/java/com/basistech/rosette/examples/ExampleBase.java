@@ -50,7 +50,7 @@ public abstract class ExampleBase {
     protected String getAltUrlFromSystemProperty() {
         String altUrlStr = System.getProperty(URL_PROP_NAME);
         if (altUrlStr == null || altUrlStr.trim().length() < 1) {
-            altUrlStr = "https://api.rosette.com/rest/v1";
+            altUrlStr = "https://analytics.babelstreet.com/rest/v1";
         }
         return altUrlStr.trim();
     }
