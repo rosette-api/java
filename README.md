@@ -1,7 +1,7 @@
 <a href="https://www.babelstreet.com/rosette">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://charts.babelstreet.com/icon.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://charts.babelstreet.com/icon-white.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://charts.babelstreet.com/icon.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://charts.babelstreet.com/icon-white.png">
   <img alt="Babel Street Logo" width="47" height="60">
 </picture>
 </a>
