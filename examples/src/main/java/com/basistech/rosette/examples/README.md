@@ -1,5 +1,5 @@
 ## Endpoint Examples
-Each example file demonstrates one of the capabilities of the Rosette Platform.
+Each example file demonstrates one of the capabilities of the Analytics Platform.
 
 Here are some methods for running the examples. Each example will also accept an optional `-Drosette.api.altUrl`
 parameter for overriding the default URL.
