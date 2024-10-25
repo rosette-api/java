@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 import java.util.EnumSet;
 
 /**
- * Rosette API relationship accuracy mode
+ * Analytics API relationship accuracy mode
  */
 public enum AccuracyMode {
     PRECISION("precision"),

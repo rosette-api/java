@@ -22,7 +22,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Rosette API information 
+ * Analytics API information
  */
 @Getter
 @EqualsAndHashCode

@@ -16,6 +16,6 @@
 
 /**
  * The classes in this package make up the data model for simple requests
- * and responses to the Rosette API.
+ * and responses to the Analytics API.
  */
 package com.basistech.rosette.apimodel;

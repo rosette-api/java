@@ -24,7 +24,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 /**
- * This class represents the common information for all document processing requests to the Rosette API.
+ * This class represents the common information for all document processing requests to the Analytics API.
  * Most applications do not use this class directly; the methods of the {@code RosetteAPI} class
  * create request objects. More complex applications may create objects of
  * this class for themselves via the {@link DocumentRequest.DocumentRequestBuilder}.
@@ -38,7 +38,7 @@ import java.io.InputStream;
  *     <li>A binary file image, attached as an additional MIME part to the request.
  *     The application provides a MIME content type in {@code contentType}.</li>
  *     <li>A URL of a data to download. The application provides the URL in
- *     {@code contentUri}. Note that the Rosette API respects the content type
+ *     {@code contentUri}. Note that the Analytics API respects the content type
  *     returned by the server for downloaded data.</li>
  * </ol>
  * In this object the 'content' item is an {@link Object}; it contains a {@link String}

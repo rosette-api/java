@@ -79,7 +79,7 @@ import java.util.zip.GZIPInputStream;
 import static java.net.HttpURLConnection.HTTP_OK;
 
 /**
- * Access to the RosetteAPI via HTTP.
+ * Access to the Analytics API via HTTP.
  */
 public class HttpRosetteAPI extends AbstractRosetteAPI {
 
@@ -104,16 +104,16 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     }
 
     /**
-     * Constructs a Rosette API instance using the builder syntax.
+     * Constructs an Analytics API instance using the builder syntax.
      *
-     * @param key            Rosette API key. This may be null for use with an on-premise deployment
-     *                     of the Rosette API.
-     * @param urlToCall   Alternate Rosette API URL. {@code null} uses the default, public, URL.
+     * @param key            Analytics API key. This may be null for use with an on-premise deployment
+     *                     of the Analytics API.
+     * @param urlToCall   Alternate Analytics API URL. {@code null} uses the default, public, URL.
      * @param failureRetries Number of times to retry in case of failure; {@code null} uses the
      *                       default value: 1.
      * @param connectionConcurrency Number of concurrent connections. Pass this if have subscribed
      *                              to a plan that supports enhanced concurrency, or if you are using
-     *                              an on-premise deployment of the Rosette API. {@code null} uses the
+     *                              an on-premise deployment of the Analytics API. {@code null} uses the
      *                              default value: 2.
      * @throws HttpRosetteAPIException  Problem with the API request
      */
@@ -216,10 +216,10 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     }
 
     /**
-     * Gets information about the Rosette API, returns name, version, build number and build time.
+     * Gets information about the Analytics API, returns name, version, build number and build time.
      *
      * @return InfoResponse
-     * @throws HttpRosetteAPIException Rosette specific exception
+     * @throws HttpRosetteAPIException Analytics specific exception
      * @throws IOException         General IO exception
      */
     public InfoResponse info() throws IOException, HttpRosetteAPIException {
@@ -227,10 +227,10 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     }
 
     /**
-     * Pings the Rosette API for a response indicating that the service is available.
+     * Pings the Analytics API for a response indicating that the service is available.
      *
      * @return PingResponse
-     * @throws HttpRosetteAPIException Rosette specific exception
+     * @throws HttpRosetteAPIException Analytics specific exception
      * @throws IOException         General IO exception
      */
     public PingResponse ping() throws IOException, HttpRosetteAPIException {
@@ -238,10 +238,10 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     }
 
     /**
-     * Gets the set of language and script codes supported by the specified Rosette API endpoint.
+     * Gets the set of language and script codes supported by the specified Analytics API endpoint.
      *
      * @return SupportedLanguagesResponse
-     * @throws HttpRosetteAPIException for an error returned from the Rosette API.
+     * @throws HttpRosetteAPIException for an error returned from the Analytics API.
      */
     @Override
     public SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws HttpRosetteAPIException  {
@@ -254,12 +254,12 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     }
 
     /**
-     * Gets the set of language, script codes and transliteration scheme pairs supported by the specified Rosette API
+     * Gets the set of language, script codes and transliteration scheme pairs supported by the specified Analytics API
      * endpoint.
      *
-     * @param endpoint Rosette API endpoint.
+     * @param endpoint Analytics API endpoint.
      * @return SupportedLanguagePairsResponse
-     * @throws HttpRosetteAPIException for an error returned from the Rosette API.
+     * @throws HttpRosetteAPIException for an error returned from the Analytics API.
      */
     @Override
     public SupportedLanguagePairsResponse getSupportedLanguagePairs(String endpoint) throws HttpRosetteAPIException  {
@@ -279,7 +279,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @param <RequestType> the type of the request object.
      * @param <ResponseType> the type of the response object.
      * @return the response.
-     * @throws HttpRosetteAPIException for an error returned from the Rosette API.
+     * @throws HttpRosetteAPIException for an error returned from the Analytics API.
      * @throws RosetteRuntimeException for other errors, such as communications problems with HTTP.
      */
     @Override
@@ -300,7 +300,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
      * @param request the data for the request.
      * @param <RequestType> the type of the request object.
      * @return the response, {@link com.basistech.rosette.dm.AnnotatedText}.
-     * @throws HttpRosetteAPIException for an error returned from the Rosette API.
+     * @throws HttpRosetteAPIException for an error returned from the Analytics API.
      * @throws RosetteRuntimeException for other errors, such as communications problems with HTTP.
      */
     @Override
@@ -326,11 +326,11 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     }
 
     /**
-     * Sends a GET request to Rosette API.
+     * Sends a GET request to Analytics API.
      * <p>
      * Returns a Response.
      *
-     * @param urlStr Rosette API end point.
+     * @param urlStr Analytics API end point.
      * @param clazz  Response class
      * @return Response
      * @throws HttpRosetteAPIException
@@ -351,11 +351,11 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
     }
 
     /**
-     * Sends a POST request to Rosette API.
+     * Sends a POST request to Analytics API.
      * <p>
      * Returns a Response.
      *
-     * @param urlStr Rosette API end point.
+     * @param urlStr Analytics API end point.
      * @param clazz  Response class
      * @return Response
      * @throws IOException
@@ -570,7 +570,7 @@ public class HttpRosetteAPI extends AbstractRosetteAPI {
                     }
                     if (429 == status) {
                         String concurrencyMessage = "You have exceeded your plan's limit on concurrent calls. "
-                                + "This could be caused by multiple processes or threads making Rosette API calls "
+                                + "This could be caused by multiple processes or threads making Analytics API calls "
                                 + "in parallel, or if your httpClient is configured with higher concurrency "
                                 + "than your plan allows.";
                         if (emHeader == null) {

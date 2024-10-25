@@ -31,12 +31,12 @@ import lombok.Getter;
 public class ConstantsResponse extends Response {
 
     /**
-     * @return the version of Rosette API
+     * @return the version of Analytics API
      */
     private final String version;
 
     /**
-     * @return the Rosette API build info
+     * @return the Analytics API build info
      */
     private final String build;
 

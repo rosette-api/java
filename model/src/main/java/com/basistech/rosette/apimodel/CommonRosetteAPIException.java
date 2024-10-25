@@ -18,7 +18,7 @@ package com.basistech.rosette.apimodel;
 import com.basistech.rosette.RosetteRuntimeException;
 
 /**
- * Exception from the Rosette API inherit from this exception.
+ * Exception from the Analytics API inherit from this exception.
  */
 public class CommonRosetteAPIException extends RosetteRuntimeException {
     private final transient ErrorResponse errorResponse;

@@ -22,7 +22,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * Rosette API response error data
+ * Analytics API response error data
  */
 @Data
 @EqualsAndHashCode

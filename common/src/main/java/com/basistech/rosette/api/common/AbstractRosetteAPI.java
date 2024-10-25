@@ -29,7 +29,7 @@ import com.basistech.rosette.apimodel.SupportedLanguagesResponse;
 import com.basistech.rosette.dm.AnnotatedText;
 
 /**
- * This class defines the common API to Rosette, whether over HTTP or other integration mechanisms.
+ * This class defines the common API to Analytics, whether over HTTP or other integration mechanisms.
  */
 public abstract class AbstractRosetteAPI implements AutoCloseable {
 
@@ -89,19 +89,19 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
     ));
 
     /**
-     * Gets the set of language and script codes supported by the specified Rosette API endpoint.
+     * Gets the set of language and script codes supported by the specified Analytics API endpoint.
      *
-     * @param endpoint Rosette API endpoint.
+     * @param endpoint Analytics API endpoint.
      * @return SupportedLanguagesResponse
      * @throws CommonRosetteAPIException for an error.
      */
     public abstract SupportedLanguagesResponse getSupportedLanguages(String endpoint) throws CommonRosetteAPIException;
 
     /**
-     * Gets the set of language, script codes and transliteration scheme pairs supported by the specified Rosette API
+     * Gets the set of language, script codes and transliteration scheme pairs supported by the specified Analytics API
      * endpoint.
      *
-     * @param endpoint Rosette API endpoint.
+     * @param endpoint Analytics API endpoint.
      * @return SupportedLanguagePairsResponse
      * @throws CommonRosetteAPIException for an error returned from the Rosette API.
      */
@@ -109,7 +109,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
             throws CommonRosetteAPIException;
 
     /**
-     * Perform a request to an endpoint of the Rosette API.
+     * Perform a request to an endpoint of the Analytics API.
      * @param endpoint which endpoint.
      * @param request the data for the request.
      * @param <RequestType> The class of the request object for this endpoint.
@@ -123,7 +123,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
             throws CommonRosetteAPIException;
 
     /**
-     * Perform a request to an endpoint of the Rosette API.
+     * Perform a request to an endpoint of the Analytics API.
      * @param endpoint which endpoint.
      * @param request the data for the request.
      * @param <RequestType> The class of the request object for this endpoint.
@@ -134,7 +134,7 @@ public abstract class AbstractRosetteAPI implements AutoCloseable {
             throws CommonRosetteAPIException;
 
     /**
-     * Start an asynchronous request to an endpoint of the Rosette API.
+     * Start an asynchronous request to an endpoint of the Analytics API.
      * @param endpoint which endpoint.
      * @param request the data for the request.
      * @param <RequestType> The class of the request object for this endpoint.

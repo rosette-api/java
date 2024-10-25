@@ -17,7 +17,7 @@
 package com.basistech.rosette.api;
 
 /**
- * Specify which feature you want Rosette API Morphology endpoint to return. Specify COMPLETE for every feature.
+ * Specify which feature you want Analytics API Morphology endpoint to return. Specify COMPLETE for every feature.
  */
 public enum MorphologicalFeature {
     COMPLETE("complete"),
