@@ -66,7 +66,7 @@ public abstract class ExampleBase {
     /**
      * Converts a response to JSON string
      *
-     * @param response {@link com.basistech.rosette.apimodel.Response Response} from RosetteAPI
+     * @param response {@link com.basistech.rosette.apimodel.Response Response} from Analytics API
      * @return the json string.
      * @throws JsonProcessingException if the Jackson library throws an error serializing.
      */

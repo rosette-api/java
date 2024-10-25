@@ -43,7 +43,7 @@ public final class CategoriesExample extends ExampleBase {
 
     private void run() throws IOException {
         String categoriesTextData = "If you are a fan of the British television series Downton Abbey and you are planning to be in New York anytime before April 2nd, there is a perfect stop for you while in town.";
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                 .key(getApiKeyFromSystemProperty())
                                 .url(getAltUrlFromSystemProperty())
                                 .build();
@@ -52,7 +52,7 @@ public final class CategoriesExample extends ExampleBase {
         DocumentRequest<CategoriesOptions> request = DocumentRequest.<CategoriesOptions>builder()
                                                                     .content(categoriesTextData)
                                                                     .build();
-        CategoriesResponse response = rosetteApi.perform(CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
+        CategoriesResponse response = api.perform(CATEGORIES_SERVICE_PATH, request, CategoriesResponse.class);
         System.out.println(responseToJson(response));
     }
 }

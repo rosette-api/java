@@ -42,14 +42,14 @@ public final class MorphologyCompleteExample extends ExampleBase {
     private void run() throws IOException {
         String morphologyCompleteData = "The quick brown fox jumped over the lazy dog. 👍🏾 Yes he did. B)";
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
         DocumentRequest<MorphologyOptions> request = DocumentRequest.<MorphologyOptions>builder().content(morphologyCompleteData).build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        MorphologyResponse response = rosetteApi.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
+        MorphologyResponse response = api.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE, request, MorphologyResponse.class);
         System.out.println(responseToJson(response));
     }
 }

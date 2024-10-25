@@ -40,7 +40,7 @@ public final class TokensExample extends ExampleBase {
     private void run() throws IOException {
         String tokensData = "北京大学生物系主任办公室内部会议";
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
@@ -48,7 +48,7 @@ public final class TokensExample extends ExampleBase {
         //api.httpClient(CloseableHttpClient)
         // When no options, use <?>.
         DocumentRequest<?> request = DocumentRequest.builder().content(tokensData).build();
-        TokensResponse response = rosetteApi.perform(TOKENS_SERVICE_PATH, request, TokensResponse.class);
+        TokensResponse response = api.perform(TOKENS_SERVICE_PATH, request, TokensResponse.class);
         System.out.println(responseToJson(response));
     }
 }

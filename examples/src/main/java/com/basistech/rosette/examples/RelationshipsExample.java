@@ -41,14 +41,14 @@ public final class RelationshipsExample extends ExampleBase {
     private void run() throws IOException {
         String relationshipsTextData = "FLIR Systems is headquartered in Oregon and produces thermal imaging, night vision, and infrared cameras and sensor systems.  According to the SEC’s order instituting a settled administrative proceeding, FLIR entered into a multi-million dollar contract to provide thermal binoculars to the Saudi government in November 2008.  Timms and Ramahi were the primary sales employees responsible for the contract, and also were involved in negotiations to sell FLIR’s security cameras to the same government officials.  At the time, Timms was the head of FLIR’s Middle East office in Dubai.";
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         DocumentRequest<RelationshipsOptions> request = DocumentRequest.<RelationshipsOptions>builder().content(relationshipsTextData).build();
-        RelationshipsResponse response = rosetteApi.perform(RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
+        RelationshipsResponse response = api.perform(RELATIONSHIPS_SERVICE_PATH, request, RelationshipsResponse.class);
         System.out.println(responseToJson(response));
     }
 }

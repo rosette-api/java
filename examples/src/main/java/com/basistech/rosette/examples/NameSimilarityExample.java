@@ -49,14 +49,14 @@ public final class NameSimilarityExample extends ExampleBase {
                 .language(LanguageCode.ENGLISH)
                 .build();
         Name name2 = Name.builder().text(matchedNameData2).build();
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         NameSimilarityRequest request = NameSimilarityRequest.builder().name1(name1).name2(name2).build();
-        NameSimilarityResponse response = rosetteApi.perform(NAME_SIMILARITY_SERVICE_PATH, request, NameSimilarityResponse.class);
+        NameSimilarityResponse response = api.perform(NAME_SIMILARITY_SERVICE_PATH, request, NameSimilarityResponse.class);
         System.out.println(responseToJson(response));
     }
 }

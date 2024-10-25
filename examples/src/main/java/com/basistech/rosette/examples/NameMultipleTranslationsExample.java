@@ -46,13 +46,13 @@ public final class NameMultipleTranslationsExample extends ExampleBase {
                 .maximumResults(10)
                 .build();
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        NameTranslationResponse response = rosetteApi.perform(NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
+        NameTranslationResponse response = api.perform(NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
         System.out.println(responseToJson(response));
     }
 }

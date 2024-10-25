@@ -39,14 +39,14 @@ public final class EntitiesExample extends ExampleBase {
 
     private void run() throws IOException {
         String entitiesTextData = "The Securities and Exchange Commission today announced the leadership of the agency’s trial unit.  Bridget Fitzpatrick has been named Chief Litigation Counsel of the SEC and David Gottesman will continue to serve as the agency’s Deputy Chief Litigation Counsel. Since December 2016, Ms. Fitzpatrick and Mr. Gottesman have served as Co-Acting Chief Litigation Counsel.  In that role, they were jointly responsible for supervising the trial unit at the agency’s Washington D.C. headquarters as well as coordinating with litigators in the SEC’s 11 regional offices around the country.";
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                 .key(getApiKeyFromSystemProperty())
                                 .url(getAltUrlFromSystemProperty())
                                 .build();
         DocumentRequest<EntitiesOptions> request = DocumentRequest.<EntitiesOptions>builder()
                 .content(entitiesTextData)
                 .build();
-        EntitiesResponse response = rosetteApi.perform(ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
+        EntitiesResponse response = api.perform(ENTITIES_SERVICE_PATH, request, EntitiesResponse.class);
         System.out.println(responseToJson(response));
     }
 }

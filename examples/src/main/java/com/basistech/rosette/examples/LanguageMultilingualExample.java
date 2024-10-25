@@ -41,12 +41,12 @@ public final class LanguageMultilingualExample extends ExampleBase {
     private void run() throws IOException {
         String languageMultilingualData = "On Thursday, as protesters gathered in Washington D.C., the United States Federal Communications Commission under Chairman Ajit Pai voted 3-2 to overturn a 2015 decision, commonly called Net Neutrality, that forbade Internet service providers (ISPs) such as Verizon, Comcast, and AT&T from blocking individual websites or charging websites or customers more for faster load times.  Quatre femmes ont été nommées au Conseil de rédaction de la loi du Qatar. Jeudi, le décret royal du Qatar a annoncé que 28 nouveaux membres ont été nommés pour le Conseil de la Choura du pays.  ذكرت مصادر أمنية يونانية، أن 9 موقوفين من منظمة \"د هـ ك ب ج\" الذين كانت قد أوقفتهم الشرطة اليونانية في وقت سابق كانوا يخططون لاغتيال الرئيس التركي رجب طيب أردوغان.";
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
-        //rosetteApi.httpClient(CloseableHttpClient)
+        //api.httpClient(CloseableHttpClient)
 
         LanguageOptions options = LanguageOptions.builder().multilingual(true).build();
 
@@ -54,7 +54,7 @@ public final class LanguageMultilingualExample extends ExampleBase {
             .content(languageMultilingualData)
             .options(options)
             .build();
-        LanguageResponse response = rosetteApi.perform(LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
+        LanguageResponse response = api.perform(LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
         System.out.println(responseToJson(response));
     }
 }

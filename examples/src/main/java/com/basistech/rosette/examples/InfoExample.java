@@ -35,13 +35,13 @@ public final class InfoExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                 .key(getApiKeyFromSystemProperty())
                                 .url(getAltUrlFromSystemProperty())
                                 .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        InfoResponse response = rosetteApi.info();
+        InfoResponse response = api.info();
         System.out.println(responseToJson(response));
     }
 }
