@@ -23,7 +23,7 @@
     </parent>
     <artifactId>rosette-api-model</artifactId>
     <name>rosette-api-model</name>
-    <description>Rosette API data models</description>
+    <description>Babel Street Analytics API data models</description>
     <properties>
         <delombok.output.directory>${project.build.directory}/delombok</delombok.output.directory>
     </properties>

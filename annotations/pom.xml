@@ -23,7 +23,7 @@
     </parent>
     <artifactId>rosette-api-annotations</artifactId>
     <name>rosette-api-annotations</name>
-    <description>Rosette API Annotations</description>
+    <description>Babel Street Analytics API Annotations</description>
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
