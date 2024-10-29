@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ $# -eq 0 ]; then
-    echo "Usage: $0 API_KEY" 1>&2
+    echo "Usage: $0 API_KEY [ALT_URL]" 1>&2
     exit 1
 fi
 
