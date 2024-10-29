@@ -57,6 +57,7 @@
         <module>json</module>
         <module>common</module>
         <module>api</module>
+        <module>all</module>
         <module>examples</module>
         <module>release</module>
     </modules>
