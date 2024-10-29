@@ -24,9 +24,6 @@
     <artifactId>rosette-api-all</artifactId>
     <name>rosette-api-all</name>
     <description>Rosette API all modules combined</description>
-    <properties>
-        <skip-mockserver>false</skip-mockserver>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>com.basistech</groupId>
