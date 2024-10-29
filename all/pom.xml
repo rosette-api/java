@@ -23,7 +23,7 @@
     </parent>
     <artifactId>rosette-api-all</artifactId>
     <name>rosette-api-all</name>
-    <description>Rosette API Communications</description>
+    <description>Rosette API all modules combined</description>
     <properties>
         <skip-mockserver>false</skip-mockserver>
     </properties>
