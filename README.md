@@ -46,7 +46,7 @@ Versions, of the form `x.y.z`, where `z` is greater than or equal to `100`, are 
 them without consultation with Babel Street.
 
 #### Examples
-View small example programs for each Rosette endpoint in the
+View small example programs for each Analytics endpoint in the
 [examples](examples/src/main/java/com/basistech/rosette/examples) directory.
 
 #### Documentation & Support

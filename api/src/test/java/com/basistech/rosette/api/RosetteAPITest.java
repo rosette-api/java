@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -100,14 +100,14 @@ class RosetteAPITest {
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}",
                                 StandardCharsets.UTF_8)
                         .withStatusCode(HTTP_OK)
-                        .withHeader("X-RosetteAPI-Concurrency", "5"));
+                        .withHeader("X-BabelStreetAPI-Concurrency", "5"));
 
         this.mockServer.when(HttpRequest.request()
                 .withPath("/info"))
             .respond(HttpResponse.response()
                 .withStatusCode(HTTP_OK)
                 .withHeader("Content-Type", "application/json")
-                .withHeader("X-RosetteAPI-Concurrency", "5")
+                .withHeader("X-BabelStreetAPI-Concurrency", "5")
                 .withBody(INFO_RESPONSE, StandardCharsets.UTF_8));
 
         api = new HttpRosetteAPI.Builder()
@@ -145,14 +145,14 @@ class RosetteAPITest {
                     .respond(HttpResponse.response()
                             .withHeader("Content-Type", "application/json")
                             .withHeader("Content-Encoding", "gzip")
-                            .withHeader("X-RosetteAPI-Concurrency", "5")
+                            .withHeader("X-BabelStreetAPI-Concurrency", "5")
                             .withStatusCode(statusCode).withBody(gzip(responseStr)));
 
         } else {
             mockServer.when(HttpRequest.request().withPath("^(?!/info).+"))
                     .respond(HttpResponse.response()
                             .withHeader("Content-Type", "application/json")
-                            .withHeader("X-RosetteAPI-Concurrency", "5")
+                            .withHeader("X-BabelStreetAPI-Concurrency", "5")
                             .withStatusCode(statusCode).withBody(responseStr, StandardCharsets.UTF_8));
         }
 

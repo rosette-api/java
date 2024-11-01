@@ -23,7 +23,7 @@
     </parent>
     <artifactId>rosette-api-all</artifactId>
     <name>rosette-api-all</name>
-    <description>Analytics API all modules combined</description>
+    <description>Babel Street Analytics API all modules combined</description>
     <dependencies>
         <dependency>
             <groupId>com.basistech</groupId>

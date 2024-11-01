@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ class RosetteRequestTest {
         this.mockServer.when(HttpRequest.request().withPath(requestPath), Times.exactly(requestTimes))
                 .respond(HttpResponse.response()
                         .withHeader("Content-Type", "application/json")
-                        .withHeader("X-RosetteAPI-Concurrency", "5")
+                        .withHeader("X-BabelStreetAPI-Concurrency", "5")
                         .withStatusCode(statusCode)
                         .withBody(responseString)
                         .withDelay(TimeUnit.MILLISECONDS, delayMillis));

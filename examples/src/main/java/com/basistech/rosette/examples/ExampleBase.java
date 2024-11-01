@@ -27,8 +27,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  */
 @SuppressWarnings("java:S106")
 public abstract class ExampleBase {
-    private static final String KEY_PROP_NAME = "rosette.api.key";
-    private static final String URL_PROP_NAME = "rosette.api.altUrl";
+    private static final String KEY_PROP_NAME = "analytics.api.key";
+    private static final String URL_PROP_NAME = "analytics.api.altUrl";
+    private static final String LEGACY_KEY_PROP_NAME = "rosette.api.key";
+    private static final String LEGACY_URL_PROP_NAME = "rosette.api.altUrl";
     private static final String USAGE_STR = "Usage: java -cp rosette-api-examples.jar:lib/rosette-api-manifest.jar "
             + "-D" + KEY_PROP_NAME + "=<required_api_key> " + "-D" + URL_PROP_NAME + "=<optional_alternate_url> ";
 
@@ -36,8 +38,10 @@ public abstract class ExampleBase {
      * @return api key using system property {@value com.basistech.rosette.examples.ExampleBase#KEY_PROP_NAME}
      */
     protected String getApiKeyFromSystemProperty() {
-        String apiKeyStr = System.getProperty(KEY_PROP_NAME);
-        if (apiKeyStr == null || apiKeyStr.trim().length() < 1) {
+        String apiKeyStr = System.getProperty(KEY_PROP_NAME) != null
+            ? System.getProperty(KEY_PROP_NAME)
+            : System.getProperty(LEGACY_KEY_PROP_NAME);
+        if (apiKeyStr == null || apiKeyStr.trim().isEmpty()) {
             showUsage(getClass());
             System.exit(1);
         }
@@ -48,8 +52,10 @@ public abstract class ExampleBase {
      * @return alternate url using system property {@value com.basistech.rosette.examples.ExampleBase#URL_PROP_NAME}
      */
     protected String getAltUrlFromSystemProperty() {
-        String altUrlStr = System.getProperty(URL_PROP_NAME);
-        if (altUrlStr == null || altUrlStr.trim().length() < 1) {
+        String altUrlStr = System.getProperty(URL_PROP_NAME) != null
+            ? System.getProperty(URL_PROP_NAME)
+            : System.getProperty(LEGACY_URL_PROP_NAME);
+        if (altUrlStr == null || altUrlStr.trim().isEmpty()) {
             altUrlStr = "https://analytics.babelstreet.com/rest/v1";
         }
         return altUrlStr.trim();
