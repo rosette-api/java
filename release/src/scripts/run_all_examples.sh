@@ -44,6 +44,10 @@ if [ -n "$2" ]; then
 fi
 
 for example in $examples; do
-    java -Drosette.api.key=$key "$OPTS" -cp rosette-api-examples.jar:lib/* $example
+  if [ -n "$2" ]; then
+    java -Drosette.api.key=$key -Drosette.api.altUrl=$2 -cp rosette-api-examples.jar:lib/* $example
+  else
+    java -Drosette.api.key=$key -cp rosette-api-examples.jar:lib/* $example
+  fi
 done
 
