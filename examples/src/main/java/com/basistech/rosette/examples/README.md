@@ -13,5 +13,5 @@ git clone git@github.com:rosette-api/java.git
 cd java
 mvn install
 cd examples
-mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.PingExample" -Drosette.api.key=$API_KEY
+mvn exec:java -Dexec.mainClass="com.basistech.rosette.examples.PingExample" -Danalytics.api.key=$API_KEY
 ```

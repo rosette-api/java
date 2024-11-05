@@ -40,14 +40,14 @@ EOF
 
 OPTS=""
 if [ -n "$2" ]; then
-    OPTS="-Drosette.api.altUrl=$2"
+    OPTS="-Danalytics.api.altUrl=$2"
 fi
 
 for example in $examples; do
   if [ -n "$2" ]; then
-    java -Drosette.api.key=$key -Drosette.api.altUrl=$2 -cp rosette-api-examples.jar:lib/* $example
+    java -Danalytics.api.key=$key -Danalytics.api.altUrl=$2 -cp rosette-api-examples.jar:lib/* $example
   else
-    java -Drosette.api.key=$key -cp rosette-api-examples.jar:lib/* $example
+    java -Danalytics.api.key=$key -cp rosette-api-examples.jar:lib/* $example
   fi
 done
 
