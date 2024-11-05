@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,12 +31,12 @@ import lombok.Getter;
 public class ConstantsResponse extends Response {
 
     /**
-     * @return the version of Rosette API
+     * @return the version of Analytics API
      */
     private final String version;
 
     /**
-     * @return the Rosette API build info
+     * @return the Analytics API build info
      */
     private final String build;
 

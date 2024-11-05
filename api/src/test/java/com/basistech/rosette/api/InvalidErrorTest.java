@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ class InvalidErrorTest {
         mockServer.when(HttpRequest.request().withPath(".*/{2,}.*"))
                 .respond(HttpResponse.response()
                             .withBody("Invalid path; '//'")
-                            .withHeader("X-RosetteAPI-Concurrency", "5")
+                            .withHeader("X-BabelStreetAPI-Concurrency", "5")
                             .withStatusCode(HTTP_NOT_FOUND));
         mockServer.when(HttpRequest.request()
                 .withMethod("GET")
@@ -59,7 +59,7 @@ class InvalidErrorTest {
                 .respond(HttpResponse.response()
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8)
                         .withStatusCode(HTTP_OK)
-                        .withHeader("X-RosetteAPI-Concurrency", "5"));
+                        .withHeader("X-BabelStreetAPI-Concurrency", "5"));
         String mockServiceUrl = "http://localhost:" + mockServer.getPort() + "/rest//v1";
         boolean exceptional = false;
         try {

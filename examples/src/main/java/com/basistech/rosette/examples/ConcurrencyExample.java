@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ public final class ConcurrencyExample extends ExampleBase {
     private  void run() throws IOException, ExecutionException, InterruptedException {
         //Setting up the Api
         int maximumConcurrency = 3;
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .connectionConcurrency(maximumConcurrency)
@@ -80,21 +80,21 @@ public final class ConcurrencyExample extends ExampleBase {
                 + "In that role, they were jointly responsible for supervising the trial unit at the agency’s Washington D.C. headquarters "
                 + "as well as coordinating with litigators in the SEC’s 11 regional offices around the country.";
         requests.add(
-            rosetteApi.createRosetteRequest(ENTITIES_SERVICE_PATH,
+            api.createRosetteRequest(ENTITIES_SERVICE_PATH,
                     DocumentRequest.<EntitiesOptions>builder().content(entitiesTextData).build(),
                     EntitiesResponse.class)
         );
         // Setting up language request
         String languageData = "Por favor Señorita, says the man.";
         requests.add(
-                rosetteApi.createRosetteRequest(LANGUAGE_SERVICE_PATH,
+                api.createRosetteRequest(LANGUAGE_SERVICE_PATH,
                         DocumentRequest.<LanguageOptions>builder().content(languageData).build(),
                         LanguageResponse.class)
         );
         // Setting up morphology request
         // No content is given to this request and it will return an error response
         requests.add(
-                rosetteApi.createRosetteRequest(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE,
+                api.createRosetteRequest(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPLETE,
                         DocumentRequest.<MorphologyOptions>builder().build(),
                         MorphologyResponse.class)
         );
@@ -108,21 +108,21 @@ public final class ConcurrencyExample extends ExampleBase {
         }
         double threshold = 0.75;
         requests.add(
-                rosetteApi.createRosetteRequest(NAME_DEDUPLICATION_SERVICE_PATH,
+                api.createRosetteRequest(NAME_DEDUPLICATION_SERVICE_PATH,
                         NameDeduplicationRequest.builder().names(names).threshold(threshold).build(),
                         NameDeduplicationResponse.class)
         );
         //Setting up the tokens request
         String tokensData = "北京大学生物系主任办公室内部会议";
         requests.add(
-                rosetteApi.createRosetteRequest(TOKENS_SERVICE_PATH,
+                api.createRosetteRequest(TOKENS_SERVICE_PATH,
                         DocumentRequest.builder().content(tokensData).build(),
                         TokensResponse.class)
         );
         //Setting up the transliteration request
         String transliterationData = "ana r2ye7 el gam3a el sa3a 3 el 3asr";
         requests.add(
-                rosetteApi.createRosetteRequest(TRANSLITERATION_SERVICE_PATH,
+                api.createRosetteRequest(TRANSLITERATION_SERVICE_PATH,
                         DocumentRequest.builder().content(transliterationData).build(),
                         TransliterationResponse.class)
         );

@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -41,13 +41,13 @@ public final class MorphologyLemmasExample extends ExampleBase {
 
     private void run() throws IOException {
         String morphologyLemmasData = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon";
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
         DocumentRequest<MorphologyOptions> request = DocumentRequest.<MorphologyOptions>builder().content(morphologyLemmasData)
                 .build();
-        MorphologyResponse response = rosetteApi.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.LEMMAS,
+        MorphologyResponse response = api.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.LEMMAS,
                 request, MorphologyResponse.class);
         System.out.println(responseToJson(response));
     }

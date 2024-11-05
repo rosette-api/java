@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ public final class SimilarTermsExample extends ExampleBase {
     private void run() throws IOException {
         String similarTermsData = "spy";
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
@@ -59,7 +59,7 @@ public final class SimilarTermsExample extends ExampleBase {
                         .resultLanguages(Lists.newArrayList(LanguageCode.SPANISH, LanguageCode.GERMAN, LanguageCode.JAPANESE))
                         .build())
                 .build();
-        SimilarTermsResponse response = rosetteApi.perform(SIMILAR_TERMS_SERVICE_PATH, request, SimilarTermsResponse.class);
+        SimilarTermsResponse response = api.perform(SIMILAR_TERMS_SERVICE_PATH, request, SimilarTermsResponse.class);
         System.out.println(responseToJson(response));
     }
 }

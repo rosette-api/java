@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public final class SentimentExample extends ExampleBase {
         // the temp file substitutes for an actual disk file.
         String sentimentFileData = "<html><head><title>New Ghostbusters Film</title></head><body><p>Original Ghostbuster Dan Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new all-female Ghostbusters cast, telling The Hollywood Reporter, “The Aykroyd family is delighted by this inheritance of the Ghostbusters torch by these most magnificent women in comedy.”</p></body></html>";
         try (InputStream inputStream = Files.newInputStream(createTempDataFile(sentimentFileData))) {
-            HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+            HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                     .key(getApiKeyFromSystemProperty())
                     .url(getAltUrlFromSystemProperty())
                     .build();
@@ -55,7 +55,7 @@ public final class SentimentExample extends ExampleBase {
             //api.httpClient(CloseableHttpClient)
             // When no options, use <?>.
             DocumentRequest<SentimentOptions> request = DocumentRequest.<SentimentOptions>builder().content(inputStream, "text/html").build();
-            SentimentResponse response = rosetteApi.perform(SENTIMENT_SERVICE_PATH, request, SentimentResponse.class);
+            SentimentResponse response = api.perform(SENTIMENT_SERVICE_PATH, request, SentimentResponse.class);
             System.out.println(responseToJson(response));
         }
 

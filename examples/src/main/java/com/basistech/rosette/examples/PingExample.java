@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -35,8 +35,8 @@ public final class PingExample extends ExampleBase {
     }
 
     private void run() throws IOException {
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder().key(getApiKeyFromSystemProperty()).url(getAltUrlFromSystemProperty()).build();
-        PingResponse response = rosetteApi.ping();
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder().key(getApiKeyFromSystemProperty()).url(getAltUrlFromSystemProperty()).build();
+        PingResponse response = api.ping();
         System.out.println(responseToJson(response));
     }
 }

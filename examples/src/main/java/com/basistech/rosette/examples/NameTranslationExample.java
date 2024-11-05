@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -45,13 +45,13 @@ public final class NameTranslationExample extends ExampleBase {
                 .targetLanguage(LanguageCode.ENGLISH)
                 .build();
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        NameTranslationResponse response = rosetteApi.perform(NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
+        NameTranslationResponse response = api.perform(NAME_TRANSLATION_SERVICE_PATH, request, NameTranslationResponse.class);
         System.out.println(responseToJson(response));
     }
 }

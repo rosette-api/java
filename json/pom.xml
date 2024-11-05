@@ -24,7 +24,7 @@
     </parent>
     <artifactId>rosette-api-json</artifactId>
     <name>rosette-api-json</name>
-    <description>Rosette API JSON module</description>
+    <description>Babel Street Analytics API JSON module</description>
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

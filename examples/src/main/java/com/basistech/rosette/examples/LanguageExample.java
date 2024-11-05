@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public final class LanguageExample extends ExampleBase {
     private void run() throws IOException {
         String languageData = "Por favor Señorita, says the man.";
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
@@ -50,7 +50,7 @@ public final class LanguageExample extends ExampleBase {
         DocumentRequest<LanguageOptions> request = DocumentRequest.<LanguageOptions>builder()
                                                                   .content(languageData)
                                                                   .build();
-        LanguageResponse response = rosetteApi.perform(LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
+        LanguageResponse response = api.perform(LANGUAGE_SERVICE_PATH, request, LanguageResponse.class);
         System.out.println(responseToJson(response));
     }
 }

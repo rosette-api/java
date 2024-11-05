@@ -96,13 +96,13 @@ public class RecordSimilarityExample extends ExampleBase {
                         ).build()
                 ).build();
 
-        HttpRosetteAPI rosetteAPI = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
-        RecordSimilarityResponse response = rosetteAPI.perform(RECORD_SIMILARITY_SERVICE_PATH, request, RecordSimilarityResponse.class);
+        RecordSimilarityResponse response = api.perform(RECORD_SIMILARITY_SERVICE_PATH, request, RecordSimilarityResponse.class);
         System.out.println(responseToJson(response));
     }
 }

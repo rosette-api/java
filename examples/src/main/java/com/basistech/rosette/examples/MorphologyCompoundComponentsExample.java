@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
 
     private void run() throws IOException {
         String morphologyCompoundComponentsData = "Rechtsschutzversicherungsgesellschaften";
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
@@ -51,7 +51,7 @@ public final class MorphologyCompoundComponentsExample extends ExampleBase {
         DocumentRequest<MorphologyOptions> request = DocumentRequest.<MorphologyOptions>builder().content(morphologyCompoundComponentsData)
                 .language(LanguageCode.GERMAN) // example of specifying the language.
                 .build();
-        MorphologyResponse response = rosetteApi.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPOUND_COMPONENTS,
+        MorphologyResponse response = api.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.COMPOUND_COMPONENTS,
                 request, MorphologyResponse.class);
 
         System.out.println(responseToJson(response));

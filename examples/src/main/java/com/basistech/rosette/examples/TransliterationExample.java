@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public class TransliterationExample extends ExampleBase {
     private void run() throws IOException {
         String transliterationData = "ana r2ye7 el gam3a el sa3a 3 el 3asr";
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
@@ -51,7 +51,7 @@ public class TransliterationExample extends ExampleBase {
                 .content(transliterationData)
                 .language(LanguageCode.ARABIC)
                 .build();
-        TransliterationResponse response = rosetteApi.perform(TRANSLITERATION_SERVICE_PATH, request, TransliterationResponse.class);
+        TransliterationResponse response = api.perform(TRANSLITERATION_SERVICE_PATH, request, TransliterationResponse.class);
         System.out.println(responseToJson(response));
     }
 }

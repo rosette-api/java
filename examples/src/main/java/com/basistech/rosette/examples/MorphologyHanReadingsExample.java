@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -41,13 +41,13 @@ public final class MorphologyHanReadingsExample extends ExampleBase {
 
     private void run() throws IOException {
         String morphologyHanReadingsData = "北京大学生物系主任办公室内部会议";
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
         DocumentRequest<MorphologyOptions> request = DocumentRequest.<MorphologyOptions>builder().content(morphologyHanReadingsData)
                 .build();
-        MorphologyResponse response = rosetteApi.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.HAN_READINGS,
+        MorphologyResponse response = api.perform(MORPHOLOGY_SERVICE_PATH + "/" + MorphologicalFeature.HAN_READINGS,
                 request, MorphologyResponse.class);
         System.out.println(responseToJson(response));
     }

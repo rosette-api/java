@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -138,7 +138,7 @@ class BasicTest {
                 .withHeader(HttpHeaders.USER_AGENT, HttpRosetteAPI.USER_AGENT_STR))
                 .respond(HttpResponse.response()
                         .withHeader("Content-Type", "application/json")
-                        .withHeader("X-RosetteAPI-Concurrency", "5")
+                        .withHeader("X-BabelStreetAPI-Concurrency", "5")
                         .withStatusCode(200)
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
 
@@ -148,7 +148,7 @@ class BasicTest {
                 .additionalHeader("X-Foo", "Bar")
                 .build();
         var resp = api.ping();
-        assertEquals("5", resp.getExtendedInformation().get("X-RosetteAPI-Concurrency"));
+        assertEquals("5", resp.getExtendedInformation().get("X-BabelStreetAPI-Concurrency"));
     }
 
     @Test
@@ -185,7 +185,7 @@ class BasicTest {
                         .withHeader("Content-Type", "application/json")
                         .withHeader("X-Foo", "Bar")
                         .withHeader("X-FooMulti", "Bar1", "Bar2")
-                        .withHeader("X-RosetteAPI-Concurrency", "5")
+                        .withHeader("X-BabelStreetAPI-Concurrency", "5")
                         .withBody("{\"message\":\"Rosette API at your service\",\"time\":1461788498633}", StandardCharsets.UTF_8));
         api = new HttpRosetteAPI.Builder()
                 .key("foo-key")

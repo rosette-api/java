@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ package com.basistech.rosette.apimodel;
 import java.util.EnumSet;
 
 /**
- * Rosette API relationship accuracy mode
+ * Analytics API relationship accuracy mode
  */
 public enum AccuracyMode {
     PRECISION("precision"),

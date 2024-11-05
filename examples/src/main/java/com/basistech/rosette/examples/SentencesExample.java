@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public final class SentencesExample extends ExampleBase {
     private void run() throws IOException {
         String sentencesData = "This land is your land. This land is my land, from California to the New York island; from the red wood forest to the Gulf Stream waters. This land was made for you and Me. As I was walking that ribbon of highway, I saw above me that endless skyway: I saw below me that golden valley: This land was made for you and me.";
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
@@ -48,7 +48,7 @@ public final class SentencesExample extends ExampleBase {
         //api.httpClient(CloseableHttpClient)
         // When no options, use <?>.
         DocumentRequest<?> request = DocumentRequest.builder().content(sentencesData).build();
-        SentencesResponse response = rosetteApi.perform(SENTENCES_SERVICE_PATH, request, SentencesResponse.class);
+        SentencesResponse response = api.perform(SENTENCES_SERVICE_PATH, request, SentencesResponse.class);
         System.out.println(responseToJson(response));
     }
 }

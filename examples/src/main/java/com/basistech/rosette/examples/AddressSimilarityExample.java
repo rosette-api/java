@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ public final class AddressSimilarityExample extends ExampleBase {
         UnfieldedAddress address2 = UnfieldedAddress.builder()
                 .address(addressSimilarityAddress2)
                 .build();
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
@@ -67,7 +67,7 @@ public final class AddressSimilarityExample extends ExampleBase {
                                                 .address1(address1)
                                                 .address2(address2)
                                                 .build();
-        AddressSimilarityResponse response = rosetteApi
+        AddressSimilarityResponse response = api
                 .perform(ADDRESS_SIMILARITY_SERVICE_PATH, request, AddressSimilarityResponse.class);
 
         System.out.println(responseToJson(response));

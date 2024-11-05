@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -51,14 +51,14 @@ public final class NameDeduplicationExample extends ExampleBase {
         }
         double threshold = 0.75;
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                                     .key(getApiKeyFromSystemProperty())
                                     .url(getAltUrlFromSystemProperty())
                                     .build();
         //The api object creates an http client, but to provide your own:
         //api.httpClient(CloseableHttpClient)
         NameDeduplicationRequest request = NameDeduplicationRequest.builder().names(names).threshold(threshold).build();
-        NameDeduplicationResponse response = rosetteApi.perform(NAME_DEDUPLICATION_SERVICE_PATH, request,
+        NameDeduplicationResponse response = api.perform(NAME_DEDUPLICATION_SERVICE_PATH, request,
                 NameDeduplicationResponse.class);
         System.out.println(responseToJson(response));
     }

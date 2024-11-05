@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package com.basistech.rosette.api;
 
 /**
- * Specify which feature you want Rosette API Morphology endpoint to return. Specify COMPLETE for every feature.
+ * Specify which feature you want Analytics API Morphology endpoint to return. Specify COMPLETE for every feature.
  */
 public enum MorphologicalFeature {
     COMPLETE("complete"),

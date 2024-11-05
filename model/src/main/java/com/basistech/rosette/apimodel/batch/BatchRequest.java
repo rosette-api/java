@@ -1,5 +1,5 @@
 /*
-* Copyright 2017 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -39,12 +39,12 @@ public final class BatchRequest {
     private final String batchId = UUID.randomUUID().toString();
 
     /**
-     * A URL for RosetteAPI to call to inform you the completion of the batch.
+     * A URL for Analytics API to call to inform you the completion of the batch.
      * It must be accessible on the Internet and can only be http: or https:.
-     * RosetteAPI will use the GET method so optional parameters need to be
+     * Analytics API will use the GET method so optional parameters need to be
      * included as query parameters in the URL.
      *
-     * @return completionCallbackUrl a URL for RosetteAPI to call when batch completes
+     * @return completionCallbackUrl a URL for Analytics API to call when batch completes
      */
     private final String completionCallbackUrl;
 
@@ -56,8 +56,8 @@ public final class BatchRequest {
     /**
      * Specifies where the results should be stored. Only a valid AWS S3 URL
      * is supported at this time. The S3 bucket needs to have a proper policy
-     * statement to grant read/write permission to RosetteAPI within the batch
-     * processing time window. RosetteAPI's AWS account number is 625892746452.
+     * statement to grant read/write permission to Analytics API within the batch
+     * processing time window. Analytics API's AWS account number is 625892746452.
      *
      * Example policy statement:
      *

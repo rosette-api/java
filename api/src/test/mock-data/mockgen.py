@@ -50,7 +50,7 @@ args = parser.parse_args()
 
 headers = {"Content-Type": "application/json"}
 if args.api_key:
-    headers['X-RosetteAPI-Key'] = args.api_key
+    headers['X-BabelStreetAPI-Key'] = args.api_key
 
 # prep & clean up
 for folder in ["request", "response"]:

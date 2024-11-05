@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ public class EventsExample extends ExampleBase {
 
     private void run() throws Exception {
         String topicsData = "I am looking for flights to Super Bowl 2022 in Inglewood, LA.";
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
@@ -46,7 +46,7 @@ public class EventsExample extends ExampleBase {
                 .language(LanguageCode.ENGLISH)
                 .content(topicsData)
                 .build();
-        EventsResponse resp = rosetteApi.perform(EVENTS_SERVICE_PATH, request, EventsResponse.class);
+        EventsResponse resp = api.perform(EVENTS_SERVICE_PATH, request, EventsResponse.class);
         System.out.println(responseToJson(resp));
     }
 }

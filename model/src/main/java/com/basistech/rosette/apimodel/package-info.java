@@ -1,5 +1,5 @@
 /*
-* Copyright 2014 Basis Technology Corp.
+* Copyright 2024 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,6 +16,6 @@
 
 /**
  * The classes in this package make up the data model for simple requests
- * and responses to the Rosette API.
+ * and responses to the Analytics API.
  */
 package com.basistech.rosette.apimodel;

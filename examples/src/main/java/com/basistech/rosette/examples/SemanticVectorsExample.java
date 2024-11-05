@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Basis Technology Corp.
+ * Copyright 2024 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ public final class SemanticVectorsExample extends ExampleBase {
     private void run() throws IOException {
         String semanticVectorsData = "Cambridge, Massachusetts";
 
-        HttpRosetteAPI rosetteApi = new HttpRosetteAPI.Builder()
+        HttpRosetteAPI api = new HttpRosetteAPI.Builder()
                 .key(getApiKeyFromSystemProperty())
                 .url(getAltUrlFromSystemProperty())
                 .build();
@@ -55,7 +55,7 @@ public final class SemanticVectorsExample extends ExampleBase {
                 .embeddingsMode(EmbeddingsMode.GEN_1)
                 .build())
             .build();
-        SemanticVectorsResponse response = rosetteApi.perform(SEMANTIC_VECTORS_SERVICE_PATH, request, SemanticVectorsResponse.class);
+        SemanticVectorsResponse response = api.perform(SEMANTIC_VECTORS_SERVICE_PATH, request, SemanticVectorsResponse.class);
         System.out.println(responseToJson(response));
     }
 }

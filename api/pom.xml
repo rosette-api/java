@@ -23,7 +23,7 @@
     </parent>
     <artifactId>rosette-api</artifactId>
     <name>rosette-api</name>
-    <description>Rosette API Communications</description>
+    <description>Babel Street Analytics API Communications</description>
     <properties>
         <skip-mockserver>false</skip-mockserver>
     </properties>

@@ -23,7 +23,7 @@
     </parent>
     <artifactId>rosette-api-common</artifactId>
     <name>rosette-api-common</name>
-    <description>Rosette API Common</description>
+    <description>Babel Street Analytics API Common</description>
     <dependencies>
         <dependency>
             <groupId>com.basistech.rosette</groupId>
