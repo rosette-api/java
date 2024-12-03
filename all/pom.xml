@@ -75,6 +75,11 @@
                             <artifactId>rosette-api-annotations</artifactId>
                             <version>${project.version}</version>
                         </additionalDependency>
+                        <additionalDependency>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </additionalDependency>
                     </additionalDependencies>
                 </configuration>
             </plugin>
