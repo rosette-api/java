@@ -28,7 +28,7 @@ node ("docker-light") {
                        --pull always \
                        --volume ${sourceDir}:/source \
                        --volume /opt/maven-basis:/opt/maven-basis \
-                       eclipse-temurin:17-jdk-focal \
+                       eclipse-temurin:21-jdk-noble \
                        bash -c \"apt-get update && \
                              apt-get install -y git && \
                              pushd /source && \
