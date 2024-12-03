@@ -1,6 +1,8 @@
 node ("docker-light") {
     def sourceDir = pwd()
     try {
+        env.JAVA_HOME = "${tool 'java21'}"
+        env.PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
         def mavenLocalRepo = "$JENKINS_HOME/maven-local-repositories/executor-$EXECUTOR_NUMBER"
         stage("Clean up") {
             step([$class: 'WsCleanup'])
