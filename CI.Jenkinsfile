@@ -34,6 +34,7 @@ node ("docker-light") {
                        bash -c \"apt-get update && \
                              apt-get install -y git && \
                              pushd /source && \
+                             git config --global --add safe.directory /source && \
                              /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar $mySonarOpts; \
                              maven_ret=\\\$?; \
                              echo && \
