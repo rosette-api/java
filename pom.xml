@@ -22,7 +22,7 @@
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
-        <version>21.0.0</version>
+        <version>22.0.0</version>
         <relativePath />
     </parent>
     <packaging>pom</packaging>
