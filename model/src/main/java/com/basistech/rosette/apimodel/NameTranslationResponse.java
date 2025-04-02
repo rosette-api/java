@@ -17,6 +17,7 @@
 package com.basistech.rosette.apimodel;
 
 import java.util.List;
+import java.util.Map;
 
 import com.basistech.rosette.annotations.JacksonMixin;
 import com.basistech.util.ISO15924;
@@ -79,4 +80,29 @@ public class NameTranslationResponse extends Response {
      * @return the translation
      */
     private final List<NameTranslation> translations;
+
+    public static class NameTranslationResponseBuilder {
+        protected Map<String, Object> extendedInformation;
+
+        public NameTranslationResponseBuilder extendedInformation(Map<String, Object> extendedInformation) {
+            this.extendedInformation = extendedInformation;
+            return this;
+        }
+
+
+        public NameTranslationResponse build() {
+            NameTranslationResponse response = new NameTranslationResponse(
+                    this.sourceScript,
+                    this.sourceLanguageOfOrigin,
+                    this.sourceLanguageOfUse,
+                    this.targetLanguage,
+                    this.targetScript,
+                    this.targetScheme,
+                    this.translation,
+                    this.confidence,
+                    this.translations);
+            response.addExtendedInformation(extendedInformation);
+            return response;
+        }
+    }
 }
