@@ -47,6 +47,9 @@ public abstract class Response {
     }
 
     public void addExtendedInformation(Map<String, Object> extendedInformation) {
+        if (extendedInformation == null || extendedInformation.isEmpty()) {
+            return;
+        }
         for (Map.Entry<String, Object> entry : extendedInformation.entrySet()) {
             addExtendedInformation(entry.getKey(), entry.getValue());
         }
