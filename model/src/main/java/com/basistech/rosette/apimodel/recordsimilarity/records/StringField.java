@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Basis Technology Corp.
+ * Copyright 2025 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-public final class RecordFieldType {
-    public static final String RNI_NAME = "rni_name";
-    public static final String RNI_DATE = "rni_date";
-    public static final String RNI_ADDRESS = "rni_address";
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonValue;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Value;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
-    // Generic types
-    public static final String RNI_STRING = "rni_string";
-    public static final String RNI_NUMBER = "rni_number";
-    public static final String RNI_BOOLEAN = "rni_boolean";
-
-    private RecordFieldType() { }
+@SuperBuilder
+@Value
+@Jacksonized
+public class StringField implements RecordSimilarityField {
+    @NotBlank @JsonValue @JsonInclude String data;
 }
