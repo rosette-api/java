@@ -22,9 +22,12 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityPropertie
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRecords;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.BooleanField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.NumberField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
+import com.basistech.rosette.apimodel.recordsimilarity.records.StringField;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -41,16 +44,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RecordSimilarityRequestTest {
 
     private static final ObjectMapper MAPPER = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-    private static final String EXPECTED_JSON = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5,\"scoreIfNull\":0.8}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\",\"format\":\"yyyy/MM/dd\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"}}]}}";
-    private static final String EXPECTED_JSON_WITH_PARAMS = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true,\"parameters\":{\"timeDistanceWeight\":\"0.8\",\"stringDistanceWeight\":\"0.1\"}},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"}}]}}";
-    private static final String EXPECTED_JSON_WITH_UNIVERSE = "{\"fields\":{\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true,\"parameterUniverse\":\"myParameterUniverse\"},\"records\":{\"left\":[{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"dob\":\"1993-04-16\",\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"dob\":{\"date\":\"1993-04-16\"}},{\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"dob\":{\"date\":\"1993-04-16\"},\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"}}]}}";
+    private static final String EXPECTED_JSON = "{\"fields\":{\"num\":{\"type\":\"rni_number\",\"weight\":0.25},\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"bool\":{\"type\":\"rni_boolean\",\"weight\":0.05},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5,\"scoreIfNull\":0.8},\"str\":{\"type\":\"rni_string\",\"weight\":0.8},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true},\"records\":{\"left\":[{\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"num\":42.0,\"dob\":\"1993-04-16\",\"dob2\":{\"date\":\"1993/04/16\",\"format\":\"yyyy/MM/dd\"},\"addr\":\"123 Roadlane Ave\"},{\"primaryName\":{\"text\":\"Evan R\"},\"dob\":{\"date\":\"1993-04-16\"},\"str\":\"some string\",\"bool\":false}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"num\":74301945813095,\"dob\":{\"date\":\"1993-04-16\"},\"bool\":true},{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"str\":\"some other string\",\"dob2\":{\"date\":\"1993/04/16\"},\"primaryName\":\"Ivan R\",\"bool\":true,\"dob\":{\"date\":\"1993-04-16\"}}]}}";
+    private static final String EXPECTED_JSON_WITH_PARAMS = "{\"fields\":{\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"str\":{\"type\":\"rni_string\",\"weight\":0.8},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5},\"bool\":{\"type\":\"rni_boolean\",\"weight\":0.05},\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1},\"num\":{\"type\":\"rni_number\",\"weight\":0.25}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true,\"parameters\":{\"stringDistanceWeight\":\"0.1\",\"timeDistanceWeight\":\"0.8\"}},\"records\":{\"left\":[{\"addr\":\"123 Roadlane Ave\",\"dob2\":{\"date\":\"1993/04/16\"},\"dob\":\"1993-04-16\",\"num\":42.0,\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"}},{\"dob\":{\"date\":\"1993-04-16\"},\"primaryName\":{\"text\":\"Evan R\"},\"bool\":false,\"str\":\"some string\"}],\"right\":[{\"dob\":{\"date\":\"1993-04-16\"},\"num\":74301945813095,\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"bool\":true},{\"primaryName\":\"Ivan R\",\"dob2\":{\"date\":\"1993/04/16\"},\"str\":\"some other string\",\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"bool\":true}]}}";
+    private static final String EXPECTED_JSON_WITH_UNIVERSE = "{\"fields\":{\"num\":{\"type\":\"rni_number\",\"weight\":0.25},\"primaryName\":{\"type\":\"rni_name\",\"weight\":0.5},\"dob\":{\"type\":\"rni_date\",\"weight\":0.2},\"str\":{\"type\":\"rni_string\",\"weight\":0.8},\"addr\":{\"type\":\"rni_address\",\"weight\":0.5},\"bool\":{\"type\":\"rni_boolean\",\"weight\":0.05},\"dob2\":{\"type\":\"rni_date\",\"weight\":0.1}},\"properties\":{\"threshold\":0.7,\"includeExplainInfo\":true,\"parameterUniverse\":\"myParameterUniverse\"},\"records\":{\"left\":[{\"num\":42.0,\"primaryName\":{\"text\":\"Ethan R\",\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\"},\"addr\":\"123 Roadlane Ave\",\"dob2\":{\"date\":\"1993/04/16\"},\"dob\":\"1993-04-16\"},{\"primaryName\":{\"text\":\"Evan R\"},\"bool\":false,\"str\":\"some string\",\"dob\":{\"date\":\"1993-04-16\"}}],\"right\":[{\"primaryName\":{\"text\":\"Seth R\",\"language\":\"eng\"},\"bool\":true,\"dob\":{\"date\":\"1993-04-16\"},\"num\":74301945813095},{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"bool\":true,\"primaryName\":\"Ivan R\",\"dob2\":{\"date\":\"1993/04/16\"},\"str\":\"some other string\"}]}}";
 
     private static final RecordSimilarityRequest EXPECTED_REQUEST = RecordSimilarityRequest.builder()
             .fields(Map.of(
                     "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).scoreIfNull(0.8).build(),
                     "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.1).scoreIfNull(null).build(),
                     "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NAME).weight(0.5).build(),
-                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build()))
+                    "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build(),
+                    "str", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_STRING).weight(0.8).build(),
+                    "num", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NUMBER).weight(0.25).build(),
+                    "bool", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_BOOLEAN).weight(0.05).build()))
             .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
             .records(RecordSimilarityRecords.builder()
                 .left(
@@ -64,24 +70,31 @@ class RecordSimilarityRequestTest {
                                     .build(),
                             "dob", DateField.UnfieldedDate.builder().date("1993-04-16").build(),
                             "dob2", DateField.FieldedDate.builder().date("1993/04/16").format("yyyy/MM/dd").build(),
-                            "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
+                            "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build(),
+                            "num", NumberField.builder().data(42.0).build()
                         ),
                         Map.of(
                             "primaryName", NameField.FieldedName.builder().text("Evan R").build(),
-                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
+                            "str", StringField.builder().data("some string").build(),
+                            "bool", BooleanField.builder().data(false).build()
                         )
                     )
                 ).right(
                     List.of(
                         Map.of(
                                 "primaryName", NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
-                                "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
+                                "num", NumberField.builder().data(74301945813095L).build(),
+                                "bool", BooleanField.builder().data(true).build()
                         ),
                         Map.of(
                                 "primaryName", NameField.UnfieldedName.builder().text("Ivan R").build(),
                                 "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
                                 "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                "addr", AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build()
+                                "addr", AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build(),
+                                "str", StringField.builder().data("some other string").build(),
+                                "bool", BooleanField.builder().data(true).build()
                         )
                     )
                 ).build()
@@ -92,7 +105,10 @@ class RecordSimilarityRequestTest {
                     "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.1).build(),
                     "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NAME).weight(0.5).build(),
                     "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build(),
-                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build()))
+                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build(),
+                    "str", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_STRING).weight(0.8).build(),
+                    "num", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NUMBER).weight(0.25).build(),
+                    "bool", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_BOOLEAN).weight(0.05).build()))
             .properties(RecordSimilarityProperties.builder()
                     .threshold(0.7)
                     .includeExplainInfo(true)
@@ -115,24 +131,31 @@ class RecordSimilarityRequestTest {
                                                     .build(),
                                             "dob", DateField.UnfieldedDate.builder().date("1993-04-16").build(),
                                             "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                            "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
+                                            "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build(),
+                                            "num", NumberField.builder().data(42.0).build()
                                     ),
                                     Map.of(
                                             "primaryName", NameField.FieldedName.builder().text("Evan R").build(),
-                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
+                                            "str", StringField.builder().data("some string").build(),
+                                            "bool", BooleanField.builder().data(false).build()
                                     )
                             )
                     ).right(
                             List.of(
                                     Map.of(
                                             "primaryName", NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
-                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
+                                            "num", NumberField.builder().data(74301945813095L).build(),
+                                            "bool", BooleanField.builder().data(true).build()
                                     ),
                                     Map.of(
                                             "primaryName", NameField.UnfieldedName.builder().text("Ivan R").build(),
                                             "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
                                             "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                            "addr", AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build()
+                                            "addr", AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build(),
+                                            "str", StringField.builder().data("some other string").build(),
+                                            "bool", BooleanField.builder().data(true).build()
                                     )
                             )
                     ).build()
@@ -143,7 +166,10 @@ class RecordSimilarityRequestTest {
                     "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build(),
                     "primaryName", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NAME).weight(0.5).build(),
                     "dob2", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.1).build(),
-                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build()))
+                    "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build(),
+                    "str", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_STRING).weight(0.8).build(),
+                    "num", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NUMBER).weight(0.25).build(),
+                    "bool", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_BOOLEAN).weight(0.05).build()))
             .properties(RecordSimilarityProperties.builder()
                     .threshold(0.7)
                     .includeExplainInfo(true)
@@ -161,24 +187,31 @@ class RecordSimilarityRequestTest {
                                     .build(),
                             "dob", DateField.UnfieldedDate.builder().date("1993-04-16").build(),
                             "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
-                            "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
+                            "addr", AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build(),
+                            "num", NumberField.builder().data(42.0).build()
                         ),
                         Map.of(
                             "primaryName", NameField.FieldedName.builder().text("Evan R").build(),
-                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                            "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
+                            "str", StringField.builder().data("some string").build(),
+                            "bool", BooleanField.builder().data(false).build()
                         )
                     )
                 ).right(
                     List.of(
                         Map.of(
                                 "primaryName", NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
-                                "dob", DateField.FieldedDate.builder().date("1993-04-16").build()
+                                "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
+                                "num", NumberField.builder().data(74301945813095L).build(),
+                                "bool", BooleanField.builder().data(true).build()
                         ),
                         Map.of(
                                 "primaryName", NameField.UnfieldedName.builder().text("Ivan R").build(),
                                 "dob", DateField.FieldedDate.builder().date("1993-04-16").build(),
                                 "dob2", DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                "addr", AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build()
+                                "addr", AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build(),
+                                "str", StringField.builder().data("some other string").build(),
+                                "bool", BooleanField.builder().data(true).build()
                         )
                     )
                 ).build()

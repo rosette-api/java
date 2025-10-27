@@ -22,9 +22,12 @@ import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRecords;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRequest;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityResponse;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.BooleanField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.NumberField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
+import com.basistech.rosette.apimodel.recordsimilarity.records.StringField;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 
@@ -53,13 +56,19 @@ public class RecordSimilarityExample extends ExampleBase {
         String dobField = "dob";
         String dob2Field = "dob2";
         String addrField = "addr";
+        String strField = "jobTitle";
+        String numberField = "age";
+        String boolField = "isRetired";
         String dobHyphen = "1993-04-16";
         RecordSimilarityRequest request = RecordSimilarityRequest.builder()
                 .fields(Map.of(
                         primaryNameField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NAME).weight(0.5).build(),
                         dobField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build(),
                         dob2Field, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.1).build(),
-                        addrField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build()))
+                        addrField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build(),
+                        strField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_STRING).weight(0.2).build(),
+                        numberField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NUMBER).weight(0.4).build(),
+                        boolField, RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_BOOLEAN).weight(0.05).build()))
                 .properties(RecordSimilarityProperties.builder().threshold(0.7).includeExplainInfo(true).build())
                 .records(RecordSimilarityRecords.builder()
                         .left(
@@ -73,24 +82,31 @@ public class RecordSimilarityExample extends ExampleBase {
                                                         .build(),
                                                 dobField, DateField.UnfieldedDate.builder().date(dobHyphen).build(),
                                                 dob2Field, DateField.FieldedDate.builder().date("04161993").format("MMddyyyy").build(),
-                                                addrField, AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build()
+                                                addrField, AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build(),
+                                                strField, StringField.builder().data("software engineer").build()
                                         ),
                                         Map.of(
                                                 primaryNameField, NameField.FieldedName.builder().text("Evan R").build(),
-                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build()
+                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build(),
+                                                numberField, NumberField.builder().data(47).build(),
+                                                boolField, BooleanField.builder().data(false).build()
                                         )
                                 )
                         ).right(
                                 List.of(
                                         Map.of(
                                                 primaryNameField, NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
-                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build()
+                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build(),
+                                                strField, StringField.builder().data("manager").build(),
+                                                boolField, BooleanField.builder().data(true).build()
                                         ),
                                         Map.of(
                                                 primaryNameField, NameField.UnfieldedName.builder().text("Ivan R").build(),
                                                 dobField, DateField.FieldedDate.builder().date(dobHyphen).build(),
                                                 dob2Field, DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                                addrField, AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build()
+                                                addrField, AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build(),
+                                                numberField, NumberField.builder().data(72).build(),
+                                                boolField, BooleanField.builder().data(true).build()
                                         )
                                 )
                         ).build()
