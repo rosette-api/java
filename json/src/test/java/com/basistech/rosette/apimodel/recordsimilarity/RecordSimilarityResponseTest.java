@@ -18,8 +18,11 @@ package com.basistech.rosette.apimodel.recordsimilarity;
 
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.BooleanField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.NumberField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.StringField;
 import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.basistech.util.NEConstants;
@@ -29,7 +32,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RecordSimilarityResponseTest {
 
     private static final ObjectMapper MAPPER = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
-    private static final String EXPECTED_JSON = "{\"info\":[\"Field threshold not found in properties! Defaulting to 0.0\",\"Field weight not found in fields! Defaulting to 1.0 for all entries\"],\"results\":[{\"explainInfo\":{\"leftOnlyFields\":[\"addr\"],\"scoredFields\":{\"dob\":{\"calculatedWeight\":0.2857142857142857,\"finalScore\":0.74,\"rawScore\":0.8,\"weight\":0.5},\"primaryName\":{\"calculatedWeight\":0.7142857142857143,\"details\":\"any details\",\"finalScore\":0.85,\"rawScore\":0.99,\"weight\":0.5}}},\"left\":{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"primaryName\":{\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\",\"text\":\"Ethan R\"}},\"right\":{\"dob\":\"1993-04-16\",\"primaryName\":{\"text\":\"Seth R\"}},\"score\":0.87},{\"error\":[\"Field foo not found in field mapping\"],\"info\":[\"Some info message\",\"Some other info message\"],\"left\":{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"primaryName\":{\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\",\"text\":\"Ethan R\"}},\"right\":{\"dob\":\"1993-04-16\",\"primaryName\":{\"text\":\"Seth R\"}}}]}";
+    private static final String EXPECTED_JSON = "{\"info\":[\"Field threshold not found in properties! Defaulting to 0.0\",\"Field weight not found in fields! Defaulting to 1.0 for all entries\"],\"results\":[{\"explainInfo\":{\"leftOnlyFields\":[\"addr\"],\"rightOnlyFields\":[\"bool\"],\"scoredFields\":{\"dob\":{\"calculatedWeight\":0.2857142857142857,\"finalScore\":0.74,\"rawScore\":0.8,\"weight\":0.33},\"primaryName\":{\"calculatedWeight\":0.7142857142857143,\"details\":\"any details\",\"finalScore\":0.85,\"rawScore\":0.99,\"weight\":0.33},\"str\":{\"calculatedWeight\":0.0,\"finalScore\":0.5,\"rawScore\":0.5,\"weight\":0.33}}},\"left\":{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"num\":2342.15,\"primaryName\":{\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\",\"text\":\"Ethan R\"},\"str\":\"some string\"},\"right\":{\"bool\":false,\"dob\":\"1993-04-16\",\"primaryName\":{\"text\":\"Seth R\"},\"str\":\"some other string\"},\"score\":0.87},{\"error\":[\"Field foo not found in field mapping\"],\"info\":[\"Some info message\",\"Some other info message\"],\"left\":{\"addr\":{\"houseNumber\":\"123\",\"road\":\"Roadlane Ave\"},\"dob\":{\"date\":\"1993-04-16\"},\"primaryName\":{\"entityType\":\"PERSON\",\"language\":\"eng\",\"languageOfOrigin\":\"eng\",\"script\":\"Latn\",\"text\":\"Ethan R\"}},\"right\":{\"dob\":\"1993-04-16\",\"primaryName\":{\"text\":\"Seth R\"}}}]}";
 
     private static final RecordSimilarityResponse EXPECTED_RESPONSE;
 
@@ -60,28 +62,40 @@ public class RecordSimilarityResponseTest {
                                                     .build(),
                                             "addr", AddressField.FieldedAddress.builder()
                                                     .houseNumber("123").road("Roadlane Ave")
-                                                    .build()))
+                                                    .build(),
+                                            "str", StringField.builder().data("some string").build(),
+                                            "num", NumberField.builder().data(2342.15).build()))
                                     .right(Map.of("primaryName", NameField.FieldedName.builder()
                                                     .text("Seth R")
                                                     .build(),
                                             "dob", DateField.UnfieldedDate.builder()
                                                     .date("1993-04-16")
-                                                    .build()))
+                                                    .build(),
+                                            "str", StringField.builder().data("some other string").build(),
+                                            "bool", BooleanField.builder().data(false).build()))
                                     .explainInfo(RecordSimilarityExplainInfo.builder()
                                             .leftOnlyFields(List.of("addr"))
+                                            .rightOnlyFields(List.of("bool"))
                                             .scoredFields(Map.of("dob", RecordSimilarityFieldExplainInfo.builder()
-                                                            .weight(0.5)
+                                                            .weight(0.33)
                                                             .calculatedWeight(0.2857142857142857)
                                                             .rawScore(0.8)
                                                             .finalScore(0.74)
                                                             .build(),
                                                     "primaryName",
                                                     RecordSimilarityFieldExplainInfo.builder()
-                                                            .weight(0.5)
+                                                            .weight(0.33)
                                                             .calculatedWeight(0.7142857142857143)
                                                             .rawScore(0.99)
                                                             .finalScore(0.85)
                                                             .details(MAPPER.readTree("\"any details\""))
+                                                            .build(),
+                                                    "str",
+                                                    RecordSimilarityFieldExplainInfo.builder()
+                                                            .weight(0.33)
+                                                            .calculatedWeight(0.0)
+                                                            .rawScore(0.5)
+                                                            .finalScore(0.5)
                                                             .build()
                                             ))
                                             .build())
@@ -106,7 +120,7 @@ public class RecordSimilarityResponseTest {
                                             "dob", DateField.UnfieldedDate.builder()
                                                     .date("1993-04-16")
                                                     .build()))
-                                    .error(Arrays.asList("Field foo not found in field mapping"))
+                                    .error(List.of("Field foo not found in field mapping"))
                                     .info(List.of("Some info message", "Some other info message"))
                                     .build()))
                     .info(List.of(

@@ -36,10 +36,13 @@ import jakarta.validation.constraints.NotNull;
 
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.records.AddressField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.BooleanField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.DateField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.NameField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.NumberField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordFieldType;
 import com.basistech.rosette.apimodel.recordsimilarity.records.RecordSimilarityField;
+import com.basistech.rosette.apimodel.recordsimilarity.records.StringField;
 import com.basistech.rosette.apimodel.recordsimilarity.records.UnknownField;
 
 final class RecordSimilarityDeserializerUtilities {
@@ -123,6 +126,18 @@ final class RecordSimilarityDeserializerUtilities {
                     break;
                 case RecordFieldType.RNI_ADDRESS:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
+                    break;
+                case RecordFieldType.RNI_STRING:
+                    fieldData = StringField.builder().data(fieldValue.textValue()).build();
+                    break;
+                case RecordFieldType.RNI_NUMBER:
+                    fieldData = NumberField.builder().data(fieldValue.numberValue()).build();
+                    break;
+                case RecordFieldType.RNI_BOOLEAN:
+                    // Be sure not to accidentally convert non-boolean values to 'false'
+                    fieldData = BooleanField.builder()
+                            .data(fieldValue.isBoolean() ? fieldValue.booleanValue() : null)
+                            .build();
                     break;
                 default:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);
