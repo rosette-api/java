@@ -46,7 +46,7 @@
         <jakarta-validation-api.version>3.1.1</jakarta-validation-api.version>
         <java-poet.version>1.13.0</java-poet.version>
         <junit.version>5.13.4</junit.version>
-        <lombok.version>1.18.38</lombok.version>
+        <lombok.version>1.18.42</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <mockserver.version>5.15.0</mockserver.version>
         <reflections.version>0.10.2</reflections.version>
