@@ -42,7 +42,7 @@
     </distributionManagement>
     <properties>
         <build-helper-maven-plugin.version>3.6.1</build-helper-maven-plugin.version>
-        <commons-codec.version>1.19.0</commons-codec.version>
+        <commons-codec.version>1.20.0</commons-codec.version>
         <jakarta-validation-api.version>3.1.1</jakarta-validation-api.version>
         <java-poet.version>1.13.0</java-poet.version>
         <junit.version>6.0.1</junit.version>
