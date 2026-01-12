@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2018-2024 Basis Technology Corp.
+  Copyright 2018-2026 Babel Street Rosette Ltd.
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@
         <build-helper-maven-plugin.version>3.6.1</build-helper-maven-plugin.version>
         <commons-codec.version>1.20.0</commons-codec.version>
         <jakarta-validation-api.version>3.1.1</jakarta-validation-api.version>
-        <java-poet.version>1.13.0</java-poet.version>
+        <java-poet.version>0.10.0</java-poet.version>
         <junit.version>6.0.1</junit.version>
         <lombok.version>1.18.42</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
