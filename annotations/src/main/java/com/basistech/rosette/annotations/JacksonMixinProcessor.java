@@ -1,5 +1,5 @@
 /*
-* Copyright 2022 Basis Technology Corp.
+* Copyright 2026 Basis Technology Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -38,10 +38,7 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -75,7 +72,7 @@ public class JacksonMixinProcessor extends AbstractProcessor {
             String elementSimpleName = typeElement.getSimpleName().toString();
             if (typeElement.getAnnotation(Builder.class) != null) {
                 TypeSpec.Builder mixinClassBuilder = TypeSpec
-                        .classBuilder(typeElement.getSimpleName().toString() + "Mixin")
+                        .classBuilder(typeElement.getSimpleName() + "Mixin")
                         .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                         .addAnnotation(AnnotationSpec.builder(JsonTypeName.class)
                                 .addMember(VALUE, "$S", typeElement.getSimpleName())
@@ -89,7 +86,7 @@ public class JacksonMixinProcessor extends AbstractProcessor {
                                         .add("JsonInclude.Include.NON_NULL").build())
                                 .build())
                         .addType(TypeSpec
-                                .classBuilder(typeElement.getSimpleName().toString() + "MixinBuilder")
+                                .classBuilder(typeElement.getSimpleName() + "MixinBuilder")
                                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                                 .addAnnotation(AnnotationSpec.builder(JsonPOJOBuilder.class)
                                         .addMember("withPrefix", "$S", "")
@@ -101,13 +98,23 @@ public class JacksonMixinProcessor extends AbstractProcessor {
                             .build()
                             .writeTo(processingEnvironment.getFiler());
                     addMixinCode.put(elementQualifiedName + ".class",
-                            packageName + "." + typeElement.getSimpleName().toString() + "Mixin" + ".class");
+                            packageName + "." + typeElement.getSimpleName() + "Mixin" + ".class");
                     addMixinCode.put(elementQualifiedName + "." + elementSimpleName + "Builder.class",
-                            packageName + "." + typeElement.getSimpleName().toString()
-                                    + "Mixin." + typeElement.getSimpleName().toString() + "MixinBuilder.class");
+                            packageName + "." + typeElement.getSimpleName()
+                                    + "Mixin." + typeElement.getSimpleName() + "MixinBuilder.class");
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    processingEnvironment.getMessager().printMessage(
+                            Diagnostic.Kind.ERROR,
+                            "Failed to generate mixin: " + e.getMessage(),
+                            element
+                    );
                 }
+            } else {
+                processingEnvironment.getMessager().printMessage(
+                        Diagnostic.Kind.WARNING,
+                        "@JacksonMixin requires @Builder annotation",
+                        element
+                );
             }
         }
 
@@ -129,7 +136,10 @@ public class JacksonMixinProcessor extends AbstractProcessor {
                     .build()
                     .writeTo(processingEnvironment.getFiler());
         } catch (IOException e) {
-            e.printStackTrace();
+            processingEnvironment.getMessager().printMessage(
+                    Diagnostic.Kind.ERROR,
+                    "Failed to generate MixinUtil: " + e.getMessage()
+            );
         }
 
         return true;
@@ -137,7 +147,7 @@ public class JacksonMixinProcessor extends AbstractProcessor {
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
-        return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(JacksonMixin.class.getCanonicalName())));
+        return Set.of(JacksonMixin.class.getCanonicalName());
     }
 
     @Override
