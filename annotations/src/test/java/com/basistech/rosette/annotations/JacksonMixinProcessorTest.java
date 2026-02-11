@@ -29,15 +29,10 @@ import static com.google.testing.compile.CompilationSubject.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test for {@link JacksonMixinProcessor} to verify:
- * 1. Proper error messages when code generation fails (instead of printStackTrace)
- * 2. Warning messages when JacksonMixin is used without Builder
- */
 public class JacksonMixinProcessorTest {
 
     @Test
-    public void testJacksonMixinWithoutBuilderProducesWarning() {
+    public void testJacksonMixinWithoutBuilderProducesError() {
         JavaFileObject classWithoutBuilder = JavaFileObjects.forSourceString(
                 "test.ModelWithoutBuilder",
                 "package test;\n"
@@ -56,13 +51,12 @@ public class JacksonMixinProcessorTest {
                 .withProcessors(new JacksonMixinProcessor())
                 .compile(classWithoutBuilder);
 
-        // Compilation should succeed (it's a warning, not an error)
-        assertThat(compilation).succeeded();
+        assertThat(compilation).failed();
 
-        List<Diagnostic<? extends JavaFileObject>> warnings = compilation.warnings();
-        String warningMessage = warnings.get(0).getMessage(null);
-        assertTrue(warningMessage.contains("@JacksonMixin requires @Builder annotation"),
-                "Warning should state that Builder annotation is required. Actual: " + warningMessage);
+        List<Diagnostic<? extends JavaFileObject>> errors = compilation.errors();
+        String errorMessage = errors.get(0).getMessage(null);
+        assertTrue(errorMessage.contains("@JacksonMixin requires @Builder annotation"),
+                "Error should state that Builder annotation is required. Actual: " + errorMessage);
     }
 
     @Test

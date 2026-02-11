@@ -111,7 +111,7 @@ public class JacksonMixinProcessor extends AbstractProcessor {
                 }
             } else {
                 processingEnvironment.getMessager().printMessage(
-                        Diagnostic.Kind.WARNING,
+                        Diagnostic.Kind.ERROR,
                         "@JacksonMixin requires @Builder annotation",
                         element
                 );
