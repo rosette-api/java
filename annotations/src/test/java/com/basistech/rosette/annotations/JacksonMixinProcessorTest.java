@@ -29,22 +29,24 @@ import static com.google.testing.compile.CompilationSubject.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class JacksonMixinProcessorTest {
+class JacksonMixinProcessorTest {
 
     @Test
-    public void testJacksonMixinWithoutBuilderProducesError() {
+    void testJacksonMixinWithoutBuilderProducesError() {
         JavaFileObject classWithoutBuilder = JavaFileObjects.forSourceString(
                 "test.ModelWithoutBuilder",
-                "package test;\n"
-                + "\n"
-                + "import com.basistech.rosette.annotations.JacksonMixin;\n"
-                + "import lombok.Value;\n"
-                + "\n"
-                + "@Value\n"
-                + "@JacksonMixin\n"
-                + "public class ModelWithoutBuilder {\n"
-                + "    String name;\n"
-                + "}\n"
+                """
+                        package test;
+                        
+                        import com.basistech.rosette.annotations.JacksonMixin;
+                        import lombok.Value;
+                        
+                        @Value
+                        @JacksonMixin
+                        public class ModelWithoutBuilder {
+                            String name;
+                        }
+                        """
         );
 
         Compilation compilation = Compiler.javac()
@@ -60,14 +62,16 @@ public class JacksonMixinProcessorTest {
     }
 
     @Test
-    public void testClassWithoutJacksonMixinHasNoWarnings() {
+    void testClassWithoutJacksonMixinHasNoWarnings() {
         JavaFileObject normalClass = JavaFileObjects.forSourceString(
                 "test.NormalClass",
-                "package test;\n"
-                + "\n"
-                + "public class NormalClass {\n"
-                + "    String name;\n"
-                + "}\n"
+                """
+                        package test;
+                        
+                        public class NormalClass {
+                            String name;
+                        }
+                        """
         );
 
         Compilation compilation = Compiler.javac()
@@ -84,17 +88,19 @@ public class JacksonMixinProcessorTest {
 
 
     @Test
-    public void testJacksonMixinOnInterfaceProducesError() {
+    void testJacksonMixinOnInterfaceProducesError() {
         JavaFileObject interfaceWithAnnotation = JavaFileObjects.forSourceString(
                 "test.MyInterface",
-                "package test;\n"
-                + "\n"
-                + "import com.basistech.rosette.annotations.JacksonMixin;\n"
-                + "\n"
-                + "@JacksonMixin\n"
-                + "public interface MyInterface {\n"
-                + "    String getName();\n"
-                + "}\n"
+                """
+                        package test;
+                        
+                        import com.basistech.rosette.annotations.JacksonMixin;
+                        
+                        @JacksonMixin
+                        public interface MyInterface {
+                            String getName();
+                        }
+                        """
         );
 
         Compilation compilation = Compiler.javac()
@@ -112,17 +118,19 @@ public class JacksonMixinProcessorTest {
     }
 
     @Test
-    public void testJacksonMixinOnEnumProducesError() {
+    void testJacksonMixinOnEnumProducesError() {
         JavaFileObject enumWithAnnotation = JavaFileObjects.forSourceString(
                 "test.MyEnum",
-                "package test;\n"
-                + "\n"
-                + "import com.basistech.rosette.annotations.JacksonMixin;\n"
-                + "\n"
-                + "@JacksonMixin\n"
-                + "public enum MyEnum {\n"
-                + "    VALUE1, VALUE2\n"
-                + "}\n"
+                """
+                        package test;
+                        
+                        import com.basistech.rosette.annotations.JacksonMixin;
+                        
+                        @JacksonMixin
+                        public enum MyEnum {
+                            VALUE1, VALUE2
+                        }
+                        """
         );
 
         Compilation compilation = Compiler.javac()
@@ -140,7 +148,7 @@ public class JacksonMixinProcessorTest {
     }
 
     @Test
-    public void testGetSupportedAnnotationTypes() {
+    void testGetSupportedAnnotationTypes() {
         JacksonMixinProcessor processor = new JacksonMixinProcessor();
         java.util.Set<String> supportedTypes = processor.getSupportedAnnotationTypes();
 
