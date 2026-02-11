@@ -104,6 +104,10 @@
                 </executions>
                 <configuration>
                     <sourcepath>${delombok.output.directory}</sourcepath>
+                    <failOnError>false</failOnError>
+                    <failOnWarnings>false</failOnWarnings>
+                    <quiet>true</quiet>
+                    <doclint>none</doclint>
                 </configuration>
             </plugin>
             <plugin>
