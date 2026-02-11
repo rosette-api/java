@@ -1,7 +1,7 @@
 node ("docker-light") {
     def sourceDir = pwd()
     try {
-        env.JAVA_HOME = "${tool 'java21'}"
+        env.JAVA_HOME = "${tool 'java25'}"
         env.PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
         def mavenLocalRepo = "$JENKINS_HOME/maven-local-repositories/executor-$EXECUTOR_NUMBER"
         stage("Clean up") {
@@ -30,7 +30,7 @@ node ("docker-light") {
                        --pull always \
                        --volume ${sourceDir}:/source \
                        --volume /opt/maven-basis:/opt/maven-basis \
-                       eclipse-temurin:21-jdk-noble \
+                       eclipse-temurin:25-jdk-noble \
                        bash -c \"apt-get update && \
                              apt-get install -y git && \
                              pushd /source && \

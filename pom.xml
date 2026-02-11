@@ -28,7 +28,7 @@
     </parent>
     <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
-    <url>http://rosette-api.github.io/java</url>
+    <url>https://rosette-api.github.io/java/</url>
     <scm>
         <connection>scm:git:git@github.com:rosette-api/java.git</connection>
         <developerConnection>scm:git:git@github.com:rosette-api/java.git</developerConnection>
@@ -44,6 +44,7 @@
     <properties>
         <build-helper-maven-plugin.version>3.6.1</build-helper-maven-plugin.version>
         <commons-codec.version>1.20.0</commons-codec.version>
+        <google-testing-compile.version>0.21.0</google-testing-compile.version>
         <jakarta-validation-api.version>3.1.1</jakarta-validation-api.version>
         <java-poet.version>0.10.0</java-poet.version>
         <junit.version>6.0.1</junit.version>
@@ -90,7 +91,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <compilerVersion>17</compilerVersion>
                     <source>11</source>
                     <target>11</target>
                 </configuration>

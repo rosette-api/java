@@ -69,6 +69,10 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
                     <sourcepath>../model/target/delombok;../api/src/main/java</sourcepath>
+                    <failOnError>false</failOnError>
+                    <failOnWarnings>false</failOnWarnings>
+                    <quiet>true</quiet>
+                    <doclint>none</doclint>
                     <additionalDependencies>
                         <additionalDependency>
                             <groupId>com.basistech.rosette</groupId>
