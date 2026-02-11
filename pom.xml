@@ -23,7 +23,7 @@
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
-        <version>25.0.0</version>
+        <version>26.0.0</version>
         <relativePath />
     </parent>
     <packaging>pom</packaging>
@@ -46,7 +46,7 @@
         <commons-codec.version>1.20.0</commons-codec.version>
         <google-testing-compile.version>0.21.0</google-testing-compile.version>
         <jakarta-validation-api.version>3.1.1</jakarta-validation-api.version>
-        <java-poet.version>1.13.0</java-poet.version>
+        <java-poet.version>0.10.0</java-poet.version>
         <junit.version>6.0.1</junit.version>
         <lombok.version>1.18.42</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
