@@ -37,7 +37,6 @@
             <groupId>com.palantir.javapoet</groupId>
             <artifactId>javapoet</artifactId>
             <version>${java-poet.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
