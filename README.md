@@ -6,7 +6,7 @@
 
 ---
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.basistech.rosette/rosette-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.basistech.rosette/rosette-api-java-binding)
+[![Maven Central](https://img.shields.io/maven-central/v/com.basistech.rosette/rosette-api.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/com.basistech.rosette/rosette-api)
 
 Our product is a full text processing pipeline from data preparation to extracting the most relevant information and 
 analysis utilizing precise, focused AI that has built-in human understanding. Text Analytics provides foundational 
