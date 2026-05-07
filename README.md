@@ -47,10 +47,10 @@ View small example programs for each Analytics endpoint in the
 
 #### Documentation & Support
 - [Binding API](https://rosette-api.github.io/java/)
-- [Analytics Platform API](https://docs.babelstreet.com/API/en/index-en.html)
-- [Binding Release Notes](https://github.com/rosette-api/java/wiki/Release-Notes)
+- [Analytics Platform API](https://documentation.babelstreet.com/analytics)
+- [Binding Release Notes](https://github.com/rosette-api/ruby/wiki/Release-Notes)
 - [Analytics Platform Release Notes](https://docs.babelstreet.com/Release/en/rosette-cloud.html)
-- [Support](https://babelstreet.my.site.com/support/s/)
+- [Support](https://babelstreet.my.site.com/support/s/contactsupport)
 - [Binding License: Apache 2.0](LICENSE.txt)
 
 ## Binding Developer Information
