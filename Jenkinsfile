@@ -1,5 +1,6 @@
 node ("docker-light") {
-    def SOURCEDIR = pwd()
+    def SOURCE_DIR = pwd()
+    def LOCAL_DOCKER_IMAGE = "rosette/jenkins-java:jenkins-${env.BUILD_NUMBER}"
     try {
         env.JAVA_HOME = "${tool 'java25'}"
         env.PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
@@ -19,11 +20,14 @@ node ("docker-light") {
             }
 
         }
+        stage("Build Docker Image") {
+            sh "docker build -f jenkins.Dockerfile -t ${LOCAL_DOCKER_IMAGE} ."
+        }
         stage("Test with Docker") {
             echo "${env.ALT_URL}"
             def useUrl = ("${env.ALT_URL}" == "null") ? "${env.BINDING_TEST_URL}" : "${env.ALT_URL}"
             withEnv(["API_KEY=${env.ROSETTE_API_KEY}", "ALT_URL=${useUrl}"]) {
-                sh "docker run --rm -e API_KEY=${API_KEY} -e ALT_URL=${ALT_URL} -v ${SOURCEDIR}:/source rosette/docker-java"
+                sh "docker run --rm -e API_KEY=${API_KEY} -e ALT_URL=${ALT_URL} -v ${SOURCE_DIR}:/source ${LOCAL_DOCKER_IMAGE}"
             }
         }
         postToTeams(true)
@@ -31,6 +35,8 @@ node ("docker-light") {
         currentBuild.result = "FAILED"
         postToTeams(false)
         throw e
+    } finally {
+        sh "docker image rm ${LOCAL_DOCKER_IMAGE} || true"
     }
 }
 
