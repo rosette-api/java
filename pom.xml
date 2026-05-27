@@ -52,6 +52,7 @@
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <mockserver.version>5.15.0</mockserver.version>
         <reflections.version>0.10.2</reflections.version>
+        <nexus-staging-plugin-version>1.7.0</nexus-staging-plugin-version>
     </properties>
     <modules>
         <module>annotations</module>
@@ -174,6 +175,37 @@
                         </plugin>
                     </plugins>
                 </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>internal-release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-plugin-version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>${nexus-staging-plugin-internal-server-id}</serverId>
+                            <nexusUrl>${nexus-staging-plugin-internal-nexus-url}</nexusUrl>
+                            <stagingProfileId>${nexus-staging-plugin-internal-staging-profile-id}</stagingProfileId>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <configuration>
+                            <skipPublishing>true</skipPublishing>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>injected-central-publishing</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
             </build>
         </profile>
     </profiles>
