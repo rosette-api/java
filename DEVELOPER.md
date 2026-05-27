@@ -9,10 +9,5 @@ To be updated..
 
 #### Internal Releasing
 
-To perform an internal release, execute the following commands:
-```
-$ mvn release:clean
-$ mvn release:prepare
-$ mvn release:perform -Drelease-profile=internal-release
-```
+Check https://babelstreet.atlassian.net/wiki/spaces/team7f2bd656bc6e4a81928a92ea96761369/pages/2163736577/Java+binding+internal+release for the internal release process
 
