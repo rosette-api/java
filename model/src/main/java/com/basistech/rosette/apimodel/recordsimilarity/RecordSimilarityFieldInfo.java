@@ -30,6 +30,7 @@ import jakarta.validation.constraints.NotNull;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordSimilarityFieldInfo {
     @NotNull @Valid String type;
+    RecordSimilarityFieldScoringMethod scoringMethod;
     Double weight;
     /**
      * the score that this field should return if the field is null in a record

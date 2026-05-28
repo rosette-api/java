@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2026 Babel Street Rosette Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,8 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
-import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.Valid;
-import lombok.Builder;
-import lombok.Value;
-import lombok.extern.jackson.Jacksonized;
-
-@Jacksonized
-@Builder
-@Value
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class RecordSimilarityProperties {
-    @Valid Double threshold;
-    @Valid Double matchingFieldsBoostBias;
-    @Valid Boolean includeExplainInfo;
-    @Valid Map<String, String> parameters;
-    @Valid String parameterUniverse;
+public enum RecordSimilarityFieldScoringMethod {
+    STANDARD,
+    ONLY_INCREASE,
+    ONLY_DECREASE
 }
