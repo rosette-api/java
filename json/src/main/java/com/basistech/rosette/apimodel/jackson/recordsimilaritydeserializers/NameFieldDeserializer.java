@@ -23,6 +23,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NameFieldDeserializer extends StdDeserializer<NameField> {
     public NameFieldDeserializer() {
@@ -32,11 +34,23 @@ public class NameFieldDeserializer extends StdDeserializer<NameField> {
     @Override
     public NameField deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
+        final List<NameField.NameFieldData> data = new ArrayList<>();
+        if (node.isArray()) {
+            for (JsonNode element : node) {
+                data.add(deserializeElement(element, jsonParser));
+            }
+        } else {
+            data.add(deserializeElement(node, jsonParser));
+        }
+        return NameField.builder().data(data).build();
+    }
+
+    private static NameField.NameFieldData deserializeElement(JsonNode node, JsonParser jsonParser) throws IOException {
         if (node.isObject()) {
             return jsonParser.getCodec().treeToValue(node, NameField.FieldedName.class);
         } else if (node.isTextual()) {
             return NameField.UnfieldedName.builder().text(node.textValue()).build();
         }
-        throw new IOException("Invalid JSON structure: unexpected node type");
+        throw new IOException("Invalid JSON structure: unexpected node type for NameFieldData");
     }
 }

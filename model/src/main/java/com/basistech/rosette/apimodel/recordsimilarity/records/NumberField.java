@@ -15,16 +15,20 @@
  */
 package com.basistech.rosette.apimodel.recordsimilarity.records;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Builder;
 import lombok.Value;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
 
-@SuperBuilder
+import java.util.List;
+
+@Builder
 @Value
-@Jacksonized
 public class NumberField implements RecordSimilarityField {
-    @NotNull @JsonValue @JsonInclude Number data;
+    @NotEmpty List<Number> data;
+
+    @JsonValue
+    public Object toJson() {
+        return data.size() == 1 ? data.get(0) : data;
+    }
 }

@@ -50,29 +50,36 @@ public class RecordSimilarityResponseTest {
             temp = RecordSimilarityResponse.builder()
                     .results(List.of(RecordSimilarityResult.builder()
                                     .score(0.87)
-                                    .left(Map.of("primaryName", NameField.FieldedName.builder()
-                                                    .text("Ethan R")
-                                                    .language(LanguageCode.ENGLISH)
-                                                    .entityType(NEConstants.toString(NEConstants.NE_TYPE_PERSON))
-                                                    .languageOfOrigin(LanguageCode.ENGLISH)
-                                                    .script(ISO15924.Latn)
-                                                    .build(),
-                                            "dob", DateField.FieldedDate.builder()
-                                                    .date("1993-04-16")
-                                                    .build(),
-                                            "addr", AddressField.FieldedAddress.builder()
-                                                    .houseNumber("123").road("Roadlane Ave")
-                                                    .build(),
-                                            "str", StringField.builder().data("some string").build(),
-                                            "num", NumberField.builder().data(2342.15).build()))
-                                    .right(Map.of("primaryName", NameField.FieldedName.builder()
-                                                    .text("Seth R")
-                                                    .build(),
-                                            "dob", DateField.UnfieldedDate.builder()
-                                                    .date("1993-04-16")
-                                                    .build(),
-                                            "str", StringField.builder().data("some other string").build(),
-                                            "bool", BooleanField.builder().data(false).build()))
+                                    .left(Map.of(
+                                            "primaryName", NameField.builder().data(List.of(
+                                                    NameField.FieldedName.builder()
+                                                            .text("Ethan R")
+                                                            .language(LanguageCode.ENGLISH)
+                                                            .entityType(NEConstants.toString(NEConstants.NE_TYPE_PERSON))
+                                                            .languageOfOrigin(LanguageCode.ENGLISH)
+                                                            .script(ISO15924.Latn)
+                                                            .build())).build(),
+                                            "dob", DateField.builder().data(List.of(
+                                                    DateField.FieldedDate.builder()
+                                                            .date("1993-04-16")
+                                                            .build())).build(),
+                                            "addr", AddressField.builder().data(List.of(
+                                                    AddressField.FieldedAddress.builder()
+                                                            .houseNumber("123").road("Roadlane Ave")
+                                                            .build())).build(),
+                                            "str", StringField.builder().data(List.of("some string")).build(),
+                                            "num", NumberField.builder().data(List.<Number>of(2342.15)).build()))
+                                    .right(Map.of(
+                                            "primaryName", NameField.builder().data(List.of(
+                                                    NameField.FieldedName.builder()
+                                                            .text("Seth R")
+                                                            .build())).build(),
+                                            "dob", DateField.builder().data(List.of(
+                                                    DateField.UnfieldedDate.builder()
+                                                            .date("1993-04-16")
+                                                            .build())).build(),
+                                            "str", StringField.builder().data(List.of("some other string")).build(),
+                                            "bool", BooleanField.builder().data(List.of(false)).build()))
                                     .explainInfo(RecordSimilarityExplainInfo.builder()
                                             .leftOnlyFields(List.of("addr"))
                                             .rightOnlyFields(List.of("bool"))
@@ -101,25 +108,32 @@ public class RecordSimilarityResponseTest {
                                             .build())
                                     .build(),
                             RecordSimilarityResult.builder()
-                                    .left(Map.of("primaryName", NameField.FieldedName.builder()
-                                                    .text("Ethan R")
-                                                    .language(LanguageCode.ENGLISH)
-                                                    .entityType(NEConstants.toString(NEConstants.NE_TYPE_PERSON))
-                                                    .languageOfOrigin(LanguageCode.ENGLISH)
-                                                    .script(ISO15924.Latn)
-                                                    .build(),
-                                            "dob", DateField.FieldedDate.builder()
-                                                    .date("1993-04-16")
-                                                    .build(),
-                                            "addr", AddressField.FieldedAddress.builder()
-                                                    .houseNumber("123").road("Roadlane Ave")
-                                                    .build()))
-                                    .right(Map.of("primaryName", NameField.FieldedName.builder()
-                                                    .text("Seth R")
-                                                    .build(),
-                                            "dob", DateField.UnfieldedDate.builder()
-                                                    .date("1993-04-16")
-                                                    .build()))
+                                    .left(Map.of(
+                                            "primaryName", NameField.builder().data(List.of(
+                                                    NameField.FieldedName.builder()
+                                                            .text("Ethan R")
+                                                            .language(LanguageCode.ENGLISH)
+                                                            .entityType(NEConstants.toString(NEConstants.NE_TYPE_PERSON))
+                                                            .languageOfOrigin(LanguageCode.ENGLISH)
+                                                            .script(ISO15924.Latn)
+                                                            .build())).build(),
+                                            "dob", DateField.builder().data(List.of(
+                                                    DateField.FieldedDate.builder()
+                                                            .date("1993-04-16")
+                                                            .build())).build(),
+                                            "addr", AddressField.builder().data(List.of(
+                                                    AddressField.FieldedAddress.builder()
+                                                            .houseNumber("123").road("Roadlane Ave")
+                                                            .build())).build()))
+                                    .right(Map.of(
+                                            "primaryName", NameField.builder().data(List.of(
+                                                    NameField.FieldedName.builder()
+                                                            .text("Seth R")
+                                                            .build())).build(),
+                                            "dob", DateField.builder().data(List.of(
+                                                    DateField.UnfieldedDate.builder()
+                                                            .date("1993-04-16")
+                                                            .build())).build()))
                                     .error(List.of("Field foo not found in field mapping"))
                                     .info(List.of("Some info message", "Some other info message"))
                                     .build()))
