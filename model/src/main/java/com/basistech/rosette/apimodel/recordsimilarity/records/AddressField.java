@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 import lombok.experimental.SuperBuilder;
@@ -34,6 +35,7 @@ import java.util.List;
 @Value
 public class AddressField implements RecordSimilarityField {
 
+    @NonNull
     @NotEmpty
     List<AddressFieldData> data;
 

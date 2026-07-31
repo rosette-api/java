@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RecordSimilarityRequestTest {
 
@@ -316,6 +317,117 @@ class RecordSimilarityRequestTest {
                 .build();
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void testMultiElementFieldRoundTrip() throws JsonProcessingException {
+        // Use a fresh mapper to avoid polluting the shared MAPPER's serializer cache
+        final ObjectMapper mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+
+        // A record with multiple values in every field type
+        final RecordSimilarityRequest request = RecordSimilarityRequest.builder()
+                .fields(Map.of(
+                        "name", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NAME).weight(0.5).build(),
+                        "dob", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_DATE).weight(0.2).build(),
+                        "addr", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_ADDRESS).weight(0.5).build(),
+                        "str", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_STRING).weight(0.8).build(),
+                        "num", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_NUMBER).weight(0.25).build(),
+                        "bool", RecordSimilarityFieldInfo.builder().type(RecordFieldType.RNI_BOOLEAN).weight(0.05).build()))
+                .properties(RecordSimilarityProperties.builder().threshold(0.7).build())
+                .records(RecordSimilarityRecords.builder()
+                        .left(List.of(Map.of(
+                                "name", NameField.builder().data(List.of(
+                                        NameField.UnfieldedName.builder().text("Ivan R").build(),
+                                        NameField.FieldedName.builder().text("Ivan Rossi").language(LanguageCode.ITALIAN).build()
+                                )).build(),
+                                "dob", DateField.builder().data(List.of(
+                                        DateField.UnfieldedDate.builder().date("1993-04-16").build(),
+                                        DateField.FieldedDate.builder().date("1993/04/16").format("yyyy/MM/dd").build()
+                                )).build(),
+                                "addr", AddressField.builder().data(List.of(
+                                        AddressField.UnfieldedAddress.builder().address("123 Main St").build(),
+                                        AddressField.FieldedAddress.builder().houseNumber("123").road("Main St").city("Springfield").build()
+                                )).build(),
+                                "str", StringField.builder().data(List.of("engineer", "developer")).build(),
+                                "num", NumberField.builder().data(List.<Number>of(42.0, 43.5)).build(),
+                                "bool", BooleanField.builder().data(List.of(true, false)).build()
+                        )))
+                        .right(List.of(Map.of(
+                                "name", NameField.builder().data(List.of(
+                                        NameField.FieldedName.builder().text("Ivan R").build(),
+                                        NameField.UnfieldedName.builder().text("I. Rossi").build()
+                                )).build(),
+                                "dob", DateField.builder().data(List.of(
+                                        DateField.UnfieldedDate.builder().date("1993-04-16").build()
+                                )).build(),
+                                "addr", AddressField.builder().data(List.of(
+                                        AddressField.FieldedAddress.builder().houseNumber("123").road("Main St").build()
+                                )).build(),
+                                "str", StringField.builder().data(List.of("software engineer")).build(),
+                                "num", NumberField.builder().data(List.<Number>of(42.0)).build(),
+                                "bool", BooleanField.builder().data(List.of(true)).build()
+                        )))
+                        .build())
+                .build();
+
+        // Multi-element fields must serialize as JSON arrays
+        final JsonNode tree = mapper.valueToTree(request);
+        final JsonNode leftRecord = tree.get("records").get("left").get(0);
+        assertEquals(2, leftRecord.get("name").size(), "multi-element name should be an array of 2");
+        assertEquals(2, leftRecord.get("dob").size(), "multi-element dob should be an array of 2");
+        assertEquals(2, leftRecord.get("addr").size(), "multi-element addr should be an array of 2");
+        assertEquals(2, leftRecord.get("str").size(), "multi-element str should be an array of 2");
+        assertEquals(2, leftRecord.get("num").size(), "multi-element num should be an array of 2");
+        assertEquals(2, leftRecord.get("bool").size(), "multi-element bool should be an array of 2");
+
+        // Mixed unfielded/fielded name elements
+        assertEquals("Ivan R", leftRecord.get("name").get(0).asText());
+        assertEquals("Ivan Rossi", leftRecord.get("name").get(1).get("text").asText());
+
+        // Round-trip: deserialize back and compare
+        final String json = mapper.writeValueAsString(request);
+        final RecordSimilarityRequest roundTripped = mapper.readValue(json, new TypeReference<>() { });
+        assertEquals(request, roundTripped);
+    }
+
+    @Test
+    void testNullDataThrowsOnConstruction() {
+        assertThrows(NullPointerException.class, () -> NameField.builder().build(),
+                "NameField.builder().build() with null data should throw NPE");
+        assertThrows(NullPointerException.class, () -> DateField.builder().build(),
+                "DateField.builder().build() with null data should throw NPE");
+        assertThrows(NullPointerException.class, () -> AddressField.builder().build(),
+                "AddressField.builder().build() with null data should throw NPE");
+        assertThrows(NullPointerException.class, () -> StringField.builder().build(),
+                "StringField.builder().build() with null data should throw NPE");
+        assertThrows(NullPointerException.class, () -> NumberField.builder().build(),
+                "NumberField.builder().build() with null data should throw NPE");
+        assertThrows(NullPointerException.class, () -> BooleanField.builder().build(),
+                "BooleanField.builder().build() with null data should throw NPE");
+    }
+
+    @Test
+    void testMalformedArrayElementThrows() {
+        // A number where a name element is expected is invalid JSON for NameField
+        final String badNameJson = "{\"fields\":{\"name\":{\"type\":\"rni_name\",\"weight\":0.5}},"
+                + "\"records\":{\"left\":[{\"name\":[42]}],\"right\":[]}}";
+        assertThrows(JsonProcessingException.class,
+                () -> MAPPER.readValue(badNameJson, new TypeReference<RecordSimilarityRequest>() { }),
+                "Numeric element inside name array should fail deserialization");
+
+        // A number where a date element is expected
+        final String badDateJson = "{\"fields\":{\"dob\":{\"type\":\"rni_date\",\"weight\":0.2}},"
+                + "\"records\":{\"left\":[{\"dob\":[42]}],\"right\":[]}}";
+        assertThrows(JsonProcessingException.class,
+                () -> MAPPER.readValue(badDateJson, new TypeReference<RecordSimilarityRequest>() { }),
+                "Numeric element inside date array should fail deserialization");
+
+        // A number where an address element is expected
+        final String badAddrJson = "{\"fields\":{\"addr\":{\"type\":\"rni_address\",\"weight\":0.5}},"
+                + "\"records\":{\"left\":[{\"addr\":[42]}],\"right\":[]}}";
+        assertThrows(JsonProcessingException.class,
+                () -> MAPPER.readValue(badAddrJson, new TypeReference<RecordSimilarityRequest>() { }),
+                "Numeric element inside address array should fail deserialization");
     }
 
 }

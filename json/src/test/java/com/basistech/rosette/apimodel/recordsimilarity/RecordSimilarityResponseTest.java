@@ -166,4 +166,58 @@ public class RecordSimilarityResponseTest {
         MAPPER.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
         assertEquals(EXPECTED_JSON, MAPPER.writeValueAsString(EXPECTED_RESPONSE));
     }
+
+    @Test
+    public void testMultiElementFieldRoundTrip() throws JsonProcessingException {
+        // Use a fresh mapper to avoid polluting the shared MAPPER's serializer cache
+        final ObjectMapper mapper = ApiModelMixinModule.setupObjectMapper(new ObjectMapper());
+
+        // Build a response where each field in a result record has multiple values
+        final RecordSimilarityResponse response = RecordSimilarityResponse.builder()
+                .results(List.of(RecordSimilarityResult.builder()
+                        .score(0.75)
+                        .left(Map.of(
+                                "name", NameField.builder().data(List.of(
+                                        NameField.UnfieldedName.builder().text("Ivan R").build(),
+                                        NameField.FieldedName.builder().text("Ivan Rossi").language(LanguageCode.ITALIAN).build()
+                                )).build(),
+                                "dob", DateField.builder().data(List.of(
+                                        DateField.UnfieldedDate.builder().date("1993-04-16").build(),
+                                        DateField.FieldedDate.builder().date("1993/04/16").format("yyyy/MM/dd").build()
+                                )).build(),
+                                "addr", AddressField.builder().data(List.of(
+                                        AddressField.UnfieldedAddress.builder().address("123 Main St").build(),
+                                        AddressField.FieldedAddress.builder().houseNumber("123").road("Main St").build()
+                                )).build(),
+                                "str", StringField.builder().data(List.of("engineer", "developer")).build(),
+                                "num", NumberField.builder().data(List.<Number>of(1.0, 2.0)).build(),
+                                "bool", BooleanField.builder().data(List.of(true, false)).build()))
+                        .right(Map.of(
+                                "name", NameField.builder().data(List.of(
+                                        NameField.FieldedName.builder().text("Ivan R").build()
+                                )).build()))
+                        .build()))
+                .build();
+
+        // Multi-element fields must serialize as JSON arrays
+        final com.fasterxml.jackson.databind.JsonNode tree = mapper.valueToTree(response);
+        final com.fasterxml.jackson.databind.JsonNode left = tree.get("results").get(0).get("left");
+        assertEquals(2, left.get("name").size(), "multi-element name should serialize as array of 2");
+        assertEquals(2, left.get("dob").size(), "multi-element dob should serialize as array of 2");
+        assertEquals(2, left.get("addr").size(), "multi-element addr should serialize as array of 2");
+        assertEquals(2, left.get("str").size(), "multi-element str should serialize as array of 2");
+        assertEquals(2, left.get("num").size(), "multi-element num should serialize as array of 2");
+        assertEquals(2, left.get("bool").size(), "multi-element bool should serialize as array of 2");
+
+        // First name element is the unfielded string form; second is an object
+        assertEquals("Ivan R", left.get("name").get(0).asText());
+        assertEquals("Ivan Rossi", left.get("name").get(1).get("text").asText());
+
+        // Round-trip: compare JSON trees (order-insensitive) since deserialized left/right maps
+        // hold raw Java objects (RecordSimilarityField is an interface with no type info),
+        // not the typed field objects in the original, so object equality cannot be used.
+        final String json = mapper.writeValueAsString(response);
+        final RecordSimilarityResponse roundTripped = mapper.readValue(json, RecordSimilarityResponse.class);
+        assertEquals(mapper.readTree(json), mapper.readTree(mapper.writeValueAsString(roundTripped)));
+    }
 }

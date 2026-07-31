@@ -18,6 +18,7 @@ package com.basistech.rosette.apimodel.recordsimilarity.records;
 import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.List;
 @Builder
 @Value
 public class StringField implements RecordSimilarityField {
-    @NotEmpty List<String> data;
+    @NonNull @NotEmpty List<String> data;
 
     @JsonValue
     public Object toJson() {
