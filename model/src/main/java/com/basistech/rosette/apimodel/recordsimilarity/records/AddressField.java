@@ -19,22 +19,41 @@ package com.basistech.rosette.apimodel.recordsimilarity.records;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
-@SuperBuilder
+import java.util.List;
+
+@Builder
 @Value
-@NonFinal
-public abstract class AddressField implements RecordSimilarityField {
+public class AddressField implements RecordSimilarityField {
+
+    @NonNull
+    @NotEmpty
+    List<AddressFieldData> data;
+
+    @JsonValue
+    public Object toJson() {
+        return data.size() == 1 ? data.get(0) : data;
+    }
+
+    @SuperBuilder
+    @Value
+    @NonFinal
+    public abstract static class AddressFieldData {
+    }
 
     @Jacksonized
     @SuperBuilder
     @Value
-    public static class UnfieldedAddress extends AddressField {
+    public static class UnfieldedAddress extends AddressFieldData {
         @NotBlank String address;
         @JsonValue public String toJson() {
             return address;
@@ -45,7 +64,7 @@ public abstract class AddressField implements RecordSimilarityField {
     @SuperBuilder
     @Value
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class FieldedAddress extends AddressField {
+    public static class FieldedAddress extends AddressFieldData {
         String house;
         String houseNumber;
         String road;

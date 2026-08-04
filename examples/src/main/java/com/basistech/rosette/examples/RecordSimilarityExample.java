@@ -74,39 +74,51 @@ public class RecordSimilarityExample extends ExampleBase {
                         .left(
                                 List.of(
                                         Map.of(
-                                                primaryNameField, NameField.FieldedName.builder()
-                                                        .text("Ethan R").entityType("PERSON")
-                                                        .language(LanguageCode.ENGLISH)
-                                                        .languageOfOrigin(LanguageCode.ENGLISH)
-                                                        .script(ISO15924.Latn)
-                                                        .build(),
-                                                dobField, DateField.UnfieldedDate.builder().date(dobHyphen).build(),
-                                                dob2Field, DateField.FieldedDate.builder().date("04161993").format("MMddyyyy").build(),
-                                                addrField, AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build(),
-                                                strField, StringField.builder().data("software engineer").build()
+                                                primaryNameField, NameField.builder().data(List.of(
+                                                        NameField.FieldedName.builder()
+                                                                .text("Ethan R").entityType("PERSON")
+                                                                .language(LanguageCode.ENGLISH)
+                                                                .languageOfOrigin(LanguageCode.ENGLISH)
+                                                                .script(ISO15924.Latn)
+                                                                .build())).build(),
+                                                dobField, DateField.builder().data(List.of(
+                                                        DateField.UnfieldedDate.builder().date(dobHyphen).build())).build(),
+                                                dob2Field, DateField.builder().data(List.of(
+                                                        DateField.FieldedDate.builder().date("04161993").format("MMddyyyy").build())).build(),
+                                                addrField, AddressField.builder().data(List.of(
+                                                        AddressField.UnfieldedAddress.builder().address("123 Roadlane Ave").build())).build(),
+                                                strField, StringField.builder().data(List.of("software engineer")).build()
                                         ),
                                         Map.of(
-                                                primaryNameField, NameField.FieldedName.builder().text("Evan R").build(),
-                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build(),
-                                                numberField, NumberField.builder().data(47).build(),
-                                                boolField, BooleanField.builder().data(false).build()
+                                                primaryNameField, NameField.builder().data(List.of(
+                                                        NameField.FieldedName.builder().text("Evan R").build())).build(),
+                                                dobField, DateField.builder().data(List.of(
+                                                        DateField.FieldedDate.builder().date(dobHyphen).build())).build(),
+                                                numberField, NumberField.builder().data(List.<Number>of(47)).build(),
+                                                boolField, BooleanField.builder().data(List.of(false)).build()
                                         )
                                 )
                         ).right(
                                 List.of(
                                         Map.of(
-                                                primaryNameField, NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build(),
-                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build(),
-                                                strField, StringField.builder().data("manager").build(),
-                                                boolField, BooleanField.builder().data(true).build()
+                                                primaryNameField, NameField.builder().data(List.of(
+                                                        NameField.FieldedName.builder().text("Seth R").language(LanguageCode.ENGLISH).build())).build(),
+                                                dobField, DateField.builder().data(List.of(
+                                                        DateField.FieldedDate.builder().date(dobHyphen).build())).build(),
+                                                strField, StringField.builder().data(List.of("manager")).build(),
+                                                boolField, BooleanField.builder().data(List.of(true)).build()
                                         ),
                                         Map.of(
-                                                primaryNameField, NameField.UnfieldedName.builder().text("Ivan R").build(),
-                                                dobField, DateField.FieldedDate.builder().date(dobHyphen).build(),
-                                                dob2Field, DateField.FieldedDate.builder().date("1993/04/16").build(),
-                                                addrField, AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build(),
-                                                numberField, NumberField.builder().data(72).build(),
-                                                boolField, BooleanField.builder().data(true).build()
+                                                primaryNameField, NameField.builder().data(List.of(
+                                                        NameField.UnfieldedName.builder().text("Ivan R").build())).build(),
+                                                dobField, DateField.builder().data(List.of(
+                                                        DateField.FieldedDate.builder().date(dobHyphen).build())).build(),
+                                                dob2Field, DateField.builder().data(List.of(
+                                                        DateField.FieldedDate.builder().date("1993/04/16").build())).build(),
+                                                addrField, AddressField.builder().data(List.of(
+                                                        AddressField.FieldedAddress.builder().houseNumber("123").road("Roadlane Ave").build())).build(),
+                                                numberField, NumberField.builder().data(List.<Number>of(72)).build(),
+                                                boolField, BooleanField.builder().data(List.of(true)).build()
                                         )
                                 )
                         ).build()

@@ -20,23 +20,42 @@ import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
-@SuperBuilder
+import java.util.List;
+
+@Builder
 @Value
-@NonFinal
-public abstract class NameField implements RecordSimilarityField {
-    @NotBlank String text;
+public class NameField implements RecordSimilarityField {
+
+    @NonNull
+    @NotEmpty
+    List<NameFieldData> data;
+
+    @JsonValue
+    public Object toJson() {
+        return data.size() == 1 ? data.get(0) : data;
+    }
+
+    @SuperBuilder
+    @Value
+    @NonFinal
+    public abstract static class NameFieldData {
+        @NotBlank String text;
+    }
 
     @Jacksonized
     @SuperBuilder
     @Value
-    public static class UnfieldedName extends NameField {
+    public static class UnfieldedName extends NameFieldData {
         @JsonValue public String toJson() {
             return super.getText();
         }
@@ -46,7 +65,7 @@ public abstract class NameField implements RecordSimilarityField {
     @SuperBuilder
     @Value
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class FieldedName extends NameField {
+    public static class FieldedName extends NameFieldData {
         String entityType;
         LanguageCode language;
         LanguageCode languageOfOrigin;
