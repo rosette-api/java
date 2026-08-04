@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Basis Technology Corp.
+ * Copyright 2026 Basis Technology Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,6 @@
 
 package com.basistech.rosette.apimodel.recordsimilarity;
 
-import java.util.List;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Value;
@@ -28,10 +25,8 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 @Value
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RecordSimilarityExplainInfo {
-    Map<String, RecordSimilarityFieldExplainInfo> scoredFields;
-    List<String> leftOnlyFields;
-    List<String> rightOnlyFields;
-    List<RecordSimilarityScoreAdjustment> scoreAdjustments;
-    double finalScore;
+public class RecordSimilarityScoreAdjustment {
+    double unbiasedScore;
+    double score;
+    String parameter;
 }
