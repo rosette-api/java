@@ -32,5 +32,4 @@ public class RecordSimilarityExplainInfo {
     Map<String, RecordSimilarityFieldExplainInfo> scoredFields;
     List<String> leftOnlyFields;
     List<String> rightOnlyFields;
-    double finalScore;
 }
