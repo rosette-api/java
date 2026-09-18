@@ -23,6 +23,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddressFieldDeserializer extends StdDeserializer<AddressField> {
     public AddressFieldDeserializer() {
@@ -32,11 +34,23 @@ public class AddressFieldDeserializer extends StdDeserializer<AddressField> {
     @Override
     public AddressField deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         final JsonNode node = jsonParser.getCodec().readTree(jsonParser);
+        final List<AddressField.AddressFieldData> data = new ArrayList<>();
+        if (node.isArray()) {
+            for (JsonNode element : node) {
+                data.add(deserializeElement(element, jsonParser));
+            }
+        } else {
+            data.add(deserializeElement(node, jsonParser));
+        }
+        return AddressField.builder().data(data).build();
+    }
+
+    private static AddressField.AddressFieldData deserializeElement(JsonNode node, JsonParser jsonParser) throws IOException {
         if (node.isObject()) {
             return jsonParser.getCodec().treeToValue(node, AddressField.FieldedAddress.class);
         } else if (node.isTextual()) {
             return AddressField.UnfieldedAddress.builder().address(node.textValue()).build();
         }
-        throw new IOException("Invalid JSON structure: unexpected node type");
+        throw new IOException("Invalid JSON structure: unexpected node type for AddressFieldData");
     }
 }

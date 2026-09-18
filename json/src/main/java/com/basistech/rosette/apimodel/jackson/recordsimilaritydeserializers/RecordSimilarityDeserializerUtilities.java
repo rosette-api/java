@@ -128,16 +128,13 @@ final class RecordSimilarityDeserializerUtilities {
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(AddressField.class);
                     break;
                 case RecordFieldType.RNI_STRING:
-                    fieldData = StringField.builder().data(fieldValue.textValue()).build();
+                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(StringField.class);
                     break;
                 case RecordFieldType.RNI_NUMBER:
-                    fieldData = NumberField.builder().data(fieldValue.numberValue()).build();
+                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(NumberField.class);
                     break;
                 case RecordFieldType.RNI_BOOLEAN:
-                    // Be sure not to accidentally convert non-boolean values to 'false'
-                    fieldData = BooleanField.builder()
-                            .data(fieldValue.isBoolean() ? fieldValue.booleanValue() : null)
-                            .build();
+                    fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(BooleanField.class);
                     break;
                 default:
                     fieldData = fieldValue.traverse(jsonParser.getCodec()).readValueAs(UnknownField.class);

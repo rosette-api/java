@@ -18,23 +18,42 @@ package com.basistech.rosette.apimodel.recordsimilarity.records;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
-@SuperBuilder
+import java.util.List;
+
+@Builder
 @Value
-@NonFinal
-public abstract class DateField implements RecordSimilarityField {
-    @NotBlank String date;
+public class DateField implements RecordSimilarityField {
+
+    @NonNull
+    @NotEmpty
+    List<DateFieldData> data;
+
+    @JsonValue
+    public Object toJson() {
+        return data.size() == 1 ? data.get(0) : data;
+    }
+
+    @SuperBuilder
+    @Value
+    @NonFinal
+    public abstract static class DateFieldData {
+        @NotBlank String date;
+    }
 
     @Jacksonized
     @SuperBuilder
     @Value
-    public static class UnfieldedDate extends DateField {
+    public static class UnfieldedDate extends DateFieldData {
         @JsonValue public String toJson() {
             return super.getDate();
         }
@@ -44,7 +63,7 @@ public abstract class DateField implements RecordSimilarityField {
     @SuperBuilder
     @Value
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class FieldedDate extends DateField {
+    public static class FieldedDate extends DateFieldData {
         @NotBlank String format;
     }
 
