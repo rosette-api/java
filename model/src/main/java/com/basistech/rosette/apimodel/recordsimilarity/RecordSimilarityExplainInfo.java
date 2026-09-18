@@ -33,5 +33,4 @@ public class RecordSimilarityExplainInfo {
     List<String> leftOnlyFields;
     List<String> rightOnlyFields;
     List<RecordSimilarityScoreAdjustment> scoreAdjustments;
-    double finalScore;
 }
