@@ -50,7 +50,7 @@
         <junit.version>6.1.0</junit.version>
         <lombok.version>1.18.46</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
-        <mockserver.version>5.15.0</mockserver.version>
+        <mockserver.version>7.2.0</mockserver.version>
         <reflections.version>0.10.2</reflections.version>
         <nexus-staging-plugin-version>1.7.0</nexus-staging-plugin-version>
     </properties>
