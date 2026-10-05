@@ -17,6 +17,7 @@
 package com.basistech.rosette.apimodel;
 
 import com.basistech.rosette.apimodel.jackson.ApiModelMixinModule;
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityComparisonMethod;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityProperties;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRecords;
@@ -32,8 +33,11 @@ import com.basistech.util.ISO15924;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -263,17 +267,112 @@ class RecordSimilarityRequestTest {
 
     @Test
     void testSerialization() throws JsonProcessingException {
-        final JsonNode expectedJson = MAPPER.readTree(EXPECTED_JSON);
+        final ObjectNode expectedJson = (ObjectNode) MAPPER.readTree(EXPECTED_JSON);
+        expectedJson.put("comparisonMethod", "one_to_one");
         final JsonNode actualJson = MAPPER.valueToTree(EXPECTED_REQUEST);
         assertEquals(expectedJson, actualJson);
 
-        final JsonNode expectedParamJson = MAPPER.readTree(EXPECTED_JSON_WITH_PARAMS);
+        final ObjectNode expectedParamJson = (ObjectNode) MAPPER.readTree(EXPECTED_JSON_WITH_PARAMS);
+        expectedParamJson.put("comparisonMethod", "one_to_one");
         final JsonNode actualParamJson = MAPPER.valueToTree(EXPECTED_REQUEST_WITH_PARAMS);
         assertEquals(expectedParamJson, actualParamJson);
 
-        final JsonNode expectedUniverseJson = MAPPER.readTree(EXPECTED_JSON_WITH_UNIVERSE);
+        final ObjectNode expectedUniverseJson = (ObjectNode) MAPPER.readTree(EXPECTED_JSON_WITH_UNIVERSE);
+        expectedUniverseJson.put("comparisonMethod", "one_to_one");
         final JsonNode actualUniverseJson = MAPPER.valueToTree(EXPECTED_REQUEST_WITH_UNIVERSE);
         assertEquals(expectedUniverseJson, actualUniverseJson);
+    }
+
+    @Test
+    void testComparisonMethodDefaultsAcrossConstructionPaths() {
+        final RecordSimilarityRequest legacyConstructor = new RecordSimilarityRequest(null,
+                EXPECTED_REQUEST.getFields(), EXPECTED_REQUEST.getProperties(), EXPECTED_REQUEST.getRecords());
+        final RecordSimilarityRequest nullConstructor = new RecordSimilarityRequest(null,
+                EXPECTED_REQUEST.getFields(), EXPECTED_REQUEST.getProperties(), EXPECTED_REQUEST.getRecords(), null);
+        final RecordSimilarityRequest nullBuilder = RecordSimilarityRequest.builder()
+                .fields(EXPECTED_REQUEST.getFields())
+                .properties(EXPECTED_REQUEST.getProperties())
+                .records(EXPECTED_REQUEST.getRecords())
+                .comparisonMethod(null)
+                .build();
+
+        assertEquals(RecordSimilarityComparisonMethod.ONE_TO_ONE, EXPECTED_REQUEST.getComparisonMethod());
+        for (RecordSimilarityRequest request : List.of(legacyConstructor, nullConstructor, nullBuilder)) {
+            assertEquals(EXPECTED_REQUEST, request);
+            assertEquals(MAPPER.valueToTree(EXPECTED_REQUEST), MAPPER.valueToTree(request));
+        }
+    }
+
+    @Test
+    void testComparisonMethodDeserializationDefaults() throws JsonProcessingException {
+        final RecordSimilarityRequest absent = MAPPER.readValue(EXPECTED_JSON, RecordSimilarityRequest.class);
+        assertEquals(RecordSimilarityComparisonMethod.ONE_TO_ONE, absent.getComparisonMethod());
+        assertEquals(EXPECTED_REQUEST, absent);
+
+        final ObjectNode json = (ObjectNode) MAPPER.readTree(EXPECTED_JSON);
+        json.putNull("comparisonMethod");
+        final RecordSimilarityRequest explicitNull = MAPPER.readValue(json.toString(), RecordSimilarityRequest.class);
+        assertEquals(RecordSimilarityComparisonMethod.ONE_TO_ONE, explicitNull.getComparisonMethod());
+        assertEquals(EXPECTED_REQUEST, explicitNull);
+    }
+
+    @Test
+    void testComparisonMethodRoundTrip() throws JsonProcessingException {
+        final Map<RecordSimilarityComparisonMethod, String> wireNames = Map.of(
+                RecordSimilarityComparisonMethod.ONE_TO_ONE, "one_to_one",
+                RecordSimilarityComparisonMethod.ONE_TO_N, "one_to_n",
+                RecordSimilarityComparisonMethod.N_TO_M, "n_to_m");
+        for (RecordSimilarityComparisonMethod method : RecordSimilarityComparisonMethod.values()) {
+            final RecordSimilarityRequest request = RecordSimilarityRequest.builder()
+                    .fields(EXPECTED_REQUEST.getFields())
+                    .properties(EXPECTED_REQUEST.getProperties())
+                    .records(EXPECTED_REQUEST.getRecords())
+                    .comparisonMethod(method)
+                    .build();
+            final RecordSimilarityRequest constructorRequest = new RecordSimilarityRequest(null,
+                    request.getFields(), request.getProperties(), request.getRecords(), method);
+            assertEquals(constructorRequest, request);
+            assertEquals(method, request.getComparisonMethod());
+
+            final String json = MAPPER.writeValueAsString(request);
+            assertEquals(wireNames.get(method), MAPPER.readTree(json).get("comparisonMethod").asText());
+            assertEquals(request, MAPPER.readValue(json, RecordSimilarityRequest.class));
+        }
+    }
+
+    @Test
+    void testInvalidComparisonMethodThrows() throws JsonProcessingException {
+        final ObjectNode json = (ObjectNode) MAPPER.readTree(EXPECTED_JSON);
+        json.put("comparisonMethod", "unsupported_method");
+        assertThrows(JsonProcessingException.class,
+                () -> MAPPER.readValue(json.toString(), RecordSimilarityRequest.class));
+    }
+
+    @Test
+    void testComparisonMethodReaderRejectsNumbers() throws JsonProcessingException {
+        final ObjectNode json = (ObjectNode) MAPPER.readTree(EXPECTED_JSON);
+        json.put("comparisonMethod", 1);
+        final ObjectReader reader = MAPPER.readerFor(RecordSimilarityRequest.class)
+                .with(DeserializationFeature.FAIL_ON_NUMBERS_FOR_ENUMS);
+
+        assertThrows(JsonProcessingException.class, () -> reader.readValue(json.toString()));
+
+        json.put("comparisonMethod", "one_to_one");
+        assertEquals(EXPECTED_REQUEST, reader.readValue(json.toString()));
+    }
+
+    @Test
+    void testComparisonMethodReaderAllowsUnknownValuesAsNull() throws JsonProcessingException {
+        final ObjectNode json = (ObjectNode) MAPPER.readTree(EXPECTED_JSON);
+        json.put("comparisonMethod", "future_method");
+        final ObjectReader reader = MAPPER.readerFor(RecordSimilarityRequest.class)
+                .with(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL);
+
+        final RecordSimilarityRequest request = reader.readValue(json.toString());
+        assertEquals(RecordSimilarityComparisonMethod.ONE_TO_ONE, request.getComparisonMethod());
+        assertEquals(EXPECTED_REQUEST, request);
+        assertThrows(JsonProcessingException.class,
+                () -> MAPPER.readValue(json.toString(), RecordSimilarityRequest.class));
     }
 
     @Test

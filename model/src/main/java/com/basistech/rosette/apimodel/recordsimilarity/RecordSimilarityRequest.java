@@ -37,11 +37,7 @@ public class RecordSimilarityRequest extends Request {
                                    Map<String, RecordSimilarityFieldInfo> fields,
                                    RecordSimilarityProperties properties,
                                    RecordSimilarityRecords records) {
-        super(profileId);
-        this.fields = fields;
-        this.properties = properties;
-        this.records = records;
-        this.comparisonMethod = RecordSimilarityComparisonMethod.ONE_TO_ONE;
+        this(profileId, fields, properties, records, RecordSimilarityComparisonMethod.ONE_TO_ONE);
     }
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
@@ -54,6 +50,6 @@ public class RecordSimilarityRequest extends Request {
         this.fields = fields;
         this.properties = properties;
         this.records = records;
-        this.comparisonMethod = comparisonMethod;
+        this.comparisonMethod = comparisonMethod == null ? RecordSimilarityComparisonMethod.ONE_TO_ONE : comparisonMethod;
     }
 }
