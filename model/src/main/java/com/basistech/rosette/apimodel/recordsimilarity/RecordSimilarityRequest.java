@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Basis Technology Corp.
+ * Copyright 2022 Babel Street Rosette Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,15 +31,26 @@ public class RecordSimilarityRequest extends Request {
     @Valid Map<String, RecordSimilarityFieldInfo> fields;
     @Valid RecordSimilarityProperties properties;
     @NotNull @Valid RecordSimilarityRecords records;
+    @Valid RecordSimilarityComparisonMethod comparisonMethod;
+
+    public RecordSimilarityRequest(String profileId,
+                                   Map<String, RecordSimilarityFieldInfo> fields,
+                                   RecordSimilarityProperties properties,
+                                   RecordSimilarityRecords records) {
+        this(profileId, fields, properties, records, RecordSimilarityComparisonMethod.ONE_TO_ONE);
+    }
 
     @Builder     // workaround for inheritance https://github.com/rzwitserloot/lombok/issues/853
     public RecordSimilarityRequest(String profileId,
                                    Map<String, RecordSimilarityFieldInfo> fields,
                                    RecordSimilarityProperties properties,
-                                   RecordSimilarityRecords records) {
+                                   RecordSimilarityRecords records,
+                                   RecordSimilarityComparisonMethod comparisonMethod) {
         super(profileId);
         this.fields = fields;
         this.properties = properties;
         this.records = records;
+        this.comparisonMethod = comparisonMethod == null
+                ? RecordSimilarityComparisonMethod.ONE_TO_ONE : comparisonMethod;
     }
 }
