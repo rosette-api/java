@@ -50,6 +50,7 @@ public class RecordSimilarityRequest extends Request {
         this.fields = fields;
         this.properties = properties;
         this.records = records;
-        this.comparisonMethod = comparisonMethod == null ? RecordSimilarityComparisonMethod.ONE_TO_ONE : comparisonMethod;
+        this.comparisonMethod = comparisonMethod == null
+                ? RecordSimilarityComparisonMethod.ONE_TO_ONE : comparisonMethod;
     }
 }

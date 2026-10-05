@@ -16,7 +16,7 @@ node ("docker-light") {
             withMaven(maven: "Basis",
                     mavenLocalRepo: mavenLocalRepo,
                     publisherStrategy: "EXPLICIT") {
-                sh "mvn clean verify"
+                sh "mvn -Paggregate-coverage clean verify"
             }
 
         }

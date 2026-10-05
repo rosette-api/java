@@ -149,6 +149,15 @@
     </build>
     <profiles>
         <profile>
+            <id>aggregate-coverage</id>
+            <modules>
+                <module>coverage</module>
+            </modules>
+            <properties>
+                <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/coverage/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+            </properties>
+        </profile>
+        <profile>
             <id>aggregate-javadoc</id>
             <build>
                 <pluginManagement>
