@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Basis Technology Corp.
+ * Copyright 2024 Babel Street Rosette Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
+import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityComparisonMethod;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityFieldInfo;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityProperties;
 import com.basistech.rosette.apimodel.recordsimilarity.RecordSimilarityRecords;
@@ -54,10 +55,14 @@ public class RecordSimilarityRequestDeserializer extends StdDeserializer<RecordS
                         .right(parseRecords(node.get(recordsField).get("right"), fields, jsonParser))
                         .build();
             }
+            final JsonNode comparisonMethodNode = node.get("comparisonMethod");
+            final RecordSimilarityComparisonMethod comparisonMethod = comparisonMethodNode == null ? null
+                    : deserializationContext.readTreeAsValue(comparisonMethodNode, RecordSimilarityComparisonMethod.class);
             return RecordSimilarityRequest.builder()
                     .fields(fields)
                     .properties(properties)
                     .records(records)
+                    .comparisonMethod(comparisonMethod)
                     .build();
         }
     }
