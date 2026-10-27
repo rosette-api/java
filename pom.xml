@@ -19,7 +19,7 @@
     <groupId>com.basistech.rosette</groupId>
     <artifactId>rosette-api-java-binding</artifactId>
     <name>rosette-api-java-binding</name>
-    <version>1.39.0-SNAPSHOT</version>
+    <version>1.40.0-SNAPSHOT</version>
     <parent>
         <artifactId>open-source-parent</artifactId>
         <groupId>com.basistech</groupId>
@@ -148,6 +148,15 @@
         </pluginManagement>
     </build>
     <profiles>
+        <profile>
+            <id>aggregate-coverage</id>
+            <modules>
+                <module>coverage</module>
+            </modules>
+            <properties>
+                <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/coverage/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+            </properties>
+        </profile>
         <profile>
             <id>aggregate-javadoc</id>
             <build>

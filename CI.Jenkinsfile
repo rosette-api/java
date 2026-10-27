@@ -15,7 +15,7 @@ node ("docker-light") {
             withMaven(maven: "Basis",
                     mavenLocalRepo: mavenLocalRepo,
                     publisherStrategy: "EXPLICIT") {
-                sh "mvn clean verify"
+                sh "mvn -Paggregate-coverage clean verify"
             }
 
         }
@@ -35,7 +35,7 @@ node ("docker-light") {
                              apt-get install -y git && \
                              pushd /source && \
                              git config --global --add safe.directory /source && \
-                             /opt/maven-basis/bin/mvn --batch-mode clean install sonar:sonar $mySonarOpts; \
+                             /opt/maven-basis/bin/mvn --batch-mode -Paggregate-coverage clean install sonar:sonar $mySonarOpts; \
                              maven_ret=\\\$?; \
                              echo && \
                              echo [INFO] Set file permissions to UID and GID of jenkins user for cleanup. && \
